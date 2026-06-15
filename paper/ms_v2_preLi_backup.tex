@@ -1,0 +1,577 @@
+% ============================================================================
+% Two_Breaks — ApJ draft v2 (elevated, Burgess-informed).  aastex631.
+% Single-pulse bright GRBs, empirical time-resolved spectroscopy:
+%   (i) does Burgess+2014's thermal-non-thermal Ep-kT correlation appear in a
+%       large sample?  (ii) what additional spectral properties/correlations emerge?
+% %TODO (authors): finalize after the full-sample BB multi-start re-run + redshift
+% cross-match.  %chk = double-check before submission.  Author/affil = placeholder.
+% ============================================================================
+\documentclass[twocolumn]{aastex631}
+
+\newcommand{\nuc}{\ensuremath{\nu_c}}
+\newcommand{\num}{\ensuremath{\nu_m}}
+\newcommand{\Ep}{\ensuremath{E_{\rm p}}}
+\newcommand{\kT}{\ensuremath{kT}}
+\newcommand{\Liso}{\ensuremath{L_{\rm iso}}}
+\newcommand{\daic}{\ensuremath{\Delta\mathrm{AIC}}}
+\newcommand{\ssc}{\ensuremath{\sigma_{\rm sc}}}
+
+\shorttitle{Empirical Spectral Properties of Single-Pulse GRBs}
+\shortauthors{Khushboo et al.}
+
+\begin{document}
+
+\title{Time-Resolved Empirical Spectroscopy of a Large Sample of Single-Pulse
+Gamma-Ray Bursts: a Large-Sample Test of the Thermal--Non-thermal Correlation
+and a New Correlation Between the Two Spectral Breaks}
+
+% %TODO author names, affiliations, ORCIDs are placeholders.
+\author{Khushboo}
+\affiliation{Affiliation TBD}
+\author{Vikas Chand}
+\affiliation{Affiliation TBD}
+\email{vikas.chand.physics@gmail.com}
+\author{Collaborators TBD}
+\affiliation{Affiliation TBD}
+
+\begin{abstract}
+The curvature of gamma-ray burst (GRB) prompt spectra admits two physical
+readings: a quasi-thermal photospheric (blackbody, BB) component on a
+non-thermal continuum \citep{Burgess2014a}, or optically-thin synchrotron with
+two break energies --- the cooling frequency \nuc\ and the injection frequency
+$\num=\Ep$ \citep{Ravasio2019,Mei2024}. Using the shape-based selection of
+\citet{Busby2024} we assemble a uniform sample of \textbf{106 single-pulse,
+bright Fermi/GBM bursts} (18 with LAT/LLE) and fit \textbf{1063} Bayesian-block
+time bins with a family of six \emph{empirical} models (Band, cutoff power law,
+smoothly-broken power law, a double smoothly-broken power law [2SBPL], and
+Band$+$BB / CPL$+$BB) by maximum likelihood. We deliberately use empirical
+models --- model-agnostic, uniform across the sample, and not tuned to either
+physical picture --- and ask whether the per-burst thermal--non-thermal
+$\Ep$--$\kT$ correlation found by \citet{Burgess2014a} for six bursts appears at
+scale, and what additional properties emerge. We find: (i) the low-energy photon
+index peaks at $\alpha\simeq-0.75$, between the slow- ($-2/3$) and fast-cooled
+($-3/2$) synchrotron limits and close to \citeauthor{Burgess2014a}'s $-0.81$;
+(ii) of the bins requiring curvature beyond a single break, $78\%$ are equally or
+better described by a thermal proxy (BB$+$SBPL) than by an explicit second break,
+$94\%$ of all bins cannot decisively separate the six models, and the thermal
+flux fraction is modest ($F_{\rm BB}/F_{\rm tot}\simeq0.1$); (iii) the
+$\Ep$--$\kT$ correlation is recovered cleanly only in the highest signal-to-noise
+bursts (e.g.\ GRB~130427A, $\rho=0.78$, $\Ep\propto\kT^{0.66}$), with empirical
+$+$BB models detecting a blackbody in fewer bins than a physical synchrotron
+model would; (iv) the two 2SBPL breaks are themselves correlated,
+$\num\propto\nuc^{0.73\pm0.10}$ (Spearman $\rho=0.74$, intrinsic scatter
+$\ssc=0.26$~dex, $N=40$) --- a relation not previously quantified
+\citep{Ravasio2019,Mei2024}; and (v) in an observer-frame proxy for the
+\citet{Mei2024} $\nuc$--\Liso\ relation, the apparent $\Ep$--brightness
+correlation vanishes once an energy-weighting artifact is controlled (consistent
+with their absence of an $\Ep$--\Liso\ relation), while a genuine
+$\kT$--brightness correlation survives. We emphasize that we do \emph{not} fit a
+physical synchrotron model; our results map the empirical observables and the
+correlations among them, and we discuss their implications for jet composition.
+\end{abstract}
+
+\keywords{Gamma-ray bursts (629) --- Spectroscopy (1558) --- Non-thermal
+radiation sources (1119) --- Astrostatistics (1882)}
+
+% ============================================================================
+\section{Introduction} \label{sec:intro}
+% ============================================================================
+GRB prompt-emission spectra are, to first order, universally described by the
+empirical Band function \citep{Band1993} or a cutoff power law, characterized by
+a low-energy photon index $\alpha$, a $\nu F_\nu$ peak energy \Ep, and (for Band)
+a high-energy index $\beta$ \citep{Kaneko2006,Goldstein2012,Gruber2014,Yu2016}.
+These functions fit the data but are physically agnostic: the same curvature can
+arise from distinct mechanisms, and the inferred parameters do not by themselves
+identify the radiative process \citep{KumarZhang2015}.
+
+Two physically-motivated pictures dominate. In the first, part of the flux is
+quasi-thermal emission from the jet photosphere, approximated by a blackbody (BB)
+of temperature \kT, on a non-thermal continuum
+\citep{MeszarosRees2000,Ryde2004,RydePeer2009,Peer2007,Guiriec2011}.
+\citet{Burgess2014a}, fitting a \emph{physical} synchrotron$+$blackbody model to
+six bright single-pulse bursts, reported a tight per-burst correlation
+$\Ep\propto\kT^{\alpha}$, interpreting $\alpha\!\sim\!1$ as a baryon-dominated and
+$\alpha\!\sim\!2$ as a magnetically-dominated jet (see also \citealt{Burgess2014b}).
+In the second, the curvature is optically-thin synchrotron from a cooling
+electron population, with \emph{two} break energies: the cooling frequency \nuc\
+and the injection/peak frequency \num\ \citep{Sari1998}. A double smoothly-broken
+power law (2SBPL) captures both breaks and has been used to argue for a
+synchrotron origin \citep{Oganesyan2017,Oganesyan2018,Oganesyan2019,Ravasio2018,Ravasio2019}.
+Most recently, \citet{Mei2024} showed that, under the synchrotron interpretation,
+the fundamental spectral--energetics relation is $\nuc\propto\Liso^{0.53}$ rather
+than the classical $\Ep$--\Liso\ \citep[Yonetoku;][]{Yonetoku2004} relation, which
+is recovered only because the Band \Ep\ tracks \nuc.
+
+Crucially, the two pictures produce similar curvature near the peak: a BB on a
+single-break continuum (BB$+$SBPL) is an effective \emph{proxy} for a 2SBPL
+(Figure~\ref{fig:schematic}). Distinguishing them, and characterizing the
+resulting spectral properties at scale, is the goal of this work. Single-pulse
+bursts are the cleanest laboratory: a single, non-overlapping pulse has the
+simplest spectral evolution and avoids the blending of emission episodes
+\citep{Burgess2014b,RydePeer2009,Busby2024}. \citet{Burgess2014a} were limited to
+six bursts; whether their correlation is general, and what other properties a
+large uniform sample reveals, has not been tested at scale.
+
+We take a deliberately \emph{empirical} approach. Whereas \citet{Burgess2014a,Burgess2014b}
+fit a physical synchrotron model, we fit a family of model-agnostic empirical
+functions to a large, uniformly-selected sample (\S\ref{sec:sample}--\S\ref{sec:methods}),
+and ask: (i) does the \citet{Burgess2014a} $\Ep$--$\kT$ correlation appear in a
+large sample?, and (ii) what additional spectral correlations emerge --- in
+particular between the two synchrotron breaks, and between break/temperature
+energies and brightness? Results are in \S\ref{sec:results} and discussed in
+\S\ref{sec:discussion}. Throughout we are explicit about the strengths (uniformity,
+$N$, no model tuning) and the limits (an empirical continuum can absorb a real
+component) of the empirical approach.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_teach_schematic.png}
+\caption{The two interpretations of the same spectral curvature. \emph{Left}: a
+non-thermal continuum (Band) plus a thermal blackbody (\kT). \emph{Right}:
+optically-thin synchrotron (2SBPL) with a cooling break \nuc\ and an
+injection/peak break $\num=\Ep$. A BB$+$SBPL fit is a practical proxy for the 2SBPL.}
+\label{fig:schematic}
+\end{figure}
+
+% ============================================================================
+\section{Sample and Data} \label{sec:sample}
+% ============================================================================
+We select single-pulse bursts from the Fermi/GBM catalog using the shape-based
+``horizontal-line'' algorithm of \citet{Busby2024}, which scores how well a
+single FRED-like pulse describes the background-subtracted light curve. We retain
+bursts above the \citeauthor{Busby2024} threshold (score $\gtrsim0.9983$) and
+apply a fluence cut for adequate time-resolved signal-to-noise; no $T_{90}$ cut
+is imposed. The selection is on pulse \emph{shape}, not brightness: the sample
+fluence spans a factor of $\sim$250 (Figure~\ref{fig:sample}).
+
+The final sample comprises \textbf{106 bursts} (Table~\ref{tab:sample}). For each
+we use the Time-Tagged Event (TTE) data of all triggered NaI detectors within
+$50^\circ$ of the source, the most-illuminated BGO, and, for the \textbf{18}
+bursts with LAT Low-Energy (LLE) coverage, the LLE data above 30~MeV
+\citep{Meegan2009,Atwood2009}. Joint fits use 8--900~keV for NaI (K-edge masked),
+0.3--40~MeV for BGO, and 30--100~MeV for LLE.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_teach_sample.png}
+\caption{The single-pulse sample (\citealt{Busby2024} selection): fluence
+distribution (left, $\sim$250$\times$ span) and $T_{90}$ versus fluence (right),
+with the 18 LAT/LLE bursts highlighted.}
+\label{fig:sample}
+\end{figure}
+
+% ============================================================================
+\section{Methods} \label{sec:methods}
+% ============================================================================
+All spectral analysis uses the Multi-Mission Maximum Likelihood framework
+\citep[3ML;][]{Vianello2015} with the \texttt{pgstat} likelihood (Poisson source,
+Gaussian background).
+
+\subsection{Background modeling} \label{sec:bkg}
+GBM has no off-source pointing, so the background is large and time-variable. For
+each detector we select pre- and post-burst intervals ($\sim$50--150~s wide each)
+and fit a time polynomial (order chosen by AIC), interpolated beneath the burst.
+Each detector is fit independently.
+
+\subsection{Time binning: Bayesian blocks} \label{sec:bb}
+Time bins are set by the Bayesian-blocks algorithm \citep{Scargle2013} on the
+background-subtracted, 8--900~keV events of the brightest NaI detector, restricted
+to the burst-emission interval (Figure~\ref{fig:bb}). We verified that our block
+\emph{granularity} matches that of \citet{Burgess2014a} for the bursts in common
+(typically within $\pm$2--4 blocks per burst); the residual edge differences arise
+from the change-point prior and software (\citeauthor{Burgess2014b} used
+\texttt{RMFIT} with prior $=8$ on the combined NaI$+$BGO events) and we show our
+conclusions are robust to the binning (\S\ref{sec:nucnum}). The procedure yields
+\textbf{1063} time bins.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_teach_bayesian_blocks.png}
+\caption{Example Bayesian-block binning (GRB~150902733, NaI, 8--900~keV). Red
+segments are the blocks; dotted lines are the change-points defining the spectral
+time bins.}
+\label{fig:bb}
+\end{figure}
+
+\subsection{Spectral models} \label{sec:models}
+In every bin we fit six empirical models. The Band function \citep{Band1993} is a
+smoothly-joined broken power law: below the break
+$E_b=(\alpha-\beta)\Ep/(2+\alpha)$,
+\begin{equation}
+N(E)=K\,(E/E_0)^{\alpha}\,e^{-(2+\alpha)E/\Ep},
+\end{equation}
+and above it $N(E)=K\,(E/E_0)^{\beta}\,[(\alpha-\beta)\Ep/(2+\alpha)E_0]^{\alpha-\beta}\,e^{\beta-\alpha}$,
+with $E_0=100$~keV. The cutoff power law
+(CPL) is $N(E)=K(E/E_0)^{\Gamma_{\rm ph}}\exp(-E/E_c)$, peaking at
+$\Ep=(2+\Gamma_{\rm ph})E_c$. The smoothly-broken power law (SBPL) has indices
+$\alpha,\beta$ and one break $E_b$; the double SBPL (2SBPL) has indices
+$\alpha_1,\alpha_2,\beta$ and two breaks --- a lower break $x_b\equiv\nuc$ and an
+upper break/peak $x_p\equiv\num=\Ep$. For both SBPL and 2SBPL the break-smoothness
+(and the 2SBPL pivot) are held fixed at their \texttt{astromodels} defaults, so
+the free parameters are the indices, breaks and normalization. The blackbody is
+$N(E)\propto E^2/[\exp(E/\kT)-1]$. For all peaked models \Ep\ is the true
+$\nu F_\nu$ peak. The $+$BB models and the 2SBPL are the competing descriptions of
+curvature beyond a single break --- a thermal bump versus a second synchrotron break.
+
+\subsection{Model selection} \label{sec:select}
+We rank models by the Akaike and Bayesian information criteria
+\citep[AIC, BIC;][]{Akaike1974,Schwarz1978} using the standard $-2\ln L$, and by
+nested likelihood-ratio tests \citep[LRT;][]{Wilks1938} for Band$+$BB/Band,
+CPL$+$BB/CPL, and 2SBPL/SBPL; a blackbody or second break is significant at
+$\mathrm{LRT}\ge9.2$ (99\%, 2 d.o.f.). A physical-validity gate prevents a fit
+from \emph{winning} if any key parameter is railed against a bound or, for the
+2SBPL, if the breaks are mis-ordered ($x_b\ge x_p$). A bin counts as
+``two-break'' or ``thermal-proxy'' only if the corresponding curved model is
+physically valid.
+
+\subsection{Robustness of the blackbody fit} \label{sec:multistart}
+The blackbody has a railing local minimum ($\kT\!\to\!1$~keV, normalization
+$\to0$) that a poor seed can fall into; since per-bin fits are seeded from the
+time-integrated fit, a railed seed can propagate to every bin. We therefore
+multi-start each $+$BB model from a grid of temperature seeds and retain the
+lowest $-2\ln L$ (e.g.\ for GRB~110721A this reduces railed bins from 12/13 to
+0/13). The full-sample fits used for the sample-wide BB statistics predate this
+fix and therefore \emph{under-detect} the blackbody; we treat the resulting
+thermal fractions as conservative (\S\ref{sec:curv}). The 2SBPL/break results do
+not involve the blackbody and are unaffected.
+
+\subsection{Correlation fitting} \label{sec:dagostini}
+For every correlation we report the Spearman rank coefficient $\rho$ and its
+chance probability $p$, and we fit a power law in log--log space with the
+\citet{DAgostini2005} errors-in-both-variables likelihood, which simultaneously
+infers the slope $m$, normalization $K$ at a fixed pivot, and the
+\emph{intrinsic scatter} \ssc\ (dex), marginalized by MCMC. We report \ssc\
+rather than a reduced $\chi^2$, since it directly quantifies the dispersion not
+accounted for by measurement error.
+
+% ============================================================================
+\section{Results} \label{sec:results}
+% ============================================================================
+
+\subsection{Low-energy index and the model mix} \label{sec:coverage}
+All 106 bursts were fit (1063 bins $\times$ 6 models). The low-energy photon index
+peaks at a median Band $\alpha\simeq-0.75$ (Figure~\ref{fig:lowE}), between the
+slow-cooled ($-2/3$) and fast-cooled ($-3/2$) synchrotron limits and close to the
+$-0.81\pm0.1$ found by \citet{Burgess2014b}; the population sits near the
+slow-cooling line, with relatively few bins as soft as $-3/2$. Among single-break
+models the lowest-AIC winner is split between CPL, SBPL and Band, reflecting the
+modest per-bin signal-to-noise of single-pulse bins.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_lowE_index.png}
+\caption{Distribution of the low-energy photon index (Band $\alpha$, CPL index,
+SBPL $\alpha$) across the 1063 bins. Dashed/dotted lines mark the slow- ($-2/3$)
+and fast-cooled ($-3/2$) synchrotron limits; the population peaks near $-0.75$.}
+\label{fig:lowE}
+\end{figure}
+
+\subsection{Curvature: thermal proxy versus a second break} \label{sec:curv}
+Restricting to bins requiring curvature beyond a single break ($\daic>6$ relative
+to the best single-break model, with the curved model physically valid), we
+classify each as thermal-proxy (BB$+$SBPL), two-break (2SBPL) or degenerate
+(Table~\ref{tab:curv}; Figure~\ref{fig:curv}). At $\daic>6$, of 82 curved bins
+$78\%$ are thermal-or-degenerate and $22\%$ genuinely prefer the explicit second
+break; at $\daic\ge10$ the split is $82\%$/$18\%$. Moreover $94\%$ of all 1063
+bins cannot separate their best two models at $\daic\ge10$ --- single-pulse GBM
+bins rarely have the S/N to decide among six models. The thermal flux fraction in
+BB-significant bins is modest, $F_{\rm BB}/F_{\rm tot}\simeq0.11$
+(16--84\%: 0.05--0.24), below the $0.27$--$0.39$ of \citet{Burgess2014a};
+because the empirical continuum can absorb thermal flux and the present fits
+under-detect the BB (\S\ref{sec:multistart}), these thermal fractions are
+conservative. The brightest burst, GRB~130427A, provides the strongest genuine
+two-break detections.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_curvature_split.png}
+\caption{Of bins requiring curvature beyond a single break, the split between a
+thermal proxy (BB$+$SBPL), a genuine second break (2SBPL), and degenerate cases.}
+\label{fig:curv}
+\end{figure}
+
+\subsection{A worked example: GRB~130427A} \label{sec:130427}
+Figure~\ref{fig:evol} shows the time-resolved $\nu F_\nu$ evolution of GRB~130427A
+(88 bins), the brightest and best-resolved burst in the sample, color-coded by
+time. The spectrum hardens to the pulse peak and softens through the decay
+(hard-to-soft evolution), and this burst alone yields the strongest 2SBPL
+detections (peak-bin $\daic\sim590$ over the best single-break model) and a clean
+$\Ep$--$\kT$ track (\S\ref{sec:burgess}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_nufnu_evolution_130427A.png}
+\caption{Time-resolved $\nu F_\nu$ evolution of GRB~130427A (best-fit model per
+bin, peak-normalized, colored by time). Hard-to-soft spectral evolution is clear.}
+\label{fig:evol}
+\end{figure}
+
+\subsection{The Burgess $\Ep$--$\kT$ correlation in a large sample}
+\label{sec:burgess}
+We test the \citet{Burgess2014a} thermal--non-thermal correlation per burst, using
+\Ep\ and \kT\ from $+$BB fits in BB-significant bins. Of 24 bursts with $\ge3$ such
+bins, only \textbf{12 have $\ge5$} (Table~\ref{tab:perburst}); the slope is robust
+only for the highest-S/N bursts, led by GRB~130427A ($N=36$, $\Ep\propto\kT^{0.66}$,
+$\rho=0.78$, consistent with the published $\alpha=1.02$). Mapping the slope to jet
+composition in the \citeauthor{Burgess2014a} scheme ($\alpha\!\lesssim\!1.5$
+baryon-dominated, $\gtrsim\!1.5$ magnetically-dominated), the well-constrained
+bursts are predominantly baryonic. The fainter bursts yield too few
+BB-significant bins for a reliable per-burst slope (Figure~\ref{fig:burgess});
+this is a consequence of \emph{empirical} modeling --- the flexible Band/CPL
+continuum absorbs thermal curvature, so an empirical $+$BB detects a blackbody in
+fewer bins than the physical synchrotron$+$BB model of \citeauthor{Burgess2014a}
+(quantified by the low $F_{\rm BB}/F_{\rm tot}$, \S\ref{sec:curv}). The
+correlation is thus present where the S/N permits its detection, but the empirical
+approach recovers it less completely than a physical model.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_burgess_reblock.png}
+\caption{Per-burst $\Ep$--$\kT$ for the six \citet{Burgess2014a} bursts (black:
+BB-significant bins; grey: production bins). Only GRB~130427A (bottom-right) has
+enough significant bins for a reliable slope.}
+\label{fig:burgess}
+\end{figure}
+
+\subsection{A correlation between the two spectral breaks} \label{sec:nucnum}
+We now turn to a property not previously quantified: the relation between the two
+2SBPL break energies. Across all bins with a valid, significant 2SBPL
+($\mathrm{LRT_{2SBPL/SBPL}}\ge9.2$, breaks non-railed and ordered; $N=40$ from 22
+bursts), the injection and cooling breaks are correlated,
+\begin{equation}
+\num \;=\; K\left(\frac{\nuc}{100~{\rm keV}}\right)^{m}, \quad
+m=0.73\pm0.10,\ \ssc=0.26~{\rm dex},
+\end{equation}
+with Spearman $\rho=0.74$, $p=6\times10^{-8}$ (Table~\ref{tab:corr};
+Figure~\ref{fig:corr}A). Because the validity gate enforces $x_b<x_p$, we verified
+by permutation that this is not a truncation artifact: the observed $\rho=0.74$
+exceeds the 95th percentile of the truncated null ($\rho_{95}=0.54$). The thermal
+proxy reproduces the same trend: the analogous pair correlates as
+$\Ep\propto\kT^{0.60\pm0.08}$ ($\rho=0.54$, $\ssc=0.50$~dex, $N=198$;
+Figure~\ref{fig:corr}B), so the result is robust to the choice of curvature model.
+To our knowledge this is the first quantified correlation between the two
+synchrotron break energies: \citet{Mei2024} correlate each break with luminosity
+separately and use $\num/\nuc$ only as a cooling-regime classifier, while
+\citet{Ravasio2019} display the two breaks together (their Fig.~4) but report no
+fitted relation.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_break_correlations.png}
+\caption{Spectral-break/temperature correlations (full sample, observer frame).
+(A) The two 2SBPL breaks $\num$--$\nuc$. (B) The BB$+$SBPL proxy $\Ep$--$\kT$.
+(C) $\nuc$ (Band \Ep) and (D) \kT\ versus observer-frame energy flux; (E) the
+$\num/\nuc$ cooling-regime distribution. Panels C--D are annotated with the
+induction-controlled (photon-flux) Spearman coefficient (\S\ref{sec:lum}).}
+\label{fig:corr}
+\end{figure*}
+
+\subsection{Break/temperature energy versus brightness} \label{sec:lum}
+Motivated by \citet{Mei2024} --- who find a rest-frame $\nuc$--\Liso\ relation but
+no $\Ep$--\Liso\ relation --- we test the observer-frame analog. Our sample lacks
+redshifts, so we use the per-bin observer-frame energy flux (10~keV--40~MeV) as a
+luminosity proxy; this is \emph{not} rest-frame \Liso\ and we interpret it
+cautiously. Energy flux is inflated by spectral hardness, which can manufacture a
+peak-energy--flux correlation; we control for this by repeating each test against
+the \emph{photon} flux (no energy weighting). After this control
+(Table~\ref{tab:corr}; Figure~\ref{fig:corr}C--D): the $\Ep$--flux (Yonetoku-like)
+correlation \emph{collapses} from $\rho=0.38$ to $\rho=0.01$ --- it is an
+energy-weighting artifact, consistent with the absence of an $\Ep$--\Liso\
+relation reported by \citeauthor{Mei2024}; the $\nuc$--flux correlation is weak
+($\rho=0.51\!\to\!0.19$); and the blackbody-temperature--brightness correlation
+\emph{survives}, $\rho=0.60\!\to\!0.35$ ($p=5\times10^{-7}$), indicating a genuine
+$\kT$--brightness link.
+
+% ============================================================================
+\section{Discussion} \label{sec:discussion}
+% ============================================================================
+\subsection{Empirical versus physical modeling}
+Our analysis is deliberately empirical: Band/CPL/SBPL/2SBPL/$+$BB are
+model-agnostic and applied uniformly, which is ideal for population statistics and
+for the robust \emph{detection} of correlations across a large $N$. The cost is
+that a flexible empirical continuum can absorb a real sub-dominant component ---
+quantified here by the low $F_{\rm BB}/F_{\rm tot}\simeq0.1$ and the recovery of
+the $\Ep$--$\kT$ correlation only at high S/N. This inverts the
+\citet{Burgess2014b} argument: where they show a physical synchrotron model
+separates components more cleanly than empirical fitting, we show that a large
+empirical survey is nonetheless sufficient to \emph{detect} the key correlations,
+while confirming that the per-burst thermal--non-thermal relation at their fidelity
+requires the physical model. We do not fit a physical synchrotron model; every
+physical mapping below is an interpretation of the empirical observables, not a
+direct inference.
+
+\subsection{Physical interpretation}
+The low-energy index peaking at $\alpha\simeq-0.75$, between $-2/3$ and $-3/2$ and
+near the slow-cooling line, is consistent with marginally-fast/slow-cooled
+synchrotron with ongoing acceleration, as \citet{Burgess2014b} concluded. For the
+break correlation, standard synchrotron scalings give $\num\propto B\gamma_m^2$ and
+$\nuc\propto B^{-3}t^{-2}$ \citep{Sari1998}; the observed sub-linear
+$\num\propto\nuc^{0.73}$ then implies that the injection break rises more slowly,
+relative to the cooling break, than a fixed magnetic-field/geometry would predict
+--- i.e.\ the spectral separation $\num/\nuc$ is not constant but evolves, a
+constraint on the joint evolution of $B$, $\gamma_m$ and $\gamma_c$. For the
+thermal picture, mapping $\Ep\propto\kT^{\alpha}$ to the outflow via
+$\Gamma(r)\propto r^{\mu}$ \citep{Burgess2014a}, $\alpha\!\sim\!1$ ($\mu\!\sim\!1$)
+indicates a baryon-dominated (kinetic) jet and $\alpha\!\sim\!2$ a
+magnetically-dominated jet; our well-constrained bursts (Table~\ref{tab:perburst})
+are predominantly baryonic, although the per-burst slopes are uncertain.
+
+\subsection{Comparison with \citet{Mei2024}}
+Our induction-controlled flux analysis independently reproduces the central
+\citeauthor{Mei2024} result: the apparent $\Ep$--luminosity (Yonetoku) correlation
+is not fundamental (it vanishes against photon flux), while a genuine
+$\kT$--brightness link points to a thermal--energetics relation. A definitive
+comparison to the rest-frame $\nuc$--\Liso\ relation requires redshifts, which
+our sample lacks.
+
+\subsection{Limitations and next steps}
+The sample-wide BB statistics use pre-multi-start fits and under-detect the
+blackbody; a full re-run with the multi-start engine (\S\ref{sec:multistart}) will
+firm up the thermal fractions and per-burst slopes (the curvature split and
+$\kT$ correlations may strengthen). A redshift cross-match of the bright subset
+would enable the rest-frame $\nuc$--\Liso\ test. Finally, the time-resolved bins
+invite a hardness-intensity / hardness-fluence and a $\kT(t)$, $R(t)$ evolution
+analysis \citep{Burgess2014b}, which we defer to future work.
+
+% ============================================================================
+\section{Conclusions} \label{sec:conclusions}
+% ============================================================================
+\begin{enumerate}
+\item We performed time-resolved \emph{empirical} spectroscopy of \textbf{106
+single-pulse bright Fermi/GBM bursts} (1063 Bayesian-block bins; six models each)
+--- among the largest uniform single-pulse spectral surveys to date.
+\item The low-energy index peaks at $\alpha\simeq-0.75$, near the slow-cooled
+synchrotron limit and close to \citeauthor{Burgess2014b}'s $-0.81$.
+\item Of bins requiring curvature beyond a single break, $78\%$ ($\daic>6$;
+$82\%$ at $\daic\ge10$) are equally or better described by a thermal proxy than by
+an explicit second break; $94\%$ of all bins are statistically inconclusive among
+the six models; $F_{\rm BB}/F_{\rm tot}\simeq0.1$.
+\item The \citet{Burgess2014a} $\Ep$--$\kT$ correlation is recovered for the
+highest-S/N bursts (GRB~130427A, $\rho=0.78$, baryonic) but not robustly in
+fainter bursts with empirical models --- a model-sensitivity, not a sample, limit.
+\item We report a \textbf{new correlation between the two 2SBPL break energies},
+$\num\propto\nuc^{0.73\pm0.10}$ ($\rho=0.74$, $\ssc=0.26$~dex), mirrored by the
+thermal proxy, and not previously quantified.
+\item In an observer-frame proxy we find no genuine $\Ep$--brightness correlation
+(consistent with \citealt{Mei2024}) but a real $\kT$--brightness correlation.
+\end{enumerate}
+
+% ============================================================================
+% TABLES
+% ============================================================================
+\begin{deluxetable}{lccccc}
+\tablecaption{Sample (representative rows; full table machine-readable).\label{tab:sample}}
+\tablehead{\colhead{GRB} & \colhead{$T_{90}$} & \colhead{Fluence} & \colhead{NaI/BGO} & \colhead{LLE} & \colhead{$N_{\rm bins}$}\\
+\colhead{} & \colhead{(s)} & \colhead{(erg\,cm$^{-2}$)} & \colhead{} & \colhead{} & \colhead{}}
+\startdata
+130427A & 13.6 & $2.5\times10^{-3}$ & 3/1 & Y & 88 \\
+110721A & 21.8 & $3.5\times10^{-5}$ & 4/1 & Y & 13 \\
+150902733 & 13.6 & $1.6\times10^{-4}$ & 3/1 & Y & 16 \\
+\nodata & \nodata & \nodata & \nodata & \nodata & \nodata \\
+\enddata
+\tablecomments{106 bursts total (\citealt{Busby2024} single-pulse selection,
+score $\gtrsim0.9983$). The full machine-readable table lists all 106 bursts.}
+\end{deluxetable}
+
+\begin{deluxetable*}{lcccccc}
+\tablecaption{Correlation results (full sample, observer frame). Slopes from the
+\citet{DAgostini2005} intrinsic-scatter fit.\label{tab:corr}}
+\tablehead{\colhead{Relation ($y$ vs $x$)} & \colhead{$N$} & \colhead{$\rho$} & \colhead{$p$} & \colhead{slope $m$} & \colhead{\ssc\ (dex)} & \colhead{note}}
+\startdata
+$\num$ vs $\nuc$ (2SBPL)        & 40  & 0.74 & $6\times10^{-8}$  & $0.73\pm0.10$ & 0.26 & null $\rho_{95}=0.54$\\
+$\Ep$ vs $\kT$ (BB proxy)       & 198 & 0.54 & $1\times10^{-16}$ & $0.60\pm0.08$ & 0.50 & \\
+$\nuc$ vs energy flux           & 933 & 0.51 & $1\times10^{-63}$ & $0.88\pm0.05$ & \nodata & artifact-prone\\
+$\nuc$ vs photon flux           & 933 & 0.19 & $4\times10^{-9}$  & \nodata       & \nodata & induction control\\
+$\Ep$ vs energy flux            & 198 & 0.38 & $2\times10^{-8}$  & \nodata       & \nodata & artifact\\
+$\Ep$ vs photon flux            & 198 & 0.01 & 0.9               & \nodata       & \nodata & $\Rightarrow$ no real corr.\\
+$\kT$ vs energy flux            & 198 & 0.60 & $8\times10^{-21}$ & \nodata       & \nodata & \\
+$\kT$ vs photon flux            & 198 & 0.35 & $5\times10^{-7}$  & \nodata       & \nodata & real residual\\
+\enddata
+\tablecomments{Energy flux (10\,keV--40\,MeV, observer frame) is a luminosity
+proxy only; no redshifts. The energy-/photon-flux pairs isolate the
+energy-weighting artifact.}
+\end{deluxetable*}
+
+\begin{deluxetable}{lccc}
+\tablecaption{Per-burst $\Ep$--$\kT$ slopes ($N\ge5$ BB-significant bins).\label{tab:perburst}}
+\tablehead{\colhead{GRB} & \colhead{$N$} & \colhead{$\alpha$ ($\Ep\propto\kT^\alpha$)} & \colhead{jet}}
+\startdata
+130427A & 36 & 0.66 & baryonic \\
+230812790 & 14 & 1.27 & baryonic \\
+160910722 & 8 & 0.75 & baryonic \\
+100707032 & 7 & 1.51 & magnetic \\
+170921168 & 7 & 1.10 & baryonic \\
+210714331 & 7 & 0.60 & baryonic \\
+191125206 & 6 & 0.77 & baryonic \\
+221209243 & 6 & 1.67 & magnetic \\
+231020790 & 6 & 0.92 & baryonic \\
+250313607 & 5 & 0.53 & baryonic \\
+250407659 & 5 & 1.41 & baryonic \\
+180723757 & 5 & $-1.32$ & \nodata \\
+\enddata
+\tablecomments{Jet type from $\alpha\!<\!1.5$ (baryonic) / $\ge1.5$ (magnetic),
+\citep{Burgess2014a}. Slopes are uncertain at low $N$; 180723757 is
+scatter-dominated.}
+\end{deluxetable}
+
+\begin{deluxetable}{lcccc}
+\tablecaption{Curvature classification (physically-valid curved models).\label{tab:curv}}
+\tablehead{\colhead{Threshold} & \colhead{curved} & \colhead{thermal-proxy} & \colhead{degenerate} & \colhead{two-break}}
+\startdata
+$\daic>6$    & 82 & 55 & 9 & 18 \\
+$\daic\ge10$ & 51 & 33 & 9 & 9 \\
+\enddata
+\tablecomments{$78\%$ ($\daic>6$) / $82\%$ ($\daic\ge10$) thermal-or-degenerate.
+$94\%$ of all 1063 bins are inconclusive (best two models within $\daic<10$).
+Thermal counts are conservative (BB under-detected; \S\ref{sec:multistart}).}
+\end{deluxetable}
+
+\begin{acknowledgments}
+% %TODO grants, facility/data acknowledgments.
+This work made use of \textsf{3ML} \citep{Vianello2015} and the Fermi/GBM and LAT
+public data. Bayesian blocks follow \citet{Scargle2013}; correlation fits use the
+\citet{DAgostini2005} method.
+\end{acknowledgments}
+
+\facilities{Fermi(GBM), Fermi(LAT)}
+\software{3ML \citep{Vianello2015}, Astropy, Matplotlib, NumPy, SciPy, emcee}
+
+% ============================================================================
+% Author-year natbib: EVERY \bibitem optional arg MUST contain (YYYY).
+% %chk cross-check all volume/page numbers against ADS before submission.
+% ============================================================================
+\begin{thebibliography}{}
+\bibitem[Akaike(1974)]{Akaike1974} Akaike, H. 1974, IEEE Trans. Autom. Control, 19, 716
+\bibitem[Atwood et al.(2009)]{Atwood2009} Atwood, W.~B., Abdo, A.~A., Ackermann, M., et al. 2009, \apj, 697, 1071
+\bibitem[Band et al.(1993)]{Band1993} Band, D., Matteson, J., Ford, L., et al. 1993, \apj, 413, 281
+\bibitem[Burgess et al.(2014a)]{Burgess2014a} Burgess, J.~M., Preece, R.~D., Connaughton, V., et al. 2014a, \apjl, 784, L43
+\bibitem[Burgess et al.(2014b)]{Burgess2014b} Burgess, J.~M., Preece, R.~D., Connaughton, V., et al. 2014b, \apj, 784, 17
+\bibitem[Busby \& Lazzati(2024)]{Busby2024} Busby, K., \& Lazzati, D. 2024, \apj, 972, 83
+\bibitem[D'Agostini(2005)]{DAgostini2005} D'Agostini, G. 2005, arXiv:physics/0511182
+\bibitem[Goldstein et al.(2012)]{Goldstein2012} Goldstein, A., Burgess, J.~M., Preece, R.~D., et al. 2012, \apjs, 199, 19
+\bibitem[Gruber et al.(2014)]{Gruber2014} Gruber, D., Goldstein, A., Weller von Ahlefeld, V., et al. 2014, \apjs, 211, 12
+\bibitem[Guiriec et al.(2011)]{Guiriec2011} Guiriec, S., Connaughton, V., Briggs, M.~S., et al. 2011, \apjl, 727, L33
+\bibitem[Kaneko et al.(2006)]{Kaneko2006} Kaneko, Y., Preece, R.~D., Briggs, M.~S., et al. 2006, \apjs, 166, 298
+\bibitem[Kumar \& Zhang(2015)]{KumarZhang2015} Kumar, P., \& Zhang, B. 2015, \physrep, 561, 1
+\bibitem[Meegan et al.(2009)]{Meegan2009} Meegan, C., Lichti, G., Bhat, P.~N., et al. 2009, \apj, 702, 791
+\bibitem[Mei et al.(2025)]{Mei2024} Mei, A., Oganesyan, G., \& Macera, S. 2025, \aap, 693, A156
+\bibitem[M\'esz\'aros \& Rees(2000)]{MeszarosRees2000} M\'esz\'aros, P., \& Rees, M.~J. 2000, \apj, 530, 292
+\bibitem[Oganesyan et al.(2017)]{Oganesyan2017} Oganesyan, G., Nava, L., Ghirlanda, G., \& Celotti, A. 2017, \apj, 846, 137
+\bibitem[Oganesyan et al.(2018)]{Oganesyan2018} Oganesyan, G., Nava, L., Ghirlanda, G., \& Celotti, A. 2018, \aap, 616, A138
+\bibitem[Oganesyan et al.(2019)]{Oganesyan2019} Oganesyan, G., Nava, L., Ghirlanda, G., Melandri, A., \& Celotti, A. 2019, \aap, 628, A59
+\bibitem[Pe'er et al.(2007)]{Peer2007} Pe'er, A., Ryde, F., Wijers, R.~A.~M.~J., M\'esz\'aros, P., \& Rees, M.~J. 2007, \apjl, 664, L1
+\bibitem[Preece et al.(2014)]{Preece2014} Preece, R., Burgess, J.~M., von Kienlin, A., et al. 2014, Science, 343, 51
+\bibitem[Ravasio et al.(2018)]{Ravasio2018} Ravasio, M.~E., Oganesyan, G., Ghirlanda, G., et al. 2018, \aap, 613, A16
+\bibitem[Ravasio et al.(2019)]{Ravasio2019} Ravasio, M.~E., Ghirlanda, G., Nava, L., \& Ghisellini, G. 2019, \aap, 625, A60
+\bibitem[Ryde(2004)]{Ryde2004} Ryde, F. 2004, \apj, 614, 827
+\bibitem[Ryde \& Pe'er(2009)]{RydePeer2009} Ryde, F., \& Pe'er, A. 2009, \apj, 702, 1211
+\bibitem[Sari et al.(1998)]{Sari1998} Sari, R., Piran, T., \& Narayan, R. 1998, \apjl, 497, L17
+\bibitem[Scargle et al.(2013)]{Scargle2013} Scargle, J.~D., Norris, J.~P., Jackson, B., \& Chiang, J. 2013, \apj, 764, 167
+\bibitem[Schwarz(1978)]{Schwarz1978} Schwarz, G. 1978, Ann. Stat., 6, 461
+\bibitem[Vianello et al.(2015)]{Vianello2015} Vianello, G., Lauer, R.~J., Younk, P., et al. 2015, arXiv:1507.08343
+\bibitem[Wilks(1938)]{Wilks1938} Wilks, S.~S. 1938, Ann. Math. Stat., 9, 60
+\bibitem[Yonetoku et al.(2004)]{Yonetoku2004} Yonetoku, D., Murakami, T., Nakamura, T., et al. 2004, \apj, 609, 935
+\bibitem[Yu et al.(2016)]{Yu2016} Yu, H.-F., Preece, R.~D., Greiner, J., et al. 2016, \aap, 588, A135
+\end{thebibliography}
+
+\end{document}

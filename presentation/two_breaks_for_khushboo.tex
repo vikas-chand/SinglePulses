@@ -1,0 +1,393 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{whale}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\graphicspath{{../results/figures/}}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}{\insertcaption}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamertemplate{footline}[frame number]
+
+\title[Thermal + Two Breaks in GRBs]{Thermal vs.\ Two-Break Spectra in Single-Pulse GRBs}
+\subtitle{What we are doing, why, and how --- a primer}
+\author[Two\_Breaks]{Prepared for Khushboo's presentation}
+\institute{Single-pulse GRB spectral programme}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{What you are presenting --- the big picture}
+\begin{block}{One sentence}
+We take a clean sample of \textbf{single-pulse GRBs}, fit their
+\textbf{time-resolved} spectra with a family of physical models, and ask:
+\emph{is the curvature in the spectrum a thermal (photosphere) component, or a
+second synchrotron break?}
+\end{block}
+\vspace{0.4em}
+The talk has six parts:
+\begin{enumerate}\small
+  \item \textbf{Why} thermal + non-thermal modelling (and why ``two breaks'')
+  \item \textbf{The sample} --- Busby \& Lazzati single-pulse selection
+  \item \textbf{How many} bursts --- 106 single-pulse GRBs
+  \item \textbf{Background} --- why we model it physically
+  \item \textbf{Bayesian blocks} --- how we choose the time bins
+  \item \textbf{The cutoff} --- Ravasio, time-resolved, and LAT/LLE
+\end{enumerate}
+\end{frame}
+
+% ============================================================
+\section{1. Motivation: thermal + non-thermal}
+% ============================================================
+\begin{frame}{1.\ Why model a thermal \emph{and} a non-thermal component?}
+\begin{columns}
+\begin{column}{0.54\textwidth}
+\small
+The standard Band / cutoff-power-law (CPL) fit is \textbf{empirical} --- it
+describes the curve but carries no physics.
+\medskip
+
+Two physical ingredients are expected in the prompt emission:
+\begin{itemize}
+  \item \textbf{Photosphere} $\rightarrow$ a quasi-thermal
+        \textbf{blackbody (BB)}, temperature $kT$.
+  \item \textbf{Optically-thin synchrotron} $\rightarrow$ a non-thermal
+        continuum peaking at $E_p$.
+\end{itemize}
+\medskip
+\textbf{Burgess+2014} showed many bursts need \emph{both}: a BB sitting under a
+non-thermal Band/synchrotron component. The two pieces move \emph{together} in
+time --- which is the key physical clue.
+\end{column}
+\begin{column}{0.46\textwidth}
+  \includegraphics[width=\linewidth]{fig_teach_schematic.png}
+  \footnotesize\centering The same curvature, two readings:
+  thermal + non-thermal (left) or two synchrotron breaks (right).
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{1.\ Burgess+2014: the thermal--non-thermal correlation}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\small
+For each burst, Burgess fit \textbf{BB + non-thermal} in every time bin and
+plotted $E_p$ against $kT$:
+\[
+  E_p \;\propto\; kT^{\,\alpha}
+\]
+\begin{itemize}
+  \item $\alpha \approx 1$ $\rightarrow$ \textbf{baryonic} (matter-dominated) jet
+  \item $\alpha \approx 2$ $\rightarrow$ \textbf{magnetic} (Poynting-dominated) jet
+\end{itemize}
+Combined sample: Spearman $\rho = 0.81$, $p = 4\times10^{-20}$ ---
+a \emph{very} tight link between the thermal and non-thermal peaks.
+\medskip
+
+This correlation is the headline physics we want to reproduce and extend with a
+larger, uniformly-selected sample.
+\end{column}
+\begin{column}{0.5\textwidth}
+\centering
+\renewcommand{\arraystretch}{1.15}
+\footnotesize
+\begin{tabular}{lcc}
+\toprule
+GRB & $\alpha$ (Burgess) & jet \\
+\midrule
+081224A & $1.01\pm0.14$ & baryonic \\
+090719A & $2.33\pm0.27$ & magnetic \\
+100707A & $1.77\pm0.07$ & magnetic \\
+110721A & $1.24\pm0.11$ & baryonic \\
+110920A & $1.97\pm0.11$ & magnetic \\
+130427A & $1.02\pm0.05$ & baryonic \\
+\bottomrule
+\end{tabular}
+\vspace{0.8em}
+
+\scriptsize Burgess+2014, ApJL \textbf{784}, L43, Table 1.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{1.\ Our reproduction of Burgess (so far)}
+\begin{columns}
+\begin{column}{0.56\textwidth}
+  \includegraphics[width=\linewidth]{fig_burgess_reproduction.png}
+\end{column}
+\begin{column}{0.44\textwidth}
+\small
+All 6 of Burgess's bursts are in our sample. Using our pipeline's
+BB+non-thermal fits, with $E_p$ taken as the \emph{true $\nu F_\nu$ peak} of
+each model:
+\begin{itemize}
+  \item \textbf{130427A}: $\alpha = 0.66$, baryonic --- \emph{matches}
+  \item \textbf{100707A}: $\alpha = 1.51$, magnetic --- \emph{matches}
+  \item Combined: $\rho = 0.69$, $p = 1.5\times10^{-7}$ (his 0.81)
+\end{itemize}
+\medskip
+The other 4 have only $N\!\le\!2$ time bins with a \emph{significant} BB ---
+a statistics limit, not a contradiction. A larger sample fixes this.
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+\section{2. Two breaks = synchrotron $\nu_m$, $\nu_c$}
+% ============================================================
+\begin{frame}{2.\ The other reading: two synchrotron breaks}
+\small
+A pure-synchrotron spectrum from a cooling electron population has \textbf{two}
+characteristic break energies:
+\begin{itemize}
+  \item $\nu_c$ --- the \textbf{cooling break} (electrons that have radiated away
+        their energy).
+  \item $\nu_m = E_p$ --- the \textbf{injection / peak} energy (minimum electron
+        Lorentz factor).
+\end{itemize}
+\vspace{0.3em}
+A \textbf{double smoothly-broken power law (2SBPL / DSBPL)} captures both breaks.
+This is the model Ravasio and others use to argue prompt emission \emph{is}
+synchrotron.
+\begin{alertblock}{The key idea in this project (Vikas)}
+A \textbf{BB + SBPL} (thermal + one-break) fit is an effective \emph{proxy} for a
+\textbf{2SBPL} (two-break): both add curvature near the peak. So we fit
+\emph{both} families and let the data decide which is genuinely required.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{2.\ What the sample says: proxy vs.\ genuine second break}
+\begin{columns}
+\begin{column}{0.52\textwidth}
+  \includegraphics[width=\linewidth]{fig_curvature_split.png}
+\end{column}
+\begin{column}{0.48\textwidth}
+\small
+Of \textbf{121} time-bins that need curvature beyond a single break
+($\Delta$AIC $>6$):
+\begin{itemize}
+  \item \textbf{77} prefer the thermal proxy (BB+SBPL)
+  \item \textbf{17} are degenerate (2-break $\approx$ thermal)
+  \item \textbf{27} genuinely prefer the explicit two-break
+\end{itemize}
+$\Rightarrow$ \textbf{$\sim$78\% thermal-or-degenerate}: BB+SBPL really is a good
+proxy for 2SBPL, exactly as expected. Only $\sim$22\% \emph{demand} the second
+break.
+\medskip
+
+\footnotesize Standout genuine two-break burst: \textbf{130427A} (brightest GRB
+ever) --- one bin prefers DSBPL by $\Delta$AIC $=590$.
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+\section{3. The sample}
+% ============================================================
+\begin{frame}{3.\ The sample: Busby \& Lazzati single-pulse selection}
+\begin{columns}
+\begin{column}{0.46\textwidth}
+\small
+\textbf{Why single-pulse?} A single, clean pulse is the simplest physical unit
+--- no pulse overlap to confuse the spectral evolution. Ideal for testing
+thermal vs.\ synchrotron.
+\medskip
+
+\textbf{Selection (Busby \& Lazzati 2024, ApJ 972, 83):}
+\begin{itemize}
+  \item Fit each GBM burst's light curve for pulse shape.
+  \item Score how well a \emph{single} pulse describes it.
+  \item Keep bursts above a strict threshold ($\gtrsim 0.9983$).
+\end{itemize}
+\textbf{Important:} this selects on \emph{shape}, \emph{not} brightness --- so
+fluence spans a factor of $\sim$250 across the sample.
+\end{column}
+\begin{column}{0.54\textwidth}
+  \includegraphics[width=\linewidth]{fig_teach_sample.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{3.\ How many bursts --- 106 single-pulse GRBs}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\small
+\begin{itemize}
+  \item \textbf{106} single-pulse GRBs fully analysed
+        \footnote{\scriptsize Vikas's note says ``105''; our current pipeline
+        has 106 --- one near-threshold burst. Worth confirming the exact count.}
+  \item \textbf{1169} time-resolved spectral bins in total.
+  \item \textbf{18} have high-energy \textbf{LAT} coverage (red stars).
+  \item Every burst fit with \textbf{all available detectors}: NaI ($\le$50$^\circ$),
+        BGO, and LAT-LLE where present.
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\small
+\textbf{Six models per time-bin:}
+\begin{enumerate}\scriptsize
+  \item Band
+  \item Cutoff power law (CPL)
+  \item Smoothly-broken PL (SBPL)
+  \item Double SBPL (DSBPL = two breaks)
+  \item Band + Blackbody
+  \item CPL + Blackbody
+\end{enumerate}
+\medskip
+All fit inside \textbf{3ML} (the Multi-Mission Max-Likelihood framework), with
+\texttt{pgstat} likelihood (Poisson source, Gaussian background). Model choice by
+AIC/BIC + a likelihood-ratio test, with a physical-validity gate.
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+\section{4. Physical background modelling}
+% ============================================================
+\begin{frame}{4.\ Why we model the background physically}
+\small
+GBM has \textbf{no off-source pointing} --- the detectors always see the whole
+sky, so the background is large and \emph{time-varying} (it drifts with the
+spacecraft's orbit and geomagnetic position).
+\medskip
+
+\textbf{What we do, per detector:}
+\begin{enumerate}
+  \item Pick \textbf{pre-burst} and \textbf{post-burst} windows, each $\sim$50--150~s
+        wide (wide enough to constrain, narrow enough to avoid orbital trends).
+  \item Fit a low-order \textbf{polynomial} in time to the count rate in those
+        windows (this is the same algorithm gtburst / 3ML uses).
+  \item Interpolate that polynomial \emph{under} the burst to get the background
+        at each source time.
+\end{enumerate}
+\begin{block}{Why it matters}
+A wrong background biases every spectral parameter --- especially the
+low-energy slope and any faint thermal component. Getting the background right is
+\emph{the} prerequisite for trusting a BB detection. Each detector gets its own
+background; selections are reviewable by a human.
+\end{block}
+\end{frame}
+
+% ============================================================
+\section{5. Bayesian blocks}
+% ============================================================
+\begin{frame}{5.\ How the time bins are made: Bayesian Blocks}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\small
+We do \textbf{not} use fixed-width time bins. Instead, \textbf{Bayesian Blocks}
+(Scargle's algorithm, \texttt{astropy.stats.bayesian\_blocks}) find the optimal
+change-points where the count rate \emph{statistically} changes.
+\medskip
+\begin{itemize}
+  \item Run on the background-subtracted events, \textbf{8--900~keV}.
+  \item \texttt{fitness='events'} on the photon arrival times;
+        a false-alarm prior $p_0$ sets how eager it is to split.
+  \item Each block becomes one \textbf{spectral fit} --- so bins are
+        fine where the spectrum is changing fast, coarse where it is steady.
+\end{itemize}
+\footnotesize For a handful of ultra-bright bursts ($>$10$^6$ events) we use the
+\emph{binned} variant (\texttt{fitness='measures'}) to avoid an $O(N^2)$ blow-up.
+\end{column}
+\begin{column}{0.5\textwidth}
+  \includegraphics[width=\linewidth]{fig_teach_bayesian_blocks.png}
+  \footnotesize\centering Red = Bayesian blocks; dotted lines = the change-points
+  that become our time-bin edges.
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+\section{6. The cutoff: Ravasio, time-resolved, LAT/LLE}
+% ============================================================
+\begin{frame}{6.\ The cutoff / extra break --- Ravasio, and our extension}
+\small
+\textbf{Ravasio+2018/2019} found that many GRB spectra show a \emph{low-energy
+break} (slopes $-2/3$ then $-3/2$) on top of the peak --- the smoking gun of
+\textbf{synchrotron with a cooling break}. Crucially, their work was largely
+\textbf{time-integrated} (or coarse bins).
+\medskip
+
+\textbf{Our extension:}
+\begin{itemize}
+  \item Do the same break/cutoff search \textbf{time-resolved}, bin by bin
+        (this is what the Bayesian blocks give us).
+  \item Use \textbf{LAT / LAT-LLE} ($>$30~MeV) to anchor the \emph{high-energy}
+        end and constrain any high-energy cutoff --- the lever arm GBM alone
+        lacks.
+\end{itemize}
+\begin{block}{Why LAT/LLE matters for the cutoff}
+A high-energy cutoff or the upper synchrotron break is only constrained if you
+have photons up there. The LAT/LLE light curve tells us \emph{when} high-energy
+emission is present --- i.e.\ which time bins can actually constrain the cutoff.
+\end{block}
+\end{frame}
+
+\begin{frame}{6.\ LAT/LLE Bayesian-blocks light curve}
+\begin{columns}
+\begin{column}{0.58\textwidth}
+  \includegraphics[width=\linewidth]{fig_teach_lle_bb.png}
+\end{column}
+\begin{column}{0.42\textwidth}
+\small
+\textbf{bn150902733} (a LAT burst):
+\begin{itemize}
+  \item Top: the keV pulse (GBM).
+  \item Bottom: the $>$30~MeV (LLE) light curve, with its \emph{own} Bayesian
+        blocks.
+\end{itemize}
+The high-energy emission is concentrated in $\sim$3--12~s --- so \emph{those}
+time bins are where we can put real constraints on a high-energy cutoff or upper
+synchrotron break. Outside that window there are too few MeV photons.
+\medskip
+
+This is the template for the time-resolved cutoff study across all 18 LAT
+bursts.
+\end{column}
+\end{columns}
+\end{frame}
+
+% ============================================================
+\section*{Summary}
+% ============================================================
+\begin{frame}{Summary --- what to say in one minute}
+\small
+\begin{enumerate}
+  \item \textbf{Physics question:} is GRB spectral curvature a \emph{thermal}
+        photosphere (BB) or a \emph{second synchrotron break} (2SBPL,
+        $\nu_c$ \& $\nu_m$)? Both are physical; we let the data choose.
+  \item \textbf{Sample:} 106 \emph{single-pulse} GRBs (Busby \& Lazzati,
+        shape-selected), 1169 time bins, 18 with LAT.
+  \item \textbf{Method:} background modelled physically per detector; Bayesian
+        blocks set the time bins; 6 models fit in 3ML; AIC/BIC + LRT decide.
+  \item \textbf{Result so far:} $\sim$78\% of curved bins are thermal-or-degenerate
+        $\Rightarrow$ BB+SBPL is a good proxy for 2SBPL; $\sim$22\% genuinely need
+        two breaks. We recover Burgess's $kT$--$E_p$ correlation
+        ($\rho = 0.69$).
+  \item \textbf{Next:} time-resolved cutoff search (extending Ravasio), using
+        LAT/LLE to anchor the high-energy end.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Key references}
+\footnotesize
+\begin{itemize}
+  \item Burgess, J.M.\ et al.\ 2014, \emph{ApJL} \textbf{784}, L43 ---
+        thermal + non-thermal, $kT$--$E_p$ correlation.
+  \item Busby, K.\ \& Lazzati, D.\ 2024, \emph{ApJ} \textbf{972}, 83 ---
+        single-pulse GRB sample selection.
+  \item Ravasio, M.E.\ et al.\ 2018 (\emph{A\&A} 613, A16) \& 2019
+        (\emph{A\&A} 625, A60) --- synchrotron low-energy break / cutoff.
+  \item Scargle, J.D.\ et al.\ 2013, \emph{ApJ} 764, 167 --- Bayesian blocks.
+  \item Vianello, G.\ et al.\ 2015 --- 3ML (the fitting framework).
+\end{itemize}
+\vspace{1em}
+\centering\large Good luck, Khushboo!
+\end{frame}
+
+\end{document}

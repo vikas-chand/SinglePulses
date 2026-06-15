@@ -1,0 +1,71 @@
+# ---- Python / Jupyter / OS ----
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+*.egg-info/
+
+# ---- LaTeX build artifacts (keep .tex .bib .bbl .pdf) ----
+*.aux
+*.log
+*.out
+*.blg
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bcf
+*.run.xml
+
+# ---- bulky / transient ----
+handoff/
+results/archive/
+*.bak
+*.pre_*.bak
+
+# ============================================================
+# RAW DATA — commit only the 6 sample bursts (rest re-downloadable via scripts/02)
+# ============================================================
+data/*
+!data/bn110721200/
+!data/bn081125496/
+!data/bn150902733/
+!data/bn160625945/
+!data/bn090620400/
+!data/bn201016019/
+
+# ============================================================
+# RESULTS — commit small catalogues + all clean_blocks + the 6 sample per-burst
+# (the full results/clean_per_burst is 2.2 GB and regenerable by scripts/29)
+# ============================================================
+results/*
+!results/single_pulse_grbs.ecsv
+!results/background_intervals_clean.ecsv
+!results/background_starting_points.ecsv
+!results/clean_sample_all_models.ecsv
+!results/draft_numbers.json
+!results/variability_bb.ecsv
+!results/master_manifest.csv
+!results/clean_blocks/
+!results/clean_per_burst/
+results/clean_per_burst/*
+!results/clean_per_burst/bn110721200/
+!results/clean_per_burst/bn081125496/
+!results/clean_per_burst/bn150902733/
+!results/clean_per_burst/bn160625945/
+!results/clean_per_burst/bn090620400/
+!results/clean_per_burst/bn201016019/
+
+# ---- bulk diagnostic plots (regenerable) ----
+plots/
+
+# ---- copyrighted journal PDFs in the root (kept on disk, NOT in git;
+#      this repo merges into a public one). Our own outputs are kept. ----
+/*.pdf
+
+# ---- dead teaching cartoons ----
+paper/figures_archive/
+
+# ---- editor/CLI artifacts ----
+.antigravitycli/
+.codex/

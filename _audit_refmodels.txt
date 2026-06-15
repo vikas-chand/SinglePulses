@@ -1,0 +1,60 @@
+Identical to 12b_fine_bins_all_models.py but adds MINOS (profile-likelihood)
+Models (17 total):
+  Single:       Band, CPL, SBPL, 2SBPL
+  With cutoff:  Band*Cutoff, SBPL*Cutoff
+  Two-comp:     Band+PL, Band+BB, Band+CPL, CPL+BB, CPL+PL
+  Three-comp:   Band+BB+PL, Band+BB+CPL, CPL+BB+PL, CPL+BB+CPL
+  Special:      CPL+CPL, Band(Ep<2MeV)+CPL
+from threeML import (OGIPLike, Model, PointSource,
+from astromodels import (Band, Cutoff_powerlaw, Blackbody, Powerlaw,
+                         SmoothlyBrokenPowerLaw, DoubleSmoothlyBrokenPowerlaw)
+    names from astromodels composite functions. Stores under BOTH names
+# Model setup helpers (from 08b)
+def setup_band(alpha=-0.95, ep=723.0, beta=-2.47, K=1.0):
+    """Band model with 4 free params."""
+    band = Band()
+    band.K.bounds = (1e-10, 1e4)
+    band.alpha.bounds = (-2.0, 1.0)
+    band.xp.bounds = (10, 1e5)
+    band.beta.bounds = (-5.0, -1.6)
+    band.K = clamp(K, 1e-10, 1e4)
+    band.alpha = clamp(alpha, -2.0, 1.0)
+    band.xp = clamp(ep, 10, 1e4)
+    band.beta = clamp(beta, -5.0, -1.6)
+    return band
+    """Cutoff_powerlaw with 3 free params."""
+    cpl = Cutoff_powerlaw()
+def setup_blackbody(kT=30.0, K=1e-4):
+    """Blackbody model."""
+    bb = Blackbody()
+    """Extra power-law component for Band+PL model (Guiriec+2015)."""
+    """Extra cutoff PL for Band+CPL / 2SBPL+CPL models."""
+    cpl = Cutoff_powerlaw()
+    """SmoothlyBrokenPowerLaw -- 4 free params."""
+    sbpl = SmoothlyBrokenPowerLaw()
+    """DoubleSmoothlyBrokenPowerlaw (Ravasio+2018) -- 6 free params."""
+    dsbpl = DoubleSmoothlyBrokenPowerlaw()
+def setup_cutoff_multiplicative():
+    """Multiplicative cutoff (exp(-E/Ec)) for Band*Cutoff, SBPL*Cutoff."""
+    cutoff = Cutoff_powerlaw()
+    cutoff.index = 0
+    cutoff.index.fix = True
+    cutoff.xc = 5e5  # 500 MeV
+    cutoff.xc.bounds = (5e4, 1e8)
+    cutoff.K = 1
+    cutoff.K.fix = True
+    cutoff.piv = 1
+    cutoff.piv.fix = True
+    return cutoff
+def fit_model(plugins, spectral_shape, model_name='model',
+    """Fit a spectral model. Returns (best_df, neg_loglike, n_free, success)."""
+        model = Model(src)
+        jl = JointLikelihood(model, data, verbose=False)
+                print(f"    [{model_name}] MINOS errors computed")
+            print(f"    [{model_name}] MINOS errors skipped: {e}")
+        print(f"    [{model_name}] fit failed: {e}")
+def _fit_and_record(plugins, shape, model_name, row, prefix, col_map,
+    """Fit a model, record results in row, return (params, success)."""
+        best_df, neg_ll, nf, ok = fit_model(plugins, shape, model_name,
+        print(f"    {model_name} failed: {e}")
+# Step 2: Main fitting loop — all 17 models per bin

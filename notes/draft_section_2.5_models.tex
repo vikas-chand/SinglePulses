@@ -1,0 +1,61 @@
+% DEMONSTRATION DRAFT — §2.5 Spectral Models, written in the Li et al. (2021)
+% voice (present-tense "we fit", method-then-justification, grouped "e.g." cites),
+% with model descriptions sourced from Ravasio et al. (2SBPL/synchrotron) and
+% Guiriec et al. (multi-component thermal+non-thermal). Data-independent; ready to
+% drop into the Phase-6 manuscript. %chk equation conventions vs astromodels.
+
+\subsection{Spectral Models} \label{sec:models}
+We fit each time-resolved spectrum with a family of six photon models, chosen to
+span the two physical interpretations of prompt-emission curvature while
+remaining empirical and directly comparable with the Fermi/GBM spectral catalogs
+\citep[e.g.,][]{Kaneko2006,Gruber2014,Yu2016}. We use empirical functions
+deliberately: they are flexible and model-agnostic, and although their parameters
+do not map uniquely onto a radiation mechanism, the low-energy index $\alpha$ in
+particular still discriminates between emission scenarios when the data are of
+high significance \citep[e.g.,][]{Acuner2020}.
+
+The first three are single-component non-thermal models. The Band function
+\citep{Band1993} is a smoothly-joined broken power law with low- and high-energy
+photon indices $\alpha$ and $\beta$ and a $\nu F_\nu$ peak energy \Ep; below the
+break $E_b=(\alpha-\beta)\Ep/(2+\alpha)$,
+\begin{equation}
+N(E)=A\,(E/E_0)^{\alpha}\,\exp\!\left[-(2+\alpha)E/\Ep\right],
+\end{equation}
+joining $N(E)\propto E^{\beta}$ above $E_b$ ($E_0=100$~keV). The cutoff power law
+(CPL) replaces the high-energy power law with an exponential cutoff,
+$N(E)=A\,(E/E_0)^{\Gamma}\exp(-E/E_c)$, peaking at $\Ep=(2+\Gamma)E_c$; it is the
+limit of the Band function as $\beta\!\to\!-\infty$. The smoothly broken power law
+(SBPL) describes a single break with adjustable curvature.
+
+To represent the synchrotron interpretation we add the double smoothly broken
+power law \citep[2SBPL;][]{Ravasio2018,Ravasio2019}. The 2SBPL has three
+power-law segments with indices $\alpha_1,\alpha_2,\beta$ joined at two break
+energies: a lower break $x_b$ and an upper break $x_p$ (the latter coinciding with
+the $\nu F_\nu$ peak). Under the optically-thin synchrotron interpretation the two
+breaks are physical: $x_b$ is the cooling frequency \nuc\ and $x_p=\num$ is the
+injection frequency, with the segment between them carrying the characteristic
+slopes $\alpha_1\simeq-2/3$ (slow cooling) steepening toward $-3/2$ (fast cooling)
+\citep[e.g.,][]{Sari1998,Oganesyan2017,Ravasio2019}. We hold the break
+smoothnesses fixed at their default values, so the free parameters are the three
+indices, the two breaks, and the normalization.
+
+To represent the photospheric (thermal) interpretation we add a blackbody to the
+two simplest non-thermal continua, following the multi-component decomposition of
+\citet{Guiriec2011,Guiriec2015}, in which a sub-dominant quasi-thermal component
+($\sim$Planck) accompanies the non-thermal emission and the two are fit
+\emph{simultaneously}. The blackbody photon spectrum is
+\begin{equation}
+N(E)\propto E^{2}/\!\left[\exp(E/\kT)-1\right],
+\end{equation}
+with temperature \kT, and we form the composites Band$+$BB and CPL$+$BB. As in
+\citet{Guiriec2015} we quantify the thermal contribution by the flux ratio
+$F_{\rm BB}/F_{\rm tot}$. A BB$+$SBPL composite reproduces the curvature of a
+2SBPL near the peak, so the $+$BB models act as a practical thermal proxy for the
+two-break model, and comparing them is the central test of this work.
+
+For all peaked models we report \Ep\ as the true $\nu F_\nu$ peak. The two $+$BB
+models and the 2SBPL are the competing descriptions of any curvature beyond a
+single spectral break --- a thermal component versus a second synchrotron break.
+All fits are performed in the Multi-Mission Maximum Likelihood framework
+\citep[3ML;][]{Vianello2015} with the \texttt{pgstat} likelihood (a Poisson
+source with Gaussian background).

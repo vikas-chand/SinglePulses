@@ -1,0 +1,16 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: TRIGGER_NAME, datatype: string}
+# - {name: DETECTOR, datatype: string}
+# - {name: BLOCK_INDEX, datatype: int64}
+# - {name: T_START, datatype: float64}
+# - {name: T_STOP, datatype: float64}
+# - {name: SIGNIFICANCE, datatype: float64}
+# - {name: IS_MERGED, datatype: bool}
+# - {name: CONSTITUENT_COUNT, datatype: int64}
+# - {name: POLY_ORDER, datatype: int64}
+# schema: astropy-2.0
+TRIGGER_NAME DETECTOR BLOCK_INDEX T_START T_STOP SIGNIFICANCE IS_MERGED CONSTITUENT_COUNT POLY_ORDER
+bn210812699 n8 0 -0.1399999999999757 1.716000000000026 11.213143622896194 False 1 2
+bn210812699 nb 0 -0.1399999999999757 1.716000000000026 13.265487691862477 False 1 2
