@@ -17,7 +17,7 @@ from scipy import stats, odr
 import astromodels as am
 warnings.filterwarnings("ignore")
 
-ROOT = "/Users/salim/Desktop/Projects/SingleRest/Two_Breaks"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FIGDIR = f"{ROOT}/paper/two_break_figures"; os.makedirs(FIGDIR, exist_ok=True)
 KEV2ERG = 1.602176634e-9; EGRID = np.geomspace(10, 1000, 400)
 LN10 = np.log(10)

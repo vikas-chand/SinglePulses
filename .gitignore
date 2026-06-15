@@ -69,3 +69,24 @@ paper/figures_archive/
 # ---- editor/CLI artifacts ----
 .antigravitycli/
 .codex/
+
+# ---- Sphinx build output ----
+docs/_build/
+
+# ---- secrets / credentials (never commit) ----
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+credentials.json
+secrets.*
+
+# ---- editor / IDE / backup ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

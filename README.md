@@ -14,11 +14,13 @@ information criteria. Manuscript: `paper/two_break.tex` (K. Sharma et al.).
 > authoritative re-fit follows it. The qualitative conclusions are not expected
 > to change. See *Status & caveats*.
 
-**Headline (provisional):** of the bins requiring curvature, **91 % are
-thermal-or-degenerate** vs **9 % a decisive two-break** (a lower limit); the
-Burgess $E_{\rm p}$–$kT$ correlation is recovered in 17/19 testable bursts
-(GRB 130427A: $\rho=0.93$); the two 2SBPL breaks $\nu_m$–$\nu_c$ are correlated
-within and between bursts; spectral evolution is HTS-dominated.
+**Headline (provisional):** at the locked **ΔAIC ≥ 10** threshold, of the bins
+requiring curvature **87 % are thermal-or-degenerate** vs **13 % a decisive
+two-break** — a lower limit (94/14 of 108; the looser ΔAIC ≥ 6 cut gives
+91 %/9 %, reported as a sensitivity check); the Burgess $E_{\rm p}$–$kT$
+correlation is recovered in most testable bursts (GRB 130427A: $\rho=0.93$); the
+two 2SBPL breaks $\nu_m$–$\nu_c$ are positively correlated within and between
+bursts; spectral evolution is HTS-dominated.
 
 > **Relation to GRB_Handbook.** This repo is the single-pulse-spectroscopy study;
 > its reusable, burst-agnostic machinery — background selection
@@ -173,9 +175,17 @@ pdflatex two_break && bibtex two_break && pdflatex two_break && pdflatex two_bre
 - Numbers are **provisional** (auto backgrounds). The authoritative re-fit, on the
   human-verified backgrounds, goes to a **fresh output root** and adds: a 2SBPL
   convergence restart, Ravasio smoothness ($n_1{=}5.38,n_2{=}2.69$), the
-  Ravasio K-edge mask, and provenance stamps.
-- An independent multi-agent audit (`notes/PROJECT_AUDIT_2026-06-09.md`) verified
-  every headline number reproduces from the catalogue.
+  Ravasio K-edge mask, provenance stamps, and an explicit background-file argument
+  so the human-reviewed catalogue actually drives the fit.
+- Two independent audits verified the catalogue reproduces exactly (106 bursts,
+  1057 bins): `notes/PROJECT_AUDIT_2026-06-09.md` (multi-agent) and
+  `CODEX_AUDIT_REPORT_PIPELINE.md` (whole-pipeline). **Open items the second audit
+  flags for the authoritative pass / paper:** (1) the sample-selection code adds
+  an undocumented `T90>2 s` cut and does not run the two-brightest-detector Busby
+  procedure as stated; (2) the $E_{\rm p}$–$kT$ pairing should take both from the
+  *same* composite fit (re-pairing shifts the Burgess result modestly); (3) the
+  $\nu_m$–$\nu_c$ relation should make the *decisive-second-break* subset primary;
+  (4) the sub-128 ms variability claim needs a calibrated false-alarm test.
 - Roadmap to submission: see the execution plan in the project notes.
 
 ## Data availability

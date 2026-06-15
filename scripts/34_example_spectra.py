@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from astropy.table import Table
 warnings.filterwarnings("ignore")
 
-ROOT = "/Users/salim/Desktop/Projects/SingleRest/Two_Breaks"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FIGDIR = f"{ROOT}/paper/two_break_figures"
 
 plt.rcParams.update({

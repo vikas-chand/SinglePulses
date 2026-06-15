@@ -9,7 +9,7 @@ import os, json, glob, collections
 import numpy as np
 from astropy.table import Table
 
-ROOT = "/Users/salim/Desktop/Projects/SingleRest/Two_Breaks"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 R = lambda p: Table.read(os.path.join(ROOT, "results", p), format="ascii.ecsv")
 
 sp  = R("single_pulse_grbs.ecsv")
@@ -20,9 +20,22 @@ rows = []
 for trig in sorted(spd):
     s = spd[trig]
     bb = bk[bk["TRIGGER_NAME"] == trig]
-    nai = [str(r["DETECTOR"]) for r in bb if str(r["DETECTOR"]).startswith("n")]
-    bgo = [str(r["DETECTOR"]) for r in bb if str(r["DETECTOR"]).startswith("b")]
-    ref = str(s["DETECTOR"]).strip()
+    # Detector selection + reference detector come from the ACTUAL production fit
+    # (per-burst JSON), NOT the catalog row: the engine falls back to the
+    # highest-significance approved NaI when the catalog detector is unavailable,
+    # so the catalog DETECTOR can disagree with what was actually fitted.
+    jf = os.path.join(ROOT, "results", f"clean_per_burst/{trig}/spectral_fits.json")
+    fit_dets, ref = None, str(s["DETECTOR"]).strip()
+    if os.path.exists(jf):
+        jd = json.load(open(jf))
+        ref = str(jd.get("canonical_det", ref)).strip()
+        fit_dets = [str(d) for d in jd.get("fit_dets", [])]
+    if fit_dets:
+        nai = [d for d in fit_dets if d.startswith("n")]
+        bgo = [d for d in fit_dets if d.startswith("b")]
+    else:  # no production JSON yet: fall back to the background-table detectors
+        nai = [str(r["DETECTOR"]) for r in bb if str(r["DETECTOR"]).startswith("n")]
+        bgo = [str(r["DETECTOR"]) for r in bb if str(r["DETECTOR"]).startswith("b")]
     # source (analysis) interval = the Bayesian-block span
     bf = os.path.join(ROOT, "results", f"clean_blocks/bb_blocks_spectral_{trig}.ecsv")
     src_t1 = src_t2 = nbins = None

@@ -10,13 +10,13 @@ Output: results/variability_bb.ecsv
 NOTE: single-detector pass; sub-10-ms claims should later be cross-confirmed on
 a second NaI and against the LATBright Haar-MVT tool (s02k_mvt_golkhou).
 """
-import glob, json, time
+import glob, json, os, time
 import numpy as np
 from astropy.io import fits
 from astropy.table import Table
 from astropy.stats import bayesian_blocks
 
-ROOT = "/Users/salim/Desktop/Projects/SingleRest/Two_Breaks"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MAX_CELLS = 80_000
 
 def core_window(trig):

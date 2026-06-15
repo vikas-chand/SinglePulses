@@ -17,7 +17,7 @@ not import-safe); each copy is labelled.
 """
 import json, os
 
-ROOT = "/Users/salim/Desktop/Projects/SingleRest/Two_Breaks"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT  = f"{ROOT}/notebooks/Two_Breaks_single_GRB_pipeline.ipynb"
 
 def md(s):   return {"cell_type": "markdown", "metadata": {}, "source": s.splitlines(keepends=True)}

@@ -1,0 +1,7 @@
+numpy
+scipy
+astropy
+matplotlib
+# NOTE: spectral fitting (scripts/10, 27, 29, 31, 32, 34, 35, the notebook) needs
+# the separate `threeML` conda env (3ML + astromodels + fermitools); it is NOT
+# pip-installable here. See docs/installation.

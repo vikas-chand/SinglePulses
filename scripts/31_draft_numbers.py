@@ -15,7 +15,7 @@ import astromodels as am
 from scipy import stats, odr
 
 warnings.filterwarnings("ignore")
-ROOT = "/Users/salim/Desktop/Projects/SingleRest/Two_Breaks"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KEV2ERG = 1.602176634e-9
 EGRID = np.geomspace(10.0, 1000.0, 400)   # GBM NaI band for flux
 

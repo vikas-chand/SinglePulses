@@ -9,7 +9,7 @@ import os, collections
 import numpy as np
 from astropy.table import Table
 
-ROOT = "/Users/salim/Desktop/Projects/SingleRest/Two_Breaks"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = f"{ROOT}/paper/two_break_tables"; os.makedirs(OUT, exist_ok=True)
 
 T = Table.read(f"{ROOT}/results/clean_sample_all_models.ecsv", format="ascii.ecsv")
