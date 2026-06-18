@@ -1,6 +1,8 @@
+# Core light-weight tier (catalogues, manifest, background picker, machine tables)
 numpy
 scipy
 astropy
+# Figures only (also declared as the [figures] optional extra in pyproject.toml)
 matplotlib
 # NOTE: spectral fitting (scripts/10, 27, 29, 31, 32, 34, 35, the notebook) needs
 # the separate `threeML` conda env (3ML + astromodels + fermitools); it is NOT

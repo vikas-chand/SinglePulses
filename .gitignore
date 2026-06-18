@@ -90,3 +90,10 @@ secrets.*
 *.swp
 *.swo
 *~
+
+# ---- dated backups must not sneak past *.bak ----
+*_pre-20*.py
+*.pre_*.py
+
+# ---- local audit runner (dangerous flag; keep out of the seed repo) ----
+run_antigravity_audit.sh
