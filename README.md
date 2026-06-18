@@ -179,7 +179,7 @@ pdflatex two_break && bibtex two_break && pdflatex two_break && pdflatex two_bre
   so the human-reviewed catalogue actually drives the fit.
 - Two independent audits verified the catalogue reproduces exactly (106 bursts,
   1057 bins): `notes/PROJECT_AUDIT_2026-06-09.md` (multi-agent) and
-  `CODEX_AUDIT_REPORT_PIPELINE.md` (whole-pipeline). **Open items the second audit
+  `dev/CODEX_AUDIT_REPORT_PIPELINE.md` (whole-pipeline). **Open items the second audit
   flags for the authoritative pass / paper:** (1) the sample-selection code adds
   an undocumented `T90>2 s` cut and does not run the two-brightest-detector Busby
   procedure as stated; (2) the $E_{\rm p}$–$kT$ pairing should take both from the
