@@ -128,6 +128,7 @@ class BackgroundSelector(object):
         self.result = None
         self._press_x_pixel = None
         self._tsb = None                      # lazy 3ML TimeSeriesBuilder
+        self._adjust_edge = None              # keyboard micro-adjust: (win, idx)
 
         self._build_figure()
 
@@ -193,11 +194,27 @@ class BackgroundSelector(object):
         else:
             self._set_status('Click 4 times: 2 pre-burst, 2 post-burst.')
 
+        # Keyboard micro-adjust (from 09_review_time_integrated.py): pick an edge
+        # with a/s/d/f, nudge with arrows. Free the arrow keys from matplotlib's
+        # pan-history keymap so they reach our handler.
+        import matplotlib as _mpl
+        for _k in ('keymap.back', 'keymap.forward'):
+            try:
+                _mpl.rcParams[_k] = [x for x in _mpl.rcParams[_k]
+                                     if x not in ('left', 'right')]
+            except Exception:
+                pass
+        self.fig.text(0.87, 0.40,
+                      'micro-adjust:\n a / s  pre L/R\n d / f  post L/R\n'
+                      ' ←/→  ±1 bin\n shift  ±16 bin\n esc  exit',
+                      ha='left', va='top', fontsize=8, color='0.30',
+                      family='monospace')
         self.cids = [
             self.fig.canvas.mpl_connect('button_press_event', self._on_press),
             self.fig.canvas.mpl_connect('button_release_event', self._on_release),
             self.fig.canvas.mpl_connect('motion_notify_event', self._on_motion),
             self.fig.canvas.mpl_connect('pick_event', self._on_pick),
+            self.fig.canvas.mpl_connect('key_press_event', self._on_key),
         ]
 
     def _is_normal_mode(self):
@@ -461,6 +478,54 @@ class BackgroundSelector(object):
 
     def _set_status(self, msg):
         self.status_text.set_text(msg)
+
+    def _on_key(self, event):
+        """Arrow-key micro-adjust of a background edge (09 UX, 4 edges).
+        a/s = pre start/stop, d/f = post start/stop; ←/→ = ±1 bin,
+        shift+←/→ = ±16 bins; esc exits. Residuals refit after each nudge."""
+        EDGES = {'a': ('pre', 0), 's': ('pre', 1), 'd': ('post', 0), 'f': ('post', 1)}
+        if event.key in EDGES:
+            self._adjust_edge = EDGES[event.key]
+            win, i = self._adjust_edge
+            iv = self.pre_interval if win == 'pre' else self.post_interval
+            cur = f'{iv[i]:.2f}s' if iv else '(unset — place window first)'
+            self._set_status(
+                f'Adjusting {win}-{"start" if i == 0 else "stop"} = {cur}.  '
+                f'arrows ±{self.bin_width:.2f}s, shift ±{16 * self.bin_width:.2f}s, '
+                f'esc to exit.')
+            self.fig.canvas.draw_idle()
+            return
+        if event.key == 'escape':
+            self._adjust_edge = None
+            self._set_status('Adjust mode off.')
+            self.fig.canvas.draw_idle()
+            return
+        if self._adjust_edge is None:
+            return
+        step = {'left': -1, 'right': 1,
+                'shift+left': -16, 'shift+right': 16}.get(event.key)
+        if step is None:
+            return
+        win, i = self._adjust_edge
+        iv = self.pre_interval if win == 'pre' else self.post_interval
+        if iv is None:
+            self._set_status(f'{win} window not set — place it first or seed it.')
+            self.fig.canvas.draw_idle()
+            return
+        iv = list(iv)
+        newv = self._snap_to_bin(iv[i] + step * self.bin_width)
+        if i == 0:
+            newv = min(newv, iv[1] - self.bin_width)     # start stays left of stop
+        else:
+            newv = max(newv, iv[0] + self.bin_width)     # stop stays right of start
+        iv[i] = newv
+        if win == 'pre':
+            self.pre_interval = tuple(iv)
+        else:
+            self.post_interval = tuple(iv)
+        self._refresh_intervals()
+        self._refresh_overlay()      # refit 3ML polyfit + residuals (~3-5 s)
+        self.fig.canvas.draw_idle()
 
     def run(self):
         plt.show(block=True)

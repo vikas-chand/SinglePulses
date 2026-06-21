@@ -430,6 +430,21 @@ def get_detectors_for_grb(trigger, data_dir, det_set):
 # Main loop
 # ============================================================================
 
+# --- Residuals + keyboard micro-adjust (2026-06-21) --------------------------
+# This file's BackgroundSelector is single-panel (bkg curve, no residual panel,
+# no arrow keys). Reuse the 2-panel selector from 00_prototype_one_burst.py
+# (LC + 3ML-polyfit sigma residuals; a/s/d/f to pick an edge, arrow keys to
+# nudge +/-1 bin, shift +/-16, esc). Its __init__/run() are swap-compatible with
+# the call site below. (Point-fix; a shared module will replace both later.)
+import importlib.util as _ilu
+_pp = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                   '00_prototype_one_burst.py')
+_ps = _ilu.spec_from_file_location('proto_bkgsel', _pp)
+_pm = _ilu.module_from_spec(_ps)
+_ps.loader.exec_module(_pm)
+BackgroundSelector = _pm.BackgroundSelector   # override the single-panel one above
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--redo', action='store_true',
