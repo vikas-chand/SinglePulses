@@ -736,17 +736,18 @@ def main():
     p.add_argument('--no-log', action='store_true',
                    help='Disable per-burst log file (default: log to '
                         'results/per_burst/<trigger>/logs/<script>_<UTC>.log)')
-    p.add_argument('--blocks-file', default=None,
-                   help='Override path to the Bayesian-block ECSV (default: '
-                        'results/bb_blocks_spectral_<trigger>.ecsv). Used by the '
-                        'Burgess reproduction to fit alternative time-binnings.')
+    p.add_argument('--blocks-file', required=True,
+                   help='Path to the Bayesian-block ECSV (REQUIRED; e.g. '
+                        'results/clean_blocks/bb_blocks_spectral_<trigger>.ecsv). '
+                        'No silent default — must be passed explicitly.')
     p.add_argument('--out-dir', default=None,
                    help='Override output directory (default: '
                         'results/per_burst/<trigger>). Lets a reproduction run '
                         'write to a separate tree without clobbering production.')
-    p.add_argument('--bkg-file', default=None,
-                   help='Override background-intervals ECSV (default: '
-                        'results/background_intervals_prototype.ecsv).')
+    p.add_argument('--bkg-file', required=True,
+                   help='Background-intervals ECSV (REQUIRED; the authoritative '
+                        'human-reviewed or clean catalogue). No silent default — '
+                        'prevents accidentally fitting the automatic backgrounds.')
     args = p.parse_args()
 
     trigger = args.trigger
@@ -764,9 +765,7 @@ def main():
 
 def _run(args, trigger, out_dir):
 
-    bkg_tab = Table.read(args.bkg_file or os.path.join(RESULTS_DIR,
-                         'background_intervals_prototype.ecsv'),
-                         format='ascii.ecsv')
+    bkg_tab = Table.read(args.bkg_file, format='ascii.ecsv')
     bkg_tab = bkg_tab[bkg_tab['TRIGGER_NAME'] == trigger]
     if len(bkg_tab) == 0:
         sys.exit(f'No bkg intervals for {trigger}')
@@ -795,8 +794,7 @@ def _run(args, trigger, out_dir):
 
     print(f'{trigger}: approved dets = {list(approved)}; fit dets = {fit_dets}')
 
-    blocks_file = args.blocks_file or os.path.join(
-        RESULTS_DIR, f'bb_blocks_spectral_{trigger}.ecsv')
+    blocks_file = args.blocks_file
     canonical_det, bin_starts, bin_stops = get_canonical_bins(
         trigger,
         blocks_file,
