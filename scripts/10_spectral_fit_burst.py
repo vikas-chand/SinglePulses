@@ -661,6 +661,49 @@ def fit_all_models(plugins, plugin_dets, canonical_det, seed_in=None,
             flat.update(model_columns(child_spec, best_res, n_data))
             seed_out.update(capture_seed(child_spec, best_res))
 
+    # DSBPL multi-start. DoubleSmoothlyBrokenPowerlaw is a 6-parameter model
+    # whose single-shot minuit fit frequently settles in a WORSE local minimum
+    # than its own submodel SBPL (LRT_DSBPL_SBPL < 0, impossible at the true
+    # optimum) -- the audit found ~84-132 such bins, making the two-break
+    # fraction a LOWER LIMIT. Re-fit DSBPL seeded from the converged SBPL (the
+    # nesting limit: SBPL's break -> the DSBPL peak xp) plus a grid of
+    # physically-ordered low-break (xb < xp) seeds, and keep the lowest n2logL.
+    # Keep-best -> never worsens a fit; recovers the genuine two-break optimum.
+    if include_dsbpl:
+        idxs = {s['name']: i for i, (s, _) in enumerate(per_spec)}
+        if 'DSBPL' in idxs:
+            dsbpl_spec, dsbpl_res = per_spec[idxs['DSBPL']]
+            sp = per_spec[idxs['SBPL']][1].get('params', {}) if 'SBPL' in idxs else {}
+            a_s = sp.get('alpha', {}).get('val')
+            br_s = sp.get('break_energy', {}).get('val')
+            b_s = sp.get('beta', {}).get('val')
+            k_s = sp.get('K', {}).get('val')
+            DSBPL_RESTART_SEEDS = [{}]                    # pure defaults
+            if all(v is not None and np.isfinite(v) for v in (a_s, br_s, b_s, k_s)):
+                for frac in (0.2, 0.4, 0.6):             # trial low break BELOW the SBPL break
+                    xb_try = float(np.clip(br_s * frac, 10.0, 880.0))
+                    if xb_try < br_s:
+                        DSBPL_RESTART_SEEDS.append({
+                            'dsbpl_alpha1': a_s, 'dsbpl_xb': xb_try,
+                            'dsbpl_alpha2': 0.5 * (a_s + b_s), 'dsbpl_xp': br_s,
+                            'dsbpl_beta': b_s, 'dsbpl_K': k_s})
+            best_d = dsbpl_res
+            for extra in DSBPL_RESTART_SEEDS:
+                s = extra if extra == {} else {**seed_in, **extra}
+                alt = fit_one_model(dl, dsbpl_spec, seed=s)
+                alt['physical'] = _fit_is_physical(dsbpl_spec, alt)
+                if (alt.get('status') == 'OK' and np.isfinite(alt['neg2logL'])
+                        and (best_d.get('status') != 'OK'
+                             or not np.isfinite(best_d['neg2logL'])
+                             or alt['neg2logL'] < best_d['neg2logL'] - 1e-3)):
+                    best_d = alt
+            if best_d is not dsbpl_res:
+                print(f'    [DSBPL multistart] n2logL '
+                      f'{dsbpl_res.get("neg2logL", float("nan")):.1f} -> {best_d["neg2logL"]:.1f}')
+                per_spec[idxs['DSBPL']] = (dsbpl_spec, best_d)
+                flat.update(model_columns(dsbpl_spec, best_d, n_data))
+                seed_out.update(capture_seed(dsbpl_spec, best_d))
+
     flat.update(select_best(per_spec, n_data))
     flat['_n_data'] = n_data
     return flat, seed_out
