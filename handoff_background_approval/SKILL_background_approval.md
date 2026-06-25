@@ -1,0 +1,149 @@
+# Skill: GBM Background-Interval Approval (AI-operated tool)
+
+**Purpose:** Drive a human reviewer (Khushboo) through approving the pre-/post-burst
+background windows for every detector of the 106 single-pulse GRBs, and return one
+audited file the upstream pipeline consumes.
+**Audience:** An AI assistant (Claude) operating this repo on the reviewer's machine.
+**Time required:** ~30 min setup + data; the human review is ~106 bursts × a few
+detectors (clicking, can be done over several sittings — the tool resumes).
+**Reusable:** Yes — re-runnable, resumable, idempotent.
+
+---
+
+## What this is, and your role as the AI
+
+This behaves like a **tool in a larger pipeline**, but one step is irreducibly
+**human-in-the-loop**: a person must *look* at each light curve and approve (or
+adjust) the background window. That judgement is the entire point of the step.
+
+**You (the AI) DO:** set up the environment, fetch the data, launch the GUI, monitor
+progress, run QC, validate completeness, and package the result.
+**You (the AI) DO NOT:** click "Accept" on the reviewer's behalf, invent windows, or
+edit the output `.ecsv` by hand. **Never fabricate an approval.** If the reviewer is
+not present, stop and say so — the deliverable is *human-approved* windows, and a
+faked approval silently corrupts every downstream spectral fit.
+
+Each accepted window is stamped with **who** approved it, **when** (UTC), and whether
+they took the pre-drawn window unchanged or adjusted it — so "were these approved, and
+by whom?" is answerable from the file itself.
+
+---
+
+## Inputs (already in the repo)
+
+- `results/background_starting_points.ecsv` — the 418 (trigger, detector) rows to
+  review; each carries an auto-suggested window that the GUI pre-draws for the
+  reviewer to accept or drag-adjust. **The detector SET is fixed here — the reviewer
+  judges WINDOWS, not which detectors.**
+- `results/single_pulse_grbs.ecsv` — the 106-burst sample list.
+- `scripts/30_background_picker.py` — the GUI picker (this is the tool).
+- `scripts/36_progress_check.py` — progress + QC tracker.
+- `handoff_background_approval/fetch_tte.py` — the data downloader.
+
+**NOT in the repo:** the raw TTE event data (too large). Phase 2 fetches it.
+
+## Output (the deliverable)
+
+`results/background_intervals.ecsv`, one row per (trigger, detector), columns:
+```
+TRIGGER_NAME, DETECTOR, BKG_NEG_START, BKG_NEG_STOP, BKG_POS_START, BKG_POS_STOP,
+APPROVED_BY, APPROVED_UTC, WINDOW_SOURCE
+```
+`WINDOW_SOURCE` ∈ {accepted_seed, adjusted, drawn_fresh}. Target: **418 rows / 106
+bursts, all with APPROVED_BY set** (no "unknown").
+
+---
+
+## Phase 1 — Environment (light; NO threeML/fermitools)
+
+This step does not fit spectra, so it does **not** need threeML or fermitools — keep
+the environment small.
+
+```bash
+python -m venv .venv-picker && source .venv-picker/bin/activate   # or conda env
+pip install -r handoff_background_approval/requirements.txt
+python -c "import numpy, astropy, matplotlib; print('deps OK')"
+```
+GUI backend: the picker auto-selects macOS→Qt→Tk. If no window appears, force one:
+`export MPLBACKEND=QtAgg` (needs PyQt5) or `export MPLBACKEND=TkAgg` (needs Tk).
+
+## Phase 2 — Data (download only what's needed)
+
+```bash
+python handoff_background_approval/fetch_tte.py            # all 106 bursts' TTE
+# spot-check first:  python handoff_background_approval/fetch_tte.py --limit 3
+```
+Stdlib-only; pulls each needed TTE from the public HEASARC GBM archive into
+`data/<trigger>/`. Re-runnable (skips files already present). If some files fail,
+re-run, or ask Vikas to share the `data/` subset. (Alternative: Vikas shares `data/`
+directly and you skip this phase.)
+
+## Phase 3 — Launch the picker (human reviews)
+
+```bash
+python scripts/30_background_picker.py --approver "Khushboo Hooda"
+```
+`--approver` is REQUIRED — it stamps every accepted row. Tell the reviewer:
+
+- Each detector opens showing the light curve with the suggested **pre** (negative
+  time) and **post** (positive time) background windows pre-shaded, plus a polynomial
+  fit overlay for a sanity check.
+- **Accept** (green) — save this window, go to next detector.
+- **Clear** (red) — wipe it and click 4 points yourself (2 pre, 2 post; time-ordered).
+- **Skip GRB** (orange) — drop this whole GRB.
+- **Quit** (gray) — stop; progress is saved per-detector, resume later by re-running.
+- Judge windows from the light curve only — they should sit on flat background, avoid
+  the burst and any nearby features, and be ~50–150 s wide each.
+
+Resume anytime: re-running reviews only what's not yet accepted. To revisit one burst:
+`--redo-grb bn090719063`. To redo everything: `--redo`.
+
+## Phase 4 — Progress & QC (run anytime)
+
+```bash
+python scripts/36_progress_check.py
+```
+Reports completion (target 418/418, 106/106 bursts), flags duplicates, stray rows,
+zero/negative-width or >200 s windows, and **any rows missing APPROVED_BY**. Also
+prints the approver tally and the accepted_seed/adjusted/drawn_fresh breakdown.
+
+## Phase 5 — Final validation (before returning)
+
+Done only when ALL are true:
+- `scripts/36_progress_check.py` shows 418/418 and 106/106;
+- QC line reads "clean";
+- every row has APPROVED_BY set (no "unknown");
+- no zero-width or absurdly wide windows remain.
+
+## Phase 6 — Return the deliverable
+
+Send `results/background_intervals.ecsv` back to Vikas (commit on a branch + push, or
+share the file). That single stamped file is the entire output of this step.
+
+---
+
+## Quality checklist
+- [ ] Light env only (no threeML pulled in).
+- [ ] `fetch_tte.py` finished with 0 missing (or missing files explicitly flagged).
+- [ ] Picker launched with `--approver "<reviewer's name>"`.
+- [ ] No approval was clicked or invented by the AI — a human reviewed each window.
+- [ ] `scripts/36` shows 418/418, 106/106, QC clean, no missing APPROVED_BY.
+- [ ] Deliverable is `results/background_intervals.ecsv` with the 9-column schema.
+
+## Common pitfalls
+- **No window appears / backend error** → set `MPLBACKEND=QtAgg` (PyQt5) or `TkAgg`.
+- **Running in the threeML/fermitools env** → unnecessary and heavy; use the light env.
+- **`--approver` missing** → the picker refuses to start (by design); supply it.
+- **Editing the .ecsv by hand to "finish faster"** → forbidden; it destroys the
+  approval guarantee. Only the GUI writes rows.
+- **Wrong working directory** → run all commands from the repo root so the relative
+  `results/` and `data/` paths resolve.
+- **TTE download fails for old/odd bursts** → re-run `fetch_tte.py`; if still missing,
+  Vikas shares those `data/<trigger>/` dirs.
+
+## Hand-off (back into Vikas's pipeline)
+The approved file feeds two authoritative steps Vikas runs (threeML env):
+- Re-block: `python scripts/27b_reblock_3ml.py --bkg results/background_intervals.ecsv --out <fresh>/clean_blocks`
+- Fits:    `python scripts/29_refit_clean.py --bkg-file results/background_intervals.ecsv ...`
+Until this file exists and is fully approved, those steps run on PROVISIONAL
+backgrounds and their numbers are not final.

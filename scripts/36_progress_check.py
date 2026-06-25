@@ -23,7 +23,7 @@ bursts = sorted({t for t, d in need})
 if not os.path.exists(OUTPUT):
     print(f"progress: 0/{len(need)} detector windows (0.0%) -- output file not created yet")
     print(f"bursts complete: 0/{len(bursts)}")
-    print("next: run  python scripts/30_background_picker.py  and Accept the first burst")
+    print('next: run  python scripts/30_background_picker.py --approver "<your name>"  and Accept the first burst')
     sys.exit(0)
 
 out = Table.read(OUTPUT, format="ascii.ecsv")
@@ -47,6 +47,15 @@ for r in out:
     elif max(w1, w2) > 200:
         problems.append(f"very wide window (>200 s): {r['TRIGGER_NAME']} {r['DETECTOR']} ({w1:.0f}/{w2:.0f} s)")
 
+# ---- approval-stamp QC (auditability gate: every row must record who approved it) ----
+if "APPROVED_BY" not in out.colnames:
+    problems.append("NO approval stamp columns (old picker?) — re-run scripts/30 with --approver")
+else:
+    unattributed = [(r["TRIGGER_NAME"], r["DETECTOR"]) for r in out
+                    if str(r["APPROVED_BY"]).strip() in ("", "unknown")]
+    if unattributed:
+        problems.append(f"rows with no APPROVED_BY: {len(unattributed)} (e.g. {unattributed[:3]})")
+
 # ---- progress ----
 nb_done = [t for t in bursts if all((t, d) in done for td, d in
            [(x, y) for x, y in need if x == t])]
@@ -57,6 +66,12 @@ prio_done = [t for t in PRIORITY if t in nb_done]
 print(f"priority-6 (once-broken) complete: {len(prio_done)}/6 {prio_done}")
 pending = [t for t in bursts if t not in nb_done]
 print(f"next pending bursts: {pending[:8]}")
+if "APPROVED_BY" in out.colnames and len(out):
+    from collections import Counter
+    who = Counter(str(r["APPROVED_BY"]).strip() for r in out)
+    src = Counter(str(r["WINDOW_SOURCE"]).strip() for r in out) if "WINDOW_SOURCE" in out.colnames else {}
+    print(f"approved by: {dict(who)}")
+    print(f"window source: {dict(src)}  (accepted_seed = took the pre-drawn window unchanged)")
 if problems:
     print("\n!! QC PROBLEMS (tell Vikas/Claude):")
     for p in problems[:12]:

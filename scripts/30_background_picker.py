@@ -18,16 +18,20 @@ dashed cursor line via motion_notify_event, matplotlib default toolbar for
 zoom/pan with isNormalMode() guard silencing click-selection while zoom
 active. Text buttons Clear / Accept / Skip GRB / Quit use picker=20.
 
-Output: results/background_intervals.ecsv with one row per (trigger, det),
-columns TRIGGER_NAME, DETECTOR, BKG_NEG_START, BKG_NEG_STOP,
-BKG_POS_START, BKG_POS_STOP. Consumed by 04_bayesian_blocks.py and
-05_replot_bb.py.
+Output: results/background_intervals.ecsv with one row per (trigger, det), columns
+TRIGGER_NAME, DETECTOR, BKG_NEG_START, BKG_NEG_STOP, BKG_POS_START, BKG_POS_STOP,
+plus an APPROVAL STAMP: APPROVED_BY (who vetted it), APPROVED_UTC (when), and
+WINDOW_SOURCE (accepted_seed / adjusted / drawn_fresh). The stamp makes "were these
+approved, and by whom?" answerable from the file itself. Consumed by the authoritative
+re-block (27b, via --bkg) and the fit driver (29_refit_clean.py, via --bkg-file).
+
+--approver is REQUIRED so every accepted window is attributed.
 
 Usage (any python with numpy+astropy+matplotlib):
-    python scripts/30_background_picker.py              # review only bursts not yet accepted
-    python scripts/30_background_picker.py --redo       # review/adjust EVERY (trigger,det)
-    python scripts/30_background_picker.py --redo-grb bn090719063
-    python scripts/30_background_picker.py --limit 5    # stop after 5 GRBs
+    python scripts/30_background_picker.py --approver "Khushboo Hooda"            # only bursts not yet accepted
+    python scripts/30_background_picker.py --approver "Khushboo Hooda" --redo     # review/adjust EVERY (trigger,det)
+    python scripts/30_background_picker.py --approver "Khushboo Hooda" --redo-grb bn090719063
+    python scripts/30_background_picker.py --approver "Khushboo Hooda" --limit 5  # stop after 5 GRBs
 Backend auto-selects (macOS->Qt->Tk); force with e.g. MPLBACKEND=TkAgg.
 Buttons: Accept (save), Clear, Skip GRB, Quit. Output: results/background_intervals.ecsv
 """
@@ -37,10 +41,15 @@ import sys
 import glob
 import argparse
 import warnings
+import datetime
 
 import numpy as np
 from astropy.io import fits
 from astropy.table import Table
+
+# Approval-record columns appended to every accepted row (auditability gate:
+# "all selections must be human-approved" — answerable from the file itself).
+STAMP_COLS = ('APPROVED_BY', 'APPROVED_UTC', 'WINDOW_SOURCE')
 
 os.environ['OMP_NUM_THREADS'] = '1'
 warnings.filterwarnings('ignore')
@@ -381,8 +390,10 @@ def load_existing(out_path):
     return out
 
 
-def save_one_row(out_path, trigger, det, pre, post):
-    """Append or replace one (trigger, det) row."""
+def save_one_row(out_path, trigger, det, pre, post, approved_by, window_source):
+    """Append or replace one (trigger, det) row, STAMPED with who approved it, when
+    (UTC), and whether the window was accepted as-seeded or hand-adjusted. The stamp
+    makes "were these approved?" answerable from the file itself."""
     new_cols = {
         'TRIGGER_NAME': trigger,
         'DETECTOR': det,
@@ -390,19 +401,22 @@ def save_one_row(out_path, trigger, det, pre, post):
         'BKG_NEG_STOP': float(pre[1]),
         'BKG_POS_START': float(post[0]),
         'BKG_POS_STOP': float(post[1]),
+        'APPROVED_BY': str(approved_by),
+        'APPROVED_UTC': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'WINDOW_SOURCE': str(window_source),
     }
     if os.path.exists(out_path):
         t = Table.read(out_path, format='ascii.ecsv')
+        # migrate any older 6-column file in place (stamp unknown for prior rows)
+        for c in STAMP_COLS:
+            if c not in t.colnames:
+                t[c] = ['unknown'] * len(t)
         mask = ~((t['TRIGGER_NAME'] == trigger) & (t['DETECTOR'] == det))
         t = t[mask]
         t.add_row(new_cols)
     else:
-        t = Table(
-            [[trigger], [det],
-             [new_cols['BKG_NEG_START']], [new_cols['BKG_NEG_STOP']],
-             [new_cols['BKG_POS_START']], [new_cols['BKG_POS_STOP']]],
-            names=list(new_cols.keys()),
-        )
+        t = Table(rows=[tuple(new_cols[k] for k in new_cols)],
+                  names=list(new_cols.keys()))
     t.write(out_path, format='ascii.ecsv', overwrite=True)
 
 
@@ -453,6 +467,10 @@ def main():
                         help='Revisit one trigger across all detectors')
     parser.add_argument('--limit', type=int, default=None,
                         help='Stop after this many GRBs')
+    parser.add_argument('--approver', required=True,
+                        help='Name of the person approving (stamped into APPROVED_BY '
+                             'so the file records who vetted each window). '
+                             'e.g. --approver "Khushboo Hooda"')
     args = parser.parse_args()
 
     sample = Table.read(SAMPLE_PATH, format='ascii.ecsv')
@@ -505,10 +523,21 @@ def main():
                 continue
 
             if result == 'accept':
-                save_one_row(OUT_PATH, trigger, det, pre, post)
+                # classify: accepted the pre-drawn seed unchanged, hand-adjusted it,
+                # or drew it from scratch (no seed existed) — recorded in the stamp.
+                if seed is None:
+                    window_source = 'drawn_fresh'
+                elif np.allclose([pre[0], pre[1], post[0], post[1]],
+                                 [prev_pre[0], prev_pre[1], prev_post[0], prev_post[1]],
+                                 atol=1e-6):
+                    window_source = 'accepted_seed'
+                else:
+                    window_source = 'adjusted'
+                save_one_row(OUT_PATH, trigger, det, pre, post,
+                             approved_by=args.approver, window_source=window_source)
                 existing[key] = (pre, post)
                 prev_pre, prev_post = pre, post
-                print(f'    accepted: pre={pre}, post={post}')
+                print(f'    accepted ({window_source}) by {args.approver}: pre={pre}, post={post}')
             elif result == 'skip':
                 print('    user skipped GRB')
                 skip_grb = True

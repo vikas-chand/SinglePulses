@@ -1,0 +1,10 @@
+# Background-approval tool — LIGHT environment (no threeML / no fermitools).
+# The picker and fetcher need only these. Spectral fitting is NOT done here.
+numpy
+astropy
+matplotlib
+# A matplotlib GUI backend is required for the interactive picker.
+# PyQt5 is the most portable across macOS/Linux/Windows. If your Python already
+# has working Tk (python -c "import tkinter"), you can skip PyQt5 and run with
+# MPLBACKEND=TkAgg instead.
+PyQt5
