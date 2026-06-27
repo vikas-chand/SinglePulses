@@ -1,9 +1,14 @@
 # Skill: GBM Background-Interval Approval (AI-operated tool)
 
-**Purpose:** Drive a human reviewer (Khushboo) through approving the pre-/post-burst
-background windows for every detector of the 106 single-pulse GRBs, and return one
-audited file the upstream pipeline consumes.
-**Audience:** An AI assistant (Claude) operating this repo on the reviewer's machine.
+> **Full pipeline:** this is the detailed protocol for the **approval step** only.
+> For the whole chain (approve → bin → fit → products), env/CALDB setup, and exact
+> commands, read **`../AGENTS.md`** first.
+
+**Purpose:** Get the pre-/post-burst background windows for every detector of the 106
+single-pulse GRBs **approved** — by a human at the GUI **or** by an AI reading the
+light-curve PNGs — and return one audited, stamped file the downstream pipeline consumes.
+**Audience:** An AI assistant (Codex or Claude Code) operating this repo locally, with
+or without a human reviewer present.
 **Time required:** ~30 min setup + data; the human review is ~106 bursts × a few
 detectors (clicking, can be done over several sittings — the tool resumes).
 **Reusable:** Yes — re-runnable, resumable, idempotent.
@@ -141,9 +146,13 @@ share the file). That single stamped file is the entire output of this step.
 - **TTE download fails for old/odd bursts** → re-run `fetch_tte.py`; if still missing,
   Vikas shares those `data/<trigger>/` dirs.
 
-## Hand-off (back into Vikas's pipeline)
-The approved file feeds two authoritative steps Vikas runs (threeML env):
-- Re-block: `python scripts/27b_reblock_3ml.py --bkg results/background_intervals.ecsv --out <fresh>/clean_blocks`
-- Fits:    `python scripts/29_refit_clean.py --bkg-file results/background_intervals.ecsv ...`
-Until this file exists and is fully approved, those steps run on PROVISIONAL
+## Hand-off — continue the full pipeline (you can run all of it)
+This file is the detailed protocol for the **approval step only**. The same agent can
+run the **rest of the pipeline** — install whatever is needed (incl. threeML); env
+weight is not a reason to stop. See **`../AGENTS.md`** for the full chain, env/CALDB
+setup, and exact commands. In short, the approved `background_intervals.ecsv` feeds:
+- Bin: `python scripts/27b_reblock_3ml.py --bkg results/background_intervals.ecsv --out <fresh>/clean_blocks --sigma 5.0`
+- Fit: `python scripts/29_refit_clean.py --bkg-file results/background_intervals.ecsv --blocks-dir results/clean_blocks --out-root <fresh>/clean_per_burst`
+- Products: `scripts/31`–`38` (figures, tables, numbers, manifest).
+Until the approved file exists and is fully approved, these run on PROVISIONAL
 backgrounds and their numbers are not final.
