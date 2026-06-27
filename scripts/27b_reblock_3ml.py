@@ -178,7 +178,28 @@ def reblock_burst(trig, single, bkg, out_dir, verbose=False):
     bt = (pre[1] - pre[0]) + (post[1] - post[0])
     bc = int(((tt >= pre[0]) & (tt < pre[1])).sum() + ((tt >= post[0]) & (tt < post[1])).sum())
     brate = bc / bt if bt > 0 else 0.0
-    src_lo, src_hi = emission_window(tt, float(pre[1]), float(post[0]), brate)
+    # Prefer the EXPLICIT human/AI-approved source window (SRC_START/SRC_STOP from the
+    # gated approval catalog, scripts/39); fall back to the emission_window heuristic
+    # only when the catalog has no source column / value for this burst.
+    src_explicit = None
+    if 'SRC_START' in bk.colnames and 'SRC_STOP' in bk.colnames:
+        try:
+            s1, s2 = float(bk[0]['SRC_START']), float(bk[0]['SRC_STOP'])
+            if np.isfinite(s1) and np.isfinite(s2) and s2 > s1:
+                src_explicit = (s1, s2)
+        except (TypeError, ValueError):
+            src_explicit = None
+    if src_explicit is not None:
+        # Tighten the BB search to the emission WITHIN the approved window, rather than
+        # trusting [s1,s2] verbatim: an over-wide approved source (or a GUI misclick)
+        # would otherwise let BB run over a mostly-quiet span and collapse. emission_
+        # window returns the bounds unchanged when no clear peak is found, so an already
+        # tight approved window is preserved.
+        src_lo, src_hi = emission_window(tt, src_explicit[0], src_explicit[1], brate)
+        src_kind = 'approved+tightened'
+    else:
+        src_lo, src_hi = emission_window(tt, float(pre[1]), float(post[0]), brate)
+        src_kind = 'heuristic'
     # --- 3ML time series for the reference detector ---
     tsb = TimeSeriesBuilder.from_gbm_tte(edet, tte, rsp_file=find_rsp(trig, edet), verbose=False)
     tsb.set_background_interval(f'{pre[0]}-{pre[1]}', f'{post[0]}-{post[1]}')   # poly auto (LRT)
@@ -192,7 +213,7 @@ def reblock_burst(trig, single, bkg, out_dir, verbose=False):
     starts, stops, sigs, merged, cnt = merge_low_significance(starts, stops, ts, SIGMA_FLOOR)
     n_final = len(starts)
     if verbose:
-        print(f'  {trig} [{edet}]: src=[{src_lo:.3f},{src_hi:.3f}] BB={n_bb} '
+        print(f'  {trig} [{edet}]: src=[{src_lo:.3f},{src_hi:.3f}] ({src_kind}) BB={n_bb} '
               f'-> trim+merge(>= {SIGMA_FLOOR:g} sigma)={n_final}')
         for i in range(n_final):
             net = bin_net_counts(ts, starts[i], stops[i])
@@ -224,11 +245,24 @@ def main():
     SIGMA_FLOOR = args.sigma
 
     single = Table.read(os.path.join(RES, 'single_pulse_grbs.ecsv'), format='ascii.ecsv')
-    bpath = args.bkg or (os.path.join(RES, 'background_intervals_clean.ecsv')
-                         if os.path.exists(os.path.join(RES, 'background_intervals_clean.ecsv'))
-                         else os.path.join(RES, 'background_intervals_prototype.ecsv'))
+    # Default search prefers the GATED approval catalog (carries SRC_*) over the
+    # provisional clean/prototype catalogs.
+    if args.bkg:
+        bpath = args.bkg
+    else:
+        for cand in ('background_intervals.ecsv', 'background_intervals_clean.ecsv',
+                     'background_intervals_prototype.ecsv'):
+            bpath = os.path.join(RES, cand)
+            if os.path.exists(bpath):
+                break
     bkg = Table.read(bpath, format='ascii.ecsv')
-    print(f'bkg: {os.path.basename(bpath)} | sigma_floor={SIGMA_FLOOR:g} | out={args.out}')
+    has_src = 'SRC_START' in bkg.colnames and 'SRC_STOP' in bkg.colnames
+    print(f'bkg: {os.path.basename(bpath)} | sigma_floor={SIGMA_FLOOR:g} | '
+          f'source={"approved (SRC_*)" if has_src else "HEURISTIC (no SRC_* -> emission_window)"} '
+          f'| out={args.out}')
+    if not has_src:
+        print('  WARNING: this bkg catalog has no SRC_START/SRC_STOP; the source window '
+              'will be the emission_window heuristic, not human/AI-approved.')
 
     if args.burst:
         trigs = [args.burst]

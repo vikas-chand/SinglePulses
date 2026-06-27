@@ -82,32 +82,39 @@ algorithmic backgrounds), `results/clean_blocks/` (provisional blocks).
 
 ## 4. The pipeline — exact commands
 
-> **Built vs planned.** Commands below marked ✅ are runnable today. Items marked 🔧
-> are the **locked-but-not-yet-built** approval extension (detector + per-burst source
-> + unified AI/human gate) — see `dev/AUTHORITATIVE_PIPELINE.md`. Do **not** invent
-> commands for 🔧 items; build them per the spec, or run the ✅ path.
+> All stages below are ✅ runnable. The unified gated approval driver (`scripts/39`)
+> is built; its `gui` path needs a live display, the `render`+`ingest` paths do not.
+> See `dev/AUTHORITATIVE_PIPELINE.md` for the design rationale.
 
-### Stage 1 — Approval (gated: human GUI *or* AI-vision)
-**Background windows ✅ (runnable, stamped):**
+### Stage 1 — Approval (gated: human GUI *or* AI-vision) ✅
+**`scripts/39_approve_all.py` is the unified, gated driver** — it approves all three
+(detectors + background + per-burst source) and writes ONE stamped catalog
+`results/background_intervals.ecsv` (schema in §5; gate columns `APPROVED_BY,
+APPROVED_UTC, APPROVAL_MODE, WINDOW_SOURCE`). Approval may be human *or* AI; the gate
+records which. Three steps:
+
 ```bash
-python scripts/30_background_picker.py --approver "<name or 'Claude (AI)'>"
-python scripts/36_progress_check.py        # progress + QC (418/418, 106/106, stamp check)
+# 1) render candidates + LC PNGs + a per-burst manifest (light; no threeML)
+python scripts/39_approve_all.py render --all          # or --trigger bn...
+
+# 2) AI-VISION (you, the agent): read results/approval/<trig>_pending.json + the PNGs
+#    in plots/approval_lc/, decide approved detectors + per-det bkg windows + the
+#    per-burst source, and WRITE results/approval/<trig>_decision.json (schema in the
+#    scripts/39 docstring; set "approver":"Claude (AI)"/"Codex (AI)", "mode":"ai_vision").
+#    NEVER fabricate silently — the stamp records that the AI approved it.
+
+# 3) ingest the decisions -> the stamped catalog (light)
+python scripts/39_approve_all.py ingest --all
 ```
-`scripts/30` opens each detector's light curve pre-drawn with a suggested window;
-Accept / Clear+redraw / Skip / Quit. Every accepted row is stamped `APPROVED_BY,
-APPROVED_UTC, WINDOW_SOURCE` into `results/background_intervals.ecsv`. Resumable.
-`--approver` is required. (The AI-vision path renders LC PNGs via
-`scripts/00_prototype_one_burst.py` and you read them to propose windows.)
 
-**Detector approval 🔧** — exists today only as a single-burst GUI
-(`00_prototype_one_burst.py:pick_detectors_with_angles_gui`, POSHIST ≤50° angle math).
-Not yet wired into a scaled, stamped driver. **Currently the detector SET is taken
-as-is** from the sample catalog; gating it is the planned build.
+**Human GUI path** (when a person clicks): `python scripts/39_approve_all.py gui
+--trigger bn... --approver "Khushboo Hooda"` — runs the detector picker (POSHIST ≤50°
+angle math) → background selector per detector → a 2-click source marker, then writes
+the same `decision.json` (`mode=human_gui`) and ingests it.
 
-**Source/emission window 🔧** — to be approved **explicitly per burst** (mark
-start+stop on the brightest-NaI light curve), written as `SRC_START, SRC_STOP`.
-Today the source is *implicit* (`[pre_stop, post_start]`, auto-tightened by an
-`emission_window` heuristic inside `27b`). The explicit per-burst approval is planned.
+`scripts/30_background_picker.py` (+ `scripts/36_progress_check.py` for progress/QC)
+remains as the **background-only** human picker if you want to approve just windows;
+its output schema is a subset of the unified catalog.
 
 ### Stage 2 — Binning ✅ (heavy tier)
 ```bash
@@ -119,7 +126,8 @@ sub-`SIGMA_FLOOR` (=5σ) leading/trailing blocks, then merge interior sub-floor 
 into a neighbour. Significance from 3ML's `Significance.li_and_ma_equivalent_for_gaussian_background`.
 Writes `results/clean_blocks/bb_blocks_spectral_<trigger>.ecsv`. (`scripts/27` is the
 **deprecated** astropy-BB predecessor — do not use it for authoritative runs.)
-*Planned:* read explicit `SRC_START/SRC_STOP` instead of the `emission_window` heuristic.
+It uses the **approved** `SRC_START/SRC_STOP` from the catalog when present, falling
+back to the `emission_window` heuristic only if the burst has no approved source.
 
 ### Stage 3 — Spectral fits ✅ (heavy tier)
 ```bash
@@ -159,9 +167,13 @@ python scripts/37_build_full_notebook.py   # -> notebooks/Two_Breaks_single_GRB_
 - `results/single_pulse_grbs.ecsv` — sample: `TRIGGER_NAME, T90, FLUENCE, DETECTOR
   (brightest NaI), CLASSIFICATION, HAS_LAT`.
 - `results/background_starting_points.ecsv` — 418 review rows (== current clean).
-- `results/background_intervals.ecsv` — **the approved catalog** (Stage 1 output):
-  `..., BKG_NEG/POS_START/STOP, APPROVED_BY, APPROVED_UTC, WINDOW_SOURCE` (+ planned
-  `SRC_START/STOP`). Consumed by `27b` (`--bkg`) and `29`/`10` (`--bkg-file`).
+- `results/background_intervals.ecsv` — **the approved catalog** (Stage 1 output from
+  `scripts/39`): `TRIGGER_NAME, DETECTOR, BKG_NEG/POS_START/STOP, SRC_START, SRC_STOP,
+  DET_ANGLE, APPROVED_BY, APPROVED_UTC, APPROVAL_MODE, WINDOW_SOURCE`. Only approved
+  detectors get rows (detector approval is implicit in row presence). Consumed by `27b`
+  (`--bkg`, uses `SRC_*`) and `29`/`10` (`--bkg-file`, uses `BKG_*`).
+- `results/approval/<trig>_pending.json` (render output) / `<trig>_decision.json`
+  (the agent's or GUI's approval; `scripts/39` ingests it). Schema in the `scripts/39` docstring.
 - `results/clean_blocks/bb_blocks_spectral_<trig>.ecsv` — bins: `TRIGGER_NAME,
   DETECTOR, BLOCK_INDEX, T_START, T_STOP, SIGNIFICANCE, IS_MERGED, CONSTITUENT_COUNT,
   POLY_ORDER`.
@@ -195,6 +207,9 @@ From `dev/CODEX_AUDIT_REPORT_PIPELINE.md` / `notes/PROJECT_AUDIT_2026-06-09.md`:
 3. ν_m–ν_c relation should restrict to *decisive* 2SBPL bins.
 4. Sub-128 ms variability claim needs a calibrated false-alarm test (stub only).
 5. DSBPL/2SBPL multi-start convergence — handled in `10` now; verify in the re-fit.
+6. `scripts/10`'s time-integrated (T_INT) window does not yet read the approved
+   `SRC_START/SRC_STOP`; the per-block bins do (via `27b`). Small follow-up to make
+   T_INT use the approved source too.
 
 ---
 
