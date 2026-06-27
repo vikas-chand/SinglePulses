@@ -15,6 +15,7 @@ side. Nothing downstream is final until it exists and is fully approved.
 
 | File | What it is |
 |---|---|
+| `INSTRUCTIONS_KHUSHBOO.md` | **Start here (human guide)** — step-by-step for running the approval, either AI-assisted or by hand in the GUI. |
 | `SKILL_background_approval.md` | **Operating protocol for an AI assistant** — point Claude at this; it covers install → data → run → QC → return. |
 | `fetch_tte.py` | Stdlib TTE downloader (no threeML) — gets only the event files the picker needs from the public HEASARC archive. |
 | `requirements.txt` | Light dependencies (numpy, astropy, matplotlib, PyQt5). |
