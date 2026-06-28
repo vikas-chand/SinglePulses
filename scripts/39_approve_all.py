@@ -555,18 +555,30 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest='mode', required=True)
 
+    # --approval-dir / --out isolate a rater's run (decision JSONs + output catalog),
+    # so multiple experts and the AI each produce a separate catalog for the benchmark.
     pr = sub.add_parser('render', help='render LC PNGs + candidate manifest')
     pr.add_argument('--trigger'); pr.add_argument('--all', action='store_true')
     pr.add_argument('--overwrite', action='store_true')
+    pr.add_argument('--approval-dir', default=None)
 
     ing = sub.add_parser('ingest', help='decision JSONs -> stamped catalog')
     ing.add_argument('--trigger'); ing.add_argument('--all', action='store_true')
+    ing.add_argument('--approval-dir', default=None)
+    ing.add_argument('--out', default=None, help='output catalog path (per-rater)')
 
     g = sub.add_parser('gui', help='human approval (detector+bkg+source)')
     g.add_argument('--trigger'); g.add_argument('--all', action='store_true')
     g.add_argument('--approver', required=True)
+    g.add_argument('--approval-dir', default=None)
+    g.add_argument('--out', default=None, help='output catalog path (per-rater)')
 
     args = ap.parse_args()
+    global APPROVAL_DIR, OUT_CATALOG
+    if getattr(args, 'approval_dir', None):
+        APPROVAL_DIR = args.approval_dir
+    if getattr(args, 'out', None):
+        OUT_CATALOG = args.out
 
     if args.mode == 'render':
         for trig in _select_triggers(args):

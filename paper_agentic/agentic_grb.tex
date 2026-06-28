@@ -1,0 +1,239 @@
+% ===========================================================================
+% Agentic AI Analysis of Single-Pulse Fermi/GBM GRBs  --  METHODS / BENCHMARK PAPER
+% Lead author: V. Chand.  SEPARATE from the single-pulse spectroscopy science paper
+% (paper/two_break.tex, Hooda et al., in prep.), which this one cites as the science
+% application.
+%
+% STATUS (2026-06-27): DRAFT SKELETON.
+%   - Methodology + experimental-design sections are written from the actual built
+%     pipeline (real).
+%   - RESULTS are marked \PENDING: the human-vs-AI dual-mode benchmark has NOT been
+%     run yet. Do NOT fill with invented numbers; fill after the run.
+%   - Citations to the agentic-AI / LLM-in-astronomy literature are \TODOcite
+%     placeholders to be replaced with VERIFIED references (no hallucinated bibtex).
+%     GRB/method references can be pulled from ../paper/two_break.bib.
+% ===========================================================================
+\documentclass[twocolumn]{aastex631}
+
+\newcommand{\PENDING}[1]{\textbf{\textcolor{red}{[PENDING run: #1]}}}
+\newcommand{\TODOcite}[1]{\textbf{\textcolor{blue}{[cite: #1]}}}
+\newcommand{\Ep}{E_{\rm p}}
+\newcommand{\kT}{kT}
+
+\shorttitle{Agentic AI Analysis of Single-Pulse GBM GRBs}
+\shortauthors{Chand et al.}
+
+\begin{document}
+
+\title{Agentic AI Analysis of Single-Pulse Fermi/GBM Gamma-Ray Bursts:
+A Reproducible, Auditable Pipeline and a Human--AI Benchmark}
+
+% --- Authors (lead: V. Chand). Affiliations are placeholders; fill in. -------
+\author{Vikas Chand}
+\affiliation{[Affiliation TBD]}
+\email{vikas.chand.physics@gmail.com}
+
+\author{Khushboo Hooda}
+\affiliation{[Affiliation TBD]}
+% \author{...}  % additional co-authors TBD
+
+\begin{abstract}
+Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on a sequence of
+expert, partly subjective choices---which detectors to use, where to place the
+background, which interval contains the source, and how to bin the light
+curve---that are rarely documented in full and are therefore difficult to
+reproduce. We present an \emph{agentic} analysis pipeline for single-pulse
+\textit{Fermi}/GBM GRBs in which a large-language-model coding agent executes the
+entire workflow---detector selection from spacecraft pointing, polynomial
+background modeling, source-interval definition, Bayesian-block binning, and
+multi-model spectral fitting---behind a single auditable \emph{approval gate} that
+records, for every selection, whether it was made by a human or by the agent and
+when. Because the gate labels each decision by its origin, the pipeline doubles as
+a controlled experiment: we run the subjective steps in both \emph{human} and
+\emph{AI-vision} modes on a common benchmark sample and quantify (i) the agreement
+between agent and expert selections and (ii) the propagation of any disagreement
+into the recovered spectral parameters ($\Ep$, low-energy index, blackbody $\kT$,
+and the thermal-versus-double-break classification). \PENDING{agreement metrics and
+parameter-impact results.} We show that the agentic pipeline reproduces established
+results for single-pulse GRBs \PENDING{quote the reproduced relations}, and we
+release the fully agent-legible, self-documenting code so that the analysis can be
+re-run end to end by either a human or an AI agent. We discuss the implications for
+reproducibility and scaling of GRB spectral catalogs, and the regimes in which an
+agent does and does not match expert judgement.
+\end{abstract}
+
+\keywords{Gamma-ray bursts (629) --- Astronomy data analysis (1858) ---
+Convolutional neural networks --- Astrostatistics (1882)}
+% (keyword list to be finalised)
+
+% ===========================================================================
+\section{Introduction} \label{sec:intro}
+% Real, can be written now.
+Time-resolved spectroscopy is the primary tool for probing the radiation physics
+of the GRB prompt phase. In practice, turning raw \textit{Fermi}/GBM event data
+into a time series of spectral fits requires a chain of human decisions: selecting
+the illuminated NaI and BGO detectors, defining off-source intervals for the
+background model, identifying the source/emission interval, and choosing a binning
+that balances time resolution against per-bin signal. These choices are expert,
+somewhat subjective, and seldom recorded at the level of detail needed to reproduce
+a published catalog exactly. As samples grow, this manual bottleneck both limits
+throughput and undermines reproducibility.
+
+Large-language-model (LLM) ``agents''---models that can read a repository, run
+code, inspect figures, and act on the results---have begun to be applied to
+scientific workflows \TODOcite{recent astro-LLM / agent works}. Their promise for
+GRB analysis is specific: the subjective steps above are largely visual judgements
+on a light curve, exactly the kind of task a vision-capable agent can attempt, and
+the rest of the workflow is deterministic code an agent can orchestrate. The open
+question is not whether an agent \emph{can} run the pipeline, but whether its
+judgements match an expert's well enough that the science is unchanged---and
+whether the process can be made auditable rather than a black box.
+
+In this paper we (1) describe an agentic pipeline for single-pulse GBM GRBs built
+around a human-or-AI \emph{approval gate} that makes every selection auditable;
+(2) use that gate to benchmark agent against expert on the subjective steps and
+measure the downstream impact on spectral parameters; and (3) validate the
+pipeline by reproducing known single-pulse results. The single-pulse spectroscopy
+science itself is presented in a companion paper (Hooda et al., in prep.); here the
+focus is the \emph{method} and its validation. Section~\ref{sec:sample} describes
+the sample and data; Section~\ref{sec:pipeline} the agentic pipeline;
+Section~\ref{sec:design} the human--AI experiment; Section~\ref{sec:results} the
+results; and Sections~\ref{sec:discussion}--\ref{sec:conclusions} the discussion
+and conclusions.
+
+% ===========================================================================
+\section{Sample and Data} \label{sec:sample}
+% Real; mirror the science paper's selection.
+We analyze the single-pulse \textit{Fermi}/GBM sample of the companion science
+paper: bursts selected by the shape-based ``horizontal-line'' criterion of
+\citet{Busby2024} (a fast-rise/exponential-decay single-pulse score), with a
+fluence cut to ensure adequate time-resolved signal-to-noise. The selection is on
+pulse \emph{shape}, not brightness. We use the time-tagged event (TTE) data of the
+NaI detectors within $\sim$50$^\circ$ of the source, the most-illuminated BGO, and,
+where available, LAT Low-Energy (LLE) data. For the human--AI benchmark
+(Section~\ref{sec:design}) we additionally define a subset of $N_{\rm bench}=
+\PENDING{20-30}$ bursts processed in \emph{both} approval modes.
+
+% ===========================================================================
+\section{The Agentic Pipeline} \label{sec:pipeline}
+% Real: describe the actual built pipeline.
+The pipeline is a self-documenting code repository that an AI coding agent reads
+and executes. A top-level machine-readable guide (an \texttt{AGENTS.md} file)
+orients any agent---human-invoked or autonomous---to the environment, data, run
+order, and the approval semantics, so a fresh agent with no prior context can drive
+the full chain. The analysis proceeds in three gated stages.
+
+\subsection{Stage 1: gated selection (detectors, background, source)}
+\label{sec:stage1}
+The selections that are traditionally manual are unified into one step that writes
+a single, stamped catalog. For each burst the agent (or a human) approves:
+\begin{enumerate}
+\item \emph{Detectors.} Detector--source angles are computed from the spacecraft
+  pointing (POSHIST quaternions); NaI detectors within a threshold angle plus the
+  matching BGO are proposed and approved.
+\item \emph{Background.} Pre- and post-burst off-source windows are fit with a
+  time polynomial (order chosen by a likelihood-ratio test) and interpolated
+  beneath the burst, following standard GBM practice.
+\item \emph{Source.} The emission interval is marked explicitly per burst on the
+  brightest-detector light curve.
+\end{enumerate}
+Crucially, the approval is gated: every catalog row carries an \emph{approval
+stamp} recording the approver and the mode---\texttt{human\_gui} (a person marks
+the windows interactively) or \texttt{ai\_vision} (the agent renders the light
+curves, inspects the images, and proposes the windows). An agent thus never
+silently substitutes its judgement for a human's; the provenance of every decision
+is recoverable from the output file. This stamp is the foundation of the benchmark
+in Section~\ref{sec:design}.
+
+\subsection{Stage 2: adaptive binning}
+The light curve is partitioned with the Bayesian Blocks algorithm
+\citep{Scargle2013} computed on the background-subtracted rate, combined with a
+per-block significance floor: blocks below the floor are merged so that every
+surviving spectral bin clears a detection threshold. The binning runs within the
+approved source interval.
+
+\subsection{Stage 3: spectral fitting and model selection}
+Each bin is fit with a family of empirical and photospheric models
+(\citealt{...}; to be enumerated) using a forward-folding likelihood with the
+detector responses and the polynomial background propagated as Gaussian errors
+(the \texttt{pgstat} statistic). The preferred model per bin is chosen by an
+information criterion with a physical-validity gate. \TODOcite{3ML / astromodels
+(Vianello et al.)}
+
+\subsection{Built-in adversarial verification}
+A distinguishing feature of the agentic implementation is that verification is
+itself automated: code changes are reviewed by an ensemble of independent agents
+that attempt to refute each other's findings before a change is accepted. We report
+this protocol as part of the method (Appendix~\ref{app:verify}), since it
+materially affects the reliability of an agent-built pipeline.
+
+% ===========================================================================
+\section{Experimental Design: Human versus AI} \label{sec:design}
+% Real design; results pending.
+The approval gate (Section~\ref{sec:stage1}) lets us run the subjective steps in
+both modes on the identical benchmark sample and hold everything downstream fixed.
+We define two families of metrics.
+
+\paragraph{Selection agreement.} For each burst we compare human and AI
+selections: the set agreement of approved detectors; the overlap and edge
+differences of the background windows; and the difference in the source-interval
+edges. \PENDING{define exact metrics and report.}
+
+\paragraph{Downstream impact (the decisive test).} We propagate each mode's
+selections through the identical binning and fitting and compare the recovered
+quantities bin-by-bin and burst-by-burst: $\Ep$, the low-energy index, the
+blackbody $\kT$ where a thermal component is preferred, and the
+thermal-versus-double-break classification. The question is whether scientific
+conclusions are invariant under the human$\rightarrow$AI swap. \PENDING{report the
+parameter scatter, correlation, and classification concordance.}
+
+% ===========================================================================
+\section{Results} \label{sec:results}
+\PENDING{This entire section awaits the dual-mode run. Planned content:}
+\begin{itemize}
+\item \emph{Fig.~1}: per-burst selection-agreement summary (detector concordance;
+  background- and source-edge differences).
+\item \emph{Fig.~2}: AI-vs-human scatter of $\Ep$, low-energy index, and $\kT$ with
+  the one-to-one line and intrinsic scatter.
+\item \emph{Table~1}: concordance of the per-bin model classification.
+\item \emph{Fig.~3}: a representative burst shown end to end in both modes.
+\item \emph{Validation}: recovery of established single-pulse relations
+  (e.g.\ the $\Ep$--$\kT$ correlation) under the agentic pipeline.
+\end{itemize}
+
+% ===========================================================================
+\section{Discussion} \label{sec:discussion}
+\PENDING{Frame around the results.} Anticipated axes: where the agent agrees with
+experts and where it does not (e.g.\ faint bursts, complex backgrounds, orbital
+trends); the reproducibility and auditability gains from the stamped gate; the
+throughput implications for scaling time-resolved catalogs; and an honest account
+of failure modes and the necessity of the human-in-the-loop option. Positioning
+relative to other agentic/LLM analyses in astronomy \TODOcite{related work}.
+
+% ===========================================================================
+\section{Conclusions} \label{sec:conclusions}
+\PENDING{Write after results.} We present and benchmark an auditable agentic
+pipeline for single-pulse GBM time-resolved spectroscopy; the gated, human-or-AI
+design makes the traditionally manual choices reproducible and lets us measure,
+rather than assume, the impact of delegating them to an agent.
+
+% ===========================================================================
+\appendix
+\section{Reproducibility} \label{app:repro}
+The full pipeline, its agent guide (\texttt{AGENTS.md}), and the exact commands for
+each stage are released with this paper. The analysis can be re-run end to end by a
+human or an AI agent from the released repository. \TODOcite{repository DOI / URL on
+publication.}
+
+\section{Adversarial verification protocol} \label{app:verify}
+\PENDING{Describe the multi-agent review ensemble used to validate the
+implementation.}
+
+% --- References ------------------------------------------------------------
+% Reuse ../paper/two_break.bib for GRB/method refs (Busby2024, Scargle2013,
+% Ravasio/Burgess/Li/Meegan/Vianello...). Replace every \TODOcite with a VERIFIED
+% entry -- do NOT invent bibtex.
+\bibliographystyle{aasjournal}
+% \bibliography{agentic_grb}
+
+\end{document}
