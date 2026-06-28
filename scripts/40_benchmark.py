@@ -117,15 +117,18 @@ def main():
         print(f'  {c["rater"]:24s} [{kind:5s} / {c["mode"]}] '
               f'{len(c["detectors"])} bursts  ({os.path.basename(c["path"])})')
 
-    # all rater pairs, classified
+    # all rater pairs, classified; AI-H rows tagged with WHICH agentic system
     by_type = {'H-H': [], 'AI-H': [], 'AI-AI': []}
     all_rows = []
     for A, B in itertools.combinations(cats, 2):
         ai_a, ai_b = A['mode'] in AI_MODES, B['mode'] in AI_MODES
         ptype = 'AI-AI' if (ai_a and ai_b) else ('H-H' if not (ai_a or ai_b) else 'AI-H')
+        ai_in_pair = [c['rater'] for c, isai in ((A, ai_a), (B, ai_b)) if isai]
         rows = pair_metrics(A, B)
         for r in rows:
             r['pair'] = f'{A["rater"]}|{B["rater"]}'; r['ptype'] = ptype
+            r['system'] = (ai_in_pair[0] if ptype == 'AI-H'
+                           else '|'.join(ai_in_pair) if ptype == 'AI-AI' else '')
         by_type[ptype].extend(rows)
         all_rows.extend(rows)
 
@@ -133,27 +136,43 @@ def main():
                'bkg_d_neg_stop', 'bkg_d_pos_start', 'bkg_d_pos_stop',
                'src_iou', 'src_d_start', 'src_d_stop', 'src_frac_dur_err']
     higher_better = {'det_jaccard', 'bkg_pre_iou', 'bkg_post_iou', 'src_iou'}
+    hh_band = {m: _summ([r['value'] for r in by_type['H-H'] if r['metric'] == m])
+               for m in metrics}
 
-    print('\n=== Agreement: AI-vs-human vs the human-vs-human band (median [IQR]) ===')
-    print(f'{"metric":18s} {"H-H (baseline)":22s} {"AI-H":22s}  verdict')
-    for m in metrics:
-        hh = _summ([r['value'] for r in by_type['H-H'] if r['metric'] == m])
-        ah = _summ([r['value'] for r in by_type['AI-H'] if r['metric'] == m])
-        if hh[3] == 0 or ah[3] == 0:
-            verdict = '(need both H-H and AI-H pairs)'
-        elif m in higher_better:
-            verdict = 'AI within human band' if ah[0] >= hh[1] else 'AI WORSE than experts'
-        else:  # lower better (edge deltas)
-            verdict = 'AI within human band' if ah[0] <= hh[2] else 'AI WORSE than experts'
-        print(f'{m:18s} {hh[0]:6.3f} [{hh[1]:.3f},{hh[2]:.3f}] n={hh[3]:<4d} '
-              f'{ah[0]:6.3f} [{ah[1]:.3f},{ah[2]:.3f}] n={ah[3]:<4d}  {verdict}')
+    def _verdict(m, s):
+        hh = hh_band[m]
+        if hh[3] == 0 or s[3] == 0:
+            return '(need H-H baseline + this pair)'
+        if m in higher_better:
+            return 'within human band' if s[0] >= hh[1] else 'WORSE than experts'
+        return 'within human band' if s[0] <= hh[2] else 'WORSE than experts'
+
+    def _table(title, subset):
+        print(f'\n=== {title} (median [IQR]; baseline = human-vs-human) ===')
+        print(f'{"metric":18s} {"H-H baseline":22s} {"this":22s}  verdict')
+        for m in metrics:
+            hh, s = hh_band[m], _summ([r['value'] for r in subset if r['metric'] == m])
+            print(f'{m:18s} {hh[0]:6.3f} [{hh[1]:.3f},{hh[2]:.3f}] n={hh[3]:<4d} '
+                  f'{s[0]:6.3f} [{s[1]:.3f},{s[2]:.3f}] n={s[3]:<4d}  {_verdict(m, s)}')
+
+    # one table per agentic system: that system vs the human band (the leaderboard)
+    ai_systems = sorted({c['rater'] for c in cats if c['mode'] in AI_MODES})
+    if not ai_systems:
+        print('\nNOTE: no AI raters found.')
+    for S in ai_systems:
+        _table(f'SYSTEM: {S}  vs human experts',
+               [r for r in by_type['AI-H'] if r['system'] == S])
+
+    # system-vs-system agreement (do the agentic systems agree with each other?)
+    if by_type['AI-AI']:
+        _table('AGENTIC SYSTEMS vs each other (all AI-AI pairs)', by_type['AI-AI'])
 
     if not by_type['H-H']:
         print('\nNOTE: no human-vs-human pairs found -> no inter-expert denominator. '
               'Add a 2nd human rater for the rigorous benchmark (BENCHMARK_PLAN.md).')
 
     if args.csv:
-        Table(rows=[{k: r.get(k) for k in ('ptype', 'pair', 'trig', 'det', 'metric', 'value')}
+        Table(rows=[{k: r.get(k) for k in ('ptype', 'system', 'pair', 'trig', 'det', 'metric', 'value')}
                     for r in all_rows]).write(args.csv, format='csv', overwrite=True)
         print(f'\nper-item metrics -> {args.csv}')
 

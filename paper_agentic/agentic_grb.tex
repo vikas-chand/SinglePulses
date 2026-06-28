@@ -43,23 +43,29 @@ expert, partly subjective choices---which detectors to use, where to place the
 background, which interval contains the source, and how to bin the light
 curve---that are rarely documented in full and are therefore difficult to
 reproduce. We present an \emph{agentic} analysis pipeline for single-pulse
-\textit{Fermi}/GBM GRBs in which a large-language-model coding agent executes the
-entire workflow---detector selection from spacecraft pointing, polynomial
-background modeling, source-interval definition, Bayesian-block binning, and
-multi-model spectral fitting---behind a single auditable \emph{approval gate} that
-records, for every selection, whether it was made by a human or by the agent and
-when. Because the gate labels each decision by its origin, the pipeline doubles as
-a controlled experiment: we run the subjective steps in both \emph{human} and
-\emph{AI-vision} modes on a common benchmark sample and quantify (i) the agreement
-between agent and expert selections and (ii) the propagation of any disagreement
-into the recovered spectral parameters ($\Ep$, low-energy index, blackbody $\kT$,
-and the thermal-versus-double-break classification). \PENDING{agreement metrics and
-parameter-impact results.} We show that the agentic pipeline reproduces established
-results for single-pulse GRBs \PENDING{quote the reproduced relations}, and we
-release the fully agent-legible, self-documenting code so that the analysis can be
-re-run end to end by either a human or an AI agent. We discuss the implications for
-reproducibility and scaling of GRB spectral catalogs, and the regimes in which an
-agent does and does not match expert judgement.
+\textit{Fermi}/GBM GRBs in which a large-language-model (LLM) coding agent executes the
+entire workflow---data retrieval, detector selection from spacecraft pointing,
+polynomial background modeling, source-interval definition, Bayesian-block binning
+with a significance floor, and multi-model spectral fitting---driven only by a set of
+machine-readable task guides, behind a single auditable \emph{approval gate} that
+records, for every selection, who or what made it. Because the gate labels each
+decision by its origin, the pipeline doubles as a controlled experiment. We benchmark
+\emph{several contemporary agentic coding systems} (e.g.\ OpenAI Codex, Google
+Antigravity, and Anthropic Claude Code), each reading the \emph{identical} task
+guides so that any difference reflects the model and not the instructions, against a
+panel of human experts and against one another. We quantify (i) the agreement of each
+system's selections with the experts---referenced to the inter-expert scatter, so a
+system is judged ``good'' if it matches humans as well as humans match each other---and
+(ii) the propagation of any disagreement into the recovered spectral parameters
+($\Ep$, low-energy index, blackbody $\kT$, and the thermal-versus-double-break
+classification). \PENDING{per-system agreement + parameter-impact results.} This
+extends the algorithm-versus-human comparison of \citet{Busby2024} from a fixed
+classification score to LLM agents performing the full analysis. We show that the
+agentic pipeline reproduces established single-pulse results \PENDING{quote the
+reproduced relations}, and release the fully agent-legible, self-documenting code so
+the analysis can be re-run end to end by a human or any agent. We discuss the
+implications for reproducibility and for scaling GRB spectral catalogs, and the
+regimes in which agents do and do not match expert judgement.
 \end{abstract}
 
 \keywords{Gamma-ray bursts (629) --- Astronomy data analysis (1858) ---
@@ -192,6 +198,17 @@ Following \citet{Busby2024}, the human baseline is provided by \emph{multiple}
 independent expert approvers, so that the inter-human scatter sets the scale against
 which the agent is judged: the agent is consistent with experts if it matches them as
 well as they match each other. We define two families of metrics.
+
+\paragraph{Systems benchmarked.} We evaluate several contemporary agentic coding
+systems---e.g.\ OpenAI Codex, Google Antigravity, and Anthropic Claude Code
+\PENDING{fix exact versions}---each operating the same repository through the same
+machine-readable task guides (Section~\ref{sec:pipeline}). Holding the instructions
+fixed across systems makes the comparison a test of the \emph{models}, not of the
+prompts. Each system runs every judgement step (detector, background, source, QC) in
+\texttt{ai\_vision} mode and writes its own stamped catalog; the human experts write
+theirs in \texttt{human\_gui} mode. We then report, per metric, each system against
+the inter-expert band (a per-system leaderboard) and the systems against one another
+(do independent LLMs converge on the same selections?).
 
 \paragraph{Selection agreement.} For each burst we compare each pair of raters: the
 approved-detector set agreement (Jaccard), the background-window overlap

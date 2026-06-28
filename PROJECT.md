@@ -14,8 +14,12 @@ anything is in `AGENTS.md`; this file is the map of *what the project is*.)
 ## Part 1 — Benchmark: the AI does the work, compared with humans
 **Paper:** `paper_agentic/agentic_grb.tex` — *"Agentic AI Analysis of Single-Pulse
 Fermi/GBM GRBs"* — **lead: V. Chand.**
-**Question:** can an AI agent reproduce expert selections (detectors, background,
-source, QC), and do the scientific conclusions survive the human→AI swap?
+**Question:** can AI agents reproduce expert selections (detectors, background,
+source, QC), and do the scientific conclusions survive the human→AI swap? We benchmark
+**several agentic systems** — OpenAI Codex, Google Antigravity, Anthropic Claude Code —
+each running the *whole* pipeline (download → detectors → background → source → Bayesian
+blocks + significance bins → 3ML fits) from the *same* `.md` guides (so differences are
+the model, not the prompt), scored against human experts **and against each other**.
 **How:** every judgement step has an AI-guide in `dev/ai_guides/` and a metric; the
 gated approval (`scripts/39`) stamps each selection `human_gui` vs `ai_vision`;
 `scripts/40_benchmark.py` scores AI-vs-human with **inter-human scatter as the

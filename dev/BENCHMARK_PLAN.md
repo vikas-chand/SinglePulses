@@ -63,11 +63,19 @@ to make the call (and how it will be scored): `detector_selection.md`,
 4. `scripts/40_benchmark.py` → agreement + impact report + figures.
 5. Fill `paper_agentic/agentic_grb.tex` §5 Results from the report (no fabrication).
 
-## Decisions (locked 2026-06-27, Vikas)
-- **Baseline = multiple experts.** Inter-human scatter is the denominator; the AI is
+## Decisions (locked 2026-06-27/28, Vikas)
+- **Baseline = multiple experts.** Inter-human scatter is the denominator; a system is
   "good" if it matches each human about as well as humans match each other. Needs
-  >=2 human approvers on the benchmark subset; the harness handles N human catalogs.
+  >=2 human approvers on the benchmark subset; the harness handles N catalogs.
 - **Task list includes #6 (QC flagging).** All four guides built.
+- **Benchmark MULTIPLE agentic SYSTEMS** (2026-06-28): OpenAI Codex (GPT-5.6), Google
+  Antigravity (Agy), Anthropic Claude Code -- each runs the WHOLE pipeline (data
+  download -> detectors -> background -> source -> Bayesian blocks + significance bins
+  -> 3ML fits) reading the SAME `.md` guides (AGENTS.md + dev/ai_guides/). The guides
+  are the fair-comparison control: differences = the model, not the prompt. Each system
+  writes its own stamped catalog (`APPROVED_BY`="Codex/Antigravity/Claude Code (AI)",
+  `APPROVAL_MODE=ai_vision`). `scripts/40_benchmark.py` reports a per-SYSTEM leaderboard
+  vs the human band + system-vs-system agreement.
 - Guides live in `dev/ai_guides/`.
 
 ## Still to decide
