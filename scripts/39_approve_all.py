@@ -39,7 +39,7 @@ Three modes, mirroring the proven 00_prototype 3-phase pattern, scaled to all bu
 decision.json schema (what the agent OR the gui writes):
   {
     "trigger": "bn110721200",
-    "approver": "Claude (AI)" | "Khushboo Hooda",
+    "approver": "Claude (AI)" | "Khushboo Sharma",
     "mode": "ai_vision" | "human_gui" | "ai_auto",
     "detectors": ["n6", "n7", "b1"],                 # approved SET (NaI + BGO[+lle])
     "source": {"t1": <float>, "t2": <float>},        # per-burst emission window
@@ -60,7 +60,7 @@ Examples:
   python scripts/39_approve_all.py render --trigger bn110721200
   # (agent writes results/approval/<trigger>_decision.json)
   python scripts/39_approve_all.py ingest --all                 # -> background_intervals.ecsv
-  python scripts/39_approve_all.py gui --trigger bn110721200 --approver "Khushboo Hooda"
+  python scripts/39_approve_all.py gui --trigger bn110721200 --approver "Khushboo Sharma"
 
 render/gui need data/<trigger>/ TTE (+ POSHIST). render is dependency-light (numpy/
 astropy/matplotlib) BUT will download a TTE/POSHIST on demand if absent -- pre-fetch

@@ -33,7 +33,7 @@ dual-mode approvals.
 ## Part 2 — Science: our own analysis of single-pulse GRBs
 **Paper:** `paper/two_break.tex` — the single-pulse time-resolved spectroscopy
 results (curvature / two-break, $E_{\rm p}$–$kT$, spectral evolution) — **lead:
-K. Hooda.**
+K. Sharma.**
 **Question:** the physics of single-pulse GRB prompt emission across the 106-burst
 sample.
 **How:** the same pipeline, run on the full sample, using selections that are

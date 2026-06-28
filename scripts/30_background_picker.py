@@ -28,10 +28,10 @@ re-block (27b, via --bkg) and the fit driver (29_refit_clean.py, via --bkg-file)
 --approver is REQUIRED so every accepted window is attributed.
 
 Usage (any python with numpy+astropy+matplotlib):
-    python scripts/30_background_picker.py --approver "Khushboo Hooda"            # only bursts not yet accepted
-    python scripts/30_background_picker.py --approver "Khushboo Hooda" --redo     # review/adjust EVERY (trigger,det)
-    python scripts/30_background_picker.py --approver "Khushboo Hooda" --redo-grb bn090719063
-    python scripts/30_background_picker.py --approver "Khushboo Hooda" --limit 5  # stop after 5 GRBs
+    python scripts/30_background_picker.py --approver "Khushboo Sharma"            # only bursts not yet accepted
+    python scripts/30_background_picker.py --approver "Khushboo Sharma" --redo     # review/adjust EVERY (trigger,det)
+    python scripts/30_background_picker.py --approver "Khushboo Sharma" --redo-grb bn090719063
+    python scripts/30_background_picker.py --approver "Khushboo Sharma" --limit 5  # stop after 5 GRBs
 Backend auto-selects (macOS->Qt->Tk); force with e.g. MPLBACKEND=TkAgg.
 Buttons: Accept (save), Clear, Skip GRB, Quit. Output: results/background_intervals.ecsv
 """
@@ -470,7 +470,7 @@ def main():
     parser.add_argument('--approver', required=True,
                         help='Name of the person approving (stamped into APPROVED_BY '
                              'so the file records who vetted each window). '
-                             'e.g. --approver "Khushboo Hooda"')
+                             'e.g. --approver "Khushboo Sharma"')
     args = parser.parse_args()
 
     sample = Table.read(SAMPLE_PATH, format='ascii.ecsv')

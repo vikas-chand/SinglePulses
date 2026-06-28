@@ -108,7 +108,7 @@ python scripts/39_approve_all.py ingest --all
 ```
 
 **Human GUI path** (when a person clicks): `python scripts/39_approve_all.py gui
---trigger bn... --approver "Khushboo Hooda"` — runs the detector picker (POSHIST ≤50°
+--trigger bn... --approver "Khushboo Sharma"` — runs the detector picker (POSHIST ≤50°
 angle math) → background selector per detector → a 2-click source marker, then writes
 the same `decision.json` (`mode=human_gui`) and ingests it.
 
@@ -215,7 +215,7 @@ From `dev/CODEX_AUDIT_REPORT_PIPELINE.md` / `notes/PROJECT_AUDIT_2026-06-09.md`:
 
 ## 8. Pointers
 - `PROJECT.md` — the two-part program: Part 1 (AI-vs-human benchmark, methods paper,
-  V. Chand) validates the method; Part 2 (the single-pulse science, K. Hooda) uses it.
+  V. Chand) validates the method; Part 2 (the single-pulse science, K. Sharma) uses it.
 - `dev/BENCHMARK_PLAN.md` + `dev/ai_guides/` — Part 1 framework + per-task AI judgement guides.
 - `dev/AUTHORITATIVE_PIPELINE.md` — the locked end-to-end plan + the Stage-1 build spec.
 - `BACKGROUND_SELECTION_PROCESS.md` — full detector/background selection ruleset.

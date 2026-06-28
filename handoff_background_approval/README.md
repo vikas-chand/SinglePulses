@@ -29,7 +29,7 @@ The tool itself is in the repo: `scripts/30_background_picker.py` (GUI picker) a
 # from the repo root, in a light env:
 pip install -r handoff_background_approval/requirements.txt
 python handoff_background_approval/fetch_tte.py            # download the TTE data
-python scripts/30_background_picker.py --approver "Khushboo Hooda"   # review + approve
+python scripts/30_background_picker.py --approver "Khushboo Sharma"   # review + approve
 python scripts/36_progress_check.py                       # check progress + QC
 ```
 

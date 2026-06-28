@@ -1,7 +1,7 @@
 % ===========================================================================
 % Agentic AI Analysis of Single-Pulse Fermi/GBM GRBs  --  METHODS / BENCHMARK PAPER
 % Lead author: V. Chand.  SEPARATE from the single-pulse spectroscopy science paper
-% (paper/two_break.tex, Hooda et al., in prep.), which this one cites as the science
+% (paper/two_break.tex, Sharma et al., in prep.), which this one cites as the science
 % application.
 %
 % STATUS (2026-06-27): DRAFT SKELETON.
@@ -30,19 +30,20 @@ A Reproducible, Auditable Pipeline and a Human--AI Benchmark}
 
 % --- Authors (lead: V. Chand). Affiliations are placeholders; fill in. -------
 \author{Vikas Chand}
-\affiliation{[Affiliation TBD]}
+\affiliation{Louisiana State University, Baton Rouge, LA, USA}
 \email{vikas.chand.physics@gmail.com}
 
-\author{Khushboo Hooda}
-\affiliation{[Affiliation TBD]}
-% \author{...}  % additional co-authors TBD
+\author{Khushboo Sharma}
+\affiliation{Aryabhatta Research Institute of Observational Sciences (ARIES), Nainital, India}
+
+\author{Jagdish C. Joshi}
+\affiliation{Aryabhatta Research Institute of Observational Sciences (ARIES), Nainital, India}
 
 \begin{abstract}
 Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on a sequence of
-expert, partly subjective choices---which detectors to use, where to place the
+expert, partly subjective choices: which detectors to use, where to place the
 background, which interval contains the source, and how to bin the light
-curve---that are rarely documented in full and are therefore difficult to
-reproduce. We present an \emph{agentic} analysis pipeline for single-pulse
+curve. We present an \emph{agentic} analysis pipeline for single-pulse
 \textit{Fermi}/GBM GRBs in which a large-language-model (LLM) coding agent executes the
 entire workflow---data retrieval, detector selection from spacecraft pointing,
 polynomial background modeling, source-interval definition, Bayesian-block binning
@@ -58,11 +59,9 @@ system's selections with the experts---referenced to the inter-expert scatter, s
 system is judged ``good'' if it matches humans as well as humans match each other---and
 (ii) the propagation of any disagreement into the recovered spectral parameters
 ($\Ep$, low-energy index, blackbody $\kT$, and the thermal-versus-double-break
-classification). \PENDING{per-system agreement + parameter-impact results.} This
-extends the algorithm-versus-human comparison of \citet{Busby2024} from a fixed
-classification score to LLM agents performing the full analysis. We show that the
-agentic pipeline reproduces established single-pulse results \PENDING{quote the
-reproduced relations}, and release the fully agent-legible, self-documenting code so
+classification). \PENDING{per-system agreement + parameter-impact results.} We show
+that the agentic pipeline reproduces established single-pulse results \PENDING{quote
+the reproduced relations}, and release the fully agent-legible, self-documenting code so
 the analysis can be re-run end to end by a human or any agent. We discuss the
 implications for reproducibility and for scaling GRB spectral catalogs, and the
 regimes in which agents do and do not match expert judgement.
@@ -116,7 +115,7 @@ around a human-or-AI \emph{approval gate} that makes every selection auditable;
 (2) use that gate to benchmark agent against expert on the subjective steps and
 measure the downstream impact on spectral parameters; and (3) validate the
 pipeline by reproducing known single-pulse results. The single-pulse spectroscopy
-science itself is presented in a companion paper (Hooda et al., in prep.); here the
+science itself is presented in a companion paper (Sharma et al., in prep.); here the
 focus is the \emph{method} and its validation. Section~\ref{sec:sample} describes
 the sample and data; Section~\ref{sec:pipeline} the agentic pipeline;
 Section~\ref{sec:design} the human--AI experiment; Section~\ref{sec:results} the

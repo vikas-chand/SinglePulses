@@ -66,7 +66,7 @@ made the call — which is fine and intended; the gate just keeps it honest.
 Run, per burst:
 
 ```bash
-python scripts/39_approve_all.py gui --trigger bn110721200 --approver "Khushboo Hooda"
+python scripts/39_approve_all.py gui --trigger bn110721200 --approver "Khushboo Sharma"
 ```
 
 Three windows open in sequence:
@@ -131,7 +131,7 @@ they're in `AGENTS.md` — but they need the heavier threeML environment.)
 |---|---|
 | Get the data (light) | `python handoff_background_approval/fetch_tte.py` |
 | AI does it | open Codex/Claude → "Read AGENTS.md, run Stage 1 approval" |
-| You do one burst (GUI) | `python scripts/39_approve_all.py gui --trigger bn… --approver "Khushboo Hooda"` |
+| You do one burst (GUI) | `python scripts/39_approve_all.py gui --trigger bn… --approver "Khushboo Sharma"` |
 | AI render (for review) | `python scripts/39_approve_all.py render --all` |
 | Build the catalog | `python scripts/39_approve_all.py ingest --all` |
 | Check progress / QC | `python scripts/36_progress_check.py` |

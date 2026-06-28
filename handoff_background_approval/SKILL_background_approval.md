@@ -86,7 +86,7 @@ directly and you skip this phase.)
 ## Phase 3 — Launch the picker (human reviews)
 
 ```bash
-python scripts/30_background_picker.py --approver "Khushboo Hooda"
+python scripts/30_background_picker.py --approver "Khushboo Sharma"
 ```
 `--approver` is REQUIRED — it stamps every accepted row. Tell the reviewer:
 
