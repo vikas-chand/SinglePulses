@@ -161,60 +161,68 @@ $\sim$$250$. The final sample comprises \textbf{$106$} bursts
 (Table~\ref{tab:sample}).
 
 \subsection{Detector, Source, and Background Selections} \label{sec:bkg}
-For each burst we use the time-tagged event (TTE) data of the NaI detectors
-within $\sim50^\circ$ (relaxed to $60^\circ$ where required to retain a
-triggering detector) of the source, the most-illuminated BGO, and, for the
-$11$ bursts with usable LAT Low-Energy (LLE) data (a subset of the $18$
-LAT-detected bursts), the LLE data above 30~MeV \citep{Atwood2009}, with the
-corresponding response matrices; for multi-epoch \texttt{rsp2} responses the
-matrix covering the source interval is used. We use 8--900~keV for NaI, masking the 33--40~keV region around the iodine
+For each burst the detector--source angle $\theta$ of the 14 GBM detectors is
+computed from the spacecraft attitude (the POSHIST quaternions interpolated to
+the trigger time). We use the time-tagged event (TTE) data of the NaI detectors
+with $\theta\le50^\circ$; a detector at $50^\circ<\theta\le60^\circ$ is also kept
+if it appears in the trigger's on-board (BCAT) detector mask---it triggered, so
+the source lay in its field of view---and if no NaI then qualifies the single
+closest BCAT NaI is retained. Up to the three lowest-angle NaI are used, each
+paired with the BGO on its side of the spacecraft (b0 for n0--n5, b1 for
+n6--nb). For the $11$ bursts with usable LAT Low-Energy (LLE) data (a subset of
+the $18$ LAT-detected bursts) we add the LLE data above 30~MeV
+\citep{Atwood2009}. Each detector's response matrix is used; for multi-epoch
+\texttt{rsp2} responses the matrix covering the source interval is taken. We use 8--900~keV for NaI, masking the 33--40~keV region around the iodine
 K-edge---a sharp jump in the crystal's absorption efficiency at 33.17~keV
 that is difficult to calibrate \citep{Ronchi2020}---with 0.3--40~MeV for BGO
 and 30--100~MeV for LLE. Inter-detector calibration is handled by free
 effective-area constants in the range 0.8--1.2, frozen to unity for the
-reference NaI \citep[as in][]{Ronchi2020}. The source interval is set to bracket the burst emission,
-and two background intervals (pre- and post-burst) are fit
-with a time polynomial of order $\le$3, the order chosen by a likelihood-ratio
-test, and interpolated beneath the burst: the detector background varies
-smoothly with the spacecraft's orbital position, so windows on either side of
-the burst constrain its level during the burst itself. Background windows are selected by an
-automated peak-centered algorithm: the emission interval is located from the
-cumulative background-subtracted counts, the source window brackets it, and
-pre/post background windows of up to 80~s (40~s minimum on the wider side,
-asymmetric for bursts that peak early in the data span) are placed on either
-side and validated against the light curve; an accurate background is the
-prerequisite for recovering any sub-dominant spectral component. Independent
-human verification of every window, targeting 50--150~s background intervals
-per detector, is in progress and will supersede the automated
-catalog.\footnote{The numbers in this paper therefore use the provisional,
-automatically-selected background catalog; the qualitative conclusions are not
-expected to be sensitive to this refinement.}
+reference NaI \citep[as in][]{Ronchi2020}. The source interval is set to bracket the burst emission
+(Section~\ref{sec:bin}). Each selected detector receives its own pre- and
+post-burst background intervals ($\sim$50--150~s each), fit with a time
+polynomial of order $\le$3---the order chosen by a likelihood-ratio test---and
+interpolated beneath the burst: the detector background varies smoothly with the
+spacecraft's orbital position, so windows on either side of the burst constrain
+its level during the burst itself. An accurate background is the prerequisite
+for recovering any sub-dominant spectral component, so every window is reviewed
+and approved---by a human at an interactive light-curve display, or by a
+vision-capable agent---with each approval recorded together with its origin, so
+the provenance of every selection is auditable.\footnote{The numbers in this
+paper use a provisional, automatically-selected background catalogue pending
+completion of this approval pass and the authoritative re-fit; the qualitative
+conclusions are not expected to be sensitive to the refinement.}
 
 \subsection{Light-curve Binning} \label{sec:bin}
-We define the time bins with the Bayesian Blocks algorithm \citep{Scargle2013}
-in its binned (count-rate) mode, applied to the 8--900~keV light curve of a
-reference NaI detector (the first GBM-catalog--selected NaI, or, for the
-$35$ bursts where that detector lacked an approved background, the first
-approved NaI) at 0.128~s
-resolution with a false-alarm probability $p_0=0.01$ (for two over-coarse
-bursts, 0.064~s and $p_0=0.05$), and we map the resulting change points to all
-detectors. Bayesian Blocks partitions a light curve at the points where the
-count rate changes significantly, producing bins that are long during quiet
-stretches and short across sharp variations, so that each bin samples an
-approximately constant spectral state. We use the binned rather than the
-event-mode formulation because the latter scales as the square of the photon
-count and is intractable for the $>$$10^6$-event brightest bursts; the
-adaptive change points are therefore quantized to the 0.128~s grid. A
-dedicated fine-grid pass (1~ms cells with the Poisson block fitness, run on
-each burst's pulse core) shows that only $10\%$ ($11/106$) of the sample
-contains significant structure faster than 0.128~s---most prominently
-GRB~130427A, with credible blocks down to 2~ms---so the grid is adequate for
-the remaining $90\%$, and intra-bin spectral evolution is a quantified,
-per-burst caveat for the fast minority rather than a sample-wide one. The source window is first tightened to
-the emission interval, and leading/trailing blocks with net significance below
-$4.5\sigma$ are trimmed. This minimizes intra-bin spectral evolution while
-preserving signal. Each block is one spectral fit; the procedure yields
-\textbf{$1057$} time-resolved spectra.
+Within the approved emission interval of each burst, we define the time bins
+from the reference NaI (the lowest-angle approved NaI) using the Bayesian Blocks
+algorithm \citep{Scargle2013} applied to its background-subtracted 8--900~keV
+count rate (the \texttt{3ML} implementation, with the polynomial background
+included and a false-alarm prior $p_0=0.01$). Bayesian Blocks partitions a light
+curve at the points where the count rate changes significantly, producing bins
+that are long during quiet stretches and short across sharp variations, so that
+each bin samples an approximately constant spectral state. We then impose a
+per-block significance floor: each block's net significance is evaluated with
+the modeled-background (Gaussian) Li \& Ma statistic, and blocks below $5\sigma$
+are dropped at the leading and trailing edges and merged into a neighbour in the
+interior until every surviving block clears $5\sigma$, so that each time bin is
+simultaneously a distinct count-rate state and a statistically adequate
+spectrum. The resulting block edges are shared across all of the burst's
+detectors. A dedicated fine-grid pass (1~ms cells with the Poisson block
+fitness, run on each burst's pulse core) shows that only $10\%$ ($11/106$) of
+the sample contains significant sub-$0.1$~s structure---most prominently
+GRB~130427A, with credible blocks down to 2~ms---so intra-bin spectral evolution
+is a quantified, per-burst caveat for that fast minority rather than a
+sample-wide one. The provisional run yields \textbf{$1057$} time-resolved
+spectra, to be regenerated by the authoritative re-block on the approved
+backgrounds.
+
+For each block, the spectral data are assembled in \texttt{3ML}: per detector, a
+source count spectrum is extracted over the block interval, the background count
+spectrum is the polynomial model (Section~\ref{sec:bkg}) integrated over the same
+interval with its Gaussian uncertainty, and the corresponding detector response
+matrix folds the model into count space. The detectors of a burst are then fit
+jointly over their respective energy ranges (Section~\ref{sec:fit}); each block
+is one such joint fit.
 
 \subsection{Block Definition and Grading} \label{sec:grade}
 We grade each burst by the quality of its time-resolved coverage, following a
