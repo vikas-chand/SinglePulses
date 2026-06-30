@@ -36,12 +36,14 @@ by whom?" is answerable from the file itself.
 
 ## Inputs (already in the repo)
 
-- `results/background_starting_points.ecsv` — the 418 (trigger, detector) rows to
-  review; each carries an auto-suggested window that the GUI pre-draws for the
-  reviewer to accept or drag-adjust. **The detector SET is fixed here — the reviewer
-  judges WINDOWS, not which detectors.**
+- `results/background_starting_points.ecsv` — the 418 (trigger, detector) rows with the
+  auto-suggested background windows the GUI pre-draws for the reviewer to accept or
+  drag-adjust.
 - `results/single_pulse_grbs.ecsv` — the 106-burst sample list.
-- `scripts/30_background_picker.py` — the GUI picker (this is the tool).
+- `scripts/39_approve_all.py` — the Stage-1 approval driver (this is the tool). Per
+  burst it opens a **detector picker**, a **background selector per detector**, then a
+  **source marker** — so the reviewer judges the detector set, the windows, AND the
+  source window (not just windows).
 - `scripts/36_progress_check.py` — progress + QC tracker.
 - `handoff_background_approval/fetch_tte.py` — the data downloader.
 
@@ -52,10 +54,11 @@ by whom?" is answerable from the file itself.
 `results/background_intervals.ecsv`, one row per (trigger, detector), columns:
 ```
 TRIGGER_NAME, DETECTOR, BKG_NEG_START, BKG_NEG_STOP, BKG_POS_START, BKG_POS_STOP,
-APPROVED_BY, APPROVED_UTC, WINDOW_SOURCE
+SRC_START, SRC_STOP, DET_ANGLE, APPROVED_BY, APPROVED_UTC, APPROVAL_MODE, WINDOW_SOURCE
 ```
-`WINDOW_SOURCE` ∈ {accepted_seed, adjusted, drawn_fresh}. Target: **418 rows / 106
-bursts, all with APPROVED_BY set** (no "unknown").
+`APPROVAL_MODE` ∈ {human_gui, ai_vision}; `WINDOW_SOURCE` ∈ {accepted_suggestion,
+adjusted, drawn_fresh}. Target: **418 rows / 106 bursts, all with APPROVED_BY set**
+(no "unknown").
 
 ---
 
@@ -69,8 +72,10 @@ python -m venv .venv-picker && source .venv-picker/bin/activate   # or conda env
 pip install -r handoff_background_approval/requirements.txt
 python -c "import numpy, astropy, matplotlib; print('deps OK')"
 ```
-GUI backend: the picker auto-selects macOS→Qt→Tk. If no window appears, force one:
-`export MPLBACKEND=QtAgg` (needs PyQt5) or `export MPLBACKEND=TkAgg` (needs Tk).
+GUI backend: on **Linux, run with `MPLBACKEND=TkAgg`** (the backend the picker is
+verified against — it keeps the GUI alive across every per-detector window; without it
+later detectors can crash with `TclError: ... "wm" ... application has been destroyed`).
+macOS needs no prefix (Cocoa).
 
 ## Phase 2 — Data (download only what's needed)
 
@@ -86,9 +91,10 @@ directly and you skip this phase.)
 ## Phase 3 — Launch the picker (human reviews)
 
 ```bash
-python scripts/30_background_picker.py --approver "Khushboo Sharma"
+MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --all --approver "Khushboo Sharma"
 ```
-`--approver` is REQUIRED — it stamps every accepted row. Tell the reviewer:
+`--approver` is REQUIRED — it stamps every accepted row. (One burst at a time:
+`gui --trigger bn… ` instead of `gui --all`.) Tell the reviewer:
 
 - Each detector opens showing the light curve with the suggested **pre** (negative
   time) and **post** (positive time) background windows pre-shaded, plus a polynomial
@@ -136,7 +142,8 @@ share the file). That single stamped file is the entire output of this step.
 - [ ] Deliverable is `results/background_intervals.ecsv` with the 9-column schema.
 
 ## Common pitfalls
-- **No window appears / backend error** → set `MPLBACKEND=QtAgg` (PyQt5) or `TkAgg`.
+- **No window appears, or it crashes after the first detector** (`TclError: ... "wm" ...
+  application has been destroyed`) → run with `MPLBACKEND=TkAgg` (Linux).
 - **Running in the threeML/fermitools env** → unnecessary and heavy; use the light env.
 - **`--approver` missing** → the picker refuses to start (by design); supply it.
 - **Editing the .ecsv by hand to "finish faster"** → forbidden; it destroys the

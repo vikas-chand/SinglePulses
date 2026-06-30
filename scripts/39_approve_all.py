@@ -449,6 +449,7 @@ def source_marker_gui(trigger, ref_det, suggested=None):
     Returns (t1, t2). Reuses the same LC the picker draws."""
     P = p0()
     import matplotlib.pyplot as plt
+    P._ensure_keepalive()   # persistent Tk root (multi-window fix); idempotent
     from astropy.io import fits
     tte = P.find_tte(trigger, ref_det)
     band_lo, band_hi = P._band_for_det(ref_det)

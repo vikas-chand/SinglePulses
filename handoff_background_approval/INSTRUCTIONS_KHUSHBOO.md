@@ -34,8 +34,11 @@ python handoff_background_approval/fetch_tte.py
 ```
 Run every command **from the repo root** (`SinglePulses/`).
 
-> Tip: if a plot window never appears, set the GUI backend first:
-> `export MPLBACKEND=QtAgg` (or `TkAgg`), then re-run.
+> **Backend (important on Linux):** run the GUI with `MPLBACKEND=TkAgg` (prefix it on
+> the command, as shown below, or `export MPLBACKEND=TkAgg` once). This is the backend
+> the picker is verified against — it keeps the GUI alive across every detector window.
+> Without it the first window may open and then later detectors crash with
+> `TclError: ... "wm" ... application has been destroyed`. On macOS no prefix is needed.
 
 ---
 
@@ -63,10 +66,14 @@ made the call — which is fine and intended; the gate just keeps it honest.
 
 ## Path B — do it yourself in the GUI
 
-Run, per burst:
+Run all bursts (resumable — stop and re-run anytime), or one at a time with
+`--trigger bn…` instead of `--all`:
 
 ```bash
-python scripts/39_approve_all.py gui --trigger bn110721200 --approver "Khushboo Sharma"
+# Linux: keep the MPLBACKEND=TkAgg prefix (see the backend note in section 0).
+MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --all --approver "Khushboo Sharma"
+# one burst:
+MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --trigger bn110721200 --approver "Khushboo Sharma"
 ```
 
 Three windows open in sequence:
@@ -131,13 +138,16 @@ they're in `AGENTS.md` — but they need the heavier threeML environment.)
 |---|---|
 | Get the data (light) | `python handoff_background_approval/fetch_tte.py` |
 | AI does it | open Codex/Claude → "Read AGENTS.md, run Stage 1 approval" |
-| You do one burst (GUI) | `python scripts/39_approve_all.py gui --trigger bn… --approver "Khushboo Sharma"` |
+| You do all bursts (GUI) | `MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --all --approver "Khushboo Sharma"` |
+| You do one burst (GUI) | `MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --trigger bn… --approver "Khushboo Sharma"` |
 | AI render (for review) | `python scripts/39_approve_all.py render --all` |
 | Build the catalog | `python scripts/39_approve_all.py ingest --all` |
 | Check progress / QC | `python scripts/36_progress_check.py` |
 
 ## If something goes wrong
-- **No window appears** → `export MPLBACKEND=QtAgg` (or `TkAgg`) and re-run.
+- **No window appears, or it crashes after the first detector** (`TclError: ... "wm" ...
+  application has been destroyed`) → you forgot the backend: re-run with
+  `MPLBACKEND=TkAgg` in front (see section 0).
 - **"No TTE" / missing file** → run `fetch_tte.py` again (it retries failed downloads),
   or ask Vikas to share `data/<trigger>/`.
 - **Wrong directory** → make sure you're in the repo root (`SinglePulses/`).

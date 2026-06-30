@@ -20,7 +20,8 @@ side. Nothing downstream is final until it exists and is fully approved.
 | `fetch_tte.py` | Stdlib TTE downloader (no threeML) — gets only the event files the picker needs from the public HEASARC archive. |
 | `requirements.txt` | Light dependencies (numpy, astropy, matplotlib, PyQt5). |
 
-The tool itself is in the repo: `scripts/30_background_picker.py` (GUI picker) and
+The tool itself is in the repo: `scripts/39_approve_all.py` (the Stage-1 approval
+driver — detectors + background + source, GUI or AI) and
 `scripts/36_progress_check.py` (progress + QC).
 
 ## Quick start (human)
@@ -29,10 +30,12 @@ The tool itself is in the repo: `scripts/30_background_picker.py` (GUI picker) a
 # from the repo root, in a light env:
 pip install -r handoff_background_approval/requirements.txt
 python handoff_background_approval/fetch_tte.py            # download the TTE data
-# On Linux, prefix MPLBACKEND=TkAgg (see note below) so the GUI survives all detectors:
-MPLBACKEND=TkAgg python scripts/30_background_picker.py --approver "Khushboo Sharma"   # review + approve
+# Stage-1 approval (detectors + background + source), all bursts, resumable.
+# On Linux, prefix MPLBACKEND=TkAgg (see note below) so the GUI survives all windows:
+MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --all --approver "Khushboo Sharma"
 python scripts/36_progress_check.py                       # check progress + QC
 ```
+(Do one burst at a time with `gui --trigger bn... ` instead of `gui --all`.)
 
 > **Linux backend note.** On Linux, run the picker with `MPLBACKEND=TkAgg` (as
 > shown). The picker survives opening a fresh selector window for every detector
@@ -43,9 +46,12 @@ python scripts/36_progress_check.py                       # check progress + QC
 > Qt may fail to open a window at all. On macOS the default Cocoa backend works
 > as-is; no prefix needed.
 
-Each detector opens with a suggested background window already drawn — **Accept** it,
-or **Clear** and click your own (2 pre-burst points, 2 post-burst points). Quit and
-re-run anytime; it resumes where you left off. Target: 418 windows across 106 bursts.
+Per burst you get, in sequence: a **detector picker** (tick the NaI ≤50° + matching
+BGO, pre-ticked), then a **background selector for each detector** (a suggested pre/post
+window is drawn — **Accept** it, or **Clear** and click your own: 2 pre-burst points,
+2 post-burst points), then a **source marker** (click the burst start, then end, on the
+brightest NaI). Quit and re-run anytime; it resumes where you left off.
+Target: 418 windows across 106 bursts.
 
 ## Quick start (AI-driven)
 
