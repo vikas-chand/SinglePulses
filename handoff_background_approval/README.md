@@ -29,9 +29,19 @@ The tool itself is in the repo: `scripts/30_background_picker.py` (GUI picker) a
 # from the repo root, in a light env:
 pip install -r handoff_background_approval/requirements.txt
 python handoff_background_approval/fetch_tte.py            # download the TTE data
-python scripts/30_background_picker.py --approver "Khushboo Sharma"   # review + approve
+# On Linux, prefix MPLBACKEND=TkAgg (see note below) so the GUI survives all detectors:
+MPLBACKEND=TkAgg python scripts/30_background_picker.py --approver "Khushboo Sharma"   # review + approve
 python scripts/36_progress_check.py                       # check progress + QC
 ```
+
+> **Linux backend note.** On Linux, run the picker with `MPLBACKEND=TkAgg` (as
+> shown). The picker survives opening a fresh selector window for every detector
+> across all bursts only on a backend it has been verified against; `TkAgg` is
+> that backend (a persistent hidden Tk root keeps the GUI alive between windows).
+> Without forcing it, the first window may open and then later detectors can crash
+> with `TclError: can't invoke "wm" command: application has been destroyed`, or
+> Qt may fail to open a window at all. On macOS the default Cocoa backend works
+> as-is; no prefix needed.
 
 Each detector opens with a suggested background window already drawn — **Accept** it,
 or **Clear** and click your own (2 pre-burst points, 2 post-burst points). Quit and

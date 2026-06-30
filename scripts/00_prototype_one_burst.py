@@ -47,12 +47,42 @@ os.environ.setdefault('OMP_NUM_THREADS', '1')
 warnings.filterwarnings('ignore')
 
 import matplotlib
-try:
-    matplotlib.use('macosx')
-except Exception:
-    matplotlib.use('TkAgg')
+# Respect a backend the caller (e.g. scripts/30) or $MPLBACKEND already chose;
+# only pick one when imported standalone. Re-running matplotlib.use() here used
+# to silently flip scripts/30's chosen backend to TkAgg on Linux (the banner
+# said QtAgg while the windows actually ran under Tk).
+if not os.environ.get('MPLBACKEND') and 'matplotlib.pyplot' not in sys.modules:
+    try:
+        matplotlib.use('macosx')
+    except Exception:
+        matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from matplotlib.widgets import CheckButtons
+
+# --- Multi-window GUI keep-alive (TkAgg crash fix) --------------------------
+# Under TkAgg each matplotlib figure creates its own tk.Tk(); the FIRST one
+# becomes Tk's process-global default root. plt.close() on that first figure
+# destroys the default root, and on Linux Tcl/Tk the next figure's window-
+# manager ("wm") setup then raises
+#   TclError: can't invoke "wm" command: application has been destroyed
+# -- exactly what broke Khushboo's run after the first detector (n9 OK, b0
+# dead). macOS Cocoa has no shared root, so it never reproduced locally.
+# Fix: hold one persistent, withdrawn Tk root, created BEFORE any figure, so it
+# -- not a selector figure -- owns the default root and is never destroyed
+# mid-run. Qt/Cocoa need nothing here.
+_KEEPALIVE_ROOT = None
+
+def _ensure_keepalive():
+    global _KEEPALIVE_ROOT
+    if _KEEPALIVE_ROOT is not None:
+        return
+    if 'tk' in matplotlib.get_backend().lower():
+        try:
+            import tkinter
+            _KEEPALIVE_ROOT = tkinter.Tk()
+            _KEEPALIVE_ROOT.withdraw()
+        except Exception:
+            _KEEPALIVE_ROOT = None
 
 BASE_DIR = os.path.join(os.path.dirname(__file__), '..')
 DATA_DIR = os.path.join(BASE_DIR, 'data')
@@ -130,6 +160,7 @@ class BackgroundSelector(object):
         self._tsb = None                      # lazy 3ML TimeSeriesBuilder
         self._adjust_edge = None              # keyboard micro-adjust: (win, idx)
 
+        _ensure_keepalive()                   # persistent Tk root (multi-window fix)
         self._build_figure()
 
     def _build_figure(self):
@@ -797,6 +828,7 @@ def pick_detectors_with_angles_gui(trigger, angles, pre_ticked, bcat_mask,
     """
     sorted_dets = sorted(angles.keys(), key=lambda d: angles[d])
 
+    _ensure_keepalive()                       # persistent Tk root (multi-window fix)
     fig = plt.figure(figsize=(11.0, 0.36 * len(sorted_dets) + 3.0))
     # Use suptitle for the main heading and fig.text for the long
     # instruction so they don't overflow the axes width.
