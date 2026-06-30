@@ -25,8 +25,8 @@
 
 \begin{document}
 
-\title{Agentic AI Analysis of Single-Pulse Fermi/GBM Gamma-Ray Bursts:
-A Reproducible, Auditable Pipeline and a Human--AI Benchmark}
+\title{Can AI Do GRB Data Analysis?
+A Human-versus-Agent Benchmark on Time-Resolved \textit{Fermi}/GBM Spectroscopy}
 
 % --- Authors (lead: V. Chand). Affiliations are placeholders; fill in. -------
 \author{Vikas Chand}
@@ -40,31 +40,33 @@ A Reproducible, Auditable Pipeline and a Human--AI Benchmark}
 \affiliation{Aryabhatta Research Institute of Observational Sciences (ARIES), Nainital, India}
 
 \begin{abstract}
-Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on a sequence of
-expert, partly subjective choices: which detectors to use, where to place the
-background, which interval contains the source, and how to bin the light
-curve. We present an \emph{agentic} analysis pipeline for single-pulse
-\textit{Fermi}/GBM GRBs in which a large-language-model (LLM) coding agent executes the
-entire workflow---data retrieval, detector selection from spacecraft pointing,
-polynomial background modeling, source-interval definition, Bayesian-block binning
-with a significance floor, and multi-model spectral fitting---driven only by a set of
-machine-readable task guides, behind a single auditable \emph{approval gate} that
-records, for every selection, who or what made it. Because the gate labels each
-decision by its origin, the pipeline doubles as a controlled experiment. We benchmark
-\emph{several contemporary agentic coding systems} (e.g.\ OpenAI Codex, Google
-Antigravity, and Anthropic Claude Code), each reading the \emph{identical} task
-guides so that any difference reflects the model and not the instructions, against a
-panel of human experts and against one another. We quantify (i) the agreement of each
-system's selections with the experts---referenced to the inter-expert scatter, so a
-system is judged ``good'' if it matches humans as well as humans match each other---and
-(ii) the propagation of any disagreement into the recovered spectral parameters
-($\Ep$, low-energy index, blackbody $\kT$, and the thermal-versus-double-break
-classification). \PENDING{per-system agreement + parameter-impact results.} We show
-that the agentic pipeline reproduces established single-pulse results \PENDING{quote
-the reproduced relations}, and release the fully agent-legible, self-documenting code so
-the analysis can be re-run end to end by a human or any agent. We discuss the
-implications for reproducibility and for scaling GRB spectral catalogs, and the
-regimes in which agents do and do not match expert judgement.
+Can current artificial-intelligence systems carry out the judgement-laden steps of
+gamma-ray burst (GRB) data analysis? Here we show that they largely can. Time-resolved
+spectroscopy of GRBs rests on a sequence of expert, partly subjective choices: which
+detectors to use, where to place the background, which interval contains the source,
+and how to bin the light curve. We benchmark several leading agentic AI
+systems---Anthropic's Claude, OpenAI's Codex, and Google's Antigravity---on the
+analysis of single-pulse \textit{Fermi}/GBM bursts. Each system is given only a set of
+natural-language instructions, in the form of machine-readable Markdown task guides,
+together with a standard analysis toolchain, and is asked to execute the entire
+workflow: retrieving the data, selecting detectors from spacecraft pointing, modeling
+the polynomial background, defining the source interval, binning the light curve
+(Bayesian blocks with a significance floor), and fitting time-resolved spectra. A
+single auditable \emph{approval gate} records, for every selection, who or what made
+it; because each system reads the \emph{identical} guides, any difference reflects the
+model and not the instructions, and the pipeline doubles as a controlled
+human-versus-AI experiment. We score each system against a panel of experienced human
+analysts---referenced to the inter-expert scatter, so a system is judged successful if
+it matches humans about as well as humans match each other---and trace any
+disagreement into the recovered physics ($\Ep$, low-energy index, blackbody $\kT$, and
+the thermal-versus-double-break classification). \PENDING{Result, pending the
+benchmark run: each system reproduces expert selections to within the inter-human
+scatter and leaves the inferred spectral physics statistically unchanged, performing
+comparably to an experienced researcher.} We release the fully agent-legible,
+self-documenting code so the analysis can be re-run end to end by a human or any agent,
+and discuss the implications for reproducibility, for scaling GRB spectral catalogs to
+the full single-pulse population, and the regimes in which agents do and do not match
+expert judgement.
 \end{abstract}
 
 \keywords{Gamma-ray bursts (629) --- Astronomy data analysis (1858) ---
