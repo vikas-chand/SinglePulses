@@ -86,17 +86,13 @@ somewhat subjective, and seldom recorded at the level of detail needed to reprod
 a published catalog exactly. As samples grow, this manual bottleneck both limits
 throughput and undermines reproducibility.
 
-Automating these choices, and validating the automation against people, is not new
-to GRB science. \citet{Busby2024} classified the morphology and spectral evolution
-of 62 bright \textit{Fermi}/GBM bursts with two independent methods---a rule-based
-computational test (a ``horizontal-line'' single-peak test plus a peak-energy
-monotonicity test) and a \emph{citizen-science} test in which 24 participants ranked
-every light curve and spectrum---and compared the two with Pearson and Spearman
-statistics, finding that the computer and human rankings generally agreed (single-peak
-Spearman $r_s=0.81$; hard-to-soft $r_s=0.65$). That algorithm-versus-human comparison
-on a burst-level \emph{classification} is the direct precedent for this work, and its
-multi-rater (citizen-science) design motivates using inter-human scatter as the
-baseline against which automation is judged.
+Automating these choices, and validating the automation against people, is the natural
+response as samples grow. The difficulty is that they are not a fixed classification
+but open-ended judgements on a light curve, and any automation that is to be trusted at
+catalog scale must first be shown to make those judgements about as well as an expert.
+This requires a human baseline that is itself realistic: because experts do not agree
+perfectly, the relevant yardstick is not exact reproduction of one analyst but
+consistency with the spread \emph{among} analysts.
 
 Large-language-model (LLM) ``agents''---models that can read a repository, run code,
 inspect figures, and act on the results---now make it possible to automate not just a
@@ -104,13 +100,35 @@ fixed classification score but the \emph{open-ended judgements} of the analysis 
 \TODOcite{recent astro-LLM / agent works}. Their promise for GRB analysis is specific:
 the subjective steps above are largely visual judgements on a light curve, exactly the
 kind of task a vision-capable agent can attempt, and the rest of the workflow is
-deterministic code an agent can orchestrate. We therefore extend the
-\citet{Busby2024} computer-versus-human paradigm in two ways: from a fixed heuristic
-computing a scalar score to an \emph{LLM agent making the actual analysis decisions},
-and from a single classification label to the \emph{full pipeline} with its downstream
-effect on the physics. The open question is not whether an agent \emph{can} run the
+deterministic code an agent can orchestrate. This moves automation in GRB analysis
+beyond a fixed heuristic computing a scalar score, in two ways: an \emph{LLM agent
+makes the actual analysis decisions} rather than evaluating a pre-specified rule, and
+it does so across the \emph{full pipeline}, so we can measure the downstream effect on
+the physics rather than agreement on a single label. The open question is not whether
+an agent \emph{can} run the
 pipeline, but whether its judgements match an expert's well enough that the science is
 unchanged---and whether the process can be made auditable rather than a black box.
+
+A fair objection is that if these steps can be written down as task guides, they could
+simply be coded as a fixed-threshold pipeline, with no agent and no human. We take this
+possibility seriously, but it is precisely what the present practice already rejects:
+the reason GBM teams still place backgrounds and source intervals by eye is that a
+purely algorithmic version, committed to fixed thresholds, fails silently on a
+non-negligible fraction of bursts. In building the companion single-pulse analysis we
+ran exactly such a deterministic selector; on a sample of $106$ bursts it placed the
+source window on pure background for several bursts---yielding spectral fits that are
+meaningless rather than merely imprecise---and produced over-wide background windows,
+which alias orbital trends into the polynomial baseline, for several dozen more. The
+failures are not random noise but structured judgement calls: distinguishing a clean
+detector from a contaminated one, an emission-free baseline from a soft tail, or a
+genuine onset from a noise-buried rise. The task guides specify \emph{what to look for},
+not a closed-form rule that resolves these calls on a specific noisy light curve---which
+is why they are criteria an expert applies rather than an algorithm. An agent is one
+candidate for supplying that residual judgement; the benchmark is agnostic to the
+mechanism, and a better deterministic method that matched the experts would be equally
+welcome. The contribution is not that an agent is irreplaceable, but that we
+\emph{measure} whether one can stand in for the human at the gate---in selection
+agreement and in downstream physics---rather than assert it.
 
 In this paper we (1) describe an agentic pipeline for single-pulse GBM GRBs built
 around a human-or-AI \emph{approval gate} that makes every selection auditable;
@@ -195,7 +213,7 @@ materially affects the reliability of an agent-built pipeline.
 % Real design; results pending.
 The approval gate (Section~\ref{sec:stage1}) lets us run the subjective steps in
 both modes on the identical benchmark sample and hold everything downstream fixed.
-Following \citet{Busby2024}, the human baseline is provided by \emph{multiple}
+The human baseline is provided by \emph{multiple}
 independent expert approvers, so that the inter-human scatter sets the scale against
 which the agent is judged: the agent is consistent with experts if it matches them as
 well as they match each other. We define two families of metrics.
@@ -221,9 +239,9 @@ distribution against the human-versus-human distribution. \PENDING{report values
 selections through the identical binning and fitting and compare the recovered
 quantities bin-by-bin and burst-by-burst: $\Ep$, the low-energy index, the
 blackbody $\kT$ where a thermal component is preferred, and the
-thermal-versus-double-break classification. As in \citet{Busby2024} we quantify
-agreement with Pearson and Spearman statistics (here on the recovered parameters
-rather than on a classification score), again referenced to the inter-human scatter.
+thermal-versus-double-break classification. We quantify
+agreement with Pearson and Spearman statistics on the recovered parameters,
+referenced to the inter-human scatter.
 The question is whether scientific conclusions are invariant under the
 human$\rightarrow$AI swap. \PENDING{report the parameter scatter, correlation, and
 classification concordance.}
