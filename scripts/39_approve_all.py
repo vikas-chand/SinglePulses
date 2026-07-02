@@ -499,12 +499,29 @@ def gui_one(trigger, approver):
     P = p0()
     cand = compute_candidates(trigger)
     angles = cand['angles'] or {d: 999.0 for d in cand['pre_ticked']}
+    # The GUI approval path is review-seeded: default ticks should have a
+    # suggested background interval to Accept/adjust. Angle-qualified detectors
+    # without a seed remain visible in the picker and can still be manually
+    # selected, but then their background must be drawn fresh.
+    seeded = set(cand['suggested_bkg'])
+    pre_ticked_for_gui = set(cand['pre_ticked']) & seeded
+    low_side = getattr(P, 'LOW_SIDE_NAI', {'n0', 'n1', 'n2', 'n3', 'n4', 'n5'})
+    seeded_nai = {d for d in pre_ticked_for_gui if d.startswith('n')}
+    if 'b0' in pre_ticked_for_gui and not any(d in low_side for d in seeded_nai):
+        pre_ticked_for_gui.remove('b0')
+    if 'b1' in pre_ticked_for_gui and not any(
+            d.startswith('n') and d not in low_side for d in seeded_nai):
+        pre_ticked_for_gui.remove('b1')
+    dropped_defaults = sorted(set(cand['pre_ticked']) - pre_ticked_for_gui)
+    if dropped_defaults:
+        print(f'  {trigger}: not pre-ticking unseeded/unpaired defaults: '
+              f'{", ".join(dropped_defaults)}')
     if cand['src_ra'] is not None and angles:
         selected = P.pick_detectors_with_angles_gui(
-            trigger, angles, set(cand['pre_ticked']), set(cand['bcat']),
+            trigger, angles, pre_ticked_for_gui, set(cand['bcat']),
             cand['src_ra'], cand['src_dec'])
     else:
-        selected = list(cand['pre_ticked'])
+        selected = list(pre_ticked_for_gui)
     if not selected:
         return trigger, 'no detectors', 0
     windows = {}
@@ -512,6 +529,8 @@ def gui_one(trigger, approver):
         if not P.ensure_tte_for_detector(trigger, det):
             continue
         seed = cand['suggested_bkg'].get(det, {})
+        if not seed:
+            print(f'  {trigger} {det}: no pre-selected background; draw fresh or skip')
         res, pre, post = P.review_one_detector(trigger, det, seed, None, None)
         if res == 'quit':                  # honour Quit -> abort the burst (not skip)
             raise SystemExit(f'{trigger}: user quit at {det}')
@@ -606,7 +625,10 @@ def main():
             try:
                 r = gui_one(trig, args.approver)
                 if r[1] == 'decided':
-                    ingest_one(trig, rows)
+                    # surface the ingest outcome — an INVALID decision must not
+                    # be reported as a success (silent-reject found in the first
+                    # Expert1 pilot run: source window overlapped a post window)
+                    r = ingest_one(trig, rows)
             except SystemExit as exc:
                 r = (trig, f'stop: {exc}', 0)
             print(f'{r[0]:13s} {r[1]:24s} {r[2]}')

@@ -823,55 +823,95 @@ def ensure_tte_for_detector(trigger, det):
 def pick_detectors_with_angles_gui(trigger, angles, pre_ticked, bcat_mask,
                                    src_ra, src_dec):
     """
-    Show all 14 GBM detectors sorted by angle ascending. Labels include
-    angle and BCAT-mask indicator. Returns list of user-OK'd detectors.
+    TWO-COLUMN layout mirroring the two hemispheres of Fermi-GBM (ported back
+    from PulsewiseAmatiYonetoku so the projects behave uniformly):
+      LEFT  column = low side  : n0 n1 n2 n3 n4 n5  then  b0
+      RIGHT column = high side : n6 n7 n8 n9 na nb  then  b1
+    So the spacecraft side being picked is visually obvious. Labels carry
+    angle + BCAT mark; selecting NaI from BOTH sides warns once and requires a
+    second Accept. Returns list of user-OK'd detectors.
     """
-    sorted_dets = sorted(angles.keys(), key=lambda d: angles[d])
+    LEFT = ['n0', 'n1', 'n2', 'n3', 'n4', 'n5', 'b0']   # low side + b0
+    RIGHT = ['n6', 'n7', 'n8', 'n9', 'na', 'nb', 'b1']  # high side + b1
 
-    _ensure_keepalive()                       # persistent Tk root (multi-window fix)
-    fig = plt.figure(figsize=(11.0, 0.36 * len(sorted_dets) + 3.0))
-    # Use suptitle for the main heading and fig.text for the long
-    # instruction so they don't overflow the axes width.
-    fig.suptitle(
-        f'{trigger}    source = ({src_ra:.2f}, {src_dec:.2f})',
-        fontsize=13, weight='bold', y=0.97,
-    )
-    fig.text(
-        0.5, 0.93,
-        f'All 14 GBM detectors, sorted by angle to source.   '
-        f'Pre-ticked: NaI θ ≤ {ANGLE_THRESHOLD_DEG:.0f}° + matching BGO.',
-        fontsize=10, ha='center', va='top',
-    )
-    fig.text(
-        0.5, 0.905,
-        '(Tick / untick as desired. Detectors without TTE on disk will be '
-        'downloaded on Accept.)',
-        fontsize=9, ha='center', va='top', style='italic', color='0.35',
-    )
-
-    labels = []
-    for d in sorted_dets:
+    def _label(d):
         kind = 'BGO' if _detector_kind(d) == 'bgo' else 'NaI'
         bcat = '✓ BCAT' if d in bcat_mask else '      '
-        labels.append(f'{d}   θ = {angles[d]:6.1f}°   ({kind})   {bcat}')
+        a = angles.get(d, float('nan'))
+        return f'{d}   θ = {a:6.1f}°   ({kind})   {bcat}'
 
-    init_state = [d in pre_ticked for d in sorted_dets]
-    # Leave generous top margin for the suptitle / instruction lines.
-    check_ax = fig.add_axes([0.18, 0.05, 0.52, 0.82])
-    checks = CheckButtons(check_ax, labels, init_state)
+    _ensure_keepalive()                       # persistent Tk root (multi-window fix)
+    fig = plt.figure(figsize=(13.0, 7.2))
+    fig.suptitle(f'{trigger}    source = ({src_ra:.2f}, {src_dec:.2f})',
+                 fontsize=13, weight='bold', y=0.98)
+    fig.text(0.5, 0.93,
+             f'Two columns = the two GBM hemispheres.  Pre-ticked: NaI '
+             f'θ ≤ {ANGLE_THRESHOLD_DEG:.0f}° + matching BGO.',
+             fontsize=10, ha='center', va='top')
+    fig.text(0.5, 0.905,
+             '(Tick / untick as desired. Detectors without TTE on disk will be '
+             'downloaded on Accept.)',
+             fontsize=9, ha='center', va='top', style='italic', color='0.35')
 
-    result = {'quit': False}
-    btn_accept = fig.text(0.80, 0.55, 'Accept', backgroundcolor='green',
+    # column headers
+    fig.text(0.28, 0.86, 'LOW side  (n0–n5, b0)', fontsize=11,
+             weight='bold', ha='center', color='#1f4e79')
+    fig.text(0.70, 0.86, 'HIGH side  (n6–nb, b1)', fontsize=11,
+             weight='bold', ha='center', color='#7b3f00')
+
+    left_ax = fig.add_axes([0.07, 0.06, 0.40, 0.78])
+    right_ax = fig.add_axes([0.50, 0.06, 0.40, 0.78])
+    checks_L = CheckButtons(left_ax, [_label(d) for d in LEFT],
+                            [d in pre_ticked for d in LEFT])
+    checks_R = CheckButtons(right_ax, [_label(d) for d in RIGHT],
+                            [d in pre_ticked for d in RIGHT])
+
+    result = {'quit': False, 'warned': False}
+    btn_accept = fig.text(0.93, 0.55, 'Accept', backgroundcolor='green',
                           color='white', weight='bold', picker=20,
-                          fontsize=13, ha='left', va='center')
-    btn_quit = fig.text(0.80, 0.42, 'Quit', backgroundcolor='gray',
+                          fontsize=13, ha='center', va='center')
+    btn_quit = fig.text(0.93, 0.42, 'Quit', backgroundcolor='gray',
                         color='white', weight='bold', picker=20,
-                        fontsize=11, ha='left', va='center')
+                        fontsize=11, ha='center', va='center')
+    # two-sides warning banner (hidden until triggered)
+    warn_txt = fig.text(0.5, 0.025, '', ha='center', va='bottom',
+                        fontsize=11, weight='bold', color='crimson',
+                        bbox=dict(facecolor='#fff3f3', edgecolor='crimson',
+                                  boxstyle='round,pad=0.4'))
+    warn_txt.set_visible(False)
+
+    def _selected_nai():
+        lo = [LEFT[i] for i, s in enumerate(checks_L.get_status())
+              if s and LEFT[i].startswith('n')]
+        hi = [RIGHT[i] for i, s in enumerate(checks_R.get_status())
+              if s and RIGHT[i].startswith('n')]
+        return lo, hi
+
+    def _clear_warning(_label=None):
+        # any checkbox change resets the warning so Accept re-checks
+        if result['warned']:
+            result['warned'] = False
+            warn_txt.set_visible(False)
+            fig.canvas.draw_idle()
+
+    checks_L.on_clicked(_clear_warning)
+    checks_R.on_clicked(_clear_warning)
 
     def on_pick(event):
         if event.mouseevent.button != 1:
             return
         if event.artist is btn_accept:
+            lo, hi = _selected_nai()
+            if lo and hi and not result['warned']:
+                # NaI selected from BOTH hemispheres — warn once, require 2nd Accept
+                result['warned'] = True
+                warn_txt.set_text(
+                    f'⚠  NaI from BOTH sides: low [{", ".join(lo)}] + '
+                    f'high [{", ".join(hi)}].  Untick to fix, or click Accept '
+                    f'again to keep both.')
+                warn_txt.set_visible(True)
+                fig.canvas.draw_idle()
+                return
             plt.close(fig)
         elif event.artist is btn_quit:
             result['quit'] = True
@@ -883,8 +923,9 @@ def pick_detectors_with_angles_gui(trigger, angles, pre_ticked, bcat_mask,
     if result['quit']:
         raise SystemExit('User quit detector selection.')
 
-    states = checks.get_status()
-    return [sorted_dets[i] for i, s in enumerate(states) if s]
+    sel = [LEFT[i] for i, s in enumerate(checks_L.get_status()) if s]
+    sel += [RIGHT[i] for i, s in enumerate(checks_R.get_status()) if s]
+    return sel
 
 
 # ============================================================================
