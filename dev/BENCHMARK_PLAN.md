@@ -78,6 +78,46 @@ to make the call (and how it will be scored): `detector_selection.md`,
   vs the human band + system-vs-system agreement.
 - Guides live in `dev/ai_guides/`.
 
-## Still to decide
-- Benchmark sample size + composition ($N_{\rm bench}\sim$20--30; include faint +
-  complex-background cases). Who the 2nd+ human expert(s) are.
+## Experts (DECIDED 2026-06-30, Vikas)
+The human panel is **two experts, labelled `Expert1` and `Expert2`** in the catalogs
+and the paper: Expert1 = V. Chand, Expert2 = K. Sharma (mapping recorded here; the
+paper reports only the labels). Each approves the same 25 benchmark bursts
+independently — no discussing selections until both catalogs are written. With two
+experts the inter-human band is the distribution of the single Expert1–Expert2
+pair-metric over the 25 bursts.
+
+Per-rater isolation (each rater = own approval dir + own catalog; run from repo root):
+```bash
+# Expert1 (Vikas, macOS — no MPLBACKEND prefix needed)
+python scripts/39_approve_all.py gui --approver "Expert1" \
+    --approval-dir results/benchmark/expert1_approval --out results/benchmark/expert1.ecsv \
+    --trigger <bn...>            # once per burst in dev/benchmark_sample.ecsv
+
+# Expert2 (Khushboo, Linux)
+MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --approver "Expert2" \
+    --approval-dir results/benchmark/expert2_approval --out results/benchmark/expert2.ecsv \
+    --trigger <bn...>
+
+# Each AI system (Claude Code / Codex / Antigravity), same guides, own catalog:
+#   render + judge + ingest with
+#   --approval-dir results/benchmark/<system>_approval --out results/benchmark/<system>.ecsv
+#   stamped APPROVED_BY="<System> (AI)", APPROVAL_MODE=ai_vision
+
+# Score everything:
+python scripts/40_benchmark.py --catalog-dir results/benchmark
+```
+NOTE: the benchmark catalogs are SEPARATE from the production Stage-1 approval
+(Khushboo's 106-burst job under her real name -> results/background_intervals.ecsv);
+don't mix the two. AI raters must not read the expert approval dirs (isolation is the
+blinding).
+
+## Benchmark sample (DECIDED 2026-06-30): `dev/benchmark_sample.ecsv`
+$N_{\rm bench}=25$, deterministic (code-generated, no random draws):
+- **6 hard-background bursts** — the deterministic-selector source-window failures
+  (bn090620400, bn090719063, bn100612726, bn100614498, bn110920546, bn200524211);
+- **4 anchors** — bn110721200 (standout two-break), bn130427324 (brightest, Ep–kT
+  anchor), bn150902733 (top decile), bn260105973 (median fluence);
+- **15 stratified fills** — faintest/median/brightest of each fluence quintile.
+Spans 245× in fluence, T90 7–453 s, 5 LAT/LLE bursts, all quintiles populated.
+Every rater (≥2 experts + each AI system) approves exactly these 25 via scripts/39
+with `--approval-dir`/`--out` per-rater isolation.

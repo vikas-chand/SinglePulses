@@ -1,0 +1,42 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: TRIGGER_NAME, datatype: string}
+# - {name: FLUENCE, datatype: float64}
+# - {name: T90, datatype: float64}
+# - {name: HAS_LAT, datatype: bool}
+# - {name: FLUENCE_QUINTILE, datatype: int64}
+# - {name: SELECTION_REASON, datatype: string}
+# meta: !!omap
+# - comment: [Benchmark subset for the human-vs-AI Stage-1 experiment (dev/BENCHMARK_PLAN.md)., 'N_bench=25 of 106: 6 hard-background
+#       bursts (deterministic-selector failures),', '4 anchors (110721200 two-break, 130427324 brightest, 150902733 top-decile,', '260105973
+#       median), and 15 deterministic stratified fills (faintest/median/', brightest per fluence quintile). Selection is code-generated
+#       and reproducible;, no random draws. Every rater (>=2 experts + each AI system) approves exactly, these bursts via scripts/39 with
+#       --approval-dir/--out isolation.]
+# schema: astropy-2.0
+TRIGGER_NAME FLUENCE T90 HAS_LAT FLUENCE_QUINTILE SELECTION_REASON
+bn091209001 1.0032e-05 42.945 False 1 "stratified fill: faintest of fluence quintile Q1"
+bn210812699 1.0985e-05 39.873 False 1 "stratified fill: median of fluence quintile Q1"
+bn151021791 1.2258e-05 7.229 False 1 "stratified fill: brightest of fluence quintile Q1"
+bn140608153 1.2302e-05 71.681 False 2 "stratified fill: faintest of fluence quintile Q2"
+bn090620400 1.3263e-05 13.568 False 2 "hard background (source window mis-placed by the deterministic selector)"
+bn100612726 1.3631e-05 8.576 False 2 "hard background (source window mis-placed by the deterministic selector)"
+bn200524211 1.3964e-05 37.761 True 2 "hard background (source window mis-placed by the deterministic selector)"
+bn220525008 1.4894e-05 16.128 False 2 "stratified fill: median of fluence quintile Q2"
+bn190401139 1.6671e-05 42.753 False 2 "stratified fill: brightest of fluence quintile Q2"
+bn120919309 1.678e-05 21.248 False 3 "stratified fill: faintest of fluence quintile Q3"
+bn260105973 1.9256e-05 11.325 False 3 "anchor: median-fluence representative"
+bn100614498 1.9632e-05 172.291 False 3 "hard background (source window mis-placed by the deterministic selector)"
+bn101225377 2.0164e-05 81.218 False 3 "stratified fill: median of fluence quintile Q3"
+bn150306993 2.7014e-05 18.944 False 3 "stratified fill: brightest of fluence quintile Q3"
+bn180724807 2.7823e-05 58.113 False 4 "stratified fill: faintest of fluence quintile Q4"
+bn210714331 3.6533e-05 42.369 False 4 "stratified fill: median of fluence quintile Q4"
+bn110721200 3.7042e-05 21.822 True 4 "anchor: standout two-break burst; Burgess+ benchmark case"
+bn090719063 4.6848e-05 11.392 False 4 "hard background (source window mis-placed by the deterministic selector)"
+bn191125206 4.9669e-05 77.313 False 4 "stratified fill: brightest of fluence quintile Q4"
+bn180427442 5.0455e-05 25.921 False 5 "stratified fill: faintest of fluence quintile Q5"
+bn150902733 8.3192e-05 13.568 True 5 "anchor: top-decile fluence"
+bn100707032 8.772e-05 81.793 False 5 "stratified fill: median of fluence quintile Q5"
+bn110920546 0.00017233 160.771 False 5 "hard background (source window mis-placed by the deterministic selector)"
+bn160625945 0.00064256 453.385 True 5 "stratified fill: brightest of fluence quintile Q5"
+bn130427324 0.002462 138.242 True 5 "anchor: brightest burst, Ep-kT anchor (extreme fluence, long T90)"
