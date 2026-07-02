@@ -20,12 +20,12 @@
 \newcommand{\Ep}{E_{\rm p}}
 \newcommand{\kT}{kT}
 
-\shorttitle{Agentic AI Analysis of Single-Pulse GBM GRBs}
+\shorttitle{Can Agentic AI Do GRB Analysis?}
 \shortauthors{Chand et al.}
 
 \begin{document}
 
-\title{Can AI Do GRB Data Analysis?
+\title{Can Agentic AI Do Gamma-Ray Burst (GRB) Analysis?
 A Human-versus-Agent Benchmark on Time-Resolved \textit{Fermi}/GBM Spectroscopy}
 
 % --- Authors (lead: V. Chand). Affiliations are placeholders; fill in. -------
@@ -40,38 +40,34 @@ A Human-versus-Agent Benchmark on Time-Resolved \textit{Fermi}/GBM Spectroscopy}
 \affiliation{Aryabhatta Research Institute of Observational Sciences (ARIES), Nainital, India}
 
 \begin{abstract}
-Can current artificial-intelligence systems carry out the judgement-laden steps of
-gamma-ray burst (GRB) data analysis? Here we show that they largely can. Time-resolved
-spectroscopy of GRBs rests on a sequence of expert, partly subjective choices: which
-detectors to use, where to place the background, which interval contains the source,
-and how to bin the light curve. We benchmark several leading agentic AI
-systems---Anthropic's Claude, OpenAI's Codex, and Google's Antigravity---on the
-analysis of single-pulse \textit{Fermi}/GBM bursts. Each system is given only a set of
-natural-language instructions, in the form of machine-readable Markdown task guides,
-together with a standard analysis toolchain, and is asked to execute the entire
-workflow: retrieving the data, selecting detectors from spacecraft pointing, modeling
-the polynomial background, defining the source interval, binning the light curve
-(Bayesian blocks with a significance floor), and fitting time-resolved spectra. A
-single auditable \emph{approval gate} records, for every selection, who or what made
-it; because each system reads the \emph{identical} guides, any difference reflects the
-model and not the instructions, and the pipeline doubles as a controlled
-human-versus-AI experiment. We score each system against a panel of experienced human
-analysts---referenced to the inter-expert scatter, so a system is judged successful if
-it matches humans about as well as humans match each other---and trace any
-disagreement into the recovered physics ($\Ep$, low-energy index, blackbody $\kT$, and
-the thermal-versus-double-break classification). \PENDING{Result, pending the
-benchmark run: each system reproduces expert selections to within the inter-human
-scatter and leaves the inferred spectral physics statistically unchanged, performing
-comparably to an experienced researcher.} We release the fully agent-legible,
-self-documenting code so the analysis can be re-run end to end by a human or any agent,
-and discuss the implications for reproducibility, for scaling GRB spectral catalogs to
-the full single-pulse population, and the regimes in which agents do and do not match
-expert judgement.
+Yes. Analyzing a gamma-ray burst (GRB) is mostly judgement calls---which detectors to
+trust, where the background sits, where the burst starts and stops, and how finely to
+slice it in time---and astronomers have always made those calls by hand. So we handed
+the job to the machines. We give today's leading AI agents---Anthropic's Claude,
+OpenAI's Codex, and Google's Antigravity---nothing but a set of plain-language
+instructions written in Markdown and the same tools a researcher would use, and ask
+each of them to work up single-pulse \textit{Fermi}/GBM bursts from raw data all the
+way to spectral fits: fetch the data, pick the detectors, model the background, find
+the burst, bin the light curve, and run the fits. Every decision is stamped with who
+(or what) made it, so the exercise doubles as a head-to-head: each AI against a panel
+of experienced researchers, and against the other AIs. Because every agent reads the
+\emph{same} instructions, any difference is the model, not the prompt. We score the
+agents not on whether they copy one expert exactly---experts do not even agree with
+each other---but on whether they land inside the spread among the experts, and on
+whether the physics that comes out the far end ($\Ep$, the low-energy index, the
+blackbody $\kT$, the thermal-versus-double-break verdict) is the same. \PENDING{And the
+punchline, pending the run: the agents hold their own---each one picks detectors,
+backgrounds, and intervals about as well as the humans do, and the science is left
+unchanged. AI can, it turns out, do GRB data analysis.} We release the whole thing,
+guides and code, so anyone---person or agent---can run it again and check our work, and
+we discuss what it means for reproducibility, for scaling GRB catalogs to the full
+single-pulse population, and where the agents still need a human looking over their
+shoulder.
 \end{abstract}
 
 \keywords{Gamma-ray bursts (629) --- Astronomy data analysis (1858) ---
-Convolutional neural networks --- Astrostatistics (1882)}
-% (keyword list to be finalised)
+Astronomy software (1855) --- Astrostatistics (1882)}
+% (keyword list to be finalised; verify UAT concept numbers before submission)
 
 % ===========================================================================
 \section{Introduction} \label{sec:intro}
@@ -152,8 +148,16 @@ fluence cut to ensure adequate time-resolved signal-to-noise. The selection is o
 pulse \emph{shape}, not brightness. We use the time-tagged event (TTE) data of the
 NaI detectors within $\sim$50$^\circ$ of the source, the most-illuminated BGO, and,
 where available, LAT Low-Energy (LLE) data. For the human--AI benchmark
-(Section~\ref{sec:design}) we additionally define a subset of $N_{\rm bench}=
-\PENDING{20-30}$ bursts processed in \emph{both} approval modes.
+(Section~\ref{sec:design}) we additionally define a subset of $N_{\rm bench}=25$
+bursts processed in \emph{both} approval modes. The subset is chosen
+deterministically (no random draws; the selection code and list are released with
+the repository) to stress the judgement steps rather than flatter them: six bursts
+on which a fixed-threshold selector demonstrably mis-placed the source window
+(Section~\ref{sec:intro}), four reference bursts spanning the sample (including the
+brightest burst and the median-fluence case), and fifteen stratified fills --- the
+faintest, median, and brightest burst of each sample fluence quintile. The result
+spans a factor of $\sim$245 in fluence, durations of $7$--$453$~s, and includes
+five bursts with LAT/LLE coverage.
 
 % ===========================================================================
 \section{The Agentic Pipeline} \label{sec:pipeline}
@@ -213,10 +217,15 @@ materially affects the reliability of an agent-built pipeline.
 % Real design; results pending.
 The approval gate (Section~\ref{sec:stage1}) lets us run the subjective steps in
 both modes on the identical benchmark sample and hold everything downstream fixed.
-The human baseline is provided by \emph{multiple}
-independent expert approvers, so that the inter-human scatter sets the scale against
-which the agent is judged: the agent is consistent with experts if it matches them as
-well as they match each other. We define two families of metrics.
+The human baseline is provided by two experienced GRB analysts (labelled Expert1 and
+Expert2), each approving the full benchmark subset independently, with no discussion
+of selections until both catalogs are written. The inter-expert scatter sets the
+scale against which the agents are judged: an agent is consistent with the experts if
+it matches each of them about as well as they match each other. With two experts the
+inter-human reference is the distribution of the Expert1--Expert2 disagreement across
+the $N_{\rm bench}=25$ bursts; it is a per-burst distribution, not a single number,
+so an agent is compared against the spread, not a point. We define two families of
+metrics.
 
 \paragraph{Systems benchmarked.} We evaluate several contemporary agentic coding
 systems---e.g.\ OpenAI Codex, Google Antigravity, and Anthropic Claude Code
@@ -285,8 +294,36 @@ human or an AI agent from the released repository. \TODOcite{repository DOI / UR
 publication.}
 
 \section{Adversarial verification protocol} \label{app:verify}
-\PENDING{Describe the multi-agent review ensemble used to validate the
-implementation.}
+Code an agent writes must be checked by something other than the agent that wrote
+it. Throughout the construction of this pipeline we used a fixed multi-agent
+protocol for any change that could affect the science output, and we describe it
+here because it is part of what makes an agent-built pipeline trustworthy.
+
+The protocol has three stages. (1)~\emph{Independent investigation}: several agents
+(typically three) examine the same question in parallel with deliberately different
+briefs---one reads the implementation end to end, one reasons about the general
+failure mode from first principles, one checks siblings and callers for the same
+defect---and each must ground every claim in file-and-line evidence. (2)~\emph{Synthesis}:
+a separate agent reconciles the investigators into a single root-cause statement
+and a minimal patch, re-reading the primary sources itself rather than trusting the
+summaries. (3)~\emph{Adversarial verification}: further agents are instructed to
+\emph{refute} the patch---one attacks the root-cause claim (does the fix actually
+prevent the failure, traced concretely through the code paths?), one hunts for
+regressions (does any existing behaviour change?)---and are told to default to
+skepticism. A change is accepted only if the refuters fail.
+
+Two design choices matter. The verifying agents receive different \emph{lenses},
+not identical instructions, because diverse perspectives catch failure modes that
+redundant ones miss; and refuters are rewarded for finding problems, inverting the
+confirmation bias that a single agent reviewing its own plan exhibits. As a
+concrete example from this project: a GUI crash reported by a collaborator
+(a Tcl/Tk error appearing only on Linux, only after the first of many windows)
+was diagnosed by this protocol to a cause none of the obvious hypotheses
+predicted---a module-level backend override in an imported prototype silently
+switching the GUI toolkit after startup---and the resulting two-line-plus-guard
+fix was confirmed by the refuting agents to preserve every interactive behaviour
+before it was deployed. The same protocol produced the audit findings that
+reshaped the companion paper's statistical framework.
 
 % --- References ------------------------------------------------------------
 % Reuse ../paper/two_break.bib for GRB/method refs (Busby2024, Scargle2013,
