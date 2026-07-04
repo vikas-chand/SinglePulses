@@ -149,6 +149,13 @@ For each PNG, the AI (Claude vision via `Read` tool, or via embedded
 
 ## Step 4 — Approval gate (human GUI per detector)
 
+> **Normative GUI behavior now lives in `dev/GUI_REQUIREMENTS.md`** (numbered,
+> testable requirements + contradiction register). Where this section and that
+> spec disagree, the spec wins — known stale items here: the "numpy.polyfit"
+> overlay (it is the 3ML two-stage polyfit), the macosx-only backend note (TkAgg
+> is supported), `--auto-approve` (legacy scripts only), and the 6-column output
+> schema (now 13 stamped columns).
+
 For each (trigger, detector), open a gtburst-style window pre-populated
 with the AI's `pre` and `post` intervals drawn as gold-shaded
 `fill_between` regions, with a red `numpy.polyfit(deg=2)` overlay over the

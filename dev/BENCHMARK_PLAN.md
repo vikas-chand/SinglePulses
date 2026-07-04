@@ -111,6 +111,25 @@ NOTE: the benchmark catalogs are SEPARATE from the production Stage-1 approval
 don't mix the two. AI raters must not read the expert approval dirs (isolation is the
 blinding).
 
+### Tool freeze (added 2026-07-03; see dev/GUI_REQUIREMENTS.md §0 + §6)
+The approval GUIs are the benchmark instrument. Every rater records
+`git rev-parse --short HEAD` immediately before their FIRST and after their LAST
+benchmark burst in the table below. **All raters must be on the post-GUI-fix commit
+before anyone starts the 25-burst set**; any catalogs made on earlier commits are
+discarded (or the commit split is recorded here). Selection SEMANTICS are frozen for
+the campaign; only crash/lifecycle fixes + additive audit fields may land (the
+`tool_commit` stamp in decision.json, R-GL-6, makes this machine-checkable once
+implemented). Khushboo's production 106-burst job likewise continues only on the
+fixed commit.
+
+| Rater | Commit (start) | Date (start) | Commit (end) | Date (end) |
+|---|---|---|---|---|
+| Expert1 (V. Chand) | | | | |
+| Expert2 (K. Sharma) | | | | |
+| Claude Code (AI) | | | | |
+| Codex (AI) | | | | |
+| Antigravity (AI) | | | | |
+
 ## Benchmark sample (DECIDED 2026-06-30): `dev/benchmark_sample.ecsv`
 $N_{\rm bench}=25$, deterministic (code-generated, no random draws):
 - **6 hard-background bursts** — the deterministic-selector source-window failures

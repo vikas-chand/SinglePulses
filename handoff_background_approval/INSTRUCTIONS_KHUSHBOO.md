@@ -145,9 +145,16 @@ they're in `AGENTS.md` — but they need the heavier threeML environment.)
 | Check progress / QC | `python scripts/36_progress_check.py` |
 
 ## If something goes wrong
+- **What the GUIs are SUPPOSED to do** (buttons, close semantics, busy state during
+  refits, open questions assigned to you) → `dev/GUI_REQUIREMENTS.md`.
 - **No window appears, or it crashes after the first detector** (`TclError: ... "wm" ...
   application has been destroyed`) → you forgot the backend: re-run with
   `MPLBACKEND=TkAgg` in front (see section 0).
+- **The detector picker never appears + a warning names `results/grb_sample.ecsv`**
+  → your clone is stale: `git pull` (the catalog is tracked now) and retry.
+- **A background window ignores clicks for a few seconds after you adjust an edge**
+  → that's the refit: the status line says "Refitting… input paused". Input during
+  the refit is deliberately dropped; click again once it finishes.
 - **"No TTE" / missing file** → run `fetch_tte.py` again (it retries failed downloads),
   or ask Vikas to share `data/<trigger>/`.
 - **Wrong directory** → make sure you're in the repo root (`SinglePulses/`).
