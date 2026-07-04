@@ -82,7 +82,36 @@ rather than seeding a new package.
 priors/floors and model sets. If these aren't unified (one documented choice each),
 the "uniform" pipeline silently diverges from the published methods.
 
-## Remaining decision (Vikas)
-**When**: build/port now in parallel (benchmark stays frozen on the current Two_Breaks
-scripts; adopt the package for the authoritative Part-2 run) — or after the benchmark
-data collection completes.
+## Handbook architecture (mapped 2026-07-02) — port INTO these, don't fork
+- **Config**: `PipelineConfig` (core/config.py), dot-notation `config.get("paths.data_dir")`;
+  components take a config dict.
+- **Stage contract**: subclass `PipelineStage` (pipeline/stages.py) with
+  `execute(context)->context`, `required_inputs`/`outputs`; register in
+  orchestrator `DEFAULT_STAGES` + `_build_stage_registry`. (Gotcha: inserting mid-
+  sequence shifts `run_from_stage`; analyzers must not import from pipeline.)
+- **Already present (RECONCILE, don't fork)**:
+  - `utils/gbm_geometry.py` — detector-angle selection, but from **TRIGDAT quaternions**
+    (Two_Breaks uses **POSHIST**). → reconcile; POSHIST canonical + TRIGDAT fallback.
+  - `utils/heasoft.py` — HEASoft tool runners + 3ML install checks (env setup added here).
+  - `data/FermiFetcher` already downloads TTE/CSPEC/**RSP**/trigdat → extend with the
+    multi-location resolver, don't add a separate download.
+  - **Two conflicting background-order selectors already coexist**: `gbm_analysis.py`
+    uses **BIC(0–4)**; `utils/gtburst_bkg.py` uses **LRT(threshold 9)**. This is a
+    latent bug + the exact convention to unify (see decision below).
+- **Absent (clean adds)**: the approval **gate** (no stamp/decision.json anywhere),
+  env setup (DONE), the BB+significance-merge binner, POSHIST-based selection.
+
+## Progress
+- [x] **Phase-1 env shim** — `utils/heasoft.py::ensure_analysis_env()` (CALDB discovery,
+  writable caches, backend). Handbook commit `1bfdd4a`. Tested.
+- [ ] geometry reconcile (POSHIST canonical) · data resolver · gate · GUI · binning · fitting
+
+## Decisions
+**When**: go parallel — DECIDED 2026-07-02 (benchmark frozen; package built alongside).
+**Background-order convention (needs Vikas):** the handbook has BIC(0–4) *and* LRT(9);
+the Two_Breaks/Pulsewise papers describe **LRT, order ≤3**. To keep the handbook
+consistent with the published methods, standardize on **LRT ≤3** and retire/relabel
+BIC. Affects the binning/fitting ports (Phase 3), not the clean adds — so not blocking
+yet, flagged for when Phase 3 lands.
+**Angles**: POSHIST canonical (matches the papers), TRIGDAT the fallback — defaulting
+this unless told otherwise.
