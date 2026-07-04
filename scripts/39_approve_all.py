@@ -153,6 +153,20 @@ def compute_candidates(trigger):
             row = P.get_grb_row(trigger, sample)
         except SystemExit:
             row = None
+    if row is None:
+        # LOUD, never silent (R-GL-3): without this row there is no source RA/DEC,
+        # so no detector angles, no BCAT mask, and no detector picker in gui mode.
+        why = ('results/grb_sample.ecsv is MISSING'
+               if sample is None else
+               f'{trigger} is not in results/grb_sample.ecsv')
+        print('  ' + '=' * 66)
+        print(f'  WARNING [{trigger}]: {why}.')
+        print('  -> no source RA/DEC: detector angles, BCAT mask and the detector')
+        print('     picker are unavailable for this burst.')
+        print('  -> remedy: `git pull` (the catalog is tracked in the repo), or')
+        print('     regenerate with scripts/01_build_sample.py (NOTE: re-queries')
+        print('     live HEASARC; may drift from the frozen benchmark sample).')
+        print('  ' + '=' * 66)
     src_ra = float(row['RA']) if row is not None else None
     src_dec = float(row['DEC']) if row is not None else None
     bcat = set()
@@ -490,6 +504,12 @@ def source_marker_gui(trigger, ref_det, suggested=None):
     if len(picks) == 2:
         return min(picks), max(picks)
     if suggested:
+        # R-GL-3 visibility: adopting the suggestion must never be silent.
+        # (Phase-3 rebuild per GUI_REQUIREMENTS R-SM-2..5 will make adoption an
+        # explicit Accept instead of a window-close side effect.)
+        print(f'  {trigger}: source window closed with {len(picks)} click(s) — '
+              f"ADOPTING the suggested source [{suggested['t1']:.3f}, "
+              f"{suggested['t2']:.3f}] s")
         return suggested['t1'], suggested['t2']
     raise SystemExit(f'{trigger}: source not marked')
 
@@ -516,11 +536,29 @@ def gui_one(trigger, approver):
     if dropped_defaults:
         print(f'  {trigger}: not pre-ticking unseeded/unpaired defaults: '
               f'{", ".join(dropped_defaults)}')
-    if cand['src_ra'] is not None and angles:
+    if cand['src_ra'] is None:
+        # HARD STOP (R-GL-4, decided 2026-07-03): in gui mode the picker IS the
+        # rater's detector-selection judgement; silently substituting seeded
+        # pre-ticks would change the benchmark task. main() catches SystemExit
+        # per-trigger, so an --all run continues with the next burst.
+        raise SystemExit(
+            f'{trigger}: no source RA/DEC (results/grb_sample.ecsv missing or '
+            f'lacks this trigger) — the detector picker cannot run. '
+            f'`git pull` to get the tracked catalog, then retry. '
+            f'Refusing to approve without the picker.')
+    if angles:
         selected = P.pick_detectors_with_angles_gui(
             trigger, angles, pre_ticked_for_gui, set(cand['bcat']),
             cand['src_ra'], cand['src_dec'])
     else:
+        # R-GL-5: angle computation failed (POSHIST/network) with RA/DEC known.
+        # Offline != stale clone, so continue — but LOUDLY, never silently.
+        print('  ' + '!' * 66)
+        print(f'  {trigger}: DETECTOR PICKER SKIPPED — angle computation failed '
+              '(see message above).')
+        print(f'  Proceeding with seeded pre-ticked detectors: '
+              f'{", ".join(sorted(pre_ticked_for_gui)) or "(none)"}')
+        print('  ' + '!' * 66)
         selected = list(pre_ticked_for_gui)
     if not selected:
         return trigger, 'no detectors', 0

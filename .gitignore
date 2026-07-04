@@ -46,6 +46,7 @@ results/*
 !results/draft_numbers.json
 !results/variability_bb.ecsv
 !results/master_manifest.csv
+!results/grb_sample.ecsv
 !results/clean_blocks/
 !results/clean_per_burst/
 results/clean_per_burst/*

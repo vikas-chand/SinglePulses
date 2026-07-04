@@ -101,7 +101,8 @@ CLICK_TOL_PIXELS = 2
 
 class BackgroundSelector(object):
     """One detector's interactive figure — gtburst-mirror UX. Returns
-    ('accept'|'skip'|'quit', pre, post) from .run().
+    ('accept'|'skip'|'quit', pre, post) from .run(). Closing the window (x)
+    without pressing a button returns 'skip' (this detector only; R-BG-15).
 
     Two-panel layout (LC on top, residuals on bottom) modelled after gtburst's
     makeLightCurveWithResiduals (dataHandling.py:2835-2911). Residuals come
@@ -159,6 +160,8 @@ class BackgroundSelector(object):
         self._press_x_pixel = None
         self._tsb = None                      # lazy 3ML TimeSeriesBuilder
         self._adjust_edge = None              # keyboard micro-adjust: (win, idx)
+        self._busy = False                    # True during the 3ML refit: all input
+                                              # is ignored AND dropped (R-BG-13/14)
 
         _ensure_keepalive()                   # persistent Tk root (multi-window fix)
         self._build_figure()
@@ -246,7 +249,15 @@ class BackgroundSelector(object):
             self.fig.canvas.mpl_connect('motion_notify_event', self._on_motion),
             self.fig.canvas.mpl_connect('pick_event', self._on_pick),
             self.fig.canvas.mpl_connect('key_press_event', self._on_key),
+            self.fig.canvas.mpl_connect('close_event', self._on_close),
         ]
+
+    def _on_close(self, event):
+        # R-BG-15: closing the window (x) without a button press = SKIP this
+        # detector (codifies the previous implicit behavior, where result stayed
+        # None and callers treated it as a skip). It does NOT abort the burst.
+        if self.result is None:
+            self.result = 'skip'
 
     def _is_normal_mode(self):
         toolbar = getattr(self.fig.canvas, 'toolbar', None)
@@ -256,12 +267,17 @@ class BackgroundSelector(object):
         return not mode
 
     def _on_press(self, event):
+        if self._busy:                        # refit in progress: drop, don't queue
+            self._press_x_pixel = None        # a swallowed press must not pair with
+            return                            # a post-refit release
         if not self._is_normal_mode():
             self._press_x_pixel = None
             return
         self._press_x_pixel = event.x
 
     def _on_release(self, event):
+        if self._busy:
+            return
         if not self._is_normal_mode():
             return
         if event.button != 1 or self._press_x_pixel is None:
@@ -273,6 +289,8 @@ class BackgroundSelector(object):
         self._add_click(self._snap_to_bin(event.xdata))
 
     def _on_motion(self, event):
+        if self._busy:
+            return
         if self.transient_line is not None:
             try: self.transient_line.remove()
             except Exception: pass
@@ -285,6 +303,8 @@ class BackgroundSelector(object):
         self.fig.canvas.draw_idle()
 
     def _on_pick(self, event):
+        if self._busy:
+            return
         if event.mouseevent.button != 1:
             return
         if event.artist is self.btn_clear:
@@ -453,59 +473,80 @@ class BackgroundSelector(object):
         if self.pre_interval is None or self.post_interval is None:
             return
 
-        self._set_status('Computing 3ML polyfit + residuals (~3-5 s)...')
-        self.fig.canvas.draw()
-        try: self.fig.canvas.flush_events()
-        except Exception: pass
-
-        bkg_rate, residuals = self._compute_3ml_polyfit_residuals()
-        if bkg_rate is None:
-            return
-
-        # Top: bkg rate curve
-        self.bkg_overlay_artist, = self.ax.plot(
-            self.bin_centers, bkg_rate, color='red', lw=1.3, alpha=0.9,
-            zorder=3, label='3ML polyfit bkg')
-
-        # Bottom: residual errorbars — matplotlib default style (no fmt),
-        # matches gtburst (dataHandling.py:2889 `errorbar(tmean, residuals,
-        # yerr=[1 for x in tmean])`).
+        # BUSY window (R-BG-13/14, fixes the TkAgg stuck-after-refit): the 3-5 s
+        # 3ML fit runs inside this event callback. While it runs, ALL user input
+        # is ignored AND dropped (the handler guards + the drain in `finally`),
+        # so held keys can't cascade refits, a click can't re-enter mid-compute,
+        # and Accept always acts on residuals the rater has actually seen.
+        self._busy = True
         try:
-            cont = self.ax_res.errorbar(
-                self.bin_centers, residuals,
-                yerr=np.ones_like(residuals),
-                color='black', ecolor='black', elinewidth=0.6, zorder=2,
-            )
-            self.resid_artists.append(cont[0])
-            for art in cont[1]: self.resid_artists.append(art)
-            for art in cont[2]: self.resid_artists.append(art)
-        except Exception:
-            pass
+            self._set_status('Refitting 3ML polyfit + residuals (~3-5 s)... '
+                             'input paused')
+            self.fig.canvas.draw_idle()
+            # one guarded pump so the status message PAINTS before the fit;
+            # any user events it dispatches are eaten by the _busy guards
+            try: self.fig.canvas.flush_events()
+            except Exception: pass
 
-        # gtburst y-limits: ylim(min(residuals), min(max(residuals), 10))
-        # i.e. let the bottom be whatever, cap the top at 10σ so the burst
-        # spike doesn't crush the bkg-region scatter. (dataHandling.py:2890)
-        finite = residuals[np.isfinite(residuals)]
-        if len(finite):
-            ymin = float(np.min(finite))
-            ymax = float(min(np.max(finite), 10.0))
-            # Pad a bit so error bars don't clip
-            self.ax_res.set_ylim(ymin - 1.0, ymax + 0.5)
+            bkg_rate, residuals = self._compute_3ml_polyfit_residuals()
+            if bkg_rate is None:
+                return                    # failure status already set upstream
 
-        # Summary: fraction of bkg-region bins within ±1σ
-        mask_pre = ((self.bin_centers >= self.pre_interval[0])
-                    & (self.bin_centers <= self.pre_interval[1]))
-        mask_post = ((self.bin_centers >= self.post_interval[0])
-                     & (self.bin_centers <= self.post_interval[1]))
-        bkg_mask = mask_pre | mask_post
-        bres = residuals[bkg_mask]
-        bres = bres[np.isfinite(bres)]
-        if len(bres):
-            frac = np.mean(np.abs(bres) < 1.0)
-            self._set_status(
-                f'3ML polyfit done. Bkg residuals: '
-                f'{100*frac:.0f}% within ±1σ over {len(bres)} bins. '
-                f'Burst should rise above zero in residuals.')
+            # Top: bkg rate curve
+            self.bkg_overlay_artist, = self.ax.plot(
+                self.bin_centers, bkg_rate, color='red', lw=1.3, alpha=0.9,
+                zorder=3, label='3ML polyfit bkg')
+
+            # Bottom: residual errorbars — matplotlib default style (no fmt),
+            # matches gtburst (dataHandling.py:2889 `errorbar(tmean, residuals,
+            # yerr=[1 for x in tmean])`).
+            try:
+                cont = self.ax_res.errorbar(
+                    self.bin_centers, residuals,
+                    yerr=np.ones_like(residuals),
+                    color='black', ecolor='black', elinewidth=0.6, zorder=2,
+                )
+                self.resid_artists.append(cont[0])
+                for art in cont[1]: self.resid_artists.append(art)
+                for art in cont[2]: self.resid_artists.append(art)
+            except Exception:
+                pass
+
+            # gtburst y-limits: ylim(min(residuals), min(max(residuals), 10))
+            # i.e. let the bottom be whatever, cap the top at 10σ so the burst
+            # spike doesn't crush the bkg-region scatter. (dataHandling.py:2890)
+            finite = residuals[np.isfinite(residuals)]
+            if len(finite):
+                ymin = float(np.min(finite))
+                ymax = float(min(np.max(finite), 10.0))
+                # Pad a bit so error bars don't clip
+                self.ax_res.set_ylim(ymin - 1.0, ymax + 0.5)
+
+            # Summary: fraction of bkg-region bins within ±1σ
+            mask_pre = ((self.bin_centers >= self.pre_interval[0])
+                        & (self.bin_centers <= self.pre_interval[1]))
+            mask_post = ((self.bin_centers >= self.post_interval[0])
+                         & (self.bin_centers <= self.post_interval[1]))
+            bkg_mask = mask_pre | mask_post
+            bres = residuals[bkg_mask]
+            bres = bres[np.isfinite(bres)]
+            if len(bres):
+                frac = np.mean(np.abs(bres) < 1.0)
+                self._set_status(
+                    f'3ML polyfit done. Bkg residuals: '
+                    f'{100*frac:.0f}% within ±1σ over {len(bres)} bins. '
+                    f'Burst should rise above zero in residuals.')
+        except Exception as exc:
+            # R-BG-16: never die silently — surface the error, keep the window
+            # usable (adjust, Clear, Skip and Quit still work).
+            self._set_status(f'Overlay failed: {type(exc).__name__}: '
+                             f'{str(exc)[:80]} — window still usable.')
+        finally:
+            # drain events queued during the fit WHILE still busy -> dropped
+            try: self.fig.canvas.flush_events()
+            except Exception: pass
+            self._busy = False
+            self.fig.canvas.draw_idle()
 
     def _set_status(self, msg):
         self.status_text.set_text(msg)
@@ -514,6 +555,8 @@ class BackgroundSelector(object):
         """Arrow-key micro-adjust of a background edge (09 UX, 4 edges).
         a/s = pre start/stop, d/f = post start/stop; ←/→ = ±1 bin,
         shift+←/→ = ±16 bins; esc exits. Residuals refit after each nudge."""
+        if self._busy:                        # refit in progress: drop key events
+            return
         EDGES = {'a': ('pre', 0), 's': ('pre', 1), 'd': ('post', 0), 'f': ('post', 1)}
         if event.key in EDGES:
             self._adjust_edge = EDGES[event.key]
