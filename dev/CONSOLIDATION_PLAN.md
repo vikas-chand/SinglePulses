@@ -21,6 +21,7 @@ Grounded in the 4-reader divergence-map workflow (2026-07-01).
 | Fast BB for >10⁶ events | **LATBright `s02p_bb_threeml_hybrid.py`** (astropy BB on 1-ms 3ML residuals) | Nowhere else — adopt as the big-burst option in the package |
 | 6-model spectral engine | Two_Breaks `10` (rsp2-collapse, validity gate, MINOS+Hessian) | Pulsewise 4-model per-pulse variant; LATBright 17-model + LLE/LAT joint + MINOS-profile — keep as extensions |
 | gtburst-faithful Cash polyfit / MAD imodpoly | **LATBright `gtburst_bkg.py` / `robust_polyfit.py`** (standalone, no hardcodes) | Package as utilities |
+| Source/emission interval (T_INT: trigger-logic start + bkg-merge end + re-emission) | **TBD — head-to-head Two_Breaks vs Pulsewise, keep the better** (Vikas 2026-07-10, AI_SCIENTIST_BLOCKS Block 4) | Both projects carry variants; one "did a pretty good job" |
 
 ## Platform sins to fix once, centrally (the Codex-trial lessons)
 - Hardcoded `/Users/salim/...` everywhere: CALDB paths (10, 08, 09, Pulsewise, LATBright),

@@ -362,7 +362,47 @@ enrichment (Tiers 1–2) is doc work, no code risk, can start now.
 
 ---
 
-## Blocks 4–9 — to be designed (walk in progress)
+## Block 4 — Source / emission interval  **[DESIGNED 2026-07-10]**
+
+**Contract**: background-subtracted LC (+ Block-3 background) → emission window
+[t1, t2], gated + stamped; feeds binning (Block 5) and fitting (Block 6).
+
+### Selection logic (Vikas, 2026-07-10) — inherit the instrument's own detection logic
+- **Start**: the **GBM trigger-algorithm logic itself** — rate exceeds background by
+  the trigger threshold — plus a safety margin before it. (Same inheritance move as
+  Blocks 2–3: the instrument team's logic, not our invention.)
+- **End**: where the emission **merges back into the background** — signal within
+  the last ~2–3σ of the background level.
+- **Re-emission rule**: emission recurring later above the σ-threshold → extend the
+  window to include it (multi-pulse / extended emission).
+- **Built and field-proven**: the T_INT algorithm (smoothed-rate threshold + Fermi
+  4.5σ noise floor + multi-pulse extension) — implementations exist in BOTH
+  Two_Breaks and PulsewiseAmatiYonetoku, one did "a pretty good job".
+  **Consolidation action: head-to-head the two, keep the better** (added to
+  CONSOLIDATION_PLAN matrix).
+
+### Approval loop
+Selected window rendered over the LC **with the background-subtracted residuals**
+→ human approves/adjusts in the GUI (source-marker rebuild per GUI_REQUIREMENTS
+R-SM-2..6, incl. real-time gap validation), or ai_vision pass-through (flag,
+stamped). AI-selected vs human-adjusted is exactly what the benchmark scores
+(edge-Δ/IoU, scripts/40 — built).
+
+### The guide
+Expert-authored rules markdown (Block-3 rulebook mechanism): margin sizes, σ
+thresholds, precursor and late-pulse handling, when the re-emission rule fires,
+slow-riser suspicion flags.
+
+### Tier 2 — future (explicitly NOT Round 1)
+**Slow-rising bursts** defeat threshold-crossing logic. Published approach exists:
+automatic burst detection via **physical background modeling + multi-detector,
+higher-dimensional LC analysis** (candidate reference to pin down in the Phase-0
+literature sweep — not named from memory). Rare in the single-pulse sample; real
+for Round 2. Pairs with Block 3's Tier-3 physical background.
+
+---
+
+## Blocks 5–9 — to be designed (walk in progress)
 Each gets its own section here as we discuss it, same depth as Blocks 0–1:
 regimes/contract → judgement points → guide contents → gate → benchmark metric →
 tooling (existing asset to port vs new) → OPEN items.
