@@ -192,8 +192,57 @@ end-to-end demonstration of the agent doing scientist-work.
 
 ---
 
-## Blocks 1–9 — to be designed (walk in progress)
-Each gets its own section here as we discuss it, same depth as Block 0:
+## Block 1 — Data acquisition  **[DESIGNED 2026-07-10]**
+
+**Contract**: trigger + dossier *facts* (position; instruments; LAT FoV geometry) →
+complete, versioned, locally resolved dataset + a frozen **data manifest**.
+
+### Rules (Vikas, 2026-07-10)
+1. **Availability first**: discover what exists for this burst, then fetch.
+2. **Most-recent versions, always** — especially response files (RSP/RSP2 updates
+   fix real bugs). Version-resolution rule: highest v## of each product.
+3. **TTE is the primary data** — event mode → arbitrary re-binning, which the
+   time-resolved analysis (Blocks 5–6) requires. CSPEC/CTIME are cross-checks and
+   the tail-fallback (below), not the primary.
+4. **LLE whenever available** → LLE time-resolved analysis (LATBright paradigm:
+   LLE BB blocks, cutoff evolution).
+5. **LAT utilized even when upper-limits-only** — standard likelihood in time bins;
+   ULs still constrain the broadband SED and cutoff/Ep evolution. Pull rule is
+   **geometric, not sociological**: fetch LAT/LLE whenever the burst was in the LAT
+   FoV at trigger (from FT2/trigdat), not only when a LAT detection was announced —
+   the ULs matter precisely for bursts nobody wrote a LAT GCN about.
+
+### The gate here = the manifest freeze (no human approval; it's plumbing)
+Acquisition ends by writing a **data manifest**: every file, version, checksum,
+source server, download timestamp — stamped into provenance. Re-analysis either
+reproduces the manifest or documents the version diff. (Closes the response-version
+reproducibility leak.) Completeness QC runs here too: all requested detectors' TTE
+present; RSP2 matrices span the analysis interval (the rsp2-collapse gotcha —
+handled in engine-10, must ship with the package).
+
+### Edge rules
+- TTE spans ~T0−25 → +300 s. Emission beyond that (rare in single-pulse; real in
+  Round 2) → **CSPEC continues the tail** — documented fallback, not improvisation.
+- Judgement content is near-zero by design; the one soft spot ("is this dataset
+  complete enough to proceed?") is a checklist in the guide, not free judgement.
+
+### Benchmark metric
+Not scored as judgement — scored as **operational reliability** across agentic
+systems: complete unaided acquisition, correct versions, sane failure handling.
+(The Codex trial already showed systems differ exactly here: env friction, path
+assumptions. Paper material for the operational-failure-modes section.)
+
+### Tooling
+Handbook `FermiFetcher` (TTE/CSPEC/RSP/trigdat + LAT dir) is the base. Extend with:
+POSHIST fetch (Two_Breaks `download_poshist`), LLE products (`gll_lle_*`,
+`gll_cspec_*lle` rsp), LAT FT1/FT2, the version-resolution rule, the Pulsewise
+multi-location resolver, and the manifest writer. `ensure_analysis_env()` already
+handles the platform side.
+
+---
+
+## Blocks 2–9 — to be designed (walk in progress)
+Each gets its own section here as we discuss it, same depth as Blocks 0–1:
 regimes/contract → judgement points → guide contents → gate → benchmark metric →
 tooling (existing asset to port vs new) → OPEN items.
 
