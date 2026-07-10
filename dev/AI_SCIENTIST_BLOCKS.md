@@ -169,6 +169,27 @@ CPL+BB, SBPL+BB, 2SBPL, cutoff variants, ...).
   physical-validity gates, nested/non-nested LRT rules — and additions to the
   *default* comparison set are a deliberate, documented decision, not automatic.
 
+### The model-space sweep is a PHASE-0 task, done BEFORE any fitting (Vikas, 2026-07-10)
+The registry is built **up front, in one sweep, before the pipeline models anything**
+— not accreted burst-by-burst. Reason: uniformity. If the registry grows mid-run,
+burst #1 is fit with fewer models than burst #106 and every population fraction is
+incoherent. The model space is the **third freeze** (alongside the frozen sample and
+the frozen tool commit).
+1. **Sweep**: papers on the 106 single-pulse bursts + the canonical prompt-emission
+   model literature → every model, with parametrization, bounds/seeds, nesting
+   relations, and the combination rules (which components may combine, e.g. +BB) —
+   enumerated up front, not ad hoc.
+2. **Freeze registry v1** (dated, versioned). ALL Round-1 fits use v1 identically.
+   New models published mid-run → v2, applied only in a documented re-run or
+   Round 2 — never mid-sample.
+3. **Implementability tier per model**: (i) in astromodels/3ML now, (ii) trivially
+   composable, (iii) needs real implementation (e.g. physical synchrotron). The
+   sweep records ALL; the frozen *fit set* = the implementable subset with the
+   deferred models explicitly listed — an auditable claim with stated exclusions.
+The sweep itself is a pure Block-0-type agentic literature task (search + grounded
+extraction, no instrument code) → **the program's first deliverable** and an early
+end-to-end demonstration of the agent doing scientist-work.
+
 ---
 
 ## Blocks 1–9 — to be designed (walk in progress)
