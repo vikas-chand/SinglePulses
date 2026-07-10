@@ -4,6 +4,11 @@ This project has two parts, run **in order**. Part 1 validates the analysis *met
 Part 2 uses the validated method to do the *science*. (Operational how-to for running
 anything is in `AGENTS.md`; this file is the map of *what the project is*.)
 
+> **Longer-term frame (2026-07-10):** both parts are Round 1 (single-pulse sample) of
+> the broader "GRB AI Scientist" program — block-by-block design in
+> `dev/AI_SCIENTIST_BLOCKS.md` (feeds `paper_agentic/`); Round 2 scales to the full
+> GBM catalog; the consolidated pipeline lives in the GRB_Handbook repo.
+
 ```
                 shared pipeline + data
   scripts/39 (gated approval) -> 27b (binning) -> 29/10 (fits) -> 31-38 (products)
