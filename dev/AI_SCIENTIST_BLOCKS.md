@@ -241,7 +241,54 @@ handles the platform side.
 
 ---
 
-## Blocks 2–9 — to be designed (walk in progress)
+## Block 2 — Detector selection  **[DESIGNED 2026-07-10]**
+
+**Contract**: position + POSHIST pointing → detector set, gated + stamped.
+
+### The rule source (Vikas, 2026-07-10): the Fermi GBM team's own published criteria
+Detector selection is deliberately **straightforward**: adopt the selection rules
+stated in the official GBM burst/spectral **catalog papers** (the Goldstein / Gruber
+/ von Kienlin / Poolakkil catalog series) as-is, with citations. Not our invention —
+the instrument team's prescription. Referee-proof by construction.
+
+- **Phase-0 extraction task** (small; same grounded-extraction machinery as the
+  model sweep): pull the exact selection text from each catalog generation —
+  angle threshold, max-N-detectors, blockage/occultation exclusions, BGO choice —
+  verbatim + cited. Catalog generations differ in details; the extraction decides
+  ONE documented convention. *No rule goes into the guide from memory — quote the
+  paper.*
+- **Known delta to resolve in that extraction**: our implemented rule
+  (NaI ≤50° pre-tick, code-cited to Goldstein+2012 conservative cut; BCAT rescue
+  50–60°; closest-BCAT fallback; same-side BGO; hemisphere GUI) vs the catalogs'
+  prescriptions — the catalogs also apply **blockage exclusions**
+  (spacecraft/LAT/solar-panel) that we do not compute; BCAT membership only
+  proxies it. Adopt exactly or document the deviation.
+
+### Judgement (shrunk by design)
+Rule application + a thin confirmation gate: borderline angles, suspected blockage,
+contaminating sources. The picker (hemisphere GUI / ai_vision) remains the approval
+instrument; seeds = the catalog rule's output.
+
+### Benchmark role: the CONTROL block
+Rule-based ⇒ inter-human scatter should be near-zero ⇒ if an agentic system can't
+match experts here, the failure is *operational*, not judgement — calibrates the
+whole leaderboard. Metric: detector-set Jaccard (scripts/40, built).
+
+### Freeze discipline
+The 25-burst benchmark keeps its frozen instrument (current Two_Breaks rules)
+regardless. The catalog-literal rule is frozen for the handbook pipeline's Round-1
+production; any delta vs the benchmark-era rule is documented, never silently
+harmonized mid-campaign.
+
+### Tooling
+POSHIST quaternion geometry (Two_Breaks `00_prototype`, verbatim across projects —
+pure library material) + hemisphere picker + gate: all built; port per
+`CONSOLIDATION_PLAN.md` (POSHIST canonical, TRIGDAT fallback). New: the blockage
+check *if* the extraction says the catalogs require it.
+
+---
+
+## Blocks 3–9 — to be designed (walk in progress)
 Each gets its own section here as we discuss it, same depth as Blocks 0–1:
 regimes/contract → judgement points → guide contents → gate → benchmark metric →
 tooling (existing asset to port vs new) → OPEN items.
