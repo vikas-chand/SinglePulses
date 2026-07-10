@@ -108,10 +108,13 @@ the "uniform" pipeline silently diverges from the published methods.
 
 ## Decisions
 **When**: go parallel — DECIDED 2026-07-02 (benchmark frozen; package built alongside).
-**Background-order convention (needs Vikas):** the handbook has BIC(0–4) *and* LRT(9);
-the Two_Breaks/Pulsewise papers describe **LRT, order ≤3**. To keep the handbook
-consistent with the published methods, standardize on **LRT ≤3** and retire/relabel
-BIC. Affects the binning/fitting ports (Phase 3), not the clean adds — so not blocking
-yet, flagged for when Phase 3 lands.
+**Background-order convention — DECIDED 2026-07-10 (Vikas): follow gtburst.**
+Source-verified from the bundled gtburst (`GtBurst/dataHandling.py:2996–3043`,
+`_fitGlobalAndDetermineOptimumGrade`): channel-summed counts, grades **0–4**,
+successive-grade **LRT** `2·ΔlogL ≥ 9.0` (≈3σ/1 dof), best = highest justified else 0.
+⇒ `utils/gtburst_bkg.py` (`select_grade_lrt`, threshold 9.0) is already the faithful
+implementation and becomes THE convention; **retire/relabel `gbm_analysis.py`'s
+BIC(0–4) path at the Phase-3 port.** (My earlier "papers use LRT ≤3" phrasing was
+imprecise — the frozen rule is gtburst's 0–4.)
 **Angles**: POSHIST canonical (matches the papers), TRIGDAT the fallback — defaulting
 this unless told otherwise.

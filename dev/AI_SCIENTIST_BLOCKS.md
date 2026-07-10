@@ -335,10 +335,17 @@ interpolation entirely. Roadmap item for later rounds; Round 1 stays
 interval-selection + polynomial — the method the papers, the benchmark, and the
 expert panel all use.
 
-### Convention to freeze (still OPEN — Vikas)
-Background polynomial order selection: **LRT ≤3** (the published Two_Breaks/
-Pulsewise method) vs the handbook's internal BIC(0–4). Must be ONE documented
-choice before the binning/fitting ports (consolidation Phase 3).
+### Convention DECIDED 2026-07-10 (Vikas): follow gtburst
+Background polynomial order = **whatever gtburst does** — same inheritance move as
+Block 2 (adopt the instrument-standard tool's convention, don't invent one).
+**Source-verified** (bundled gtburst, `GtBurst/dataHandling.py:2996–3043`,
+`_fitGlobalAndDetermineOptimumGrade`): fit channel-summed counts over the bkg
+intervals with grades **0–4**; successive-grade **LRT** `2·ΔlogL ≥ 9.0` (Wilks
+≈3σ/1 dof); best grade = highest justified, else 0. Consequences: the handbook's
+`utils/gtburst_bkg.py` (`select_grade_lrt`, threshold 9.0) is already the faithful
+implementation → becomes THE convention; `gbm_analysis.py`'s BIC(0–4) path is
+retired/relabeled at the consolidation Phase-3 port. (Supersedes the imprecise
+"LRT ≤3" note in CONSOLIDATION_PLAN.)
 
 ### Benchmark metric
 Edge-Δ + IoU per window vs the expert panel (scripts/40, built) with inter-human
@@ -364,6 +371,6 @@ tooling (existing asset to port vs new) → OPEN items.
 | Decision | Owner | Blocks |
 |---|---|---|
 | ~~(a) vs (b) for published regime~~ **DECIDED**: uniform-first headline; reconcile-on-disagreement diagnostic + literature model registry | — | 0, 6, 8 |
-| Background polynomial convention **LRT ≤3** vs BIC(0–4) | Vikas | 3 (+ consolidation Phase 3) |
+| ~~Background polynomial convention~~ **DECIDED**: follow gtburst — successive-grade LRT 2·ΔlogL≥9, grades 0–4 (source-verified `dataHandling.py:2996–3043`); retire the BIC path at Phase-3 port | — | 3 |
 | R-BG-18 width rule warn-vs-block (GUI_REQUIREMENTS) | Vikas | 3 |
 | GUI OPEN items (R-GL-7, R-DP-7, R-BG-19, R-SM-3/6) | Khushboo | 2–4 |
