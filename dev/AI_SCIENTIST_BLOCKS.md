@@ -286,9 +286,76 @@ pure library material) + hemisphere picker + gate: all built; port per
 `CONSOLIDATION_PLAN.md` (POSHIST canonical, TRIGDAT fallback). New: the blockage
 check *if* the extraction says the catalogs require it.
 
+### Addenda (Vikas, 2026-07-10)
+- **The pass-through flag, polished to perfect**: the user chooses per run whether
+  AI-preselected detectors **auto-pass** (stamped `ai_vision`, no GUI opens) or must
+  go through the GUI (`human_gui`). The mechanism exists (scripts/39
+  `APPROVAL_MODE`); it needs polish until it "just works" — the user asks for a
+  mode, the AI runs that mode, the stamp records it. Applies to Blocks 2–4 alike.
+- **gtburst parity in the picker**: the detector panel must also offer **LLE and
+  LAT** as selectable entries (gtburst's detector list has them; ours stops at
+  n0–nb/b0/b1). Pairs with Block 1's geometric LAT pull rule.
+
 ---
 
-## Blocks 3–9 — to be designed (walk in progress)
+## Block 3 — Background modeling  **[DESIGNED 2026-07-10]**
+
+**Contract**: per-detector LC (+ manifest) → pre/post background windows +
+polynomial background, gated + stamped. **The judgement-heaviest block** — window
+placement against orbital trends is where inter-human scatter concentrates.
+
+### Current mechanism (built, benchmark-frozen)
+Render LC PNGs → **AI vision** proposes windows (or human draws them in the
+BackgroundSelector GUI) → gate stamps `ai_vision`/`human_gui` + `WINDOW_SOURCE` →
+3ML two-stage polyfit + residual panel for the approval judgement. Same
+pass-through flag as Block 2: user picks the mode, stamp records it.
+
+### Three-tier design (Vikas, 2026-07-10)
+**Tier 1 — the expert rulebook (the guide).** `dev/ai_guides/background_selection.md`
+grows into a real skill: *what a background is* (pedagogy for the agent), then
+concrete expert-authored placement rules — how the pre-GRB interval is chosen,
+where the burst is expected to be, how the post interval is chosen, what widths
+(~50–150 s/side). The archetype rule (already field-proven): **"if the light curve
+cuts off abruptly at the end, never place a window there"** — written down once,
+and the AI applied it correctly thereafter. That is the guide mechanism working:
+human expertise enters the pipeline as written rules, versioned in git.
+
+**Tier 2 — the phenomenology atlas (Phase-0 extraction task #3).** The GBM
+*physical* background literature (candidate ref: the Biltzinger et al. physical
+background model for GBM — verify in extraction) describes what real backgrounds
+look like: orbital modulation, SAA proximity, cosmic-ray components, source
+occultation steps. Extract the **shapes** into the guide so the agent can
+*recognize* background behavior from the LC/arrays **without fitting the physical
+model** — "this ramp is orbital, don't fight it with a wide window"; "that step is
+an occultation, exclude it." Pattern recognition grounded in published physics.
+
+**Tier 3 — future robust upgrade (explicitly NOT Round 1).** Actually *fit* the
+physical background model to derive the background, replacing interval
+interpolation entirely. Roadmap item for later rounds; Round 1 stays
+interval-selection + polynomial — the method the papers, the benchmark, and the
+expert panel all use.
+
+### Convention to freeze (still OPEN — Vikas)
+Background polynomial order selection: **LRT ≤3** (the published Two_Breaks/
+Pulsewise method) vs the handbook's internal BIC(0–4). Must be ONE documented
+choice before the binning/fitting ports (consolidation Phase 3).
+
+### Benchmark metric
+Edge-Δ + IoU per window vs the expert panel (scripts/40, built) with inter-human
+scatter as the denominator; plus the downstream-impact check — does the bkg choice
+shift fitted parameters beyond their uncertainties? Papers rarely publish exact bkg
+windows ⇒ for the published regime, background is scored mostly *through* its
+downstream effect (Blocks 5–6 agreement), not window-vs-window.
+
+### Tooling
+BackgroundSelector GUI + render/ai_vision + gate: built (post-fix commit e4ee786).
+Merge in Pulsewise `bkg_select.py` best features (χ²ᵣ overlay, dropout detection —
+the "abrupt cut" rule's algorithmic sibling) per CONSOLIDATION_PLAN. Guide
+enrichment (Tiers 1–2) is doc work, no code risk, can start now.
+
+---
+
+## Blocks 4–9 — to be designed (walk in progress)
 Each gets its own section here as we discuss it, same depth as Blocks 0–1:
 regimes/contract → judgement points → guide contents → gate → benchmark metric →
 tooling (existing asset to port vs new) → OPEN items.
