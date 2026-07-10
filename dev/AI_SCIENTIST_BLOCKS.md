@@ -140,12 +140,34 @@ citations/values — has bitten us before). **Every extracted field quotes its s
   `skills/gcn_intelligence.md` workflow (its `gcn_measurements.csv` schema is the
   seed — extend with `source_tier` + convention columns), and the FXT GCN workflow.
 
-### OPEN (Vikas): benchmark mode for the published regime
-(a) pipeline does its **own independent** analysis per our generic guides, compare
-outcomes — the honest "can AI do GRB analysis" test; or (b) additionally a
-**match-their-choices** run (same bands/model/intervals) isolating execution from
-method-choice. Recommendation: **(a) headline, (b) optional diagnostic**. Changes
-what the extractor must capture, so decide before building the card schema.
+### DECIDED 2026-07-10 (Vikas): uniform-first, reconcile-on-disagreement
+- **(a) is the headline**: the pipeline analyzes every burst **uniformly with our
+  correct statistical methods**, blind to the paper (firewall above); outcomes are
+  compared at Block 8. This is both the honest "can AI do GRB analysis" test and
+  what keeps Round-1 population statistics coherent.
+- **(b) is the diagnostic, triggered by disagreement**: when Block 8 finds a real
+  (convention-matched) difference, re-run with *their* choices — bands, intervals,
+  model, statistic — and ask **"can we reconcile to them?"** Two outcomes, both
+  reportable: *reconciled* → the difference was method-choice, now quantified
+  (systematic method-sensitivity across the literature); *not reconciled* → an
+  execution discrepancy to investigate (theirs or ours). In-house precedent: the
+  Burgess 130427A reproduction (`notes/burgess_reproduction_findings.md`).
+- Extractor consequence: the reproduction card must capture choices at
+  re-run fidelity (exact intervals/bands/model parametrization/statistic), since
+  any card may later drive a reconciliation run.
+
+### The literature model registry (Vikas, 2026-07-10)
+Block 0's extractor also **harvests every spectral model encountered across the
+published works** into a growing registry — model name, parametrization,
+conventions (e.g. Ep-vs-E0 form), and which papers used it. Block 6 draws on this
+registry: our core set + literature-harvested models **+ combinations** (Band+BB,
+CPL+BB, SBPL+BB, 2SBPL, cutoff variants, ...).
+- **Seeds that already exist**: engine-10 `MODEL_SPECS` (6 models, Two_Breaks) and
+  the LATBright 17-model engine variant (+ LLE/LAT joint) — registry entries #1.
+- **Guard (statistical discipline)**: a bigger model zoo must not become
+  model-fishing. Registry models run under the SAME selection doctrine — ΔAIC≥10,
+  physical-validity gates, nested/non-nested LRT rules — and additions to the
+  *default* comparison set are a deliberate, documented decision, not automatic.
 
 ---
 
@@ -157,7 +179,7 @@ tooling (existing asset to port vs new) → OPEN items.
 ## Open decisions ledger
 | Decision | Owner | Blocks |
 |---|---|---|
-| (a) independent vs (b) +match-their-choices for published regime | Vikas | 0, 8 |
+| ~~(a) vs (b) for published regime~~ **DECIDED**: uniform-first headline; reconcile-on-disagreement diagnostic + literature model registry | — | 0, 6, 8 |
 | Background polynomial convention **LRT ≤3** vs BIC(0–4) | Vikas | 3 (+ consolidation Phase 3) |
 | R-BG-18 width rule warn-vs-block (GUI_REQUIREMENTS) | Vikas | 3 |
 | GUI OPEN items (R-GL-7, R-DP-7, R-BG-19, R-SM-3/6) | Khushboo | 2–4 |
