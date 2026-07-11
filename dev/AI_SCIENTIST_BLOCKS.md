@@ -445,7 +445,58 @@ Round 2. LLE blocks reuse 5b unchanged (the binner is detector-agnostic).
 
 ---
 
-## Blocks 6–9 — to be designed (walk in progress)
+## Block 6 — Spectral analysis  **[DESIGNED 2026-07-10]**
+
+**Contract**: bins (Block 5) + per-bin data prep (source spectrum, background
+spectrum, responses; EAC frozen-ref) → per-bin model fits, comparison verdicts,
+fluxes, parameter evolution — all **within 3ML**.
+
+### Layer A — the doctrine run (deterministic; judgement thin)
+Everything per 3ML's own well-laid documentation — a fourth instance of the
+inheritance principle (convention source = the framework's docs):
+- **Simple models first, then more complicated** (PL → CPL → Band → SBPL → 2SBPL →
+  +BB / +components), over the **frozen registry v1** (Block 0's model sweep).
+- **MLE** (pgstat) + the locked comparison doctrine: ΔAIC≥10, physical-validity
+  gates, nested/non-nested LRT rules, multi-start seeds (BB seed-poisoning lesson).
+- **Asymmetric errors** via 3ML profile likelihood (MINOS-style — LATBright
+  already runs MINOS-profile).
+- **Residual inspection per fit**: distributed around zero vs systematic trend —
+  checked numerically AND by vision (as done in LATBright).
+- Built: engine-10 (6 models, validity gate, rsp2-collapse) + LATBright 17-model
+  variant (+ LLE/LAT joint) — merge under registry v1.
+
+### Layer B — the residual-discovery loop (the "scientist" capability)
+**If ALL registry models leave a coherent trend in the residuals, something extra
+is being asked for — and the engine should find it.** The AI (vision + arrays)
+classifies the trend; a **markdown trend-taxonomy guide** (expert-authored, like
+Block 3's rulebook) maps residual phenomenology → candidate components:
+- **High-energy overestimate** (model above data, e.g. Band with no cutoff near
+  ~100 MeV) → add a **cutoff or break**. *Grounded + implemented*:
+  LATBright `s04e_ravasio_cutoff.py` (+ `Ravasio_CutoffInsights.pdf` on disk).
+- **Localized excess / bump** → add a **Gaussian line**. *Grounded*: the Ravasio
+  et al. MeV emission line (~10–12 MeV), modeled with a Gaussian —
+  `Ravasio_MeV.pdf` on disk (Science; GRB 221009A). Had one only fit standard
+  models, the line would appear exactly as a residual trend — the archetype.
+- **Low-energy excess** → thermal (+BB) or additional low-E component; **deficit /
+  absorption-like** trends likewise mapped.
+The engine then fits registry+extra and re-compares.
+
+### The statistical guard on discovery (non-negotiable)
+An added component must pass the SAME doctrine as everything else — and **line-like
+discoveries additionally require trials/look-elsewhere accounting** (as the Ravasio
+analysis did) plus our **adversarial verification** (independent refute-agents)
+before any "extra component found" claim is reported. Discovery is the highest-risk
+judgement in the pipeline; it gets the heaviest verification.
+
+### Benchmark
+Published regime: parameter agreement within joint uncertainties + model-choice
+agreement via the reproduction card (reconcile-on-disagreement applies). Panel
+regime: bins are shared, so fits compare directly. Discovery-loop claims are scored
+only against refereed confirmations — never auto-credited.
+
+---
+
+## Blocks 7–9 — to be designed (walk in progress)
 Each gets its own section here as we discuss it, same depth as Blocks 0–1:
 regimes/contract → judgement points → guide contents → gate → benchmark metric →
 tooling (existing asset to port vs new) → OPEN items.
