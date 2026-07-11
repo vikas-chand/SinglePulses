@@ -402,7 +402,50 @@ for Round 2. Pairs with Block 3's Tier-3 physical background.
 
 ---
 
-## Blocks 5–9 — to be designed (walk in progress)
+## Block 5 — Temporal analysis  **[DESIGNED 2026-07-10]**
+
+**Contract**: source interval + background (Blocks 3–4) → T90, time bins for
+spectroscopy, and temporal characterization (MVT, lag, pulse parameters).
+
+### Round 1 (tools in hand)
+- **5a. T90 first** — needs only source interval + background, so it precedes the
+  blocks. Recomputed from the **background-subtracted LC**; never the catalog value
+  (standing doctrine: catalog T90 must not seed anything).
+- **5b. Hybrid binning (the core)** — 3ML Bayesian blocks **in the source interval**
+  with `use_background=True` → per-block **significance** (3ML Significance class)
+  → merge blocks below the floor. Built + validated: `scripts/27b` (current floor
+  5σ, user-set). *"How much significance to keep?"* → **Phase-0 extraction task
+  #4**: literature search for BB + significance-merge practice; ground the floor in
+  cited precedent, not fiat.
+- **5c. MVT** — reuse the codes already used in LATBright (existing pipelines;
+  easy). Single-pulse now; the same tools serve everything in Round 2.
+- **5d. Spectral lag** — LATBright toolkit; tools available; include.
+- **5e. Pulse fitting** — fit the (single) pulse with the **Norris** model + the
+  **Gowri et al. 2025** shape (Gowri, Pe'er, Ryde & Dereli-Bégué 2025, ApJ,
+  arXiv:2409.17860 — verified: already implemented as `gowri_pulse()` in LATBright
+  `GRB260226A/s02d_channelwise_lag.py`, their Eq. 1, 5 params/pulse; used for the
+  GRB260226A 8-pulse fit) → rise/decay/asymmetry parameters reported per burst.
+
+### Round 2 (explicitly deferred)
+**MEPSA** + pulse **counting** — relevant when multi-pulse bursts enter (the
+Pulsewise / single-vs-rest methodology); meaningless for a sample that is
+single-pulse by construction.
+
+### Judgement & benchmark
+Thin by design: the binning is deterministic given Blocks 3–4 (judgement was
+upstream); the real choices are the significance floor (literature-grounded, then
+frozen) and the pulse-model set (registry). Benchmark: cross-system consistency of
+bin edges/N_blocks; vs published papers the binning is compared through the
+reproduction card (their binning choice is a method field, not ground truth).
+
+### Tooling
+`27b` built; T90-from-subtracted-LC partially exists (T_INT machinery); MVT / lag /
+pulse-fit code in LATBright (port per consolidation); MEPSA wrapper exists for
+Round 2. LLE blocks reuse 5b unchanged (the binner is detector-agnostic).
+
+---
+
+## Blocks 6–9 — to be designed (walk in progress)
 Each gets its own section here as we discuss it, same depth as Blocks 0–1:
 regimes/contract → judgement points → guide contents → gate → benchmark metric →
 tooling (existing asset to port vs new) → OPEN items.
