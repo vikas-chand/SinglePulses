@@ -535,7 +535,83 @@ timelines) are rule-based (doctrine) so they are scoreable, not vibes.
 
 ---
 
-## Blocks 8–9 — to be designed (walk in progress)
+## Block 8 — Cross-check & QC  **[DESIGNED 2026-07-10]**
+*(Drafted from the decisions settled in Block 0; corrections welcome.)*
+
+**Contract**: our Block 1–7 outputs + the reproduction card → convention-matched
+agreement report + QC flags.
+- **Arbitration** (decided): per burst + quantity, score against the highest-trust
+  reference available — **paper ≻ expert panel ≻ GCN**; coverage inverts, so GCNs
+  carry the population-scale check where nothing better exists.
+- **Convention matching BEFORE comparison**: quantities compared only under matched
+  interval/band/model definitions (the card's convention fields); otherwise the
+  "disagreement" is noise. Comparisons within joint uncertainties.
+- **Reconcile-on-disagreement** (decided): real difference → re-run with their
+  choices → reconciled (method-sensitivity, quantified) or not (execution
+  discrepancy — theirs or ours — investigated and reported).
+- **QC flagging**: the `qc_flagging.md` guide (exists) — data anomalies, railed
+  fits, validity-gate fallbacks — flags feed back to the responsible block.
+- **Discovery claims** (Block 6 Layer B) are scored ONLY against refereed
+  confirmations; never auto-credited.
+- Outputs: per-burst agreement table + the population-level leaderboard
+  (scripts/40 machinery generalized beyond Stage-1 selections).
+
+---
+
+## Block 9 — Report + provenance  **[DESIGNED 2026-07-10]**
+
+**Contract**: everything → a comprehensive **per-burst report**, "from beginning to
+end" (the GRB260226A-style full-burst analysis is the in-house model), plus
+machine-readable tables.
+
+### Report structure (Vikas, 2026-07-10)
+1. **Identity & regime**: is this burst previously published / GCN-only / brand new
+   ("no GCNs — still a new burst, and we started to analyze it") — the Block-0
+   regime stated up front, with the dossier.
+2. **Selections, proven with figures**: per-detector background intervals — *all*
+  the figures, "very nicely there, to check and verify and prove"; the source
+  interval; the duration/T90.
+3. **Binning**: how the blocks were made — blocks nicely laid over the LC,
+   per-block significance shown.
+4. **Spectral analysis per block**: fits, comparisons, evolution figures.
+5. **Population perspective (closes the report)**: after the burst is analyzed
+   *independently*, place it against the population — how it is alike or different
+   from other bursts (Block 7d machinery).
+6. **Full provenance**: every stamp (`APPROVED_BY/MODE/WINDOW_SOURCE/tool_commit`),
+   the data manifest, every decision.json — the report is re-runnable end-to-end.
+
+### Figures & captions
+Every figure publication-grade (house style), captioned via **CaptionHelper**
+(exists: `~/Desktop/Projects/CaptionHelper`, retrieval over ~1,100 papers'
+figure–caption pairs — the established caption-writing protocol).
+
+---
+
+## Cross-cutting addition — the GRB knowledge layer (RAG)  **(Vikas, 2026-07-10)**
+Generalize the CaptionHelper pattern **beyond captions**: a larger indexed library
+of GRB papers + retrieval ("we did RAG there — here too") that assists the
+*analysis itself* — Blocks 6–8 pull method precedents and comparison samples;
+Block 9 pulls figure/caption/phrasing conventions; Block 0's extractors write INTO
+it (reproduction cards, model registry, rule extractions become indexed knowledge).
+One knowledge substrate under the whole pipeline.
+
+---
+
+## The program ladder beyond Round 1 (Vikas, 2026-07-10) — future blocks
+Recorded now, designed later; each step reuses the same block template:
+1. **Prompt, Fermi wideband** (GBM+LLE+LAT) — Rounds 1–2, this document.
+2. **Joint Swift+Fermi prompt** — BAT joined into the prompt fits when available.
+3. **Prompt→afterglow transition** — XRT joined; the transition story must be
+   consistent across the boundary.
+4. **Afterglow proper** — multiband/multiwavelength LCs (XRT, optical, radio):
+   MCMC (PyMultiNest) or 3ML-wrapped **afterglowpy** models with **various jet
+   structures** (tophat/Gaussian/power-law structured jets — published precedents
+   exist for afterglowpy fits; refs via the knowledge layer).
+5. **Joint prompt+afterglow** — tie parameters across phases (prompt-derived
+   parameters constrain the afterglow model); full-story consistency.
+6. **Multi-messenger** — neutrino counterpart analysis (IceCube; Murase-style
+   frameworks and colleagues' recent work as precedents) and VHE follow-up
+   (H.E.S.S./MAGIC) when observations exist.
 Each gets its own section here as we discuss it, same depth as Blocks 0–1:
 regimes/contract → judgement points → guide contents → gate → benchmark metric →
 tooling (existing asset to port vs new) → OPEN items.
