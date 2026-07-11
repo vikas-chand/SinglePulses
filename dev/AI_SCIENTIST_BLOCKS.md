@@ -496,7 +496,46 @@ only against refereed confirmations — never auto-credited.
 
 ---
 
-## Blocks 7–9 — to be designed (walk in progress)
+## Block 7 — Derived science  **[DESIGNED 2026-07-10]**
+
+**Contract**: Blocks 5–6 outputs (+ dossier z) → evolution analysis, physical
+parameters, correlation placement, population context. Interpretation-heavy [🧠] —
+every quantitative claim follows the locked doctrines; narrative claims cite the
+numbers behind them.
+
+- **7a. Parameter evolution (per burst)** — Ep(t), spectral indices, kT(t),
+  flux(t); classify **intensity-tracking vs hard-to-soft** per the locked
+  rise-phase doctrine; qualitative narratives reported as findings: harder→softer
+  (or reverse), **thermal component present early then gone** (or appearing late),
+  component hand-offs. Scored against the reproduction card's parameter-evolution
+  field (designed for exactly this).
+- **7b. Thermal physics when +BB wins** — photospheric radius, Lorentz factor etc.
+  from the BB observables, following the classic 2007 thermal-component method
+  (candidate: Pe'er et al. 2007 — pin the exact ref in the Phase-0 sweep).
+- **7c. Amati / Yonetoku (z-known bursts only)** — time-integrated; one figure,
+  "not super necessary always". **The outlier question is the science**: are our
+  rest-frame Ep / Eiso points consistent within the correlations' scatter, or
+  genuine outliers — assessed as distance in population-σ, never by eye.
+- **7d. The uniformity dividend** — the same method on every burst ⇒ our parameter
+  sample is internally coherent: distributions, in-sample correlations (Ep–kT, ...)
+  studied within our own sample AND overplotted on the published sample studies
+  (photospheric-model samples; the physical-synchrotron sample fits — exact refs
+  identified in the Phase-0 sweep). This generalizes the Part-2/two_break logic:
+  uniform method is what makes population statements meaningful.
+- **7e. Physical models — future.** **Vikas has an active project implementing a
+  physical synchrotron model in 3ML**; when available it joins the registry
+  (implementability tier iii→i) and 7a–7d re-run over it. Until then this block is
+  explicitly empirical-models-only.
+
+### Benchmark
+Per-burst: evolution statements vs the reproduction card (papers ≻ panel ≻ GCNs).
+Population: our uniform-sample distributions vs published sample studies —
+convention-matched via Block 8. Narrative classifications (IT/HTS, component
+timelines) are rule-based (doctrine) so they are scoreable, not vibes.
+
+---
+
+## Blocks 8–9 — to be designed (walk in progress)
 Each gets its own section here as we discuss it, same depth as Blocks 0–1:
 regimes/contract → judgement points → guide contents → gate → benchmark metric →
 tooling (existing asset to port vs new) → OPEN items.
