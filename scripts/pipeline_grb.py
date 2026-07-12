@@ -65,7 +65,7 @@ def main():
     ap.add_argument('--trigger', required=True)
     ap.add_argument('--ref', help='reference (brightest) NaI; default = first NaI')
     ap.add_argument('--source', nargs=2, type=float, metavar=('T1', 'T2'),
-                    help='emission window (manual until Block-4 T_INT is ported)')
+                    help='emission window (manual override; default is auto T_INT discovery)')
     ap.add_argument('--sigma-floor', type=float, default=5.0)
     ap.add_argument('--block', type=int, default=None,
                     help='fit only this block index (default: the most significant)')
@@ -78,20 +78,35 @@ def main():
     dets = sorted(windows)
     nai = [d for d in dets if d.startswith('n')]
     ref = args.ref or (nai[0] if nai else dets[0])
-    src = args.source
-    if src is None:
-        # crude default emission span inside the gap (Block-4 T_INT not yet ported)
-        gap_lo = max(w['pre'][1] for w in windows.values())
-        gap_hi = min(w['post'][0] for w in windows.values())
-        src = [max(gap_lo + 1.0, -2.0), min(gap_hi - 1.0, 30.0)]
-    print(f'windows: {cat}  detectors={dets}  ref={ref}  source={src}')
+    gap_lo = max(w['pre'][1] for w in windows.values())
+    gap_hi = min(w['post'][0] for w in windows.values())
+    print(f'windows: {cat}  detectors={dets}  ref={ref}  gap=[{gap_lo:.1f},{gap_hi:.1f}]')
 
-    # --- binning (grb.HybridBinner == frozen scripts/27b, parity-verified) ---
+    # ref TSB (used for both source discovery and binning)
     from threeML.utils.data_builders import TimeSeriesBuilder
     tte, rsp = find_files(args.trigger, ref)
     tsb = TimeSeriesBuilder.from_gbm_tte(ref, tte, rsp_file=rsp, verbose=False)
     pre, post = windows[ref]['pre'], windows[ref]['post']
     tsb.set_background_interval(f'{pre[0]}-{pre[1]}', f'{post[0]}-{post[1]}')
+
+    # --- Block 4: source window, AUTO-discovered (grb T_INT) or manual override ---
+    if args.source:
+        src = args.source
+        print(f'\nsource (manual override): {src}')
+    else:
+        from grb_pipeline.analysis.source_interval import discover_source_window
+        band = (8.0, 900.0) if ref.startswith('n') else (250.0, 40000.0)
+        si = discover_source_window(tsb, rsp, gap_lo, gap_hi, band=band)
+        if si.window is None:                       # no signal -> full gap (fallback)
+            src = [gap_lo, gap_hi]
+            print(f'\nsource: NO SIGNAL found -> full gap {src} (flag={si.flag})')
+        else:
+            src = list(si.window)
+            print(f'\nsource (auto T_INT): [{src[0]:.2f}, {src[1]:.2f}]  '
+                  f'peak={si.t_peak:.2f}  err=({si.t_start_err:.2f},'
+                  f'{si.t_stop_err:.2f})  flag="{si.flag or "ok"}"')
+
+    # --- binning (grb.HybridBinner == frozen scripts/27b, parity-verified) ---
     blocks = HybridBinner(sigma_floor=args.sigma_floor).bin(tsb, src[0], src[1])
     print(f'\nbinning: {len(blocks.starts)} blocks (sigma_floor={args.sigma_floor})')
     for i, (s, e, sg) in enumerate(zip(blocks.starts, blocks.stops,
