@@ -1024,8 +1024,45 @@ def render_lc_png(trigger, det, t90_start, t90, outpath):
     centers = 0.5 * (bins[:-1] + bins[1:])
     rate = counts / LC_BIN_S
 
+    # --- selection AID: robust imodpoly_mad baseline + data-derived transient ---
+    # A MAD-clipped polynomial baseline (pybaselines-style, LATBright robust_polyfit)
+    # tracks only the background; the excess above it marks the transient, leaving
+    # the clean-background regions visible. DATA-DERIVED (not a catalog T90) — an aid
+    # the rater applies the rules to, not a mandate.
+    baseline = None
+    tr_lo = tr_hi = None
+    try:
+        from importlib.util import spec_from_file_location, module_from_spec
+        _sp = spec_from_file_location('robust_baseline', os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), 'robust_baseline.py'))
+        _rb = module_from_spec(_sp)
+        _sp.loader.exec_module(_rb)
+        if len(rate) >= 8:
+            baseline = _rb.imodpoly_mad(centers, rate, poly_order=5, num_std=1.0)
+            resid = rate - baseline
+            med = float(np.median(resid))
+            sig = 1.4826 * float(np.median(np.abs(resid - med))) or 1.0
+            above = resid > (med + 5.0 * sig)          # 5-sigma MAD excess
+            if above.any():
+                ipk = int(np.argmax(resid))
+                lo = ipk
+                while lo > 0 and above[lo - 1]:
+                    lo -= 1
+                hi = ipk
+                while hi < len(above) - 1 and above[hi + 1]:
+                    hi += 1
+                tr_lo, tr_hi = float(bins[lo]), float(bins[hi + 1])
+    except Exception:
+        baseline = None
+
     fig, ax = plt.subplots(figsize=(11, 4.5))
-    ax.step(centers, rate, where='mid', color='black', lw=0.7)
+    ax.step(centers, rate, where='mid', color='black', lw=0.7, label='light curve')
+    if baseline is not None:
+        ax.plot(centers, baseline, color='tab:orange', lw=1.2, alpha=0.9,
+                label='imodpoly_mad baseline')
+    if tr_lo is not None:
+        ax.axvspan(tr_lo, tr_hi, color='tab:red', alpha=0.10,
+                   label='transient (data excess)')
     ax.set_xlabel('Time since trigger (s)', fontsize=11)
     ax.set_ylabel(r'Counts s$^{-1}$', fontsize=11)
     ax.set_title(
@@ -1033,6 +1070,8 @@ def render_lc_png(trigger, det, t90_start, t90, outpath):
         fontsize=11,
     )
     ax.set_xlim(tmin, tmax)
+    if baseline is not None:
+        ax.legend(loc='upper right', fontsize=8, framealpha=0.85)
     ax.grid(alpha=0.25, lw=0.4)
     fig.tight_layout()
     fig.savefig(outpath, dpi=120, bbox_inches='tight')

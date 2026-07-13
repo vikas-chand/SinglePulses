@@ -17,14 +17,15 @@
 Read the PNG. The burst is the obvious excess above a roughly flat floor. You are picking baseline ON EITHER SIDE of it.
 
 SELECT a window where ALL of these hold:
-- **Flat / very slowly varying** count rate — visually a horizontal band, no slope.
+- **Same locally-smooth regime on both sides** — NOT necessarily literally flat. A *gentle, coherent* slope is fine if one low-order curve through both windows would plausibly continue under the burst. Reject only genuine structure — steps, turnovers, strong exponential curvature (recognize these via the **physics reference** at the end of this guide, not just "looks non-flat").
 - **No peaks above the local mean** inside it — no precursor, sub-burst, late tail, or single-bin spike.
 - **Width 50-150 s per side, aim ~80-120 s** (STRICT). Too wide picks up orbital curvature and over-constrains the fit; too narrow under-constrains the polynomial. At 1.024-s bins that is ~50-150 bins.
-- **Buffer ≥ T90/5 from the burst edge** so the burst tail does not leak in. With no catalog T90, estimate the burst's visible extent from the LC and keep a clear gap (tens of seconds for a long burst).
+- **Buffer from the burst edge** so the burst tail does not leak in — keep a clear gap (tens of seconds for a long burst). Estimate the burst's visible extent **from the LC excess itself**, NEVER a catalog/GCN T90: T90 is an OUTPUT of this pipeline (derived later, from the background-subtracted LC), so it cannot inform this step; and Stage 1 consumes **no** GCN/catalog quantity at all — this pipeline is a GCN *producer*, not a consumer (a GCN is itself a human quick-look; depending on it defeats the purpose).
+- **Nearest clean baseline — interpolate, don't extrapolate.** Use the NEAREST clean 50–150 s stretch on each side, so the polynomial INTERPOLATES the baseline *under* the burst rather than extrapolating across a large gap. Do NOT place a window hundreds of seconds away just because it looks flatter there — a distant window sits on a *different part of the slowly-varying physical baseline* (different orbital phase / particle rate) and corrupts the fit under the burst. Operationally: with near-edge gaps `g_pre = source_start − pre_stop` and `g_post = post_start − source_stop`, require `0 ≤ g_pre, g_post ≤ G_max`, **`G_max = min(200 s, max(50 s, 2 × D_vis))`** where `D_vis` is the burst's visible extent from the LC. *(This cap is a pipeline POLICY, not from the physics; frozen for the benchmark.)* If a hard fast feature blocks every window within `G_max`, do NOT silently relax it — abstain/flag.
 - **Far from orbital features** — avoid broad rises/falls, SAA-like rate steps, Earth-limb ramps.
 
 AVOID (move elsewhere / pick the flattest part and flag) if ANY:
-- Rising or falling trend across the window → slide further from the burst.
+- Rising or falling trend across the window → prefer a **shorter clean window closer in** over sliding far; only slide well past the burst if a **hard** contaminant (sub-pulse, occultation step, SAA-exit tail) blocks the near region, and FLAG it. A distant flat window that forces the polynomial to extrapolate is worse than a shorter near one.
 - Sub-burst / precursor > ~3σ above local floor → pick the other side, or skip past it.
 - Hot bin / single-bin spike → shift the window so it is excluded.
 - Step change in rate → keep the window entirely on ONE side of the step.
@@ -33,6 +34,39 @@ AVOID (move elsewhere / pick the flattest part and flag) if ANY:
 Time-order rule: the EARLIER window is `pre`, the LATER is `post`. Both must be strictly increasing (`t2>t1`, `t4>t3`), non-overlapping with `t3 >= t2`, and the burst (the eventual source window) must fall in the gap `[t2, t3]` — validation requires `pre_stop <= source.t1 < source.t2 <= post_start`.
 
 Seed handling (`suggested_bkg`): treat it as a starting proposal, not ground truth. If it already satisfies all criteria, accept it verbatim → `window_source: "accepted_suggestion"`. If you nudge edges → `"adjusted"`. If no seed existed or you discard it and pick fresh → `"drawn_fresh"`.
+
+## The aids drawn on the light curve (use them, then apply the rules above)
+Each PNG now carries two **data-derived** aids (no catalog/GCN input, so consistent
+with "identify the burst from the data alone"):
+- **`imodpoly_mad` baseline (orange)** — a MAD-robust polynomial that tracks ONLY the
+  background (it clips the burst; LATBright `robust_polyfit`, pybaselines-style).
+  Read it as the physical baseline: **if it's a gentle ramp, the background is a slow
+  component (orbital/particle) — put your windows ON that ramp, NEAR the burst, so
+  the polynomial interpolates.** A flat stretch far away is a *different* baseline
+  level — don't chase it (this is the exact trap that made two AI raters diverge).
+- **transient shade (red)** — the >5σ (MAD) excess above the baseline = the burst.
+  Use it to locate the emission and the clean background on each side. It is an AID,
+  not a mandate: extend/trim by eye for a precursor or soft tail, and still choose the
+  discrete windows by the rules above.
+
+## Reference: the physics of the GBM background (Biltzinger et al. 2020, A&A 640, A8)
+The background is an **additive superposition** of physical components — recognize the
+*shape*, don't just seek "flat":
+- **Slow → locally flat on the burst timescale → this IS your baseline:** cosmic
+  γ-ray background (<5–10% orbital wobble, §3.3.4), cosmic rays (~96-min orbit,
+  §3.3.5), Earth albedo (~96-min, §3.3.3), constant (§3.3.1). A gentle ramp under the
+  burst is usually one of these — fine to sit on, *near* the burst.
+- **Fast / recognizable → AVOID (and the reason you sometimes must move):**
+  - **SAA exit** — a step up after an off-gap, then a **bi-exponential decay** (fast
+    ~min, slow ~hours; §3.3.2, Eq. 4). *The* trap: a window on the decay is not a
+    stationary baseline — the paper shows four defensible selections near an SAA exit
+    giving four *different* baselines (Fig. 15).
+  - **Occultation step** — a bright point source (e.g. Crab) blocked by Earth → a
+    sharp level change, mostly <100 keV (§3.3.6). Keep both windows on ONE side.
+  - **Solar flare** — an exponential tail (episodic; §3.3.7). Exclude it.
+  - **Data gap** — detectors off in SAA → a literal gap. Never window across it.
+  *(SAA timescales are stated as the paper states them — "~min / hours"; the exact
+  constants are fit per event. Do not invent numbers.)*
 
 ## Output contract (write into `results/approval/<trigger>_decision.json`)
 Add one entry per approved detector to `"windows"`:

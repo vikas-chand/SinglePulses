@@ -27,6 +27,7 @@ BGO companion rule (pick the same-side BGO of the kept NaIs):
 - Any kept NaI in {n0,n1,n2,n3,n4,n5} (low side) → add `b0`.
 - Any kept NaI in {n6,n7,n8,n9,na,nb} (high side) → add `b1`.
 - Keep a BGO only if it has ≥1 kept same-side NaI. Do not keep both BGOs unless NaIs span both sides.
+- **The NaI angle cut (≤50° / 50–60° rescue) does NOT apply to BGOs.** A BGO's own `angle_deg` is IRRELEVANT to keeping it — include it iff it has ≥1 kept same-side NaI (companion rule above), even when its angle is >50° (BGOs are wide-FoV; a b1 at 54° stays if a high-side NaI is kept). Never drop a companion BGO on an angle argument. *(Clarified 2026-07-12 after a consensus-pilot disagreement where one pass mis-applied the NaI cut to a BGO.)*
 
 Visual confirmation in the light curve (this is where your judgement overrides the angle prior):
 - KEEP a pre-ticked detector if the PNG shows a clear count-rate EXCESS over baseline at the burst time (a coherent bump/peak, not a single hot bin). The lower the angle, the larger the expected S/N — a low-angle NaI with a flat, featureless LC is suspicious (wrong source position, occulted, or a data gap).
