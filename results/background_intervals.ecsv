@@ -16,482 +16,482 @@
 # - {name: WINDOW_SOURCE, datatype: string}
 # schema: astropy-2.0
 TRIGGER_NAME DETECTOR BKG_NEG_START BKG_NEG_STOP BKG_POS_START BKG_POS_STOP SRC_START SRC_STOP DET_ANGLE APPROVED_BY APPROVED_UTC APPROVAL_MODE WINDOW_SOURCE
-bn081125496 na -120.0 -3.0 20.0 140.0 -1.7 11.9 35.46769835891064 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081125496 nb -120.0 -3.0 20.0 140.0 -1.7 11.9 57.019163116814326 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081125496 b1 -120.0 -3.0 20.0 140.0 -1.7 11.9 54.49912915510641 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081222204 n0 -120.0 -5.0 25.0 105.0 -1.16 16.48 29.562790335279796 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081222204 n1 -120.0 -5.0 25.0 105.0 -1.16 16.48 7.064862152608307 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081222204 n2 -120.0 -5.0 25.0 105.0 -1.16 16.48 40.648479344414014 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081222204 b0 -120.0 -5.0 25.0 105.0 -1.16 16.48 62.115648905477286 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081224887 n0 -24.0 -8.0 40.0 140.0 -0.65 14.17 25.414528385321947 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081224887 n1 -24.0 -8.0 40.0 140.0 -0.65 14.17 46.25630752771867 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081224887 n6 -24.0 -8.0 40.0 140.0 -0.65 14.17 28.23784150917978 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081224887 n7 -24.0 -8.0 40.0 140.0 -0.65 14.17 50.35451517464177 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081224887 n9 -24.0 -8.0 40.0 140.0 -0.65 14.17 27.768746418409197 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081224887 b0 -24.0 -8.0 40.0 140.0 -0.65 14.17 101.2319703858044 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn081224887 b1 -24.0 -8.0 40.0 140.0 -0.65 14.17 78.76802961419558 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090530760 b0 -29.7 -5.0 130.0 210.0 -1.0 120.0 8.713458761239696 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090530760 n1 -29.7 -5.0 140.0 220.0 -1.0 120.0 51.24893374864954 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090530760 n2 -29.7 -5.0 145.0 225.0 -1.0 120.0 52.789480263029944 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090530760 n3 -29.7 -5.0 140.0 220.0 -1.0 120.0 58.56684627329145 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090530760 n5 -29.7 -5.0 145.0 225.0 -1.0 120.0 6.689900984863154 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090620400 n6 -32.654 -17.944 52.696 132.696 -0.91 18.27 38.69744260802459 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090620400 n7 -32.654 -17.944 52.696 132.696 -0.91 18.27 17.290498407516715 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090620400 n8 -32.654 -17.944 52.696 132.696 -0.91 18.27 41.526138617748096 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090620400 nb -32.654 -17.944 52.696 132.696 -0.91 18.27 39.91746385324871 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090620400 b1 -32.654 -17.944 52.696 132.696 -0.91 18.27 41.83265475316555 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090719063 n8 -29.5 -1.5 52.44 132.44 -0.91 24.0 3.266948906191077 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision drawn_fresh
-bn090719063 n7 -29.5 -1.5 52.44 132.44 -0.91 24.0 42.649204926424304 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision drawn_fresh
-bn090804940 n3 -31.016 -20.76 49.88 129.88 -0.908 10.332 49.07153415231867 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090804940 n4 -31.016 -20.76 49.88 129.88 -0.908 10.332 38.839216832953504 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090804940 n5 -31.016 -20.76 49.88 129.88 -0.908 10.332 21.475304570952158 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090804940 b0 -31.016 -20.76 49.88 129.88 -0.908 10.332 18.15908106950942 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090809978 n3 -24.764 -2.5 51.16 131.16 -0.3 15.5 35.95369727539812 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090809978 n4 -24.764 -2.5 51.16 131.16 -0.3 15.5 14.13709781718912 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090809978 n5 -24.764 -2.5 51.16 131.16 -0.3 15.5 49.86280490295609 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090809978 b0 -24.764 -2.5 51.16 131.16 -0.3 15.5 46.62600318548043 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090829672 n0 -23.533 -7.448 213.464 293.464 29.0 92.0 55.851615044946904 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090829672 n6 -23.533 -7.448 213.464 293.464 29.0 92.0 46.7423329265622 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090829672 n7 -23.533 -7.448 213.464 293.464 29.0 92.0 53.58602867919715 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090829672 n9 -23.533 -7.448 213.464 293.464 29.0 92.0 10.50348060072025 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090829672 na -23.533 -7.448 213.464 293.464 29.0 92.0 47.80575351578754 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090829672 nb -23.533 -7.448 213.464 293.464 29.0 92.0 52.31631894397925 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090829672 b0 -23.533 -7.448 213.464 293.464 29.0 92.0 129.90416622699382 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn090829672 b1 -23.533 -7.448 213.464 293.464 29.0 92.0 50.0958337730062 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn091209001 n4 -30.0 -5.0 123.0 203.0 -5.0 27.0 27.492873548432865 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn091209001 b0 -30.0 -5.0 123.0 203.0 -5.0 27.0 63.63993946183697 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100122616 n6 -26.0 13.0 45.0 135.0 16.0 34.0 48.217124380988864 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100122616 n7 -26.0 13.0 45.0 135.0 16.0 34.0 56.77439219990363 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision drawn_fresh
-bn100122616 n9 -26.0 13.0 45.0 135.0 16.0 34.0 6.700740616609272 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100122616 na -26.0 13.0 45.0 135.0 16.0 34.0 46.06800846594269 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100122616 b1 -26.0 13.0 45.0 135.0 16.0 34.0 53.16443928281128 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100130729 n0 -32.0 48.0 150.0 240.0 58.0 97.0 54.02887232752548 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100130729 n3 -32.0 48.0 150.0 240.0 58.0 97.0 6.5891288866960736 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100130729 n4 -32.0 48.0 150.0 240.0 58.0 97.0 42.6759914250431 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100130729 b0 -32.0 48.0 150.0 240.0 58.0 97.0 63.946777004054894 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100612726 n3 -31.4 -3.0 20.0 130.0 -1.5 15.0 46.65119886309818 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100612726 n4 -31.4 -3.0 20.0 130.0 -1.5 15.0 30.906590823163345 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100612726 n7 -31.4 -3.0 20.0 130.0 -1.5 15.0 52.92750706033149 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100612726 n8 -31.4 -3.0 20.0 130.0 -1.5 15.0 40.04178083119601 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100612726 b0 -31.4 -3.0 20.0 130.0 -1.5 15.0 85.22324244190766 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100612726 b1 -31.4 -3.0 20.0 130.0 -1.5 15.0 94.77675755809236 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100614498 n6 -24.0 -14.0 30.0 150.0 -13.0 16.0 47.04396574808682 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100614498 n7 -24.0 -14.0 30.0 150.0 -13.0 16.0 48.31141188515504 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100614498 n9 -24.0 -14.0 30.0 150.0 -13.0 16.0 20.388600965759707 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100614498 nb -24.0 -14.0 30.0 150.0 -13.0 16.0 43.055041394668436 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100614498 b1 -24.0 -14.0 30.0 150.0 -13.0 16.0 41.12389414021797 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100707032 n8 -24.0 -3.0 40.0 140.0 -2.0 32.0 7.323684561520599 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100707032 n7 -24.0 -3.0 40.0 140.0 -2.0 32.0 47.40033196618205 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn100707032 b1 -24.0 -3.0 40.0 140.0 -2.0 32.0 63.92502627195854 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101126198 n6 -30.0 -3.0 40.0 140.0 -2.0 30.0 44.19787482799729 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101126198 n7 -30.0 -3.0 40.0 140.0 -2.0 30.0 21.859856754702633 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101126198 n8 -30.0 -3.0 40.0 140.0 -2.0 30.0 38.0582555869419 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101126198 nb -30.0 -3.0 40.0 140.0 -2.0 30.0 35.662778367441796 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101126198 b1 -30.0 -3.0 40.0 140.0 -2.0 30.0 37.900768895726195 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101225377 n7 -27.0 70.0 112.0 240.0 77.0 102.0 55.331979292592024 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101225377 n8 -27.0 70.0 112.0 240.0 77.0 102.0 29.60092705239815 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101225377 nb -27.0 70.0 112.0 240.0 77.0 102.0 26.270739085471945 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn101225377 b1 -27.0 70.0 112.0 240.0 77.0 102.0 29.88934210976266 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110605183 n2 -30.5 -3.5 40.0 130.0 -2.0 35.0 21.483166717143693 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110605183 n5 -30.5 -3.5 40.0 130.0 -2.0 35.0 47.85007550994475 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110605183 b0 -30.5 -3.5 40.0 130.0 -2.0 35.0 50.778443093139444 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110618366 n2 -86.808 -6.808 127.192 207.192 -4.875999999999998 60.63600000000006 56.769832318815716 "Vikas Chand" 2026-07-13T15:12:56Z human_gui accepted_suggestion
-bn110618366 b0 -86.808 -6.808 127.192 207.192 -4.875999999999998 60.63600000000006 81.8132885078877 "Vikas Chand" 2026-07-13T15:12:56Z human_gui accepted_suggestion
-bn110721200 n6 -33.5 -1.0 40.5 140.0 -0.9 40.5 30.287279487522614 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110721200 n7 -33.5 -1.0 40.5 140.0 -0.9 40.5 31.80711023220933 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110721200 n9 -33.5 -1.0 40.5 140.0 -0.9 40.5 29.579618689417963 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110721200 nb -33.5 -1.0 40.5 140.0 -0.9 40.5 49.36822571474778 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110721200 b1 -33.5 -1.0 40.5 140.0 -0.9 40.5 48.851609161613524 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110920546 b0 -19.53 -3.5 240.0 290.0 -2.5 120.0 79.08626080239954 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110920546 b1 -19.53 -3.5 240.0 290.0 -2.5 120.0 100.9137391976005 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110920546 n0 -19.53 -3.5 240.0 290.0 -2.5 120.0 26.958494423005973 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110920546 n1 -19.53 -3.5 240.0 290.0 -2.5 120.0 48.40622379490637 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110920546 n3 -19.53 -3.5 240.0 290.0 -2.5 120.0 28.847887263258286 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110920546 n6 -19.53 -3.5 240.0 290.0 -2.5 120.0 25.33268170347864 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110920546 n7 -19.53 -3.5 240.0 290.0 -2.5 120.0 47.676985715939104 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110928180 n0 -98.328 -18.328 115.672 195.672 -3.0 42.0 39.70594746727605 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110928180 n1 -98.328 -18.328 115.672 195.672 -3.0 42.0 51.76851952331178 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110928180 n3 -98.328 -18.328 115.672 195.672 -3.0 42.0 9.439242334637818 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110928180 n4 -98.328 -18.328 115.672 195.672 -3.0 42.0 55.31221715572602 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110928180 n6 -98.328 -18.328 115.672 195.672 -3.0 42.0 44.63784511336131 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110928180 b0 -98.328 -18.328 115.672 195.672 -3.0 42.0 60.723192674109 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn110928180 b1 -98.328 -18.328 115.672 195.672 -3.0 42.0 119.27680732589099 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn111009282 n0 -27.88 -2.5 45.0 145.0 -1.6 20.5 15.616224994993475 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn111009282 n1 -27.88 -2.5 45.0 145.0 -1.6 20.5 10.446852423142143 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn111009282 b0 -27.88 -2.5 45.0 145.0 -1.6 20.5 62.69069317171187 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn111017657 n6 -31.0 -3.0 45.0 135.0 -1.0 15.0 20.405573416126824 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn111017657 n7 -31.0 -3.0 45.0 135.0 -1.0 15.0 13.922242717709443 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn111017657 n8 -31.0 -3.0 45.0 135.0 -1.0 15.0 56.84517947046933 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn111017657 n9 -31.0 -3.0 45.0 135.0 -1.0 15.0 46.75045147920321 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn111017657 b1 -31.0 -3.0 45.0 135.0 -1.0 15.0 55.87613649106207 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120102095 n3 -30.0 -3.0 22.0 120.0 -1.5 15.0 42.75902282562188 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120102095 n4 -30.0 -3.0 22.0 120.0 -1.5 15.0 21.05798117736408 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120102095 n5 -30.0 -3.0 22.0 120.0 -1.5 15.0 39.420046091307945 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120102095 b0 -30.0 -3.0 22.0 120.0 -1.5 15.0 36.0959426314234 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120119170 n9 -32.0 -2.0 55.0 145.0 -1.0 47.0 43.66437706548219 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120119170 na -32.0 -2.0 55.0 145.0 -1.0 47.0 50.576681237160415 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120119170 nb -32.0 -2.0 55.0 145.0 -1.0 47.0 18.393197250057426 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120119170 b1 -32.0 -2.0 55.0 145.0 -1.0 47.0 16.160540762255525 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120130938 n0 -28.0 -5.0 32.0 132.0 -3.0 26.0 40.02697115473061 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120130938 n1 -28.0 -5.0 32.0 132.0 -3.0 26.0 40.11551621764791 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120130938 n9 -28.0 -5.0 32.0 132.0 -3.0 26.0 25.53358871333576 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120130938 na -28.0 -5.0 32.0 132.0 -3.0 26.0 46.291446176847316 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120130938 b0 -28.0 -5.0 32.0 132.0 -3.0 26.0 97.97952206874223 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120130938 b1 -28.0 -5.0 32.0 132.0 -3.0 26.0 82.02047793125776 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120420858 n4 -104.472 -24.472 109.528 189.528 -2.0 48.0 43.12879673571136 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn120420858 n8 -104.472 -24.472 109.528 189.528 -2.0 48.0 31.10231086180354 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn120420858 b0 -104.472 -24.472 109.528 189.528 -2.0 48.0 96.81274571121389 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn120420858 b1 -104.472 -24.472 109.528 189.528 -2.0 48.0 83.18725428878612 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn120624933 n0 -29.5 -3.0 35.0 155.0 -2.0 28.0 52.22918356290163 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120624933 n1 -29.5 -3.0 35.0 155.0 -2.0 28.0 36.86984992310694 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120624933 n2 -29.5 -3.0 35.0 155.0 -2.0 28.0 30.074813625268373 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120624933 n9 -29.5 -3.0 35.0 155.0 -2.0 28.0 50.678174516242834 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120624933 na -29.5 -3.0 35.0 155.0 -2.0 28.0 48.005806088289376 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120624933 b0 -29.5 -3.0 35.0 155.0 -2.0 28.0 80.59653435397331 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120624933 b1 -29.5 -3.0 35.0 155.0 -2.0 28.0 99.40346564602672 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120905657 n6 -94.488 -14.488 119.512 199.512 -2.0 110.0 51.53096596312768 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120905657 n7 -94.488 -14.488 119.512 199.512 -2.0 110.0 53.128321097048584 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120905657 n9 -94.488 -14.488 119.512 199.512 -2.0 110.0 19.227860097808247 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120905657 na -94.488 -14.488 119.512 199.512 -2.0 110.0 45.41729771176376 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120905657 nb -94.488 -14.488 119.512 199.512 -2.0 110.0 42.90827474951111 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120905657 b1 -94.488 -14.488 119.512 199.512 -2.0 110.0 40.58312588881312 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120919309 n0 -33.0 -4.0 15.0 115.0 -2.0 14.0 43.15475808733427 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120919309 n1 -33.0 -4.0 15.0 115.0 -2.0 14.0 22.744689817900415 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120919309 n2 -33.0 -4.0 15.0 115.0 -2.0 14.0 41.93772883063072 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120919309 n3 -33.0 -4.0 15.0 115.0 -2.0 14.0 57.80772926492234 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120919309 n5 -33.0 -4.0 15.0 115.0 -2.0 14.0 35.10600863681625 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn120919309 b0 -33.0 -4.0 15.0 115.0 -2.0 14.0 37.33052494454604 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130215063 n1 -99.864 -19.864 114.136 194.136 -2.5 42.0 50.491539085270205 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn130215063 n2 -99.864 -19.864 114.136 194.136 -2.5 42.0 20.967445009849083 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn130215063 na -99.864 -19.864 114.136 194.136 -2.5 42.0 44.88355471024185 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn130215063 b0 -99.864 -19.864 114.136 194.136 -2.5 42.0 79.04590573138086 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn130215063 b1 -99.864 -19.864 114.136 194.136 -2.5 42.0 100.95409426861914 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn130310840 n9 -91.544 -11.544 44.76 124.76 2.0 12.0 32.060857048770124 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130310840 na -91.544 -11.544 44.76 124.76 2.0 12.0 27.084244513568432 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130310840 nb -91.544 -11.544 44.76 124.76 2.0 12.0 39.17560793971833 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130310840 b1 -91.544 -11.544 44.76 124.76 2.0 12.0 35.62215516837505 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130427324 n0 -98.0 -18.0 190.0 280.0 -1.0 61.0 47.46687985381774 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130427324 n6 -98.0 -18.0 190.0 280.0 -1.0 61.0 53.24436768528805 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130427324 n9 -98.0 -18.0 190.0 280.0 -1.0 61.0 6.416098636529359 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130427324 na -98.0 -18.0 190.0 280.0 -1.0 61.0 43.18038965620413 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130427324 b0 -98.0 -18.0 190.0 280.0 -1.0 61.0 116.04563513211242 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130427324 b1 -98.0 -18.0 190.0 280.0 -1.0 61.0 63.95436486788754 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130518580 n3 -83.0 -3.0 104.0 184.0 8.0 68.0 25.213856467878653 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130518580 n4 -83.0 -3.0 104.0 184.0 8.0 68.0 53.731957130877866 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130518580 n6 -83.0 -3.0 104.0 184.0 8.0 68.0 32.435380277536495 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130518580 n7 -83.0 -3.0 104.0 184.0 8.0 68.0 36.49540479986748 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130518580 b0 -83.0 -3.0 104.0 184.0 8.0 68.0 84.66757372979691 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn130518580 b1 -83.0 -3.0 104.0 184.0 8.0 68.0 95.3324262702031 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn131113483 n1 -115.0 -5.0 72.0 172.0 -1.0 62.0 45.39034939578557 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn131113483 n2 -115.0 -5.0 72.0 172.0 -1.0 62.0 3.6203313693100805 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn131113483 n5 -115.0 -5.0 72.0 172.0 -1.0 62.0 51.485283715623254 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn131113483 b0 -115.0 -5.0 72.0 172.0 -1.0 62.0 54.835563371524536 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn140608153 n0 -115.0 -30.0 95.0 180.0 -4.0 78.0 47.36748359487918 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn140608153 n1 -115.0 -30.0 95.0 180.0 -4.0 78.0 43.458267235379445 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn140608153 n9 -115.0 -30.0 95.0 180.0 -4.0 78.0 30.130799343471136 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn140608153 na -115.0 -30.0 95.0 180.0 -4.0 78.0 39.96689948314075 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn140608153 b0 -115.0 -30.0 95.0 180.0 -4.0 78.0 98.04367027390927 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn140608153 b1 -115.0 -30.0 95.0 180.0 -4.0 78.0 81.95632972609073 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150202999 n0 -95.0 -25.0 35.0 125.0 -3.0 22.0 9.1743436415278 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150202999 n1 -95.0 -25.0 35.0 125.0 -3.0 22.0 30.77797719094298 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150202999 n3 -95.0 -25.0 35.0 125.0 -3.0 22.0 40.311647847387135 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150202999 b0 -95.0 -25.0 35.0 125.0 -3.0 22.0 74.07663788178805 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150213001 n6 -90.52 -10.52 27.864 107.864 -1.5 13.0 56.68896822124268 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150213001 n7 -90.52 -10.52 27.864 107.864 -1.5 13.0 31.54906630288167 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150213001 n8 -90.52 -10.52 27.864 107.864 -1.5 13.0 13.548776007040624 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150213001 nb -90.52 -10.52 27.864 107.864 -1.5 13.0 50.69513279894369 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150213001 b1 -90.52 -10.52 27.864 107.864 -1.5 13.0 54.183617779479476 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150306993 n4 -94.616 -14.616 50.392 130.392 -1.7 32.0 49.80139250323184 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150306993 b0 -94.616 -14.616 50.392 130.392 -1.7 32.0 63.87946744663953 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150630223 n4 -91.0 -11.0 43.0 124.0 -2.0 23.0 23.03062367807444 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150630223 n5 -95.0 -11.0 43.0 130.0 -2.0 23.0 56.45347310244442 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150630223 b0 -91.0 -11.0 44.0 124.0 -2.0 23.0 53.389437989747464 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150721242 n6 -89.5 -9.5 49.88 129.88 -1.2 31.0 42.827886573595315 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150721242 n7 -89.5 -9.5 49.88 129.88 -1.2 31.0 17.248924517636333 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150721242 n8 -89.5 -9.5 45.0 125.0 -1.2 31.0 28.026519768640824 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150721242 nb -89.5 -9.5 40.0 110.0 -1.2 31.0 50.371674311916294 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150721242 b1 -89.5 -9.5 49.88 129.88 -1.2 31.0 53.24540148245489 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150902733 n0 -88.216 -8.216 44.248 124.248 -1.0 40.0 30.097235946759007 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn150902733 n1 -88.216 -8.216 44.248 124.248 -1.0 40.0 36.1421527703526 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn150902733 n3 -88.216 -8.216 60.0 140.0 -1.0 40.0 24.37602428038865 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn150902733 b0 -88.216 -8.216 44.248 124.248 -1.0 40.0 53.351246187348956 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn151006413 n0 -100.632 -20.632 113.368 193.368 -1.3 42.0 23.32866367179607 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn151006413 n1 -100.632 -20.632 113.368 193.368 -1.3 42.0 33.320287608517724 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn151006413 n3 -100.632 -20.632 113.368 193.368 -1.3 42.0 27.90385966095057 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn151006413 n5 -100.632 -20.632 113.368 193.368 -1.3 42.0 59.66780263376729 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn151006413 b0 -100.632 -20.632 113.368 193.368 -1.3 42.0 59.63581441817512 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn151021791 na -101.528 -21.528 49.112 129.112 -1.5 11.0 7.447157595762291 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn151021791 n9 -101.528 -21.528 49.112 129.112 -1.5 11.0 38.67630487402844 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn151021791 b1 -101.528 -21.528 49.112 129.112 -1.5 11.0 56.27076459729845 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160330827 n9 -106.0 -26.0 75.0 155.0 -1.5 30.0 45.942769800314956 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160330827 na -106.0 -26.0 50.0 130.0 -1.5 30.0 21.47311839408236 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160330827 nb -106.0 -26.0 50.0 130.0 -1.5 30.0 38.53667594914303 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160330827 b1 -106.0 -26.0 50.0 130.0 -1.5 30.0 34.80172082178995 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160625945 n6 91.24 171.24 229.592 309.592 182.644 225.884 31.9518429638955 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160625945 n7 91.24 171.24 229.592 309.592 182.644 225.884 34.318694638922516 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160625945 n9 91.24 171.24 229.592 309.592 182.644 225.884 27.198292144559932 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160625945 nb 91.24 171.24 229.592 309.592 182.644 225.884 49.29624453605682 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160625945 b1 91.24 171.24 229.592 309.592 182.644 225.884 48.56527347658735 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160910722 n0 -90.0 -10.0 69.8 149.8 -1.9 42.3 53.94028818632385 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160910722 n1 -90.0 -10.0 69.8 149.8 -1.9 42.3 35.85730465749259 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160910722 n2 -90.0 -10.0 69.8 149.8 -1.9 42.3 46.50643328316468 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160910722 n3 -90.0 -10.0 69.8 149.8 -1.9 42.3 55.93551040260667 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160910722 n5 -90.0 -10.0 69.8 149.8 -1.9 42.3 21.977479248253886 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn160910722 b0 -90.0 -10.0 69.8 149.8 -1.9 42.3 24.04733484026805 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114833 n7 -103.0 -23.0 70.0 150.0 -2.0 40.0 57.323921513995494 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114833 n9 -103.0 -23.0 70.0 150.0 -2.0 40.0 39.971063286393324 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114833 na -103.0 -23.0 70.0 150.0 -2.0 40.0 44.679864242049575 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114833 nb -103.0 -23.0 70.0 150.0 -2.0 40.0 22.689846322956498 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114833 b1 -103.0 -23.0 70.0 150.0 -2.0 40.0 19.78806792245871 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114917 n1 -94.36 -14.36 45.272 125.272 -0.9 20.0 42.23597199643886 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114917 n2 -94.36 -14.36 45.272 125.272 -0.9 20.0 17.726967663605357 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114917 na -94.36 -14.36 45.272 125.272 -0.9 20.0 51.498296854566675 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114917 b0 -94.36 -14.36 45.272 125.272 -0.9 20.0 73.29314605883015 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170114917 b1 -94.36 -14.36 45.272 125.272 -0.9 20.0 106.70685394116987 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170921168 n2 -90.264 -10.264 82.904 162.904 -0.908 45.0 20.991996064425223 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn170921168 b0 -90.264 -10.264 82.904 162.904 -0.908 45.0 66.98583315263626 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171013350 n0 -98.0 -18.0 50.0 150.0 -2.4 37.5 45.57165630592545 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171013350 n1 -98.0 -18.0 50.0 150.0 -2.4 37.5 22.19700485114325 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171013350 n2 -98.0 -18.0 50.0 150.0 -2.4 37.5 34.123939196164756 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171013350 n5 -98.0 -18.0 50.0 150.0 -2.4 37.5 38.3103320843966 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171013350 b0 -98.0 -18.0 50.0 150.0 -2.4 37.5 41.004563271145805 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171210493 n0 -100.0 -15.0 100.0 190.0 -1.0 50.0 33.771652709215275 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171210493 n1 -100.0 -15.0 100.0 190.0 -1.0 50.0 21.571132796928307 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171210493 n2 -100.0 -15.0 100.0 190.0 -1.0 50.0 41.397795599811566 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171210493 n9 -100.0 -15.0 100.0 190.0 -1.0 50.0 45.53507160341038 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171210493 b0 -100.0 -15.0 100.0 190.0 -1.0 50.0 76.97639169469474 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn171210493 b1 -100.0 -15.0 100.0 190.0 -1.0 50.0 103.02360830530527 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180426549 nb -8.5 -1.0 7.0 20.0 -0.5 6.5 34.94820405434931 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180426549 b1 -8.5 -1.0 7.0 20.0 -0.5 6.5 35.00066484157948 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180427442 n4 -90.0 -10.0 53.72 133.72 -0.908 41.052 45.77505338773713 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180427442 b0 -90.0 -10.0 53.72 133.72 -0.908 41.052 68.20243506984885 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180703876 n6 -91.288 -11.288 52.952 132.952 -3.0 33.0 23.68207737052101 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180703876 n7 -91.288 -11.288 52.952 132.952 -3.0 33.0 2.121320635296775 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180703876 n8 -91.288 -11.288 52.952 132.952 -3.0 33.0 46.9313063764772 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180703876 b1 -91.288 -11.288 52.952 132.952 -3.0 33.0 60.67606897951589 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180720213 n3 -90.52 -10.52 31.96 111.96 -1.7 16.0 36.792799819739756 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180720213 n4 -90.52 -10.52 31.96 111.96 -1.7 16.0 41.5423535215432 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180720213 n5 -90.52 -10.52 31.96 111.96 -1.7 16.0 26.30495512501186 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180720213 b0 -90.52 -10.52 31.96 111.96 -1.7 16.0 23.873256193419525 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180723757 n8 -90.008 -10.008 41.944 121.944 -0.908 35.5 44.715423193306094 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180723757 nb -90.008 -10.008 41.944 121.944 -0.908 35.5 53.60189432931352 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180723757 b1 -90.008 -10.008 41.944 121.944 -0.908 35.5 55.990212948305576 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180724807 na -101.784 -21.784 55.0 135.0 -2.0 48.0 40.930477073530504 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180724807 nb -101.784 -21.784 55.0 135.0 -2.0 48.0 29.047868717235378 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180724807 b1 -101.784 -21.784 55.0 135.0 -2.0 48.0 26.563284501508335 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180728728 n3 -81.048 -1.048 32.472 112.472 8.0 30.0 34.678896030639024 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180728728 n6 -81.048 -1.048 32.472 112.472 8.0 30.0 21.395116633662767 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180728728 n7 -81.048 -1.048 32.472 112.472 8.0 30.0 26.38888020603393 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180728728 n8 -81.048 -1.048 32.472 112.472 8.0 30.0 59.27524579523414 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180728728 b0 -81.048 -1.048 32.472 112.472 8.0 30.0 94.58769554902885 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn180728728 b1 -81.048 -1.048 32.472 112.472 8.0 30.0 85.41230445097116 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn181212693 n2 -95.0 -12.0 50.0 140.0 -2.0 18.0 33.67051772164017 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn181212693 n5 -95.0 -12.0 50.0 140.0 -2.0 18.0 38.41506872450115 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn181212693 b0 -95.0 -12.0 50.0 140.0 -2.0 18.0 40.84254177610376 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190222537 n8 -94.616 -14.616 43.992 123.992 -0.9 18.0 57.76886690217497 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190222537 nb -94.616 -14.616 43.992 123.992 -0.9 18.0 55.416113184253454 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190222537 b1 -94.616 -14.616 43.992 123.992 -0.9 18.0 56.89627732308265 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190401139 n3 -100.248 -20.248 55.0 135.0 -2.0 32.0 42.74573110077526 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190401139 n6 -100.248 -20.248 55.0 135.0 -2.0 32.0 32.21363430442255 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190401139 n7 -100.248 -20.248 55.0 135.0 -2.0 32.0 22.474120347030777 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190401139 n8 -100.248 -20.248 55.0 135.0 -2.0 32.0 44.65662148438379 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190401139 b0 -100.248 -20.248 55.0 135.0 -2.0 32.0 101.07382030521454 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190401139 b1 -100.248 -20.248 55.0 135.0 -2.0 32.0 78.92617969478545 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190726642 n9 -101.144 -21.144 40.0 130.0 -4.0 17.5 26.213871557528687 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190726642 na -101.144 -21.144 40.0 130.0 -4.0 17.5 21.71012325518969 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190726642 nb -101.144 -21.144 40.0 130.0 -4.0 17.5 51.327088204492114 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn190726642 b1 -101.144 -21.144 40.0 130.0 -4.0 17.5 47.789826085936454 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191017391 n2 -95.0 -10.0 40.0 130.0 -2.0 33.0 58.534117250604154 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191017391 n5 -95.0 -10.0 40.0 130.0 -2.0 33.0 42.44450677443871 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191017391 b0 -95.0 -10.0 40.0 130.0 -2.0 33.0 42.923290585927965 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191125206 n1 -116.0 -36.0 55.0 155.0 -1.5 42.0 48.54508066924344 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191125206 n3 -116.0 -36.0 55.0 155.0 -1.5 42.0 41.91416333466794 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191125206 n4 -116.0 -36.0 55.0 155.0 -1.5 42.0 54.439753242891975 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191125206 n5 -116.0 -36.0 55.0 155.0 -1.5 42.0 20.674835358875004 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191125206 b0 -116.0 -36.0 55.0 155.0 -1.5 42.0 19.813756458204324 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191129141 n8 -118.0 -30.0 58.0 138.0 -2.0 28.0 25.55249436832345 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191129141 nb -118.0 -30.0 58.0 138.0 -2.0 28.0 40.50837080897089 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn191129141 b1 -118.0 -30.0 58.0 138.0 -2.0 28.0 43.908218696824775 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200227306 n0 -90.264 -10.264 65.24 145.24 -1.5 30.0 8.6457449911111 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200227306 n1 -90.264 -10.264 65.24 145.24 -1.5 30.0 31.452175830004187 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200227306 n3 -90.264 -10.264 65.24 145.24 -1.5 30.0 53.275754477063394 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200227306 n9 -90.264 -10.264 65.24 145.24 -1.5 30.0 41.14409450362927 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200227306 b0 -90.264 -10.264 65.24 145.24 -1.5 30.0 84.47862715443644 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200227306 b1 -90.264 -10.264 65.24 145.24 -1.5 30.0 95.52137284556359 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200301320 n0 -90.776 -10.776 46.808 126.808 -1.0 25.0 40.16572222357194 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200301320 n1 -90.776 -10.776 46.808 126.808 -1.0 25.0 45.65156237930306 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200301320 n3 -90.776 -10.776 46.808 126.808 -1.0 25.0 16.44829993748265 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200301320 n4 -90.776 -10.776 46.808 126.808 -1.0 25.0 55.44926304396502 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200301320 n5 -90.776 -10.776 46.808 126.808 -1.0 25.0 50.618708735129395 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200301320 b0 -90.776 -10.776 46.808 126.808 -1.0 25.0 49.605304041317844 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200524211 n0 -22.0 -2.0 40.0 135.0 -1.0 32.0 4.093780582132471 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200524211 n1 -22.0 -2.0 40.0 135.0 -1.0 32.0 23.0752556884407 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200524211 n3 -22.0 -2.0 40.0 135.0 -1.0 32.0 46.36703737802175 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200524211 b0 -22.0 -2.0 40.0 135.0 -1.0 32.0 71.89599059576196 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200607921 n9 -95.64 -15.64 67.032 147.032 -1.1639999999999873 26.716000000000037 26.448615443235063 "Vikas Chand" 2026-07-13T15:12:56Z human_gui accepted_suggestion
-bn200607921 n6 -95.64 -15.64 67.032 147.032 -1.1639999999999873 26.716000000000037 30.898624338221893 "Vikas Chand" 2026-07-13T15:12:56Z human_gui accepted_suggestion
-bn200607921 n7 -95.64 -15.64 67.032 147.032 -1.1639999999999873 26.716000000000037 52.86203900330589 "Vikas Chand" 2026-07-13T15:12:56Z human_gui accepted_suggestion
-bn200607921 b1 -95.64 -15.64 67.032 147.032 -1.1639999999999873 26.716000000000037 79.2902959366841 "Vikas Chand" 2026-07-13T15:12:56Z human_gui accepted_suggestion
-bn200826923 n1 -88.728 -8.728 30.424 110.424 -1.0 19.0 56.51770877346713 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200826923 n2 -88.728 -8.728 30.424 110.424 -1.0 19.0 41.6325238516663 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200826923 n5 -88.728 -8.728 30.424 110.424 -1.0 19.0 15.061093213897754 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn200826923 b0 -88.728 -8.728 30.424 110.424 -1.0 19.0 18.094393062845825 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201016019 n3 -84.888 -4.888 22.232 102.232 -0.5 18.0 51.25514799521253 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201016019 n4 -84.888 -4.888 22.232 102.232 -0.5 18.0 31.941961313961826 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201016019 n5 -84.888 -4.888 22.232 102.232 -0.5 18.0 28.57348190431014 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201016019 b0 -84.888 -4.888 22.232 102.232 -0.5 18.0 25.224372629497303 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201104001 n3 -125.0 -42.0 20.0 110.0 -1.0 12.0 39.48468679438416 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201104001 n4 -125.0 -42.0 20.0 110.0 -1.0 12.0 48.34658417930405 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201104001 n6 -125.0 -42.0 20.0 110.0 -1.0 12.0 43.10928370515223 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201104001 n7 -125.0 -42.0 20.0 110.0 -1.0 12.0 33.661808830849274 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201104001 n8 -125.0 -42.0 20.0 110.0 -1.0 12.0 42.722092947109715 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201104001 b0 -125.0 -42.0 20.0 110.0 -1.0 12.0 93.61144921171245 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201104001 b1 -125.0 -42.0 20.0 110.0 -1.0 12.0 86.38855078828756 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201105230 n1 -91.0 -11.0 46.0 126.0 -3.5 30.0 52.77863998885907 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201105230 n2 -91.0 -11.0 46.0 126.0 -3.5 30.0 41.54740213754371 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201105230 n5 -91.0 -11.0 46.0 126.0 -3.5 30.0 13.701097724446486 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn201105230 b0 -91.0 -11.0 46.0 126.0 -3.5 30.0 17.00009654921011 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210410037 n6 -111.0 -31.0 55.0 145.0 -1.0 32.0 31.077561173268972 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210410037 n7 -111.0 -31.0 55.0 145.0 -1.0 32.0 9.28435173421832 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210410037 n8 -111.0 -31.0 55.0 145.0 -1.0 32.0 38.969734683659034 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210410037 b1 -111.0 -31.0 55.0 145.0 -1.0 32.0 63.66059348305718 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210524208 n9 -90.52 -10.52 45.784 125.784 -4.5 30.0 19.578870861731737 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210524208 na -90.52 -10.52 45.784 125.784 -4.5 30.0 26.579649066654124 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210524208 nb -90.52 -10.52 45.784 125.784 -4.5 30.0 56.644575815183934 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210524208 b1 -90.52 -10.52 45.784 125.784 -4.5 30.0 53.28492215771656 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210714331 na -90.52 -10.52 88.792 168.792 -1.2 41.0 39.248537714492315 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210714331 nb -90.52 -10.52 88.792 168.792 -1.2 41.0 30.7953638169439 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210714331 b1 -90.52 -10.52 88.792 168.792 -1.2 41.0 28.209020454484232 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210723615 n3 -90.0 -5.0 40.0 130.0 -1.4 28.0 50.85288517738379 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210723615 n4 -90.0 -5.0 40.0 130.0 -1.4 28.0 7.01681084002591 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210723615 n5 -90.0 -5.0 40.0 130.0 -1.4 28.0 55.93506392226111 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210723615 b0 -90.0 -5.0 40.0 130.0 -1.4 28.0 52.58471496854136 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210803497 n2 -99.992 -19.992 41.432 121.432 -1.4 13.4 32.38618952380423 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn210803497 na -99.992 -19.992 41.432 121.432 -1.4 13.4 34.446260987956265 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn210803497 b0 -99.992 -19.992 41.432 121.432 -1.4 13.4 89.99700898078444 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn210803497 b1 -99.992 -19.992 41.432 121.432 -1.4 13.4 90.00299101921554 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn210812699 nb -106.648 -26.648 45.0 125.0 -1.5 4.5 60.121787831244724 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn210812699 b1 -106.648 -26.648 45.0 125.0 -1.5 4.5 59.870053856900995 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211116586 n2 -91.8 -11.8 49.88 129.88 -1.5 18.0 37.137866479633395 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211116586 n5 -91.8 -11.8 49.88 129.88 -1.5 18.0 38.624901720315485 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211116586 b0 -91.8 -11.8 49.88 129.88 -1.5 18.0 40.814751576965435 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211207416 n6 -102.0 -22.0 111.0 191.0 -8.0 44.0 56.49560290903578 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211207416 n7 -102.0 -22.0 111.0 191.0 -8.0 44.0 36.838386900993164 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211207416 n8 -102.0 -22.0 111.0 191.0 -8.0 44.0 42.97145327306747 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211207416 n9 -102.0 -22.0 111.0 191.0 -8.0 44.0 58.27934202713781 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211207416 nb -102.0 -22.0 111.0 191.0 -8.0 44.0 20.38645652412894 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn211207416 b1 -102.0 -22.0 111.0 191.0 -8.0 44.0 22.566716633609115 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn220525008 n0 -98.5 -18.5 45.0 125.0 -4.0 16.0 52.668346527319386 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn220525008 n1 -98.5 -18.5 45.0 125.0 -4.0 16.0 53.24874590561895 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn220525008 n3 -98.5 -18.5 45.0 125.0 -4.0 16.0 21.13198129797193 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn220525008 n4 -98.5 -18.5 45.0 125.0 -4.0 16.0 45.51441160546191 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn220525008 n5 -98.5 -18.5 45.0 125.0 -4.0 16.0 40.66465560529657 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn220525008 b0 -98.5 -18.5 45.0 125.0 -4.0 16.0 38.98342999067125 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn221201517 n5 -91.032 -11.032 67.8 147.8 -1.42 23.64 41.68115059393898 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn221201517 n2 -91.032 -11.032 67.8 147.8 -1.42 23.64 50.34296475066872 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision drawn_fresh
-bn221201517 b0 -91.032 -11.032 67.8 147.8 -1.42 23.64 42.856588400719424 "Claude (AI)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn221209243 n1 -90.264 -10.264 39.64 119.64 -1.5 16.0 52.43669297141941 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn221209243 n2 -90.264 -10.264 39.64 119.64 -1.5 16.0 7.533829335988914 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn221209243 n5 -90.264 -10.264 39.64 119.64 -1.5 16.0 52.11864141375012 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn221209243 b0 -90.264 -10.264 39.64 119.64 -1.5 16.0 55.39788735691482 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230320884 n2 -94.616 -14.616 43.48 123.48 -1.5 16.0 57.06596750739744 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230320884 n5 -94.616 -14.616 43.48 123.48 -1.5 16.0 53.564873160305424 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230320884 b0 -94.616 -14.616 43.48 123.48 -1.5 16.0 54.44443621794624 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230405832 n7 -98.2 -18.2 39.64 119.64 -2.0 8.0 59.223214945051474 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230405832 n8 -98.2 -18.2 39.64 119.64 -2.0 8.0 18.275943819780863 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230405832 nb -98.2 -18.2 39.64 119.64 -2.0 8.0 44.95704891169988 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230405832 b1 -98.2 -18.2 39.64 119.64 -2.0 8.0 48.5598110184416 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230409626 n0 -90.0 -10.0 57.56 137.56 -1.0 22.0 55.092369925437154 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230409626 n1 -90.0 -10.0 57.56 137.56 -1.0 22.0 41.28255565797792 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230409626 n2 -90.0 -10.0 57.56 137.56 -1.0 22.0 32.60156856254137 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230409626 n9 -90.0 -10.0 57.56 137.56 -1.0 22.0 48.37081962978888 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230409626 na -90.0 -10.0 57.56 137.56 -1.0 22.0 43.07876900801208 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230409626 b0 -90.0 -10.0 57.56 137.56 -1.0 22.0 85.12784206033838 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230409626 b1 -90.0 -10.0 57.56 137.56 -1.0 22.0 94.8721579396616 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230614424 na -95.0 -15.0 46.0 126.0 -1.5 12.0 18.677107539355777 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230614424 nb -125.0 -15.0 16.0 58.0 -1.5 12.0 54.658009315443344 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230614424 b1 -95.0 -15.0 46.0 126.0 -1.5 12.0 51.317181333210904 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230802285 n2 -108.952 -28.952 100.056 180.056 -4.0 42.0 20.08971194000101 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn230802285 n5 -108.952 -28.952 100.056 180.056 -4.0 42.0 45.87702522274556 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn230802285 b0 -108.952 -28.952 100.056 180.056 -4.0 42.0 48.87930087852512 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn230812790 n0 -90.776 -10.776 20.0 100.0 -1.5 15.0 45.96336874254231 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230812790 n3 -90.776 -10.776 20.0 100.0 -1.5 15.0 26.1734955206693 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230812790 n6 -90.776 -10.776 20.0 100.0 -1.5 15.0 24.32082213985077 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230812790 n7 -90.776 -10.776 20.0 100.0 -1.5 15.0 35.6492085626146 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230812790 b0 -90.776 -10.776 20.0 100.0 -1.5 15.0 85.67108666032301 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn230812790 b1 -90.776 -10.776 20.0 100.0 -1.5 15.0 94.32891333967697 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231020790 n2 -94.6 -14.6 25.0 78.0 -1.0 20.0 46.593562563938214 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231020790 n9 -94.6 -14.6 25.0 78.0 -1.0 20.0 49.456073473627534 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231020790 na -94.6 -14.6 25.0 78.0 -1.0 20.0 19.039821565982088 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231020790 b0 -94.6 -14.6 25.0 78.0 -1.0 20.0 104.93703724363091 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231020790 b1 -94.6 -14.6 25.0 78.0 -1.0 20.0 75.06296275636909 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231030832 n0 -98.456 -18.456 46.04 126.04 -2.0 20.0 52.927836969554434 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231030832 n3 -98.456 -18.456 46.04 126.04 -2.0 20.0 5.376384788164405 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231030832 n4 -98.456 -18.456 46.04 126.04 -2.0 20.0 43.51352224097653 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231030832 n6 -98.456 -18.456 46.04 126.04 -2.0 20.0 47.832386797416916 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231030832 b0 -98.456 -18.456 46.04 126.04 -2.0 20.0 63.39146200477622 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn231030832 b1 -80.0 -5.0 46.04 126.04 -2.0 20.0 116.6085379952238 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn240204630 n9 -89.752 -9.752 49.112 129.112 -2.0 26.0 57.02324163353268 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn240204630 na -89.752 -9.752 49.112 129.112 -2.0 26.0 23.38756846716241 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn240204630 nb -89.752 -9.752 49.112 129.112 -2.0 26.0 40.9114593176905 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn240204630 b1 -89.752 -9.752 49.112 129.112 -2.0 26.0 37.47921500778913 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn240403498 n0 -86.936 -6.936 95.704 175.704 18.0 48.0 43.07793728351734 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn240403498 n1 -86.936 -6.936 95.704 175.704 18.0 48.0 22.588068603473026 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn240403498 n2 -86.936 -6.936 95.704 175.704 18.0 48.0 41.79834343961275 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn240403498 n3 -86.936 -6.936 95.704 175.704 18.0 48.0 57.944732627460645 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision drawn_fresh
-bn240403498 n5 -86.936 -6.936 95.704 175.704 18.0 48.0 35.274009714363544 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn240403498 b0 -86.936 -6.936 95.704 175.704 18.0 48.0 37.50724202113771 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn240710643 n7 -99.736 -19.736 47.832 127.832 -0.9 16.0 40.735031350807475 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn240710643 n8 -99.736 -19.736 47.832 127.832 -0.9 16.0 12.940841941201843 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn240710643 nb -99.736 -19.736 47.832 127.832 -0.9 16.0 40.415273095821156 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn240710643 b1 -99.736 -19.736 47.832 127.832 -0.9 16.0 44.11557892324233 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn241117845 n3 -115.0 -30.0 90.0 190.0 -2.0 68.0 45.20292020978053 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn241117845 n4 -115.0 -30.0 90.0 190.0 -2.0 68.0 45.67031352928032 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn241117845 n6 -115.0 -30.0 90.0 190.0 -2.0 68.0 49.86376796500305 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn241117845 n7 -115.0 -30.0 90.0 190.0 -2.0 68.0 36.860767373452035 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn241117845 n8 -115.0 -30.0 90.0 190.0 -2.0 68.0 36.46961616986636 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn241117845 b0 -115.0 -30.0 90.0 190.0 -2.0 68.0 95.50298675442694 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn241117845 b1 -115.0 -30.0 90.0 190.0 -2.0 68.0 84.49701324557307 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn241223506 n0 -80.28 -0.28 69.592 149.592 18.0 44.0 50.28519529158573 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn241223506 n1 -80.28 -0.28 69.592 149.592 18.0 44.0 33.12906946347241 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn241223506 n2 -80.28 -0.28 69.592 149.592 18.0 44.0 27.572260790735733 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn241223506 n9 -80.28 -0.28 69.592 149.592 18.0 44.0 53.68656908948791 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision drawn_fresh
-bn241223506 na -80.28 -0.28 69.592 149.592 18.0 44.0 52.68936853108146 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision drawn_fresh
-bn241223506 b0 -80.28 -0.28 69.592 149.592 18.0 44.0 76.01716403313603 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision accepted_suggestion
-bn241223506 b1 -80.28 -0.28 69.592 149.592 18.0 44.0 103.98283596686397 "Claude+Codex (AI consensus, adjudicated)" 2026-07-13T15:12:56Z ai_vision drawn_fresh
-bn250313607 n0 -100.0 -20.0 45.0 125.0 -1.0 26.0 20.07417168006313 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250313607 n1 -100.0 -20.0 45.0 125.0 -1.0 26.0 44.747106197123905 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250313607 n3 -100.0 -20.0 45.0 125.0 -1.0 26.0 43.711698705370104 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250313607 n6 -100.0 -20.0 45.0 125.0 -1.0 26.0 21.071672444608744 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250313607 n7 -100.0 -20.0 45.0 125.0 -1.0 26.0 46.7958806009044 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250313607 n9 -100.0 -20.0 45.0 125.0 -1.0 26.0 47.087487716506644 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250313607 b0 -100.0 -20.0 45.0 125.0 -1.0 26.0 88.5015482479272 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250313607 b1 -100.0 -20.0 45.0 125.0 -1.0 26.0 91.4984517520728 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250407659 n4 -91.8 -11.8 41.176 121.176 -1.164 15.452 25.844739720536573 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250407659 b0 -91.8 -11.8 41.176 121.176 -1.164 15.452 64.19368993414636 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250702413 n6 -89.496 -9.496 118.232 198.232 -0.9 60.0 36.51679235943679 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250702413 n7 -89.496 -9.496 118.232 198.232 -0.9 60.0 14.568792843134176 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250702413 n8 -89.496 -9.496 118.232 198.232 -0.9 60.0 41.59501852967402 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250702413 n9 -89.496 -9.496 118.232 198.232 -0.9 60.0 57.501384403627654 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250702413 nb -89.496 -9.496 118.232 198.232 -0.9 60.0 42.63606147279863 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250702413 b1 -89.496 -9.496 118.232 198.232 -0.9 60.0 44.5574049599517 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250814432 n2 -99.48 -19.48 48.088 128.088 -2.9 8.0 48.51513143762436 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250814432 n5 -99.48 -19.48 48.088 128.088 -2.9 8.0 49.001535000053785 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250814432 b0 -99.48 -19.48 48.088 128.088 -2.9 8.0 50.417103849934556 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250902062 n1 -90.776 -10.776 41.432 121.432 -1.5 20.0 45.24826154002923 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250902062 n2 -90.776 -10.776 41.432 121.432 -1.5 20.0 50.517669020081264 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250902062 n3 -90.776 -10.776 41.432 121.432 -1.5 20.0 56.65980282096697 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250902062 n5 -90.776 -10.776 41.432 121.432 -1.5 20.0 12.702955092045421 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn250902062 b0 -90.776 -10.776 41.432 121.432 -1.5 20.0 14.643757975148093 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn251016999 n0 -90.52 -10.52 31.192 111.192 -1.0 18.5 57.30337910303071 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn251016999 n3 -90.52 -10.52 31.192 111.192 -1.0 18.5 18.317097963866143 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn251016999 n4 -90.52 -10.52 31.192 111.192 -1.0 18.5 46.28473711697818 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn251016999 n6 -90.52 -10.52 31.192 111.192 -1.0 18.5 40.24522221921953 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn251016999 n7 -90.52 -10.52 31.192 111.192 -1.0 18.5 45.0766151660078 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn251016999 b0 -90.52 -10.52 31.192 111.192 -1.0 18.5 76.46795838404752 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn251016999 b1 -90.52 -10.52 31.192 111.192 -1.0 18.5 103.53204161595248 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn260105973 n0 -97.432 -17.432 45.016 125.016 -0.908 10.0 48.27995799530473 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn260105973 n1 -97.432 -17.432 45.016 125.016 -0.908 10.0 25.2287388725051 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn260105973 n2 -97.432 -17.432 45.016 125.016 -0.908 10.0 33.931748495805245 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn260105973 n5 -97.432 -17.432 45.016 125.016 -0.908 10.0 35.35406611551856 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
-bn260105973 b0 -97.432 -17.432 45.016 125.016 -0.908 10.0 38.11027571936824 "Claude+Codex (AI consensus)" 2026-07-13T15:12:56Z ai_vision adjusted
+bn081125496 na -120.0 -26.0 30.0 140.0 -1.7 11.9 35.46769835891064 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081125496 nb -120.0 -26.0 30.0 140.0 -1.7 11.9 57.019163116814326 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081125496 b1 -120.0 -26.0 30.0 140.0 -1.7 11.9 54.49912915510641 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081222204 n0 -120.0 -5.0 25.0 105.0 -1.16 16.48 29.562790335279796 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081222204 n1 -120.0 -5.0 25.0 105.0 -1.16 16.48 7.064862152608307 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081222204 n2 -120.0 -5.0 25.0 105.0 -1.16 16.48 40.648479344414014 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081222204 b0 -120.0 -5.0 25.0 105.0 -1.16 16.48 62.115648905477286 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081224887 n0 -24.0 -8.0 40.0 140.0 -0.65 14.17 25.414528385321947 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081224887 n1 -24.0 -8.0 40.0 140.0 -0.65 14.17 46.25630752771867 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081224887 n6 -24.0 -8.0 40.0 140.0 -0.65 14.17 28.23784150917978 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081224887 n7 -24.0 -8.0 40.0 140.0 -0.65 14.17 50.35451517464177 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081224887 n9 -24.0 -8.0 40.0 140.0 -0.65 14.17 27.768746418409197 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081224887 b0 -24.0 -8.0 40.0 140.0 -0.65 14.17 101.2319703858044 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn081224887 b1 -24.0 -8.0 40.0 140.0 -0.65 14.17 78.76802961419558 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090530760 b0 -29.7 -5.0 130.0 210.0 -1.0 120.0 8.713458761239696 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090530760 n1 -29.7 -5.0 140.0 220.0 -1.0 120.0 51.24893374864954 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090530760 n2 -29.7 -5.0 145.0 225.0 -1.0 120.0 52.789480263029944 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090530760 n3 -29.7 -5.0 140.0 220.0 -1.0 120.0 58.56684627329145 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090530760 n5 -29.7 -5.0 145.0 225.0 -1.0 120.0 6.689900984863154 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090620400 n6 -32.654 -17.944 52.696 132.696 -0.91 18.27 38.69744260802459 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090620400 n7 -32.654 -17.944 52.696 132.696 -0.91 18.27 17.290498407516715 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090620400 n8 -32.654 -17.944 52.696 132.696 -0.91 18.27 41.526138617748096 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090620400 nb -32.654 -17.944 52.696 132.696 -0.91 18.27 39.91746385324871 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090620400 b1 -32.654 -17.944 52.696 132.696 -0.91 18.27 41.83265475316555 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090719063 n8 -29.5 -10.0 38.0 132.44 -0.91 24.0 3.266948906191077 "Claude (AI) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090719063 n7 -29.5 -10.0 38.0 132.44 -0.91 24.0 42.649204926424304 "Claude (AI) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090804940 n3 -31.016 -20.76 49.88 129.88 -0.908 10.332 49.07153415231867 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090804940 n4 -31.016 -20.76 49.88 129.88 -0.908 10.332 38.839216832953504 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090804940 n5 -31.016 -20.76 49.88 129.88 -0.908 10.332 21.475304570952158 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090804940 b0 -31.016 -20.76 49.88 129.88 -0.908 10.332 18.15908106950942 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090809978 n3 -24.764 -7.0 25.0 131.16 -0.3 15.5 35.95369727539812 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090809978 n4 -24.764 -7.0 25.0 131.16 -0.3 15.5 14.13709781718912 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090809978 n5 -24.764 -7.0 25.0 131.16 -0.3 15.5 49.86280490295609 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090809978 b0 -24.764 -7.0 25.0 131.16 -0.3 15.5 46.62600318548043 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090829672 n0 -23.533 14.0 110.0 210.0 29.0 92.0 55.851615044946904 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090829672 n6 -23.533 14.0 110.0 210.0 29.0 92.0 46.7423329265622 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090829672 n7 -23.533 14.0 110.0 210.0 29.0 92.0 53.58602867919715 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090829672 n9 -23.533 14.0 110.0 210.0 29.0 92.0 10.50348060072025 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090829672 na -23.533 14.0 110.0 210.0 29.0 92.0 47.80575351578754 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090829672 nb -23.533 14.0 110.0 210.0 29.0 92.0 52.31631894397925 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090829672 b0 -23.533 14.0 110.0 210.0 29.0 92.0 129.90416622699382 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn090829672 b1 -23.533 14.0 110.0 210.0 29.0 92.0 50.0958337730062 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn091209001 n4 -30.0 -12.0 45.0 145.0 -5.0 27.0 27.492873548432865 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn091209001 b0 -30.0 -12.0 45.0 145.0 -5.0 27.0 63.63993946183697 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100122616 n6 -26.0 13.0 45.0 135.0 16.0 34.0 48.217124380988864 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100122616 n7 -26.0 13.0 45.0 135.0 16.0 34.0 56.77439219990363 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision drawn_fresh
+bn100122616 n9 -26.0 13.0 45.0 135.0 16.0 34.0 6.700740616609272 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100122616 na -26.0 13.0 45.0 135.0 16.0 34.0 46.06800846594269 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100122616 b1 -26.0 13.0 45.0 135.0 16.0 34.0 53.16443928281128 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100130729 n0 -32.0 48.0 150.0 240.0 58.0 97.0 54.02887232752548 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100130729 n3 -32.0 48.0 150.0 240.0 58.0 97.0 6.5891288866960736 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100130729 n4 -32.0 48.0 150.0 240.0 58.0 97.0 42.6759914250431 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100130729 b0 -32.0 48.0 150.0 240.0 58.0 97.0 63.946777004054894 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100612726 n3 -31.4 -10.0 23.0 130.0 -1.5 15.0 46.65119886309818 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100612726 n4 -31.4 -10.0 23.0 130.0 -1.5 15.0 30.906590823163345 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100612726 n7 -31.4 -10.0 23.0 130.0 -1.5 15.0 52.92750706033149 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100612726 n8 -31.4 -10.0 23.0 130.0 -1.5 15.0 40.04178083119601 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100612726 b0 -31.4 -10.0 23.0 130.0 -1.5 15.0 85.22324244190766 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100612726 b1 -31.4 -10.0 23.0 130.0 -1.5 15.0 94.77675755809236 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100614498 n6 -24.0 -18.0 26.0 150.0 -13.0 16.0 47.04396574808682 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100614498 n7 -24.0 -18.0 26.0 150.0 -13.0 16.0 48.31141188515504 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100614498 n9 -24.0 -18.0 26.0 150.0 -13.0 16.0 20.388600965759707 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100614498 nb -24.0 -18.0 26.0 150.0 -13.0 16.0 43.055041394668436 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100614498 b1 -24.0 -18.0 26.0 150.0 -13.0 16.0 41.12389414021797 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100707032 n8 -24.0 -10.0 40.0 140.0 -2.0 32.0 7.323684561520599 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100707032 n7 -24.0 -10.0 40.0 140.0 -2.0 32.0 47.40033196618205 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn100707032 b1 -24.0 -10.0 40.0 140.0 -2.0 32.0 63.92502627195854 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101126198 n6 -30.0 -12.0 40.0 140.0 -2.0 30.0 44.19787482799729 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101126198 n7 -30.0 -12.0 40.0 140.0 -2.0 30.0 21.859856754702633 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101126198 n8 -30.0 -12.0 40.0 140.0 -2.0 30.0 38.0582555869419 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101126198 nb -30.0 -12.0 40.0 140.0 -2.0 30.0 35.662778367441796 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101126198 b1 -30.0 -12.0 40.0 140.0 -2.0 30.0 37.900768895726195 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101225377 n7 -27.0 70.0 112.0 240.0 77.0 102.0 55.331979292592024 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101225377 n8 -27.0 70.0 112.0 240.0 77.0 102.0 29.60092705239815 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101225377 nb -27.0 70.0 112.0 240.0 77.0 102.0 26.270739085471945 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn101225377 b1 -27.0 70.0 112.0 240.0 77.0 102.0 29.88934210976266 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110605183 n2 -30.5 -12.0 45.0 130.0 -2.0 35.0 21.483166717143693 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110605183 n5 -30.5 -12.0 45.0 130.0 -2.0 35.0 47.85007550994475 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110605183 b0 -30.5 -12.0 45.0 130.0 -2.0 35.0 50.778443093139444 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110618366 n2 -86.808 -17.0 78.0 207.192 -4.875999999999998 60.63600000000006 56.769832318815716 "Vikas Chand + margin-reselect" 2026-07-14T01:43:15Z human_gui adjusted
+bn110618366 b0 -86.808 -17.0 78.0 207.192 -4.875999999999998 60.63600000000006 81.8132885078877 "Vikas Chand + margin-reselect" 2026-07-14T01:43:15Z human_gui adjusted
+bn110721200 n6 -33.5 -11.0 50.0 140.0 -0.9 40.5 30.287279487522614 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110721200 n7 -33.5 -11.0 50.0 140.0 -0.9 40.5 31.80711023220933 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110721200 n9 -33.5 -11.0 50.0 140.0 -0.9 40.5 29.579618689417963 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110721200 nb -33.5 -11.0 50.0 140.0 -0.9 40.5 49.36822571474778 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110721200 b1 -33.5 -11.0 50.0 140.0 -0.9 40.5 48.851609161613524 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110920546 b0 -19.53 -9.0 135.0 285.0 -2.5 120.0 79.08626080239954 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110920546 b1 -19.53 -9.0 135.0 285.0 -2.5 120.0 100.9137391976005 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110920546 n0 -19.53 -9.0 135.0 285.0 -2.5 120.0 26.958494423005973 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110920546 n1 -19.53 -9.0 135.0 285.0 -2.5 120.0 48.40622379490637 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110920546 n3 -19.53 -9.0 135.0 285.0 -2.5 120.0 28.847887263258286 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110920546 n6 -19.53 -9.0 135.0 285.0 -2.5 120.0 25.33268170347864 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110920546 n7 -19.53 -9.0 135.0 285.0 -2.5 120.0 47.676985715939104 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110928180 n0 -98.328 -18.328 115.672 195.672 -3.0 42.0 39.70594746727605 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110928180 n1 -98.328 -18.328 115.672 195.672 -3.0 42.0 51.76851952331178 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110928180 n3 -98.328 -18.328 115.672 195.672 -3.0 42.0 9.439242334637818 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110928180 n4 -98.328 -18.328 115.672 195.672 -3.0 42.0 55.31221715572602 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110928180 n6 -98.328 -18.328 115.672 195.672 -3.0 42.0 44.63784511336131 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110928180 b0 -98.328 -18.328 115.672 195.672 -3.0 42.0 60.723192674109 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn110928180 b1 -98.328 -18.328 115.672 195.672 -3.0 42.0 119.27680732589099 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn111009282 n0 -27.88 -7.0 38.0 145.0 -1.6 20.5 15.616224994993475 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn111009282 n1 -27.88 -7.0 38.0 145.0 -1.6 20.5 10.446852423142143 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn111009282 b0 -27.88 -7.0 38.0 145.0 -1.6 20.5 62.69069317171187 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn111017657 n6 -31.0 -8.0 25.0 135.0 -1.0 15.0 20.405573416126824 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn111017657 n7 -31.0 -8.0 25.0 135.0 -1.0 15.0 13.922242717709443 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn111017657 n8 -31.0 -8.0 25.0 135.0 -1.0 15.0 56.84517947046933 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn111017657 n9 -31.0 -8.0 25.0 135.0 -1.0 15.0 46.75045147920321 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn111017657 b1 -31.0 -8.0 25.0 135.0 -1.0 15.0 55.87613649106207 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120102095 n3 -30.0 -8.0 22.0 120.0 -1.5 15.0 42.75902282562188 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120102095 n4 -30.0 -8.0 22.0 120.0 -1.5 15.0 21.05798117736408 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120102095 n5 -30.0 -8.0 22.0 120.0 -1.5 15.0 39.420046091307945 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120102095 b0 -30.0 -8.0 22.0 120.0 -1.5 15.0 36.0959426314234 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120119170 n9 -32.0 -10.0 55.0 145.0 -1.0 47.0 43.66437706548219 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120119170 na -32.0 -10.0 55.0 145.0 -1.0 47.0 50.576681237160415 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120119170 nb -32.0 -10.0 55.0 145.0 -1.0 47.0 18.393197250057426 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120119170 b1 -32.0 -10.0 55.0 145.0 -1.0 47.0 16.160540762255525 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120130938 n0 -28.0 -13.0 32.0 132.0 -3.0 26.0 40.02697115473061 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120130938 n1 -28.0 -13.0 32.0 132.0 -3.0 26.0 40.11551621764791 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120130938 n9 -28.0 -13.0 32.0 132.0 -3.0 26.0 25.53358871333576 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120130938 na -28.0 -13.0 32.0 132.0 -3.0 26.0 46.291446176847316 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120130938 b0 -28.0 -13.0 32.0 132.0 -3.0 26.0 97.97952206874223 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120130938 b1 -28.0 -13.0 32.0 132.0 -3.0 26.0 82.02047793125776 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120420858 n4 -104.472 -10.0 58.0 189.528 -2.0 48.0 43.12879673571136 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120420858 n8 -104.472 -10.0 58.0 189.528 -2.0 48.0 31.10231086180354 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120420858 b0 -104.472 -10.0 58.0 189.528 -2.0 48.0 96.81274571121389 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120420858 b1 -104.472 -10.0 58.0 189.528 -2.0 48.0 83.18725428878612 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120624933 n0 -29.5 -8.0 35.0 155.0 -2.0 28.0 52.22918356290163 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120624933 n1 -29.5 -8.0 35.0 155.0 -2.0 28.0 36.86984992310694 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120624933 n2 -29.5 -8.0 35.0 155.0 -2.0 28.0 30.074813625268373 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120624933 n9 -29.5 -8.0 35.0 155.0 -2.0 28.0 50.678174516242834 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120624933 na -29.5 -8.0 35.0 155.0 -2.0 28.0 48.005806088289376 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120624933 b0 -29.5 -8.0 35.0 155.0 -2.0 28.0 80.59653435397331 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120624933 b1 -29.5 -8.0 35.0 155.0 -2.0 28.0 99.40346564602672 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120905657 n6 -94.488 -14.488 119.512 199.512 -2.0 110.0 51.53096596312768 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120905657 n7 -94.488 -14.488 119.512 199.512 -2.0 110.0 53.128321097048584 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120905657 n9 -94.488 -14.488 119.512 199.512 -2.0 110.0 19.227860097808247 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120905657 na -94.488 -14.488 119.512 199.512 -2.0 110.0 45.41729771176376 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120905657 nb -94.488 -14.488 119.512 199.512 -2.0 110.0 42.90827474951111 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120905657 b1 -94.488 -14.488 119.512 199.512 -2.0 110.0 40.58312588881312 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120919309 n0 -33.0 -12.0 24.0 115.0 -2.0 14.0 43.15475808733427 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120919309 n1 -33.0 -12.0 24.0 115.0 -2.0 14.0 22.744689817900415 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120919309 n2 -33.0 -12.0 24.0 115.0 -2.0 14.0 41.93772883063072 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120919309 n3 -33.0 -12.0 24.0 115.0 -2.0 14.0 57.80772926492234 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120919309 n5 -33.0 -12.0 24.0 115.0 -2.0 14.0 35.10600863681625 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn120919309 b0 -33.0 -12.0 24.0 115.0 -2.0 14.0 37.33052494454604 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130215063 n1 -99.864 -19.864 114.136 194.136 -2.5 42.0 50.491539085270205 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision accepted_suggestion
+bn130215063 n2 -99.864 -19.864 114.136 194.136 -2.5 42.0 20.967445009849083 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision accepted_suggestion
+bn130215063 na -99.864 -19.864 114.136 194.136 -2.5 42.0 44.88355471024185 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision accepted_suggestion
+bn130215063 b0 -99.864 -19.864 114.136 194.136 -2.5 42.0 79.04590573138086 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision accepted_suggestion
+bn130215063 b1 -99.864 -19.864 114.136 194.136 -2.5 42.0 100.95409426861914 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision accepted_suggestion
+bn130310840 n9 -91.544 -11.544 44.76 124.76 2.0 12.0 32.060857048770124 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130310840 na -91.544 -11.544 44.76 124.76 2.0 12.0 27.084244513568432 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130310840 nb -91.544 -11.544 44.76 124.76 2.0 12.0 39.17560793971833 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130310840 b1 -91.544 -11.544 44.76 124.76 2.0 12.0 35.62215516837505 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130427324 n0 -98.0 -18.0 190.0 280.0 -1.0 61.0 47.46687985381774 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130427324 n6 -98.0 -18.0 190.0 280.0 -1.0 61.0 53.24436768528805 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130427324 n9 -98.0 -18.0 190.0 280.0 -1.0 61.0 6.416098636529359 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130427324 na -98.0 -18.0 190.0 280.0 -1.0 61.0 43.18038965620413 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130427324 b0 -98.0 -18.0 190.0 280.0 -1.0 61.0 116.04563513211242 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130427324 b1 -98.0 -18.0 190.0 280.0 -1.0 61.0 63.95436486788754 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130518580 n3 -83.0 -3.0 104.0 184.0 8.0 68.0 25.213856467878653 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130518580 n4 -83.0 -3.0 104.0 184.0 8.0 68.0 53.731957130877866 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130518580 n6 -83.0 -3.0 104.0 184.0 8.0 68.0 32.435380277536495 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130518580 n7 -83.0 -3.0 104.0 184.0 8.0 68.0 36.49540479986748 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130518580 b0 -83.0 -3.0 104.0 184.0 8.0 68.0 84.66757372979691 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn130518580 b1 -83.0 -3.0 104.0 184.0 8.0 68.0 95.3324262702031 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn131113483 n1 -115.0 -5.0 72.0 172.0 -1.0 62.0 45.39034939578557 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn131113483 n2 -115.0 -5.0 72.0 172.0 -1.0 62.0 3.6203313693100805 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn131113483 n5 -115.0 -5.0 72.0 172.0 -1.0 62.0 51.485283715623254 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn131113483 b0 -115.0 -5.0 72.0 172.0 -1.0 62.0 54.835563371524536 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn140608153 n0 -115.0 -15.0 95.0 180.0 -4.0 78.0 47.36748359487918 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn140608153 n1 -115.0 -15.0 95.0 180.0 -4.0 78.0 43.458267235379445 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn140608153 n9 -115.0 -15.0 95.0 180.0 -4.0 78.0 30.130799343471136 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn140608153 na -115.0 -15.0 95.0 180.0 -4.0 78.0 39.96689948314075 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn140608153 b0 -115.0 -15.0 95.0 180.0 -4.0 78.0 98.04367027390927 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn140608153 b1 -115.0 -15.0 95.0 180.0 -4.0 78.0 81.95632972609073 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150202999 n0 -95.0 -10.0 35.0 125.0 -3.0 22.0 9.1743436415278 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150202999 n1 -95.0 -10.0 35.0 125.0 -3.0 22.0 30.77797719094298 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150202999 n3 -95.0 -10.0 35.0 125.0 -3.0 22.0 40.311647847387135 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150202999 b0 -95.0 -10.0 35.0 125.0 -3.0 22.0 74.07663788178805 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150213001 n6 -90.52 -10.52 27.864 107.864 -1.5 13.0 56.68896822124268 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150213001 n7 -90.52 -10.52 27.864 107.864 -1.5 13.0 31.54906630288167 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150213001 n8 -90.52 -10.52 27.864 107.864 -1.5 13.0 13.548776007040624 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150213001 nb -90.52 -10.52 27.864 107.864 -1.5 13.0 50.69513279894369 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150213001 b1 -90.52 -10.52 27.864 107.864 -1.5 13.0 54.183617779479476 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150306993 n4 -94.616 -14.616 50.392 130.392 -1.7 32.0 49.80139250323184 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150306993 b0 -94.616 -14.616 50.392 130.392 -1.7 32.0 63.87946744663953 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150630223 n4 -91.0 -11.0 43.0 124.0 -2.0 23.0 23.03062367807444 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150630223 n5 -95.0 -11.0 43.0 130.0 -2.0 23.0 56.45347310244442 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150630223 b0 -91.0 -11.0 44.0 124.0 -2.0 23.0 53.389437989747464 "Claude+Codex (AI consensus)" 2026-07-14T01:43:15Z ai_vision adjusted
+bn150721242 n6 -89.5 -9.5 49.88 129.88 -1.2 31.0 42.827886573595315 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn150721242 n7 -89.5 -9.5 49.88 129.88 -1.2 31.0 17.248924517636333 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn150721242 n8 -89.5 -9.5 45.0 125.0 -1.2 31.0 28.026519768640824 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn150721242 nb -89.5 -9.5 40.0 110.0 -1.2 31.0 50.371674311916294 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn150721242 b1 -89.5 -9.5 49.88 129.88 -1.2 31.0 53.24540148245489 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn150902733 n0 -88.216 -8.216 44.248 124.248 -1.0 40.0 30.097235946759007 "Claude (AI)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn150902733 n1 -88.216 -8.216 44.248 124.248 -1.0 40.0 36.1421527703526 "Claude (AI)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn150902733 n3 -88.216 -8.216 60.0 140.0 -1.0 40.0 24.37602428038865 "Claude (AI)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn150902733 b0 -88.216 -8.216 44.248 124.248 -1.0 40.0 53.351246187348956 "Claude (AI)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn151006413 n0 -100.632 -20.632 113.368 193.368 -1.3 42.0 23.32866367179607 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn151006413 n1 -100.632 -20.632 113.368 193.368 -1.3 42.0 33.320287608517724 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn151006413 n3 -100.632 -20.632 113.368 193.368 -1.3 42.0 27.90385966095057 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn151006413 n5 -100.632 -20.632 113.368 193.368 -1.3 42.0 59.66780263376729 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn151006413 b0 -100.632 -20.632 113.368 193.368 -1.3 42.0 59.63581441817512 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn151021791 na -101.528 -16.5 26.0 129.112 -1.5 11.0 7.447157595762291 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn151021791 n9 -101.528 -16.5 26.0 129.112 -1.5 11.0 38.67630487402844 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn151021791 b1 -101.528 -16.5 26.0 129.112 -1.5 11.0 56.27076459729845 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160330827 n9 -106.0 -10.0 42.0 155.0 -1.5 30.0 45.942769800314956 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160330827 na -106.0 -10.0 42.0 155.0 -1.5 30.0 21.47311839408236 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160330827 nb -106.0 -10.0 42.0 155.0 -1.5 30.0 38.53667594914303 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160330827 b1 -106.0 -10.0 42.0 155.0 -1.5 30.0 34.80172082178995 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160625945 n6 91.24 171.24 229.592 309.592 182.644 225.884 31.9518429638955 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160625945 n7 91.24 171.24 229.592 309.592 182.644 225.884 34.318694638922516 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160625945 n9 91.24 171.24 229.592 309.592 182.644 225.884 27.198292144559932 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160625945 nb 91.24 171.24 229.592 309.592 182.644 225.884 49.29624453605682 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160625945 b1 91.24 171.24 229.592 309.592 182.644 225.884 48.56527347658735 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160910722 n0 -90.0 -10.0 69.8 149.8 -1.9 42.3 53.94028818632385 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160910722 n1 -90.0 -10.0 69.8 149.8 -1.9 42.3 35.85730465749259 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160910722 n2 -90.0 -10.0 69.8 149.8 -1.9 42.3 46.50643328316468 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160910722 n3 -90.0 -10.0 69.8 149.8 -1.9 42.3 55.93551040260667 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160910722 n5 -90.0 -10.0 69.8 149.8 -1.9 42.3 21.977479248253886 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn160910722 b0 -90.0 -10.0 69.8 149.8 -1.9 42.3 24.04733484026805 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114833 n7 -103.0 -13.0 52.0 150.0 -2.0 40.0 57.323921513995494 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114833 n9 -103.0 -13.0 52.0 150.0 -2.0 40.0 39.971063286393324 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114833 na -103.0 -13.0 52.0 150.0 -2.0 40.0 44.679864242049575 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114833 nb -103.0 -13.0 52.0 150.0 -2.0 40.0 22.689846322956498 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114833 b1 -103.0 -13.0 52.0 150.0 -2.0 40.0 19.78806792245871 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114917 n1 -94.36 -14.36 45.272 125.272 -0.9 20.0 42.23597199643886 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114917 n2 -94.36 -14.36 45.272 125.272 -0.9 20.0 17.726967663605357 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114917 na -94.36 -14.36 45.272 125.272 -0.9 20.0 51.498296854566675 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114917 b0 -94.36 -14.36 45.272 125.272 -0.9 20.0 73.29314605883015 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170114917 b1 -94.36 -14.36 45.272 125.272 -0.9 20.0 106.70685394116987 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170921168 n2 -90.264 -10.264 82.904 162.904 -0.908 45.0 20.991996064425223 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn170921168 b0 -90.264 -10.264 82.904 162.904 -0.908 45.0 66.98583315263626 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171013350 n0 -98.0 -18.0 50.0 150.0 -2.4 37.5 45.57165630592545 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171013350 n1 -98.0 -18.0 50.0 150.0 -2.4 37.5 22.19700485114325 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171013350 n2 -98.0 -18.0 50.0 150.0 -2.4 37.5 34.123939196164756 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171013350 n5 -98.0 -18.0 50.0 150.0 -2.4 37.5 38.3103320843966 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171013350 b0 -98.0 -18.0 50.0 150.0 -2.4 37.5 41.004563271145805 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171210493 n0 -100.0 -15.0 100.0 190.0 -1.0 50.0 33.771652709215275 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171210493 n1 -100.0 -15.0 100.0 190.0 -1.0 50.0 21.571132796928307 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171210493 n2 -100.0 -15.0 100.0 190.0 -1.0 50.0 41.397795599811566 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171210493 n9 -100.0 -15.0 100.0 190.0 -1.0 50.0 45.53507160341038 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171210493 b0 -100.0 -15.0 100.0 190.0 -1.0 50.0 76.97639169469474 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn171210493 b1 -100.0 -15.0 100.0 190.0 -1.0 50.0 103.02360830530527 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180426549 nb -8.5 -6.0 15.0 22.0 -0.5 6.5 34.94820405434931 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180426549 b1 -8.5 -6.0 15.0 22.0 -0.5 6.5 35.00066484157948 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180427442 n4 -90.0 -10.0 53.72 133.72 -0.908 41.052 45.77505338773713 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180427442 b0 -90.0 -10.0 53.72 133.72 -0.908 41.052 68.20243506984885 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180703876 n6 -91.288 -11.288 52.952 132.952 -3.0 33.0 23.68207737052101 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180703876 n7 -91.288 -11.288 52.952 132.952 -3.0 33.0 2.121320635296775 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180703876 n8 -91.288 -11.288 52.952 132.952 -3.0 33.0 46.9313063764772 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180703876 b1 -91.288 -11.288 52.952 132.952 -3.0 33.0 60.67606897951589 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180720213 n3 -90.52 -10.52 31.96 111.96 -1.7 16.0 36.792799819739756 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180720213 n4 -90.52 -10.52 31.96 111.96 -1.7 16.0 41.5423535215432 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180720213 n5 -90.52 -10.52 31.96 111.96 -1.7 16.0 26.30495512501186 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180720213 b0 -90.52 -10.52 31.96 111.96 -1.7 16.0 23.873256193419525 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180723757 n8 -90.008 -10.008 41.944 121.944 -0.908 35.5 44.715423193306094 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180723757 nb -90.008 -10.008 41.944 121.944 -0.908 35.5 53.60189432931352 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180723757 b1 -90.008 -10.008 41.944 121.944 -0.908 35.5 55.990212948305576 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180724807 na -101.784 -21.784 55.0 135.0 -2.0 48.0 40.930477073530504 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180724807 nb -101.784 -21.784 55.0 135.0 -2.0 48.0 29.047868717235378 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180724807 b1 -101.784 -21.784 55.0 135.0 -2.0 48.0 26.563284501508335 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180728728 n3 -81.048 -1.048 38.0 112.472 8.0 30.0 34.678896030639024 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180728728 n6 -81.048 -1.048 38.0 112.472 8.0 30.0 21.395116633662767 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180728728 n7 -81.048 -1.048 38.0 112.472 8.0 30.0 26.38888020603393 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180728728 n8 -81.048 -1.048 38.0 112.472 8.0 30.0 59.27524579523414 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180728728 b0 -81.048 -1.048 38.0 112.472 8.0 30.0 94.58769554902885 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn180728728 b1 -81.048 -1.048 38.0 112.472 8.0 30.0 85.41230445097116 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn181212693 n2 -95.0 -12.0 50.0 140.0 -2.0 18.0 33.67051772164017 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn181212693 n5 -95.0 -12.0 50.0 140.0 -2.0 18.0 38.41506872450115 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn181212693 b0 -95.0 -12.0 50.0 140.0 -2.0 18.0 40.84254177610376 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190222537 n8 -94.616 -14.616 43.992 123.992 -0.9 18.0 57.76886690217497 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190222537 nb -94.616 -14.616 43.992 123.992 -0.9 18.0 55.416113184253454 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190222537 b1 -94.616 -14.616 43.992 123.992 -0.9 18.0 56.89627732308265 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190401139 n3 -100.248 -20.248 55.0 135.0 -2.0 32.0 42.74573110077526 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190401139 n6 -100.248 -20.248 55.0 135.0 -2.0 32.0 32.21363430442255 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190401139 n7 -100.248 -20.248 55.0 135.0 -2.0 32.0 22.474120347030777 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190401139 n8 -100.248 -20.248 55.0 135.0 -2.0 32.0 44.65662148438379 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190401139 b0 -100.248 -20.248 55.0 135.0 -2.0 32.0 101.07382030521454 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190401139 b1 -100.248 -20.248 55.0 135.0 -2.0 32.0 78.92617969478545 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190726642 n9 -101.144 -21.144 40.0 130.0 -4.0 17.5 26.213871557528687 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190726642 na -101.144 -21.144 40.0 130.0 -4.0 17.5 21.71012325518969 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190726642 nb -101.144 -21.144 40.0 130.0 -4.0 17.5 51.327088204492114 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn190726642 b1 -101.144 -21.144 40.0 130.0 -4.0 17.5 47.789826085936454 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191017391 n2 -95.0 -10.0 40.0 130.0 -2.0 33.0 58.534117250604154 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191017391 n5 -95.0 -10.0 40.0 130.0 -2.0 33.0 42.44450677443871 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191017391 b0 -95.0 -10.0 40.0 130.0 -2.0 33.0 42.923290585927965 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191125206 n1 -116.0 -12.0 55.0 155.0 -1.5 42.0 48.54508066924344 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191125206 n3 -116.0 -12.0 55.0 155.0 -1.5 42.0 41.91416333466794 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191125206 n4 -116.0 -12.0 55.0 155.0 -1.5 42.0 54.439753242891975 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191125206 n5 -116.0 -12.0 55.0 155.0 -1.5 42.0 20.674835358875004 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191125206 b0 -116.0 -12.0 55.0 155.0 -1.5 42.0 19.813756458204324 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191129141 n8 -118.0 -12.0 45.0 138.0 -2.0 28.0 25.55249436832345 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191129141 nb -118.0 -12.0 45.0 138.0 -2.0 28.0 40.50837080897089 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn191129141 b1 -118.0 -12.0 45.0 138.0 -2.0 28.0 43.908218696824775 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200227306 n0 -90.264 -10.264 65.24 145.24 -1.5 30.0 8.6457449911111 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200227306 n1 -90.264 -10.264 65.24 145.24 -1.5 30.0 31.452175830004187 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200227306 n3 -90.264 -10.264 65.24 145.24 -1.5 30.0 53.275754477063394 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200227306 n9 -90.264 -10.264 65.24 145.24 -1.5 30.0 41.14409450362927 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200227306 b0 -90.264 -10.264 65.24 145.24 -1.5 30.0 84.47862715443644 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200227306 b1 -90.264 -10.264 65.24 145.24 -1.5 30.0 95.52137284556359 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200301320 n0 -90.776 -10.776 46.808 126.808 -1.0 25.0 40.16572222357194 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200301320 n1 -90.776 -10.776 46.808 126.808 -1.0 25.0 45.65156237930306 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200301320 n3 -90.776 -10.776 46.808 126.808 -1.0 25.0 16.44829993748265 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200301320 n4 -90.776 -10.776 46.808 126.808 -1.0 25.0 55.44926304396502 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200301320 n5 -90.776 -10.776 46.808 126.808 -1.0 25.0 50.618708735129395 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200301320 b0 -90.776 -10.776 46.808 126.808 -1.0 25.0 49.605304041317844 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200524211 n0 -22.0 -7.0 40.0 135.0 -1.0 32.0 4.093780582132471 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200524211 n1 -22.0 -7.0 40.0 135.0 -1.0 32.0 23.0752556884407 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200524211 n3 -22.0 -7.0 40.0 135.0 -1.0 32.0 46.36703737802175 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200524211 b0 -22.0 -7.0 40.0 135.0 -1.0 32.0 71.89599059576196 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200607921 n9 -95.64 -15.64 67.032 147.032 -1.1639999999999873 26.716000000000037 26.448615443235063 "Vikas Chand" 2026-07-14T01:43:16Z human_gui accepted_suggestion
+bn200607921 n6 -95.64 -15.64 67.032 147.032 -1.1639999999999873 26.716000000000037 30.898624338221893 "Vikas Chand" 2026-07-14T01:43:16Z human_gui accepted_suggestion
+bn200607921 n7 -95.64 -15.64 67.032 147.032 -1.1639999999999873 26.716000000000037 52.86203900330589 "Vikas Chand" 2026-07-14T01:43:16Z human_gui accepted_suggestion
+bn200607921 b1 -95.64 -15.64 67.032 147.032 -1.1639999999999873 26.716000000000037 79.2902959366841 "Vikas Chand" 2026-07-14T01:43:16Z human_gui accepted_suggestion
+bn200826923 n1 -88.728 -8.728 30.424 110.424 -1.0 19.0 56.51770877346713 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200826923 n2 -88.728 -8.728 30.424 110.424 -1.0 19.0 41.6325238516663 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200826923 n5 -88.728 -8.728 30.424 110.424 -1.0 19.0 15.061093213897754 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn200826923 b0 -88.728 -8.728 30.424 110.424 -1.0 19.0 18.094393062845825 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201016019 n3 -84.888 -4.888 22.232 102.232 -0.5 18.0 51.25514799521253 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201016019 n4 -84.888 -4.888 22.232 102.232 -0.5 18.0 31.941961313961826 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201016019 n5 -84.888 -4.888 22.232 102.232 -0.5 18.0 28.57348190431014 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201016019 b0 -84.888 -4.888 22.232 102.232 -0.5 18.0 25.224372629497303 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201104001 n3 -125.0 -11.0 20.0 110.0 -1.0 12.0 39.48468679438416 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201104001 n4 -125.0 -11.0 20.0 110.0 -1.0 12.0 48.34658417930405 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201104001 n6 -125.0 -11.0 20.0 110.0 -1.0 12.0 43.10928370515223 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201104001 n7 -125.0 -11.0 20.0 110.0 -1.0 12.0 33.661808830849274 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201104001 n8 -125.0 -11.0 20.0 110.0 -1.0 12.0 42.722092947109715 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201104001 b0 -125.0 -11.0 20.0 110.0 -1.0 12.0 93.61144921171245 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201104001 b1 -125.0 -11.0 20.0 110.0 -1.0 12.0 86.38855078828756 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201105230 n1 -91.0 -11.0 46.0 126.0 -3.5 30.0 52.77863998885907 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201105230 n2 -91.0 -11.0 46.0 126.0 -3.5 30.0 41.54740213754371 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201105230 n5 -91.0 -11.0 46.0 126.0 -3.5 30.0 13.701097724446486 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn201105230 b0 -91.0 -11.0 46.0 126.0 -3.5 30.0 17.00009654921011 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210410037 n6 -111.0 -12.0 48.0 145.0 -1.0 32.0 31.077561173268972 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210410037 n7 -111.0 -12.0 48.0 145.0 -1.0 32.0 9.28435173421832 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210410037 n8 -111.0 -12.0 48.0 145.0 -1.0 32.0 38.969734683659034 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210410037 b1 -111.0 -12.0 48.0 145.0 -1.0 32.0 63.66059348305718 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210524208 n9 -90.52 -10.52 45.784 125.784 -4.5 30.0 19.578870861731737 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210524208 na -90.52 -10.52 45.784 125.784 -4.5 30.0 26.579649066654124 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210524208 nb -90.52 -10.52 45.784 125.784 -4.5 30.0 56.644575815183934 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210524208 b1 -90.52 -10.52 45.784 125.784 -4.5 30.0 53.28492215771656 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210714331 na -90.52 -10.52 88.792 168.792 -1.2 41.0 39.248537714492315 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210714331 nb -90.52 -10.52 88.792 168.792 -1.2 41.0 30.7953638169439 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210714331 b1 -90.52 -10.52 88.792 168.792 -1.2 41.0 28.209020454484232 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210723615 n3 -90.0 -5.0 40.0 130.0 -1.4 28.0 50.85288517738379 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210723615 n4 -90.0 -5.0 40.0 130.0 -1.4 28.0 7.01681084002591 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210723615 n5 -90.0 -5.0 40.0 130.0 -1.4 28.0 55.93506392226111 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210723615 b0 -90.0 -5.0 40.0 130.0 -1.4 28.0 52.58471496854136 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210803497 n2 -99.992 -19.992 41.432 121.432 -1.4 13.4 32.38618952380423 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn210803497 na -99.992 -19.992 41.432 121.432 -1.4 13.4 34.446260987956265 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn210803497 b0 -99.992 -19.992 41.432 121.432 -1.4 13.4 89.99700898078444 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn210803497 b1 -99.992 -19.992 41.432 121.432 -1.4 13.4 90.00299101921554 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn210812699 nb -106.648 -13.5 17.0 125.0 -1.5 4.5 60.121787831244724 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn210812699 b1 -106.648 -13.5 17.0 125.0 -1.5 4.5 59.870053856900995 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211116586 n2 -91.8 -11.8 49.88 129.88 -1.5 18.0 37.137866479633395 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211116586 n5 -91.8 -11.8 49.88 129.88 -1.5 18.0 38.624901720315485 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211116586 b0 -91.8 -11.8 49.88 129.88 -1.5 18.0 40.814751576965435 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211207416 n6 -102.0 -22.0 111.0 191.0 -8.0 44.0 56.49560290903578 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211207416 n7 -102.0 -22.0 111.0 191.0 -8.0 44.0 36.838386900993164 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211207416 n8 -102.0 -22.0 111.0 191.0 -8.0 44.0 42.97145327306747 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211207416 n9 -102.0 -22.0 111.0 191.0 -8.0 44.0 58.27934202713781 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211207416 nb -102.0 -22.0 111.0 191.0 -8.0 44.0 20.38645652412894 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn211207416 b1 -102.0 -22.0 111.0 191.0 -8.0 44.0 22.566716633609115 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn220525008 n0 -98.5 -18.5 45.0 125.0 -4.0 16.0 52.668346527319386 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn220525008 n1 -98.5 -18.5 45.0 125.0 -4.0 16.0 53.24874590561895 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn220525008 n3 -98.5 -18.5 45.0 125.0 -4.0 16.0 21.13198129797193 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn220525008 n4 -98.5 -18.5 45.0 125.0 -4.0 16.0 45.51441160546191 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn220525008 n5 -98.5 -18.5 45.0 125.0 -4.0 16.0 40.66465560529657 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn220525008 b0 -98.5 -18.5 45.0 125.0 -4.0 16.0 38.98342999067125 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn221201517 n5 -91.032 -11.032 67.8 147.8 -1.42 23.64 41.68115059393898 "Claude (AI)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn221201517 n2 -91.032 -11.032 67.8 147.8 -1.42 23.64 50.34296475066872 "Claude (AI)" 2026-07-14T01:43:16Z ai_vision drawn_fresh
+bn221201517 b0 -91.032 -11.032 67.8 147.8 -1.42 23.64 42.856588400719424 "Claude (AI)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn221209243 n1 -90.264 -10.264 39.64 119.64 -1.5 16.0 52.43669297141941 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn221209243 n2 -90.264 -10.264 39.64 119.64 -1.5 16.0 7.533829335988914 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn221209243 n5 -90.264 -10.264 39.64 119.64 -1.5 16.0 52.11864141375012 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn221209243 b0 -90.264 -10.264 39.64 119.64 -1.5 16.0 55.39788735691482 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230320884 n2 -94.616 -14.616 43.48 123.48 -1.5 16.0 57.06596750739744 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230320884 n5 -94.616 -14.616 43.48 123.48 -1.5 16.0 53.564873160305424 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230320884 b0 -94.616 -14.616 43.48 123.48 -1.5 16.0 54.44443621794624 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230405832 n7 -98.2 -18.2 39.64 119.64 -2.0 8.0 59.223214945051474 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230405832 n8 -98.2 -18.2 39.64 119.64 -2.0 8.0 18.275943819780863 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230405832 nb -98.2 -18.2 39.64 119.64 -2.0 8.0 44.95704891169988 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230405832 b1 -98.2 -18.2 39.64 119.64 -2.0 8.0 48.5598110184416 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230409626 n0 -90.0 -10.0 57.56 137.56 -1.0 22.0 55.092369925437154 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230409626 n1 -90.0 -10.0 57.56 137.56 -1.0 22.0 41.28255565797792 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230409626 n2 -90.0 -10.0 57.56 137.56 -1.0 22.0 32.60156856254137 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230409626 n9 -90.0 -10.0 57.56 137.56 -1.0 22.0 48.37081962978888 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230409626 na -90.0 -10.0 57.56 137.56 -1.0 22.0 43.07876900801208 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230409626 b0 -90.0 -10.0 57.56 137.56 -1.0 22.0 85.12784206033838 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230409626 b1 -90.0 -10.0 57.56 137.56 -1.0 22.0 94.8721579396616 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230614424 na -95.0 -15.0 46.0 126.0 -1.5 12.0 18.677107539355777 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230614424 nb -125.0 -15.0 16.0 58.0 -1.5 12.0 54.658009315443344 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230614424 b1 -95.0 -15.0 46.0 126.0 -1.5 12.0 51.317181333210904 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230802285 n2 -108.952 -14.0 55.0 180.056 -4.0 42.0 20.08971194000101 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230802285 n5 -108.952 -14.0 55.0 180.056 -4.0 42.0 45.87702522274556 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230802285 b0 -108.952 -14.0 55.0 180.056 -4.0 42.0 48.87930087852512 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230812790 n0 -90.776 -10.776 20.0 100.0 -1.5 15.0 45.96336874254231 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230812790 n3 -90.776 -10.776 20.0 100.0 -1.5 15.0 26.1734955206693 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230812790 n6 -90.776 -10.776 20.0 100.0 -1.5 15.0 24.32082213985077 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230812790 n7 -90.776 -10.776 20.0 100.0 -1.5 15.0 35.6492085626146 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230812790 b0 -90.776 -10.776 20.0 100.0 -1.5 15.0 85.67108666032301 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn230812790 b1 -90.776 -10.776 20.0 100.0 -1.5 15.0 94.32891333967697 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231020790 n2 -94.6 -14.6 25.0 78.0 -1.0 20.0 46.593562563938214 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231020790 n9 -94.6 -14.6 25.0 78.0 -1.0 20.0 49.456073473627534 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231020790 na -94.6 -14.6 25.0 78.0 -1.0 20.0 19.039821565982088 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231020790 b0 -94.6 -14.6 25.0 78.0 -1.0 20.0 104.93703724363091 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231020790 b1 -94.6 -14.6 25.0 78.0 -1.0 20.0 75.06296275636909 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231030832 n0 -98.456 -18.456 46.04 126.04 -2.0 20.0 52.927836969554434 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231030832 n3 -98.456 -18.456 46.04 126.04 -2.0 20.0 5.376384788164405 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231030832 n4 -98.456 -18.456 46.04 126.04 -2.0 20.0 43.51352224097653 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231030832 n6 -98.456 -18.456 46.04 126.04 -2.0 20.0 47.832386797416916 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231030832 b0 -98.456 -18.456 46.04 126.04 -2.0 20.0 63.39146200477622 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn231030832 b1 -80.0 -5.0 46.04 126.04 -2.0 20.0 116.6085379952238 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240204630 n9 -89.752 -9.752 49.112 129.112 -2.0 26.0 57.02324163353268 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240204630 na -89.752 -9.752 49.112 129.112 -2.0 26.0 23.38756846716241 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240204630 nb -89.752 -9.752 49.112 129.112 -2.0 26.0 40.9114593176905 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240204630 b1 -89.752 -9.752 49.112 129.112 -2.0 26.0 37.47921500778913 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240403498 n0 -86.936 -2.0 85.0 175.704 18.0 48.0 43.07793728351734 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240403498 n1 -86.936 -2.0 85.0 175.704 18.0 48.0 22.588068603473026 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240403498 n2 -86.936 -2.0 85.0 175.704 18.0 48.0 41.79834343961275 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240403498 n3 -86.936 -2.0 85.0 175.704 18.0 48.0 57.944732627460645 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240403498 n5 -86.936 -2.0 85.0 175.704 18.0 48.0 35.274009714363544 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240403498 b0 -86.936 -2.0 85.0 175.704 18.0 48.0 37.50724202113771 "Claude+Codex (AI consensus, adjudicated) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240710643 n7 -99.736 -19.736 47.832 127.832 -0.9 16.0 40.735031350807475 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240710643 n8 -99.736 -19.736 47.832 127.832 -0.9 16.0 12.940841941201843 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240710643 nb -99.736 -19.736 47.832 127.832 -0.9 16.0 40.415273095821156 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn240710643 b1 -99.736 -19.736 47.832 127.832 -0.9 16.0 44.11557892324233 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn241117845 n3 -115.0 -13.0 83.0 190.0 -2.0 68.0 45.20292020978053 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn241117845 n4 -115.0 -13.0 83.0 190.0 -2.0 68.0 45.67031352928032 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn241117845 n6 -115.0 -13.0 83.0 190.0 -2.0 68.0 49.86376796500305 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn241117845 n7 -115.0 -13.0 83.0 190.0 -2.0 68.0 36.860767373452035 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn241117845 n8 -115.0 -13.0 83.0 190.0 -2.0 68.0 36.46961616986636 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn241117845 b0 -115.0 -13.0 83.0 190.0 -2.0 68.0 95.50298675442694 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn241117845 b1 -115.0 -13.0 83.0 190.0 -2.0 68.0 84.49701324557307 "Claude+Codex (AI consensus) + margin-reselect" 2026-07-14T01:43:16Z ai_vision adjusted
+bn241223506 n0 -80.28 -0.28 69.592 149.592 18.0 44.0 50.28519529158573 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn241223506 n1 -80.28 -0.28 69.592 149.592 18.0 44.0 33.12906946347241 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn241223506 n2 -80.28 -0.28 69.592 149.592 18.0 44.0 27.572260790735733 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn241223506 n9 -80.28 -0.28 69.592 149.592 18.0 44.0 53.68656908948791 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision drawn_fresh
+bn241223506 na -80.28 -0.28 69.592 149.592 18.0 44.0 52.68936853108146 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision drawn_fresh
+bn241223506 b0 -80.28 -0.28 69.592 149.592 18.0 44.0 76.01716403313603 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision accepted_suggestion
+bn241223506 b1 -80.28 -0.28 69.592 149.592 18.0 44.0 103.98283596686397 "Claude+Codex (AI consensus, adjudicated)" 2026-07-14T01:43:16Z ai_vision drawn_fresh
+bn250313607 n0 -100.0 -20.0 45.0 125.0 -1.0 26.0 20.07417168006313 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250313607 n1 -100.0 -20.0 45.0 125.0 -1.0 26.0 44.747106197123905 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250313607 n3 -100.0 -20.0 45.0 125.0 -1.0 26.0 43.711698705370104 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250313607 n6 -100.0 -20.0 45.0 125.0 -1.0 26.0 21.071672444608744 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250313607 n7 -100.0 -20.0 45.0 125.0 -1.0 26.0 46.7958806009044 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250313607 n9 -100.0 -20.0 45.0 125.0 -1.0 26.0 47.087487716506644 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250313607 b0 -100.0 -20.0 45.0 125.0 -1.0 26.0 88.5015482479272 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250313607 b1 -100.0 -20.0 45.0 125.0 -1.0 26.0 91.4984517520728 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250407659 n4 -91.8 -11.8 41.176 121.176 -1.164 15.452 25.844739720536573 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250407659 b0 -91.8 -11.8 41.176 121.176 -1.164 15.452 64.19368993414636 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250702413 n6 -89.496 -9.496 118.232 198.232 -0.9 60.0 36.51679235943679 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250702413 n7 -89.496 -9.496 118.232 198.232 -0.9 60.0 14.568792843134176 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250702413 n8 -89.496 -9.496 118.232 198.232 -0.9 60.0 41.59501852967402 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250702413 n9 -89.496 -9.496 118.232 198.232 -0.9 60.0 57.501384403627654 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250702413 nb -89.496 -9.496 118.232 198.232 -0.9 60.0 42.63606147279863 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250702413 b1 -89.496 -9.496 118.232 198.232 -0.9 60.0 44.5574049599517 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250814432 n2 -99.48 -19.48 48.088 128.088 -2.9 8.0 48.51513143762436 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250814432 n5 -99.48 -19.48 48.088 128.088 -2.9 8.0 49.001535000053785 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250814432 b0 -99.48 -19.48 48.088 128.088 -2.9 8.0 50.417103849934556 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250902062 n1 -90.776 -10.776 41.432 121.432 -1.5 20.0 45.24826154002923 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250902062 n2 -90.776 -10.776 41.432 121.432 -1.5 20.0 50.517669020081264 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250902062 n3 -90.776 -10.776 41.432 121.432 -1.5 20.0 56.65980282096697 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250902062 n5 -90.776 -10.776 41.432 121.432 -1.5 20.0 12.702955092045421 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn250902062 b0 -90.776 -10.776 41.432 121.432 -1.5 20.0 14.643757975148093 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn251016999 n0 -90.52 -10.52 31.192 111.192 -1.0 18.5 57.30337910303071 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn251016999 n3 -90.52 -10.52 31.192 111.192 -1.0 18.5 18.317097963866143 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn251016999 n4 -90.52 -10.52 31.192 111.192 -1.0 18.5 46.28473711697818 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn251016999 n6 -90.52 -10.52 31.192 111.192 -1.0 18.5 40.24522221921953 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn251016999 n7 -90.52 -10.52 31.192 111.192 -1.0 18.5 45.0766151660078 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn251016999 b0 -90.52 -10.52 31.192 111.192 -1.0 18.5 76.46795838404752 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn251016999 b1 -90.52 -10.52 31.192 111.192 -1.0 18.5 103.53204161595248 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn260105973 n0 -97.432 -17.432 45.016 125.016 -0.908 10.0 48.27995799530473 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn260105973 n1 -97.432 -17.432 45.016 125.016 -0.908 10.0 25.2287388725051 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn260105973 n2 -97.432 -17.432 45.016 125.016 -0.908 10.0 33.931748495805245 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn260105973 n5 -97.432 -17.432 45.016 125.016 -0.908 10.0 35.35406611551856 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted
+bn260105973 b0 -97.432 -17.432 45.016 125.016 -0.908 10.0 38.11027571936824 "Claude+Codex (AI consensus)" 2026-07-14T01:43:16Z ai_vision adjusted

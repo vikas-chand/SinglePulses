@@ -64,6 +64,7 @@ results/clean_per_burst/*
 plots/*
 # but DO track the human-reviewable approved background+source overlays
 !plots/approved_selections/
+!plots/reselect_montages/
 
 # ---- copyrighted journal PDFs in the root (kept on disk, NOT in git;
 #      this repo merges into a public one). Our own outputs are kept. ----
