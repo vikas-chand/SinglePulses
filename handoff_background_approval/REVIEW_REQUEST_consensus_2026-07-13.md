@@ -41,15 +41,23 @@ Pick whichever:
    setup). Your stamp supersedes the AI one for that burst.
 3. **Just flag them** — send us the list of triggers you'd redo and we'll re-run.
 
-## Known defect to re-check (found by Vikas, 2026-07-13)
-The **pre** background window on ~15 bursts sits **too far before the burst** (it should
-*hug* the burst — inner edge ~5–20 s before it — not stop 20–40 s short). The rule has
-been strengthened (`dev/ai_guides/background_selection.md`, HUG-THE-BURST). These 15
-need the pre window moved closer (and, where a data gap precedes the burst, anchored on
-the settled baseline near the burst, not the post-gap edge):
-`bn201104001, bn090829672, bn191125206, bn210410037, bn191129141, bn241117845,
- bn140608153, bn210812699, bn230802285, bn240403498, bn160330827, bn120420858,
- bn150202999, bn170114833, bn151021791`.
+## Known defect to re-check (found by Vikas, 2026-07-13) — the near-edge MARGIN
+The background inner edge should sit in a **~5–20 s band** from the burst — near enough
+to interpolate, but with a safe margin so the burst's soft tail doesn't leak in. The
+rule was strengthened (`dev/ai_guides/background_selection.md`, "HUG THE BURST" + the
+5–20 s band). **37 bursts fall outside the band** and want the inner edge nudged:
+
+- **Too FAR (pre window >20 s from the burst — 15):** `bn201104001, bn090829672,
+  bn191125206, bn210410037, bn191129141, bn241117845, bn140608153, bn210812699,
+  bn230802285, bn240403498, bn160330827, bn120420858, bn150202999, bn170114833,
+  bn151021791`. (Where a data gap precedes the burst, anchor on the settled baseline
+  near the burst, NOT the post-gap SAA-decay edge.)
+- **Too TIGHT (window touches the burst, g<3 s — 22, some from an over-aggressive
+  auto-repair):** `bn081125496, bn090719063, bn090809978, bn091209001, bn100612726,
+  bn100614498, bn100707032, bn101126198, bn110605183, bn110618366, bn110721200,
+  bn110920546, bn111009282, bn111017657, bn120102095, bn120119170, bn120130938,
+  bn120624933, bn120919309, bn180426549, bn180728728, bn200524211`. (Pull the inner
+  edge back to clear the soft tail by ~5–15 s.)
 
 ## Why now
 The Stage 2–3 re-fit (binning + 6-model spectral fits) has already been run on this
