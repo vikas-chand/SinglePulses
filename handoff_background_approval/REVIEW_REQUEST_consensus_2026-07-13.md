@@ -41,23 +41,20 @@ Pick whichever:
    setup). Your stamp supersedes the AI one for that burst.
 3. **Just flag them** — send us the list of triggers you'd redo and we'll re-run.
 
-## Known defect to re-check (found by Vikas, 2026-07-13) — the near-edge MARGIN
+## Near-edge MARGIN — found by Vikas 2026-07-13, now FIXED (please CONFIRM)
 The background inner edge should sit in a **~5–20 s band** from the burst — near enough
 to interpolate, but with a safe margin so the burst's soft tail doesn't leak in. The
 rule was strengthened (`dev/ai_guides/background_selection.md`, "HUG THE BURST" + the
-5–20 s band). **37 bursts fall outside the band** and want the inner edge nudged:
+5–20 s band). **49 bursts fell outside the band and have been RE-SELECTED** under the new
+rule (a vision pass that keeps inner edges outside data gaps/SAA steps and clears the
+soft tail): **15 too-far-pre + 22 too-tight + 12 too-far-post.** The catalog is now
+**fully band-consistent: g_pre median 10 s, g_post median 15 s, 0 too-far, 0 too-tight,
+0 source-in-gap violations.**
 
-- **Too FAR (pre window >20 s from the burst — 15):** `bn201104001, bn090829672,
-  bn191125206, bn210410037, bn191129141, bn241117845, bn140608153, bn210812699,
-  bn230802285, bn240403498, bn160330827, bn120420858, bn150202999, bn170114833,
-  bn151021791`. (Where a data gap precedes the burst, anchor on the settled baseline
-  near the burst, NOT the post-gap SAA-decay edge.)
-- **Too TIGHT (window touches the burst, g<3 s — 22, some from an over-aggressive
-  auto-repair):** `bn081125496, bn090719063, bn090809978, bn091209001, bn100612726,
-  bn100614498, bn100707032, bn101126198, bn110605183, bn110618366, bn110721200,
-  bn110920546, bn111009282, bn111017657, bn120102095, bn120119170, bn120130938,
-  bn120624933, bn120919309, bn180426549, bn180728728, bn200524211`. (Pull the inner
-  edge back to clear the soft tail by ~5–15 s.)
+So these are **DONE — please just CONFIRM they look right** (montages:
+`plots/reselect_montages/reselect_bunch1–5.png` for the pre/tight fixes,
+`reselect_farpost.png` for the 12 post fixes), and flag any you'd still change. The
+re-selected rows are stamped `... + margin-reselect`.
 
 ## Why now
 The Stage 2–3 re-fit (binning + 6-model spectral fits) has already been run on this
