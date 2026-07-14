@@ -35,15 +35,17 @@ for t in bursts:
     dj=jacc(dets(cl),dets(cx)); si=iou(src(cl),src(cx))
     if dj>=0.8 and si>=0.5:
         dec=build_decision(t,cl)
-        # validate source-in-gap for every detector; auto-repair TRIVIAL (<=3s) overlaps
-        # (background edge nudged to clear the AGREED source; not a science change)
-        REPAIR_MAX=3.0; s1=dec['source']['t1']; s2=dec['source']['t2']; repaired=False; ok=True
+        # validate source-in-gap for every detector; auto-repair TRIVIAL overlaps by
+        # nudging the background edge to clear the AGREED source PLUS a SAFE MARGIN
+        # (never zero the gap -> the burst soft tail would leak in; see HUG-THE-BURST
+        # rule in dev/ai_guides/background_selection.md). Only repair small overlaps.
+        REPAIR_MAX=3.0; MARGIN=5.0; s1=dec['source']['t1']; s2=dec['source']['t2']; repaired=False; ok=True
         for d,w in dec['windows'].items():
-            if w['pre'][1]>s1:
-                if w['pre'][1]-s1<=REPAIR_MAX: w['pre'][1]=s1; repaired=True
+            if w['pre'][1] > s1-MARGIN:                     # overlapping OR razor-thin
+                if w['pre'][1]-s1 <= REPAIR_MAX: w['pre'][1]=s1-MARGIN; repaired=True
                 else: ok=False; break
-            if s2>w['post'][0]:
-                if s2-w['post'][0]<=REPAIR_MAX: w['post'][0]=s2; repaired=True
+            if w['post'][0] < s2+MARGIN:
+                if s2-w['post'][0] <= REPAIR_MAX: w['post'][0]=s2+MARGIN; repaired=True
                 else: ok=False; break
         if ok:
             json.dump(dec,open(f'results/approval/{t}_decision.json','w'),indent=1)
