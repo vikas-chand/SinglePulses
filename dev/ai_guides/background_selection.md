@@ -21,7 +21,10 @@ SELECT a window where ALL of these hold:
 - **No peaks above the local mean** inside it — no precursor, sub-burst, late tail, or single-bin spike.
 - **Width 50-150 s per side, aim ~80-120 s** (STRICT). Too wide picks up orbital curvature and over-constrains the fit; too narrow under-constrains the polynomial. At 1.024-s bins that is ~50-150 bins.
 - **Buffer from the burst edge** so the burst tail does not leak in — keep a clear gap (tens of seconds for a long burst). Estimate the burst's visible extent **from the LC excess itself**, NEVER a catalog/GCN T90: T90 is an OUTPUT of this pipeline (derived later, from the background-subtracted LC), so it cannot inform this step; and Stage 1 consumes **no** GCN/catalog quantity at all — this pipeline is a GCN *producer*, not a consumer (a GCN is itself a human quick-look; depending on it defeats the purpose).
-- **Nearest clean baseline — interpolate, don't extrapolate.** Use the NEAREST clean 50–150 s stretch on each side, so the polynomial INTERPOLATES the baseline *under* the burst rather than extrapolating across a large gap. Do NOT place a window hundreds of seconds away just because it looks flatter there — a distant window sits on a *different part of the slowly-varying physical baseline* (different orbital phase / particle rate) and corrupts the fit under the burst. Operationally: with near-edge gaps `g_pre = source_start − pre_stop` and `g_post = post_start − source_stop`, require `0 ≤ g_pre, g_post ≤ G_max`, **`G_max = min(200 s, max(50 s, 2 × D_vis))`** where `D_vis` is the burst's visible extent from the LC. *(This cap is a pipeline POLICY, not from the physics; frozen for the benchmark.)* If a hard fast feature blocks every window within `G_max`, do NOT silently relax it — abstain/flag.
+- **HUG THE BURST — build each window from the burst *outward*, anchoring the INNER edge near the burst.** This is the single most-violated rule, so it is now explicit. The polynomial must INTERPOLATE the baseline *under* the burst, and interpolation error grows with the distance from the burst to the nearest data used — so the window's **inner** edge must sit as close to the burst as the tail-buffer allows, and you then extend the **outer** edge back/forward to reach the 50–150 s width. Do NOT build the window from a far feature (a gap edge, a flat patch 100 s away) *inward* and stop 30–40 s short of the burst; that leaves the nearest clean baseline unused and forces an extrapolation.
+  - With near-edge gaps `g_pre = source_start − pre_stop` and `g_post = post_start − source_stop`: **TARGET `g_pre, g_post ≈ 5–20 s`** (a tail-buffer only). Treat **`g_pre` or `g_post` > ~40 s as a red flag** — either move the inner edge in to hug the burst, or state the hard feature that forces it out and FLAG. The ceiling `0 ≤ g_pre, g_post ≤ G_max = min(200 s, max(50 s, 2 × D_vis))` (`D_vis` = visible burst extent) still holds, but it is a **last-resort cap, not the goal** — most windows should sit far inside it, hugging the burst. *(Cap is pipeline POLICY, not physics; frozen for the benchmark.)*
+  - **A data gap / SAA-exit *before* the burst:** cross it, but do **NOT** anchor the inner edge at the post-gap edge. That edge sits on the SAA **bi-exponential decay** (a *fast, recognizable* component — see the physics reference — **not** baseline). Come FORWARD, past the decay, to the *settled* baseline that hugs the burst. The clean stretch immediately before the burst is the correct anchor; the noisy stretch right after the gap is not. (Same logic mirrored for a gap after the burst on the `post` side.)
+  - If a hard fast feature blocks every near window and forces `g > G_max`, do NOT silently relax it — abstain/flag.
 - **Far from orbital features** — avoid broad rises/falls, SAA-like rate steps, Earth-limb ramps.
 
 AVOID (move elsewhere / pick the flattest part and flag) if ANY:
@@ -44,6 +47,11 @@ with "identify the burst from the data alone"):
   component (orbital/particle) — put your windows ON that ramp, NEAR the burst, so
   the polynomial interpolates.** A flat stretch far away is a *different* baseline
   level — don't chase it (this is the exact trap that made two AI raters diverge).
+  **Caveat: the baseline aid tells you the background LEVEL/shape, NOT how close to
+  sit.** Proximity is on you — the aid will look "fine" under a window placed 40 s
+  from the burst, but that window still extrapolates. Always combine the aid with the
+  HUG-THE-BURST rule above: sit on the aid *right next to the burst*, not wherever it
+  looks flattest.
 - **transient shade (red)** — the >5σ (MAD) excess above the baseline = the burst.
   Use it to locate the emission and the clean background on each side. It is an AID,
   not a mandate: extend/trim by eye for a precursor or soft tail, and still choose the
@@ -90,6 +98,8 @@ Add one entry per approved detector to `"windows"`:
 ## QC checklist (before approving)
 - [ ] Every approved detector has a `windows` entry; `pre`/`post` present and increasing.
 - [ ] Each window 50-150 s wide (flag if forced narrower).
+- [ ] **HUG check: does the window's INNER edge sit right next to the burst?** `g_pre` and `g_post` ≈ 5-20 s (buffer only); if either > ~40 s, either move the inner edge in or state the hard feature forcing it out. (A window that stops 30-40 s short of the burst is the #1 defect — the near baseline is left unused.)
+- [ ] **No gap/SAA-exit edge as an anchor:** if a data gap precedes/follows the burst, the inner edge is on the *settled* baseline near the burst, NOT on the post-gap decay tail.
 - [ ] `pre` and `post` are off-source: visibly flat, no peak/step/spike inside.
 - [ ] Burst lies fully inside `[pre_stop, post_start]`; `post_start >= pre_stop`.
 - [ ] `source.t1/t2` sits inside that gap for EVERY detector (validation hard-fails otherwise).

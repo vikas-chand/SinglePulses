@@ -41,6 +41,16 @@ Pick whichever:
    setup). Your stamp supersedes the AI one for that burst.
 3. **Just flag them** — send us the list of triggers you'd redo and we'll re-run.
 
+## Known defect to re-check (found by Vikas, 2026-07-13)
+The **pre** background window on ~15 bursts sits **too far before the burst** (it should
+*hug* the burst — inner edge ~5–20 s before it — not stop 20–40 s short). The rule has
+been strengthened (`dev/ai_guides/background_selection.md`, HUG-THE-BURST). These 15
+need the pre window moved closer (and, where a data gap precedes the burst, anchored on
+the settled baseline near the burst, not the post-gap edge):
+`bn201104001, bn090829672, bn191125206, bn210410037, bn191129141, bn241117845,
+ bn140608153, bn210812699, bn230802285, bn240403498, bn160330827, bn120420858,
+ bn150202999, bn170114833, bn151021791`.
+
 ## Why now
 The Stage 2–3 re-fit (binning + 6-model spectral fits) has already been run on this
 consensus catalog, so the paper numbers are ready — they just need your sign-off on
