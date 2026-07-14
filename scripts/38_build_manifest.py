@@ -24,7 +24,7 @@ for trig in sorted(spd):
     # (per-burst JSON), NOT the catalog row: the engine falls back to the
     # highest-significance approved NaI when the catalog detector is unavailable,
     # so the catalog DETECTOR can disagree with what was actually fitted.
-    jf = os.path.join(ROOT, "results", f"clean_per_burst/{trig}/spectral_fits.json")
+    jf = os.path.join(os.environ.get("FIT_ROOT", os.path.join(ROOT, "results/clean_per_burst")), trig, "spectral_fits.json")
     fit_dets, ref = None, str(s["DETECTOR"]).strip()
     if os.path.exists(jf):
         jd = json.load(open(jf))

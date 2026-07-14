@@ -19,16 +19,21 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KEV2ERG = 1.602176634e-9
 EGRID = np.geomspace(10.0, 1000.0, 400)   # GBM NaI band for flux
 
+# per-burst fit root + output tag are env-overridable (authoritative consensus run
+# uses FIT_ROOT=results/clean_per_burst_consensus so the provisional dir is untouched)
+CPB = os.environ.get("FIT_ROOT", os.path.join(ROOT, "results/clean_per_burst"))
+OTAG = os.environ.get("OUT_TAG", "")
+
 # ---------- 1. combine clean_per_burst, tag trigger from dir ----------
 rows = []
-for f in sorted(glob.glob(f"{ROOT}/results/clean_per_burst/*/spectral_fits.ecsv")):
+for f in sorted(glob.glob(f"{CPB}/*/spectral_fits.ecsv")):
     trig = os.path.basename(os.path.dirname(f))
     t = Table.read(f, format="ascii.ecsv")
     t["TRIGGER"] = trig
     rows.append(t)
 T = vstack(rows)
 T = T[T["BLOCK"] >= 0]                      # real time bins only
-T.write(f"{ROOT}/results/clean_sample_all_models.ecsv", format="ascii.ecsv", overwrite=True)
+T.write(f"{ROOT}/results/clean_sample_all_models{OTAG}.ecsv", format="ascii.ecsv", overwrite=True)
 
 def g(row, col):
     try:
@@ -434,7 +439,7 @@ out["model_separation"]={"n":len(gap),
     "frac_allvalid_within6":float(np.mean(spread<6)),
     "frac_of_all_1057_top2_lt10":float(np.sum(gap<10)/len(T))}
 
-with open(f"{ROOT}/results/draft_numbers.json","w") as fh:
+with open(f"{ROOT}/results/draft_numbers{OTAG}.json","w") as fh:
     json.dump(out,fh,indent=2)
 
 # ---------- print ----------

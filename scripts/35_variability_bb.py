@@ -18,15 +18,18 @@ from astropy.stats import bayesian_blocks
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MAX_CELLS = 80_000
+# env-overridable roots (authoritative consensus run points these at the fresh dirs)
+_CPB = os.environ.get("FIT_ROOT", os.path.join(ROOT, "results/clean_per_burst"))
+_BLK = os.environ.get("BLK_ROOT", os.path.join(ROOT, "results/clean_blocks"))
 
 def core_window(trig):
-    t = Table.read(f"{ROOT}/results/clean_blocks/bb_blocks_spectral_{trig}.ecsv", format="ascii.ecsv")
+    t = Table.read(f"{_BLK}/bb_blocks_spectral_{trig}.ecsv", format="ascii.ecsv")
     d = t[t["DETECTOR"] == t["DETECTOR"][0]]
     return float(d["T_START"].min()) - 1.0, float(d["T_STOP"].max()) + 1.0
 
 rows = []
 t_all = time.time()
-for f in sorted(glob.glob(f"{ROOT}/results/clean_per_burst/*/spectral_fits.json")):
+for f in sorted(glob.glob(f"{_CPB}/*/spectral_fits.json")):
     trig = f.split("/")[-2]
     try:
         det = json.load(open(f))["canonical_det"]
