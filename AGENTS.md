@@ -55,6 +55,21 @@ backend — PyQt5 — for the interactive picker; force with `MPLBACKEND=QtAgg`/
 If you (the agent) need to *install* threeML to run the heavy tier — do it. Heaviness
 is not a reason to skip a stage.
 
+**`grb_pipeline` (the GRB_Handbook inheritance) — needed for the SCIENCE path only.**
+`scripts/pipeline_grb.py` and `parity_grb.py` do `import grb_pipeline as grb` — the
+shared, audited binning + fitting package that Two_Breaks Stage 2–3 delegates to.
+**The Stage-1 approval tools (`scripts/39`, `scripts/00`) do NOT need it** — they are
+self-contained (light tier). Install `grb_pipeline` only if you run the science path:
+```bash
+# from the main branch of the package repo (grb_pipeline lives on `main`, NOT the
+# default `master` branch, which is the original notebook-era GRB_Handbook):
+pip install "git+https://github.com/vikas-chand/GRB-Handbook.git@main#egg=grb-pipeline"
+# or, if you have it cloned locally (editable):  pip install -e /path/to/GRB_Handbook_Project
+```
+Verify: `python -c "import grb_pipeline as g; print(g.__version__)"`. NOTE the repo's
+default branch is `master` (a *different*, older tree); always pin `@main` for the
+package.
+
 ---
 
 ## 3. Data
@@ -106,6 +121,23 @@ python scripts/39_approve_all.py render --all          # or --trigger bn...
 # 3) ingest the decisions -> the stamped catalog (light)
 python scripts/39_approve_all.py ingest --all
 ```
+
+**Two-AI consensus (how the current catalog was built, 2026-07).** For robustness the
+AI-vision step was run as a **Claude + Codex consensus**: each independently wrote a
+`decision.json` reading the SAME guides; agreements auto-approved (detector-Jaccard ≥
+0.8 **and** source-IoU ≥ 0.5), disagreements were adjudicated by a third vision pass,
+then a **margin re-selection** enforced the hug-the-burst rule. Machinery:
+`scripts/consensus_reconcile.py`, `consensus_codex_track.py`, `consensus_flag_lc.py`,
+`approved_selection_png.py`. Provenance is in `APPROVED_BY` (`Claude+Codex (AI
+consensus)[, adjudicated][ + margin-reselect]`). A final independent Codex QA lives in
+`notes/codex_bkg_review.md`.
+
+**The judgement rules** live in `dev/ai_guides/` — read them before approving:
+`background_selection.md` (incl. the **HUG-THE-BURST 5–20 s margin band** — the inner
+edge sits near the burst but with a safe buffer; never anchor on a data-gap/SAA-exit
+edge, never on a no-data segment), `detector_selection.md`, `source_selection.md`.
+Current catalog: **106/106 bursts, 0 source-in-gap violations, all margins in [5,40] s**;
+a human (Khushboo) sign-off pass is the last gate before the Stage 2–3 re-fit.
 
 **Human GUI path** (when a person clicks): `python scripts/39_approve_all.py gui
 --trigger bn... --approver "Khushboo Sharma"` — runs the detector picker (POSHIST ≤50°
