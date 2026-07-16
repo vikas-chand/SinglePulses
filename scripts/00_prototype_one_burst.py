@@ -84,6 +84,25 @@ def _ensure_keepalive():
         except Exception:
             _KEEPALIVE_ROOT = None
 
+def _drain_gui_events():
+    """Process pending GUI events between detector windows (Ubuntu/TkAgg fix).
+    Under TkAgg, `plt.close(fig)` from inside a button callback only *schedules*
+    the window's destroy; the mainloop then exits (Gcf empty) before Tk processes
+    it, so the just-approved detector's window survives and REAPPEARS as a dead,
+    non-interactive zombie when the next detector's window opens (Khushboo had to
+    close it with ×). Pumping the event queue here completes the deferred destroy
+    before the next `plt.show()`. macOS/Qt: harmless no-op."""
+    try:
+        plt.close('all')                       # drop any lingering figure managers
+    except Exception:
+        pass
+    if _KEEPALIVE_ROOT is not None:
+        try:
+            _KEEPALIVE_ROOT.update_idletasks()
+            _KEEPALIVE_ROOT.update()           # <- actually runs the pending destroys
+        except Exception:
+            pass
+
 BASE_DIR = os.path.join(os.path.dirname(__file__), '..')
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 RESULTS_DIR = os.path.join(BASE_DIR, 'results')
@@ -1111,7 +1130,11 @@ def review_one_detector(trigger, det, ai_intervals, t90_start, t90):
         t90_start=None, t90=None,    # T90-free GUI
         prev_pre=pre_seed, prev_post=post_seed,
     )
-    return sel.run()
+    res = sel.run()
+    # Ubuntu/TkAgg: finish destroying THIS detector's window before the next opens,
+    # else it reappears as a dead zombie alongside the next detector's figure.
+    _drain_gui_events()
+    return res
 
 
 # ============================================================================

@@ -60,6 +60,7 @@ after both raters have finished or the tool-commit split is recorded (§6).
 | R-BG-17 | Keyboard adjust requires that window to be placed first; pressing `a/s/d/f` before placement shows "(unset — place window first)". | [EXISTING→documented here] |
 | R-BG-18 | Accept requires both intervals (status message otherwise). The 50–150 s/side width rule is **advisory** at Accept — warn only, or block? | **[OPEN — Vikas]** |
 | R-BG-19 | Residual-panel y-limits after refit: currently `min(resid)−1 … min(max,10)+0.5`. Keep, or fix bounds across detectors? | **[OPEN — Khushboo]** |
+| R-BG-20 | Between successive detector windows — and picker→first-detector and last-detector→source-marker — pending GUI events are **drained** (`_drain_gui_events()` = `plt.close('all')` + a Tk `update()`), so the just-approved detector's Tk window finishes its **deferred destroy** before the next `plt.show()`. Without it, on **Ubuntu/TkAgg** the approved window (e.g. n6) reappears as a **dead, non-interactive zombie** alongside the next detector (n7), forcing a manual ×. macOS/Qt: no-op. (Field bug, Khushboo, 2026-07-15.) | [NEW] P1 (done) |
 
 ## 4. Source marker (R-SM) — all P3 (rebuild)
 | # | Req | Tag/Phase |

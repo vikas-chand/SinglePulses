@@ -562,6 +562,10 @@ def gui_one(trigger, approver):
         selected = list(pre_ticked_for_gui)
     if not selected:
         return trigger, 'no detectors', 0
+    # Ubuntu/TkAgg: finish tearing down the picker window before the first detector
+    # window opens (same deferred-destroy zombie fix as between detectors).
+    if hasattr(P, '_drain_gui_events'):
+        P._drain_gui_events()
     windows = {}
     for det in selected:
         if not P.ensure_tte_for_detector(trigger, det):
