@@ -56,9 +56,34 @@ So these are **DONE — please just CONFIRM they look right** (montages:
 `reselect_farpost.png` for the 12 post fixes), and flag any you'd still change. The
 re-selected rows are stamped `... + margin-reselect`.
 
+## Independent Codex review (gpt-5.6-sol, 2026-07-14) — structural fixes applied
+A second AI (Codex, ultra effort) did a final adversarial QA (`notes/codex_bkg_review.md`).
+Its **structural findings were fixed** (montage `plots/reselect_montages/codex_fixes.png`):
+- **bn081125496** — its pre window was on a NO-DATA segment (0 events); re-anchored onto
+  real data (`[-23.5,-8]`, now ~20k events).
+- **10 sub-5 s margins widened** to ≥5 s (bn081222204, bn090530760, bn100122616,
+  bn131113483, bn150902733, bn160625945, bn201016019, bn210723615, bn230614424,
+  bn231030832). bn081222204's outer edge (past data start) also clipped.
+- **bn090719063** — added the required **b1** companion (both NaIs are high-side).
+
+Catalog after fixes: **106 bursts, 0 source-in-gap violations, every margin in [5,40] s.**
+
+### Human judgment queue (Codex flagged; YOUR call — reasons in `notes/codex_bkg_review.md`)
+Codex ran an adversarial pass (it over-flags by design). These are **source-extent /
+precursor / tail** judgment calls, NOT structural errors — please eyeball and confirm or
+override. **Several were already adjudicated** in the consensus (source-extent), so many
+will just confirm:
+`bn090829672, bn100130729, bn130427324, bn180728728, bn230802285, bn240403498,
+ bn110618366, bn110928180, bn120119170, bn120624933, bn160330827, bn171210493,
+ bn200607921, bn221201517, bn241117845, bn180426549`.
+One detector call: **bn210812699** — its only NaI (nb) is at 60.1°, 0.1° over the hard
+60° cut; kept with a boundary exception, and Codex also sees a bump in its post window —
+your decision to keep/redo/exclude. (Codex's 26 lower-priority "questionable" cases are
+listed in the review doc.)
+
 ## Why now
-The Stage 2–3 re-fit (binning + 6-model spectral fits) has already been run on this
-consensus catalog, so the paper numbers are ready — they just need your sign-off on
-the selections underneath. Nothing is locked until you've looked.
+The Stage 2–3 re-fit (binning + 6-model spectral fits) was run on an earlier version of
+this catalog; it will be **re-run on the final catalog after your sign-off**, so the
+paper numbers follow your approval. Nothing is locked until you've looked.
 
 Thank you! — questions to Vikas.

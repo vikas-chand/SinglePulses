@@ -1,0 +1,371 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-07-14",
+  "reviewer": "Codex (AI independent expert review)",
+  "verdict": "NOT_READY_FOR_HUMAN_SIGN_OFF",
+  "verdict_summary": "The catalog passes structural ordering checks but has 28 interval must-fix bursts (18 visual failures and 10 separate hard-tight numeric failures), plus one additional detector-set blocker. Correct these before handoff to Khushboo.",
+  "inputs": {
+    "catalog": "results/background_intervals.ecsv",
+    "background_rule": "dev/ai_guides/background_selection.md",
+    "source_rule": "dev/ai_guides/source_selection.md",
+    "detector_rule_for_scope_adjacent_checks": "dev/ai_guides/detector_selection.md",
+    "montages": [
+      "plots/reselect_montages/reselect_bunch1.png",
+      "plots/reselect_montages/reselect_bunch2.png",
+      "plots/reselect_montages/reselect_bunch3.png",
+      "plots/reselect_montages/reselect_bunch4.png",
+      "plots/reselect_montages/reselect_bunch5.png",
+      "plots/reselect_montages/reselect_farpost.png"
+    ]
+  },
+  "numeric": {
+    "boundary_conventions": {
+      "margin_target": "5 <= g <= 20",
+      "margin_too_tight": "g < 5",
+      "margin_hard_far": "g > 40",
+      "width_target": "50 <= width <= 150"
+    },
+    "rows": 479,
+    "triggers": 106,
+    "unique_trigger_detector_pairs": 479,
+    "source_in_gap_violations": 0,
+    "nonfinite_or_masked_numeric_values": 0,
+    "duplicate_trigger_detector_pairs": 0,
+    "triggers_with_detector_dependent_source_edges": 0,
+    "ordering_violations": {
+      "pre_interval": 0,
+      "source_interval": 0,
+      "post_interval": 0,
+      "full_chain": 0
+    },
+    "g_pre": {
+      "min_s": 3.0,
+      "q1_s": 8.1,
+      "median_s": 10.0,
+      "mean_s": 10.997837160751565,
+      "q3_s": 14.0,
+      "max_s": 24.3,
+      "in_5_20": 449,
+      "lt_5": 27,
+      "gt_20_le_40": 3,
+      "gt_40": 0
+    },
+    "g_post": {
+      "min_s": 3.708000000000027,
+      "q1_s": 10.0,
+      "median_s": 15.0,
+      "mean_s": 17.81324425887265,
+      "q3_s": 25.592,
+      "max_s": 39.548,
+      "in_5_20": 305,
+      "lt_5": 13,
+      "gt_20_le_40": 161,
+      "gt_40": 0
+    },
+    "combined_margin_edges": {
+      "total": 958,
+      "in_5_20": 754,
+      "lt_5": 40,
+      "gt_20_le_40": 164,
+      "gt_40": 0
+    },
+    "rows_both_margins_in_5_20": 282,
+    "rows_any_margin_lt_5": 36,
+    "triggers_any_margin_lt_5": 10,
+    "pre_width": {
+      "min_s": 2.5,
+      "q1_s": 77.5,
+      "median_s": 80.0,
+      "mean_s": 68.58697286012527,
+      "q3_s": 80.0,
+      "max_s": 115.0,
+      "in_50_150": 362,
+      "lt_50": 117,
+      "gt_150": 0
+    },
+    "post_width": {
+      "min_s": 7.0,
+      "q1_s": 80.0,
+      "median_s": 90.0,
+      "mean_s": 93.23248434237996,
+      "q3_s": 100.0,
+      "max_s": 150.0,
+      "in_50_150": 476,
+      "lt_50": 3,
+      "gt_150": 0
+    },
+    "combined_widths": {
+      "total": 958,
+      "in_50_150": 838,
+      "lt_50": 120,
+      "gt_150": 0
+    },
+    "rows_both_widths_in_50_150": 361,
+    "rows_any_width_outside_50_150": 118,
+    "triggers_any_width_outside_50_150": 26,
+    "approval": {
+      "ai_vision_rows": 473,
+      "human_gui_rows": 6,
+      "margin_reselect_rows": 223,
+      "margin_reselect_triggers": 49,
+      "all_rows_same_approved_utc": true,
+      "approved_utc_value": "2026-07-14T17:18:10Z"
+    }
+  },
+  "numeric_flags": {
+    "tight_margin_must_fix": [
+      {
+        "trigger": "bn081222204",
+        "detectors": ["n0", "n1", "n2", "b0"],
+        "g_pre_s": 3.84,
+        "reason": "Pre margin is below the hard 5 s lower bound.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn090530760",
+        "detectors": ["b0", "n1", "n2", "n3", "n5"],
+        "g_pre_s": 4.0,
+        "reason": "Pre margin is below the hard 5 s lower bound.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn100122616",
+        "detectors": ["n6", "n7", "n9", "na", "b1"],
+        "g_pre_s": 3.0,
+        "reason": "Pre margin is below the hard 5 s lower bound.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn131113483",
+        "detectors": ["n1", "n2", "n5", "b0"],
+        "g_pre_s": 4.0,
+        "reason": "Pre margin is below the hard 5 s lower bound.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn150902733",
+        "detectors": ["n0", "n1", "b0"],
+        "g_post_s": 4.248,
+        "reason": "Post margin is below the hard 5 s lower bound.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn160625945",
+        "detectors": ["n6", "n7", "n9", "nb", "b1"],
+        "g_post_s": 3.708,
+        "reason": "Post margin is below the hard 5 s lower bound.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn201016019",
+        "detectors": ["n3", "n4", "n5", "b0"],
+        "g_pre_s": 4.388,
+        "g_post_s": 4.232,
+        "reason": "Both margins are below the hard 5 s lower bound.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn210723615",
+        "detectors": ["n3", "n4", "n5", "b0"],
+        "g_pre_s": 3.6,
+        "reason": "Pre margin is below the hard 5 s lower bound.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn230614424",
+        "detectors": ["nb"],
+        "g_post_s": 4.0,
+        "reason": "Post margin is below the hard 5 s lower bound for nb.",
+        "severity": "must_fix"
+      },
+      {
+        "trigger": "bn231030832",
+        "detectors": ["b1"],
+        "g_pre_s": 3.0,
+        "reason": "Pre margin is below the hard 5 s lower bound for b1.",
+        "severity": "must_fix"
+      }
+    ],
+    "width_exceptions": [
+      {"trigger": "bn081224887", "detectors": ["n0", "n1", "n6", "n7", "n9", "b0", "b1"], "pre_width_s": 16.0, "post_width_s": 100.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn090530760", "detectors": ["b0", "n1", "n2", "n3", "n5"], "pre_width_s": 24.7, "post_width_s": 80.0, "reason": "Pre width is below 50 s; trigger is already must-fix for a tight margin.", "severity": "must_fix"},
+      {"trigger": "bn090620400", "detectors": ["n6", "n7", "n8", "nb", "b1"], "pre_width_s": 14.71, "post_width_s": 80.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn090719063", "detectors": ["n7", "n8"], "pre_width_s": 19.5, "post_width_s": 94.44, "reason": "Pre width is below 50 s; detector set also lacks b1.", "severity": "must_fix"},
+      {"trigger": "bn090804940", "detectors": ["n3", "n4", "n5", "b0"], "pre_width_s": 10.256, "post_width_s": 80.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn090809978", "detectors": ["n3", "n4", "n5", "b0"], "pre_width_s": 17.764, "post_width_s": 106.16, "reason": "Pre width is below 50 s and the visual source tail is borderline.", "severity": "nice_to_check"},
+      {"trigger": "bn090829672", "detectors": ["n0", "n6", "n7", "n9", "na", "nb", "b0", "b1"], "pre_width_s": 37.533, "post_width_s": 100.0, "reason": "Pre width is short and contains an omitted precursor.", "severity": "must_fix"},
+      {"trigger": "bn091209001", "detectors": ["n4", "b0"], "pre_width_s": 18.0, "post_width_s": 100.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn100122616", "detectors": ["n6", "n7", "n9", "na", "b1"], "pre_width_s": 39.0, "post_width_s": 90.0, "reason": "Pre width is short; trigger is already must-fix for a tight margin.", "severity": "must_fix"},
+      {"trigger": "bn100612726", "detectors": ["n3", "n4", "n7", "n8", "b0", "b1"], "pre_width_s": 21.4, "post_width_s": 107.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn100614498", "detectors": ["n6", "n7", "n9", "nb", "b1"], "pre_width_s": 6.0, "post_width_s": 124.0, "reason": "Extreme 6 s pre-window requires an explicit forced-coverage exception.", "severity": "nice_to_check"},
+      {"trigger": "bn100707032", "detectors": ["n7", "n8", "b1"], "pre_width_s": 14.0, "post_width_s": 100.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn101126198", "detectors": ["n6", "n7", "n8", "nb", "b1"], "pre_width_s": 18.0, "post_width_s": 100.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn110605183", "detectors": ["n2", "n5", "b0"], "pre_width_s": 18.5, "post_width_s": 85.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn110721200", "detectors": ["n6", "n7", "n9", "nb", "b1"], "pre_width_s": 22.5, "post_width_s": 90.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn110920546", "detectors": ["n0", "n1", "n3", "n6", "n7", "b0", "b1"], "pre_width_s": 10.53, "post_width_s": 150.0, "reason": "Pre width is below 50 s and source tail is borderline.", "severity": "nice_to_check"},
+      {"trigger": "bn111009282", "detectors": ["n0", "n1", "b0"], "pre_width_s": 20.88, "post_width_s": 107.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn111017657", "detectors": ["n6", "n7", "n8", "n9", "b1"], "pre_width_s": 23.0, "post_width_s": 110.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn120102095", "detectors": ["n3", "n4", "n5", "b0"], "pre_width_s": 22.0, "post_width_s": 98.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn120119170", "detectors": ["n9", "na", "nb", "b1"], "pre_width_s": 22.0, "post_width_s": 90.0, "reason": "Pre width is short and post visually touches the tail.", "severity": "must_fix"},
+      {"trigger": "bn120130938", "detectors": ["n0", "n1", "n9", "na", "b0", "b1"], "pre_width_s": 15.0, "post_width_s": 100.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn120624933", "detectors": ["n0", "n1", "n2", "n9", "na", "b0", "b1"], "pre_width_s": 21.5, "post_width_s": 120.0, "reason": "Pre width is short and post visually touches the tail.", "severity": "must_fix"},
+      {"trigger": "bn120919309", "detectors": ["n0", "n1", "n2", "n3", "n5", "b0"], "pre_width_s": 21.0, "post_width_s": 91.0, "reason": "Pre width is below 50 s.", "severity": "nice_to_check"},
+      {"trigger": "bn180426549", "detectors": ["nb", "b1"], "pre_width_s": 2.5, "post_width_s": 7.0, "reason": "Both windows are unusably short and the fit is visually unconstrained.", "severity": "must_fix"},
+      {"trigger": "bn200524211", "detectors": ["n0", "n1", "n3", "b0"], "pre_width_s": 15.0, "post_width_s": 95.0, "reason": "Pre width is below 50 s and starts at data turn-on.", "severity": "nice_to_check"},
+      {"trigger": "bn230614424", "detectors": ["nb"], "pre_width_s": 110.0, "post_width_s": 42.0, "reason": "Post width is below 50 s and post margin is also below 5 s.", "severity": "must_fix"}
+    ]
+  },
+  "vision": {
+    "claimed_reselected_bursts": 48,
+    "actual_montage_panels": 49,
+    "unique_montage_triggers": 49,
+    "inventory_mismatch": true,
+    "status_counts": {
+      "wrong": 18,
+      "questionable": 26,
+      "ok": 5
+    },
+    "panels": [
+      {"trigger": "bn081125496", "status": "wrong", "severity": "must_fix", "reason": "Pre is wholly on a zero-count/no-data segment and ends at data return; polynomial is grossly distorted and source clips decay."},
+      {"trigger": "bn090719063", "status": "questionable", "severity": "nice_to_check", "reason": "Visually clean, but pre is only 19.5 s from the data boundary."},
+      {"trigger": "bn090809978", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 17.8 s and weak decay may continue to 18-20 s after source stop 15.5 s."},
+      {"trigger": "bn090829672", "status": "wrong", "severity": "must_fix", "reason": "A 0-15 s precursor appears in multiple selected NaIs, lies inside pre, and is omitted from source starting at 29 s."},
+      {"trigger": "bn091209001", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 18 s and positive NET persists around 30-43 s after source stop."},
+      {"trigger": "bn100612726", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 21.4 s and source/post boundary is only about 5 s beyond apparent return."},
+      {"trigger": "bn100614498", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is only 6 s at data onset; fit is strongly underconstrained without an explicit exception."},
+      {"trigger": "bn100707032", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is only 14 s from data onset; source/post otherwise plausible."},
+      {"trigger": "bn101126198", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 18 s and faint tail continues to roughly 34-35 s, making post at 40 s borderline."},
+      {"trigger": "bn110605183", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 18.5 s at data onset and lies on a mild rise."},
+      {"trigger": "bn110618366", "status": "wrong", "severity": "must_fix", "reason": "Soft tail continues from source stop 60.636 s to about 70-78 s and contaminates early post."},
+      {"trigger": "bn110721200", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 22.5 s and source appears over-wide by roughly 10-15 s."},
+      {"trigger": "bn110920546", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 10.53 s and weak tail may continue to 128-130 s after source stop 120 s."},
+      {"trigger": "bn111009282", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 20.88 s and contains a small coherent hump around -22 to -15 s."},
+      {"trigger": "bn111017657", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 23 s and source stop 15 s clips decay bins to roughly 18-19 s."},
+      {"trigger": "bn120102095", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is 22 s and tail continuation leaves only about 4 s before post."},
+      {"trigger": "bn120119170", "status": "wrong", "severity": "must_fix", "reason": "Tail remains positive at source stop 47 s and post starts at the 53-55 s return with no buffer."},
+      {"trigger": "bn120130938", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is only 15 s; other edges appear plausible."},
+      {"trigger": "bn120420858", "status": "questionable", "severity": "nice_to_check", "reason": "Weak tail persists to 52-55 s; post begins 58 s, only 3-6 s after actual return."},
+      {"trigger": "bn120624933", "status": "wrong", "severity": "must_fix", "reason": "Tail continues after source stop 28 s to about 33-35 s and post starts at 35 s."},
+      {"trigger": "bn120919309", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is only 21 s; other edges appear clean."},
+      {"trigger": "bn140608153", "status": "ok", "severity": "none", "reason": "Clean 100/85 s windows, target margins, plausible polynomial, and complete source."},
+      {"trigger": "bn150202999", "status": "questionable", "severity": "nice_to_check", "reason": "Low-level decay may continue to 27-29 s after source stop 22 s; post is likely safe."},
+      {"trigger": "bn151021791", "status": "questionable", "severity": "nice_to_check", "reason": "Source stop 11 s clips final decay bins to roughly 14-15 s."},
+      {"trigger": "bn160330827", "status": "wrong", "severity": "must_fix", "reason": "Multi-NaI decay continues to about 38-40 s after source stop 30 s; post at 42 s is too close."},
+      {"trigger": "bn170114833", "status": "ok", "severity": "none", "reason": "Smooth feature-free windows, target margins, and complete source."},
+      {"trigger": "bn180426549", "status": "wrong", "severity": "must_fix", "reason": "Pre/post are 2.5/7 s, pre is at data turn-on, fit is unconstrained, and source clips tail."},
+      {"trigger": "bn180728728", "status": "wrong", "severity": "must_fix", "reason": "A -2 to +4 s precursor lies partly inside pre and wholly outside source starting at 8 s."},
+      {"trigger": "bn191125206", "status": "ok", "severity": "none", "reason": "Wide clean windows, plausible polynomial, and complete source."},
+      {"trigger": "bn191129141", "status": "questionable", "severity": "nice_to_check", "reason": "A broad approximately 3-4 sigma hump around -42 to -37 s lies inside pre."},
+      {"trigger": "bn200524211", "status": "questionable", "severity": "nice_to_check", "reason": "Pre is only 15 s and starts at the TTE turn-on edge."},
+      {"trigger": "bn201104001", "status": "ok", "severity": "none", "reason": "Clean settled baseline, target margins, and complete source."},
+      {"trigger": "bn210410037", "status": "questionable", "severity": "nice_to_check", "reason": "Weak multi-NaI tail continues to roughly 38-40 s after source stop 32 s."},
+      {"trigger": "bn210812699", "status": "wrong", "severity": "must_fix", "reason": "Post contains a coherent 33-38 s bump, strongest in nb and corroborated in b1."},
+      {"trigger": "bn230802285", "status": "wrong", "severity": "must_fix", "reason": "Pre contains a broad positive feature around -35 to -20 s, clear in n2/n5."},
+      {"trigger": "bn240403498", "status": "wrong", "severity": "must_fix", "reason": "A 0-8 s precursor and 70-80 s late pulse are both outside source 18-48 s."},
+      {"trigger": "bn241117845", "status": "wrong", "severity": "must_fix", "reason": "Decay remains positive to roughly 78-80 s after source stop 68 s; post starts 83 s."},
+      {"trigger": "bn100130729", "status": "wrong", "severity": "must_fix", "reason": "Pre starts at data turn-on and contains a -5 to +5 s precursor, strongest in n3, long before source at 58 s."},
+      {"trigger": "bn110928180", "status": "wrong", "severity": "must_fix", "reason": "Rise begins around -15 to -8 s but source starts -3 s; real pre margin is about 3 s."},
+      {"trigger": "bn130215063", "status": "questionable", "severity": "nice_to_check", "reason": "Rise and tail extend outside source; post at 55 s nearly touches the apparent return."},
+      {"trigger": "bn130427324", "status": "wrong", "severity": "must_fix", "reason": "Post contains a broad coherent multi-NaI bump/step around 123-145 s."},
+      {"trigger": "bn151006413", "status": "questionable", "severity": "nice_to_check", "reason": "Weak tail continues to about 50 s and n1 has a small 62-66 s bump near early post."},
+      {"trigger": "bn171210493", "status": "wrong", "severity": "must_fix", "reason": "Strong soft tail continues beyond source stop 50 s directly into post starting 88 s."},
+      {"trigger": "bn200607921", "status": "wrong", "severity": "must_fix", "reason": "Source stops 26.716 s while NaI decay remains positive to about 38-40 s."},
+      {"trigger": "bn210714331", "status": "questionable", "severity": "nice_to_check", "reason": "Low-level tail reaches roughly 48-50 s after source stop 41 s; post starts 56 s."},
+      {"trigger": "bn211207416", "status": "questionable", "severity": "nice_to_check", "reason": "A broad -30 to -18 s feature/rise touches or enters pre ending -22 s."},
+      {"trigger": "bn221201517", "status": "wrong", "severity": "must_fix", "reason": "Tail remains repeatedly above 3 sigma through roughly 40-43 s after source stop 23.64 s."},
+      {"trigger": "bn250702413", "status": "questionable", "severity": "nice_to_check", "reason": "Post gap is 30 s with unused baseline; weak tail may continue to 65-70 s."},
+      {"trigger": "bn250814432", "status": "ok", "severity": "none", "reason": "Clean windows, target margins, and complete short-pulse source."}
+    ]
+  },
+  "additional_catalog_flags": [
+    {
+      "trigger": "bn090719063",
+      "reason": "Selected high-side NaIs n7,n8 have no required high-side BGO companion b1 row.",
+      "severity": "must_fix",
+      "scope": "detector_consistency"
+    },
+    {
+      "trigger": "bn210812699",
+      "detector": "nb",
+      "det_angle_deg": 60.1217878312,
+      "reason": "NaI angle exceeds the detector guide's hard 60 degree limit; geometry must be resolved in addition to the bad post window.",
+      "severity": "must_fix",
+      "scope": "detector_consistency"
+    },
+    {
+      "trigger": null,
+      "reason": "Prompt says 48 re-selected bursts, but ECSV stamps and montage labels both contain 49 unique triggers.",
+      "severity": "nice_to_check",
+      "scope": "inventory_provenance"
+    },
+    {
+      "trigger": null,
+      "reason": "All 479 rows have the identical APPROVED_UTC despite mixed approvers and modes; confirm this is intentionally the batch-ingest time.",
+      "severity": "nice_to_check",
+      "scope": "approval_provenance"
+    }
+  ],
+  "flagged_triggers": {
+    "must_fix": [
+      {"trigger": "bn081125496", "reason": "Pre is on no-data and source clips decay.", "severity": "must_fix"},
+      {"trigger": "bn081222204", "reason": "g_pre is 3.84 s.", "severity": "must_fix"},
+      {"trigger": "bn090530760", "reason": "g_pre is 4.0 s.", "severity": "must_fix"},
+      {"trigger": "bn090719063", "reason": "High-side NaIs lack required b1 companion.", "severity": "must_fix"},
+      {"trigger": "bn090829672", "reason": "Pre contains an omitted 0-15 s precursor.", "severity": "must_fix"},
+      {"trigger": "bn100122616", "reason": "g_pre is 3.0 s.", "severity": "must_fix"},
+      {"trigger": "bn100130729", "reason": "Pre contains an omitted precursor and starts at data turn-on.", "severity": "must_fix"},
+      {"trigger": "bn110618366", "reason": "Soft tail contaminates early post.", "severity": "must_fix"},
+      {"trigger": "bn110928180", "reason": "Source omits the rise and real pre margin is about 3 s.", "severity": "must_fix"},
+      {"trigger": "bn120119170", "reason": "Post touches a clipped soft tail.", "severity": "must_fix"},
+      {"trigger": "bn120624933", "reason": "Post starts at the tail return with no buffer.", "severity": "must_fix"},
+      {"trigger": "bn130427324", "reason": "Post contains a coherent 123-145 s bump/step.", "severity": "must_fix"},
+      {"trigger": "bn131113483", "reason": "g_pre is 4.0 s.", "severity": "must_fix"},
+      {"trigger": "bn150902733", "reason": "g_post is 4.248 s.", "severity": "must_fix"},
+      {"trigger": "bn160330827", "reason": "Source clips decay and post is only 2-4 s after return.", "severity": "must_fix"},
+      {"trigger": "bn160625945", "reason": "g_post is 3.708 s.", "severity": "must_fix"},
+      {"trigger": "bn171210493", "reason": "Strong soft tail runs directly into post.", "severity": "must_fix"},
+      {"trigger": "bn180426549", "reason": "Both background windows are unusably short and fit is unconstrained.", "severity": "must_fix"},
+      {"trigger": "bn180728728", "reason": "Pre contains part of an omitted precursor.", "severity": "must_fix"},
+      {"trigger": "bn200607921", "reason": "Source omits clear decay to about 38-40 s.", "severity": "must_fix"},
+      {"trigger": "bn201016019", "reason": "Both g_pre and g_post are below 5 s.", "severity": "must_fix"},
+      {"trigger": "bn210723615", "reason": "g_pre is 3.6 s.", "severity": "must_fix"},
+      {"trigger": "bn210812699", "reason": "Post contains a coherent bump and nb is beyond the 60 degree NaI limit.", "severity": "must_fix"},
+      {"trigger": "bn221201517", "reason": "Source clips repeatedly significant tail emission.", "severity": "must_fix"},
+      {"trigger": "bn230614424", "reason": "nb g_post is 4.0 s and its post width is 42 s.", "severity": "must_fix"},
+      {"trigger": "bn230802285", "reason": "Pre contains a broad significant feature.", "severity": "must_fix"},
+      {"trigger": "bn231030832", "reason": "b1 g_pre is 3.0 s.", "severity": "must_fix"},
+      {"trigger": "bn240403498", "reason": "Source omits both a precursor and a late pulse.", "severity": "must_fix"},
+      {"trigger": "bn241117845", "reason": "Source clips decay and post starts about 3 s after return.", "severity": "must_fix"}
+    ],
+    "nice_to_check": [
+      {"trigger": "bn081224887", "reason": "Pre width is only 16 s.", "severity": "nice_to_check"},
+      {"trigger": "bn090620400", "reason": "Pre width is only 14.71 s.", "severity": "nice_to_check"},
+      {"trigger": "bn090804940", "reason": "Pre width is only 10.256 s.", "severity": "nice_to_check"},
+      {"trigger": "bn090809978", "reason": "Short pre and possibly clipped weak tail.", "severity": "nice_to_check"},
+      {"trigger": "bn091209001", "reason": "Short pre and unexplained post-source positive NET.", "severity": "nice_to_check"},
+      {"trigger": "bn100612726", "reason": "Short pre and borderline source/post tail buffer.", "severity": "nice_to_check"},
+      {"trigger": "bn100614498", "reason": "Extreme 6 s forced pre-window needs explicit acceptance.", "severity": "nice_to_check"},
+      {"trigger": "bn100707032", "reason": "Pre width is only 14 s.", "severity": "nice_to_check"},
+      {"trigger": "bn101126198", "reason": "Short pre and faint tail near post.", "severity": "nice_to_check"},
+      {"trigger": "bn110605183", "reason": "Short pre at data onset on a mild rise.", "severity": "nice_to_check"},
+      {"trigger": "bn110721200", "reason": "Short pre and apparently over-wide source.", "severity": "nice_to_check"},
+      {"trigger": "bn110920546", "reason": "Very short pre and possible long-tail clipping.", "severity": "nice_to_check"},
+      {"trigger": "bn111009282", "reason": "Short pre contains a small coherent hump.", "severity": "nice_to_check"},
+      {"trigger": "bn111017657", "reason": "Short pre and source may clip several decay bins.", "severity": "nice_to_check"},
+      {"trigger": "bn120102095", "reason": "Short pre and only about 4 s actual post buffer.", "severity": "nice_to_check"},
+      {"trigger": "bn120130938", "reason": "Pre width is only 15 s.", "severity": "nice_to_check"},
+      {"trigger": "bn120420858", "reason": "Weak tail leaves only 3-6 s before post.", "severity": "nice_to_check"},
+      {"trigger": "bn120919309", "reason": "Pre width is only 21 s.", "severity": "nice_to_check"},
+      {"trigger": "bn130215063", "reason": "Both source edges may clip low-level emission and post nearly touches return.", "severity": "nice_to_check"},
+      {"trigger": "bn150202999", "reason": "Source may clip low-level tail to 27-29 s.", "severity": "nice_to_check"},
+      {"trigger": "bn151006413", "reason": "Weak tail and a small early-post bump need checking.", "severity": "nice_to_check"},
+      {"trigger": "bn151021791", "reason": "Source may clip final decay bins.", "severity": "nice_to_check"},
+      {"trigger": "bn191129141", "reason": "A 3-4 sigma hump lies inside pre.", "severity": "nice_to_check"},
+      {"trigger": "bn200524211", "reason": "Pre is 15 s and starts at TTE turn-on.", "severity": "nice_to_check"},
+      {"trigger": "bn210410037", "reason": "Source may clip a weak multi-NaI tail.", "severity": "nice_to_check"},
+      {"trigger": "bn210714331", "reason": "Low-level tail leaves only about 6 s before post.", "severity": "nice_to_check"},
+      {"trigger": "bn211207416", "reason": "A broad pre-source feature may touch the pre window.", "severity": "nice_to_check"},
+      {"trigger": "bn250702413", "reason": "Post gap is 30 s with unused baseline and source may clip a weak tail.", "severity": "nice_to_check"}
+    ]
+  }
+}
