@@ -694,6 +694,27 @@ def gui_one(trigger, approver, seed_from_catalog=False):
                      key=lambda d: angles.get(d, 999))
     if not nai_ref:
         return trigger, 'no NaI approved (cannot mark source on BGO)', 0
+    # LLE background review (R-LLE-1): if LLE data is present, show its 30-100 MeV
+    # light curve seeded with the brightest-NaI windows so the rater can confirm the
+    # background epochs are clean in LLE too (particle spikes differ from NaI) or
+    # nudge them. Skipping leaves LLE inheriting the NaI windows at fit time (the
+    # prior behavior). The emission window stays shared (marked on NaI below).
+    if hasattr(P, 'find_lle') and P.find_lle(trigger):
+        _ref = windows[nai_ref[0]]
+        lres, lpre, lpost = P.review_lle_background(
+            trigger, _ref['pre'], _ref['post'])
+        if lres == 'quit':
+            raise SystemExit(f'{trigger}: user quit at LLE')
+        if lres == 'accept' and lpre is not None and lpost is not None:
+            _lsame = (list(lpre) == list(_ref['pre'])
+                      and list(lpost) == list(_ref['post']))
+            windows['lle'] = {
+                'pre': list(lpre), 'post': list(lpost),
+                'window_source': 'accepted_suggestion' if _lsame else 'adjusted'}
+            print(f'  lle: background {"confirmed (= NaI)" if _lsame else "adjusted"}'
+                  f' -> pre {list(lpre)}, post {list(lpost)}')
+        else:
+            print(f'  lle: {lres} — LLE will inherit the NaI windows at fit time')
     s1, s2 = source_marker_gui(trigger, nai_ref[0], cand['suggested_source'],
                                bkg=windows.get(nai_ref[0]))
     decision = {'trigger': trigger, 'approver': approver, 'mode': 'human_gui',

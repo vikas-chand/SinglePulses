@@ -62,6 +62,15 @@ after both raters have finished or the tool-commit split is recorded (§6).
 | R-BG-19 | Residual-panel y-limits after refit: currently `min(resid)−1 … min(max,10)+0.5`. Keep, or fix bounds across detectors? | **[OPEN — Khushboo]** |
 | R-BG-20 | Between successive detector windows — and picker→first-detector and last-detector→source-marker — pending GUI events are **drained** (`_drain_gui_events()` = `plt.close('all')` + a Tk `update()`), so the just-approved detector's Tk window finishes its **deferred destroy** before the next `plt.show()`. Without it, on **Ubuntu/TkAgg** the approved window (e.g. n6) reappears as a **dead, non-interactive zombie** alongside the next detector (n7), forcing a manual ×. macOS/Qt: no-op. (Field bug, Khushboo, 2026-07-15.) | [NEW] P1 (done) |
 
+## 3b. LLE background review (R-LLE) — 13 LLE-bearing bursts
+| # | Req | Tag/Phase |
+|---|---|---|
+| R-LLE-1 | If `gll_lle_*.fit*` is present, after the NaI/BGO windows and before the source marker the GUI shows the **LLE 30–100 MeV** light curve (same `BackgroundSelector`, `is_lle=True`) **seeded with the brightest-NaI pre/post windows**, so the rater confirms the background epochs are also clean in LLE (particle backgrounds differ from NaI) or nudges them. | [NEW] **DONE** (`review_lle_background`, `gui_one`) |
+| R-LLE-2 | LLE has **no 3ML residual panel** (no `from_gbm_tte` path); `_refresh_overlay` returns early with an explanatory status. Judgement is on the LC + the orange fitted-background aid + the green seeded windows. | [NEW] **DONE** |
+| R-LLE-3 | An accepted LLE window is written as an `lle` entry in `windows`/`detectors`; ingest emits an `lle` row and `_validate_decision` enforces the **same source-in-gap** constraint on it (a broken LLE gap rejects the burst — verified). **Skip** ⇒ no `lle` row ⇒ the engine inherits the NaI windows at fit time (prior behavior). | [NEW] **DONE** |
+| R-LLE-4 | `scripts/10` preference order for the LLE bkg window: reviewed `lle` ECSV row → brightest-NaI inheritance → synthetic `[-50,-10]/[300,400]`. The emission window is always the shared per-burst source. | [NEW] **DONE** |
+| R-LLE-5 | LLE review is currently **human-side only** — the AI-vision path renders no LLE PNG and produces no `lle` row, so AI catalogs inherit NaI for LLE. Benchmark-parity implication: an LLE `ai_guide` + render is needed before LLE backgrounds enter the AI-vs-human comparison. | **[OPEN — Vikas]** |
+
 ## 4. Source marker (R-SM) — all P3 (rebuild)
 | # | Req | Tag/Phase |
 |---|---|---|

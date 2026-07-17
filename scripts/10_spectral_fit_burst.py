@@ -1079,20 +1079,28 @@ def _run(args, trigger, out_dir, lat_ctx=None):
     bgo_dets = [d for d in approved if d.startswith('b')]
     fit_dets = nai_dets + (bgo_dets if args.include_bgo else [])
 
-    # LLE — auto-add if data is present (HAS_LAT bursts).
-    # LLE plugin uses its own polynomial bkg fit; we provide synthetic
-    # bkg windows wide of the burst (re-using brightest-NaI's windows
-    # if available, else [-50,-10] / [t_stop+10, t_stop+50]).
+    # LLE — auto-add if data is present (HAS_LAT bursts). LLE uses its own
+    # polynomial bkg fit over these time windows. Preference order:
+    #   1. an APPROVED LLE bkg window (a reviewed 'lle' row in the bkg ECSV,
+    #      written by the Stage-1 GUI LLE review) — LLE particle backgrounds can
+    #      differ from NaI, so a human-confirmed window is authoritative;
+    #   2. else inherit the brightest-NaI windows (same quiescent epochs);
+    #   3. else a synthetic wide window [-50,-10] / [300,400].
     lle_files = find_lle_files(trigger)
     if lle_files[0] is not None and not args.skip_lle:
-        # Use brightest-NaI bkg windows as LLE bkg windows
-        if nai_dets and nai_dets[0] in approved:
-            lle_pre, lle_post = approved[nai_dets[0]]
+        if 'lle' in approved:
+            print(f'{trigger}: LLE data present — using APPROVED LLE bkg window '
+                  f'{approved["lle"]}')
         else:
-            lle_pre, lle_post = (-50.0, -10.0), (300.0, 400.0)
-        approved['lle'] = (lle_pre, lle_post)
-        fit_dets.append('lle')
-        print(f'{trigger}: LLE data present — added to joint fit')
+            if nai_dets and nai_dets[0] in approved:
+                approved['lle'] = approved[nai_dets[0]]
+                print(f'{trigger}: LLE data present — inheriting brightest-NaI '
+                      f'bkg window (no reviewed LLE row)')
+            else:
+                approved['lle'] = ((-50.0, -10.0), (300.0, 400.0))
+                print(f'{trigger}: LLE data present — synthetic wide bkg window')
+        if 'lle' not in fit_dets:
+            fit_dets.append('lle')
 
     print(f'{trigger}: approved dets = {list(approved)}; fit dets = {fit_dets}')
 

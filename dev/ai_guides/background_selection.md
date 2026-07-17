@@ -117,6 +117,9 @@ Add one entry per approved detector to `"windows"`:
 - Reusing one detector's edges blindly when a feature lands differently in another detector's band (esp. NaI vs BGO).
 - Forgetting the source-in-gap invariant → ingest rejects the whole decision as INVALID.
 
+## LLE background (13 LLE-bearing bursts)
+If the burst has `gll_lle_*.fit*`, the human GUI now adds an **LLE 30–100 MeV** background step after the NaI/BGO windows: the LLE light curve is shown seeded with the brightest-NaI pre/post windows, and the rater confirms those epochs are clean in LLE (particle backgrounds differ from NaI — watch for a spike absent in the NaI LC) or nudges them. An accepted window becomes an `lle` row in the catalog; the fit engine (`scripts/10`) prefers it over NaI inheritance. The **source stays the shared per-burst emission window** (marked on NaI). *AI-vision parity is an OPEN item (R-LLE-5): there is no LLE render for the AI path yet, so AI catalogs inherit the NaI windows for LLE — do not fabricate an LLE selection in `ai_vision` mode.*
+
 ## How this is scored vs humans (BENCHMARK_PLAN.md, task #2)
 Run Stage 1 in `human_gui` and `ai_vision` mode on the benchmark subset → two stamped catalogs; `scripts/40_benchmark.py` compares per (trigger, detector):
 - **pre/post edge Δ (s)** — absolute difference of each of the four edges vs the human.

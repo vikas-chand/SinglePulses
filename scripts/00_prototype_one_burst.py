@@ -130,19 +130,28 @@ class BackgroundSelector(object):
 
     def __init__(self, trigger, det, tte_file, rsp_file=None,
                  t90_start=None, t90=None,
-                 prev_pre=None, prev_post=None):
+                 prev_pre=None, prev_post=None, is_lle=False):
         self.trigger = trigger
         self.det = det
         self.tte_file = tte_file
         self.rsp_file = rsp_file
+        self.is_lle = is_lle          # LAT-LLE mode: 30-100 MeV LC, no 3ML residuals
         self.has_t90 = (t90_start is not None and t90 is not None)
         self.t90_start = t90_start
         self.t90_stop = (t90_start + t90) if self.has_t90 else None
 
         with fits.open(tte_file) as hdul:
-            times = hdul['EVENTS'].data['TIME']
+            ev = hdul['EVENTS'].data
             trigtime = hdul['PRIMARY'].header.get('TRIGTIME', 0.0)
-            t_rel = times - trigtime
+            if is_lle:
+                # LLE events carry ENERGY (MeV); cut to the 30-100 MeV science band
+                # (engine LLE_RANGES) so the rater confirms the background on the
+                # SAME data that gets fit.
+                energy = np.asarray(ev['ENERGY'])
+                _sel = (energy >= 30.0) & (energy <= 100.0)
+                t_rel = np.asarray(ev['TIME'])[_sel] - trigtime
+            else:
+                t_rel = ev['TIME'] - trigtime
 
         if self.has_t90:
             pad = max(120.0, 5.0 * t90)
@@ -533,6 +542,12 @@ class BackgroundSelector(object):
             except Exception: pass
         self.resid_artists = []
 
+        if self.is_lle:
+            # LLE has no from_gbm_tte path; the LC + orange fitted-background aid
+            # + green windows are enough to confirm the epochs are clean / adjust.
+            self._set_status('LLE 30-100 MeV: confirm or adjust the background '
+                             'windows on the light curve (residual panel N/A).')
+            return
         if self.pre_interval is None or self.post_interval is None:
             return
 
@@ -1177,6 +1192,31 @@ def review_one_detector(trigger, det, ai_intervals, t90_start, t90):
     res = sel.run()
     # Ubuntu/TkAgg: finish destroying THIS detector's window before the next opens,
     # else it reappears as a dead zombie alongside the next detector's figure.
+    _drain_gui_events()
+    return res
+
+
+def find_lle(trigger):
+    """Newest LAT-LLE event file for this burst, or None if not downloaded."""
+    matches = sorted(glob.glob(os.path.join(DATA_DIR, trigger, 'gll_lle_*.fit*')))
+    return matches[-1] if matches else None
+
+
+def review_lle_background(trigger, seed_pre=None, seed_post=None):
+    """LLE (30-100 MeV) background review: same picker UX, seeded with the
+    brightest-NaI windows so the rater confirms the background epochs are clean
+    in LLE too (particle spikes differ from NaI) or nudges them. The emission
+    window is shared (marked on NaI), so only pre/post are captured here.
+    Returns ('accept'|'skip'|'quit', pre, post). 'skip' => LLE inherits the NaI
+    windows at fit time exactly as before."""
+    lle = find_lle(trigger)
+    if lle is None:
+        return 'skip', None, None
+    sel = BackgroundSelector(
+        trigger, 'lle', lle, rsp_file=None, t90_start=None, t90=None,
+        prev_pre=tuple(seed_pre) if seed_pre else None,
+        prev_post=tuple(seed_post) if seed_post else None, is_lle=True)
+    res = sel.run()
     _drain_gui_events()
     return res
 
