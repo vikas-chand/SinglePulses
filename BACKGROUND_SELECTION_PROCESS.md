@@ -177,23 +177,29 @@ LC for visual sanity check.
 - **`isNormalMode()` guard**: inspect `fig.canvas.toolbar.mode`; if active
   (zoom or pan), silence click-selection. Lets the matplotlib default
   toolbar handle zoom; no custom zoom UI needed.
-- **Matplotlib backend**: `matplotlib.use('macosx')` not `'TkAgg'` — TkAgg
-  crashes (`TclError: can't invoke "wm" command: application has been
-  destroyed`) on the second figure after the first one's `plt.close()`.
+- **Matplotlib backend**: macOS = `macosx` (auto-selected); Linux =
+  `MPLBACKEND=TkAgg`. (The historical second-figure `TclError` crash and
+  the dead "zombie" window on Ubuntu are FIXED — keep-alive Tk root +
+  between-window event drain; see `dev/GUI_REQUIREMENTS.md` R-BG-20.)
 
-### --auto-approve
+### ~~--auto-approve~~ (SUPERSEDED — no such flag)
 
-Skip the GUI for `confidence: high` (silent accept) and `confidence:
-medium` (accept but log to `auto_approved_with_caveats.log`).
-`confidence: low` always opens the GUI.
+The confidence-routed auto-approve was never carried into the unified
+driver. `scripts/39_approve_all.py` has NO `--auto-approve`: every burst is
+approved either by a human in the GUI (`gui --approver "<name>"`) or by an
+AI writing a stamped `decision.json` (`mode: ai_vision`) — both ingest into
+the same gated catalog.
 
 ### Output
 
-`results/background_intervals.ecsv` (or `_prototype.ecsv` for the
-single-burst prototype):
+`results/background_intervals.ecsv` — the gated, stamped 13-column schema
+written by `scripts/39 ingest`:
 ```
-TRIGGER_NAME, DETECTOR, BKG_NEG_START, BKG_NEG_STOP, BKG_POS_START, BKG_POS_STOP
+TRIGGER_NAME, DETECTOR, BKG_NEG_START, BKG_NEG_STOP, BKG_POS_START,
+BKG_POS_STOP, SRC_START, SRC_STOP, DET_ANGLE, APPROVED_BY, APPROVED_UTC,
+APPROVAL_MODE, WINDOW_SOURCE
 ```
+(The old 6-column stampless layout is legacy — pre-gate scripts only.)
 
 ---
 
