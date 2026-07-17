@@ -504,8 +504,25 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None):
                    alpha=0.15)
         for x in (float(bkg['pre'][1]), float(bkg['post'][0])):
             ax.axvline(x, color='green', ls='--', lw=1.0, alpha=0.8)
+        # Fitted-background AID: a polynomial fit to ONLY the bins inside the
+        # approved pre/post windows (the background model that gets subtracted),
+        # drawn across the whole panel so the rater sees the background level
+        # UNDER the source and can judge where the pulse returns to it.
+        try:
+            _rate = cnt / 0.256
+            _in = (((ctr >= float(bkg['pre'][0])) & (ctr <= float(bkg['pre'][1]))) |
+                   ((ctr >= float(bkg['post'][0])) & (ctr <= float(bkg['post'][1]))))
+            if int(_in.sum()) >= 3:
+                _sc = float(np.std(ctr)) or 1.0
+                _ts = (ctr - float(np.mean(ctr))) / _sc      # center/scale (cond.)
+                _deg = 2 if int(_in.sum()) >= 6 else 1
+                _cf = np.polyfit(_ts[_in], _rate[_in], _deg)
+                ax.plot(ctr, np.polyval(_cf, _ts), color='tab:orange', lw=1.3,
+                        alpha=0.9, zorder=2, label='fitted bkg (aid)')
+        except Exception:
+            pass
     if suggested or bkg:
-        ax.legend(loc='upper right')
+        ax.legend(loc='upper right', fontsize=8)
     vlines = []
     span = [None]
     status = fig.text(0.07, 0.02, 'Accept = adopt gold; or click start+stop '
