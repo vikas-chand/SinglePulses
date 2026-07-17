@@ -463,12 +463,14 @@ def write_catalog(rows, merge=True):
 # gui -- human path (detector picker -> bkg selector -> source marker)
 # ============================================================================
 
-def source_marker_gui(trigger, ref_det, suggested=None, bkg=None):
+def source_marker_gui(trigger, ref_det, suggested=None, bkg=None, gap=None):
     """2-click source/emission marker with Accept/Clear on the reference-detector
     LC. `bkg` = the JUST-APPROVED {'pre':[a,b], 'post':[c,d]} for ref_det — drawn
-    in green with the allowed source gap marked, so the source is judged in its
-    background context (must satisfy pre_stop <= t1 < t2 <= post_start).
-    Returns (t1, t2)."""
+    in green. `gap` = (lo, hi) = the COMMON background gap over ALL accepted
+    detectors (max pre_stop, min post_start); it is shaded blue and Accept is
+    REFUSED for any source outside it (R-SM-4), so a source valid for the reference
+    NaI but overlapping a tighter detector's background can't be saved only to be
+    rejected at ingest. Returns (t1, t2)."""
     P = p0()
     import matplotlib.pyplot as plt
     P._ensure_keepalive()   # persistent Tk root (multi-window fix); idempotent
@@ -526,7 +528,22 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None):
                         alpha=0.9, zorder=2, label='fitted bkg (aid)')
         except Exception:
             pass
-    if suggested or bkg:
+    # R-SM-4: the ALLOWED band = the common gap over ALL accepted detectors. A source
+    # must lie inside it (not just inside the reference NaI's gap) or ingest rejects
+    # the whole burst. Shade it + mark its edges so the constraint is visible.
+    gap_ok = None
+    if gap and float(gap[1]) > float(gap[0]):
+        gap_ok = (float(gap[0]), float(gap[1]))
+        ax.axvspan(gap_ok[0], gap_ok[1], color='tab:blue', alpha=0.08,
+                   label='allowed (all-det gap)', zorder=0)
+        for x in gap_ok:
+            ax.axvline(x, color='tab:blue', ls=':', lw=1.2, alpha=0.9)
+        lo = min(lo, gap_ok[0] - 5.0); hi = max(hi, gap_ok[1] + 5.0)
+    elif gap:
+        # degenerate: some detector's background leaves NO common gap
+        ax.set_title(f'{trigger} [{ref_det}] — WARNING: detectors have NO common '
+                     f'background gap; fix a background first')
+    if suggested or bkg or gap_ok:
         ax.legend(loc='upper right', fontsize=8)
     vlines = []
     span = [None]
@@ -563,17 +580,30 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None):
                            else 'Click the other edge.'))
         _redraw_span()
 
+    def _in_gap(t1, t2):
+        if gap_ok is None:
+            return True
+        return gap_ok[0] <= min(t1, t2) and max(t1, t2) <= gap_ok[1]
+
     def on_pick(ev):
         if ev.artist is btn_accept:
             if len(picks) == 2:
-                result['t'] = (min(picks), max(picks)); plt.close(fig)
+                cand_t = (min(picks), max(picks))
             elif suggested and not picks:
-                result['t'] = (suggested['t1'], suggested['t2'])
-                result['adopted'] = True; plt.close(fig)
+                cand_t = (suggested['t1'], suggested['t2'])
             else:
                 status.set_text('Need BOTH clicks (or Clear, then Accept for '
                                 'the gold suggestion).')
-                fig.canvas.draw_idle()
+                fig.canvas.draw_idle(); return
+            if not _in_gap(*cand_t):                      # R-SM-4 backstop
+                status.set_text(f'REFUSED: source [{cand_t[0]:.1f},{cand_t[1]:.1f}] is '
+                                f'outside the allowed all-detector gap '
+                                f'[{gap_ok[0]:.1f},{gap_ok[1]:.1f}]. Move a background '
+                                f'off the pulse, or tighten the source.')
+                fig.canvas.draw_idle(); return
+            result['t'] = cand_t
+            result['adopted'] = (not picks)
+            plt.close(fig)
         elif ev.artist is btn_clear:
             picks.clear()
             for v in vlines:
@@ -732,8 +762,12 @@ def gui_one(trigger, approver, seed_from_catalog=False):
                      key=lambda d: angles.get(d, 999))
     if not nai_ref:
         return trigger, 'no NaI approved (cannot mark source on BGO)', 0
+    # common background gap over ALL accepted detectors (R-SM-4): the source must fit
+    # inside it, not just inside the reference NaI's gap.
+    _gap = (max(float(w['pre'][1]) for w in windows.values()),
+            min(float(w['post'][0]) for w in windows.values()))
     s1, s2 = source_marker_gui(trigger, nai_ref[0], cand['suggested_source'],
-                               bkg=windows.get(nai_ref[0]))
+                               bkg=windows.get(nai_ref[0]), gap=_gap)
     # LLE background review (R-LLE) — GATED on real LLE signal. Only when 30-100 MeV
     # LLE is actually detected over the just-marked source (>= LLE_SIGNAL_SIGMA) is
     # its background worth reviewing; a background-only LLE LC is skipped. Skip / no
