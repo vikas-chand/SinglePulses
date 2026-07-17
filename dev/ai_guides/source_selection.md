@@ -10,7 +10,7 @@
 ## Inputs (what to read)
 - `plots/approval_lc/<trigger>_<det>.png` — one per approved detector. **Judge the source on the brightest / lowest-angle approved NaI.** Each is a 1.024-s binned LC, NaI band 8–900 keV, linear y-axis, x = "Time since trigger (s)". Deliberately **no T90 shading** — identify the burst region from the data alone.
 - `results/approval/<trigger>_pending.json` — the candidate manifest. Read `suggested_source` (`{t1, t2}`): a peak-find estimate already tightened inside the brightest NaI's background gap. Treat it as a starting proposal to confirm or adjust, not ground truth.
-- The background windows you just approved: `pre = [t1,t2]`, `post = [t3,t4]` per detector. The source MUST fall in the gap `[pre_stop, post_start]` (see Output contract).
+- The background windows you just approved: `pre = [t1,t2]`, `post = [t3,t4]` per detector. The source MUST fall in the gap `[pre_stop, post_start]` (see Output contract). *(Parity note: the human GUI source marker draws these same windows in green with dashed gap-boundary lines — R-SM-7 — so both raters judge the source against identical background context.)*
 
 ## Decision criteria (the heart)
 You are drawing the smallest contiguous interval that still contains **all** of the burst emission. Concretely, on the brightest-NaI 1.024-s LC:

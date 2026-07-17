@@ -66,9 +66,10 @@ after both raters have finished or the tool-commit split is recorded (§6).
 | # | Req | Tag/Phase |
 |---|---|---|
 | R-SM-1 | Marked on the best-angle accepted NaI light curve (0.256 s bins); the suggested window is pre-shaded in gold. | [EXISTING] |
-| R-SM-2 | Buttons **Accept / Clear / Quit** (same `fig.text(..., picker=20)` idiom as the background selector). Accept is refused (status message) until a valid pair exists — or with zero picks it explicitly adopts the suggestion. | [NEW] P3 |
+| R-SM-2 | Buttons **Accept / Clear** (same `fig.text(..., picker=20)` idiom as the background selector). Accept adopts the gold suggestion when there are zero picks, else the clicked pair; Clear resets. A clicked pair is shown as a red span + status line. | [NEW] **P3 — DONE** (commit 4aeba8d) |
 | R-SM-3 | Click feedback: each pick draws a labelled line and a status line ("start = 12.30 s"). Third click: replaces the nearer pick, or is rejected? | [NEW] P3 + **[OPEN — Khushboo]** |
 | R-SM-4 | **Real-time gap validation**: the allowed band `[max(pre_stop), min(post_start)]` over all accepted detectors is shaded; Accept refuses a pair outside it (ingest remains the backstop). Removes the current failure mode where a bad source silently rejects the whole burst at ingest. | [NEW] P3 |
+| R-SM-7 | **Background context on the marker**: the reference detector's **just-approved** pre/post windows are drawn in green (with dashed gap-boundary lines at `pre_stop`/`post_start`) so the source is judged against the same background the rater accepted seconds earlier; the view is widened to cover them. `bkg=windows.get(nai_ref[0])` is passed from `gui_one` into `source_marker_gui`. Single-detector precursor to R-SM-4's multi-detector allowed-band. | [NEW] **DONE** (commit cca962c) |
 | R-SM-5 | Window-close (×) without Accept **aborts the burst**; closing may not silently adopt the suggestion (adoption = explicit Accept with zero picks). *Until P3 lands, adoption-on-close prints loudly (P1, done).* | [DECISION] P3 |
 | R-SM-6 | Picks snap to LC bins (parity with the background selector)? | **[OPEN — Khushboo]** |
 
