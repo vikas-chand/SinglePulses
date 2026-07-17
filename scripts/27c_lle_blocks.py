@@ -160,7 +160,11 @@ def lle_reblock(trig, bkg, out_dir, floor=SIGMA_FLOOR_LLE, p0=P0, verbose=False)
     t_out = Table(rows=rows, names=['TRIGGER_NAME', 'DETECTOR', 'BLOCK_INDEX', 'T_START',
                   'T_STOP', 'SIGNIFICANCE', 'IS_MERGED', 'CONSTITUENT_COUNT', 'POLY_ORDER'])
     os.makedirs(out_dir, exist_ok=True)
-    t_out.write(os.path.join(out_dir, f'bb_blocks_lle_{trig}.ecsv'),
+    # Standard `bb_blocks_spectral_<trig>.ecsv` name (in its OWN out-dir, so no clash
+    # with the GBM fine grid) so scripts/29 --blocks-dir + scripts/10 --blocks-file
+    # read it unchanged. get_canonical_bins picks canonical_det='lle' -> grid_type=
+    # lle_coarse + a NaI eff-area reference (scripts/10, Codex-audit-fixed).
+    t_out.write(os.path.join(out_dir, f'bb_blocks_spectral_{trig}.ecsv'),
                 format='ascii.ecsv', overwrite=True)
     if verbose:
         print(f'  {trig} [lle 30-100 MeV, bkg={bsrc}]: src=[{s1:.2f},{s2:.2f}]  '
