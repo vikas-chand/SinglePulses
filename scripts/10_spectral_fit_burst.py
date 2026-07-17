@@ -327,6 +327,74 @@ def _setup_dsbpl(seed):
     return d
 
 
+# ---- SHAPE-census variants (opt-in via --models shape|highe) ----------------
+# Free the smoothness so the DATA measure the curvature around the peak
+# (Ravasio+2018 fit these for 160625B; the frozen defaults above came from that).
+def _setup_sbpl_free(seed):
+    s = _setup_sbpl(seed)
+    s.break_scale.free = True
+    s.break_scale.bounds = (0.01, 2.0)
+    s.break_scale.value = _clamp(seed.get('sbplf_scale', 0.3), 0.01, 2.0)
+    return s
+
+def _setup_dsbpl_free(seed):
+    d = _setup_dsbpl(seed)
+    d.n1.free = True
+    d.n1.bounds = (0.5, 10.0)
+    d.n1.value = _clamp(seed.get('dsbplf_n1', 5.38), 0.5, 10.0)
+    d.n2.free = True
+    d.n2.bounds = (0.5, 10.0)
+    d.n2.value = _clamp(seed.get('dsbplf_n2', 2.69), 0.5, 10.0)
+    return d
+
+
+# ---- High-energy second components (opt-in via --models highe) --------------
+# Ported from the LATBright 17-model engine (s03m_joint_5phot_lat_bins.py,
+# constructors byte-identical to s03h lines 697-805; port verified 2026-07-16).
+# Pivot 1e5 keV = 100 MeV anchors the extra component ABOVE the Band peak.
+def _setup_extra_pl(seed):
+    from astromodels import Powerlaw
+    pl = Powerlaw()
+    pl.piv = 1e5                               # 100 MeV
+    pl.K.bounds = (1e-15, 1e2)
+    pl.index.bounds = (-4.0, -1.0)
+    pl.K.value = max(1e-15, seed.get('hepl_K', 1e-4))
+    pl.index.value = _clamp(seed.get('hepl_index', -1.8), -4.0, -1.0)
+    return pl
+
+def _setup_extra_cpl(seed):
+    from astromodels import Cutoff_powerlaw
+    c = Cutoff_powerlaw()
+    c.piv = 1e5                                # 100 MeV
+    c.K.bounds = (1e-15, 1e2)
+    c.index.bounds = (-4.0, -1.0)
+    c.xc.bounds = (5e4, 1e8)                   # 50 MeV - 100 GeV
+    c.K.value = max(1e-15, seed.get('hecpl_K', 1e-4))
+    c.index.value = _clamp(seed.get('hecpl_index', -1.8), -4.0, -1.0)
+    c.xc.value = _clamp(seed.get('hecpl_xc', 5e5), 5e4, 1e8)
+    return c
+
+def _setup_band_ep2mev(seed):
+    """Band with Ep RESTRICTED below 2 MeV, so the extra CPL must be the
+    high-energy component (Guiriec-style disambiguation)."""
+    b = _setup_band(seed)
+    b.xp.bounds = (10.0, 2000.0)
+    b.xp.value = _clamp(seed.get('band_Ep', DEFAULT_PARAMS['Ep']), 10.0, 2000.0)
+    return b
+
+def _setup_cutoff_mult(seed):
+    """Multiplicative pure-exponential cutoff: index=0, K=1, piv=1 all FIXED,
+    only xc free (pair-production attenuation factor)."""
+    from astromodels import Cutoff_powerlaw
+    c = Cutoff_powerlaw()
+    c.index = 0.0; c.index.fix = True
+    c.K = 1.0;     c.K.fix = True
+    c.piv = 1.0;   c.piv.fix = True
+    c.xc.bounds = (5e4, 1e8)
+    c.xc.value = _clamp(seed.get('cut_xc', 5e5), 5e4, 1e8)
+    return c
+
+
 # ============================================================
 # Model specs — composite builders + parameter mappings
 # ============================================================
@@ -385,6 +453,94 @@ MODEL_SPECS = [
     },
 ]
 
+# ---- SHAPE census set (--models shape): free-smoothness variants ------------
+SHAPE_MODEL_SPECS = [
+    {
+        'name': 'SBPLfree', 'prefix': 'SBPLF', 'n_params': 5,
+        'build': lambda s: _setup_sbpl_free(s),
+        'pmap': {'ALPHA': 'alpha', 'EBREAK': 'break_energy', 'BETA': 'beta',
+                 'SCALE': 'break_scale', 'K': 'K'},
+        'seed_keys': {'ALPHA': 'sbpl_alpha', 'EBREAK': 'sbpl_break',
+                      'BETA': 'sbpl_beta', 'SCALE': 'sbplf_scale', 'K': 'sbpl_K'},
+    },
+    {
+        'name': 'DSBPLfree', 'prefix': 'DSBPLF', 'n_params': 8,
+        'build': lambda s: _setup_dsbpl_free(s),
+        'pmap': {'ALPHA1': 'alpha1', 'XB': 'xb', 'ALPHA2': 'alpha2',
+                 'XP': 'xp', 'BETA': 'beta', 'N1': 'n1', 'N2': 'n2', 'K': 'K'},
+        'seed_keys': {'ALPHA1': 'dsbpl_alpha1', 'XB': 'dsbpl_xb',
+                      'ALPHA2': 'dsbpl_alpha2', 'XP': 'dsbpl_xp',
+                      'BETA': 'dsbpl_beta', 'N1': 'dsbplf_n1', 'N2': 'dsbplf_n2',
+                      'K': 'dsbpl_K'},
+    },
+]
+
+# ---- HIGH-E set (--models highe): second components above the peak ----------
+HIGHE_MODEL_SPECS = [
+    {
+        'name': 'Band+PL', 'prefix': 'BANDPL', 'n_params': 6,
+        'build': lambda s: _setup_band(s) + _setup_extra_pl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EP': 'xp_1', 'BETA': 'beta_1', 'K_BAND': 'K_1',
+                 'PL_INDEX': 'index_2', 'PL_K': 'K_2'},
+        'seed_keys': {'ALPHA': 'band_alpha', 'EP': 'band_Ep', 'BETA': 'band_beta',
+                      'K_BAND': 'band_K', 'PL_INDEX': 'hepl_index', 'PL_K': 'hepl_K'},
+    },
+    {
+        'name': 'Band+CPL', 'prefix': 'BANDCPL', 'n_params': 7,
+        'build': lambda s: _setup_band(s) + _setup_extra_cpl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EP': 'xp_1', 'BETA': 'beta_1', 'K_BAND': 'K_1',
+                 'HE_INDEX': 'index_2', 'HE_XC': 'xc_2', 'HE_K': 'K_2'},
+        'seed_keys': {'ALPHA': 'band_alpha', 'EP': 'band_Ep', 'BETA': 'band_beta',
+                      'K_BAND': 'band_K', 'HE_INDEX': 'hecpl_index',
+                      'HE_XC': 'hecpl_xc', 'HE_K': 'hecpl_K'},
+    },
+    {
+        'name': 'CPL+PL', 'prefix': 'CPLPL', 'n_params': 5,
+        'build': lambda s: _setup_cpl(s) + _setup_extra_pl(s),
+        'pmap': {'INDEX': 'index_1', 'XC': 'xc_1', 'K_CPL': 'K_1',
+                 'PL_INDEX': 'index_2', 'PL_K': 'K_2'},
+        'seed_keys': {'INDEX': 'cpl_index', 'XC': 'cpl_xc', 'K_CPL': 'cpl_K',
+                      'PL_INDEX': 'hepl_index', 'PL_K': 'hepl_K'},
+    },
+    {
+        'name': 'CPL+CPL', 'prefix': 'CPLCPL', 'n_params': 6,
+        'build': lambda s: _setup_cpl(s) + _setup_extra_cpl(s),
+        'pmap': {'INDEX': 'index_1', 'XC': 'xc_1', 'K_LO': 'K_1',
+                 'HE_INDEX': 'index_2', 'HE_XC': 'xc_2', 'HE_K': 'K_2'},
+        'seed_keys': {'INDEX': 'cpl_index', 'XC': 'cpl_xc', 'K_LO': 'cpl_K',
+                      'HE_INDEX': 'hecpl_index', 'HE_XC': 'hecpl_xc', 'HE_K': 'hecpl_K'},
+    },
+    {
+        'name': 'BandR+CPL', 'prefix': 'BANDRCPL', 'n_params': 7,
+        'build': lambda s: _setup_band_ep2mev(s) + _setup_extra_cpl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EP': 'xp_1', 'BETA': 'beta_1', 'K_BAND': 'K_1',
+                 'HE_INDEX': 'index_2', 'HE_XC': 'xc_2', 'HE_K': 'K_2'},
+        'seed_keys': {'ALPHA': 'band_alpha', 'EP': 'band_Ep', 'BETA': 'band_beta',
+                      'K_BAND': 'band_K', 'HE_INDEX': 'hecpl_index',
+                      'HE_XC': 'hecpl_xc', 'HE_K': 'hecpl_K'},
+    },
+    {
+        'name': 'BandxCut', 'prefix': 'BANDCUT', 'n_params': 5,
+        'build': lambda s: _setup_band(s) * _setup_cutoff_mult(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EP': 'xp_1', 'BETA': 'beta_1', 'K': 'K_1',
+                 'EC': 'xc_2'},
+        'seed_keys': {'ALPHA': 'band_alpha', 'EP': 'band_Ep', 'BETA': 'band_beta',
+                      'K': 'band_K', 'EC': 'cut_xc'},
+    },
+    {
+        'name': 'SBPLxCut', 'prefix': 'SBPLCUT', 'n_params': 5,
+        'build': lambda s: _setup_sbpl(s) * _setup_cutoff_mult(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EBREAK': 'break_energy_1', 'BETA': 'beta_1',
+                 'K': 'K_1', 'EC': 'xc_2'},
+        'seed_keys': {'ALPHA': 'sbpl_alpha', 'EBREAK': 'sbpl_break',
+                      'BETA': 'sbpl_beta', 'K': 'sbpl_K', 'EC': 'cut_xc'},
+    },
+]
+
+# The RUNTIME model set. Default = the frozen benchmark 6; main() extends it
+# per --models (shape -> +free-smoothness; highe -> +shape +high-E components).
+ACTIVE_SPECS = list(MODEL_SPECS)
+
 
 # ============================================================
 # Generic fit driver
@@ -437,12 +593,39 @@ def fit_one_model(data_list, spec, seed=None):
                     pass
             params[short] = {'val': val, 'err': err, 'neg': neg, 'pos': pos}
 
+        # ---- empirical peak-shape statistic (shape census, 2026-07-16) ----
+        # nuFnu curve of the FITTED model: peak energy from the curve itself +
+        # half-max width W = log10(E2/E1) (Axelsson-Borgonovo-style, but from
+        # the best-fit model curve, uniform across ALL models incl. composites).
+        epk_curve = width_hm = float('nan')
+        try:
+            _E = np.logspace(np.log10(8.0), np.log10(1.0e6), 700)   # 8 keV - 1 GeV
+            _nufnu = _E**2 * np.array([float(composite(e)) for e in _E])
+            if np.all(np.isfinite(_nufnu)) and _nufnu.max() > 0:
+                _i = int(np.argmax(_nufnu))
+                if 0 < _i < len(_E) - 1:                 # interior peak only
+                    epk_curve = float(_E[_i])
+                    _half = 0.5 * _nufnu[_i]
+                    _lo = np.where(_nufnu[:_i] <= _half)[0]
+                    _hi = np.where(_nufnu[_i:] <= _half)[0]
+                    if len(_lo) and len(_hi):            # both crossings inside band
+                        e1 = np.interp(_half, _nufnu[_lo[-1]:_lo[-1]+2],
+                                       _E[_lo[-1]:_lo[-1]+2])
+                        j = _i + _hi[0]
+                        e2 = np.interp(-_half, -_nufnu[j-1:j+1], _E[j-1:j+1])
+                        if e2 > e1 > 0:
+                            width_hm = float(np.log10(e2 / e1))
+        except Exception:
+            pass
+
         return {
             'status': 'OK',
             'neg2logL': n2ll,
             'n_params': spec['n_params'],
             'params': params,
             'minos_ok': (minos_table is not None),
+            'epk_curve': epk_curve,
+            'width_hm': width_hm,
         }
     except Exception as exc:
         return {'status': 'FAIL', 'reason': str(exc)[:120],
@@ -464,6 +647,9 @@ def model_columns(spec, result, n_data):
     else:
         out[f'{p}_AIC'] = float('nan')
         out[f'{p}_BIC'] = float('nan')
+    # peak-shape statistics from the fitted curve (NaN when peak not interior)
+    out[f'{p}_EPK_CURVE'] = result.get('epk_curve', float('nan'))
+    out[f'{p}_WIDTH_HM'] = result.get('width_hm', float('nan'))
     for col_suffix, short in spec['pmap'].items():
         d = result.get('params', {}).get(short)
         if d is None:
@@ -503,6 +689,26 @@ PARAM_BOUNDS = {
     'BANDBB': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
                'KT': (1.0, 200.0)},
     'CPLBB':  {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0)},
+    # ---- shape census (railing on the freed smoothness = unconstrained) ----
+    'SBPLF':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+               'SCALE': (0.01, 2.0)},
+    'DSBPLF': {'ALPHA1': (-2.5, 2.5), 'XB': (10.0, 900.0), 'ALPHA2': (-3.0, 0.5),
+               'XP': (30.0, 5000.0), 'BETA': (-5.0, -1.5),
+               'N1': (0.5, 10.0), 'N2': (0.5, 10.0)},
+    # ---- high-E second components (LATBright s03m port) ----
+    'BANDPL':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+                 'PL_INDEX': (-4.0, -1.0)},
+    'BANDCPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+                 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
+    'CPLPL':    {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'PL_INDEX': (-4.0, -1.0)},
+    'CPLCPL':   {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4),
+                 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
+    'BANDRCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 2000.0), 'BETA': (-5.0, -1.6),
+                 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
+    'BANDCUT':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+                 'EC': (5e4, 1e8)},
+    'SBPLCUT':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+                 'EC': (5e4, 1e8)},
 }
 
 
@@ -528,7 +734,7 @@ def _fit_is_physical(spec, result, frac=0.001):
         v = d['val']; span = hi - lo
         if (v - lo) < frac * span or (hi - v) < frac * span:
             return False
-    if prefix == 'DSBPL':
+    if prefix in ('DSBPL', 'DSBPLF'):
         xb = params.get('xb'); xp = params.get('xp')
         if (xb and xp and np.isfinite(xb['val']) and np.isfinite(xp['val'])
                 and xb['val'] >= xp['val']):
@@ -601,7 +807,7 @@ def fit_all_models(plugins, plugin_dets, canonical_det, seed_in=None,
     per_spec = []
     flat = {}
     seed_out = {}
-    for spec in MODEL_SPECS:
+    for spec in ACTIVE_SPECS:
         if spec['name'] == 'DSBPL' and not include_dsbpl:
             continue
         res = fit_one_model(dl, spec, seed=seed_in)
@@ -729,6 +935,13 @@ def main():
     p.add_argument('--trigger', required=True)
     p.add_argument('--include-bgo', action='store_true',
                    help='Include BGO detectors in joint fit')
+    p.add_argument('--models', choices=['default', 'shape', 'highe'],
+                   default='default',
+                   help='model set: default = the frozen benchmark 6; shape = '
+                        '+SBPLfree/DSBPLfree (free smoothness, peak-shape census); '
+                        'highe = shape + high-E second components '
+                        '(Band+PL, Band+CPL, CPL+PL, CPL+CPL, BandR+CPL, '
+                        'BandxCut, SBPLxCut — LATBright s03m port)')
     p.add_argument('--skip-dsbpl', action='store_true',
                    help='Skip DSBPL/2SBPL (slower, often degenerate for sparse bins)')
     p.add_argument('--skip-lle', action='store_true',
@@ -749,6 +962,16 @@ def main():
                         'human-reviewed or clean catalogue). No silent default — '
                         'prevents accidentally fitting the automatic backgrounds.')
     args = p.parse_args()
+
+    # Runtime model set (opt-in; default stays the frozen benchmark 6)
+    global ACTIVE_SPECS
+    ACTIVE_SPECS = list(MODEL_SPECS)
+    if args.models in ('shape', 'highe'):
+        ACTIVE_SPECS += SHAPE_MODEL_SPECS
+    if args.models == 'highe':
+        ACTIVE_SPECS += HIGHE_MODEL_SPECS
+    if args.models != 'default':
+        print(f"model set '{args.models}': {[s['name'] for s in ACTIVE_SPECS]}")
 
     trigger = args.trigger
     out_dir = args.out_dir or os.path.join(PER_BURST_DIR, trigger)
@@ -907,7 +1130,7 @@ def _run(args, trigger, out_dir):
             'n_blocks': n_bins,
             'NAI_RANGES': list(NAI_RANGES),
             'BGO_RANGES': list(BGO_RANGES),
-            'models': [s['name'] for s in MODEL_SPECS
+            'models': [s['name'] for s in ACTIVE_SPECS
                        if include_dsbpl or s['name'] != 'DSBPL'],
             'bin_starts': list(map(float, bin_starts)),
             'bin_stops':  list(map(float, bin_stops)),
