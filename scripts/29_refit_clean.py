@@ -40,7 +40,7 @@ ENV = {**os.environ, 'PYTHONUNBUFFERED': '1', 'MPLBACKEND': 'Agg',
        'CALDBROOT': _FD + '/data/caldb', 'EXTFILESSYS': _FD + '/refdata/fermi'}
 
 
-def run(trig, bkg_file, blk_dir, out_root, timeout):
+def run(trig, bkg_file, blk_dir, out_root, timeout, extra=()):
     out = os.path.join(out_root, trig); os.makedirs(out, exist_ok=True)
     done = os.path.join(out, 'spectral_fits.ecsv')
     if os.path.exists(done):
@@ -49,6 +49,7 @@ def run(trig, bkg_file, blk_dir, out_root, timeout):
     log = os.path.join(out, 'refit.log')
     cmd = [PY, S10, '--trigger', trig, '--include-bgo', '--no-log',
            '--blocks-file', blk, '--bkg-file', bkg_file, '--out-dir', out]
+    cmd += list(extra)                     # --models/--include-lat pass-through
     t0 = time.time()
     try:
         with open(log, 'w') as lf:
@@ -77,7 +78,16 @@ def main():
     ap.add_argument('--out-root', default=DEF_OUT, help='per-burst output root (use a FRESH dir for the authoritative run)')
     ap.add_argument('--nproc', type=int, default=int(os.environ.get('NPROC', '8')))
     ap.add_argument('--timeout', type=int, default=7200, help='per-burst timeout (s)')
+    ap.add_argument('--models', choices=['default', 'shape', 'highe'], default=None,
+                    help='forwarded to scripts/10 (model-set selection)')
+    ap.add_argument('--include-lat', action='store_true',
+                    help='forwarded to scripts/10 (per-block LAT >100 MeV plugin)')
     args = ap.parse_args()
+    extra = []
+    if args.models:
+        extra += ['--models', args.models]
+    if args.include_lat:
+        extra += ['--include-lat']
 
     if not os.path.exists(args.bkg_file):
         sys.exit(f'bkg file not found: {args.bkg_file}')
@@ -90,7 +100,7 @@ def main():
     print(f'{len(trigs)} bursts, {len(todo)} to fit ({len(trigs)-len(todo)} done), {args.nproc} workers', flush=True)
     n_ok = n_fail = 0
     with ProcessPoolExecutor(max_workers=args.nproc) as ex:
-        futs = {ex.submit(run, t, args.bkg_file, args.blocks_dir, args.out_root, args.timeout): t
+        futs = {ex.submit(run, t, args.bkg_file, args.blocks_dir, args.out_root, args.timeout, tuple(extra)): t
                 for t in trigs}
         for fu in as_completed(futs):
             trig, st, dt = fu.result()
