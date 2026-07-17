@@ -458,9 +458,12 @@ def write_catalog(rows, merge=True):
 # gui -- human path (detector picker -> bkg selector -> source marker)
 # ============================================================================
 
-def source_marker_gui(trigger, ref_det, suggested=None):
-    """Minimal 2-click source/emission marker on the brightest-detector LC.
-    Returns (t1, t2). Reuses the same LC the picker draws."""
+def source_marker_gui(trigger, ref_det, suggested=None, bkg=None):
+    """2-click source/emission marker with Accept/Clear on the reference-detector
+    LC. `bkg` = the JUST-APPROVED {'pre':[a,b], 'post':[c,d]} for ref_det — drawn
+    in green with the allowed source gap marked, so the source is judged in its
+    background context (must satisfy pre_stop <= t1 < t2 <= post_start).
+    Returns (t1, t2)."""
     P = p0()
     import matplotlib.pyplot as plt
     P._ensure_keepalive()   # persistent Tk root (multi-window fix); idempotent
@@ -477,6 +480,9 @@ def source_marker_gui(trigger, ref_det, suggested=None):
         tr = ev['TIME'][m] - t0
     lo = suggested['t1'] - 50 if suggested else (tr.min() if len(tr) else -50)
     hi = suggested['t2'] + 50 if suggested else (tr.max() if len(tr) else 100)
+    if bkg:
+        lo = min(lo, float(bkg['pre'][0]) - 5.0)
+        hi = max(hi, float(bkg['post'][1]) + 5.0)
     bins = np.arange(lo, hi, 0.256)
     cnt, _ = np.histogram(tr, bins=bins)
     ctr = 0.5 * (bins[:-1] + bins[1:])
@@ -491,6 +497,14 @@ def source_marker_gui(trigger, ref_det, suggested=None):
     if suggested:
         ax.axvspan(suggested['t1'], suggested['t2'], color='gold', alpha=0.2,
                    label='suggested')
+    if bkg:
+        ax.axvspan(float(bkg['pre'][0]), float(bkg['pre'][1]), color='green',
+                   alpha=0.15, label='bkg (approved)')
+        ax.axvspan(float(bkg['post'][0]), float(bkg['post'][1]), color='green',
+                   alpha=0.15)
+        for x in (float(bkg['pre'][1]), float(bkg['post'][0])):
+            ax.axvline(x, color='green', ls='--', lw=1.0, alpha=0.8)
+    if suggested or bkg:
         ax.legend(loc='upper right')
     vlines = []
     span = [None]
@@ -663,7 +677,8 @@ def gui_one(trigger, approver, seed_from_catalog=False):
                      key=lambda d: angles.get(d, 999))
     if not nai_ref:
         return trigger, 'no NaI approved (cannot mark source on BGO)', 0
-    s1, s2 = source_marker_gui(trigger, nai_ref[0], cand['suggested_source'])
+    s1, s2 = source_marker_gui(trigger, nai_ref[0], cand['suggested_source'],
+                               bkg=windows.get(nai_ref[0]))
     decision = {'trigger': trigger, 'approver': approver, 'mode': 'human_gui',
                 'detectors': list(windows), 'source': {'t1': s1, 't2': s2},
                 'windows': windows,
