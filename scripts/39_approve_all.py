@@ -537,7 +537,8 @@ def gui_one(trigger, approver, seed_from_catalog=False):
                 for d, e in wmap.items()}
             src = dec.get('source') or {}
             if 't1' in src and 't2' in src:
-                cand['suggested_source'] = [float(src['t1']), float(src['t2'])]
+                cand['suggested_source'] = {'t1': float(src['t1']),
+                                            't2': float(src['t2'])}
             print(f'  {trigger}: GUI seeded from the APPROVED catalog decision '
                   f'({dec.get("approver", "?")})')
     angles = cand['angles'] or {d: 999.0 for d in cand['pre_ticked']}
