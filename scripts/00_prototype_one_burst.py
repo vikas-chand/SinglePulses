@@ -570,9 +570,21 @@ class BackgroundSelector(object):
             if bkg_rate is None:
                 return                    # failure status already set upstream
 
-            # Top: bkg rate curve
+            # DISPLAY CLIP (2026-07-17): the polynomial is only USED between the
+            # windows (under the source); beyond the post window a high-order poly
+            # extrapolates wildly (a cubic on a flat baseline can shoot to ~2x the
+            # data ~150 s out) — alarming on the panel but never in any fit. Draw
+            # the overlay + residuals only over [pre_start, post_stop] (+small pad)
+            # so the rater sees the region that actually matters. Display-only.
+            _pad = 3.0 * self.bin_width
+            _dlo = self.pre_interval[0] - _pad
+            _dhi = self.post_interval[1] + _pad
+            _disp = (self.bin_centers >= _dlo) & (self.bin_centers <= _dhi)
+            _c = self.bin_centers[_disp]
+
+            # Top: bkg rate curve (clipped to the used range)
             self.bkg_overlay_artist, = self.ax.plot(
-                self.bin_centers, bkg_rate, color='red', lw=1.3, alpha=0.9,
+                _c, bkg_rate[_disp], color='red', lw=1.3, alpha=0.9,
                 zorder=3, label='3ML polyfit bkg')
 
             # Bottom: residual errorbars — matplotlib default style (no fmt),
@@ -580,8 +592,8 @@ class BackgroundSelector(object):
             # yerr=[1 for x in tmean])`).
             try:
                 cont = self.ax_res.errorbar(
-                    self.bin_centers, residuals,
-                    yerr=np.ones_like(residuals),
+                    _c, residuals[_disp],
+                    yerr=np.ones(int(_disp.sum())),
                     color='black', ecolor='black', elinewidth=0.6, zorder=2,
                 )
                 self.resid_artists.append(cont[0])
@@ -593,7 +605,9 @@ class BackgroundSelector(object):
             # gtburst y-limits: ylim(min(residuals), min(max(residuals), 10))
             # i.e. let the bottom be whatever, cap the top at 10σ so the burst
             # spike doesn't crush the bkg-region scatter. (dataHandling.py:2890)
-            finite = residuals[np.isfinite(residuals)]
+            # Computed over the DISPLAYED range so the extrapolation tail can't
+            # drag the y-axis to -5σ.
+            finite = residuals[_disp][np.isfinite(residuals[_disp])]
             if len(finite):
                 ymin = float(np.min(finite))
                 ymax = float(min(np.max(finite), 10.0))
