@@ -84,6 +84,33 @@ def find_rsp(trigger, det):
     m = glob.glob(os.path.join(DATA_DIR, trigger, f'glg_cspec_{det}_*.rsp*'))
     return m[0] if m else None
 
+def find_lat_files(trigger):
+    """(ft1, ft2_lat, rsp_standin) for the >100 MeV LAT chain, or (None,)*3.
+
+    FT1/FT2 come from data/<trigger>/LAT/ (astroquery FSSC naming L*_EV00/_SC00
+    or gll_ft1/gll_ft2). The RSP is a gtburst LATData constructor requirement
+    only (unused >100 MeV): the LLE gll_cspec rsp when present, else any local
+    cspec rsp as a stand-in."""
+    base = os.path.join(DATA_DIR, trigger)
+    ft1 = (sorted(glob.glob(os.path.join(base, 'LAT', '*_EV*.fits')))
+           or sorted(glob.glob(os.path.join(base, 'LAT', 'gll_ft1_*.fit*'))))
+    ft2 = (sorted(glob.glob(os.path.join(base, 'LAT', '*_SC*.fits')))
+           or sorted(glob.glob(os.path.join(base, 'LAT', 'gll_ft2_*.fit*')))
+           or sorted(glob.glob(os.path.join(base, 'gll_pt_*.fit*'))))
+    rsp = (sorted(glob.glob(os.path.join(base, 'gll_cspec_*.rsp*')))
+           or sorted(glob.glob(os.path.join(base, 'glg_cspec_*.rsp2'))))
+    if ft1 and ft2 and rsp:
+        return ft1[-1], ft2[-1], rsp[-1]
+    return None, None, None
+
+
+# Real source coordinates — REQUIRED when a FermiLATLike plugin is present
+# (the LAT likelihood evaluates exposure at the source position; for GBM-only
+# fits the PointSource direction is irrelevant and stays at 0,0).
+SRC_RA = 0.0
+SRC_DEC = 0.0
+
+
 def find_lle_files(trigger):
     """Return (lle_event_file, ft2_file, rsp_file) tuple or (None, None, None)
     if LLE data not present for this burst.
@@ -551,7 +578,7 @@ def fit_one_model(data_list, spec, seed=None):
     seed = seed or {}
     try:
         composite = spec['build'](seed)
-        ps = PointSource('grb', 0.0, 0.0, spectral_shape=composite)
+        ps = PointSource('grb', SRC_RA, SRC_DEC, spectral_shape=composite)
         model = Model(ps)
         jl = JointLikelihood(model, data_list)
         jl.set_minimizer('minuit')
@@ -802,6 +829,10 @@ def fit_all_models(plugins, plugin_dets, canonical_det, seed_in=None,
 
     n_data = sum(len(np.atleast_1d(getattr(pl, 'observed_counts', [0])))
                  for pl in plugins) or 1
+    # FermiLATLike has no observed_counts; approximate its BIC contribution as
+    # ~100 data points (LATBright s03m precedent — BIC is a cross-check only).
+    n_data += 100 * sum(1 for pl in plugins
+                        if type(pl).__name__ == 'FermiLATLike')
     seed_in = seed_in or {}
 
     per_spec = []
@@ -944,6 +975,11 @@ def main():
                         'BandxCut, SBPLxCut — LATBright s03m port)')
     p.add_argument('--skip-dsbpl', action='store_true',
                    help='Skip DSBPL/2SBPL (slower, often degenerate for sparse bins)')
+    p.add_argument('--include-lat', action='store_true',
+                   help='add a per-block LAT >100 MeV FermiLATLike plugin '
+                        '(needs data/<trigger>/LAT/ FT1+FT2, grb_pipeline, and '
+                        'the burst RA/DEC in results/grb_sample.ecsv; the '
+                        'gtburst chain runs per block into data/<t>/LAT/blocks/)')
     p.add_argument('--skip-lle', action='store_true',
                    help='Skip LLE detector even if data files present')
     p.add_argument('--no-log', action='store_true',
@@ -976,6 +1012,49 @@ def main():
     trigger = args.trigger
     out_dir = args.out_dir or os.path.join(PER_BURST_DIR, trigger)
     os.makedirs(out_dir, exist_ok=True)
+
+    # ----- LAT >100 MeV context (opt-in; joint NaI+BGO+LLE+LAT fits) -----
+    lat_ctx = None
+    if args.include_lat:
+        global SRC_RA, SRC_DEC
+        ft1, ft2lat, rsp_standin = find_lat_files(trigger)
+        ra = dec = met = None
+        try:
+            from astropy.table import Table as _T
+            _gs = _T.read(os.path.join(RESULTS_DIR, 'grb_sample.ecsv'),
+                          format='ascii.ecsv')
+            _row = _gs[[str(x['TRIGGER_NAME']).strip() == trigger for x in _gs]]
+            if len(_row):
+                ra, dec = float(_row[0]['RA']), float(_row[0]['DEC'])
+        except Exception as exc:
+            print(f'  --include-lat: could not read RA/DEC ({exc})')
+        try:
+            from astropy.io import fits as _fits
+            _tte = sorted(glob.glob(os.path.join(DATA_DIR, trigger,
+                                                 'glg_tte_*_v*.fit*')))
+            if _tte:
+                with _fits.open(_tte[0]) as _h:
+                    met = float(_h[0].header['TRIGTIME'])
+        except Exception as exc:
+            print(f'  --include-lat: could not read TRIGTIME ({exc})')
+        if ft1 and ft2lat and rsp_standin and None not in (ra, dec, met):
+            try:                              # grb_pipeline (GRB_Handbook)
+                from grb_pipeline.lat_pipeline import to_threeml as _lat3ml
+            except ImportError:
+                sys.path.insert(0, os.path.expanduser(
+                    '~/Desktop/Projects/GRB_Handbook_Project'))
+                from grb_pipeline.lat_pipeline import to_threeml as _lat3ml
+            lat_ctx = {'mod': _lat3ml, 'ft1': ft1, 'ft2': ft2lat,
+                       'rsp': rsp_standin, 'ra': ra, 'dec': dec, 'met': met,
+                       'workroot': os.path.join(DATA_DIR, trigger, 'LAT',
+                                                'blocks')}
+            SRC_RA, SRC_DEC = ra, dec        # LAT likelihood needs the true position
+            print(f'  LAT>100MeV ENABLED: ft1={os.path.basename(ft1)} '
+                  f'ra={ra:.3f} dec={dec:.3f}')
+        else:
+            print(f'  --include-lat requested but inputs incomplete '
+                  f'(ft1={bool(ft1)} ft2={bool(ft2lat)} rsp={bool(rsp_standin)} '
+                  f'radec={ra is not None} met={met is not None}) — LAT disabled')
 
     sys.path.insert(0, os.path.dirname(__file__))
     from _burst_logger import BurstLogger
@@ -1099,6 +1178,24 @@ def _run(args, trigger, out_dir):
         if not plugins:
             print(f'  block {k} [{t1:.2f}, {t2:.2f}]: no plugins, skip')
             continue
+        if lat_ctx is not None:
+            # per-block LAT >100 MeV plugin (gtburst chain, cached per block)
+            try:
+                prod = lat_ctx['mod'].prepare_lat_block(
+                    lat_ctx['ft1'], lat_ctx['ft2'], lat_ctx['rsp'],
+                    lat_ctx['met'], lat_ctx['ra'], lat_ctx['dec'],
+                    t1, t2, os.path.join(lat_ctx['workroot'], f'block_{k}'))
+                if prod['status'] == 'OK':
+                    lat_pl = lat_ctx['mod'].lat_plugin_for_block(
+                        prod, t1, t2, trigger)
+                    plugins.append(lat_pl); plugin_dets.append('LAT')
+                    print(f'  block {k}: LAT plugin ON '
+                          f'({prod["n_events"]} ev >100 MeV)')
+                else:
+                    print(f'  block {k}: LAT skipped ({prod["status"]})')
+            except Exception as exc:
+                print(f'  block {k}: LAT plugin failed '
+                      f'({type(exc).__name__}: {str(exc)[:90]}) — GBM/LLE only')
         flat, _ = fit_all_models(
             plugins, plugin_dets, canonical_det,
             seed_in=seed_for_blocks, include_dsbpl=include_dsbpl)
