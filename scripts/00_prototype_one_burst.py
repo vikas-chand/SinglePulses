@@ -223,6 +223,20 @@ class BackgroundSelector(object):
                     self.ax.axvspan(float(self.bins[_lo]),
                                     float(self.bins[_hi + 1]),
                                     color='red', alpha=0.08, zorder=0)
+                # CLEAN-BACKGROUND candidate regions (the "where can I select?"
+                # aid): contiguous stretches sitting quietly on the baseline
+                # (|residual| < 2σ in a 5-bin rolling sense) tinted faint green.
+                _quiet = np.abs(_res - _med) < 2.0 * _sig
+                _k = np.ones(5) / 5.0
+                _frac = np.convolve(_quiet.astype(float), _k, mode='same')
+                _ok = _frac >= 0.8
+                _edges = np.flatnonzero(np.diff(np.concatenate(
+                    ([0], _ok.astype(int), [0]))))
+                for _a, _b in zip(_edges[::2], _edges[1::2]):
+                    if _b - _a >= 8:          # only stretches >= ~8 bins
+                        self.ax.axvspan(float(self.bins[_a]),
+                                        float(self.bins[min(_b, len(self.bins)-1)]),
+                                        color='green', alpha=0.05, zorder=0)
         except Exception:
             pass
         if self.has_t90:
