@@ -1059,13 +1059,13 @@ def main():
     sys.path.insert(0, os.path.dirname(__file__))
     from _burst_logger import BurstLogger
     if args.no_log:
-        return _run(args, trigger, out_dir)
+        return _run(args, trigger, out_dir, lat_ctx)
     with BurstLogger(trigger=trigger, script='10_spectral_fit_burst',
                      base=os.path.dirname(out_dir)):
-        return _run(args, trigger, out_dir)
+        return _run(args, trigger, out_dir, lat_ctx)
 
 
-def _run(args, trigger, out_dir):
+def _run(args, trigger, out_dir, lat_ctx=None):
 
     bkg_tab = Table.read(args.bkg_file, format='ascii.ecsv')
     bkg_tab = bkg_tab[bkg_tab['TRIGGER_NAME'] == trigger]
