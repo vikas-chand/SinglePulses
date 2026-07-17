@@ -467,10 +467,10 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None, gap=None):
     """2-click source/emission marker with Accept/Clear on the reference-detector
     LC. `bkg` = the JUST-APPROVED {'pre':[a,b], 'post':[c,d]} for ref_det — drawn
     in green. `gap` = (lo, hi) = the COMMON background gap over ALL accepted
-    detectors (max pre_stop, min post_start); it is shaded blue and Accept is
-    REFUSED for any source outside it (R-SM-4), so a source valid for the reference
-    NaI but overlapping a tighter detector's background can't be saved only to be
-    rejected at ingest. Returns (t1, t2)."""
+    detectors (max pre_stop, min post_start); it is shaded blue. A source outside it
+    triggers a RED WARNING (not a hard block, per Vikas): Accept again to save anyway.
+    Ingest remains the hard backstop, so an out-of-gap source that isn't fixed
+    upstream is still rejected there. Returns (t1, t2)."""
     P = p0()
     import matplotlib.pyplot as plt
     P._ensure_keepalive()   # persistent Tk root (multi-window fix); idempotent
@@ -547,6 +547,7 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None, gap=None):
         ax.legend(loc='upper right', fontsize=8)
     vlines = []
     span = [None]
+    warned = {'x': False}         # soft-warn latch: 2nd Accept overrides the gap warning
     status = fig.text(0.07, 0.02, 'Accept = adopt gold; or click start+stop '
                       'to draw your own.', ha='left', va='bottom',
                       fontsize=9, color='steelblue')
@@ -575,6 +576,7 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None, gap=None):
             return
         picks.append(float(ev.xdata))
         vlines.append(ax.axvline(ev.xdata, color='red', lw=1.2))
+        warned['x'] = False; status.set_color('steelblue')   # a new pair re-warns
         status.set_text(f'{len(picks)}/2 clicks. '
                         + ('Now Accept (your pair) or Clear.' if len(picks) == 2
                            else 'Click the other edge.'))
@@ -595,11 +597,14 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None, gap=None):
                 status.set_text('Need BOTH clicks (or Clear, then Accept for '
                                 'the gold suggestion).')
                 fig.canvas.draw_idle(); return
-            if not _in_gap(*cand_t):                      # R-SM-4 backstop
-                status.set_text(f'REFUSED: source [{cand_t[0]:.1f},{cand_t[1]:.1f}] is '
-                                f'outside the allowed all-detector gap '
-                                f'[{gap_ok[0]:.1f},{gap_ok[1]:.1f}]. Move a background '
-                                f'off the pulse, or tighten the source.')
+            if not _in_gap(*cand_t) and not warned['x']:  # R-SM-4: SOFT warn, override
+                warned['x'] = True
+                status.set_color('red')
+                status.set_text(f'⚠ WARNING: source [{cand_t[0]:.1f},{cand_t[1]:.1f}] '
+                                f'extends outside the all-detector gap '
+                                f'[{gap_ok[0]:.1f},{gap_ok[1]:.1f}] — a background '
+                                f'overlaps it, so INGEST WILL REJECT this unless you fix '
+                                f'that background. Click Accept AGAIN to save anyway.')
                 fig.canvas.draw_idle(); return
             result['t'] = cand_t
             result['adopted'] = (not picks)
@@ -610,6 +615,7 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None, gap=None):
                 try: v.remove()
                 except Exception: pass
             vlines.clear(); _redraw_span()
+            warned['x'] = False; status.set_color('steelblue')
             status.set_text('Cleared. Accept = gold suggestion; or 2 clicks.')
             fig.canvas.draw_idle()
     fig.canvas.mpl_connect('button_press_event', on_click)
