@@ -25,8 +25,8 @@ def _mad_scale(r):
     return 1.4826 * float(mad)
 
 
-def imodpoly_mad(t, y, poly_order=5, num_std=1.0, max_iter=250, tol=1e-3,
-                 mask_initial_peaks=True):
+def imodpoly_mad(t, y, poly_order=3, num_std=2.5, max_iter=250, tol=1e-3,
+                 mask_initial_peaks=True, low_clip=5.0):
     """imodpoly with MAD-based residual scale (std → MAD swap).
 
     Returns the smoothed baseline on the same grid as `t`.
@@ -34,15 +34,23 @@ def imodpoly_mad(t, y, poly_order=5, num_std=1.0, max_iter=250, tol=1e-3,
     Parameters
     ----------
     t, y      : 1-D arrays, same length.
-    poly_order: polynomial order (default 5, matches s03k).
-    num_std   : multiplier on the residual scale for the iterative clip
-                (default 1.0 — same as pybaselines.imodpoly default).
+    poly_order: polynomial order (default 3). Degree-5 on the raw, uncentered
+                time axis puts t^5 ~ 1e13 at the edges, so a single anomalous
+                boundary bin drags the fit off a cliff there; the axis is now
+                centered/scaled (below) and degree-3 removes the residual edge
+                leverage. See HANDOFF_baseline_aid_bug_2026-07-17.
+    num_std   : multiplier on the residual scale for the iterative HIGH clip
+                (default 2.5 — with the MAD scale, 1.0 clips into the noise core
+                and biases the baseline low).
     max_iter  : max iterations (default 250).
-    tol       : convergence tol on relative change in deviation
-                (default 1e-3 — same as pybaselines).
-    mask_initial_peaks : if True, zero-weight samples above
-                baseline+deviation after the first fit before iterating
-                (matches pybaselines default).
+    tol       : convergence tol on relative change in deviation.
+    mask_initial_peaks : if True, zero-weight samples above baseline+deviation
+                after the first fit before iterating (matches pybaselines).
+    low_clip  : imodpoly only clips peaks (high side); a BROKEN low bin (e.g. a
+                partial-exposure final bin whose rate collapses) keeps full
+                weight forever and pulls the baseline down. Zero-weight any
+                sample below baseline - low_clip*deviation so those artifacts
+                cannot anchor the fit. Set None to disable.
     """
     t = np.asarray(t, dtype=float)
     y = np.asarray(y, dtype=float).copy()
@@ -50,8 +58,14 @@ def imodpoly_mad(t, y, poly_order=5, num_std=1.0, max_iter=250, tol=1e-3,
     if n < poly_order + 2:
         return y.copy()
 
+    # Center/scale the abscissa so the Vandermonde columns stay O(1) at the
+    # edges (raw t^poly_order otherwise gives the boundary bins runaway
+    # leverage — the catastrophic right-edge dive in the handoff).
+    span = float(t.max() - t.min())
+    ts = (t - float(t.mean())) / (span if span > 0 else 1.0)
+
     # Vandermonde, weight array, weighted pseudo-inverse — same as pybaselines
-    V = np.vander(t, poly_order + 1)
+    V = np.vander(ts, poly_order + 1)
     weights = np.ones(n)
     sqrt_w = np.sqrt(weights)
     pinv = np.linalg.pinv(sqrt_w[:, None] * V)
@@ -61,7 +75,9 @@ def imodpoly_mad(t, y, poly_order=5, num_std=1.0, max_iter=250, tol=1e-3,
     deviation = max(_mad_scale(y - baseline), 1e-9)
 
     if mask_initial_peaks:
-        weights[baseline + deviation < y] = 0.0
+        weights[baseline + deviation < y] = 0.0          # peaks (high side)
+        if low_clip is not None:                         # broken low bins
+            weights[y < baseline - low_clip * deviation] = 0.0
         sqrt_w = np.sqrt(weights)
         pinv = np.linalg.pinv(sqrt_w[:, None] * V)
 

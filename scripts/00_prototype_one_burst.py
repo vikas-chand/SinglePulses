@@ -206,7 +206,7 @@ class BackgroundSelector(object):
             _sp.loader.exec_module(_rb)
             if len(self.rates) >= 8:
                 _base = _rb.imodpoly_mad(self.bin_centers, self.rates,
-                                         poly_order=5, num_std=1.0)
+                                         poly_order=3, num_std=2.5)
                 self.ax.plot(self.bin_centers, _base, color='tab:orange',
                              lw=1.1, alpha=0.85, zorder=1,
                              label='imodpoly baseline (aid)')
@@ -1101,7 +1101,7 @@ def render_lc_png(trigger, det, t90_start, t90, outpath):
         _rb = module_from_spec(_sp)
         _sp.loader.exec_module(_rb)
         if len(rate) >= 8:
-            baseline = _rb.imodpoly_mad(centers, rate, poly_order=5, num_std=1.0)
+            baseline = _rb.imodpoly_mad(centers, rate, poly_order=3, num_std=2.5)
             resid = rate - baseline
             med = float(np.median(resid))
             sig = 1.4826 * float(np.median(np.abs(resid - med))) or 1.0
