@@ -195,6 +195,36 @@ class BackgroundSelector(object):
 
         self.ax.step(self.bin_centers, self.rates, where='mid',
                      color='gray', lw=0.8, alpha=0.75)
+        # --- selection AID (rater parity, 2026-07-17): the SAME imodpoly_mad
+        # baseline + >5σ transient shade the AI raters see on the rendered PNGs.
+        # Display-only; selection semantics unchanged. ---
+        try:
+            from importlib.util import spec_from_file_location, module_from_spec
+            _sp = spec_from_file_location('robust_baseline', os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), 'robust_baseline.py'))
+            _rb = module_from_spec(_sp)
+            _sp.loader.exec_module(_rb)
+            if len(self.rates) >= 8:
+                _base = _rb.imodpoly_mad(self.bin_centers, self.rates,
+                                         poly_order=5, num_std=1.0)
+                self.ax.plot(self.bin_centers, _base, color='tab:orange',
+                             lw=1.1, alpha=0.85, zorder=1,
+                             label='imodpoly baseline (aid)')
+                _res = self.rates - _base
+                _med = float(np.median(_res))
+                _sig = 1.4826 * float(np.median(np.abs(_res - _med))) or 1.0
+                _abv = _res > (_med + 5.0 * _sig)
+                if _abv.any():
+                    _ipk = int(np.argmax(_res)); _lo = _ipk; _hi = _ipk
+                    while _lo > 0 and _abv[_lo - 1]:
+                        _lo -= 1
+                    while _hi < len(_abv) - 1 and _abv[_hi + 1]:
+                        _hi += 1
+                    self.ax.axvspan(float(self.bins[_lo]),
+                                    float(self.bins[_hi + 1]),
+                                    color='red', alpha=0.08, zorder=0)
+        except Exception:
+            pass
         if self.has_t90:
             self.ax.axvspan(self.t90_start, self.t90_stop,
                             color='orange', alpha=0.12, zorder=0)
