@@ -7,6 +7,14 @@
 
 **Which decision.json field this fills** — the `"source": {"t1": <float>, "t2": <float>}` object (both floats, trigger-relative seconds, `t2 > t1`). This is shared across all approved detectors; it is the per-burst emission window, not per-detector.
 
+## SPECIAL BURSTS — check first
+**Before selecting the source, consult `dev/special_bursts.md` for per-burst overrides.**
+For multi-episode bursts the default peak-find grabs the brightest spike, which is the
+WRONG pulse. Known override: **bn130427324 (GRB 130427A) → analyse the SECOND pulse
+(~105–185 s), not the bright 0–40 s spike.** If a burst is listed there, follow that
+instruction over the peak-find suggestion, and set the post-background AFTER the target
+pulse so the other episode falls in the excluded gap.
+
 ## Inputs (what to read)
 - `plots/approval_lc/<trigger>_<det>.png` — one per approved detector. **Judge the source on the brightest / lowest-angle approved NaI.** Each is a 1.024-s binned LC, NaI band 8–900 keV, linear y-axis, x = "Time since trigger (s)". Deliberately **no T90 shading** — identify the burst region from the data alone.
 - `results/approval/<trigger>_pending.json` — the candidate manifest. Read `suggested_source` (`{t1, t2}`): a peak-find estimate already tightened inside the brightest NaI's background gap. Treat it as a starting proposal to confirm or adjust, not ground truth.
