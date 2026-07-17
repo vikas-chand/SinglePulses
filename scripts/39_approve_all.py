@@ -481,32 +481,83 @@ def source_marker_gui(trigger, ref_det, suggested=None):
     cnt, _ = np.histogram(tr, bins=bins)
     ctr = 0.5 * (bins[:-1] + bins[1:])
     picks = []
+    result = {}
     fig, ax = plt.subplots(figsize=(11, 4.5))
+    fig.subplots_adjust(right=0.84)
     ax.step(ctr, cnt / 0.256, where='mid', color='black', lw=0.7)
-    ax.set_title(f'{trigger} [{ref_det}] — click SOURCE start then stop, then close')
+    ax.set_title(f'{trigger} [{ref_det}] — SOURCE: Accept the gold suggestion, '
+                 f'or 2 clicks to redraw, then Accept')
     ax.set_xlabel('Time since trigger (s)'); ax.set_ylabel('Counts/s')
     if suggested:
         ax.axvspan(suggested['t1'], suggested['t2'], color='gold', alpha=0.2,
                    label='suggested')
-        ax.legend()
+        ax.legend(loc='upper right')
     vlines = []
+    span = [None]
+    status = fig.text(0.07, 0.02, 'Accept = adopt gold; or click start+stop '
+                      'to draw your own.', ha='left', va='bottom',
+                      fontsize=9, color='steelblue')
+    btn_accept = fig.text(0.87, 0.72, 'Accept', backgroundcolor='green',
+                          color='white', weight='bold', picker=20,
+                          fontsize=11, ha='left', va='center')
+    btn_clear = fig.text(0.87, 0.58, 'Clear', backgroundcolor='lightgray',
+                         picker=20, fontsize=10, ha='left', va='center')
+
+    def _redraw_span():
+        if span[0] is not None:
+            try: span[0].remove()
+            except Exception: pass
+            span[0] = None
+        if len(picks) == 2:
+            span[0] = ax.axvspan(min(picks), max(picks), color='red',
+                                 alpha=0.15, zorder=0)
+        fig.canvas.draw_idle()
 
     def on_click(ev):
         if ev.inaxes != ax or ev.button != 1 or ev.xdata is None:
             return
         if len(picks) >= 2:
+            status.set_text('2 clicks placed — Accept, or Clear to redo.')
+            fig.canvas.draw_idle()
             return
         picks.append(float(ev.xdata))
         vlines.append(ax.axvline(ev.xdata, color='red', lw=1.2))
-        fig.canvas.draw_idle()
+        status.set_text(f'{len(picks)}/2 clicks. '
+                        + ('Now Accept (your pair) or Clear.' if len(picks) == 2
+                           else 'Click the other edge.'))
+        _redraw_span()
+
+    def on_pick(ev):
+        if ev.artist is btn_accept:
+            if len(picks) == 2:
+                result['t'] = (min(picks), max(picks)); plt.close(fig)
+            elif suggested and not picks:
+                result['t'] = (suggested['t1'], suggested['t2'])
+                result['adopted'] = True; plt.close(fig)
+            else:
+                status.set_text('Need BOTH clicks (or Clear, then Accept for '
+                                'the gold suggestion).')
+                fig.canvas.draw_idle()
+        elif ev.artist is btn_clear:
+            picks.clear()
+            for v in vlines:
+                try: v.remove()
+                except Exception: pass
+            vlines.clear(); _redraw_span()
+            status.set_text('Cleared. Accept = gold suggestion; or 2 clicks.')
+            fig.canvas.draw_idle()
     fig.canvas.mpl_connect('button_press_event', on_click)
+    fig.canvas.mpl_connect('pick_event', on_pick)
     plt.show(block=True)
+    if 't' in result:
+        if result.get('adopted'):
+            print(f'  {trigger}: source — ACCEPTED the suggested '
+                  f"[{result['t'][0]:.3f}, {result['t'][1]:.3f}] s")
+        return result['t']
+    # window closed without Accept — legacy semantics, loud (R-GL-3)
     if len(picks) == 2:
         return min(picks), max(picks)
     if suggested:
-        # R-GL-3 visibility: adopting the suggestion must never be silent.
-        # (Phase-3 rebuild per GUI_REQUIREMENTS R-SM-2..5 will make adoption an
-        # explicit Accept instead of a window-close side effect.)
         print(f'  {trigger}: source window closed with {len(picks)} click(s) — '
               f"ADOPTING the suggested source [{suggested['t1']:.3f}, "
               f"{suggested['t2']:.3f}] s")
