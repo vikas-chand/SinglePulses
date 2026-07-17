@@ -514,10 +514,32 @@ def source_marker_gui(trigger, ref_det, suggested=None):
     raise SystemExit(f'{trigger}: source not marked')
 
 
-def gui_one(trigger, approver):
+def gui_one(trigger, approver, seed_from_catalog=False):
     """Full human approval for one burst -> writes decision.json (mode=human_gui)."""
     P = p0()
     cand = compute_candidates(trigger)
+    # --seed-from-catalog (2026-07-17, human REVIEW of the AI-consensus catalog):
+    # pre-load the GUI with the CURRENT approved decision — pre-ticks = approved
+    # detectors, bkg seeds = approved windows, source suggestion = approved source
+    # — so the reviewer confirms/adjusts the AI's actual selection instead of the
+    # legacy scripts/28 seeds. OPT-IN only: without the flag nothing changes
+    # (benchmark instrument stays frozen).
+    if seed_from_catalog:
+        dpath = os.path.join(APPROVAL_DIR, f'{trigger}_decision.json')
+        if os.path.exists(dpath):
+            with open(dpath) as fh:
+                dec = json.load(fh)
+            w = dec.get('windows', {})
+            wmap = ({e['detector']: e for e in w} if isinstance(w, list) else w)
+            cand['pre_ticked'] = sorted(dec.get('detectors', []))
+            cand['suggested_bkg'] = {
+                d: {'pre': list(e['pre']), 'post': list(e['post'])}
+                for d, e in wmap.items()}
+            src = dec.get('source') or {}
+            if 't1' in src and 't2' in src:
+                cand['suggested_source'] = [float(src['t1']), float(src['t2'])]
+            print(f'  {trigger}: GUI seeded from the APPROVED catalog decision '
+                  f'({dec.get("approver", "?")})')
     angles = cand['angles'] or {d: 999.0 for d in cand['pre_ticked']}
     # The GUI approval path is review-seeded: default ticks should have a
     # suggested background interval to Accept/adjust. Angle-qualified detectors
@@ -634,6 +656,9 @@ def main():
     g.add_argument('--approver', required=True)
     g.add_argument('--approval-dir', default=None)
     g.add_argument('--out', default=None, help='output catalog path (per-rater)')
+    g.add_argument('--seed-from-catalog', action='store_true',
+                   help='pre-load the GUI with the CURRENT approved decision '
+                        '(human review of the AI-consensus catalog)')
 
     args = ap.parse_args()
     global APPROVAL_DIR, OUT_CATALOG
@@ -665,7 +690,7 @@ def main():
         rows = []
         for trig in _select_triggers(args):
             try:
-                r = gui_one(trig, args.approver)
+                r = gui_one(trig, args.approver, getattr(args, 'seed_from_catalog', False))
                 if r[1] == 'decided':
                     # surface the ingest outcome — an INVALID decision must not
                     # be reported as a success (silent-reject found in the first
