@@ -114,8 +114,8 @@ Works on any of the 106 bursts once that burst's `data/<trigger>/` is present.
 | sample | `01_build_sample.py` | GBM catalog → single-pulse, bright cut (fluence > 1e-5) |
 | selection | `03_horizontal_line.py` (Busby & Lazzati 2024) | single-pulse shape score |
 | download | `02_download_data.py` | fetch TTE + responses (HEASARC) |
-| backgrounds | `28_reselect_backgrounds.py` → `30_background_picker.py` | auto windows, then human review |
-| binning | `27_reblock_all.py` | Bayesian blocks (binned/measures mode) per burst |
+| **Stage 1: approval** | `39_approve_all.py` (render → human GUI *or* AI-vision → ingest) | gated detectors + backgrounds + source, stamped catalog (`28`/`30` = legacy seeds) |
+| binning | `27b_reblock_3ml.py` | 3ML Bayesian blocks (use_background=True) + significance merge |
 | **fitting** | `10_spectral_fit_burst.py` | the engine: 6 models, AIC/BIC, LRT, validity gate, BB multi-start |
 | driver | `29_refit_clean.py` | run the engine over all bursts → `results/clean_per_burst/` |
 | numbers | `31_draft_numbers.py` | population statistics → `results/draft_numbers.json` |
@@ -165,7 +165,7 @@ cd paper
 pdflatex two_break && bibtex two_break && pdflatex two_break && pdflatex two_break
 ```
 
-(Two BibTeX passes are required — the bibliography is external,
+(One bibtex pass + two follow-up pdflatex passes are required — the bibliography is external,
 `two_break.bib` + `aasjournal` style.)
 
 ---

@@ -89,25 +89,37 @@ for r in T:
             except Exception:
                 pass
     # best AIC model -- only count winners that pass the physical-validity gate
-    # (scripts/10 has a silent fallback that lets a railed model win in ~4% of bins)
+    # (scripts/10 has a silent fallback that lets a railed model win in ~4% of bins).
+    # D3 (2026-07 results audit): blocks with an invalid/absent winner are counted
+    # EXPLICITLY as "INCONCLUSIVE" -- never silently dropped from the census.
     bm = str(r["BEST_AIC_MODEL"]) if r["BEST_AIC_MODEL"] is not None else ""
     BMCOL = {"Band":"BAND","CPL":"CPL","SBPL":"SBPL","DSBPL":"DSBPL",
              "Band+BB":"BANDBB","CPL+BB":"CPLBB"}
-    d["best"] = bm if (bm in BMCOL and vb(r, BMCOL[bm]+"_VALID")) else ""
+    d["best"] = bm if (bm in BMCOL and vb(r, BMCOL[bm]+"_VALID")) else "INCONCLUSIVE"
     # +BB significance: dAIC>=10 vs the parent continuum (= LRT>=14 for 2 extra
     # params; Li+2021 dDIC>=10 analog). Take Band+BB if it passes, else CPL+BB.
+    # D4: the nested LRT is meaningless against an INVALID parent -> each +BB gate
+    # now also requires the PARENT continuum fit to pass the validity gate.
+    # D1: Ep and kT must come from the SAME composite fit (H5 fix) -- record the
+    # composite-fit Ep alongside kT (Band+BB: BANDBB_EP; CPL+BB: nuFnu peak
+    # xc*(2+index), valid for index > -2).
     LRT_SIG = 14.0   # dAIC>=10  <=>  LRT >= 10 + 2*Dk, Dk=2
-    kT = np.nan; fbb = np.nan
-    if vb(r, "BANDBB_VALID") and g(r,"LRT_BANDBB_BAND") >= LRT_SIG:
-        kT = g(r, "BANDBB_KT")
+    kT = np.nan; fbb = np.nan; ep_comp = np.nan; ep_comp_err = np.nan; kt_err = np.nan
+    if vb(r, "BANDBB_VALID") and vb(r, "BAND_VALID") and g(r,"LRT_BANDBB_BAND") >= LRT_SIG:
+        kT = g(r, "BANDBB_KT"); kt_err = g(r, "BANDBB_KT_ERR")
+        ep_comp = g(r, "BANDBB_EP"); ep_comp_err = g(r, "BANDBB_EP_ERR")
         try:
             Fc,_ = eflux_band(g(r,"BANDBB_K_BAND"), g(r,"BANDBB_ALPHA"), g(r,"BANDBB_EP"), g(r,"BANDBB_BETA"))
             Fb,_ = eflux_bb(g(r,"BANDBB_K_BB"), kT)
             fbb = Fb/(Fb+Fc) if (Fb+Fc) > 0 else np.nan
         except Exception:
             pass
-    elif vb(r, "CPLBB_VALID") and g(r,"LRT_CPLBB_CPL") >= LRT_SIG:
-        kT = g(r, "CPLBB_KT")
+    elif vb(r, "CPLBB_VALID") and vb(r, "CPL_VALID") and g(r,"LRT_CPLBB_CPL") >= LRT_SIG:
+        kT = g(r, "CPLBB_KT"); kt_err = g(r, "CPLBB_KT_ERR")
+        idx, xc = g(r,"CPLBB_INDEX"), g(r,"CPLBB_XC")
+        if np.isfinite(idx) and np.isfinite(xc) and idx > -2:
+            ep_comp = xc*(2.0+idx)                       # CPL nuFnu peak
+            ep_comp_err = g(r,"CPLBB_XC_ERR")*(2.0+idx)  # first-order
         try:
             Fc,_ = eflux_cpl(g(r,"CPLBB_K_CPL"), g(r,"CPLBB_INDEX"), g(r,"CPLBB_XC"))
             Fb,_ = eflux_bb(g(r,"CPLBB_K_BB"), kT)
@@ -115,6 +127,7 @@ for r in T:
         except Exception:
             pass
     d["kT"] = kT; d["fbb"] = fbb
+    d["Ep_comp"] = ep_comp; d["Ep_comp_err"] = ep_comp_err; d["kT_err"] = kt_err
     # dBIC cross-check: BB passes the (conservative, inflated-N) stored BIC?
     d["bb_dbic"] = bool((vb(r,"BANDBB_VALID") and np.isfinite(g(r,"BANDBB_BIC")) and np.isfinite(g(r,"BAND_BIC")) and g(r,"BANDBB_BIC") < g(r,"BAND_BIC"))
                         or (vb(r,"CPLBB_VALID") and np.isfinite(g(r,"CPLBB_BIC")) and np.isfinite(g(r,"CPL_BIC")) and g(r,"CPLBB_BIC") < g(r,"CPL_BIC")))
@@ -127,22 +140,27 @@ for r in T:
     singles = [g(r,c) for c,v in [("BAND_AIC","BAND_VALID"),("CPL_AIC","CPL_VALID"),
                                    ("SBPL_AIC","SBPL_VALID")] if vb(r,v) and np.isfinite(g(r,c))]
     curv = {}
+    # D4: +BB / DSBPL enter the curvature group only with a VALID parent (the
+    # nested comparison the entry rests on is undefined against a railed parent).
     if vb(r,"DSBPL_VALID") and np.isfinite(g(r,"DSBPL_AIC")): curv["DSBPL"]=g(r,"DSBPL_AIC")
-    if vb(r,"BANDBB_VALID") and g(r,"LRT_BANDBB_BAND")>0 and np.isfinite(g(r,"BANDBB_AIC")): curv["BANDBB"]=g(r,"BANDBB_AIC")
-    if vb(r,"CPLBB_VALID") and g(r,"LRT_CPLBB_CPL")>0 and np.isfinite(g(r,"CPLBB_AIC")): curv["CPLBB"]=g(r,"CPLBB_AIC")
+    if vb(r,"BANDBB_VALID") and vb(r,"BAND_VALID") and g(r,"LRT_BANDBB_BAND")>0 and np.isfinite(g(r,"BANDBB_AIC")): curv["BANDBB"]=g(r,"BANDBB_AIC")
+    if vb(r,"CPLBB_VALID") and vb(r,"CPL_VALID") and g(r,"LRT_CPLBB_CPL")>0 and np.isfinite(g(r,"CPLBB_AIC")): curv["CPLBB"]=g(r,"CPLBB_AIC")
     if singles and curv:
         s = min(singles); cname = min(curv, key=curv.get); c = curv[cname]
         d["dAIC"] = s - c            # >0 => curvature preferred
         d["curv_winner"] = cname
         # genuine two-break: DSBPL wins AND dAIC(DSBPL vs SBPL)>=10 (= LRT>=14),
-        # harmonized with the +BB significance rule. NOTE: DSBPL has no
-        # convergence guard in scripts/10, so this count is a LOWER LIMIT.
-        genuine = (cname=="DSBPL" and "xb" in d and g(r,"LRT_DSBPL_SBPL")>=14.0)
+        # harmonized with the +BB significance rule; D4: requires a VALID SBPL
+        # parent. NOTE: DSBPL has no convergence guard in scripts/10, so this
+        # count is a LOWER LIMIT.
+        genuine = (cname=="DSBPL" and "xb" in d and vb(r,"SBPL_VALID")
+                   and g(r,"LRT_DSBPL_SBPL")>=14.0)
         d["genuine_two_break"] = bool(genuine)
     per.append(d)
 
 P = Table(rows=[{k:dd.get(k,np.nan) for k in
     ["trig","block","tmid","alpha","Ep","beta","F","Fph","best","kT","fbb",
+     "Ep_comp","Ep_comp_err","kT_err",
      "xb","xp","dAIC","curv_winner","genuine_two_break","lrt_2break","bb_dbic"]} for dd in per])
 
 # ---------- 3. statistics ----------
@@ -347,31 +365,37 @@ out["evolution_sensitivity"]={"wholepulse_IT_first":evo_wholepulse(True),
                               "wholepulse_HTS_first":evo_wholepulse(False)}
 
 # ---- Burgess Ep-kT per burst ----
-mm=np.isfinite(EP)&np.isfinite(KT)
+# D1 (H5 fix, decided 2026-07-14): Ep and kT are taken from the SAME composite fit
+# (Band+BB Ep with Band+BB kT; CPL+BB nuFnu peak with CPL+BB kT) -- never the
+# standalone-Band Ep paired with a composite kT. EPC/KT below are same-fit.
+EPC=np.asarray(P["Ep_comp"],float)
+mm=np.isfinite(EPC)&np.isfinite(KT)
 trig=np.asarray(P["trig"])
 perb=[]
 for bn in np.unique(trig[mm]):
     s=mm&(trig==bn)
     if s.sum()>=4:
-        rho,p=stats.spearmanr(EP[s],KT[s])
+        rho,p=stats.spearmanr(EPC[s],KT[s])
         perb.append({"trig":bn,"n":int(s.sum()),"rho":float(rho),"p":float(p)})
 perb=sorted(perb,key=lambda d:-d["n"])
 out["epkt_perburst"]={"n_bursts_tested":len(perb),
                       "frac_positive":float(np.mean([d["rho"]>0 for d in perb])) if perb else np.nan,
                       "n_sig_positive":int(np.sum([(d["rho"]>0 and d["p"]<0.05) for d in perb])),
                       "top":perb[:12]}
-out["epkt_global"]=sp(EP,KT)
-# 130427A Ep-kT slope, with the estimator stated (ODR + D'Agostini w/ errors)
-s130=(trig=="bn130427324")&np.isfinite(EP)&np.isfinite(KT)
+out["epkt_global"]=sp(EPC,KT)
+# legacy mixed-estimand number kept ONLY for the methods-change comparison
+out["epkt_global_LEGACY_mixed_ep"]=sp(EP,KT)
+# 130427A Ep-kT slope, with the estimator stated (ODR + D'Agostini w/ errors);
+# D1: errors too come from the SAME composite fit (Ep_comp_err, kT_err).
+s130=(trig=="bn130427324")&np.isfinite(EPC)&np.isfinite(KT)
 if s130.sum()>=5:
-    lx,ly=np.log10(KT[s130]),np.log10(EP[s130])
+    lx,ly=np.log10(KT[s130]),np.log10(EPC[s130])
     o=odr.ODR(odr.RealData(lx,ly),odr.Model(lambda B,x:B[0]*x+B[1]),beta0=[1,1]).run()
-    ekt=np.where(np.isfinite(np.asarray(T["BANDBB_KT_ERR"],float)),
-                 np.asarray(T["BANDBB_KT_ERR"],float),np.asarray(T["CPLBB_KT_ERR"],float))
-    sx=(ekt[s130]/(KT[s130]*np.log(10))); sy=(np.asarray(T["BAND_EP_ERR"],float)[s130]/(EP[s130]*np.log(10)))
+    ekt=np.asarray(P["kT_err"],float); eep=np.asarray(P["Ep_comp_err"],float)
+    sx=(ekt[s130]/(KT[s130]*np.log(10))); sy=(eep[s130]/(EPC[s130]*np.log(10)))
     okk=np.isfinite(sx)&np.isfinite(sy)&(sx>0)&(sy>0)
     da=dagostini(lx[okk],ly[okk],sx[okk],sy[okk]) if okk.sum()>=5 else (np.nan,)*4
-    out["epkt_130427A"]={"n":int(s130.sum()),"rho":float(stats.spearmanr(KT[s130],EP[s130])[0]),
+    out["epkt_130427A"]={"n":int(s130.sum()),"rho":float(stats.spearmanr(KT[s130],EPC[s130])[0]),
         "odr_slope":float(o.beta[0]),"odr_slope_err":float(o.sd_beta[0]),
         "dagostini_slope":float(da[0]),"dagostini_slope_err":float(da[1]),
         "ols_slope":float(np.polyfit(lx,ly,1)[0])}

@@ -1,13 +1,14 @@
 """Per-burst 2-panel: ref-detector LC + FITTED background poly (through approved pre/post),
    source interval shaded; bottom = background-subtracted net rate."""
 import os, glob, sys
-os.chdir('/Users/salim/Desktop/Projects/SingleRest/Two_Breaks')
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from astropy.io import fits
 from astropy.table import Table
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
+os.makedirs('plots/approved_selections', exist_ok=True)
 cat=Table.read('results/background_intervals.ecsv',format='ascii.ecsv')
 def tte(trig,det):
     g=sorted(glob.glob(f'data/{trig}/glg_tte_{det}_{trig}_v*.fit*')); return g[-1] if g else None

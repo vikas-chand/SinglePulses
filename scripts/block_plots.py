@@ -1,7 +1,7 @@
 """Nice Bayesian-block plot: fine net LC (grey) + BB blocks as a bold adaptive step
    (mean net rate per block) + edges, significance-shaded. use_background=True blocks."""
 import os, glob, sys
-os.chdir('/Users/salim/Desktop/Projects/SingleRest/Two_Breaks')
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 from astropy.io import fits
 from astropy.table import Table

@@ -1,6 +1,6 @@
 """Reconcile Claude vs Codex background decisions -> consensus decision.json + flags."""
 import sys, json, os
-os.chdir('/Users/salim/Desktop/Projects/SingleRest/Two_Breaks')
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 bursts = open(sys.argv[1]).read().split()
 
 def load(t, who):

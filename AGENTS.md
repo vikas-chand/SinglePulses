@@ -218,16 +218,23 @@ python scripts/37_build_full_notebook.py   # -> notebooks/Two_Breaks_single_GRB_
 
 - **Run from repo root** — relative `data/`, `results/`, `plots/` paths assume it.
 - **Heavy tier needs CALDB exported** (§2) — symptom if not: 3ML response/IntervalOfInterest errors.
-- **GUI backend on macOS**: use `macosx` (auto-selected), not `TkAgg` (crashes on the
-  2nd figure). Override via `MPLBACKEND`. A cloud/no-display agent cannot run the GUI —
-  use the AI-vision approval path instead.
-- **`27b`/`29`/`10` require explicit `--bkg`/`--bkg-file`** — no silent defaults, by design.
+- **GUI backend**: macOS = `macosx` (auto-selected); Linux = `MPLBACKEND=TkAgg` (the
+  verified backend — the old 2nd-figure TclError crash is FIXED by the keep-alive root
+  + between-window event drain, see `dev/GUI_REQUIREMENTS.md` R-BG-20). A cloud/
+  no-display agent cannot run the GUI — use the AI-vision approval path instead.
+- **`29`/`10` require explicit `--bkg-file`** — no silent defaults (H2, done 2026-07-16).
+  `27b --bkg` has a fallback chain that PREFERS the gated `background_intervals.ecsv`
+  and prints which file it used — still pass `--bkg` explicitly in authoritative runs.
 - **Resumability**: `30` (per row), `29`/`10` (skip if `spectral_fits.ecsv` exists),
   `02`/`fetch_tte` (skip present files). Safe to re-run.
 - **`scripts/27` and `scripts/11` are legacy** (astropy-BB binning; old full runner).
   Use `27b` + `29` for authoritative runs.
-- **The current numbers/catalog are PROVISIONAL** (built on algorithmic backgrounds).
-  The authoritative run requires the approved `background_intervals.ecsv` (Stage 1).
+- **Catalog vs numbers state (2026-07-16):** the approved consensus
+  `results/background_intervals.ecsv` EXISTS (106/106, stamped, margin-band clean;
+  Khushboo sign-off pending). The PAPER NUMBERS remain provisional: the Stage 2–3 fits
+  in `results/clean_per_burst_consensus/` predate the margin re-selection for **59
+  bursts** (worklist: `dev/stale_refit_worklist.txt`) — re-block + re-fit those after
+  the human sign-off, then regenerate `31`–`38`.
 
 ---
 

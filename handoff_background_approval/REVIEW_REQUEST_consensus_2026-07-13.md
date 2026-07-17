@@ -36,7 +36,7 @@ trigger — that's all we need.
 Pick whichever:
 1. **Accept as-is** — the catalog already carries an `ai_vision` consensus stamp;
    if you're happy, nothing to do, just tell us.
-2. **Re-review any burst yourself** — `python scripts/39_approve_all.py gui --trigger <bn...>`
+2. **Re-review any burst yourself** — `MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --trigger <bn...> --approver "Khushboo Sharma"`
    re-stamps that row `human_gui` with your name (see `INSTRUCTIONS_KHUSHBOO.md` for
    setup). Your stamp supersedes the AI one for that burst.
 3. **Just flag them** — send us the list of triggers you'd redo and we'll re-run.

@@ -15,7 +15,9 @@ Quick orientation (full detail in `AGENTS.md`):
 - **Approval gate:** a human (interactive GUI) **or** you (AI-vision on the LC PNGs)
   may approve — always record the stamp (`APPROVED_BY/APPROVED_UTC/WINDOW_SOURCE`).
   Never fabricate an approval silently.
-- **Run from the repo root.** Current catalog is provisional until the approved
-  `results/background_intervals.ecsv` exists.
+- **Run from the repo root.** The approved consensus catalog
+  `results/background_intervals.ecsv` EXISTS (106/106, stamped; human sign-off
+  pending). Paper NUMBERS are still provisional — 59 bursts' fits predate the
+  margin re-selection (see AGENTS.md §6 + `dev/stale_refit_worklist.txt`).
 
 See also: `dev/AUTHORITATIVE_PIPELINE.md` (locked plan + the Stage-1 build spec).

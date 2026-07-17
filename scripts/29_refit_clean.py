@@ -25,7 +25,6 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS = os.path.join(BASE, 'scripts'); RES = os.path.join(BASE, 'results')
 S10 = os.path.join(SCRIPTS, '10_spectral_fit_burst.py')
 DEF_BLK = os.path.join(RES, 'clean_blocks')
-DEF_BKG = os.path.join(RES, 'background_intervals_clean.ecsv')
 DEF_OUT = os.path.join(RES, 'clean_per_burst')
 
 # Portable interpreter + Fermi/CALDB env: prefer this process's own interpreter
@@ -68,9 +67,12 @@ def run(trig, bkg_file, blk_dir, out_root, timeout):
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--bkg-file', default=DEF_BKG,
+    # H2 (finished 2026-07-16): REQUIRED, no silent default — the old default was the
+    # PROVISIONAL background_intervals_clean.ecsv, an easy way to silently fit the
+    # wrong catalog. State the catalog explicitly every run.
+    ap.add_argument('--bkg-file', required=True,
                     help='background-intervals ECSV (authoritative run: the '
-                         'human-reviewed results/background_intervals.ecsv)')
+                         'approved results/background_intervals.ecsv)')
     ap.add_argument('--blocks-dir', default=DEF_BLK, help='dir of bb_blocks_spectral_*.ecsv')
     ap.add_argument('--out-root', default=DEF_OUT, help='per-burst output root (use a FRESH dir for the authoritative run)')
     ap.add_argument('--nproc', type=int, default=int(os.environ.get('NPROC', '8')))
