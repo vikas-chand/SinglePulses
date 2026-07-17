@@ -112,19 +112,31 @@ SRC_DEC = 0.0
 
 
 def find_lle_files(trigger):
-    """Return (lle_event_file, ft2_file, rsp_file) tuple or (None, None, None)
-    if LLE data not present for this burst.
-    Fermi LAT-triggered downloads name pointing as `gll_pt_*.fit`;
-    slewing data uses `gll_ft2_*.fit`. Both are valid FT2 inputs."""
+    """Return (lle_event_file, pointing_file, rsp_file) or (None, None, None).
+    from_lat_lle REQUIRES the LLE POINTING file gll_pt_*.fit; the LAT FT2
+    (gll_ft2_*) makes it FitFail (LATBright E2E audit C1-C3), so gll_pt is used
+    STRICTLY and gll_ft2 is only a last resort with a warning. A common file
+    version is preferred across the triplet to avoid mixed-version DRMs."""
+    import re
     base = os.path.join(DATA_DIR, trigger)
+    def _v(p):
+        m = re.search(r'_v(\d+)\.', os.path.basename(p)); return m.group(1) if m else None
     lle = sorted(glob.glob(os.path.join(base, 'gll_lle_*.fit*')))
-    ft2 = sorted(glob.glob(os.path.join(base, 'gll_pt_*.fit*'))
-               + glob.glob(os.path.join(base, 'gll_ft2_*.fit*')))
+    pt = sorted(glob.glob(os.path.join(base, 'gll_pt_*.fit*')))
+    ft2 = sorted(glob.glob(os.path.join(base, 'gll_ft2_*.fit*')))
     rsp = sorted(glob.glob(os.path.join(base, 'gll_lle_*.rsp*'))
                + glob.glob(os.path.join(base, 'gll_cspec_*.rsp*')))
-    if lle and ft2 and rsp:
-        return lle[-1], ft2[-1], rsp[-1]
-    return None, None, None
+    if not (lle and (pt or ft2) and rsp):
+        return None, None, None
+    L = lle[-1]; v = _v(L)
+    if pt:
+        P = next((p for p in pt if _v(p) == v), pt[-1])
+    else:
+        P = ft2[-1]
+        print(f'    {trigger}: WARNING no gll_pt POINTING file — falling back to LAT '
+              f'FT2 {os.path.basename(P)} (from_lat_lle may FitFail)')
+    R = next((r for r in rsp if _v(r) == v), rsp[-1])
+    return L, P, R
 
 
 def load_brightest_bins(trigger, single_path):

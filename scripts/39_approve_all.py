@@ -441,9 +441,14 @@ def write_catalog(rows, merge=True):
         for c in SCHEMA:                       # migrate older/narrower files
             if c not in old.colnames:
                 old[c] = ['unknown' if c in _STR_COLS else np.nan] * len(old)
-        keys = {(r['TRIGGER_NAME'], r['DETECTOR']) for r in rows}
+        # Replace EVERY row for any trigger present in `rows` (not just matching
+        # (trigger,detector) pairs). Otherwise a detector DESELECTED on re-approval
+        # keeps its stale row and pollutes downstream fits — most dangerously a
+        # Skipped 'lle' that then keeps being preferred. (Codex audit CRITICAL,
+        # 2026-07-17.)
+        touched = {str(r['TRIGGER_NAME']) for r in rows}
         keep = [i for i, r in enumerate(old)
-                if (str(r['TRIGGER_NAME']), str(r['DETECTOR'])) not in keys]
+                if str(r['TRIGGER_NAME']) not in touched]
         old = old[keep][list(SCHEMA)]          # column order + drop strays
         for r in rows:
             old.add_row([r[c] for c in SCHEMA])
@@ -596,6 +601,39 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None):
     raise SystemExit(f'{trigger}: source not marked')
 
 
+LLE_SIGNAL_SIGMA = 3.0     # fire the LLE review only when LLE is really detected
+
+
+def lle_signal_sigma(trigger, s1, s2):
+    """Crude 30-100 MeV LLE detection significance: net counts in the source window
+    [s1,s2] vs the off-source background rate. Light (astropy+numpy only). Returns
+    0.0 if there is no LLE file. Used to GATE the LLE review + the LLE-driven grid:
+    a background-only LLE light curve is not worth reviewing, and no LLE blocks can
+    be made from it (scripts/27c gates the same way)."""
+    P = p0()
+    lle = P.find_lle(trigger) if hasattr(P, 'find_lle') else None
+    if lle is None:
+        return 0.0
+    try:
+        from astropy.io import fits
+        with fits.open(lle) as h:
+            ev = h['EVENTS'].data
+            t0 = h['PRIMARY'].header.get('TRIGTIME', 0.0)
+            e = np.asarray(ev['ENERGY'], dtype=float)          # MeV
+            t = np.asarray(ev['TIME'], dtype=float) - t0
+        band = (e >= 30.0) & (e <= 100.0)
+        dur = max(float(s2) - float(s1), 0.1)
+        src = int((band & (t >= s1) & (t <= s2)).sum())
+        # off-source: a wide window on each side, well clear of the burst
+        off = band & (((t >= s1 - 550) & (t < s1 - 50)) | ((t > s2 + 50) & (t < s2 + 550)))
+        odur = 500.0 + 500.0
+        brate = int(off.sum()) / odur if odur > 0 else 0.0
+        bexp = max(brate * dur, 1e-3)
+        return float((src - brate * dur) / np.sqrt(bexp))
+    except Exception:
+        return 0.0
+
+
 def gui_one(trigger, approver, seed_from_catalog=False):
     """Full human approval for one burst -> writes decision.json (mode=human_gui)."""
     P = p0()
@@ -694,29 +732,38 @@ def gui_one(trigger, approver, seed_from_catalog=False):
                      key=lambda d: angles.get(d, 999))
     if not nai_ref:
         return trigger, 'no NaI approved (cannot mark source on BGO)', 0
-    # LLE background review (R-LLE-1): if LLE data is present, show its 30-100 MeV
-    # light curve seeded with the brightest-NaI windows so the rater can confirm the
-    # background epochs are clean in LLE too (particle spikes differ from NaI) or
-    # nudge them. Skipping leaves LLE inheriting the NaI windows at fit time (the
-    # prior behavior). The emission window stays shared (marked on NaI below).
-    if hasattr(P, 'find_lle') and P.find_lle(trigger):
-        _ref = windows[nai_ref[0]]
-        lres, lpre, lpost = P.review_lle_background(
-            trigger, _ref['pre'], _ref['post'])
-        if lres == 'quit':
-            raise SystemExit(f'{trigger}: user quit at LLE')
-        if lres == 'accept' and lpre is not None and lpost is not None:
-            _lsame = (list(lpre) == list(_ref['pre'])
-                      and list(lpost) == list(_ref['post']))
-            windows['lle'] = {
-                'pre': list(lpre), 'post': list(lpost),
-                'window_source': 'accepted_suggestion' if _lsame else 'adjusted'}
-            print(f'  lle: background {"confirmed (= NaI)" if _lsame else "adjusted"}'
-                  f' -> pre {list(lpre)}, post {list(lpost)}')
-        else:
-            print(f'  lle: {lres} — LLE will inherit the NaI windows at fit time')
     s1, s2 = source_marker_gui(trigger, nai_ref[0], cand['suggested_source'],
                                bkg=windows.get(nai_ref[0]))
+    # LLE background review (R-LLE) — GATED on real LLE signal. Only when 30-100 MeV
+    # LLE is actually detected over the just-marked source (>= LLE_SIGNAL_SIGMA) is
+    # its background worth reviewing; a background-only LLE LC is skipped. Skip / no
+    # signal -> LLE inherits the brightest-NaI window + the GBM bins at fit time
+    # (scripts/10) and no LLE-driven grid is made (scripts/27c gates identically).
+    # Seed from an existing 'lle' row if one was loaded (--seed-from-catalog), else
+    # the reference NaI, so a previously-adjusted LLE window is not silently reset.
+    if hasattr(P, 'find_lle') and P.find_lle(trigger):
+        _sig = lle_signal_sigma(trigger, s1, s2)
+        if _sig >= LLE_SIGNAL_SIGMA:
+            _ref = windows[nai_ref[0]]
+            _seed = cand['suggested_bkg'].get('lle',
+                                               {'pre': _ref['pre'], 'post': _ref['post']})
+            lres, lpre, lpost = P.review_lle_background(trigger, _seed['pre'], _seed['post'])
+            if lres == 'quit':
+                raise SystemExit(f'{trigger}: user quit at LLE')
+            if lres == 'accept' and lpre is not None and lpost is not None:
+                _lsame = (list(lpre) == list(_ref['pre'])
+                          and list(lpost) == list(_ref['post']))
+                windows['lle'] = {
+                    'pre': list(lpre), 'post': list(lpost),
+                    'window_source': 'accepted_suggestion' if _lsame else 'adjusted'}
+                print(f'  lle: signal {_sig:.0f}sigma; background '
+                      f'{"= NaI" if _lsame else "adjusted"} -> pre {list(lpre)}, '
+                      f'post {list(lpost)}')
+            else:
+                print(f'  lle: {lres} — inherits NaI window + GBM bins at fit time')
+        else:
+            print(f'  lle: present but only {_sig:.1f}sigma (<{LLE_SIGNAL_SIGMA:g}) in '
+                  f'30-100 MeV — SKIP LLE review; inherits NaI window + GBM bins')
     decision = {'trigger': trigger, 'approver': approver, 'mode': 'human_gui',
                 'detectors': list(windows), 'source': {'t1': s1, 't2': s2},
                 'windows': windows,
