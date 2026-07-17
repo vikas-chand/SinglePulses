@@ -198,7 +198,10 @@ def _collapse_rsp2_to_single(rsp2_path, src_lo, src_hi, out_dir):
             sel = fits.HDUList([h[0], h['EBOUNDS'], h[best]])
             sel[2].header['EXTVER'] = 1
             base = os.path.basename(rsp2_path).replace('.rsp2', '')
-            out = os.path.join(out_dir, f'_single_{base}.rsp')
+            # PID-unique: out_dir is the SHARED data/<trig>/, so concurrent coarse
+            # (LLE-grid) + fine (GBM-grid) fits of the same burst/detector must not
+            # write the same temp .rsp. (Codex audit MED, 2026-07-17.)
+            out = os.path.join(out_dir, f'_single_{base}_p{os.getpid()}.rsp')
             sel.writeto(out, overwrite=True)
         return out
     except Exception:
@@ -825,14 +828,23 @@ def select_best(per_spec_results, n_data):
 # ============================================================
 # Fit a full bin: run all MODEL_SPECS, return flat row + seeds (for T_INT)
 # ============================================================
-def fit_all_models(plugins, plugin_dets, canonical_det, seed_in=None,
+def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
                    include_dsbpl=True):
     """Apply effective-area cross-norm, then fit every MODEL_SPECS entry.
     Returns (row_dict, seed_dict_from_this_fit)."""
     from threeML import DataList
-    # Cross-norm — non-reference detectors only
+    # Keep exactly ONE detector FIXED at unit eff-area as the reference; it must be a
+    # NaI, NEVER the binning detector when that is 'lle' (an LLE-driven grid would
+    # otherwise free every GBM detector and create a normalization degeneracy). Prefer
+    # the passed reference if present, else the first NaI present, else the first
+    # plugin. (Codex audit HIGH, 2026-07-17.)
+    if ref_det in plugin_dets and str(ref_det).startswith('n'):
+        fixed_det = ref_det
+    else:
+        _nai = [d for d in plugin_dets if str(d).startswith('n')]
+        fixed_det = _nai[0] if _nai else (plugin_dets[0] if plugin_dets else ref_det)
     for sl, det in zip(plugins, plugin_dets):
-        if det != canonical_det:
+        if det != fixed_det:
             try:
                 sl.use_effective_area_correction(*EFFAREA_BOUNDS)
             except Exception:
@@ -1123,8 +1135,15 @@ def _run(args, trigger, out_dir, lat_ctx=None):
         os.path.join(RESULTS_DIR, 'single_pulse_grbs.ecsv'),
         approved.keys())
     n_bins = len(bin_starts)
-    print(f'Canonical bins from det {canonical_det}: {n_bins} blocks '
-          f'spanning [{bin_starts[0]:.2f}, {bin_stops[-1]:.2f}] s')
+    # Effective-area REFERENCE (fixed at 1) must be a NaI — NOT the binning detector,
+    # which is 'lle' on an LLE-driven (coarse) grid. (Codex audit HIGH.)
+    _nai_fit = [d for d in fit_dets if str(d).startswith('n')]
+    reference_det = (canonical_det if str(canonical_det).startswith('n')
+                     else (_nai_fit[0] if _nai_fit else canonical_det))
+    grid_type = 'lle_coarse' if canonical_det == 'lle' else 'gbm_fine'
+    print(f'Canonical bins from det {canonical_det} ({grid_type}): {n_bins} blocks '
+          f'spanning [{bin_starts[0]:.2f}, {bin_stops[-1]:.2f}] s; '
+          f'eff-area ref = {reference_det}')
 
     print(f'\nBuilding SpectrumLike per detector...')
     sl_by_det = {}
@@ -1135,9 +1154,16 @@ def _run(args, trigger, out_dir, lat_ctx=None):
         if sl is None:
             print(f'  {det}: skipped (TTE/RSP missing)')
             continue
-        sl_by_det[det] = sl
         n_ok = sum(1 for s in sl if s is not None)
+        if n_ok == 0:                       # all bins failed -> NOT present in the fit
+            print(f'  {det}: skipped (0/{n_bins} SpectrumLike usable — bkg/plugin failed)')
+            continue
+        sl_by_det[det] = sl
         print(f'  {det}: {n_ok}/{n_bins} SpectrumLike built')
+    # An LLE-driven grid with no usable LLE plugin is meaningless — abort loudly rather
+    # than silently fitting GBM-only on LLE-defined intervals. (Codex audit HIGH.)
+    if canonical_det == 'lle' and 'lle' not in sl_by_det:
+        raise RuntimeError(f'{trigger}: LLE-driven grid but no usable LLE plugin — abort')
 
     rows = []
     include_dsbpl = not args.skip_dsbpl
@@ -1176,7 +1202,7 @@ def _run(args, trigger, out_dir, lat_ctx=None):
     seed_for_blocks = {}
     if ti_plugins:
         ti_flat, ti_seed = fit_all_models(
-            ti_plugins, ti_plugin_dets, canonical_det,
+            ti_plugins, ti_plugin_dets, reference_det,
             seed_in=None, include_dsbpl=include_dsbpl)
         ti_flat = {'BLOCK': -1, 'T_START': t_int_start, 'T_STOP': t_int_stop,
                    'T_MID': 0.5 * (t_int_start + t_int_stop),
@@ -1217,7 +1243,7 @@ def _run(args, trigger, out_dir, lat_ctx=None):
                 print(f'  block {k}: LAT plugin failed '
                       f'({type(exc).__name__}: {str(exc)[:90]}) — GBM/LLE only')
         flat, _ = fit_all_models(
-            plugins, plugin_dets, canonical_det,
+            plugins, plugin_dets, reference_det,
             seed_in=seed_for_blocks, include_dsbpl=include_dsbpl)
         flat = {'BLOCK': k, 'T_START': t1, 'T_STOP': t2,
                 'T_MID': 0.5 * (t1 + t2), 'N_DETS': len(plugins), **flat}
@@ -1242,7 +1268,10 @@ def _run(args, trigger, out_dir, lat_ctx=None):
 
         meta = {
             'trigger': trigger,
-            'canonical_det': canonical_det,
+            'canonical_det': canonical_det,       # detector that DEFINED the time bins
+            'reference_det': reference_det,        # NaI FIXED as the eff-area reference
+            'grid_type': grid_type,                # 'lle_coarse' | 'gbm_fine'
+            'blocks_file': os.path.abspath(blocks_file),
             'fit_dets': list(sl_by_det.keys()),
             'n_blocks': n_bins,
             'NAI_RANGES': list(NAI_RANGES),
