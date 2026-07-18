@@ -1,0 +1,88 @@
+% Introduction (v2 2026-07-17): wide-band empirical shape hunt, temporal+spectral.
+% Reframed per Vikas theme + Codex review; cites verified.
+\section{Introduction} \label{sec:intro}
+
+Gamma-ray bursts (GRBs) release most of their energy as a brief, highly variable
+flash of $\sim$keV--MeV photons---the prompt emission---whose spectrum evolves
+strongly on sub-second timescales \citep{Norris1996,Kaneko2006,Lu2012,Yu2016}.
+To first order this spectrum is described by empirical functions such as the Band
+function \citep{Band1993} or a cutoff power law: smooth, curved forms peaking in
+$\nu F_\nu$ (the energy-times-flux representation, whose maximum \Ep\ marks where
+the burst radiates most of its power), with a low-energy photon index $\alpha$.
+These functions fit well but are physically agnostic---the same curvature can
+arise from very different mechanisms \citep{KumarZhang2015}---and after three
+decades the radiative origin of the prompt emission is still debated.
+
+Much of the apparent complexity is temporal blending. \citet{HakkilaPreece2011}
+showed that the ensemble ``intensity-tracking'' behavior of complex bursts, in
+which \Ep\ appears to follow the flux, is naturally reproduced by the
+\emph{superposition} of two or more simpler hard-to-soft pulses; isolated pulses,
+by contrast, are dominated by clean hard-to-soft evolution. To recover the
+\emph{intrinsic} spectral behavior without this contamination, we restrict our
+analysis to single-pulse bursts---one non-overlapping rise--peak--decay, long the
+cleanest laboratory for prompt-emission studies
+\citep{RydePeer2009,Basak2014,Yu2016,Busby2024}.
+
+No single spectral shape has proven adequate even for these clean pulses, and the
+literature offers a zoo of alternatives. Optically-thin synchrotron from a cooling
+electron population radiates between two characteristic frequencies and so breaks
+at \emph{two} energies \citep{Sari1998}, motivating double smoothly-broken power
+laws that recover the expected $-2/3$ and $-3/2$ slopes in bright bursts
+\citep{Oganesyan2017,Oganesyan2018,Ravasio2018,Ravasio2019}; indeed, a physical
+synchrotron model with time-dependent electron cooling fits $\sim$95\% of the
+time-resolved single-pulse GBM spectra it was applied to
+\citep{Burgess2020cool}.\footnote{J.~M. Burgess et al., \textit{Nat. Astron.} 2020 vol.~4 (arXiv:1810.06965).} Other pulses require a quasi-thermal component from the
+jet photosphere---a blackbody superposed on a non-thermal continuum
+\citep{Ryde2004,Guiriec2010,Guiriec2011,Burgess2014a}---occasionally as a distinct
+\emph{third} spectral component \citep{Guiriec2015}, and still other continua or
+cutoffs have been invoked, produced for instance by a fast-cooling spectrum with an
+exponential cutoff above the peak \citep{Varun2025}. That such competing shapes can
+coexist in a single, clean pulse motivates fitting them all and letting the data
+decide, rather than adopting any one a priori.
+
+Discriminating among these shapes demands the widest possible spectral coverage. A
+low-energy break is easily masked from below, and a cutoff or an additional
+high-energy component sits above the peak, near or beyond the reach of the Gamma-ray
+Burst Monitor (GBM; $8\,\mathrm{keV}$--$40\,\mathrm{MeV}$; \citealt{Meegan2009}).
+Fermi uniquely extends the band by a decade through the LAT Low-Energy events
+(LLE; $30$--$100\,\mathrm{MeV}$) and the LAT itself
+($>100\,\mathrm{MeV}$; \citealt{Atwood2009}), and high-energy cutoffs are directly
+seen in bursts bright enough to register there. Wherever a pulse is bright enough,
+we fold these data into a joint fit, giving coverage from $8\,\mathrm{keV}$ to above
+$100\,\mathrm{MeV}$---the widest band the data allow.
+
+A single pulse is equally clean in the \emph{time} domain, and we treat its temporal
+and spectral properties as two views of the same event rather than separate studies.
+Alongside the spectra we characterize the pulse duration and hardness, the minimum
+variability timescale and its dependence on energy \citep{Golkhou2014,Golkhou2015},
+the spectral lag between energy bands, and the pulse shape itself---its rise
+timescale, curvature at the peak, and decay slope
+\citep{Norris2005,Kocevski2003,Gowri2025}---and we ask directly how the spectrum
+during the rise, at the peak, and during the decay relates to that morphology.
+
+Our approach throughout is deliberately empirical and model-agnostic. Rather than
+assume a radiative process, we fit a broad, pre-specified menu of empirical
+functions---power laws with one or two breaks, with free or fixed peak curvature,
+with and without an added blackbody or high-energy component---uniformly to
+\emph{every} time-resolved spectrum, and let the data select the preferred shape. We
+reduce every burst identically with \textsc{3ML} \citep{Vianello2015} on
+Bayesian-block time bins, which follow the spectral evolution more faithfully than
+fixed signal-to-noise bins \citep{Scargle2013}. This work differs from previous
+prompt-spectral catalogs in combining a reproducible single-pulse morphology
+selection \citep{Busby2024} with a pre-specified hierarchy of empirical shape
+families on common time-resolved intervals, and in adding a separately-defined joint
+GBM--LLE/LAT analysis for high-energy structure.
+
+We therefore aim at an empirical census of shapes and their evolution, asking, at
+scale: (i) which spectral shapes single pulses take, and how often; (ii) how the
+parameters and the preferred shape evolve through a pulse; and (iii) which
+correlations emerge---among them the hard-to-soft trend \citep{Lu2012,Busby2024}
+and, where the data require it, a relation between two spectral breaks or an
+\Ep--\kT\ relation measured from a single composite fit. We stress that two-break,
+thermal, and cutoff signatures are outcomes to be \emph{measured}, not assumptions.
+The paper is organized as follows. Section~\ref{sec:method} describes the sample,
+data reduction, and spectral and temporal analyses; Section~\ref{sec:obs} presents
+the shape census, parameter distributions, evolution, and correlations;
+Section~\ref{sec:discussion} discusses the results; and Section~\ref{sec:summary}
+summarizes. Uncertainties are quoted at the $1\sigma$ (68\%) level unless stated
+otherwise.

@@ -1,0 +1,203 @@
+\section{Methodology} \label{sec:method}
+% ============================================================================
+\subsection{Initial Burst Selection} \label{sec:sel}
+We select single-pulse bursts from the Fermi/GBM catalog
+\citep{Meegan2009,Gruber2014} using the shape-based ``horizontal-line'' algorithm
+of \citet{Busby2024}, which scores how well a single FRED-like (fast-rise,
+exponential-decay) pulse describes the background-subtracted light curve. We retain bursts above the \citeauthor{Busby2024}
+single-pulse threshold (score $\gtrsim0.9983$) and apply a fluence cut of
+$>$$10^{-5}$~erg~cm$^{-2}$ (10--1000~keV, GBM catalog) to ensure adequate
+time-resolved signal-to-noise, since a robust spectral shape requires
+sufficient counts per bin (Section~\ref{sec:bin}). No $T_{90}$ restriction is
+imposed; the sample therefore contains both short- and long-duration bursts whose
+emission is dominated by a single pulse. We emphasize that this selection is on
+pulse \emph{shape}, not brightness: the sample fluence spans a factor of
+$\sim$$250$. The final sample comprises \textbf{$106$} bursts
+(Table~\ref{tab:sample}).
+
+\subsection{Detector, Source, and Background Selections} \label{sec:bkg}
+For each burst the detector--source angle $\theta$ of the 14 GBM detectors is
+computed from the spacecraft attitude (the POSHIST quaternions interpolated to
+the trigger time). We use the time-tagged event (TTE) data of the NaI detectors
+with $\theta\le50^\circ$; a detector at $50^\circ<\theta\le60^\circ$ is also kept
+if it appears in the trigger's on-board (BCAT) detector mask---it triggered, so
+the source lay in its field of view---and if no NaI then qualifies the single
+closest BCAT NaI is retained. Up to the three lowest-angle NaI are used, each
+paired with the BGO on its side of the spacecraft (b0 for n0--n5, b1 for
+n6--nb). For the $11$ bursts with usable LAT Low-Energy (LLE) data (a subset of
+the $18$ LAT-detected bursts) we add the LLE data above 30~MeV
+\citep{Atwood2009}. Each detector's response matrix is used; for multi-epoch
+\texttt{rsp2} responses the matrix covering the source interval is taken. We use 8--900~keV for NaI, masking the 33--40~keV region around the iodine
+K-edge---a sharp jump in the crystal's absorption efficiency at 33.17~keV
+that is difficult to calibrate \citep{Ronchi2020}---with 0.3--40~MeV for BGO
+and 30--100~MeV for LLE. Inter-detector calibration is handled by free
+effective-area constants in the range 0.8--1.2, frozen to unity for the
+reference NaI \citep[as in][]{Ronchi2020}. The source interval is set to bracket the burst emission
+(Section~\ref{sec:bin}). Each selected detector receives its own pre- and
+post-burst background intervals ($\sim$50--150~s each), fit with a time
+polynomial of order $\le$3---the order chosen by a likelihood-ratio test---and
+interpolated beneath the burst: the detector background varies smoothly with the
+spacecraft's orbital position, so windows on either side of the burst constrain
+its level during the burst itself. An accurate background is the prerequisite
+for recovering any sub-dominant spectral component, so every window is reviewed
+and approved---by a human at an interactive light-curve display, or by a
+vision-capable agent---with each approval recorded together with its origin, so
+the provenance of every selection is auditable.\footnote{The numbers in this
+paper use a provisional, automatically-selected background catalogue pending
+completion of this approval pass and the authoritative re-fit; the qualitative
+conclusions are not expected to be sensitive to the refinement.}
+
+\subsection{Light-curve Binning} \label{sec:bin}
+Within the approved emission interval of each burst, we define the time bins
+from the reference NaI (the lowest-angle approved NaI) using the Bayesian Blocks
+algorithm \citep{Scargle2013} applied to its background-subtracted 8--900~keV
+count rate (the \texttt{3ML} implementation, with the polynomial background
+included and a false-alarm prior $p_0=0.01$). Bayesian Blocks partitions a light
+curve at the points where the count rate changes significantly, producing bins
+that are long during quiet stretches and short across sharp variations, so that
+each bin samples an approximately constant spectral state. We then impose a
+per-block significance floor: each block's net significance is evaluated with
+the modeled-background (Gaussian) Li \& Ma statistic, and blocks below $5\sigma$
+are dropped at the leading and trailing edges and merged into a neighbour in the
+interior until every surviving block clears $5\sigma$, so that each time bin is
+simultaneously a distinct count-rate state and a statistically adequate
+spectrum. The resulting block edges are shared across all of the burst's
+detectors. A dedicated fine-grid pass (1~ms cells with the Poisson block
+fitness, run on each burst's pulse core) shows that only $10\%$ ($11/106$) of
+the sample contains significant sub-$0.1$~s structure---most prominently
+GRB~130427A, with credible blocks down to 2~ms---so intra-bin spectral evolution
+is a quantified, per-burst caveat for that fast minority rather than a
+sample-wide one. The provisional run yields \textbf{$1057$} time-resolved
+spectra, to be regenerated by the authoritative re-block on the approved
+backgrounds.
+
+For each block, the spectral data are assembled in \texttt{3ML}: per detector, a
+source count spectrum is extracted over the block interval, the background count
+spectrum is the polynomial model (Section~\ref{sec:bkg}) integrated over the same
+interval with its Gaussian uncertainty, and the corresponding detector response
+matrix folds the model into count space. The detectors of a burst are then fit
+jointly over their respective energy ranges (Section~\ref{sec:fit}); each block
+is one such joint fit.
+
+\subsection{Block Definition and Grading} \label{sec:grade}
+We grade each burst by the quality of its time-resolved coverage, following a
+three-tier scheme:
+\begin{enumerate}
+\item \emph{Gold}: $40$ bursts with $\ge10$ well-constrained
+  bins, suitable for per-burst parameter relations.
+\item \emph{Silver}: $44$ bursts with $5$--$9$ bins, contributing to
+  population statistics with caveats.
+\item \emph{Bronze}: $22$ bursts with $\le4$ bins, too few for per-burst
+  trends; included only in the pooled distributions.
+\end{enumerate}
+The grade is carried as a column in Table~\ref{tab:perburst} and is used in
+Section~\ref{sec:discussion} to show that our main results hold on the cleanest
+(Gold) subsample.
+
+\subsection{Spectral Models} \label{sec:models}
+We fit each spectrum with six photon models spanning the two interpretations of
+the spectral curvature while remaining empirical and comparable with the GBM
+catalogs \citep[e.g.,][]{Kaneko2006,Gruber2014}. Empirical functions are flexible
+and model-agnostic; although they do not map uniquely onto a mechanism, the
+low-energy index $\alpha$ still discriminates between scenarios at high
+significance \citep[e.g.,][]{Acuner2020}.
+
+The Band function \citep{Band1993} is a smoothly-joined broken power law; below
+the break $E_b=(\alpha-\beta)\Ep/(2+\alpha)$,
+\begin{equation}
+N(E)=A\,(E/E_0)^{\alpha}\,\exp\!\left[-(2+\alpha)E/\Ep\right],
+\end{equation}
+joining $N(E)\propto E^{\beta}$ above $E_b$, with $E_0=100$~keV. The cutoff power
+law (CPL), $N(E)=A\,(E/E_0)^{\Gamma}\exp(-E/E_c)$ with $\Ep=(2+\Gamma)E_c$, is the
+$\beta\!\to\!-\infty$ limit. The smoothly broken power law (SBPL) joins two
+power-law segments with photon indices $\alpha$ and $\beta$ at a break energy
+$E_{\rm b}$, with the sharpness of the join an adjustable parameter; we use
+the GBM-catalog parameterization \citep{Kaneko2006} as implemented in
+\textsf{astromodels}, with the break scale held fixed.
+
+To represent the synchrotron interpretation we use the double smoothly broken
+power law \citep[2SBPL;][whose Equations~1--4 give the functional
+form]{Ravasio2018}: three power-law segments with photon indices
+$\alpha_1,\alpha_2,\beta$ joined at two break energies---a lower break $x_b$
+and an upper break $x_p$ (the latter at the $\nu F_\nu$ peak)---each join
+having a sharpness parameter ($n_1$, $n_2$). We fit the
+\textsf{astromodels} implementation, whose free parameters are the
+normalization, the three indices, and the two break energies. Under the
+optically-thin synchrotron interpretation the two breaks are
+physical---$x_b$ is the cooling frequency \nuc\ and $x_p=\num$ the injection
+frequency---and the segment between them carries the synchrotron slopes
+$\alpha_1\simeq-2/3$ (slow cooling) steepening toward $-3/2$ (fast cooling).
+These characteristic values follow from the radiation physics itself: the
+low-energy tail of even a single electron's synchrotron spectrum cannot be
+harder than $N(E)\propto E^{-2/3}$, and a fully cooled electron population
+softens it to $E^{-3/2}$, so measured indices above these ``lines of death''
+challenge a pure synchrotron origin
+\citep[][]{Preece1998,Sari1998,Ravasio2019}. We hold the break sharpnesses fixed
+($n_1=n_2=2$ in this provisional run; the verified re-fit will adopt the
+$n_1=5.38$, $n_2=2.69$ calibration of \citealt{Ravasio2018}, who found that
+leaving $n_1$ free does not converge reliably---the same behavior we observe).
+The full fit configuration (parameter bounds, seeds, and restart grids) is
+listed in Appendix~\ref{app:fitconfig}.
+
+To represent the photospheric interpretation we add a blackbody to the two
+simplest non-thermal continua, following the multi-component decomposition of
+\citet{Guiriec2011,Guiriec2015}, in which a sub-dominant quasi-thermal component
+accompanies the non-thermal emission and the two are fit \emph{simultaneously}.
+The blackbody photon spectrum is $N(E)\propto E^{2}/[\exp(E/\kT)-1]$, and we form
+the composites Band$+$BB and CPL$+$BB; we quantify the thermal contribution by the
+flux ratio $F_{\rm BB}/F_{\rm tot}$ \citep{Guiriec2015}. A BB$+$SBPL composite
+reproduces the curvature of a 2SBPL near the peak, so the $+$BB models act as a
+practical thermal proxy for the two-break model.
+
+\subsection{Spectral Fitting and Model Selection} \label{sec:fit}
+All fits are performed in the Multi-Mission Maximum Likelihood framework
+\citep[3ML;][]{Vianello2015} with the \texttt{pgstat} likelihood, the
+appropriate statistic when the source counts are Poisson-distributed and the
+background level carries Gaussian uncertainties from the polynomial fit. Model
+comparison uses the Akaike and Bayesian information criteria
+\citep[AIC, BIC;][]{Akaike1974,Schwarz1978} computed from the standard
+$-2\ln L$. An information criterion is the fit's $-2\ln L$ penalized by the
+number of free parameters, so a lower value indicates a better description of
+the data after accounting for model complexity; a gap of $\daic\ge10$ between
+two models is conventionally decisive. Which statistic is \emph{valid},
+however, depends on the relationship between the models compared. For \emph{nested} pairs---where the simpler model is a special case of the
+more complex one, as for Band$+$BB/Band, CPL$+$BB/CPL, and 2SBPL/SBPL---a
+blackbody or second break is deemed significant at $\daic\ge10$ relative to the
+parent continuum---the AIC analog of the $\Delta\mathrm{DIC}\ge10$ threshold of
+\citet{Li2021} and the Bayes-factor threshold ($2\ln K>10$) of
+\citet{Burgess2019}, and equivalent here to a likelihood-ratio statistic
+\citep{Wilks1938} of $\ge$$14$, beyond the nominal 99\% (2~d.o.f.) point; we
+prefer the information-criterion form because the $\chi^2$ calibration of the
+classical LRT is only approximate when a component normalization sits at a
+parameter boundary. Every blackbody and second break that passes $\daic\ge10$
+also passes the more conservative $\Delta\mathrm{BIC}$ criterion. For
+\emph{non-nested} comparisons---in particular the central thermal
+($+$BB) versus two-break (2SBPL) question, where neither model contains the
+other as a limiting case---the LRT is undefined, and we rely
+on \daic\ alone, with $\Delta\mathrm{BIC}$ as a cross-check. A physical-validity
+gate prevents a fit from \emph{winning} the selection if any key parameter is
+railed against a bound or, for the 2SBPL, if the breaks are mis-ordered
+($x_b\ge x_p$); in the $4\%$ ($43/1057$) of bins where no model passes the gate
+we assign no preferred model. The blackbody possesses a railing local minimum,
+so we multi-start the $+$BB models whose blackbody is railed or insignificant
+from a grid of temperature seeds and retain the lowest $-2\ln L$. The 2SBPL has
+no analogous restart in the present (provisional) run, so two-break counts are
+conservative lower limits (Section~\ref{sec:curv}). We quantify each parameter
+correlation by the Spearman rank coefficient $\rho$ and a least-squares slope in
+log space. Energy and photon fluxes are obtained by integrating the best-fit
+Band model over 10--1000~keV, with uncertainties propagated by Monte Carlo over
+the fitted parameter uncertainties (200 draws; 16th--84th percentiles). For the
+principal $\num$--$\nuc$ relation, whose two variables carry comparable
+uncertainties, we maximize the \citet{DAgostini2005} errors-in-both-variables
+likelihood,
+\begin{equation}
+-2\ln\mathcal{L}=\sum_i\left[\ln 2\pi\sigma_i^2
++\frac{(y_i-m x_i-c)^2}{\sigma_i^2}\right],\quad
+\sigma_i^2=\ssc^2+\sigma_{y,i}^2+m^2\sigma_{x,i}^2,
+\label{eq:dagostini}
+\end{equation}
+with the measured break uncertainties (in dex) on both axes and the intrinsic
+scatter \ssc---the spread of the relation beyond what the measurement errors
+alone explain---a free parameter.
+
+% ============================================================================

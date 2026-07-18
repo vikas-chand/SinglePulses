@@ -1,0 +1,144 @@
+\section{Discussion} \label{sec:discussion}
+% ============================================================================
+\subsection{Comparison with Previous Works on Single-Pulse GRBs}
+\label{sec:disc-compare}
+Single-pulse bursts have long been the preferred laboratory for prompt-emission
+spectroscopy, and our sample of $106$ bursts is, to our knowledge, the largest
+uniformly-analyzed set to date. Table~\ref{tab:compare} summarizes the
+comparison; we discuss it thematically.
+
+\emph{The single-pulse lineage and spectral evolution.}
+\citet{Ryde2004} and \citet{RydePeer2009} established that a single FRED-like
+pulse exhibits the simplest spectral evolution and is well described by a
+blackbody-plus-power-law, making single pulses the cleanest test of the prompt
+mechanism. \citet{Lu2012} classified the \Ep\ evolution of bright single-pulse
+Fermi bursts into hard-to-soft (HTS) and intensity-tracking (IT) patterns, a
+scheme extended by \citet{Basak2013,Basak2014}. Our rise-phase classification
+(HTS $63\%$, IT $25\%$; Section~\ref{sec:evol}) recovers the same two modes and
+the same HTS-dominated balance as those small samples. The agreement on the
+low-energy index is also notable: our median Band $\alpha=-0.71$ matches the IT
+mean ($-0.68$) of \citet{Basak2014} and is close to the slow-cooled value
+$-0.81\pm0.1$ of \citet{Burgess2014b}. On the synchrotron line of death the
+comparison must be made carefully: \citet{Basak2014} report $\alpha>-2/3$ in
+$63.4\%$ of their HTS \emph{bins} ($74.6\%$ excluding GRB~110721A), whereas our
+like-for-like per-bin fraction is $44\%$ over a sample dominated by IT-era
+decay bins, and $74\%$ ($74/100$) of our \emph{bursts} exceed the line in at
+least one bin. The numbers are therefore comparable rather than identical, but
+all the single-pulse studies---including \citet{Basak2013} and
+\citet{Guiriec2010}---find the line of death frequently violated, which we now
+establish at population scale.
+
+\emph{The thermal / multi-component program.}
+A sub-dominant photosphere has been advocated through blackbody composites
+\citep{Ryde2004,Guiriec2010,Guiriec2011,Guiriec2015,Basak2014}. \citet{Basak2014}
+find that a blackbody-plus-power-law peaks at $\sim3kT$, below the Band $\nu
+F_\nu$ peak, and favor multi-blackbody models over Band; \citet{Guiriec2015}
+require a cutoff-power-law$+$blackbody$+$power-law for two bright GRBs, with the
+blackbody carrying only $1$--$10\%$ of the energy ($kT\sim40$~keV) and argue that
+the hard $\alpha$ values are an artifact of fitting Band to a multi-component
+spectrum. Our results support this picture at scale: the thermal flux fraction
+is sub-dominant (median $0.006$ with interquartile range $0.001$--$0.10$, the
+upper quartile matching their $1$--$10\%$ energy range), our decisive blackbody
+temperatures ($\kT\approx3$--$70$~keV, median $28$) bracket their
+$\sim$$40$~keV, and $91\%$ ($151/166$) of curvature-requiring bins are equally
+or better described by adding a sub-dominant blackbody than by a second
+synchrotron break.
+
+\emph{The synchrotron / physical-model program.}
+\citet{Burgess2014a} fit a physical synchrotron$+$blackbody model to six
+single-pulse bursts and reported a strong thermal--non-thermal correlation
+($\Ep\propto\kT^{\alpha}$, pooled $\rho\approx0.8$, $\alpha\sim1$--$2$); we test
+this at $\sim$$18\times$ the sample size and recover it in $89\%$ ($17/19$) of
+the bursts with enough decisive-blackbody bins to test, most cleanly in the
+highest-S/N bursts (GRB~130427A: $\rho=0.93$, slope $0.88\pm0.07$), consistent
+with empirical continua absorbing the thermal curvature in fainter bursts. The
+double-break synchrotron picture \citep{Oganesyan2017,Ravasio2018,Ravasio2019}
+predicts the 2SBPL we fit; in the brightest GRB ever, GRB~221009A,
+\citet{Ravasio2023} find a genuine second low-energy break only in the
+highest-S/N intervals---directly mirroring our result that an explicit second
+break wins decisively in just $9\%$ ($15/166$) of curvature bins (a lower
+limit), epitomized by GRB~110721A. This is expected: \citet{Ravasio2018} showed
+that the $+$BB and two-break descriptions separate only in bright spectra with
+a large peak-to-break ratio ($E_{\rm peak}/E_{\rm break}\gtrsim10$), precisely
+the high-S/N regime. Finally, \citet{Mei2025} find that the
+synchrotron model is acceptable for most bursts, that they lie in a
+fast/intermediate-cooling regime ($\num\gtrsim\nuc$), and that the
+spectral--energetics link is $\nuc$--$\Liso$ rather than the Yonetoku relation. We
+independently support the absence of an $\Ep$--luminosity relation: the apparent
+$\Ep$--intensity correlation (energy-flux $\rho=0.43$) collapses in photon flux
+($\rho=0.15$), while the $\kT$--intensity correlation survives ($\rho=0.24$); and
+our 2SBPL bins, with $\nuc<\num$ by construction, sit in the same
+marginally-fast-cooling regime.
+
+\emph{Large catalogs and the degeneracy lesson.}
+Compared with the broad GBM catalogs \citep{Kaneko2006,Gruber2014,Yu2016} and the
+short-GRB Bayesian catalog of \citet{Burgess2019}---in which $513/525$ short-burst
+spectra prefer a cutoff power law with no thermal component---our six-model
+analysis adds an explicit thermal-versus-two-break decomposition. Our central
+caution echoes \citet{Basak2014}: no single empirical model is decisively
+preferred over the next-best alternative in $92\%$ ($875/950$) of comparable
+bins, so distinguishing the emission mechanism requires physical models
+\citep{Burgess2014b} or higher signal-to-noise, not empirical goodness-of-fit
+alone. Throughout, we verify our main results on the cleanest (Gold) subsample.
+
+\subsection{The Two-Break Relation} \label{sec:disc-breaks}
+The pooled $\num$--$\nuc$ correlation ($\rho=0.57$, $N=349$) can be decomposed
+into two distinct statements: a \emph{between}-burst correlation (bursts whose
+\nuc\ is higher also have higher \num\ on average) and a \emph{within}-burst
+correlation (the two breaks move together in time inside an individual burst).
+Both hold. Between bursts, $\rho=0.51$; within bursts, beyond the pooled
+mean-subtracted residuals ($\rho=0.43$), the cluster-honest per-burst test
+gives a median per-burst $\rho=0.50$, positive in $41/54$ bursts with
+$\ge$$3$ double-break bins (sign-test $p=2\times10^{-4}$). The relation is
+therefore not merely an inter-burst trend: harder bursts have both breaks at
+higher energies, and within a burst the two breaks move together. Its slope,
+however, depends on the estimator because the intrinsic scatter is large: the
+\citet{DAgostini2005} fit gives $0.46\pm0.05$ (\ssc$=0.38$~dex), restricting to
+bins with both breaks constrained gives $0.64\pm0.05$ ($\rho=0.67$, $N=253$),
+and symmetric unweighted regression gives $1.05\pm0.06$; we therefore regard
+the \emph{existence} of the correlation, not its slope, as the robust result.
+It is also robust to the fit boundary: excluding the $26\%$ of \nuc\ values
+within a factor of two of the 8~keV NaI edge leaves $\rho=0.55$ ($N=260$).
+Because \nuc\ and \num\ are breaks of the same spectrum fit simultaneously,
+part of the within-burst correlation can be induced by their joint estimation;
+we note, however, that time-resolved \emph{physical} synchrotron fits of
+GRB~180720B show the cooling and injection energies decreasing together
+through the burst with $E_{\rm m}/E_{\rm c}\approx13$--$22$
+\citep{Ronchi2020}---the same co-evolution, recovered with a model in which
+the two breaks are not independently adjustable shape parameters. The
+physically meaningful quantity is the ratio $\num/\nuc$ (the cooling
+regime). Since the 2SBPL fit enforces $\nuc<\num$, the bins with a measurable
+double break sit in the fast-cooling regime by construction; quantitatively,
+the ratio distribution has a median $\num/\nuc\simeq6$ (interquartile
+$3$--$13$), with $21\%$ ($75/349$) in the intermediate regime
+$1<\num/\nuc<3$ of \citet{Mei2025}---close to the $\sim$$25\%$ they find in
+their time-resolved sample, and well below the $\sim$$60\%$ of their
+single-peak-bin sample. \citet{Mei2025} use this ratio as a cooling-regime
+classifier rather than fitting a break--break relation; within the single burst GRB~160625B,
+\citet{Ravasio2018} found $E_{\rm peak}$--$E_{\rm break}$ positively correlated
+($\rho=0.61$), consistent in sign with our within-burst result. Our positive
+$\num$--$\nuc$ correlation is, to our knowledge, the first such relation
+reported for a large single-pulse \emph{sample}, and warrants confirmation
+with physical synchrotron fits.
+
+\subsection{Implication for the Radiation Process} \label{sec:disc-radiation}
+The low-energy index peaking near $\alpha\approx-0.7$, between the
+synchrotron limits but with a substantial fraction of bursts above them, is
+consistent with marginally-fast/slow-cooled synchrotron with ongoing
+acceleration in some bursts and a photospheric contribution in others
+\citep[cf.][]{Basak2014,Burgess2014b}. The $\Ep$--$\kT$ slope can be mapped to
+the outflow dynamics because the bulk Lorentz factor of an accelerating jet
+grows with radius as $\Gamma\propto r^{\mu}$, with $\mu=1$ for a
+baryon-dominated fireball and $\mu=1/3$ for a magnetically-accelerated jet;
+the acceleration law sets how the photospheric temperature declines relative
+to the non-thermal peak, so $\alpha\!\sim\!1$ indicates a baryon-dominated and
+$\alpha\!\sim\!2$ a magnetically-dominated jet \citep{Burgess2014a}. The slope
+we recover for the cleanest case, GRB~130427A
+($\Ep\propto\kT^{0.88\pm0.07}$, \citealt{DAgostini2005} fit), is consistent
+with the baryon-dominated value, but we stress that with empirical (not
+physical) models this mapping is only indicative. The clearest two-break burst
+in our sample, GRB~110721A (2SBPL-preferred, $F_{\rm BB}/F_{\rm
+tot}\approx0.001$), is the counter-example in which the curvature is genuinely
+a second synchrotron break rather than a thermal component.
+
+% ============================================================================

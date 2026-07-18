@@ -1,0 +1,44 @@
+\section{Fit Configuration} \label{app:fitconfig}
+All fits use MINUIT within 3ML, each time bin seeded from the burst's
+time-integrated fit. Table~\ref{tab:fitconfig} lists the free parameters,
+allowed ranges, and default seeds for each model component. Cross-detector
+effective-area constants are free within $0.8$--$1.2$ (frozen to unity for the
+reference NaI). The blackbody multi-start re-fits each $+$BB model whose
+blackbody is railed or insignificant from three seeds (component defaults with
+$\kT=30$~keV; the time-integrated seed with $\kT=30$ and with $80$~keV),
+retaining the lowest $-2\ln L$. The physical-validity gate declares a fit
+non-physical when any key shape parameter lies within $0.1\%$ of its allowed
+span from a bound, or when the 2SBPL breaks are mis-ordered ($x_b\ge x_p$);
+non-physical fits remain in the catalog but cannot be selected as the
+preferred model, and in $4\%$ ($43/1057$) of bins no model passes the gate and
+no preferred model is assigned. The complete per-bin fit catalog ($1057$ rows)
+and the full per-burst sample table are available as machine-readable tables.
+
+\begin{deluxetable}{llll}
+\tablecaption{Free parameters, allowed ranges, and seeds.\label{tab:fitconfig}}
+\tablehead{\colhead{Model} & \colhead{Parameter} & \colhead{Range} & \colhead{Seed}}
+\startdata
+Band   & $\alpha$        & $(-1.9,\,1.9)$   & $-1.0$ \\
+       & \Ep\ (keV)      & $(30,\,5000)$    & $200$  \\
+       & $\beta$         & $(-5,\,-1.6)$    & $-2.25$ \\
+CPL    & $\Gamma$        & $(-2,\,1)$       & $-1.0$ \\
+       & $E_c$ (keV)     & $(10,\,5\times10^4)$ & $200$ \\
+SBPL   & $\alpha$        & $(-2.5,\,1.5)$   & $-1.0$ \\
+       & $E_{\rm b}$ (keV) & $(10,\,5000)$  & $300$  \\
+       & $\beta$         & $(-5,\,-1.5)$    & $-2.25$ \\
+2SBPL  & $\alpha_1$      & $(-2.5,\,2.5)$   & $-0.66$ \\
+       & $x_b$ (keV)     & $(10,\,900)$     & $50$   \\
+       & $\alpha_2$      & $(-3,\,0.5)$     & $-1.5$ \\
+       & $x_p$ (keV)     & $(30,\,5000)$    & $200$  \\
+       & $\beta$         & $(-5,\,-1.5)$    & $-2.25$ \\
+BB     & \kT\ (keV)      & $(1,\,200)$      & $30$   \\
+\enddata
+\tablecomments{Normalizations are free with broad ranges. SBPL break scale and
+2SBPL sharpnesses ($n_1=n_2=2$) are held fixed in this run
+(Section~\ref{sec:models}). The $x_b$ upper bound reflects the NaI band.}
+\end{deluxetable}
+
+% ============================================================================
+% Author-year natbib: every \bibitem optional arg MUST contain (YYYY).
+% %chk cross-check all volume/page numbers against ADS before submission.
+% ============================================================================
