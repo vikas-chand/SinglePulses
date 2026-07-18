@@ -1,162 +1,127 @@
-# How to run the approval step — a guide for Khushboo
+# Stage-1 review instructions — Khushboo (2026-07-17 refresh)
 
-Hi Khushboo! This walks you through **Stage 1** of the pipeline: approving, for each
-of the 106 GRBs, three things —
+Hi Khushboo! **Your job:** human Stage-1 approval (detectors + background
+windows + source interval) for the **65 remaining bursts** listed in
+`dev/khushboo_worklist.txt`. Vikas has done 41 (including all 13 LLE bursts).
+Your decisions become the HUMAN arm of the analysis — they are science inputs,
+so judge from the data; the AI suggestions are seeds, not answers.
 
-1. **which detectors** to use (NaI + BGO),
-2. the **background windows** (a pre-burst and a post-burst stretch of quiet data),
-3. the **source / emission window** (where the burst actually is).
+*(This replaces the older guide from the consensus-review era; the GUI has
+gained several aids since, described below.)*
 
-The result is one file, `results/background_intervals.ecsv`, with a stamp recording
-**who** approved each row and **how** (you in the GUI, or an AI on your instruction).
-Everything downstream (binning, spectral fits) depends on this file.
-
-You can do this **two ways** — let an AI assistant drive it (faster), or click through
-it yourself. Both are described below. Pick whichever you prefer; you can mix them.
-
----
-
-## 0. One-time setup
+## 0. Setup (once)
 
 ```bash
-# 1. Clone the repo (ask Vikas to add you as a collaborator first)
-git clone https://github.com/vikas-chand/SinglePulses.git
-cd SinglePulses
+# fresh clone (ask Vikas for collaborator access), or just `git pull` if you have it:
+git clone https://github.com/vikas-chand/SinglePulses.git Two_Breaks
+cd Two_Breaks && git pull            # MUST be on the current main
 
-# 2. Install the light dependencies (enough for the approval GUI)
-pip install -r handoff_background_approval/requirements.txt
-
-# 3. Get the data. Two options:
-#    (a) light — only the event files the GUI needs (no special software):
-python handoff_background_approval/fetch_tte.py
-#    (b) full — TTE + responses (needed later for binning/fitting; needs the threeML env):
-#        python scripts/02_download_data.py
+conda activate threeML               # heavy env (3ML refits inside the GUI)
+export FERMI_DIR=$CONDA_PREFIX/share/fermitools
+export CALDB=$FERMI_DIR/data/caldb
+export CALDBCONFIG=$CALDB/software/tools/caldb.config
+export CALDBALIAS=$CALDB/software/tools/alias_config.fits
 ```
-Run every command **from the repo root** (`SinglePulses/`).
 
-> **Backend (important on Linux):** run the GUI with `MPLBACKEND=TkAgg` (prefix it on
-> the command, as shown below, or `export MPLBACKEND=TkAgg` once). This is the backend
-> the picker is verified against — it keeps the GUI alive across every detector window.
-> Without it the first window may open and then later detectors crash with
-> `TclError: ... "wm" ... application has been destroyed`. On macOS no prefix is needed.
+- `results/grb_sample.ecsv` must exist (tracked in git — `git pull` provides it;
+  without it the detector picker hard-stops with a remedy message).
+- **Linux only:** run the GUI with `MPLBACKEND=TkAgg python3 ...` (macOS needs
+  nothing). The old crash-after-first-detector and stuck-after-refit bugs are
+  fixed; if a dead "zombie" window ever lingers, just close it manually.
+- Data: `python handoff_background_approval/fetch_tte.py <bn...>` or
+  `python scripts/02_download_data.py --trigger <bn...>` for any burst whose
+  TTE is missing (most are already on disk).
 
----
-
-## Path A — let an AI assistant do it (Codex or Claude Code)
-
-Open the repo in **Codex** or **Claude Code** in your terminal and tell it:
-
-> "Read `AGENTS.md`, then run Stage 1 approval with `scripts/39_approve_all.py`:
-> render the candidates, look at the light-curve PNGs, and for each burst decide the
-> detectors, the pre/post background windows, and the source window. Set the approver
-> to 'Khushboo (AI-assisted)'. Then ingest to `results/background_intervals.ecsv` and
-> run `scripts/36_progress_check.py`."
-
-The AI will:
-1. run `python scripts/39_approve_all.py render --all` (makes the light-curve images),
-2. **look at each image**, choose the windows, and write a decision file per burst,
-3. run `python scripts/39_approve_all.py ingest --all` to build the stamped catalog.
-
-**Your job here is to review its choices**, not to click. Ask it to show you a few of
-the light curves with the windows it picked, and tell it to adjust anything that looks
-wrong (e.g. "the source window on bn… is too wide"). The AI records that **the AI**
-made the call — which is fine and intended; the gate just keeps it honest.
-
----
-
-## Path B — do it yourself in the GUI
-
-Run all bursts (resumable — stop and re-run anytime), or one at a time with
-`--trigger bn…` instead of `--all`:
+## 1. The loop (one burst at a time, resumable any time)
 
 ```bash
-# Linux: keep the MPLBACKEND=TkAgg prefix (see the backend note in section 0).
-MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --all --approver "Khushboo Sharma"
-# one burst:
-MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --trigger bn110721200 --approver "Khushboo Sharma"
+while read t; do
+  [ -z "$t" ] && continue
+  MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --trigger "$t" \
+      --approver "Khushboo Sharma" --seed-from-catalog
+done < dev/khushboo_worklist.txt
 ```
+(Drop `MPLBACKEND=TkAgg` on macOS.)
 
-Three windows open in sequence:
+Each burst walks you through 3 windows. Close the terminal any time — finished
+bursts are saved; rerunning the loop re-offers unfinished ones. Re-approving a
+burst cleanly REPLACES its previous decision, including dropped detectors.
 
-**1. Detector picker.** A checklist of all detectors, sorted by angle to the burst.
-The good ones (NaI within 50° + the matching BGO) are pre-ticked. Tick/untick as you
-like, then click **Accept**. (Closer-angle detectors saw the burst better.)
+### Window 1 — detector picker
+Tick the detectors to use. Pre-ticks follow the rules; change them if wrong:
+- **NaI: angle ≤ 50°** to the source. 50–60° only to rescue a burst that would
+  otherwise have <2 NaIs (BCAT membership helps); **> 60° never**.
+- **BGO companion rule:** b0 if the chosen NaIs are n0–n5, b1 if n6–nb (both
+  if the NaIs straddle the spacecraft).
 
-**2. Background selector** (one per detector). You see the light curve. The suggested
-pre- and post-burst background windows are shaded. You want them on **flat, quiet
-data** on either side of the burst — avoiding the burst itself and any bumps.
-- **Accept** (green) — keep the windows, go to the next detector.
-- **Clear** (red) — wipe them and click your own: 2 clicks before the burst, 2 after.
-- Fine-tune with the keyboard: `a`/`s` move the pre-window edges, `d`/`f` the
-  post-window edges (arrow keys nudge; the residual panel helps you judge the fit).
-- **Skip GRB** / **Quit** if needed.
+### Window 2 — background selector (one per detector)
+Two panels: light curve on top, fit residuals below. The AI's windows are
+pre-loaded (gold).
+- **Goal:** one PRE window and one POST window of clean baseline, **~50–150 s
+  each side**, whose inner edges **HUG the burst** (gap to the burst ≈ 5–20 s;
+  never anchor a window on an SAA-exit or data-gap edge).
+- **Aids on the plot** (the same aids the AI raters see):
+  - grey = the light curve; **orange** = robust `imodpoly` baseline (aid only);
+  - faint **green** tints = candidate clean-background stretches;
+  - **red shaded** span = detected transient (>5σ);
+  - after any edit, the **red curve** = the real 3ML polynomial background fit
+    over YOUR windows (drawn only across the range it is used), with residuals
+    below — background regions should scatter within ±1σ of 0.
+- Adjust by clicking/dragging or keys (`a/s` = pre edges, `d/f` = post edges,
+  ←/→ = ±1 bin, shift = ±16 bins). The window "freezes" ~3–5 s after an edit —
+  that is the 3ML refit ("Refitting… input paused"); input during it is
+  deliberately dropped.
+- **Accept** saves the detector; **Skip GRB** skips just that detector;
+  **Quit** aborts the whole burst (nothing saved).
+- 2008–2012 bursts have only ~25–35 s of pre-trigger TTE — a short pre window
+  there is the data's limit, not your mistake. Do your best inside what exists.
 
-**3. Source marker.** The brightest detector's light curve opens. **Click the start
-of the burst emission, then click the end** (2 clicks), then close the window. That's
-the source window. (A suggestion is pre-shaded; if you just close without clicking, it
-uses the suggestion.)
+### Window 3 — source marker
+Mark the burst's emission interval `[t1, t2]` on the reference-NaI light curve.
+- **Gold** = the AI's suggestion (NOT gospel — it can spill into background);
+  **green** = your approved background windows; **orange** = the fitted
+  background level under the source; **blue band = the ALLOWED range** (the
+  common gap over all your accepted detectors — the source MUST sit inside it).
+- Accept the gold with 0 clicks, or click start+stop yourself (a red span shows
+  your pair), then **Accept**. A source outside the blue band triggers a
+  **red warning** — that means one of your background windows overlaps the
+  pulse; Quit and fix that background rather than overriding, unless you are
+  certain.
+- Include the full decay tail (don't clip the FRED); exclude flat baseline.
 
-That's one burst. Repeat for the next trigger. Your progress is saved per burst, so
-you can stop and resume anytime.
+## 2. Special bursts — READ FIRST
+**Check `dev/special_bursts.md` before selecting.** Multi-episode bursts must
+use the pulse listed there, not the brightest spike (e.g. bn130427324 = the
+2nd pulse; already done by Vikas). If YOU meet a burst where the suggestion is
+clearly the wrong pulse, note the trigger and tell us — it joins the registry.
 
-To get the list of triggers to work through: `python scripts/36_progress_check.py`
-(it shows how many are done and which are left).
-
----
-
-## Checking progress & quality (run anytime)
+## 3. Progress check
 
 ```bash
-python scripts/36_progress_check.py
+python - <<'EOF'
+import glob, json
+d=[json.load(open(f)) for f in glob.glob('results/approval/*_decision.json')]
+print(sum(1 for x in d if x.get('mode')=='human_gui'), 'human decisions saved;',
+      sum(1 for x in d if str(x.get('approver','')).startswith('Khushboo')), 'yours')
+EOF
 ```
-It tells you how many windows/bursts are done (target: 418 windows / 106 bursts),
-flags anything odd (zero-width or very wide windows, missing approver), and shows the
-approver tally. **You're finished when it reports complete and "QC: clean".**
+Your decisions live in `results/approval/<trigger>_decision.json`
+(`"approver": "Khushboo Sharma"`). Ingest into the catalogs is run centrally
+afterwards — you only produce decisions. **Never hand-edit the ECSV catalogs.**
+Commit + push your decision files at the end of each session:
+`git add results/approval/*_decision.json && git commit -m "stage1: <N> bursts (Khushboo)" && git push`.
 
----
+## 4. If something breaks
+- GUI never appears / picker skipped → `git pull` (grb_sample fix) and check
+  `MPLBACKEND=TkAgg` on Linux.
+- A burst errors repeatedly → Quit it, note the trigger, move on.
+- Anything confusing → screenshot + trigger name to Vikas.
 
-## What to do when you're done
-
-The single deliverable is **`results/background_intervals.ecsv`**. Send it back to
-Vikas — either commit it on a branch and push, or share the file directly:
-
-```bash
-git checkout -b khushboo-approvals
-git add results/background_intervals.ecsv
-git commit -m "Approved detector + background + source windows"
-git push origin khushboo-approvals
-```
-
-Vikas then runs the binning and spectral fits from it. (If you'd like to run those too,
-they're in `AGENTS.md` — but they need the heavier threeML environment.)
-
----
-
-## Quick reference
-
-| Goal | Command |
-|---|---|
-| Get the data (light) | `python handoff_background_approval/fetch_tte.py` |
-| AI does it | open Codex/Claude → "Read AGENTS.md, run Stage 1 approval" |
-| You do all bursts (GUI) | `MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --all --approver "Khushboo Sharma"` |
-| You do one burst (GUI) | `MPLBACKEND=TkAgg python scripts/39_approve_all.py gui --trigger bn… --approver "Khushboo Sharma"` |
-| AI render (for review) | `python scripts/39_approve_all.py render --all` |
-| Build the catalog | `python scripts/39_approve_all.py ingest --all` |
-| Check progress / QC | `python scripts/36_progress_check.py` |
-
-## If something goes wrong
-- **What the GUIs are SUPPOSED to do** (buttons, close semantics, busy state during
-  refits, open questions assigned to you) → `dev/GUI_REQUIREMENTS.md`.
-- **No window appears, or it crashes after the first detector** (`TclError: ... "wm" ...
-  application has been destroyed`) → you forgot the backend: re-run with
-  `MPLBACKEND=TkAgg` in front (see section 0).
-- **The detector picker never appears + a warning names `results/grb_sample.ecsv`**
-  → your clone is stale: `git pull` (the catalog is tracked now) and retry.
-- **A background window ignores clicks for a few seconds after you adjust an edge**
-  → that's the refit: the status line says "Refitting… input paused". Input during
-  the refit is deliberately dropped; click again once it finishes.
-- **"No TTE" / missing file** → run `fetch_tte.py` again (it retries failed downloads),
-  or ask Vikas to share `data/<trigger>/`.
-- **Wrong directory** → make sure you're in the repo root (`SinglePulses/`).
-- **Anything unclear** → ask Vikas, or ask your AI assistant to read `AGENTS.md` and
-  explain the step.
+## 5. What happens with your selections
+They are ingested to the human catalog, re-binned (Bayesian blocks from YOUR
+source interval), and fit with the full 24-model menu — machinery identical to
+the AI arm, so any physics difference traces to the selections. That comparison
+(plus Expert1-vs-Expert2 agreement) is the benchmark paper; your selections
+also feed the science paper. *(The 25-burst benchmark set may later be re-run
+with per-rater isolation (`--approval-dir/--out`); you'll get explicit
+instructions if so — for THIS pass use the defaults above.)*
