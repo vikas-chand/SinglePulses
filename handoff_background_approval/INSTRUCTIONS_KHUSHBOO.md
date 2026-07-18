@@ -9,6 +9,9 @@ so judge from the data; the AI suggestions are seeds, not answers.
 *(This replaces the older guide from the consensus-review era; the GUI has
 gained several aids since, described below.)*
 
+**Read `PROJECT_BRIEFING_KHUSHBOO.md` (same folder) first** — it explains WHAT
+the project is and WHY your selections matter, from the 2026-07-17 planning day.
+
 ## 0. Setup (once)
 
 ```bash
