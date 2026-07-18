@@ -1448,7 +1448,12 @@ def _run(args, trigger, out_dir, lat_ctx=None):
                 # index-keyed dirs made coarse fits reuse fine-grid LAT
                 # products (Codex ultra audit CRITICAL #2). to_threeml.py
                 # additionally verifies cached TSTART/TSTOP before reuse.
-                _tag = f'block_{t1:+.3f}_{t2:+.3f}'.replace('.', 'p')
+                # STRICT [A-Za-z0-9_] tag: '+' in the path breaks the
+                # fermitools PIL layer (gtselect wrote nothing; every v2 LAT
+                # attach FAILED with a bare-filename FileNotFoundError).
+                def _fmt(x):
+                    return f'{x:.3f}'.replace('-', 'm').replace('.', 'p')
+                _tag = f'block_{_fmt(t1)}_{_fmt(t2)}'
                 prod = lat_ctx['mod'].prepare_lat_block(
                     lat_ctx['ft1'], lat_ctx['ft2'], lat_ctx['rsp'],
                     lat_ctx['met'], lat_ctx['ra'], lat_ctx['dec'],
