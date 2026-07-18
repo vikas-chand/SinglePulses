@@ -593,14 +593,87 @@ HIGHE_MODEL_SPECS = [
                       'K_BAND': 'band_K', 'KT': 'bb_kT', 'K_BB': 'bb_K',
                       'PL_INDEX': 'hepl_index', 'PL_K': 'hepl_K'},
     },
+    # ---- the FULL 3-component family (registry_v1: band_bb_cpl, cpl_bb_pl,
+    # cpl_bb_cpl; + the SBPL-continuum variants Vikas specified). Same
+    # composition rule everywhere: <continuum> + Blackbody + <high-E extra
+    # (PL or CPL, piv=100 MeV)>. Parents for the chain gate are the
+    # 2-component members (<cont>+BB, <cont>+PL/CPL). ----
+    {
+        'name': 'Band+BB+CPL', 'prefix': 'BANDBBCPL', 'n_params': 9,
+        'build': lambda s: _setup_band(s) + _setup_bb(s) + _setup_extra_cpl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EP': 'xp_1', 'BETA': 'beta_1', 'K_BAND': 'K_1',
+                 'KT': 'kT_2', 'K_BB': 'K_2',
+                 'HE_INDEX': 'index_3', 'HE_XC': 'xc_3', 'HE_K': 'K_3'},
+        'seed_keys': {'ALPHA': 'band_alpha', 'EP': 'band_Ep', 'BETA': 'band_beta',
+                      'K_BAND': 'band_K', 'KT': 'bb_kT', 'K_BB': 'bb_K',
+                      'HE_INDEX': 'hecpl_index', 'HE_XC': 'hecpl_xc',
+                      'HE_K': 'hecpl_K'},
+    },
+    {
+        'name': 'CPL+BB+PL', 'prefix': 'CPLBBPL', 'n_params': 7,
+        'build': lambda s: _setup_cpl(s) + _setup_bb(s) + _setup_extra_pl(s),
+        'pmap': {'INDEX': 'index_1', 'XC': 'xc_1', 'K_CPL': 'K_1',
+                 'KT': 'kT_2', 'K_BB': 'K_2',
+                 'PL_INDEX': 'index_3', 'PL_K': 'K_3'},
+        'seed_keys': {'INDEX': 'cpl_index', 'XC': 'cpl_xc', 'K_CPL': 'cpl_K',
+                      'KT': 'bb_kT', 'K_BB': 'bb_K',
+                      'PL_INDEX': 'hepl_index', 'PL_K': 'hepl_K'},
+    },
+    {
+        'name': 'CPL+BB+CPL', 'prefix': 'CPLBBCPL', 'n_params': 8,
+        'build': lambda s: _setup_cpl(s) + _setup_bb(s) + _setup_extra_cpl(s),
+        'pmap': {'INDEX': 'index_1', 'XC': 'xc_1', 'K_CPL': 'K_1',
+                 'KT': 'kT_2', 'K_BB': 'K_2',
+                 'HE_INDEX': 'index_3', 'HE_XC': 'xc_3', 'HE_K': 'K_3'},
+        'seed_keys': {'INDEX': 'cpl_index', 'XC': 'cpl_xc', 'K_CPL': 'cpl_K',
+                      'KT': 'bb_kT', 'K_BB': 'bb_K',
+                      'HE_INDEX': 'hecpl_index', 'HE_XC': 'hecpl_xc',
+                      'HE_K': 'hecpl_K'},
+    },
+    {
+        'name': 'SBPL+BB', 'prefix': 'SBPLBB', 'n_params': 6,
+        'build': lambda s: _setup_sbpl(s) + _setup_bb(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EBREAK': 'break_energy_1', 'BETA': 'beta_1',
+                 'K': 'K_1', 'KT': 'kT_2', 'K_BB': 'K_2'},
+        'seed_keys': {'ALPHA': 'sbpl_alpha', 'EBREAK': 'sbpl_break',
+                      'BETA': 'sbpl_beta', 'K': 'sbpl_K',
+                      'KT': 'bb_kT', 'K_BB': 'bb_K'},
+    },
+    {
+        'name': 'SBPL+BB+PL', 'prefix': 'SBPLBBPL', 'n_params': 8,
+        'build': lambda s: _setup_sbpl(s) + _setup_bb(s) + _setup_extra_pl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EBREAK': 'break_energy_1', 'BETA': 'beta_1',
+                 'K': 'K_1', 'KT': 'kT_2', 'K_BB': 'K_2',
+                 'PL_INDEX': 'index_3', 'PL_K': 'K_3'},
+        'seed_keys': {'ALPHA': 'sbpl_alpha', 'EBREAK': 'sbpl_break',
+                      'BETA': 'sbpl_beta', 'K': 'sbpl_K',
+                      'KT': 'bb_kT', 'K_BB': 'bb_K',
+                      'PL_INDEX': 'hepl_index', 'PL_K': 'hepl_K'},
+    },
+    {
+        'name': 'SBPL+BB+CPL', 'prefix': 'SBPLBBCPL', 'n_params': 9,
+        'build': lambda s: _setup_sbpl(s) + _setup_bb(s) + _setup_extra_cpl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EBREAK': 'break_energy_1', 'BETA': 'beta_1',
+                 'K': 'K_1', 'KT': 'kT_2', 'K_BB': 'K_2',
+                 'HE_INDEX': 'index_3', 'HE_XC': 'xc_3', 'HE_K': 'K_3'},
+        'seed_keys': {'ALPHA': 'sbpl_alpha', 'EBREAK': 'sbpl_break',
+                      'BETA': 'sbpl_beta', 'K': 'sbpl_K',
+                      'KT': 'bb_kT', 'K_BB': 'bb_K',
+                      'HE_INDEX': 'hecpl_index', 'HE_XC': 'hecpl_xc',
+                      'HE_K': 'hecpl_K'},
+    },
 ]
 
-# Guiriec 3-component test set (--models threecomp): the 3-component + its two
-# nested parents + the bare Band, all fitted TOGETHER in one run so the
-# dAIC>=10 chain gate (BANDBBPL vs BANDBB and vs BANDPL) is self-consistent.
+# Guiriec 3-component test set (--models threecomp): ALL SIX 3-component
+# combos {Band,CPL,SBPL} x BB x {PL,CPL} + every nested parent needed for a
+# self-consistent dAIC>=10 chain gate, fitted TOGETHER in one run.
+_TC_BASE = ('BAND', 'CPL', 'SBPL', 'BANDBB', 'CPLBB')
+_TC_HIGHE = ('BANDPL', 'CPLPL', 'BANDCPL', 'CPLCPL', 'SBPLBB',
+             'BANDBBPL', 'BANDBBCPL', 'CPLBBPL', 'CPLBBCPL',
+             'SBPLBBPL', 'SBPLBBCPL')
 THREECOMP_MODEL_SPECS = (
-    [s for s in MODEL_SPECS if s['prefix'] in ('BAND', 'BANDBB')]
-    + [s for s in HIGHE_MODEL_SPECS if s['prefix'] in ('BANDPL', 'BANDBBPL')]
+    [s for s in MODEL_SPECS if s['prefix'] in _TC_BASE]
+    + [s for s in HIGHE_MODEL_SPECS if s['prefix'] in _TC_HIGHE]
 )
 
 # The RUNTIME model set. Default = the frozen benchmark 6; main() extends it
@@ -775,10 +848,23 @@ PARAM_BOUNDS = {
                  'EC': (5e4, 1e8)},
     'SBPLCUT':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
                  'EC': (5e4, 1e8)},
-    # Guiriec 3-component: Band shape + BB temperature + extra-PL index all
-    # gated against railing (same rails as their 2-component parents).
-    'BANDBBPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
-                 'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
+    # Guiriec 3-component family: continuum shape + BB temperature + extra-
+    # component index all gated against railing (same rails as their
+    # 2-component parents).
+    'BANDBBPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+                  'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
+    'BANDBBCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+                  'KT': (1.0, 200.0), 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
+    'CPLBBPL':   {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0),
+                  'PL_INDEX': (-4.0, -1.0)},
+    'CPLBBCPL':  {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0),
+                  'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
+    'SBPLBB':    {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+                  'KT': (1.0, 200.0)},
+    'SBPLBBPL':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+                  'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
+    'SBPLBBCPL': {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+                  'KT': (1.0, 200.0), 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
 }
 
 
