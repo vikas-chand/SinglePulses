@@ -14,7 +14,7 @@ def tte(trig,det):
     g=sorted(glob.glob(f'data/{trig}/glg_tte_{det}_{trig}_v*.fit*')); return g[-1] if g else None
 
 for trig in sys.argv[1:]:
-    blkf=f'results/clean_blocks_consensus/bb_blocks_spectral_{trig}.ecsv'
+    blkf=os.path.join(os.environ.get('BLK_ROOT','results/clean_blocks_consensus'),f'bb_blocks_spectral_{trig}.ecsv')
     bt=Table.read(blkf,format='ascii.ecsv')
     ref=str(bt['DETECTOR'][0]); sub=bt[bt['DETECTOR']==ref]
     edges=sorted(set(list(sub['T_START'])+list(sub['T_STOP'])))

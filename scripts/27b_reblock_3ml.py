@@ -47,7 +47,7 @@ SIG_TRIM = 4.5                 # leading/trailing-edge drop threshold (scripts/2
 
 def find_tte(trig, det):
     f = sorted(glob.glob(f'{DATA}/{trig}/glg_tte_{det}_*.fit*'))
-    return f[0] if f else None
+    return f[-1] if f else None    # newest version (audit #19)
 
 
 def load_nai(trig, det):
@@ -56,7 +56,7 @@ def load_nai(trig, det):
     f = sorted(glob.glob(f'{DATA}/{trig}/glg_tte_{det}_*.fit*'))
     if not f:
         return None
-    with fits.open(f[0]) as h:
+    with fits.open(f[-1]) as h:    # newest version — SAME file as find_tte (audit #19)
         ev = h['EVENTS'].data
         t0 = next(hh.header['TRIGTIME'] for hh in h if 'TRIGTIME' in hh.header)
         tt = np.asarray(ev['TIME']) - t0
@@ -88,7 +88,7 @@ def emission_window(tt, lo, hi, brate):
 
 def find_rsp(trig, det):
     f = sorted(glob.glob(f'{DATA}/{trig}/glg_cspec_{det}_*.rsp*'))
-    return f[0] if f else None
+    return f[-1] if f else None    # newest version (audit #19)
 
 
 def bin_significance(ts, s, e):
@@ -158,16 +158,35 @@ def reblock_burst(trig, single, bkg, out_dir, verbose=False):
         return trig, '-', 0, 'no bkg row'
     sp = single[single['TRIGGER_NAME'] == trig]
     brightest = str(sp[0]['DETECTOR']).strip() if len(sp) else None
+    # ONLY approved detectors define the grid. The old code re-introduced a
+    # DESELECTED sample-catalog "brightest" NaI and then gave it the first
+    # approved detector's background window (proven on bn201104001: grid built
+    # on rejected n3 with n6's window — Codex ultra audit CRITICAL #1).
     nai = sorted({str(r['DETECTOR']).strip() for r in bk
                   if str(r['DETECTOR']).strip().startswith('n')})
-    if brightest and brightest not in nai:
-        nai = sorted(set(nai) | {brightest})
-    edet = brightest if brightest in nai else (nai[0] if nai else None)
-    if edet is None:
-        return trig, '-', 0, 'no NaI'
+    if not nai:
+        return trig, '-', 0, 'no approved NaI'
     bkw = {str(r['DETECTOR']).strip(): ((float(r['BKG_NEG_START']), float(r['BKG_NEG_STOP'])),
            (float(r['BKG_POS_START']), float(r['BKG_POS_STOP']))) for r in bk}
-    pre, post = bkw.get(edet, list(bkw.values())[0])
+    if brightest in nai:
+        edet = brightest
+    else:
+        # deterministic among APPROVED NaIs: the one with the most counts in
+        # its own background gap (its own windows, its own events)
+        best_cnt = -1
+        edet = nai[0]
+        for d in nai:
+            td = load_nai(trig, d)
+            if td is None:
+                continue
+            p_, q_ = bkw[d]
+            c = int(((td >= p_[1]) & (td <= q_[0])).sum())
+            if c > best_cnt:
+                best_cnt, edet = c, d
+        if verbose and brightest:
+            print(f'  {trig}: catalog-brightest {brightest} NOT approved — '
+                  f'grid from approved {edet}')
+    pre, post = bkw[edet]                     # STRICTLY this detector's own windows
     tte = find_tte(trig, edet)
     if tte is None:
         return trig, edet, 0, 'no TTE'
@@ -194,8 +213,12 @@ def reblock_burst(trig, single, bkg, out_dir, verbose=False):
         # trusting [s1,s2] verbatim: an over-wide approved source (or a GUI misclick)
         # would otherwise let BB run over a mostly-quiet span and collapse. emission_
         # window returns the bounds unchanged when no clear peak is found, so an already
-        # tight approved window is preserved.
+        # tight approved window is preserved. The result is CLIPPED to the approved
+        # interval — the walk-out padding must never escape the human gate (Codex
+        # ultra audit HIGH #15; matches the handbook binning.py clip).
         src_lo, src_hi = emission_window(tt, src_explicit[0], src_explicit[1], brate)
+        src_lo = max(float(src_lo), src_explicit[0])
+        src_hi = min(float(src_hi), src_explicit[1])
         src_kind = 'approved+tightened'
     else:
         src_lo, src_hi = emission_window(tt, float(pre[1]), float(post[0]), brate)

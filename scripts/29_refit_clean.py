@@ -110,6 +110,8 @@ def main():
                 n_fail += 1
             print(f'[{n_ok+n_fail}/{len(trigs)}] {trig}: {st} ({dt:.0f}s)', flush=True)
     print(f'\nDONE: {n_ok} ok/skip, {n_fail} failed. -> {args.out_root}', flush=True)
+    if n_fail:
+        sys.exit(1)                 # batch failures must not exit 0 (audit #32)
 
 
 if __name__ == '__main__':

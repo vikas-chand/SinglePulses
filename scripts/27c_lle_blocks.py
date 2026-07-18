@@ -78,6 +78,68 @@ def _windows(bk):
     return (-50.0, -10.0), (300.0, 400.0), 'synthetic'
 
 
+def _load_lle_band_events(trig):
+    """(sorted 30-100 MeV event times rel. trigger, GTI array Nx2 rel. trigger)
+    or (None, None). THE single loader for every LLE gate in the pipeline."""
+    lle_f, _, _ = find_lle_triplet(trig)
+    if lle_f is None:
+        return None, None
+    with fits.open(lle_f) as h:
+        ev = h['EVENTS'].data
+        t0 = h['PRIMARY'].header.get('TRIGTIME', 0.0)
+        e = np.asarray(ev['ENERGY'], dtype=float)      # MeV
+        t = np.asarray(ev['TIME'], dtype=float) - t0
+        try:
+            gti = np.column_stack([np.asarray(h['GTI'].data['START'], float) - t0,
+                                   np.asarray(h['GTI'].data['STOP'], float) - t0])
+        except Exception:
+            gti = (np.array([[t.min(), t.max()]]) if t.size else np.zeros((0, 2)))
+    band = (e >= LLE_LO) & (e <= LLE_HI)
+    return np.sort(t[band]), gti
+
+
+def _exposure(gti, a, b):
+    """Live time of [a,b] = overlap with the GTIs."""
+    if b <= a or gti is None or gti.shape[0] == 0:
+        return 0.0
+    return float(np.sum(np.maximum(
+        0.0, np.minimum(gti[:, 1], b) - np.maximum(gti[:, 0], a))))
+
+
+def lima_sigma(tt, gti, pre, post, a, b):
+    """Li & Ma (1983) Eq. 17 significance of on-interval [a,b] vs the pooled
+    off-windows pre+post, GTI-aware, signed by the excess. THE shared statistic
+    for the Stage-1 LLE review gate (scripts/39) AND the 27c grid (one gate,
+    Codex ultra audit HIGH #8; replaces the naive (Non-b)/sqrt(b), CRITICAL #3)."""
+    t_on = _exposure(gti, a, b)
+    t_off = _exposure(gti, *pre) + _exposure(gti, *post)
+    if t_on <= 0 or t_off <= 0:
+        return 0.0
+    n_on = int(((tt >= a) & (tt < b)).sum())
+    n_off = int(((tt >= pre[0]) & (tt < pre[1])).sum()
+                + ((tt >= post[0]) & (tt < post[1])).sum())
+    if n_on + n_off == 0:
+        return 0.0
+    alpha = t_on / t_off
+    term_on = (n_on * np.log((1.0 + alpha) / alpha
+                             * n_on / (n_on + n_off))) if n_on > 0 else 0.0
+    term_off = (n_off * np.log((1.0 + alpha)
+                               * n_off / (n_on + n_off))) if n_off > 0 else 0.0
+    val = term_on + term_off
+    s = np.sqrt(2.0 * val) if val > 0 else 0.0
+    return float(np.sign(n_on - alpha * n_off) * s)
+
+
+def lle_detection_sigma(trig, pre, post, s1, s2):
+    """Whole-source Li&Ma detection significance — the Stage-1 review gate.
+    Returns (sigma, n_src_events); (0.0, 0) when no LLE data."""
+    tt, gti = _load_lle_band_events(trig)
+    if tt is None:
+        return 0.0, 0
+    n_src = int(((tt >= s1) & (tt <= s2)).sum())
+    return lima_sigma(tt, gti, tuple(pre), tuple(post), s1, s2), n_src
+
+
 def lle_reblock(trig, bkg, out_dir, floor=SIGMA_FLOOR_LLE, p0=P0, verbose=False):
     bk = bkg[bkg['TRIGGER_NAME'] == trig]
     if len(bk) == 0:
@@ -93,27 +155,18 @@ def lle_reblock(trig, bkg, out_dir, floor=SIGMA_FLOOR_LLE, p0=P0, verbose=False)
     except (TypeError, ValueError, KeyError):
         s1, s2 = float(pre[1]), float(post[0])
 
-    # --- 30-100 MeV LLE event times (STRICT science band) ---
-    with fits.open(lle_f) as h:
-        ev = h['EVENTS'].data
-        t0 = h['PRIMARY'].header.get('TRIGTIME', 0.0)
-        e = np.asarray(ev['ENERGY'], dtype=float)      # MeV
-        t = np.asarray(ev['TIME'], dtype=float) - t0
-    band = (e >= LLE_LO) & (e <= LLE_HI)
-    tt = np.sort(t[band])
-
-    # --- off-source background rate in the pre/post windows (same band) ---
-    bdur = (pre[1] - pre[0]) + (post[1] - post[0])
-    bcnt = int(((tt >= pre[0]) & (tt < pre[1])).sum()
-               + ((tt >= post[0]) & (tt < post[1])).sum())
-    brate = bcnt / bdur if bdur > 0 else 0.0
+    # --- 30-100 MeV LLE events + GTIs via THE shared loader; the shared Li&Ma
+    # statistic (lima_sigma) is the same one Stage-1's review gate uses ---
+    tt, gti = _load_lle_band_events(trig)
+    if tt is None:
+        return trig, 0, 'no LLE triplet'
+    if _exposure(gti, *pre) + _exposure(gti, *post) <= 0:
+        return trig, 0, f'no LIVE background exposure (bkg={bsrc}) — no LLE grid'
+    if _exposure(gti, s1, s2) <= 0:
+        return trig, 0, 'approved source has no LIVE LLE exposure — no LLE grid'
 
     def sig(a, b):
-        n = int(((tt >= a) & (tt < b)).sum())
-        bexp = brate * (b - a)
-        if bexp <= 0:
-            return np.inf if n > 0 else 0.0
-        return (n - bexp) / np.sqrt(bexp)              # Gaussian net significance
+        return lima_sigma(tt, gti, pre, post, a, b)
 
     src = tt[(tt >= s1) & (tt <= s2)]
     if src.size < 5:                                   # too few LLE counts to bin
@@ -125,7 +178,7 @@ def lle_reblock(trig, bkg, out_dir, floor=SIGMA_FLOOR_LLE, p0=P0, verbose=False)
 
     # GATE: no real signal anywhere -> no LLE grid (fall back to GBM bins downstream)
     if max((sig(a, b) for a, b in zip(starts, stops)), default=0.0) < floor:
-        return trig, 0, (f'no LLE signal (peak <{floor:g} sigma, {src.size} evt, '
+        return trig, 0, (f'no LLE signal (peak <{floor:g} sigma Li&Ma, {src.size} evt, '
                          f'bkg={bsrc}) — will use GBM bins')
 
     # drop leading/trailing sub-floor (pure-background) blocks
@@ -134,11 +187,13 @@ def lle_reblock(trig, bkg, out_dir, floor=SIGMA_FLOOR_LLE, p0=P0, verbose=False)
     while len(starts) > 1 and sig(starts[-1], stops[-1]) < floor:
         starts.pop(); stops.pop()
 
-    # merge interior sub-floor blocks into the weaker neighbor (iterate to fixpoint)
+    # merge interior sub-floor blocks into the weaker neighbor. Bounded by the
+    # block count (each merge removes one block), so silent guard exhaustion is
+    # impossible (Codex ultra audit MED #27).
     merged = [False] * len(starts); cnt = [1] * len(starts)
-    guard = 0
-    while len(starts) > 1 and guard < 500:
-        guard += 1
+    for _ in range(max(n_bb, 1)):
+        if len(starts) <= 1:
+            break
         sigs = [sig(starts[i], stops[i]) for i in range(len(starts))]
         i = next((k for k, s in enumerate(sigs) if s < floor), None)
         if i is None:
@@ -154,6 +209,11 @@ def lle_reblock(trig, bkg, out_dir, floor=SIGMA_FLOOR_LLE, p0=P0, verbose=False)
         merged[lo:hi + 1] = [True]; cnt[lo:hi + 1] = [cnt[lo] + cnt[hi]]
     n = len(starts)
     sigs = [sig(starts[i], stops[i]) for i in range(n)]
+    # every OUTPUT block must clear the floor, else the grid is refused —
+    # a merged-to-one block below floor must not become a science grid
+    if not all(s >= floor for s in sigs):
+        return trig, 0, (f'merged grid does not clear the {floor:g}-sigma floor '
+                         f'(min {min(sigs):.1f}) — no LLE grid')
 
     rows = [(trig, 'lle', i, float(starts[i]), float(stops[i]),
              float(sigs[i]), bool(merged[i]), int(cnt[i]), -1) for i in range(n)]

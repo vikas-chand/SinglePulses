@@ -640,32 +640,22 @@ def source_marker_gui(trigger, ref_det, suggested=None, bkg=None, gap=None):
 LLE_SIGNAL_SIGMA = 3.0     # fire the LLE review only when LLE is really detected
 
 
-def lle_signal_sigma(trigger, s1, s2):
-    """Crude 30-100 MeV LLE detection significance: net counts in the source window
-    [s1,s2] vs the off-source background rate. Light (astropy+numpy only). Returns
-    0.0 if there is no LLE file. Used to GATE the LLE review + the LLE-driven grid:
-    a background-only LLE light curve is not worth reviewing, and no LLE blocks can
-    be made from it (scripts/27c gates the same way)."""
-    P = p0()
-    lle = P.find_lle(trigger) if hasattr(P, 'find_lle') else None
-    if lle is None:
-        return 0.0
+def lle_signal_sigma(trigger, pre, post, s1, s2):
+    """30-100 MeV LLE detection significance over the marked source — delegates
+    to scripts/27c's SHARED Li&Ma gate (lle_detection_sigma: GTI-aware
+    exposures, the approved pre/post as the off-windows), so Stage-1 review and
+    the 27c grid use ONE statistic and cannot disagree (Codex ultra audit
+    HIGH #8 — the old ad-hoc ±550 s off-regions gave opposite verdicts on
+    three bursts). Returns 0.0 when no LLE data / on any failure."""
     try:
-        from astropy.io import fits
-        with fits.open(lle) as h:
-            ev = h['EVENTS'].data
-            t0 = h['PRIMARY'].header.get('TRIGTIME', 0.0)
-            e = np.asarray(ev['ENERGY'], dtype=float)          # MeV
-            t = np.asarray(ev['TIME'], dtype=float) - t0
-        band = (e >= 30.0) & (e <= 100.0)
-        dur = max(float(s2) - float(s1), 0.1)
-        src = int((band & (t >= s1) & (t <= s2)).sum())
-        # off-source: a wide window on each side, well clear of the burst
-        off = band & (((t >= s1 - 550) & (t < s1 - 50)) | ((t > s2 + 50) & (t < s2 + 550)))
-        odur = 500.0 + 500.0
-        brate = int(off.sum()) / odur if odur > 0 else 0.0
-        bexp = max(brate * dur, 1e-3)
-        return float((src - brate * dur) / np.sqrt(bexp))
+        spec = importlib.util.spec_from_file_location(
+            'lle27c', os.path.join(BASE, 'scripts', '27c_lle_blocks.py'))
+        m = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(m)
+        sigma, _ = m.lle_detection_sigma(
+            trigger, (float(pre[0]), float(pre[1])),
+            (float(post[0]), float(post[1])), float(s1), float(s2))
+        return float(sigma)
     except Exception:
         return 0.0
 
@@ -782,7 +772,8 @@ def gui_one(trigger, approver, seed_from_catalog=False):
     # Seed from an existing 'lle' row if one was loaded (--seed-from-catalog), else
     # the reference NaI, so a previously-adjusted LLE window is not silently reset.
     if hasattr(P, 'find_lle') and P.find_lle(trigger):
-        _sig = lle_signal_sigma(trigger, s1, s2)
+        _refw = windows[nai_ref[0]]
+        _sig = lle_signal_sigma(trigger, _refw['pre'], _refw['post'], s1, s2)
         if _sig >= LLE_SIGNAL_SIGMA:
             _ref = windows[nai_ref[0]]
             _seed = cand['suggested_bkg'].get('lle',

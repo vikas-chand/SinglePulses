@@ -77,12 +77,14 @@ DEFAULT_PARAMS = dict(
 
 
 def find_tte(trigger, det):
-    m = glob.glob(os.path.join(DATA_DIR, trigger, f'glg_tte_{det}_*.fit.gz'))
-    return m[0] if m else None
+    # newest version, deterministic (audit #19: was unsorted glob()[0])
+    m = sorted(glob.glob(os.path.join(DATA_DIR, trigger, f'glg_tte_{det}_*.fit.gz')))
+    return m[-1] if m else None
 
 def find_rsp(trigger, det):
-    m = glob.glob(os.path.join(DATA_DIR, trigger, f'glg_cspec_{det}_*.rsp*'))
-    return m[0] if m else None
+    # newest version, deterministic (audit #19: was unsorted glob()[0])
+    m = sorted(glob.glob(os.path.join(DATA_DIR, trigger, f'glg_cspec_{det}_*.rsp*')))
+    return m[-1] if m else None
 
 def find_lat_files(trigger):
     """(ft1, ft2_lat, rsp_standin) for the >100 MeV LAT chain, or (None,)*3.
@@ -578,6 +580,27 @@ HIGHE_MODEL_SPECS = [
                       'BETA': 'sbpl_beta', 'K': 'sbpl_K', 'EC': 'cut_xc'},
     },
     {
+        # SBPL + extra-PL/CPL parents (needed so the SBPL 3-component chains
+        # are gateable — Codex ultra audit CRITICAL #5)
+        'name': 'SBPL+PL', 'prefix': 'SBPLPL', 'n_params': 6,
+        'build': lambda s: _setup_sbpl(s) + _setup_extra_pl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EBREAK': 'break_energy_1', 'BETA': 'beta_1',
+                 'K': 'K_1', 'PL_INDEX': 'index_2', 'PL_K': 'K_2'},
+        'seed_keys': {'ALPHA': 'sbpl_alpha', 'EBREAK': 'sbpl_break',
+                      'BETA': 'sbpl_beta', 'K': 'sbpl_K',
+                      'PL_INDEX': 'hepl_index', 'PL_K': 'hepl_K'},
+    },
+    {
+        'name': 'SBPL+CPL', 'prefix': 'SBPLCPL', 'n_params': 7,
+        'build': lambda s: _setup_sbpl(s) + _setup_extra_cpl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EBREAK': 'break_energy_1', 'BETA': 'beta_1',
+                 'K': 'K_1', 'HE_INDEX': 'index_2', 'HE_XC': 'xc_2', 'HE_K': 'K_2'},
+        'seed_keys': {'ALPHA': 'sbpl_alpha', 'EBREAK': 'sbpl_break',
+                      'BETA': 'sbpl_beta', 'K': 'sbpl_K',
+                      'HE_INDEX': 'hecpl_index', 'HE_XC': 'hecpl_xc',
+                      'HE_K': 'hecpl_K'},
+    },
+    {
         # Guiriec et al. 2015 (ApJ 807:148) THREE-component model: non-thermal
         # Band + thermal BB + extra PL, fitted SIMULTANEOUSLY. Their detections
         # are in MULTI-pulse bursts (080916C, 090926A); whether any clean
@@ -668,7 +691,8 @@ HIGHE_MODEL_SPECS = [
 # combos {Band,CPL,SBPL} x BB x {PL,CPL} + every nested parent needed for a
 # self-consistent dAIC>=10 chain gate, fitted TOGETHER in one run.
 _TC_BASE = ('BAND', 'CPL', 'SBPL', 'BANDBB', 'CPLBB')
-_TC_HIGHE = ('BANDPL', 'CPLPL', 'BANDCPL', 'CPLCPL', 'SBPLBB',
+_TC_HIGHE = ('BANDPL', 'CPLPL', 'BANDCPL', 'CPLCPL',
+             'SBPLPL', 'SBPLCPL', 'SBPLBB',
              'BANDBBPL', 'BANDBBCPL', 'CPLBBPL', 'CPLBBCPL',
              'SBPLBBPL', 'SBPLBBCPL')
 THREECOMP_MODEL_SPECS = (
@@ -865,7 +889,29 @@ PARAM_BOUNDS = {
                   'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
     'SBPLBBCPL': {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
                   'KT': (1.0, 200.0), 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
+    'SBPLPL':    {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+                  'PL_INDEX': (-4.0, -1.0)},
+    'SBPLCPL':   {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+                  'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
 }
+
+# Nested-parent map for the generic multistart + downstream chain gating.
+# A composite is only at its true optimum if its n2logL <= every listed
+# parent's (the parent is nested inside it). Order matters: 2-component
+# children first, 3-component last, so each child seeds from FINAL parents.
+NESTED_PARENTS = [
+    ('Band+BB', ['Band']), ('CPL+BB', ['CPL']), ('SBPL+BB', ['SBPL']),
+    ('Band+PL', ['Band']), ('Band+CPL', ['Band']),
+    ('CPL+PL', ['CPL']), ('CPL+CPL', ['CPL']),
+    ('SBPL+PL', ['SBPL']), ('SBPL+CPL', ['SBPL']),
+    ('BandxCut', ['Band']), ('SBPLxCut', ['SBPL']),
+    ('Band+BB+PL', ['Band+BB', 'Band+PL']),
+    ('Band+BB+CPL', ['Band+BB', 'Band+CPL']),
+    ('CPL+BB+PL', ['CPL+BB', 'CPL+PL']),
+    ('CPL+BB+CPL', ['CPL+BB', 'CPL+CPL']),
+    ('SBPL+BB+PL', ['SBPL+BB', 'SBPL+PL']),
+    ('SBPL+BB+CPL', ['SBPL+BB', 'SBPL+CPL']),
+]
 
 
 def _fit_is_physical(spec, result, frac=0.001):
@@ -905,21 +951,24 @@ def select_best(per_spec_results, n_data):
     - BEST_BIC: lowest BIC (cross-check)
     - LRT_BANDBB_BAND, LRT_CPLBB_CPL: nested-pair LRTs (Wilks)
     """
+    # OK requires a FINITE likelihood — a fit whose objective read back NaN
+    # must not be selectable (Codex ultra audit HIGH #16).
     ok = {sp['name']: (sp, r) for sp, r in per_spec_results
-          if r.get('status') == 'OK'}
+          if r.get('status') == 'OK' and np.isfinite(r.get('neg2logL', np.nan))}
     aic = {n: r['neg2logL'] + 2 * r['n_params'] for n, (_, r) in ok.items()}
     bic = {n: r['neg2logL'] + r['n_params'] * np.log(max(n_data, 1))
            for n, (_, r) in ok.items()}
     # Physical-validity gate: the winner must be a non-railed, physically
     # ordered fit (DSBPL low break xb < peak xp). Railed/inverted fits stay
-    # in the ECSV but cannot WIN selection.
+    # in the ECSV but cannot WIN selection — and when NO fit passes the gate,
+    # the block is INCONCLUSIVE. The old fallback silently crowned the raw
+    # invalid minimum (Codex ultra audit HIGH #16: bn110721200 block 0 had
+    # every candidate invalid yet BEST_AIC_MODEL=SBPL).
     phys = {n: (sp, r) for n, (sp, r) in ok.items() if _fit_is_physical(sp, r)}
     aic_p = {n: aic[n] for n in phys}
     bic_p = {n: bic[n] for n in phys}
-    best_aic = (min(aic_p, key=aic_p.get) if aic_p
-                else (min(aic, key=aic.get) if aic else 'INCONCLUSIVE'))
-    best_bic = (min(bic_p, key=bic_p.get) if bic_p
-                else (min(bic, key=bic.get) if bic else 'INCONCLUSIVE'))
+    best_aic = min(aic_p, key=aic_p.get) if aic_p else 'INCONCLUSIVE'
+    best_bic = min(bic_p, key=bic_p.get) if bic_p else 'INCONCLUSIVE'
 
     def _lrt(parent, child):
         if parent in ok and child in ok:
@@ -1078,6 +1127,54 @@ def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
                 per_spec[idxs['DSBPL']] = (dsbpl_spec, best_d)
                 flat.update(model_columns(dsbpl_spec, best_d, n_data))
                 seed_out.update(capture_seed(dsbpl_spec, best_d))
+
+    # Generic NESTED-PARENT multistart (Codex ultra audit CRITICAL #4): every
+    # composite whose n2logL is WORSE than a nested parent's is at a local
+    # minimum (impossible at the true optimum — the parent solution + a null
+    # extra component reproduces the parent's likelihood). Re-fit such children
+    # seeded from each FITTED parent (capture_seed gives exactly the child's
+    # shared seed keys), plus hot-kT variants for +BB children. Keep-best;
+    # 2-component entries run before 3-component so children seed from FINAL
+    # parents. The audit measured 8-12/19-25 regressed fits per 3-component
+    # model with N2LL excesses up to ~7000 before this.
+    idxs = {s['name']: i for i, (s, _) in enumerate(per_spec)}
+    for child_name, parent_names in NESTED_PARENTS:
+        if child_name not in idxs:
+            continue
+        child_spec, child_res = per_spec[idxs[child_name]]
+        parents = [(per_spec[idxs[p]][0], per_spec[idxs[p]][1])
+                   for p in parent_names if p in idxs]
+        p_ok = [(ps, pr) for ps, pr in parents
+                if pr.get('status') == 'OK' and np.isfinite(pr.get('neg2logL', np.nan))]
+        if not p_ok:
+            continue
+        parent_best = min(pr['neg2logL'] for _, pr in p_ok)
+        c_ok = (child_res.get('status') == 'OK'
+                and np.isfinite(child_res.get('neg2logL', np.nan)))
+        if c_ok and child_res['neg2logL'] <= parent_best + 1e-3:
+            continue                     # already at/below every parent
+        best = child_res
+        for pspec, pres in p_ok:
+            base = {**seed_in, **capture_seed(pspec, pres)}
+            trials = [base]
+            if 'KT' in child_spec.get('pmap', {}):
+                trials += [{**base, 'bb_kT': 30.0, 'bb_K': 1e-3},
+                           {**base, 'bb_kT': 80.0, 'bb_K': 1e-3}]
+            for s in trials:
+                alt = fit_one_model(dl, child_spec, seed=s)
+                alt['physical'] = _fit_is_physical(child_spec, alt)
+                if (alt.get('status') == 'OK' and np.isfinite(alt['neg2logL'])
+                        and (best.get('status') != 'OK'
+                             or not np.isfinite(best.get('neg2logL', np.nan))
+                             or alt['neg2logL'] < best['neg2logL'] - 1e-3)):
+                    best = alt
+        if best is not child_res:
+            print(f'    [nested multistart] {child_name} n2logL '
+                  f'{child_res.get("neg2logL", float("nan")):.1f} '
+                  f'-> {best["neg2logL"]:.1f} (parent best {parent_best:.1f})')
+            per_spec[idxs[child_name]] = (child_spec, best)
+            flat.update(model_columns(child_spec, best, n_data))
+            seed_out.update(capture_seed(child_spec, best))
 
     flat.update(select_best(per_spec, n_data))
     flat['_n_data'] = n_data
@@ -1324,7 +1421,8 @@ def _run(args, trigger, out_dir, lat_ctx=None):
             seed_in=None, include_dsbpl=include_dsbpl)
         ti_flat = {'BLOCK': -1, 'T_START': t_int_start, 'T_STOP': t_int_stop,
                    'T_MID': 0.5 * (t_int_start + t_int_stop),
-                   'N_DETS': len(ti_plugins), **ti_flat}
+                   'N_DETS': len(ti_plugins),
+                   'PLUGIN_DETS': ','.join(ti_plugin_dets), **ti_flat}
         rows.append(ti_flat)
         _print_row(f'T_INT [{t_int_start:6.2f}, {t_int_stop:6.2f}]', ti_flat)
         seed_for_blocks = ti_seed
@@ -1345,10 +1443,16 @@ def _run(args, trigger, out_dir, lat_ctx=None):
         if lat_ctx is not None:
             # per-block LAT >100 MeV plugin (gtburst chain, cached per block)
             try:
+                # workdir addressed by the EXACT interval, not the block index:
+                # fine and coarse grids share the per-burst workroot, and
+                # index-keyed dirs made coarse fits reuse fine-grid LAT
+                # products (Codex ultra audit CRITICAL #2). to_threeml.py
+                # additionally verifies cached TSTART/TSTOP before reuse.
+                _tag = f'block_{t1:+.3f}_{t2:+.3f}'.replace('.', 'p')
                 prod = lat_ctx['mod'].prepare_lat_block(
                     lat_ctx['ft1'], lat_ctx['ft2'], lat_ctx['rsp'],
                     lat_ctx['met'], lat_ctx['ra'], lat_ctx['dec'],
-                    t1, t2, os.path.join(lat_ctx['workroot'], f'block_{k}'))
+                    t1, t2, os.path.join(lat_ctx['workroot'], _tag))
                 if prod['status'] == 'OK':
                     lat_pl = lat_ctx['mod'].lat_plugin_for_block(
                         prod, t1, t2, trigger)
@@ -1360,11 +1464,18 @@ def _run(args, trigger, out_dir, lat_ctx=None):
             except Exception as exc:
                 print(f'  block {k}: LAT plugin failed '
                       f'({type(exc).__name__}: {str(exc)[:90]}) — GBM/LLE only')
+        # An LLE-DRIVEN block without a usable LLE plugin must not be fit
+        # GBM-only on LLE-defined intervals (Codex ultra audit HIGH #18).
+        if grid_type == 'lle_coarse' and 'lle' not in plugin_dets:
+            print(f'  block {k} [{t1:.2f}, {t2:.2f}]: SKIPPED — LLE-driven grid '
+                  f'but no usable LLE plugin (dets: {plugin_dets})')
+            continue
         flat, _ = fit_all_models(
             plugins, plugin_dets, reference_det,
             seed_in=seed_for_blocks, include_dsbpl=include_dsbpl)
         flat = {'BLOCK': k, 'T_START': t1, 'T_STOP': t2,
-                'T_MID': 0.5 * (t1 + t2), 'N_DETS': len(plugins), **flat}
+                'T_MID': 0.5 * (t1 + t2), 'N_DETS': len(plugins),
+                'PLUGIN_DETS': ','.join(plugin_dets), **flat}
         rows.append(flat)
         _print_row(f'blk {k} [{t1:6.2f}, {t2:6.2f}]', flat)
 
