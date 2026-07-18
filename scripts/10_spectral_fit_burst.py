@@ -577,7 +577,31 @@ HIGHE_MODEL_SPECS = [
         'seed_keys': {'ALPHA': 'sbpl_alpha', 'EBREAK': 'sbpl_break',
                       'BETA': 'sbpl_beta', 'K': 'sbpl_K', 'EC': 'cut_xc'},
     },
+    {
+        # Guiriec et al. 2015 (ApJ 807:148) THREE-component model: non-thermal
+        # Band + thermal BB + extra PL, fitted SIMULTANEOUSLY. Their detections
+        # are in MULTI-pulse bursts (080916C, 090926A); whether any clean
+        # SINGLE pulse requires all three, over the widest band, is a direct
+        # question of this survey (single-vs-rest). Nested parents for the
+        # gate: BANDBB (+PL, 2 params) and BANDPL (+BB, 2 params).
+        'name': 'Band+BB+PL', 'prefix': 'BANDBBPL', 'n_params': 8,
+        'build': lambda s: _setup_band(s) + _setup_bb(s) + _setup_extra_pl(s),
+        'pmap': {'ALPHA': 'alpha_1', 'EP': 'xp_1', 'BETA': 'beta_1', 'K_BAND': 'K_1',
+                 'KT': 'kT_2', 'K_BB': 'K_2',
+                 'PL_INDEX': 'index_3', 'PL_K': 'K_3'},
+        'seed_keys': {'ALPHA': 'band_alpha', 'EP': 'band_Ep', 'BETA': 'band_beta',
+                      'K_BAND': 'band_K', 'KT': 'bb_kT', 'K_BB': 'bb_K',
+                      'PL_INDEX': 'hepl_index', 'PL_K': 'hepl_K'},
+    },
 ]
+
+# Guiriec 3-component test set (--models threecomp): the 3-component + its two
+# nested parents + the bare Band, all fitted TOGETHER in one run so the
+# dAIC>=10 chain gate (BANDBBPL vs BANDBB and vs BANDPL) is self-consistent.
+THREECOMP_MODEL_SPECS = (
+    [s for s in MODEL_SPECS if s['prefix'] in ('BAND', 'BANDBB')]
+    + [s for s in HIGHE_MODEL_SPECS if s['prefix'] in ('BANDPL', 'BANDBBPL')]
+)
 
 # The RUNTIME model set. Default = the frozen benchmark 6; main() extends it
 # per --models (shape -> +free-smoothness; highe -> +shape +high-E components).
@@ -751,6 +775,10 @@ PARAM_BOUNDS = {
                  'EC': (5e4, 1e8)},
     'SBPLCUT':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
                  'EC': (5e4, 1e8)},
+    # Guiriec 3-component: Band shape + BB temperature + extra-PL index all
+    # gated against railing (same rails as their 2-component parents).
+    'BANDBBPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+                 'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
 }
 
 
@@ -990,13 +1018,15 @@ def main():
     p.add_argument('--trigger', required=True)
     p.add_argument('--include-bgo', action='store_true',
                    help='Include BGO detectors in joint fit')
-    p.add_argument('--models', choices=['default', 'shape', 'highe'],
+    p.add_argument('--models', choices=['default', 'shape', 'highe', 'threecomp'],
                    default='default',
                    help='model set: default = the frozen benchmark 6; shape = '
                         '+SBPLfree/DSBPLfree (free smoothness, peak-shape census); '
                         'highe = shape + high-E second components '
                         '(Band+PL, Band+CPL, CPL+PL, CPL+CPL, BandR+CPL, '
-                        'BandxCut, SBPLxCut — LATBright s03m port)')
+                        'BandxCut, SBPLxCut, Band+BB+PL — LATBright s03m port); '
+                        'threecomp = Band/Band+BB/Band+PL/Band+BB+PL only '
+                        '(the Guiriec-2015 3-component chain test)')
     p.add_argument('--skip-dsbpl', action='store_true',
                    help='Skip DSBPL/2SBPL (slower, often degenerate for sparse bins)')
     p.add_argument('--include-lat', action='store_true',
@@ -1030,6 +1060,8 @@ def main():
         ACTIVE_SPECS += SHAPE_MODEL_SPECS
     if args.models == 'highe':
         ACTIVE_SPECS += HIGHE_MODEL_SPECS
+    if args.models == 'threecomp':
+        ACTIVE_SPECS = list(THREECOMP_MODEL_SPECS)
     if args.models != 'default':
         print(f"model set '{args.models}': {[s['name'] for s in ACTIVE_SPECS]}")
 

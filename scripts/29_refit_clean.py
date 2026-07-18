@@ -78,7 +78,7 @@ def main():
     ap.add_argument('--out-root', default=DEF_OUT, help='per-burst output root (use a FRESH dir for the authoritative run)')
     ap.add_argument('--nproc', type=int, default=int(os.environ.get('NPROC', '8')))
     ap.add_argument('--timeout', type=int, default=7200, help='per-burst timeout (s)')
-    ap.add_argument('--models', choices=['default', 'shape', 'highe'], default=None,
+    ap.add_argument('--models', choices=['default', 'shape', 'highe', 'threecomp'], default=None,
                     help='forwarded to scripts/10 (model-set selection)')
     ap.add_argument('--include-lat', action='store_true',
                     help='forwarded to scripts/10 (per-block LAT >100 MeV plugin)')
