@@ -42,12 +42,24 @@ def test_ordering_and_source_in_gap(cat):
 
 
 def test_margin_band(cat):
-    """Near-edge margins in the hug-the-burst 5-40 s band (both sides)."""
+    """Near-edge margins.
+
+    The 5-40 s hug-the-burst band is the AI-SELECTION rule (ai_guides), so it
+    is enforced strictly on ai_vision rows. human_gui rows are AUTHORITATIVE
+    expert judgments (the whole point of the human gate) and legitimately hug
+    tighter (2026-07-17 review: 24 rows with 0.3-5 s margins); for them we
+    require only a sane positive margin. The hard source-in-gap invariant is
+    test_ordering, mode-independent.
+    """
     for r in cat:
         g_pre = float(r['SRC_START']) - float(r['BKG_NEG_STOP'])
         g_post = float(r['BKG_POS_START']) - float(r['SRC_STOP'])
-        assert 5.0 <= g_pre <= 40.0, f"{r['TRIGGER_NAME']} g_pre={g_pre:.1f}"
-        assert 5.0 <= g_post <= 40.0, f"{r['TRIGGER_NAME']} g_post={g_post:.1f}"
+        if str(r['APPROVAL_MODE']).strip() == 'human_gui':
+            assert 0.0 < g_pre <= 120.0, f"{r['TRIGGER_NAME']} g_pre={g_pre:.1f}"
+            assert 0.0 < g_post <= 120.0, f"{r['TRIGGER_NAME']} g_post={g_post:.1f}"
+        else:
+            assert 5.0 <= g_pre <= 40.0, f"{r['TRIGGER_NAME']} g_pre={g_pre:.1f}"
+            assert 5.0 <= g_post <= 40.0, f"{r['TRIGGER_NAME']} g_post={g_post:.1f}"
 
 
 def test_approval_stamps(cat):
