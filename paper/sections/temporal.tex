@@ -1,0 +1,68 @@
+\section{Temporal Properties} \label{sec:temporal}
+
+Before modeling the spectra we characterize each pulse in the time domain,
+using exactly the same approved detector sets, background models, and source
+windows as the spectral analysis (\S\ref{sec:bkg}). This serves two purposes.
+First, the temporal properties---duration, pulse shape, minimum variability
+timescale, and spectral lag---are physical observables in their own right,
+probing the emission-region size, the outflow Lorentz factor, and the energy
+dependence of the emitting sites. Second, the fitted pulse shape assigns every
+Bayesian block an unambiguous phase (rise, peak, or decay), which the
+spectral census of \S\ref{sec:obs} uses to ask the central question of this
+survey: \emph{what is the spectral shape during each phase of a single
+pulse?}
+
+\subsection{Durations and Pulse Shapes} \label{sec:durations}
+
+Durations ($T_{90}$, $T_{50}$) are measured from the background-subtracted,
+detector-summed light curves of the approved NaI detectors, with
+uncertainties from bootstrap resampling of the counts. Because the sample is
+selected for isolated single-pulse morphology, the cumulative-counts method
+is well behaved and the durations are insensitive to the exact integration
+bounds. \PHt{$T_{90}$ distribution: median and IQR pending the full-sample
+temporal run.}
+
+Each pulse is then fitted with three shape models: the
+\citet{Norris2005} exponential rise--decay profile, the
+\citet{Kocevski2003} flux-normalized profile, and the double-hyperbolic-tangent
+profile of \citet{Gowri2025}. The three parameterizations bracket the
+freedom commonly used in the literature; we retain the best-fitting model
+per burst (reduced $\chi^{2}$) and record the rise time, decay time, and
+asymmetry $\phi = t_{\rm rise}/t_{\rm decay}$ with covariance-propagated
+uncertainties. \PHt{Asymmetry distribution and best-model census pending.}
+The fitted profile, not the raw light curve, defines the rise/peak/decay
+phase boundaries used to tag Bayesian blocks, making the phase assignment
+reproducible and model-explicit.
+
+\subsection{Minimum Variability Timescale} \label{sec:mvt}
+
+The minimum variability timescale (MVT) is computed with the Haar
+structure-function method of \citet{Golkhou2014,Golkhou2015}, as implemented
+and validated in the \textsc{MVTfermi} framework of \citet{Bala2025}. That
+work establishes, from an extensive simulation suite, that the reliability
+of a Haar MVT measurement depends jointly on the MVT value and its
+signal-to-noise ratio ($\mathrm{SNR}_{\rm MVT}$), and provides an empirical
+\emph{MVT Validation Curve} that classifies each measurement as a robust
+detection or an upper limit. We adopt that classification scheme unchanged:
+every MVT we quote carries its validation label, and values classified as
+limits are never used as detections in correlations. Uncertainties are
+propagated with a Monte Carlo over Poisson realizations of the raw counts
+with the fitted background model subtracted. \PHt{Full-band MVT
+distribution, and energy-resolved MVT(E) in the standard sub-bands
+(8--50, 50--300, 300--900 keV), pending the batch run.}
+
+\subsection{Spectral Lags} \label{sec:lags}
+
+Spectral lags between soft and hard energy bands are measured with the
+cross-correlation method \citep{Norris1996}, with the peak of the CCF
+located by a polynomial fit and its uncertainty estimated from Monte Carlo
+resampling of the light curves. A lag is accepted only when the CCF peak is
+significant against a bootstrap null distribution; below that threshold we
+report an upper bound rather than a value. \PHt{Lag distribution and
+lag--asymmetry / lag--MVT relations pending.}
+
+Together these measurements give each burst a compact temporal fingerprint
+(duration, shape, asymmetry, MVT, lag) obtained from the same gated
+selections as the spectroscopy, so that every spectral statement in the
+following sections can be conditioned on temporal phase without any
+additional data processing.
