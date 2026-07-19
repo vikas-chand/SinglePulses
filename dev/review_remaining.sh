@@ -7,10 +7,17 @@
 source /Users/salim/Desktop/Projects/SingleRest/Two_Breaks/dev/gui_review_env.sh
 
 REMAIN=$(python - <<'PY'
+import os
 from astropy.table import Table
 t = Table.read('results/background_intervals.ecsv', format='ascii.ecsv')
+excl = set()
+if os.path.exists('results/excluded_bursts.ecsv'):
+    e = Table.read('results/excluded_bursts.ecsv', format='ascii.ecsv')
+    excl = {str(x) for x in e['TRIGGER_NAME']}
 out = []
 for tr in sorted(set(str(x) for x in t['TRIGGER_NAME'])):
+    if tr in excl:                      # excluded (e.g. no NaI < 60 deg): skip
+        continue
     m = [str(r['APPROVAL_MODE']) for r in t if str(r['TRIGGER_NAME']) == tr]
     if not any('human' in x for x in m):
         out.append(tr)
