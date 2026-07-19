@@ -352,8 +352,13 @@ def _validate_decision(d):
         if not (post[0] >= pre[1]):
             return False, f'{det}: post must start at/after pre ends'
         if not (pre[1] <= s1 and s2 <= post[0]):
-            return False, (f'{det}: source [{s1:g},{s2:g}] must lie within the '
-                           f'background gap [{pre[1]:g},{post[0]:g}]')
+            # A HUMAN reviewer's expert selection is authoritative: record it
+            # and flag the source/background overlap as a QC warning rather
+            # than rejecting the whole burst (Vikas 2026-07-19). AI-vision
+            # decisions keep the strict gate (benchmark integrity).
+            if str(d.get('mode')) != 'human_gui':
+                return False, (f'{det}: source [{s1:g},{s2:g}] must lie within '
+                               f'the background gap [{pre[1]:g},{post[0]:g}]')
         ws = w.get('window_source')
         if ws is not None:
             ws_seen.add(ws)
@@ -397,6 +402,20 @@ def ingest_one(trigger, rows_accum):
     if not ok:
         return trigger, f'INVALID: {msg}', 0
     src1, src2 = float(d['source']['t1']), float(d['source']['t2'])
+    # QC flag: a human decision whose source overruns a detector's background
+    # gap is recorded (human is authoritative) but logged for later attention.
+    if str(d.get('mode')) == 'human_gui':
+        overlaps = []
+        for det in d['detectors']:
+            w = d['windows'].get(det, {})
+            pre, post = _pair(w.get('pre')), _pair(w.get('post'))
+            if pre and post and not (pre[1] <= src1 and src2 <= post[0]):
+                overlaps.append(f'{det}[gap {pre[1]:g},{post[0]:g}]')
+        if overlaps:
+            qc = os.path.join(RESULTS, 'human_review_qc_flags.txt')
+            with open(qc, 'a') as f:
+                f.write(f'{trigger}\tsource[{src1:g},{src2:g}]_overruns_bkg_gap'
+                        f'\t{",".join(overlaps)}\t{_utcnow()}\n')
     stamp_utc = _utcnow()
     dec_ang = d.get('angles') if isinstance(d.get('angles'), dict) else {}
     pend_ang = _load_pending_angles(trigger)   # fallback for the AI-vision path
