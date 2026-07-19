@@ -19,7 +19,7 @@ echo "########## re-block done: $(ls $BLK/bb_blocks_spectral_*.ecsv 2>/dev/null 
 echo "########## STAGE 2: re-fit (29 -> 10) 6-model + BGO, 12 cores -> $OUT ##########"
 python scripts/29_refit_clean.py \
   --bkg-file $CAT --blocks-dir $BLK --out-root $OUT \
-  --nproc 12 --models default --include-bgo
+  --nproc 12 --models default
 
 echo "########## RE-ANALYSIS COMPLETE ##########"
 echo "fits: $(ls $OUT/*/spectral_fits*.ecsv 2>/dev/null | wc -l) bursts"
