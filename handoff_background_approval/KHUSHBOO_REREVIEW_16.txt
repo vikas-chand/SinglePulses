@@ -1,0 +1,34 @@
+# 16 bursts to RE-REVIEW (Stage-1) — source/background geometry conflict
+#
+# These were human-reviewed but a detector's background window overlaps the
+# source window (source runs past where a detector's post-background starts,
+# or a detector's pre-background runs into the burst). Because 27b builds the
+# Bayesian-block bins from the BRIGHTEST NaI and shares them across all
+# detectors, an offending secondary detector (often BGO) ends up with time
+# counted as BOTH source and background -> contaminated background in the fit.
+#
+# FIX per burst (in scripts/39 gui --seed-from-catalog): either
+#   (1) move the offending detector's pre/post background OUT of the source
+#       window, or (2) drop that detector, or (3) shorten the source if the
+#       long tail is really background (many were seeded with an over-long
+#       AI source window, e.g. 110-169 s single pulses).
+#
+# The goal: source window must sit strictly inside EVERY approved detector's
+# [pre_stop, post_start] background gap.
+#
+bn090530760   # src 169s overruns; likely over-long seed source
+bn100614498   # start-side conflict
+bn101126198
+bn110605183
+bn110920546   # src 111s
+bn110928180
+bn120905657   # src 110s -> big overrun
+bn171210493   # src 113s
+bn180723757
+bn190401139
+bn200524211
+bn220525008   # start-side conflict
+bn221209243
+bn230802285
+bn240204630   # start-side conflict (pre-bkg near t=0)
+bn241223506   # start-side: a det pre-bkg runs to +7s, into the burst
