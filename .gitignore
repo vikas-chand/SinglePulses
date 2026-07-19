@@ -105,3 +105,4 @@ secrets.*
 # ---- local audit runner (dangerous flag; keep out of the seed repo) ----
 run_antigravity_audit.sh
 !plots/review/
+!results/excluded_bursts.ecsv

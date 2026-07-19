@@ -1,0 +1,14 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: TRIGGER_NAME, datatype: string}
+# - {name: REASON, datatype: string}
+# - {name: MIN_NAI_THETA, datatype: float64}
+# - {name: THRESHOLD_DEG, datatype: float64}
+# - {name: NOTED_BY, datatype: string}
+# - {name: NOTED_UTC, datatype: string}
+# meta: !!omap
+# - comments: ["Excluded bursts \u2014 the re-fit driver MUST skip these triggers. See dev/excluded_bursts.md"]
+# schema: astropy-2.0
+TRIGGER_NAME REASON MIN_NAI_THETA THRESHOLD_DEG NOTED_BY NOTED_UTC
+bn210812699 no_nai_below_60deg 60.121787831244724 60.0 "Vikas Chand" 2026-07-19T21:34:36Z
