@@ -1,0 +1,3 @@
+grb: bn230405832
+depth: quick   # quick (6 models+temporal) | full (24+LLE/LAT)
+notes: ''

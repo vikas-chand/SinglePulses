@@ -390,6 +390,37 @@ else:
     print("saved fits pending; evolution/correlations populate after scripts/29.")
 """))
 
+# ---- 10 literature consistency (D-4: honor priority) ------------------
+cells.append(md(r"""## 10. Consistency with previous literature
+
+**Are our findings consistent with published work on THIS object?** Prior
+results (spectral model, $E_{\rm p}$, $kT$, MVT, two-break/thermal claim, etc.)
+are listed in the burst's config under `literature:` — entered/verified by a
+human from real papers (never auto-filled, to avoid fabricated values). This
+cell puts them next to our result so agreement or tension is explicit. For
+well-studied bursts (e.g. 130427A, 110721A) fill several entries; a bare `[]`
+means the consistency check is still **pending** for this GRB."""))
+cells.append(code(r"""
+lit = _cfg.get("literature") or []
+print(f"OUR result (this run): best-AIC = {flat.get('BEST_AIC_MODEL')}", end="")
+if os.path.exists(fits_path):
+    _c = mr.census([(BURST, Table.read(fits_path, format='ascii.ecsv'))])
+    print(f" | census families {_c['by_family']}")
+else:
+    print()
+if not lit:
+    print("\nliterature: [] — CONSISTENCY CHECK PENDING for this GRB.")
+    print("  Fill notebooks/configs/%s.yaml `literature:` with prior findings, e.g.:" % BURST)
+    print("    literature:")
+    print("      - {ref: 'Preece2014', finding: 'Band+BB, kT~40keV', consistent: null}")
+else:
+    print("\nprior work vs ours:")
+    for e in lit:
+        ref = e.get("ref", "?"); fnd = e.get("finding", ""); con = e.get("consistent")
+        tag = {True: "CONSISTENT", False: "TENSION", None: "to-check"}.get(con, "to-check")
+        print(f"  [{tag:10s}] {ref}: {fnd}")
+"""))
+
 nb = {"cells": cells,
       "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
                    "language_info": {"name": "python"}},

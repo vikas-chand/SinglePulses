@@ -1,4 +1,4 @@
-grb: bn150902733
+grb: bn180703876
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
 notes: ''
 literature: []   # prior published findings on THIS GRB (fill for the consistency check)
