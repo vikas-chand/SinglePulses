@@ -108,3 +108,5 @@ run_antigravity_audit.sh
 !results/excluded_bursts.ecsv
 !results/human_review_qc_flags.txt
 notebooks/outputs/
+!notebooks/verified/
+!notebooks/verified/*.ipynb
