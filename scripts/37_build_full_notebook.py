@@ -296,14 +296,25 @@ appr = {str(r["DETECTOR"]).strip():
          (float(r["BKG_POS_START"]), float(r["BKG_POS_STOP"]))) for r in bk}
 fit_dets = nai + bgo + (["lle"] if (HAS_LLE and DEPTH == "full") else [])
 ti_lo, ti_hi = src
-plugins, pdets = [], []
-for det in fit_dets:
-    prw, pow_ = appr.get(det, appr[ref_det])
-    sl = eng.build_spectrumlike_per_block(BURST, det, prw, pow_, [ti_lo], [ti_hi])
-    if sl and sl[0] is not None:
-        plugins.append(sl[0]); pdets.append(det)
+# 3ML renders a rich HTML table per fit; at 24 models x multistart that is
+# thousands of tables -> a multi-hundred-MB notebook. Swallow that chatter and
+# keep only our summary below (keeps executed notebooks small + pushable).
+try:
+    from IPython.utils.capture import capture_output as _cap
+except Exception:
+    import contextlib
+    class _cap:
+        def __enter__(self): self._r = contextlib.redirect_stdout(open(os.devnull, "w")); self._r.__enter__(); return self
+        def __exit__(self, *a): self._r.__exit__(*a)
+with _cap():
+    plugins, pdets = [], []
+    for det in fit_dets:
+        prw, pow_ = appr.get(det, appr[ref_det])
+        sl = eng.build_spectrumlike_per_block(BURST, det, prw, pow_, [ti_lo], [ti_hi])
+        if sl and sl[0] is not None:
+            plugins.append(sl[0]); pdets.append(det)
+    flat, _ = eng.fit_all_models(plugins, pdets, ref_det, seed_in=None, include_dsbpl=True)
 print("plugins:", pdets)
-flat, _ = eng.fit_all_models(plugins, pdets, ref_det, seed_in=None, include_dsbpl=True)
 
 print(f"\n{'model':14s} {'prefix':10s} {'AIC':>10s} {'N2LL':>10s}  valid")
 rows = []
