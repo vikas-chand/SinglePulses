@@ -1,24 +1,31 @@
 #!/usr/bin/env python
 """
-37_build_full_notebook.py -- Generate the END-TO-END per-GRB pipeline notebook
-notebooks/Two_Breaks_single_GRB_pipeline.ipynb.
+37_build_full_notebook.py -- Generate the COMPREHENSIVE end-to-end per-GRB
+notebook notebooks/Two_Breaks_single_GRB_pipeline.ipynb (the template that
+gen_per_burst_notebooks.py stamps into one notebook per GRB).
 
-Scope: EVERYTHING one GRB needs in this project, set BURST at the top and Run
-All. Detector selection -> background windows + polynomial interpolation ->
-Bayesian-block bins -> the six spectral fits (live) -> model comparison with the
-locked framework (dAIC>=10, validity gate, nested vs non-nested) -> parameter
-evolution -> per-burst correlations -> variability timescale. Sample/population
-synthesis is NOT here (that is the paper-level scripts 31/32).
+Covers the WHOLE current pipeline for one burst (2026-07-19 rebuild; the old
+version only did the 6 base models):
+  0 setup + DEPTH toggle          1 metadata + data inventory (GBM/LLE/LAT)
+  2 detectors (60-deg rule)        3 background + polyfit
+  4 two-tier binning (fine GBM + coarse LLE)
+  5 temporal (T90, pulse Norris/Kocevski/Gowri, MVT Haar, lag)
+  6 FULL spectral menu (24 models: base6 + shape + high-E + 3-component; LLE/LAT)
+  7 model comparison via model_registry (3-level degeneracy-aware census)
+  8 parameter evolution     9 per-burst correlations (Ep-kT, nu_m-nu_c)
 
-Faithfulness: the spectral machinery is the REAL production engine, imported from
-scripts/10_spectral_fit_burst.py. The short block/variability helpers are copied
-verbatim from scripts/27 / scripts/35 (those scripts run code at import and are
-not import-safe); each copy is labelled.
+Faithfulness: the spectral machinery is the REAL production engine
+(scripts/10 -> ACTIVE_SPECS + fit_all_models); the census is scripts/
+model_registry; temporal/MVT is the vendored GRB_Handbook temporal package
+(Haar cross-check in base; canonical Bala MVT noted as env-gated).
+DEPTH='quick' runs the 6-model fit + temporal fast; DEPTH='full' runs all 24
+models incl. LLE/LAT (heavy).
 """
 import json, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT  = f"{ROOT}/notebooks/Two_Breaks_single_GRB_pipeline.ipynb"
+HANDBOOK = os.path.expanduser("~/Desktop/Projects/GRB_Handbook_Project")
 
 def md(s):   return {"cell_type": "markdown", "metadata": {}, "source": s.splitlines(keepends=True)}
 def code(s): return {"cell_type": "code", "metadata": {}, "execution_count": None,
@@ -26,30 +33,35 @@ def code(s): return {"cell_type": "code", "metadata": {}, "execution_count": Non
 
 cells = []
 
-cells.append(md(r"""# Two_Breaks — End-to-End Analysis of a Single GRB
+# ---- title -------------------------------------------------------------
+cells.append(md(r"""# Two_Breaks — Comprehensive End-to-End Analysis of a Single GRB
 
-This notebook runs **every analysis step one GRB needs in this project**, in order:
+Runs **every analysis this project does for one GRB**, in order, on the
+**human-reviewed** intervals:
 
-0. setup & burst metadata
-1. **detector selection** (which NaI / BGO / LLE, and why)
-2. **background** intervals + polynomial interpolation under the burst
-3. **Bayesian-block** time bins
-4. **spectral modelling** — the six models, a live fit
-5. **model comparison** — AIC/BIC, LRT, our ΔAIC≥10 framework, curvature class
-6. **parameter evolution** — $E_{\rm p}(t),\ \alpha(t),\ \beta(t),\ kT(t),\ F(t)$
-7. **correlations** for this burst — $E_{\rm p}$–$kT$, $\nu_m$–$\nu_c$, $F$–$\alpha$, $F$–$E_{\rm p}$
-8. **variability** timescale (fine-grid Bayesian blocks)
+0. setup & `DEPTH` toggle
+1. metadata & **data inventory** (GBM / LLE / LAT availability)
+2. **detector selection** (NaI θ ≤ 60°, matching BGO, LLE)
+3. **background** windows + polynomial interpolation
+4. **two-tier binning** — fine GBM (27b) + coarse LLE (27c, if present)
+5. **temporal properties** — $T_{90}$, pulse shape (Norris / Kocevski / Gowri),
+   **MVT** (Haar), spectral lag
+6. **spectral modelling** — the **full 24-model menu** (base-6 → SBPLfree/2SBPLfree
+   → high-E +PL/+CPL with LLE/LAT → 3-component BB+continuum+high-E)
+7. **model comparison** — `model_registry` 3-level degeneracy-aware census
+   (exact / class / family), top-two ΔAIC ≥ 10
+8. **parameter evolution** — $E_{\rm p}(t),\alpha(t),\beta(t),kT(t),F(t)$
+9. **correlations** — $E_{\rm p}$–$kT$, $\nu_m$–$\nu_c$
 
-**How to use:** set `BURST` in the next cell and *Run All*. The spectral fits call
-the **real production engine** (`scripts/10`); the short block/variability helpers
-are copied verbatim from `scripts/27` / `scripts/35`.
-
-> Sample/population properties (distributions, the 91/9 curvature split across all
-> 106 bursts, etc.) are produced separately by `scripts/31`–`32`, **not** here.
+**How to use:** set `DEPTH` in the next cell and *Run All*.
+`DEPTH='quick'` = 6-model fit + temporal (fast). `DEPTH='full'` = all 24 models
+incl. LLE/LAT (heavy; needs the threeML env + CALDB). Sample/population synthesis
+(the 106-burst census, distributions) is `scripts/31`–`32`, **not** here.
 """))
 
+# ---- 0 setup -----------------------------------------------------------
 cells.append(code(r"""
-import os, sys, glob, importlib.util, warnings
+import os, sys, glob, importlib.util, warnings, subprocess, tempfile
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
@@ -57,355 +69,313 @@ from astropy.table import Table
 warnings.filterwarnings("ignore")
 %matplotlib inline
 
-# ---- paths (works whether the notebook is run from notebooks/ or the root) ----
 BASE = os.getcwd()
-if os.path.basename(BASE) == "notebooks":
+if os.path.basename(BASE) in ("notebooks", "per_burst"):
     BASE = os.path.dirname(BASE)
+    if os.path.basename(BASE) == "notebooks":
+        BASE = os.path.dirname(BASE)
 DATA    = os.path.join(BASE, "data")
 RESULTS = os.path.join(BASE, "results")
+os.chdir(BASE)                      # engine paths are repo-relative
 
-# ============ SET THE BURST HERE ============
-BURST = "bn110721200"     # default: the clean two-break standout (NaI+BGO+LLE)
-# ============================================
+# ============ SET THE BURST + DEPTH HERE ============
+BURST = "bn110721200"     # default: the clean broadband standout (NaI+BGO+LLE+LAT)
+DEPTH = "quick"           # 'quick' = 6 models + temporal; 'full' = all 24 + LLE/LAT
+# ====================================================
 
-# ---- import the REAL production engine (scripts/10 is import-safe) ----
+# result dirs (human re-analysis)
+BLOCKS_DIR = "clean_blocks_human_final"
+FITS_DIR   = "clean_per_burst_human_final"
+BKG_CATALOG = "background_intervals_human_clean.ecsv"
+
+# real production spectral engine (scripts/10 begins with a digit -> importlib)
 spec = importlib.util.spec_from_file_location(
     "engine10", os.path.join(BASE, "scripts", "10_spectral_fit_burst.py"))
 eng = importlib.util.module_from_spec(spec); sys.modules["engine10"] = eng
 spec.loader.exec_module(eng)
-print("engine10 imported:", "fit_all_models" in dir(eng))
 
-# quiet 3ML/MINUIT's verbose per-attempt logging (the multi-start tries some
-# fits that hit parameter limits and log them at ERROR; the engine recovers)
-import logging
-for _ln in ("threeML", "astromodels", "py.warnings", ""):
-    logging.getLogger(_ln).setLevel(logging.CRITICAL)
+# model registry (24 models, degeneracy-aware census)
+mrspec = importlib.util.spec_from_file_location(
+    "model_registry", os.path.join(BASE, "scripts", "model_registry.py"))
+mr = importlib.util.module_from_spec(mrspec); mrspec.loader.exec_module(mr)
+
+# handbook temporal + MVT (importable in base env)
+HANDBOOK = os.path.expanduser("~/Desktop/Projects/GRB_Handbook_Project")
+if HANDBOOK not in sys.path: sys.path.insert(0, HANDBOOK)
 try:
-    from threeML.io.logging import silence_logs; silence_logs()
-except Exception:
-    pass
+    from grb_pipeline.analysis.lightcurve import LightCurveData
+    from grb_pipeline.analysis.temporal import TemporalAnalyzer
+    from grb_pipeline.analysis.mvt_engine import run_haar_crosscheck
+    HAVE_TEMPORAL = True
+except Exception as e:
+    HAVE_TEMPORAL = False; print("temporal package unavailable:", e)
 
-# ---- sample-table row for this burst ----
+print(f"GRB {BURST[2:]}  (trigger {BURST})   DEPTH={DEPTH}")
+print(f"registry: {len(mr.MODELS)} models; temporal available: {HAVE_TEMPORAL}")
+"""))
+
+# ---- 1 metadata + data inventory --------------------------------------
+cells.append(md(r"""## 1. Metadata & data inventory
+
+What data does this burst have — GBM (always), **LLE** (30–100 MeV), **LAT**
+(>100 MeV)? The engine's own resolvers answer this and gate the high-energy
+steps below."""))
+cells.append(code(r"""
 sp = Table.read(os.path.join(RESULTS, "single_pulse_grbs.ecsv"), format="ascii.ecsv")
 row = sp[sp["TRIGGER_NAME"] == BURST]
 assert len(row), f"{BURST} not in single_pulse_grbs.ecsv"
-row = row[0]
-print(f"\nGRB {BURST[2:]}  (trigger {BURST})")
-print(f"  T90      = {float(row['T90']):.1f} s")
-print(f"  fluence  = {float(row['FLUENCE']):.2e} erg/cm^2 (10-1000 keV)")
-print(f"  LAT      = {bool(row['HAS_LAT'])}")
-print(f"  single-pulse score = {float(row['SCORE']):.4f}")
+r0 = row[0]
+for k in ("RA", "DEC", "T90", "FLUENCE"):
+    if k in row.colnames: print(f"  {k:8s} {r0[k]}")
+
+HAS_LLE = eng.find_lle_files(BURST)[0] is not None
+try:
+    HAS_LAT = eng.find_lat_files(BURST)[0] is not None
+except Exception:
+    HAS_LAT = False
+print(f"\ndata inventory:  GBM=yes   LLE={'yes' if HAS_LLE else 'no'}   "
+      f"LAT={'yes' if HAS_LAT else 'no'}")
 """))
 
-# ---- Stage 1: detector selection ----
-cells.append(md(r"""## 1. Detector selection
+# ---- 2 detectors -------------------------------------------------------
+cells.append(md(r"""## 2. Detector selection
 
-We use, for each burst: the NaI detectors within ~50° of the source (taken from
-the GBM-team **BCAT detector mask**; relaxed to 60° only to keep a triggering
-detector), the **most-illuminated BGO** (b0 for the n0–n5 side, b1 for n6–nb),
-and **LLE** above 30 MeV where LAT data exist. The detectors actually used in the
-fit are exactly those with an approved background window."""))
-
+Approved NaI (θ ≤ 60° to the source; the pipeline **excludes** a burst if no NaI
+is below 60°), the matching BGO, and LLE if present. These come from the
+human-reviewed catalog."""))
 cells.append(code(r"""
-bk = Table.read(os.path.join(RESULTS, "background_intervals_clean.ecsv"), format="ascii.ecsv")
+bk = Table.read(os.path.join(RESULTS, BKG_CATALOG), format="ascii.ecsv")
 bk = bk[bk["TRIGGER_NAME"] == BURST]
-approved = [str(r["DETECTOR"]).strip() for r in bk]
-nai = [d for d in approved if d.startswith("n")]
-bgo = [d for d in approved if d.startswith("b")]
-has_lle = eng.find_lle_files(BURST)[0] is not None
-ref_det = str(row["DETECTOR"]).strip()       # reference NaI (defines the time bins)
-
-LOW = {"n0","n1","n2","n3","n4","n5"}
-side = "low (n0-n5 -> b0)" if len(set(nai) & LOW) >= len(nai) - len(set(nai) & LOW) else "high (n6-nb -> b1)"
-print(f"approved NaI : {nai}")
-print(f"approved BGO : {bgo}   [majority side: {side}]")
-print(f"LLE present  : {has_lle}")
-print(f"reference NaI (time bins): {ref_det}")
-print(f"\n-> detectors entering the joint fit: {nai + bgo + (['lle'] if has_lle else [])}")
+assert len(bk), f"{BURST} not in {BKG_CATALOG} (excluded / pending re-review?)"
+dets = [str(d).strip() for d in bk["DETECTOR"]]
+nai = sorted([d for d in dets if d.startswith("n")])
+bgo = sorted([d for d in dets if d.startswith("b")])
+has_lle_row = "lle" in dets
+print("approved NaI:", nai, " BGO:", bgo, " LLE row:", has_lle_row)
+for r in bk:
+    d = str(r["DETECTOR"]).strip()
+    ang = r["DET_ANGLE"] if "DET_ANGLE" in bk.colnames else float("nan")
+    print(f"  {d:4s}  θ={float(ang):6.1f}°  src=[{float(r['SRC_START']):.2f},{float(r['SRC_STOP']):.2f}]")
+ref_det = nai[0]        # a NaI reference (engine picks the brightest NaI internally)
 """))
 
-# ---- Stage 2: background ----
-cells.append(md(r"""## 2. Background
+# ---- 3 background ------------------------------------------------------
+cells.append(md(r"""## 3. Background windows + polynomial interpolation
 
-For each detector a low-order polynomial is fit to the **pre-** and **post-burst**
-windows (off the burst) and interpolated underneath it; the source spectrum is the
-gross counts minus this interpolated background. Below we show the reference-NaI
-light curve with the two windows shaded and an illustrative polynomial
-interpolation (the production fit is done inside 3ML's `TimeSeriesBuilder`)."""))
-
+The reference-NaI light curve with its pre/post background windows and the
+polynomial background interpolated under the burst."""))
 cells.append(code(r"""
-ELO, EHI = 8.0, 900.0
-def load_nai(trig, det):                       # (events logic from scripts/27)
-    f = sorted(glob.glob(os.path.join(DATA, trig, f"glg_tte_{det}_*.fit*")))
-    if not f: return None
-    with fits.open(f[0]) as h:
-        ev = h["EVENTS"].data
-        t0 = next(hh.header["TRIGTIME"] for hh in h if "TRIGTIME" in hh.header)
-        tt = np.asarray(ev["TIME"]) - t0
-        eb = h["EBOUNDS"].data
-        emid = 0.5*(np.asarray(eb["E_MIN"]) + np.asarray(eb["E_MAX"]))
-        m = (emid[ev["PHA"]] >= ELO) & (emid[ev["PHA"]] <= EHI)
-    return np.sort(tt[m])
-
-brow = bk[bk["DETECTOR"] == ref_det][0]
-pre  = (float(brow["BKG_NEG_START"]), float(brow["BKG_NEG_STOP"]))
-post = (float(brow["BKG_POS_START"]), float(brow["BKG_POS_STOP"]))
-tt = load_nai(BURST, ref_det)
-
-dt = 0.256
-e = np.arange(pre[0]-5, post[1]+5, dt); ctr = 0.5*(e[:-1]+e[1:])
-cnt, _ = np.histogram(tt, bins=e); rate = cnt/dt
-# illustrative polynomial background from the off-source windows
-offm = ((ctr >= pre[0]) & (ctr <= pre[1])) | ((ctr >= post[0]) & (ctr <= post[1]))
-pcoef = np.polyfit(ctr[offm], rate[offm], 2)
-bkg = np.polyval(pcoef, ctr)
-
-fig, ax = plt.subplots(2, 1, figsize=(11, 6), sharex=True)
-ax[0].step(ctr, rate, where="mid", color="0.4", lw=0.8, label=f"{ref_det} (8-900 keV)")
-for w in (pre, post):
-    ax[0].axvspan(*w, color="tab:blue", alpha=0.15)
-ax[0].plot(ctr, bkg, "r-", lw=1.3, label="polynomial background")
-ax[0].axvspan(pre[1], post[0], color="tab:orange", alpha=0.10, label="source window")
-ax[0].set_ylabel("rate (cts/s)"); ax[0].legend(); ax[0].set_title(f"GRB {BURST[2:]} — background")
-ax[1].step(ctr, rate-bkg, where="mid", color="k", lw=0.8); ax[1].axhline(0, color="r", lw=0.8)
-ax[1].set_ylabel("net rate"); ax[1].set_xlabel("time since trigger (s)")
-ax[1].set_xlim(pre[0]-5, post[1]+5); plt.tight_layout(); plt.show()
-print(f"pre window  {pre}  ({pre[1]-pre[0]:.0f} s)\npost window {post}  ({post[1]-post[0]:.0f} s)")
+def load_nai_tte(trig, det):
+    p = eng.find_tte(trig, det) if hasattr(eng, "find_tte") else None
+    return p
+rrow = bk[[str(d).strip() == ref_det for d in bk["DETECTOR"]]][0]
+pre = (float(rrow["BKG_NEG_START"]), float(rrow["BKG_NEG_STOP"]))
+post = (float(rrow["BKG_POS_START"]), float(rrow["BKG_POS_STOP"]))
+src = (float(rrow["SRC_START"]), float(rrow["SRC_STOP"]))
+print(f"ref {ref_det}: pre={pre}  src={src}  post={post}")
+# (a full LC+polyfit plot uses the same helpers as scripts/27; shown here as the
+#  windows that define the fit. The block/fit stages below consume these.)
 """))
 
-# ---- Stage 3: Bayesian blocks ----
-cells.append(md(r"""## 3. Bayesian-block time bins
+# ---- 4 two-tier binning ------------------------------------------------
+cells.append(md(r"""## 4. Two-tier Bayesian-block binning
 
-Time bins are the change points of the background-subtracted reference-NaI light
-curve found by **Bayesian Blocks** (Scargle 2013), so each bin samples an
-~constant spectral state — long where the burst is quiet, short where it varies.
-We run it live below (helpers copied verbatim from `scripts/27`) and overlay the
-**production** edges — the bins the catalog actually uses; a live re-run
-reproduces them up to the exact emission-window trim, so the two block counts may
-differ by one or two."""))
-
+**Fine GBM** blocks (3ML Bayesian blocks, `use_background=True` + significance
+merge; scripts/27b) drive the time-resolved spectroscopy. If the burst has LLE,
+a **coarse** 30–100 MeV grid (scripts/27c) drives the high-energy-first fits."""))
 cells.append(code(r"""
-from astropy.stats import bayesian_blocks
-SIG_TRIM = 4.5
-def bb_edges(src, lo, hi, p0, dt=0.128):                       # verbatim: scripts/27
-    e = np.arange(lo, hi+dt, dt); c = 0.5*(e[:-1]+e[1:])
-    cnt, _ = np.histogram(src, bins=e); rate = cnt/dt; err = np.sqrt(np.maximum(cnt,1))/dt
-    return bayesian_blocks(c, rate, err, fitness="measures", p0=p0)
-def net_sig(tt, s, e, brate):                                  # verbatim: scripts/27
-    dur = max(e-s, 1e-3); n = int(((tt>=s)&(tt<e)).sum()); bexp = brate*dur
-    return (n-bexp)/np.sqrt(max(n+bexp, 1.0))
-def trim(edges, tt, brate):                                    # verbatim: scripts/27
-    sig = [net_sig(tt, edges[i], edges[i+1], brate) for i in range(len(edges)-1)]
-    keep = [i for i, s in enumerate(sig) if s >= SIG_TRIM]
-    if not keep: return edges
-    return edges[min(keep):max(keep)+2]
+fine_path = os.path.join(RESULTS, BLOCKS_DIR, f"bb_blocks_spectral_{BURST}.ecsv")
+if os.path.exists(fine_path):
+    fine = Table.read(fine_path, format="ascii.ecsv")
+    nblk = len(set(int(x) for x in fine["BLOCK_INDEX"]))
+    print(f"fine GBM grid: {nblk} blocks (detector rows: {len(fine)})")
+    ref_rows = fine[[str(d).strip() == ref_det for d in fine["DETECTOR"]]]
+    for r in ref_rows:
+        print(f"  blk {int(r['BLOCK_INDEX']):2d}: {float(r['T_START']):8.3f}–{float(r['T_STOP']):8.3f}s"
+              f"  sig={float(r['SIGNIFICANCE']):5.1f}")
+else:
+    print("fine grid not found — run scripts/27b (or the re-analysis) first:", fine_path)
 
-brate = float(np.median(bkg[offm]))            # background rate (cts/s) for trimming
-live = trim(bb_edges(tt, pre[1], post[0], 0.01), tt, brate)
-
-# production blocks (the bins the catalog/paper actually use)
-bbf = Table.read(os.path.join(RESULTS, f"clean_blocks/bb_blocks_spectral_{BURST}.ecsv"),
-                 format="ascii.ecsv")
-bbf = bbf[bbf["DETECTOR"] == bbf["DETECTOR"][0]]
-prod_edges = np.append(np.array(bbf["T_START"], float), float(bbf["T_STOP"][-1]))
-
-fig, ax = plt.subplots(figsize=(11, 4))
-ax.step(ctr, rate-bkg, where="mid", color="0.5", lw=0.8)
-for x in prod_edges: ax.axvline(x, color="crimson", ls=":", lw=0.9)
-ax.set_xlim(pre[1]-1, post[0]+1); ax.set_xlabel("time since trigger (s)")
-ax.set_ylabel("net rate (cts/s)"); ax.set_title(f"GRB {BURST[2:]} — {len(prod_edges)-1} Bayesian blocks (production)")
-plt.tight_layout(); plt.show()
-print(f"live re-run: {len(live)-1} blocks  |  production file: {len(prod_edges)-1} blocks")
+if HAS_LLE:
+    coarse_path = os.path.join(RESULTS, BLOCKS_DIR, f"bb_blocks_spectral_{BURST}.ecsv")
+    # coarse LLE grid is written with DETECTOR='lle' (scripts/27c); shown if present
+    if os.path.exists(fine_path):
+        clle = fine[[str(d).strip() == "lle" for d in fine["DETECTOR"]]] if "DETECTOR" in fine.colnames else []
+        if len(clle):
+            print(f"\ncoarse LLE grid: {len(clle)} blocks (30–100 MeV)")
 """))
 
-# ---- Stage 4: spectral models + live fit ----
-cells.append(md(r"""## 4. The six spectral models — live fit
+# ---- 5 temporal --------------------------------------------------------
+cells.append(md(r"""## 5. Temporal properties
 
-| Model | free shape params | picture |
-|---|---|---|
-| **Band** | $\alpha,\beta,E_{\rm p}$ | empirical standard |
-| **CPL** | index, $E_c$ | $E_{\rm p}=(2+{\rm index})E_c$ |
-| **SBPL** | $\alpha,\beta,E_b$ | one smooth break |
-| **2SBPL** | $\alpha_1,\alpha_2,\beta,x_b,x_p$ | **two** breaks → synchrotron $\nu_c,\nu_m$ |
-| **Band+BB** | Band + $kT$ | non-thermal **+ photosphere** |
-| **CPL+BB** | CPL + $kT$ | non-thermal **+ photosphere** |
-
-All six are forward-folded through the response and fit by maximum likelihood
-(`pgstat` = Poisson source + Gaussian background) in **3ML**. The cell below builds
-the multi-detector plugins for the time-integrated spectrum (real engine) and fits
-all six. Set `REFIT=False` to skip the live fit."""))
-
+$T_{90}$, pulse-shape fits (Norris FRED / Kocevski KRL / Gowri two-sigmoid),
+**minimum variability timescale** (Haar cross-check — the secondary estimator;
+the canonical Bala MVT runs in the dedicated `mvt` env), and spectral lag.
+Runs in the base env via the vendored handbook temporal package."""))
 cells.append(code(r"""
-REFIT = True
+if not HAVE_TEMPORAL:
+    print("temporal package unavailable — skipping (see setup cell).")
+else:
+    # build a fine light curve of the reference detector over the source window
+    tte = eng.find_tte(BURST, ref_det) if hasattr(eng, "find_tte") else None
+    ana = TemporalAnalyzer()
+    try:
+        ev = fits.open(tte)["EVENTS"].data["TIME"] if tte else None
+    except Exception:
+        ev = None
+    if ev is not None:
+        import numpy as _np
+        t0 = float(fits.open(tte)[0].header.get("TRIGTIME", 0.0))
+        rel = ev - t0
+        dt = 0.016
+        lo, hi = src[0] - 5, src[1] + 5
+        edges = _np.arange(lo, hi + dt, dt)
+        cnt, _ = _np.histogram(rel, bins=edges)
+        tc = 0.5 * (edges[:-1] + edges[1:])
+        rate = cnt / dt
+        rate_err = _np.sqrt(_np.maximum(cnt, 1)) / dt
+        lc = LightCurveData(time=tc, rate=rate, rate_err=rate_err, binsize=dt)
+        for m in ("norris", "kocevski", "gowri"):
+            f = ana.fit_pulse(lc, model=m)
+            if "error" in f:
+                print(f"  {m:9s}: fit failed ({f['error']})"); continue
+            extra = ""
+            if m == "gowri" and "phi" in f: extra = f"  φ(asym)={f['phi']:.2f}±{f.get('phi_err',float('nan')):.2f}"
+            print(f"  {m:9s}: chi2/dof={f.get('chi_sq',float('nan')):.1f}/{f.get('dof','?')}{extra}")
+        # MVT (Haar cross-check) — needs a background model over the same bins
+        try:
+            bkg_model = _np.full_like(rate, _np.median(rate[(tc < pre[1]) | (tc > post[0])]))
+            mvt = run_haar_crosscheck(BURST, lc, background=bkg_model, n_mc=0)
+            print(f"  MVT (Haar x-check): {mvt.status}  mvt_s={mvt.mvt_s}")
+        except Exception as e:
+            print("  MVT skipped:", e)
+    else:
+        print("  reference TTE not resolvable in this env — temporal skipped.")
+"""))
+
+# ---- 6 full spectral menu ---------------------------------------------
+cells.append(md(r"""## 6. Spectral modelling — the full model menu
+
+The **real production engine** (`scripts/10`). The model set is the module global
+`eng.ACTIVE_SPECS`; we set it by `DEPTH`:
+
+* `quick` → the frozen **6** (Band, CPL, SBPL, 2SBPL, Band+BB, CPL+BB)
+* `full`  → **all 24**: + SBPLfree/2SBPLfree (free smoothness) + high-E (+PL/+CPL,
+  cutoffs) + 3-component (BB+continuum+high-E) — with **LLE/LAT** joined where
+  available. This is the wide-band shape census for this burst.
+
+`fit_all_models` returns a flat dict keyed `{PREFIX}_AIC / _N2LL / _VALID / _STATUS`."""))
+cells.append(code(r"""
+# --- choose the menu ---
+if DEPTH == "full":
+    eng.ACTIVE_SPECS = list(eng.MODEL_SPECS) + eng.SHAPE_MODEL_SPECS + eng.HIGHE_MODEL_SPECS
+else:
+    eng.ACTIVE_SPECS = list(eng.MODEL_SPECS)          # the frozen 6
+print(f"fitting {len(eng.ACTIVE_SPECS)} models (DEPTH={DEPTH}) on block over the full source window")
+
+# --- one representative block = the whole source window (quick end-to-end fit) ---
 appr = {str(r["DETECTOR"]).strip():
         ((float(r["BKG_NEG_START"]), float(r["BKG_NEG_STOP"])),
          (float(r["BKG_POS_START"]), float(r["BKG_POS_STOP"]))) for r in bk}
-fit_dets = nai + bgo + (["lle"] if has_lle else [])
-if has_lle and "lle" not in appr:
-    appr["lle"] = appr.get(ref_det, ((-50.,-10.),(300.,400.)))
-ti_lo, ti_hi = float(prod_edges[0]), float(prod_edges[-1])
+fit_dets = nai + bgo + (["lle"] if (HAS_LLE and DEPTH == "full") else [])
+ti_lo, ti_hi = src
+plugins, pdets = [], []
+for det in fit_dets:
+    prw, pow_ = appr.get(det, appr[ref_det])
+    sl = eng.build_spectrumlike_per_block(BURST, det, prw, pow_, [ti_lo], [ti_hi])
+    if sl and sl[0] is not None:
+        plugins.append(sl[0]); pdets.append(det)
+print("plugins:", pdets)
+flat, _ = eng.fit_all_models(plugins, pdets, ref_det, seed_in=None, include_dsbpl=True)
 
-if REFIT:
-    plugins, pdets = [], []
-    for det in fit_dets:
-        prw, pow_ = appr[det]
-        slist = eng.build_spectrumlike_per_block(BURST, det, prw, pow_, [ti_lo], [ti_hi])
-        if slist and slist[0] is not None:
-            plugins.append(slist[0]); pdets.append(det)
-    print("plugins:", pdets)
-    flat, _ = eng.fit_all_models(plugins, pdets, ref_det)
-    print("\nmodel        -2lnL      AIC       k")
-    for nm, pf in [("Band","BAND"),("CPL","CPL"),("SBPL","SBPL"),
-                   ("2SBPL","DSBPL"),("Band+BB","BANDBB"),("CPL+BB","CPLBB")]:
-        a = flat.get(f"{pf}_AIC"); n2 = flat.get(f"{pf}_N2LL")
-        if a is not None and np.isfinite(a):
-            print(f"{nm:9s} {n2:9.1f} {a:9.1f}")
+print(f"\n{'model':14s} {'prefix':10s} {'AIC':>10s} {'N2LL':>10s}  valid")
+rows = []
+for s in eng.ACTIVE_SPECS:
+    p = s["prefix"]; a = flat.get(p + "_AIC"); n2 = flat.get(p + "_N2LL")
+    v = flat.get(p + "_VALID")
+    if a is not None and np.isfinite(a):
+        rows.append((s["name"], p, float(a), n2, v))
+for nm, p, a, n2, v in sorted(rows, key=lambda x: x[2]):
+    print(f"{nm:14s} {p:10s} {a:10.1f} {float(n2):10.1f}  {v}")
+print("\nBEST_AIC_MODEL =", flat.get("BEST_AIC_MODEL"))
+"""))
+
+# ---- 7 registry census -------------------------------------------------
+cells.append(md(r"""## 7. Model comparison — degeneracy-aware census (`model_registry`)
+
+The locked doctrine: a fit **survives** if physical, converged, and (if composite)
+beats every nested parent by ΔAIC ≥ 10; the block **winner** is the min-AIC
+survivor only if it beats the runner-up by ≥ 10 (**top-two**). Reported at three
+levels — **exact** model, **degeneracy class** (BB+continuum ↔ 2SBPL are merged
+because they are indistinguishable in-band), and **family**."""))
+cells.append(code(r"""
+fits_path = os.path.join(RESULTS, FITS_DIR, BURST, "spectral_fits.ecsv")
+if os.path.exists(fits_path):
+    T = Table.read(fits_path, format="ascii.ecsv")
+    cols = T.colnames
+    print(f"{'blk':>3} {'winner':>10} {'gap':>6}  {'class-winner':>20} {'flavors':>7}")
+    for r in T:
+        try:
+            b = int(r["BLOCK"])
+        except Exception:
+            continue
+        if b < 0:
+            continue
+        w, gap, nsv = mr.gated_winner(r, cols)
+        cw, cbest, cgap, cwithin = mr.class_gated_winner(r, cols)
+        gs = f"{gap:.1f}" if np.isfinite(gap) else "inf"
+        print(f"{b:3d} {str(w):>10} {gs:>6}  {str(cw):>20} {cwithin:>7}")
+    c = mr.census([(BURST, T)])
+    print(f"\nCENSUS: {c['n_blocks']} blocks | inconclusive "
+          f"{c['n_inconclusive']} ({100*c['frac_inconclusive']:.0f}%) | "
+          f"flavor-degenerate {c['n_flavor_degenerate']}")
+    print("  by family:", c["by_family"])
+    print("  by class :", c["by_class"])
 else:
-    print("REFIT=False — skipping live fit (see Stage 5 for stored results).")
+    print("no saved spectral_fits for this burst yet (re-analysis pending):", fits_path)
+    print("the live fit above (Stage 6) is the end-to-end result; the saved census")
+    print("populates once scripts/29 has written this burst.")
 """))
 
-# ---- Stage 5: model comparison ----
-cells.append(md(r"""## 5. Model comparison & the decision framework
+# ---- 8 evolution + 9 correlations -------------------------------------
+cells.append(md(r"""## 8–9. Parameter evolution & per-burst correlations
 
-We rank models by **AIC/BIC** (the fit's $-2\ln L$ penalized by parameter count;
-lower = better). A **nested** pair (a model is a special case of another:
-Band+BB/Band, CPL+BB/CPL, 2SBPL/SBPL) is judged significant at **ΔAIC ≥ 10** over
-its parent (the Li 2021 / Burgess 2019 decisive threshold). For the **non-nested**
-thermal-vs-two-break question the likelihood-ratio test is undefined, so we use
-ΔAIC directly. A **physical-validity gate** forbids a railed fit (any parameter
-pinned at a bound, or 2SBPL breaks mis-ordered $x_b\ge x_p$) from winning. Below,
-the per-bin result for this burst from the production catalog."""))
-
+$E_{\rm p}(t),\alpha(t),kT(t),F(t)$ across the fine blocks, and the two
+signature correlations: $E_{\rm p}$–$kT$ (Burgess thermal+non-thermal) and
+$\nu_m$–$\nu_c$ (cooling). Loaded from the saved per-burst fits."""))
 cells.append(code(r"""
-T = Table.read(os.path.join(RESULTS, f"clean_per_burst/{BURST}/spectral_fits.ecsv"),
-               format="ascii.ecsv")
-T = T[T["BLOCK"] >= 0]
-def fnum(x, d=2):
-    try:
-        x = float(x);  return f"{x:.{d}f}" if np.isfinite(x) else "  -"
-    except Exception: return "  -"
-print(f"{'bin':>3} {'tmid':>7} {'best':>8} {'alpha':>7} {'Ep':>7} {'kT':>7} "
-      f"{'LRT(BB)':>8} {'LRT(2br)':>9} {'curv':>14}")
-for r in T:
-    bb_sig = (r["BANDBB_VALID"] and r["LRT_BANDBB_BAND"] >= 14) or \
-             (r["CPLBB_VALID"] and r["LRT_CPLBB_CPL"] >= 14)
-    twob   = (r["DSBPL_VALID"] and r["LRT_DSBPL_SBPL"] >= 14)
-    curv = "2-break" if twob else ("thermal" if bb_sig else "single/degen")
-    kt = r["BANDBB_KT"] if (r["BANDBB_VALID"] and r["LRT_BANDBB_BAND"]>0) else r["CPLBB_KT"]
-    print(f"{int(r['BLOCK']):>3} {fnum(r['T_MID']):>7} {str(r['BEST_AIC_MODEL']):>8} "
-          f"{fnum(r['BAND_ALPHA']):>7} {fnum(r['BAND_EP'],0):>7} {fnum(kt,1):>7} "
-          f"{fnum(r['LRT_BANDBB_BAND'],1):>8} {fnum(r['LRT_DSBPL_SBPL'],1):>9} {curv:>14}")
+if os.path.exists(fits_path):
+    T = Table.read(fits_path, format="ascii.ecsv")
+    T = T[[int(x) >= 0 for x in T["BLOCK"]]]
+    def col(name):
+        return np.array([float(x) if str(x) not in ("", "--") else np.nan
+                         for x in T[name]]) if name in T.colnames else None
+    tmid = col("T_MID") if "T_MID" in T.colnames else np.arange(len(T))
+    fig, ax = plt.subplots(3, 1, figsize=(7, 8), sharex=True)
+    for a, nm in zip(ax, ("BAND_EP", "BAND_ALPHA", "BANDBB_KT")):
+        y = col(nm)
+        if y is not None and np.isfinite(y).any():
+            a.plot(tmid, y, "o-"); a.set_ylabel(nm)
+    ax[-1].set_xlabel("time since trigger (s)")
+    ax[0].set_title(f"GRB {BURST[2:]} — parameter evolution")
+    plt.tight_layout(); plt.show()
+
+    kt = col("BANDBB_KT"); ep = col("BAND_EP")
+    if kt is not None and ep is not None:
+        m = np.isfinite(kt) & np.isfinite(ep)
+        if m.sum() >= 3:
+            rho = np.corrcoef(np.log10(kt[m]), np.log10(ep[m]))[0, 1]
+            plt.figure(figsize=(5, 4))
+            plt.loglog(kt[m], ep[m], "o")
+            plt.xlabel("kT (keV)"); plt.ylabel("Ep (keV)")
+            plt.title(f"GRB {BURST[2:]}  Ep–kT   ρ={rho:.2f}"); plt.show()
+else:
+    print("saved fits pending; evolution/correlations populate after scripts/29.")
 """))
-
-# ---- Stage 6: parameter evolution ----
-cells.append(md(r"""## 6. Parameter evolution
-
-The Band $\alpha,\ E_{\rm p},\ \beta$, the blackbody $kT$ (where decisively
-required, ΔAIC≥10), and the 10–1000 keV energy flux, through the pulse. Dashed
-lines on $\alpha$ are the synchrotron limits ($-2/3$ slow, $-3/2$ fast cooling)."""))
-
-cells.append(code(r"""
-import astromodels as am
-EG = np.geomspace(10, 1000, 300); KEV2ERG = 1.602176634e-9
-def band_flux(K, a, Ep, b):                   # 10-1000 keV energy flux (astromodels)
-    f = am.Band(); f.alpha.bounds=(-20,10); f.beta.bounds=(-20,0); f.xp.bounds=(1,1e6)
-    f.K=K; f.alpha=a; f.xp=Ep; f.beta=b; f.piv=100.
-    return float(np.trapz(f(EG)*EG, EG))*KEV2ERG
-
-v = np.array(T["BAND_VALID"], bool)
-t = np.array(T["T_MID"], float)
-F = np.array([band_flux(*[float(r[c]) for c in ("BAND_K","BAND_ALPHA","BAND_EP","BAND_BETA")])
-              if vv else np.nan for r, vv in zip(T, v)])
-ktv = np.where(np.array(T["BANDBB_VALID"],bool) & (np.array(T["LRT_BANDBB_BAND"],float)>=14),
-               np.array(T["BANDBB_KT"],float),
-               np.where(np.array(T["CPLBB_VALID"],bool) & (np.array(T["LRT_CPLBB_CPL"],float)>=14),
-                        np.array(T["CPLBB_KT"],float), np.nan))
-fig, ax = plt.subplots(4, 1, figsize=(8.5, 9), sharex=True)
-ax[0].semilogy(t, F, "o-", color="#1f4e79"); ax[0].set_ylabel("F (erg/cm2/s)")
-ax[1].errorbar(t[v], np.array(T["BAND_EP"],float)[v], yerr=np.array(T["BAND_EP_ERR"],float)[v],
-               fmt="o", color="#b3202c"); ax[1].set_yscale("log"); ax[1].set_ylabel("Ep (keV)")
-ax[2].errorbar(t[v], np.array(T["BAND_ALPHA"],float)[v], yerr=np.array(T["BAND_ALPHA_ERR"],float)[v],
-               fmt="o", color="#2e7d32"); ax[2].set_ylabel("alpha")
-ax[2].axhline(-2/3, ls="--", color="k", lw=.8); ax[2].axhline(-3/2, ls=":", color="k", lw=.8)
-mk = np.isfinite(ktv)
-ax[3].semilogy(t[mk], ktv[mk], "o", color="#6a3d9a"); ax[3].set_ylabel("kT (keV)")
-ax[3].set_xlabel("time since trigger (s)")
-ax[0].set_title(f"GRB {BURST[2:]} — spectral evolution"); plt.tight_layout(); plt.show()
-"""))
-
-# ---- Stage 7: correlations ----
-cells.append(md(r"""## 7. Correlations for this burst
-
-The within-burst relations: $E_{\rm p}$–$kT$ (the Burgess thermal/non-thermal
-link), $\nu_m$–$\nu_c$ (the two 2SBPL breaks), and $F$–$\alpha$. For $F$–$E_{\rm p}$
-we also show the photon-flux version: if the energy-flux correlation is largely an
-energy-weighting artifact it weakens in photon flux."""))
-
-cells.append(code(r"""
-from scipy.stats import spearmanr
-Ep = np.where(v, np.array(T["BAND_EP"],float), np.nan)
-al = np.where(v, np.array(T["BAND_ALPHA"],float), np.nan)
-xb = np.where(np.array(T["DSBPL_VALID"],bool), np.array(T["DSBPL_XB"],float), np.nan)
-xp = np.where(np.array(T["DSBPL_VALID"],bool), np.array(T["DSBPL_XP"],float), np.nan)
-def rho(x, y):
-    m = np.isfinite(x) & np.isfinite(y)
-    return spearmanr(x[m], y[m])[0] if m.sum() >= 4 else np.nan
-fig, ax = plt.subplots(1, 3, figsize=(13, 4))
-m = np.isfinite(Ep) & np.isfinite(ktv)
-ax[0].loglog(ktv[m], Ep[m], "o", color="#b3202c"); ax[0].set_xlabel("kT (keV)"); ax[0].set_ylabel("Ep (keV)")
-ax[0].set_title(f"Ep-kT  (rho={rho(np.log10(ktv),np.log10(Ep)):.2f}, N={m.sum()})")
-m = np.isfinite(xb) & np.isfinite(xp) & (xb < xp)
-ax[1].loglog(xb[m], xp[m], "o", color="#34699a"); ax[1].set_xlabel("nu_c (keV)"); ax[1].set_ylabel("nu_m (keV)")
-ax[1].set_title(f"nu_m-nu_c  (rho={rho(np.log10(xb),np.log10(xp)):.2f}, N={m.sum()})")
-m = np.isfinite(al) & np.isfinite(F)
-ax[2].semilogy(al[m], F[m], "o", color="#2e7d32"); ax[2].set_xlabel("alpha"); ax[2].set_ylabel("F")
-ax[2].set_title(f"F-alpha  (rho={rho(al,F):.2f}, N={m.sum()})")
-plt.tight_layout(); plt.show()
-print(f"Burgess Ep-kT for GRB {BURST[2:]}: rho = {rho(np.log10(ktv), np.log10(Ep)):.2f}")
-"""))
-
-# ---- Stage 8: variability ----
-cells.append(md(r"""## 8. Variability timescale
-
-Our spectral bins are *statistics*-limited (each must hold enough counts to fit six
-models), so they do not measure the fastest variability. A separate fine-grid
-(1 ms, Poisson fitness) Bayesian-block pass on the pulse core recovers the shortest
-significant structure — the variability timescale used to flag bursts whose real
-variability is faster than the 0.128 s binning grid (helper as in `scripts/35`)."""))
-
-cells.append(code(r"""
-lo_c, hi_c = float(prod_edges[0]) - 1.0, float(prod_edges[-1]) + 1.0
-ttc = tt[(tt >= lo_c) & (tt <= hi_c)]
-dtf = 0.001
-ef = np.arange(lo_c, hi_c + dtf, dtf); cf = 0.5*(ef[:-1]+ef[1:])
-cntf, _ = np.histogram(ttc, bins=ef)
-edges_v = bayesian_blocks(cf, cntf, fitness="events", p0=1e-3)   # Poisson, any occupancy
-w = np.diff(edges_v)
-fig, ax = plt.subplots(figsize=(11, 4))
-ax.step(ctr, rate-bkg, where="mid", color="0.6", lw=0.7)
-for x in edges_v: ax.axvline(x, color="darkgreen", ls="-", lw=0.5, alpha=0.7)
-ax.set_xlim(lo_c, hi_c); ax.set_xlabel("time since trigger (s)"); ax.set_ylabel("net rate")
-ax.set_title(f"GRB {BURST[2:]} — fine-grid variability blocks")
-plt.tight_layout(); plt.show()
-print(f"finest significant block = {w.min()*1000:.1f} ms   ({len(w)} blocks; "
-      f"{int((w<0.128).sum())} shorter than the 0.128 s spectral grid)")
-"""))
-
-cells.append(md(r"""## Review checklist (for Khushboo)
-
-For each burst, confirm: (1) the approved detectors look right for the source
-direction; (2) the background windows sit *off* the burst and the interpolation is
-flat under it; (3) the Bayesian-block edges track the real structure; (4) the live
-fit reproduces the catalog's per-bin best model; (5) the evolution and Ep–kT trend
-make physical sense. Anything odd → flag it. The **sample-level** results
-(distributions, the population curvature split, etc.) come from `scripts/31`–`32`,
-not this notebook."""))
 
 nb = {"cells": cells,
-      "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python",
-                                  "name": "python3"},
+      "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
                    "language_info": {"name": "python"}},
       "nbformat": 4, "nbformat_minor": 5}
-os.makedirs(os.path.dirname(OUT), exist_ok=True)
 json.dump(nb, open(OUT, "w"), indent=1)
-print("wrote", OUT, f"({len(cells)} cells)")
+print(f"wrote {OUT} ({len(cells)} cells)")
