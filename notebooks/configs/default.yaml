@@ -1,0 +1,3 @@
+grb: bn110721200   # override with env GRB=<trig> or GRB_CONFIG=<path>
+depth: quick
+notes: ''

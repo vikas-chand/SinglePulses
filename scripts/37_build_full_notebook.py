@@ -78,10 +78,27 @@ DATA    = os.path.join(BASE, "data")
 RESULTS = os.path.join(BASE, "results")
 os.chdir(BASE)                      # engine paths are repo-relative
 
-# ============ SET THE BURST + DEPTH HERE ============
-BURST = "bn110721200"     # default: the clean broadband standout (NaI+BGO+LLE+LAT)
-DEPTH = "quick"           # 'quick' = 6 models + temporal; 'full' = all 24 + LLE/LAT
-# ====================================================
+# ============ CONFIG-DRIVEN (FermiPy-style): ONE notebook, per-GRB config ============
+# Which GRB + settings come from a tiny YAML config, NOT from editing this cell.
+# Priority:  env GRB / GRB_CONFIG  ->  notebooks/configs/<grb>.yaml  ->  default.
+# Run a different burst by setting the env var or picking another config; the
+# notebook is never copied per burst.
+import yaml
+_GRB_ENV = os.environ.get("GRB")
+_CFG_ENV = os.environ.get("GRB_CONFIG")
+if _CFG_ENV and os.path.exists(_CFG_ENV):
+    _cfg = yaml.safe_load(open(_CFG_ENV)) or {}
+elif _GRB_ENV and os.path.exists(os.path.join(BASE, "notebooks", "configs", f"{_GRB_ENV}.yaml")):
+    _cfg = yaml.safe_load(open(os.path.join(BASE, "notebooks", "configs", f"{_GRB_ENV}.yaml"))) or {}
+elif os.path.exists(os.path.join(BASE, "notebooks", "configs", "default.yaml")):
+    _cfg = yaml.safe_load(open(os.path.join(BASE, "notebooks", "configs", "default.yaml"))) or {}
+else:
+    _cfg = {}
+BURST = _GRB_ENV or _cfg.get("grb", "bn110721200")
+DEPTH = os.environ.get("DEPTH", _cfg.get("depth", "quick"))   # 'quick' | 'full'
+SPECIAL_PULSE = _cfg.get("special_pulse")     # e.g. '2nd' for 130427A (dev/special_bursts.md)
+if _cfg.get("notes"): print("config notes:", _cfg["notes"])
+# =====================================================================================
 
 # result dirs (human re-analysis)
 BLOCKS_DIR = "clean_blocks_human_final"
