@@ -1,10 +1,18 @@
 # Khushboo — verify the per-GRB end-to-end notebooks
 
-You have a set of **executed notebooks** (in `notebooks/outputs/<trigger>.ipynb`),
-one per GRB, for the LLE/LAT bursts. Each runs the WHOLE pipeline for one burst
-at **full depth** (all 24 spectral models + LLE, temporal, census). Please run
-each yourself and verify it is sensible. This is the trust check before we build
-the paper on these.
+## Why this exists (the two paths must agree)
+Our **science runs as `.py` scripts on many cores** over the whole sample
+(Stage-1 approve → 27b/27c bin → 29→10 fit → products) — fast, but a black box.
+These **notebooks are the human-checkable mirror**: the SAME machinery, but for
+ONE GRB, top to bottom, so you can *see* every step and confirm the mass
+pipeline is not doing anything wrong. Your job: run the notebooks (especially
+the **LLE+LAT** bursts, the hardest / most important) and confirm each is
+sensible and consistent with the script results.
+
+You have **executed notebooks** (`notebooks/verified/<trigger>.ipynb`) with all
+outputs embedded — you can read them as-is, and re-run any cell to confirm.
+Each runs the WHOLE pipeline for one burst at **full depth** (all 24 spectral
+models + LLE, temporal, census, literature check).
 
 ## 0. One-time setup
 ```bash
@@ -17,7 +25,7 @@ cd ~/Desktop/Projects/SingleRest/Two_Breaks
 There is a SINGLE notebook: `notebooks/Two_Breaks_single_GRB_pipeline.ipynb`.
 Which GRB it runs comes from a tiny config, not from editing the notebook:
 ```bash
-# run a burst headless -> notebooks/outputs/<trig>.ipynb
+# run a burst headless -> notebooks/verified/<trig>.ipynb
 python notebooks/run_grb.py bn130427324 --depth full --execute
 # OR open interactively with the burst selected:
 GRB=bn130427324 DEPTH=full jupyter lab notebooks/Two_Breaks_single_GRB_pipeline.ipynb
