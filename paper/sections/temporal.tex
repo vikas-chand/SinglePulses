@@ -1,6 +1,6 @@
 \section{Temporal Properties} \label{sec:temporal}
 
-Before modeling the spectra we characterize each pulse in the time domain,
+Before modeling the spectra we characterize each burst in the time domain,
 using exactly the same approved detector sets, background models, and source
 windows as the spectral analysis (\S\ref{sec:bkg}). This serves two purposes.
 First, the temporal properties---duration, pulse shape, minimum variability
@@ -10,59 +10,68 @@ dependence of the emitting sites. Second, the fitted pulse shape assigns every
 Bayesian block an unambiguous phase (rise, peak, or decay), which the
 spectral census of \S\ref{sec:obs} uses to ask the central question of this
 survey: \emph{what is the spectral shape during each phase of a single
-pulse?}
+pulse?} All quantities below are measured on the reference (brightest
+approved) NaI detector of each burst.
 
 \subsection{Durations and Pulse Shapes} \label{sec:durations}
 
-Durations ($T_{90}$, $T_{50}$) are measured from the background-subtracted,
-detector-summed light curves of the approved NaI detectors, with
-uncertainties from bootstrap resampling of the counts. Because the sample is
-selected for isolated single-pulse morphology, the cumulative-counts method
-is well behaved and the durations are insensitive to the exact integration
-bounds. \PHt{$T_{90}$ distribution: median and IQR pending the full-sample
-temporal run.}
+Durations ($T_{90}$, $T_{50}$) are measured from the background-subtracted
+reference-detector light curve by the cumulative-counts method, with
+uncertainties from bootstrap resampling. Across the sample the median
+$T_{90}$ is $21.5$\,s (interquartile range $13.8$--$36.9$\,s), spanning the
+short tens-of-seconds durations typical of bright long single pulses; because
+the sample is selected for isolated single-pulse morphology the durations are
+insensitive to the exact integration bounds.
 
-Each pulse is then fitted with three shape models: the
-\citet{Norris2005} exponential rise--decay profile, the
-\citet{Kocevski2003} flux-normalized profile, and the double-hyperbolic-tangent
-profile of \citet{Gowri2025}. The three parameterizations bracket the
-freedom commonly used in the literature; we retain the best-fitting model
-per burst (reduced $\chi^{2}$) and record the rise time, decay time, and
-asymmetry $\phi = t_{\rm rise}/t_{\rm decay}$ with covariance-propagated
-uncertainties. \PHt{Asymmetry distribution and best-model census pending.}
-The fitted profile, not the raw light curve, defines the rise/peak/decay
-phase boundaries used to tag Bayesian blocks, making the phase assignment
-reproducible and model-explicit.
+Each pulse is fitted with three analytic profiles: the \citet{Norris2005}
+exponential rise--decay (FRED) profile, the \citet{Kocevski2003} power-law
+rise/decay profile, and the double-hyperbolic-tangent profile of
+\citet{Gowri2025}. We retain the best-fitting profile per burst (minimum
+reduced $\chi^{2}$): the Gowri profile is preferred in $46/89$ bursts, the
+Kocevski profile in $36/89$, and the Norris FRED in $7/89$, confirming that
+the two-sided smooth profiles capture the majority of single-pulse light
+curves better than the classic FRED. The pulses are strongly asymmetric in
+the fast-rise/slow-decay sense: the Gowri asymmetry
+$\phi \equiv \sigma_{\rm rise}/\sigma_{\rm decay}$ has a median of $0.19$
+(IQR $0.11$--$0.39$; $\phi<1$ = FRED-like), consistent with the internal-shock
+expectation that the rise is set by the shorter of the injection and
+angular-spreading timescales. The fitted profile, not the raw light curve,
+defines the rise/peak/decay phase boundaries used to tag Bayesian blocks in
+\S\ref{sec:obs}, making the phase assignment reproducible and model-explicit.
 
 \subsection{Minimum Variability Timescale} \label{sec:mvt}
 
 The minimum variability timescale (MVT) is computed with the Haar
 structure-function method of \citet{Golkhou2014,Golkhou2015}, as implemented
 and validated in the \textsc{MVTfermi} framework of \citet{Bala2025}. That
-work establishes, from an extensive simulation suite, that the reliability
-of a Haar MVT measurement depends jointly on the MVT value and its
-signal-to-noise ratio ($\mathrm{SNR}_{\rm MVT}$), and provides an empirical
-\emph{MVT Validation Curve} that classifies each measurement as a robust
-detection or an upper limit. We adopt that classification scheme unchanged:
-every MVT we quote carries its validation label, and values classified as
-limits are never used as detections in correlations. Uncertainties are
-propagated with a Monte Carlo over Poisson realizations of the raw counts
-with the fitted background model subtracted. \PHt{Full-band MVT
-distribution, and energy-resolved MVT(E) in the standard sub-bands
-(8--50, 50--300, 300--900 keV), pending the batch run.}
+work establishes, from an extensive simulation suite, that the reliability of
+a Haar MVT depends jointly on the MVT value and its signal-to-noise ratio
+($\mathrm{SNR}_{\rm MVT}$), and provides an empirical \emph{MVT Validation
+Curve} that classifies each measurement as a robust detection or an upper
+limit. We adopt that classification unchanged: every MVT carries its
+validation label, and limits are never used as detections in correlations.
+The sample median MVT is $0.61$\,s (IQR $0.37$--$1.17$\,s); of the $89$
+bursts, $50$ yield a validated MVT detection and $39$ an upper limit. These
+sub-second variability timescales imply compact emission regions and set a
+lower bound on the outflow Lorentz factor through the causality argument
+$R \lesssim c\,\delta t\,\Gamma^{2}$. The values quoted here use the Haar
+point estimator; the fully Monte-Carlo canonical \textsc{MVTfermi} run
+provides the authoritative uncertainties and is reported in
+Table~\ref{tab:temporal}.
 
 \subsection{Spectral Lags} \label{sec:lags}
 
-Spectral lags between soft and hard energy bands are measured with the
-cross-correlation method \citep{Norris1996}, with the peak of the CCF
-located by a polynomial fit and its uncertainty estimated from Monte Carlo
-resampling of the light curves. A lag is accepted only when the CCF peak is
-significant against a bootstrap null distribution; below that threshold we
-report an upper bound rather than a value. \PHt{Lag distribution and
-lag--asymmetry / lag--MVT relations pending.}
+Spectral lags between a soft ($25$--$50$\,keV) and a hard ($100$--$300$\,keV)
+band are measured by cross-correlation \citep{Norris1996}, with the CCF peak
+located by a polynomial fit and its uncertainty from a Monte-Carlo resampling
+of the light curves; a lag is accepted only when the CCF peak exceeds a
+$3\sigma$ significance against the resampled null (below which the value is
+kept for diagnostics but not quoted). \PHt{Accepted-lag fraction, median
+soft-to-hard lag, and the lag--asymmetry / lag--MVT relations are being
+finalized from the current run.}
 
 Together these measurements give each burst a compact temporal fingerprint
-(duration, shape, asymmetry, MVT, lag) obtained from the same gated
-selections as the spectroscopy, so that every spectral statement in the
-following sections can be conditioned on temporal phase without any
-additional data processing.
+(duration, shape, asymmetry, MVT, lag) obtained from the same gated selections
+as the spectroscopy, so that every spectral statement in the following
+sections can be conditioned on temporal phase without any additional data
+processing.

@@ -110,3 +110,4 @@ run_antigravity_audit.sh
 notebooks/outputs/
 !notebooks/verified/
 !notebooks/verified/*.ipynb
+!results/temporal_catalog_human.ecsv
