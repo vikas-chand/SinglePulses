@@ -111,3 +111,7 @@ notebooks/outputs/
 !notebooks/verified/
 !notebooks/verified/*.ipynb
 !results/temporal_catalog_human.ecsv
+
+# ---- literature corpus: track the dedup INDEX, not the copyrighted PDFs ----
+# (37 MB of arXiv/journal PDFs — re-downloadable; keep out of the seed repo)
+Skills_training/*.pdf

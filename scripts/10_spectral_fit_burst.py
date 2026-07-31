@@ -65,7 +65,13 @@ RESULTS_DIR = os.path.join(BASE, 'results')
 PER_BURST_DIR = os.path.join(RESULTS_DIR, 'per_burst')
 
 # ---- Energy ranges ----
-NAI_RANGES = ('8.1-33', '40-900')      # K-edge masked
+# NaI: one range + a native EXCLUDE for the iodine K-edge. The old two-range
+# form ('8.1-33','40-900') LEAKED: set_active_measurements maps endpoints to
+# whole channels and keeps BOTH boundary channels, so the channel containing
+# the K-edge stayed active (Codex 3ML audit 2026-07-24, SpectrumLike.py:1196).
+# exclude= drops every channel containing 33-40 keV (native semantics).
+NAI_RANGES = ('8.1-900',)
+NAI_EXCLUDE = ('33-40',)               # iodine K-edge, native exclusion
 BGO_RANGES = ('300-40000',)
 LLE_RANGES = ('30000-100000',)         # 30 MeV - 100 MeV (LLE native band)
 EFFAREA_BOUNDS = (0.8, 1.2)
@@ -173,41 +179,13 @@ def get_canonical_bins(trigger, bb_spectral_path, single_path, approved_dets):
     return canonical_det, list(canonical['T_START']), list(canonical['T_STOP'])
 
 
-def _collapse_rsp2_to_single(rsp2_path, src_lo, src_hi, out_dir):
-    """Some GBM .rsp2 files have time-dependent matrices that only span the
-    trigger window; when the analysis background interval falls outside that
-    span, 3ML's count-weighted response build raises IntervalOfInterestNotCovered.
-    Extract the single SPECRESP MATRIX with the largest overlap with the SOURCE
-    window [src_lo, src_hi] and write it as a standalone .rsp (PRIMARY + EBOUNDS
-    + that matrix). Returns the temp .rsp path, or None on failure.
-    The static single matrix is the standard treatment for short/time-integrated
-    GBM spectra and avoids the time-weighting that needs full coverage."""
-    try:
-        with fits.open(rsp2_path) as h:
-            trigt = next((e.header['TRIGTIME'] for e in h
-                          if 'TRIGTIME' in e.header), None)
-            mats = [i for i, e in enumerate(h) if e.name == 'SPECRESP MATRIX']
-            if len(mats) <= 1:
-                return None       # genuinely single matrix; nothing to collapse
-            best, best_ov = mats[0], -1.0
-            for i in mats:
-                t0 = h[i].header.get('TSTART'); t1 = h[i].header.get('TSTOP')
-                if t0 is None or t1 is None or trigt is None:
-                    continue
-                ov = max(0.0, min(t1 - trigt, src_hi) - max(t0 - trigt, src_lo))
-                if ov > best_ov:
-                    best_ov, best = ov, i
-            sel = fits.HDUList([h[0], h['EBOUNDS'], h[best]])
-            sel[2].header['EXTVER'] = 1
-            base = os.path.basename(rsp2_path).replace('.rsp2', '')
-            # PID-unique: out_dir is the SHARED data/<trig>/, so concurrent coarse
-            # (LLE-grid) + fine (GBM-grid) fits of the same burst/detector must not
-            # write the same temp .rsp. (Codex audit MED, 2026-07-17.)
-            out = os.path.join(out_dir, f'_single_{base}_p{os.getpid()}.rsp')
-            sel.writeto(out, overwrite=True)
-        return out
-    except Exception:
-        return None
+# NOTE (native-threeML doctrine, 2026-07-26): the former _collapse_rsp2_to_single
+# fallback was DELETED. It extracted one raw SPECRESP MATRIX (no half-shifted
+# coverage, one matrix for every bin, possible zero-overlap pick) and biased 4
+# production bursts (bn100130729, bn150721242, bn210714331, bn250407659 — Codex
+# 3ML audit 2026-07-24). threeML 2.5.0 count-weights the response over the ACTIVE
+# SOURCE interval natively; if that genuinely cannot cover the source bins, the
+# honest outcome is to skip the detector, not to fit a fabricated response.
 
 
 def build_spectrumlike_per_block(trigger, det, pre, post, bin_starts, bin_stops):
@@ -224,7 +202,7 @@ def build_spectrumlike_per_block(trigger, det, pre, post, bin_starts, bin_stops)
         except Exception as exc:
             print(f'    lle: from_lat_lle failed — {exc}')
             return None
-        ranges = LLE_RANGES
+        sel_args, sel_kwargs = LLE_RANGES, {}
     else:
         tte = find_tte(trigger, det)
         rsp = find_rsp(trigger, det)
@@ -232,69 +210,65 @@ def build_spectrumlike_per_block(trigger, det, pre, post, bin_starts, bin_stops)
             return None
         tsb = TimeSeriesBuilder.from_gbm_tte(det, tte, rsp_file=rsp,
                                               verbose=False)
-        ranges = NAI_RANGES if det.startswith('n') else BGO_RANGES
+        if det.startswith('n'):
+            sel_args, sel_kwargs = NAI_RANGES, {'exclude': list(NAI_EXCLUDE)}
+        else:
+            sel_args, sel_kwargs = BGO_RANGES, {}
 
     # The polynomial background fit can raise FitFailed for one detector
     # (degenerate bkg window / sparse channel). Skip that detector rather than
     # aborting the whole burst — the joint fit proceeds on the others.
     try:
+        # Background-fit mode PINNED via native kwargs so a user-level threeML
+        # config cannot silently alter/remove the polynomial background
+        # (Codex 3ML audit 2026-07-24; auto order selection = poly_order -1).
         tsb.set_background_interval(f'{pre[0]:.3f}-{pre[1]:.3f}',
-                                    f'{post[0]:.3f}-{post[1]:.3f}')
+                                    f'{post[0]:.3f}-{post[1]:.3f}',
+                                    fit_poly=True, unbinned=False, bayes=False)
     except Exception as exc:
         print(f'    {det}: background polyfit failed — skipping detector ({exc})')
         return [None] * len(bin_starts)
     tsb.create_time_bins(start=list(bin_starts), stop=list(bin_stops),
                          method='custom')
-    _tmp_rsp = None
     try:
         speclikes_raw = tsb.to_spectrumlike(from_bins=True)
     except Exception as exc:
-        # Common cause: time-dependent .rsp2 whose matrices don't span the
-        # background interval -> IntervalOfInterestNotCovered during the
-        # count-weighted response build. Retry with a single static matrix
-        # covering the SOURCE window. Only applies to real-detector (.rsp2) paths.
-        if det != 'lle':
-            rsp = find_rsp(trigger, det)
-            src_lo, src_hi = float(min(bin_starts)), float(max(bin_stops))
-            _tmp_rsp = _collapse_rsp2_to_single(
-                rsp, src_lo, src_hi, os.path.join(DATA_DIR, trigger))
-        if _tmp_rsp is not None:
-            try:
-                tte = find_tte(trigger, det)
-                tsb = TimeSeriesBuilder.from_gbm_tte(det, tte, rsp_file=_tmp_rsp,
-                                                     verbose=False)
-                tsb.set_background_interval(f'{pre[0]:.3f}-{pre[1]:.3f}',
-                                            f'{post[0]:.3f}-{post[1]:.3f}')
-                tsb.create_time_bins(start=list(bin_starts),
-                                     stop=list(bin_stops), method='custom')
-                speclikes_raw = tsb.to_spectrumlike(from_bins=True)
-                print(f'    {det}: recovered via single-matrix .rsp '
-                      f'(rsp2 time-weighting failed)')
-            except Exception as exc2:
-                print(f'    {det}: to_spectrumlike failed (rsp2 + collapse) — {exc2}')
-                if _tmp_rsp and os.path.exists(_tmp_rsp):
-                    os.unlink(_tmp_rsp)
-                return [None] * len(bin_starts)
-        else:
-            print(f'    {det}: to_spectrumlike failed — {exc}')
-            return [None] * len(bin_starts)
-    finally:
-        if _tmp_rsp and os.path.exists(_tmp_rsp):
-            try: os.unlink(_tmp_rsp)
-            except Exception: pass
+        # NATIVE-ONLY (doctrine 2026-07-26): no RSP2-collapse retry — if the
+        # native half-shifted count-weighted response cannot cover the source
+        # bins, skip the detector honestly (PLUGIN_DETS records the absence).
+        print(f'    {det}: to_spectrumlike failed — skipping detector ({exc})')
+        return [None] * len(bin_starts)
     if not isinstance(speclikes_raw, list):
         speclikes_raw = [speclikes_raw]
-    speclikes = []
-    for k, sl in enumerate(speclikes_raw):
+
+    # Map returned plugins to requested bins by their OWN (tstart, tstop):
+    # to_spectrumlike(from_bins=True) OMITS bins whose background fit goes
+    # negative ("Something is wrong with interval ... skipping"), so positional
+    # alignment could silently hand every later block the previous block's data
+    # (Codex 3ML audit 2026-07-24). Identity-match or drop — never guess.
+    speclikes = [None] * len(bin_starts)
+    for sl in speclikes_raw:
+        t1, t2 = getattr(sl, 'tstart', None), getattr(sl, 'tstop', None)
+        slot = None
+        if t1 is not None and t2 is not None:
+            for k in range(len(bin_starts)):
+                if (speclikes[k] is None
+                        and abs(float(t1) - float(bin_starts[k])) < 5e-4
+                        and abs(float(t2) - float(bin_stops[k])) < 5e-4):
+                    slot = k
+                    break
+        if slot is None:
+            print(f'    {det}: plugin [{t1},{t2}] matches no requested bin — dropped')
+            continue
         try:
-            sl.set_active_measurements(*ranges)
-            speclikes.append(sl)
+            sl.set_active_measurements(*sel_args, **sel_kwargs)
+            speclikes[slot] = sl
         except Exception as exc:
-            print(f'    {det} block {k}: set_active_measurements failed — {exc}')
-            speclikes.append(None)
-    while len(speclikes) < len(bin_starts):
-        speclikes.append(None)
-    return speclikes[:len(bin_starts)]
+            print(f'    {det} block {slot}: set_active_measurements failed — {exc}')
+    n_missing = sum(1 for s in speclikes if s is None)
+    if n_missing:
+        print(f'    {det}: {n_missing}/{len(bin_starts)} bins have no usable plugin')
+    return speclikes
 
 
 def _clamp(val, lo, hi):
@@ -308,10 +282,10 @@ def _setup_band(seed):
     from astromodels import Band
     b = Band()
     b.alpha.bounds = (-1.9, 1.9)
-    b.xp.bounds    = (30.0, 5000.0)
+    b.xp.bounds    = (30.0, 5.0e4)
     b.beta.bounds  = (-5.0, -1.6)
     b.alpha.value = _clamp(seed.get('band_alpha', DEFAULT_PARAMS['alpha']), -1.9, 1.9)
-    b.xp.value    = _clamp(seed.get('band_Ep',    DEFAULT_PARAMS['Ep']), 30.0, 5000.0)
+    b.xp.value    = _clamp(seed.get('band_Ep',    DEFAULT_PARAMS['Ep']), 30.0, 5.0e4)
     b.beta.value  = _clamp(seed.get('band_beta',  DEFAULT_PARAMS['beta']), -5.0, -1.6)
     b.K.value     = max(1e-10, seed.get('band_K', DEFAULT_PARAMS['K_band']))
     return b
@@ -341,11 +315,11 @@ def _setup_sbpl(seed):
     s = SmoothlyBrokenPowerLaw()
     s.K.bounds = (1e-10, 1e4)
     s.alpha.bounds = (-2.5, 1.5)
-    s.break_energy.bounds = (10.0, 5000.0)
+    s.break_energy.bounds = (10.0, 5.0e4)
     s.beta.bounds = (-5.0, -1.5)
     s.K.value = max(1e-10, seed.get('sbpl_K', 0.05))
     s.alpha.value = _clamp(seed.get('sbpl_alpha', DEFAULT_PARAMS['alpha']), -2.5, 1.5)
-    s.break_energy.value = _clamp(seed.get('sbpl_break', 300.0), 10.0, 5000.0)
+    s.break_energy.value = _clamp(seed.get('sbpl_break', 300.0), 10.0, 5.0e4)
     s.beta.value = _clamp(seed.get('sbpl_beta', DEFAULT_PARAMS['beta']), -5.0, -1.5)
     s.break_scale.fix = True
     return s
@@ -355,15 +329,15 @@ def _setup_dsbpl(seed):
     d = DoubleSmoothlyBrokenPowerlaw()
     d.K.bounds = (1e-10, 1e4)
     d.alpha1.bounds = (-2.5, 2.5)
-    d.xb.bounds = (10.0, 900.0)
+    d.xb.bounds = (10.0, 5000.0)
     d.alpha2.bounds = (-3.0, 0.5)
-    d.xp.bounds = (30.0, 5000.0)
+    d.xp.bounds = (30.0, 5.0e4)
     d.beta.bounds = (-5.0, -1.5)
     d.K.value = max(1e-10, seed.get('dsbpl_K', 0.05))
     d.alpha1.value = _clamp(seed.get('dsbpl_alpha1', -0.66), -2.5, 2.5)
-    d.xb.value = _clamp(seed.get('dsbpl_xb', 50.0), 10.0, 900.0)
+    d.xb.value = _clamp(seed.get('dsbpl_xb', 50.0), 10.0, 5000.0)
     d.alpha2.value = _clamp(seed.get('dsbpl_alpha2', -1.5), -3.0, 0.5)
-    d.xp.value = _clamp(seed.get('dsbpl_xp', DEFAULT_PARAMS['Ep']), 30.0, 5000.0)
+    d.xp.value = _clamp(seed.get('dsbpl_xp', DEFAULT_PARAMS['Ep']), 30.0, 5.0e4)
     d.beta.value = _clamp(seed.get('dsbpl_beta', DEFAULT_PARAMS['beta']), -5.0, -1.5)
     d.n1.fix = True
     d.n2.fix = True
@@ -434,8 +408,17 @@ def _setup_cutoff_mult(seed):
     c.index = 0.0; c.index.fix = True
     c.K = 1.0;     c.K.fix = True
     c.piv = 1.0;   c.piv.fix = True
-    c.xc.bounds = (5e4, 1e8)
-    c.xc.value = _clamp(seed.get('cut_xc', 5e5), 5e4, 1e8)
+    # xc range = 10 MeV - 100 GeV. Floor 10 MeV (not 50 MeV): a genuine high-energy
+    # cutoff can sit in the tens-of-MeV regime (Wang+ 2017 flag cuts at "tens of MeV"
+    # in GRB 160625B), so we do NOT impose a >=100 MeV prior. The cutoff-continuum
+    # degeneracy (a spurious xc->low minimum where exp(-E/xc) mimics low-band
+    # curvature with a hardened continuum; verified on 160625B coarse bins where a
+    # free single-shot fit railed to 50 MeV while the LAT term ALONE preferred
+    # xc~200-400 MeV, TS~90, per-plugin decomposition 2026-07-22) is instead broken
+    # by the cutoff multi-start in fit_all_models (seeds xc across the band) plus the
+    # railed-parameter validity gate.
+    c.xc.bounds = (1e4, 1e8)
+    c.xc.value = _clamp(seed.get('cut_xc', 5e5), 1e4, 1e8)
     return c
 
 
@@ -785,6 +768,11 @@ def fit_one_model(data_list, spec, seed=None):
             'status': 'OK',
             'neg2logL': n2ll,
             'n_params': spec['n_params'],
+            # TRUE free-parameter count after JL construction: includes the
+            # freed EAC cross-norms and any LAT nuisance parameters (Codex 3ML
+            # audit 2026-07-24). Constant across models in the same row, so
+            # ΔAIC is unchanged — but absolute AIC/BIC are now honest.
+            'n_params_total': int(len(model.free_parameters)),
             'params': params,
             'minos_ok': (minos_table is not None),
             'epk_curve': epk_curve,
@@ -802,9 +790,18 @@ def model_columns(spec, result, n_data):
     out = {f'{p}_STATUS': result.get('status', 'NA'),
            f'{p}_N2LL':   result.get('neg2logL', float('nan')),
            f'{p}_MINOS_OK': bool(result.get('minos_ok', False)),
+           # honest labels (Codex 3ML audit): MINOS_OK only means get_errors
+           # returned a table (per-side validity flags are not propagated by
+           # threeML); the symmetric 'error' column is covariance-MC equal-tail,
+           # NOT a direct Hessian sigma. AIC here is RAW AIC (-2logL + 2k),
+           # not threeML's AICc.
+           f'{p}_ERROR_METHOD': ('MINOS' if result.get('minos_ok', False)
+                                 else 'COVARIANCE_MC'),
            f'{p}_VALID': bool(result.get('physical', False))}
     if result.get('status') == 'OK':
-        n2ll = result['neg2logL']; nk = result['n_params']
+        n2ll = result['neg2logL']
+        # k = true free-parameter count incl. EAC/LAT nuisances when available
+        nk = result.get('n_params_total') or result['n_params']
         out[f'{p}_AIC'] = n2ll + 2 * nk
         out[f'{p}_BIC'] = n2ll + nk * np.log(max(n_data, 1))
     else:
@@ -844,54 +841,54 @@ def capture_seed(spec, result):
 # Parameter bounds (must mirror the _setup_* functions). Used to detect
 # railed fits and to enforce physical break ordering for model selection.
 PARAM_BOUNDS = {
-    'BAND':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6)},
+    'BAND':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6)},
     'CPL':    {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4)},
-    'SBPL':   {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5)},
-    'DSBPL':  {'ALPHA1': (-2.5, 2.5), 'XB': (10.0, 900.0), 'ALPHA2': (-3.0, 0.5),
-               'XP': (30.0, 5000.0), 'BETA': (-5.0, -1.5)},
-    'BANDBB': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+    'SBPL':   {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5)},
+    'DSBPL':  {'ALPHA1': (-2.5, 2.5), 'XB': (10.0, 5000.0), 'ALPHA2': (-3.0, 0.5),
+               'XP': (30.0, 5.0e4), 'BETA': (-5.0, -1.5)},
+    'BANDBB': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
                'KT': (1.0, 200.0)},
     'CPLBB':  {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0)},
     # ---- shape census (railing on the freed smoothness = unconstrained) ----
-    'SBPLF':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+    'SBPLF':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
                'SCALE': (0.01, 2.0)},
-    'DSBPLF': {'ALPHA1': (-2.5, 2.5), 'XB': (10.0, 900.0), 'ALPHA2': (-3.0, 0.5),
-               'XP': (30.0, 5000.0), 'BETA': (-5.0, -1.5),
+    'DSBPLF': {'ALPHA1': (-2.5, 2.5), 'XB': (10.0, 5000.0), 'ALPHA2': (-3.0, 0.5),
+               'XP': (30.0, 5.0e4), 'BETA': (-5.0, -1.5),
                'N1': (0.5, 10.0), 'N2': (0.5, 10.0)},
     # ---- high-E second components (LATBright s03m port) ----
-    'BANDPL':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+    'BANDPL':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
                  'PL_INDEX': (-4.0, -1.0)},
-    'BANDCPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+    'BANDCPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
                  'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
     'CPLPL':    {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'PL_INDEX': (-4.0, -1.0)},
     'CPLCPL':   {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4),
                  'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
     'BANDRCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 2000.0), 'BETA': (-5.0, -1.6),
                  'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
-    'BANDCUT':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
-                 'EC': (5e4, 1e8)},
-    'SBPLCUT':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
-                 'EC': (5e4, 1e8)},
+    'BANDCUT':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
+                 'EC': (1e4, 1e8)},     # 10 MeV - 100 GeV; mirrors _setup_cutoff_mult
+    'SBPLCUT':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
+                 'EC': (1e4, 1e8)},     # 10 MeV - 100 GeV; mirrors _setup_cutoff_mult
     # Guiriec 3-component family: continuum shape + BB temperature + extra-
     # component index all gated against railing (same rails as their
     # 2-component parents).
-    'BANDBBPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+    'BANDBBPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
                   'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
-    'BANDBBCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5000.0), 'BETA': (-5.0, -1.6),
+    'BANDBBCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
                   'KT': (1.0, 200.0), 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
     'CPLBBPL':   {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0),
                   'PL_INDEX': (-4.0, -1.0)},
     'CPLBBCPL':  {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0),
                   'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
-    'SBPLBB':    {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+    'SBPLBB':    {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
                   'KT': (1.0, 200.0)},
-    'SBPLBBPL':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+    'SBPLBBPL':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
                   'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
-    'SBPLBBCPL': {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+    'SBPLBBCPL': {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
                   'KT': (1.0, 200.0), 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
-    'SBPLPL':    {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+    'SBPLPL':    {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
                   'PL_INDEX': (-4.0, -1.0)},
-    'SBPLCPL':   {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5000.0), 'BETA': (-5.0, -1.5),
+    'SBPLCPL':   {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
                   'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
 }
 
@@ -942,6 +939,25 @@ def _fit_is_physical(spec, result, frac=0.001):
                 and xb['val'] >= xp['val']):
             return False
     return True
+
+
+def _keep_best(alt, best):
+    """Multistart keep-best with VALIDITY preference (L8, bn160625945 blk11):
+    a degenerate-rail minimum can be DEEPER than the physical one, so pure
+    lowest-n2logL keeps the railed fit and the validity gate then discards a
+    real detection. Rule: a VALID candidate replaces an INVALID incumbent
+    unless it is drastically worse (>10 in n2logL); an INVALID candidate never
+    replaces a VALID incumbent; same-validity compares n2logL as before."""
+    if alt.get('status') != 'OK' or not np.isfinite(alt.get('neg2logL', np.nan)):
+        return False
+    if best.get('status') != 'OK' or not np.isfinite(best.get('neg2logL', np.nan)):
+        return True
+    va, vb = bool(alt.get('physical')), bool(best.get('physical'))
+    if va and not vb:
+        return alt['neg2logL'] < best['neg2logL'] + 10.0
+    if vb and not va:
+        return False
+    return alt['neg2logL'] < best['neg2logL'] - 1e-3
 
 
 def select_best(per_spec_results, n_data):
@@ -1006,24 +1022,42 @@ def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
     else:
         _nai = [d for d in plugin_dets if str(d).startswith('n')]
         fixed_det = _nai[0] if _nai else (plugin_dets[0] if plugin_dets else ref_det)
+    # EAC: native SpectrumLike-only capability. Type-check instead of a blanket
+    # try/except — FermiLATLike has no such method (skip it explicitly), and a
+    # GBM/LLE activation failure must be LOUD, never a silently-fixed constant
+    # (Codex 3ML audit 2026-07-24). EAC_DETS/EAC_SKIPPED are stamped per row.
+    from threeML import SpectrumLike as _SpectrumLike
+    _eac_on, _eac_skip = [], []
     for sl, det in zip(plugins, plugin_dets):
-        if det != fixed_det:
-            try:
-                sl.use_effective_area_correction(*EFFAREA_BOUNDS)
-            except Exception:
-                pass
+        if det == fixed_det:
+            continue
+        if not isinstance(sl, _SpectrumLike):
+            _eac_skip.append(det)              # e.g. FermiLATLike — by design
+            continue
+        try:
+            sl.use_effective_area_correction(*EFFAREA_BOUNDS)
+            _eac_on.append(det)
+        except Exception as exc:
+            print(f'    !! EAC activation FAILED for {det} — its cross-norm is '
+                  f'FIXED at 1 this fit ({exc})')
+            _eac_skip.append(det + '!')
     dl = DataList(*plugins)
 
-    n_data = sum(len(np.atleast_1d(getattr(pl, 'observed_counts', [0])))
-                 for pl in plugins) or 1
-    # FermiLATLike has no observed_counts; approximate its BIC contribution as
-    # ~100 data points (LATBright s03m precedent — BIC is a cross-check only).
-    n_data += 100 * sum(1 for pl in plugins
-                        if type(pl).__name__ == 'FermiLATLike')
+    # N for BIC: native per-plugin count — ACTIVE channels for SpectrumLike and
+    # the exact event count for FermiLATLike (Codex 3ML audit 2026-07-24; the
+    # old code used unmasked channel totals + an invented 100 for LAT).
+    n_data = 0
+    for pl in plugins:
+        try:
+            n_data += int(pl.get_number_of_data_points())
+        except Exception:
+            n_data += len(np.atleast_1d(getattr(pl, 'observed_counts', [0])))
+    n_data = n_data or 1
     seed_in = seed_in or {}
 
     per_spec = []
-    flat = {}
+    flat = {'EAC_DETS': ','.join(_eac_on) if _eac_on else '',
+            'EAC_SKIPPED': ','.join(_eac_skip) if _eac_skip else ''}
     seed_out = {}
     for spec in ACTIVE_SPECS:
         if spec['name'] == 'DSBPL' and not include_dsbpl:
@@ -1102,10 +1136,15 @@ def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
             br_s = sp.get('break_energy', {}).get('val')
             b_s = sp.get('beta', {}).get('val')
             k_s = sp.get('K', {}).get('val')
-            DSBPL_RESTART_SEEDS = [{}]                    # pure defaults
+            # L8 (bn160625945 blk11): ALWAYS include the plain-default seed AND
+            # an ordered-physical seed (xb << xp) — parent/T_INT-derived seeds
+            # alone let a railed minimum hide a real two-break.
+            DSBPL_RESTART_SEEDS = [{},                    # pure defaults
+                {'dsbpl_alpha1': -1.0, 'dsbpl_xb': 100.0, 'dsbpl_alpha2': -1.5,
+                 'dsbpl_xp': 1000.0, 'dsbpl_beta': -2.6, 'dsbpl_K': 1.0}]
             if all(v is not None and np.isfinite(v) for v in (a_s, br_s, b_s, k_s)):
                 for frac in (0.2, 0.4, 0.6):             # trial low break BELOW the SBPL break
-                    xb_try = float(np.clip(br_s * frac, 10.0, 880.0))
+                    xb_try = float(np.clip(br_s * frac, 10.0, 4900.0))
                     if xb_try < br_s:
                         DSBPL_RESTART_SEEDS.append({
                             'dsbpl_alpha1': a_s, 'dsbpl_xb': xb_try,
@@ -1116,10 +1155,7 @@ def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
                 s = extra if extra == {} else {**seed_in, **extra}
                 alt = fit_one_model(dl, dsbpl_spec, seed=s)
                 alt['physical'] = _fit_is_physical(dsbpl_spec, alt)
-                if (alt.get('status') == 'OK' and np.isfinite(alt['neg2logL'])
-                        and (best_d.get('status') != 'OK'
-                             or not np.isfinite(best_d['neg2logL'])
-                             or alt['neg2logL'] < best_d['neg2logL'] - 1e-3)):
+                if _keep_best(alt, best_d):        # validity-preferring (L8)
                     best_d = alt
             if best_d is not dsbpl_res:
                 print(f'    [DSBPL multistart] n2logL '
@@ -1127,6 +1163,42 @@ def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
                 per_spec[idxs['DSBPL']] = (dsbpl_spec, best_d)
                 flat.update(model_columns(dsbpl_spec, best_d, n_data))
                 seed_out.update(capture_seed(dsbpl_spec, best_d))
+
+    # Cutoff-xc multi-start. The multiplicative high-E cutoff (BandxCut, SBPLxCut)
+    # is degenerate with the continuum shape: in a free joint fit the single-shot
+    # minuit solution can settle at a spurious xc->floor minimum (exp(-E/xc) acting
+    # as a low-band curvature knob with a hardened continuum) that BEATS the
+    # no-cutoff parent -- so the generic nested-parent pass below (which fires only
+    # when the child is WORSE than a parent) never re-explores it. The xc floor is
+    # now 100 MeV (LAT band, see _setup_cutoff_mult); this pass additionally seeds
+    # xc ACROSS the band and keeps the lowest n2logL, so the fit lands on the
+    # genuine high-energy cutoff the LAT term demands (verified: GRB 160625B coarse
+    # bins, LAT term alone prefers xc~200-400 MeV, TS~90; per-plugin decomposition
+    # 2026-07-22). Keep-best -> never worsens a fit.
+    CUT_RESTART_SEEDS = [{},                          # default seed (xc=500 MeV)
+                         {'cut_xc': 1.5e5},           # 150 MeV
+                         {'cut_xc': 3.0e5},           # 300 MeV
+                         {'cut_xc': 7.0e5},           # 700 MeV
+                         {'cut_xc': 2.0e6}]           # 2 GeV
+    idxs = {s['name']: i for i, (s, _) in enumerate(per_spec)}
+    for child_name in ('BandxCut', 'SBPLxCut'):
+        if child_name not in idxs:
+            continue
+        child_spec, child_res = per_spec[idxs[child_name]]
+        best_c = child_res
+        for extra in CUT_RESTART_SEEDS:
+            s = extra if extra == {} else {**seed_in, **extra}
+            alt = fit_one_model(dl, child_spec, seed=s)
+            alt['physical'] = _fit_is_physical(child_spec, alt)
+            if _keep_best(alt, best_c):            # validity-preferring (L8)
+                best_c = alt
+        if best_c is not child_res:
+            print(f'    [cutoff multistart] {child_name} n2logL '
+                  f'{child_res.get("neg2logL", float("nan")):.1f} '
+                  f'-> {best_c["neg2logL"]:.1f}')
+            per_spec[idxs[child_name]] = (child_spec, best_c)
+            flat.update(model_columns(child_spec, best_c, n_data))
+            seed_out.update(capture_seed(child_spec, best_c))
 
     # Generic NESTED-PARENT multistart (Codex ultra audit CRITICAL #4): every
     # composite whose n2logL is WORSE than a nested parent's is at a local
@@ -1175,6 +1247,33 @@ def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
             per_spec[idxs[child_name]] = (child_spec, best)
             flat.update(model_columns(child_spec, best, n_data))
             seed_out.update(capture_seed(child_spec, best))
+
+    # L9 BOUND_CAPPED diagnosis (bn110721200 blk0): when >=2 peaked models rail
+    # their peak parameter at the SAME upper bound, the bin is bound-capped —
+    # a false INCONCLUSIVE where the validity gate silently promotes the next
+    # family. Stamp it (and shout) instead of letting that happen quietly.
+    _peak_cols = ('EP', 'EBREAK', 'XP')
+    _rail_at = {}
+    for sp_, r_ in per_spec:
+        if r_.get('status') != 'OK':
+            continue
+        pb_ = PARAM_BOUNDS.get(sp_['prefix'], {})
+        for col_ in _peak_cols:
+            if col_ not in pb_:
+                continue
+            short_ = sp_['pmap'].get(col_)
+            d_ = r_.get('params', {}).get(short_) if short_ else None
+            if d_ is None or not np.isfinite(d_.get('val', np.nan)):
+                continue
+            hi_ = pb_[col_][1]
+            if d_['val'] >= 0.98 * hi_:
+                _rail_at.setdefault(hi_, []).append(sp_['name'])
+    _bc = [f"{hi_:g}:{'+'.join(sorted(set(nm_)))}"
+           for hi_, nm_ in _rail_at.items() if len(set(nm_)) >= 2]
+    flat['BOUND_CAPPED'] = ';'.join(_bc)
+    if _bc:
+        print(f'    !! BOUND_CAPPED {_bc} — peaked models rail at a shared '
+              f'bound; widen and refit, do not trust the surviving family')
 
     flat.update(select_best(per_spec, n_data))
     flat['_n_data'] = n_data

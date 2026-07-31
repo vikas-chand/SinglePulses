@@ -185,6 +185,65 @@ def class_gated_winner(row, cols, daic=DAIC_GATE):
     return 'INCONCLUSIVE', bp, gap, members_within
 
 
+def burst_admission(table, daic=DAIC_GATE):
+    """BURST-LEVEL component admission (adopted by Vikas 2026-07-29; modeled on
+    Burgess+2014 ApJ 784:17 §3.4, whose BB entered a burst's analysis only if
+    it improved C-stat by >=10 in at least one bin — then was fit in EVERY bin).
+
+    A composite is ADMITTED for this burst when >= 1 bin has it as a
+    chain-gated survivor: VALID + STATUS OK + finite AIC + beats EVERY nested
+    parent by >= daic (survivors() enforces exactly this). Admission does NOT
+    require winning the bin — improvement over the parents suffices, per
+    Burgess. Purpose: evolution/correlation studies (kT(t), Ep–kT, EC(t)) use
+    the admitted-burst TRACKS across all bins instead of re-selecting bin by
+    bin — mitigating the per-bin detectability selection that can imprint
+    spurious parameter correlations. The strict per-bin census is unchanged.
+
+    Returns {composite_prefix: n_bins_passing} for admitted composites."""
+    cols = table.colnames
+    counts = {}
+    for r in table:
+        try:
+            blk = int(r['BLOCK'])
+        except Exception:
+            continue
+        if blk < 0:
+            continue                              # T_INT row
+        for p in survivors(r, cols, daic):
+            if p in PARENTS:                      # composites only
+                counts[p] = counts.get(p, 0) + 1
+    return counts
+
+
+def component_track(table, prefix, param_cols, daic=DAIC_GATE):
+    """Per-block parameter track for an (admitted) component: one entry per
+    science bin with the requested parameter values/errors and a CONSTRAINED
+    flag (VALID + STATUS OK + finite AIC in that bin — i.e. non-railed).
+    Unconstrained bins are RETAINED, flagged False — the Burgess construction
+    tracks the component everywhere and lets the flag carry the honesty.
+
+    param_cols: iterable of column suffixes, e.g. ('KT', 'EP').
+    Returns list of dicts: {block, t_mid, constrained, <col>: (val, err)}."""
+    cols = table.colnames
+    out = []
+    for r in table:
+        try:
+            blk = int(r['BLOCK'])
+        except Exception:
+            continue
+        if blk < 0:
+            continue
+        entry = {'block': blk,
+                 't_mid': float(r['T_MID']) if 'T_MID' in cols else float('nan'),
+                 'constrained': is_valid(r, prefix, cols)}
+        for c in param_cols:
+            v = _val(r, f'{prefix}_{c}')
+            e = _val(r, f'{prefix}_{c}_ERR')
+            entry[c] = (v, e)
+        out.append(entry)
+    return out
+
+
 def census(tables, daic=DAIC_GATE):
     """Population census over astropy Tables of spectral_fits rows.
 
