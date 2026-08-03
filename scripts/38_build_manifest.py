@@ -36,8 +36,13 @@ for trig in sorted(spd):
     else:  # no production JSON yet: fall back to the background-table detectors
         nai = [str(r["DETECTOR"]) for r in bb if str(r["DETECTOR"]).startswith("n")]
         bgo = [str(r["DETECTOR"]) for r in bb if str(r["DETECTOR"]).startswith("b")]
-    # source (analysis) interval = the Bayesian-block span
-    bf = os.path.join(ROOT, "results", f"clean_blocks/bb_blocks_spectral_{trig}.ecsv")
+    # source (analysis) interval = the Bayesian-block span.
+    # BLOCKS_ROOT mirrors FIT_ROOT above: the manifest MUST read the same block set the fits
+    # were built on, or it reports block spans/nbins from a different (usually stale) run.
+    # Default stays results/clean_blocks (scripts/27's own output) for backward compatibility;
+    # set BLOCKS_ROOT=results/clean_blocks_human_final when FIT_ROOT points at the human arm.
+    bf = os.path.join(os.environ.get("BLOCKS_ROOT", os.path.join(ROOT, "results/clean_blocks")),
+                      f"bb_blocks_spectral_{trig}.ecsv")
     src_t1 = src_t2 = nbins = None
     if os.path.exists(bf):
         t = Table.read(bf, format="ascii.ecsv")

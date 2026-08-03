@@ -42,7 +42,12 @@ CAT = CAT[CAT["BLOCK"] >= 0]
 BKG = Table.read(f"{ROOT}/results/background_intervals_clean.ecsv", format="ascii.ecsv")
 
 def get_block_edges(trigger, block):
-    f = f"{ROOT}/results/clean_blocks/bb_blocks_spectral_{trigger}.ecsv"
+    # BLOCKS_ROOT: read the SAME block set the plotted fits came from (see scripts/38).
+    # Default = results/clean_blocks (scripts/27 output); set BLOCKS_ROOT=results/
+    # clean_blocks_human_final for the human-reviewed arm, or the block indices below
+    # silently address a different run's blocks.
+    f = os.path.join(os.environ.get("BLOCKS_ROOT", f"{ROOT}/results/clean_blocks"),
+                     f"bb_blocks_spectral_{trigger}.ecsv")
     t = Table.read(f, format="ascii.ecsv")
     cols = t.colnames
     lo = [c for c in cols if "START" in c.upper() or c.lower() in ("tstart","t_start")][0]
