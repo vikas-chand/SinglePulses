@@ -160,8 +160,20 @@ def load_ctx(trig):
     bk = bk[bk["TRIGGER_NAME"] == trig]
     appr = {str(r["DETECTOR"]).strip(): ((float(r["BKG_NEG_START"]), float(r["BKG_NEG_STOP"])),
             (float(r["BKG_POS_START"]), float(r["BKG_POS_STOP"]))) for r in bk}
-    t = Table.read(os.path.join(ROOT, "results", "clean_blocks", "bb_blocks_spectral_%s.ecsv" % trig), format="ascii.ecsv")
-    return appr, [float(x) for x in t["T_START"]], [float(x) for x in t["T_STOP"]], [float(x) for x in t["SIGNIFICANCE"]]
+    # BLOCKS_ROOT: read the SAME block set the plotted fits came from (see scripts/34, /38).
+    # Default = results/clean_blocks (scripts/27 output); set BLOCKS_ROOT=results/
+    # clean_blocks_human_final for the human-reviewed arm, or the panels are drawn on a
+    # DIFFERENT run's bins than the fits they display.
+    blocks_root = os.environ.get("BLOCKS_ROOT", os.path.join(ROOT, "results", "clean_blocks"))
+    t = Table.read(os.path.join(blocks_root, "bb_blocks_spectral_%s.ecsv" % trig), format="ascii.ecsv")
+    # de-duplicate per-detector rows -> unique (T_START, T_STOP) bins, order preserved
+    seen, ts, te, sg = set(), [], [], []
+    for r in t:
+        k = (round(float(r["T_START"]), 4), round(float(r["T_STOP"]), 4))
+        if k in seen:
+            continue
+        seen.add(k); ts.append(k[0]); te.append(k[1]); sg.append(float(r["SIGNIFICANCE"]))
+    return appr, ts, te, sg
 
 def build_plugins(trig, dets, ref, t1, t2, appr):
     plugins, names = [], []

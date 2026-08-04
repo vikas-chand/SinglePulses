@@ -566,3 +566,80 @@ test, on a population that (uniquely) has redshifts at low luminosity — the re
 curvature-vs-cooling discriminant has never been tested.
 **Links:** #37 (method + curvature test), #40 (EP as the faint-end energy population —
 O'Connor+2025 `2025ApJ...993L..37O`), idea-bank #2 (FXT+EP, Partha) & #20 (blind FXT search).
+
+───────────────────────────────────────────────────────────────────
+## #42 — TWO-ARM pulse/shape physics: Gowri (photosphere) vs Rahaman-Granot-Beniamini (FS+RS internal shocks)  🔬
+*(Vikas, 2026-08-03: "this is their method; so yes we can adopt that exactly and reproduce
+their results on single pulse GRBs; on the other hand we will ourselves be using
+Rahaman, Granot, Beniamini work and see how is it.")*
+
+**⚠ THIS IS NOT A SIDE PROJECT — RGB2024 speaks to the CORE Two_Breaks question.**
+
+### ARM A — reproduce Gowri+2025 EXACTLY on our single-pulse sample
+**Gowri, Pe'er, Ryde & Dereli-Bégué 2025, ApJ 991, 230** (`2025ApJ...991..230G`,
+arXiv:2409.17860). Their protocol is now IMPLEMENTED VERBATIM in the handbook
+(`grb_pipeline/analysis/temporal.py`, 2026-08-03):
+- two-sigmoid pulse `I(t) = (A/4)[1−tanh((t−r_r)/s_r)][1+tanh((t−r_l)/s_l)]`, **φ = s_l/s_r**;
+- **`r_l ≤ r_r` enforced exactly** via reparameterisation `r_r = r_l + dr`, `dr ≥ 0`
+  (⚠ the circulated summary said `r_l ≥ r_r` — INVERTED; that would collapse the pulse to ~0.
+  Paper §2.2 verbatim: *"we always require rl ≤ rr"*);
+- **≤300 bins** before curve_fit (paper §2.2); **r² = 1 − RSS/TSS**, keep r² > 0.7 (§2.1),
+  reported as a flag not a hard reject;
+- φ classes from their Fig 2: **<0.3 FRED-like | 0.3–1 mixed | >1 symmetric-like**.
+**Their physics claim to test:** pulses get more asymmetric AND spectrally softer with pulse
+number ⇒ a transition from **photospheric** (symmetric-like + hard) to non-thermal emission
+above the photosphere; implies **low Γ ~ few tens** (τ ~ R/Γ²c), colliding with canonical Γ~100s.
+**Our angle:** Gowri's trend is defined over MULTI-pulse bursts (φ vs pulse-number, ≥2 pulses).
+**Our sample is single-pulse** — so we cannot reproduce the ordinal trend directly; what we CAN
+do is (a) reproduce the φ distribution (their 26% symmetric / 51% FRED / 23% mixed) on clean
+single pulses, and (b) test α_max vs φ, α_max vs duration, φ vs duration per-pulse. **State
+that limitation up front — do not silently re-map their pulse-number axis onto our sample.**
+
+### ARM B — our own: Rahaman, Granot & Beniamini 2024, MNRAS 528, L45
+**`2024MNRAS.528L..45R`, arXiv:2308.00403**, *"Prompt gamma-ray burst emission from internal
+shocks — new insights"* (⚠ author is **Rahaman**, S. k. Minhajur — not "Rahman").
+Each shell collision makes a **shock PAIR**: a forward shock (FS) into the slower leading shell
+and a **stronger reverse shock (RS)** into the faster trailing shell. Optically-thin synchrotron
+from **both** reproduces pulse shapes, the νFν peak-flux/peak-energy evolution, and the spectrum.
+
+**WHY THIS IS THE CORE OF OUR PROJECT — it predicts BOTH shapes our census hunts:**
+> abstract: *"it can account for two features commonly observed in GRB spectra: (i) a
+> sub-dominant low-energy spectral component (often interpreted as 'photospheric'-like), or
+> (ii) a **doubly-broken power-law** spectrum with the low-energy spectral slope approaching the
+> slow cooling limit. Both features can be obtained while maintaining high overall radiative
+> efficiency **without any fine tuning**."*
+> §4: *"the low frequency bump is due to FS while the high energy emission is due to RS. While
+> observationally, the low-energy bump is typically interpreted to be of photospheric origin,
+> **our model suggests a weaker FS as a natural alternative candidate**."*
+⇒ **Our `+BB` winners (Band+BB, CPL+BB, SBPL+BB) may be a weaker FORWARD SHOCK, not a
+photosphere.** ⇒ **Our `DSBPL`/two-break winners are exactly their "doubly-broken power law".**
+The project name is *Two_Breaks*; RGB2024 is a one-mechanism physical origin for the two-break
+shape AND for the low-energy excess — from the SAME collision, no fine tuning, no photosphere.
+
+**THE TWO ARMS GENUINELY DISAGREE — that is the point:**
+| observable | Gowri+2025 reads it as | RGB2024 reads it as |
+|---|---|---|
+| low-E excess (`+BB`) | photospheric component | **weaker FS** synchrotron bump |
+| symmetric + hard early pulse | photosphere, low Γ (~tens) | FS/RS hydrodynamics, no photosphere needed |
+| two-break spectrum | (not addressed) | **FS+RS doubly-broken PL**, low-E slope → slow-cooling limit |
+| pulse-shape change with frequency | radial transition of dissipation site | hydrodynamic: *"accounts for the change of pulse shape at a fixed frequency"* |
+**Do not inherit one side.** The census is empirical (paper theme 2026-07-17: hunt ALL shapes, no
+model preference); ARM A and ARM B are two physical readings applied AFTER the shapes are measured.
+
+### Concrete first tests on our data
+1. **Every `+BB` bin we have** (burst #3 blk3: kT=44.8 keV, LRT=7.7): does the FS interpretation
+   fit as well as a blackbody? RGB predicts a synchrotron BUMP, not a Planck function — that is
+   a **shape-level discriminant** we can fit (add an FS+RS-motivated component to the menu).
+2. **Every `DSBPL` winner** in the census: is the low-energy slope consistent with the
+   **slow-cooling limit** RGB predicts? That is a falsifiable number, not a narrative.
+3. **Pulse shape vs frequency** (RGB: shape changes with energy band at fixed burst): measure
+   φ and the KRL slopes **per energy band** on our single pulses — RGB predicts a specific
+   change; Gowri's φ is measured in one band only.
+4. Γ constraints (afterglow onset / MVT / opacity) to referee Gowri's low-Γ requirement.
+
+**Links:** the empirical census IS the input to both arms (`results/clean_per_burst_*`);
+`GRB_InternalShocks` (RA-1) — RGB2024 is that project's theory backbone; idea-bank **#9**
+(synchrotron modeling algorithm) and **#17** (Gowri is a collaborator there);
+SinglePulse_Temporal correlation #2 (KRL d / φ → engine); #39/#30 Hakkila lineage — Gowri's
+26% symmetric population directly revises Hakkila's universal-FRED claim.
+**Both PDFs in `Skills_training/` and indexed (read=N).**

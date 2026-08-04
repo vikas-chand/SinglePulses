@@ -44,7 +44,7 @@ BOUND_CAPPED tracing to a window, a residual anomaly pointing at background).
 ## The step ledger (each step = its skill file; ✎ = to be created on first use)
 | # | step | what the pipeline does | skill file |
 |---|---|---|---|
-| 0 | Identity & GCN intelligence | resolve burst identity; fetch+read GCN circulars; extract position, T90, **redshift** (with circular as source), instrument notes. **Metadata only — the papers' SPECTRAL/TEMPORAL results stay SEALED until after our own fit (blind-first rule).** | ✎ `GCNIntelligence.md` (seed from LATBright `gcn_intelligence.md`) |
+| 0 | Identity & GCN intelligence | resolve burst identity; fetch+read GCN circulars; extract position, T90, **redshift** (with circular as source), instrument notes, **and the published spectral/temporal values** — harvest once, file under "PUBLISHED VALUES (for the P3 diff)". Blindness lives in the FIT, not in what Step 0 may read. | ✎ `GCNIntelligence.md` (seed from LATBright `gcn_intelligence.md`) |
 | 1 | Data acquisition & inventory | TTE/CSPEC/RSP2/POSHIST (+LLE triplet, +LAT FT1/FT2) with versions; manifest; **response-coverage check vs source window** (the bn100130729 lesson) | ✎ `DataInventory.md` |
 | 2 | Detector selection | geometry/angles, occultation, BGO companion rule | `detector_selection.md` (exists) |
 | 3 | Background | pre/post windows hugging the burst; polyfit order; residual QC | `background_selection.md` (exists) |
@@ -67,16 +67,30 @@ BOUND_CAPPED tracing to a window, a residual anomaly pointing at background).
   quoted from walkthrough-era outputs.
 
 ## Rules of the campaign
-- **Blind-first ORDERING (Vikas, 2026-07-31) — the non-negotiable order:** we
-  ANALYSE first, then compare to published, then diagnose the mismatch, then
-  *attribute* it (were WE wrong or were THEY wrong), then write the skill. Step 0
-  may read only IDENTITY / observational metadata needed to RUN the pipeline —
-  name, position, detectors, redshift, a T90 claim. The papers' **spectral /
-  temporal RESULTS** (Ep, α, β, model preference, lag, MVT, break energies) stay
-  **SEALED** until our own number exists (SpectralFitting Phase-0 freeze). Reading
-  a paper's Ep-evolution before our fit contaminates the *interpretation* even when
-  the numbers are engine-produced (the bn081125496 "saw Yu first" caveat) — so the
-  literature DIFF is step 4, always after step 1 RUN, never before.
+- **Blind-first ORDERING (Vikas, 2026-07-31; CLARIFIED 2026-08-03) — the
+  non-negotiable order:** we ANALYSE first, then compare to published, then diagnose
+  the mismatch, then *attribute* it (were WE wrong or were THEY wrong), then write
+  the skill.
+  **What "blind" governs is the ANALYSIS, not what the agent is allowed to read.**
+  Vikas, 2026-08-03: *"you can of course take them, only that when you do spectral
+  analysis start blindly."* So:
+  - **Step 0 MAY collect everything**, including the published spectral/temporal
+    RESULTS (Ep, α, β, model preference, T90, lag, fluence). They are needed for the
+    P1/P3 diff anyway, and harvesting them twice is waste. Record them in the dossier
+    under a clearly-labelled **PUBLISHED VALUES (for the P3 diff)** heading.
+  - **The FIT starts blind and stays un-tuned.** Never seed a parameter, restrict a
+    model, widen a bound, pick a binning, or choose a detector set *because* it moves
+    us toward a published number. The winner is the engine's gated AIC, full stop.
+  - **Freeze P0 BEFORE diffing** (SpectralFitting Phase 0): our table is written and
+    immutable before any comparison. If our number and theirs disagree, that is a
+    result to explain (P4), never a reason to re-fit toward theirs.
+  - **Interpretation bias is a REAL residual risk, and the mitigation is disclosure,
+    not abstinence** — the bn081125496 "saw Yu first" caveat. If a paper's claim was
+    known before the fit, say so in the record; the clean test of the DECISION is the
+    blind Challenge Lab, not agent self-restraint.
+  ⚠ Superseded: an earlier version of this rule said the papers' spectral results
+  must stay SEALED through Step 0. That was over-strict and cost a second fetch on
+  bn120624933 — do not reinstate it.
 - **Filenames carry the trigger ID** (lesson G1, 2026-07-29): every per-burst
   product is `<trigger>_<content>.ext` — directories organize, filenames are
   the search surface; 106 identical basenames are unfindable.
