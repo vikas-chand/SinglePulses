@@ -474,3 +474,33 @@ boundary (Protassov, van Dyk, Connors, Kashyap & Siemiginowska 2002, "Statistics
 — ⚠ bibcode UNVERIFIED, check before citing). Any "a thermal component is required at Nσ" claim
 needs **Monte-Carlo / posterior-predictive calibration**, not the analytic p-value. Until that is
 done, all component-significance numbers stay provisional.
+
+### L17 — DETECTION significance is the WRONG gate for INCLUDING a detector in a joint fit  *(Vikas, 2026-08-05, bn120624933)*
+**"We are supposed to take the data in any case."** Two different questions were being conflated:
+- *Is there signal?* → a DETECTION question, answered by significance.
+- *Should this detector be in the joint fit?* → a CONSTRAINT question, answered by data quality.
+
+For bn120624933 the LLE band gives **2.60σ with 96 source events**, below a 3σ threshold, so Stage 1
+stamped only `n0,n1,n2,b0`. That is the wrong criterion. A 2.6σ band is **not** a null measurement —
+it is an upper limit that constrains any high-energy component, and in a joint likelihood it
+contributes real information (this is exactly why we fit, rather than count).
+
+**Why it actively BIASES the census (the decisive argument):** if LLE enters the fit only when it
+clears a detection threshold, then high-energy components preferentially appear in bursts where LLE
+happened to fluctuate UP. That manufactures spurious `+PL` / high-E detections and silently deletes
+every burst where LLE says *no*. A shape census that conditions inclusion on the outcome is not a census.
+
+**RULE — the inclusion gate is DATA QUALITY, never significance:**
+1. a valid response over the source window (the **D1 off-axis check**, `DataInventory.md`);
+2. a **reviewed and stamped** background for THAT detector — never silently inherited;
+3. correct event/pointing/response triplet versions.
+If those pass, the detector goes in the fit whatever its significance, and a non-detection is
+REPORTED as a constraint, not dropped.
+
+**The real defect at bn120624933 was the background, not the inclusion.** Stage 3 auto-added LLE and
+copied `n0`'s windows with no review. LLE particle backgrounds differ from NaI (see `scripts/10`
+find_lle_files: an approved `lle` row is authoritative precisely for this reason). So the fix is
+**review + stamp the LLE background, then include** — NOT exclude.
+⚠ Corollary: my earlier justification ("include LLE because the LAT detection is 10σ") was WRONG —
+that 10σ is >100 MeV LAT, a different band from 30–100 MeV LLE. Inclusion needs no such excuse.
+
