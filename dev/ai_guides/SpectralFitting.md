@@ -423,3 +423,54 @@ from uncorrelated physics (test: injection-recovery with uncorrelated (Ep,kT)).
 Implementation: `model_registry.burst_admission()` + `component_track()`
 (2026-07-29). Ep–kT comparisons must report BOTH constructions: admitted-track
 (Burgess-faithful) and BB-significant-only (flagged as detection-conditioned).
+
+### L15 — A RAILED shape parameter does NOT invalidate a DERIVED physical quantity  *(Vikas, 2026-08-04, bn130310840 blk2)*
+Our validity gate marks a fit `VALID=False` when a shape parameter rails. Correct for the FIT —
+but do not therefore discard the MEASUREMENT. Test whether the derived quantity is stable.
+
+Worked case (blk2 [4.107,4.131] s): Band railed at our `beta.bounds=(-5.0,-1.6)` floor, so
+`BAND_VALID=False`, and both I and the Codex audit retracted "Ep = 12.4 MeV". **Both retractions
+were wrong.** Vikas: *"XSPEC used to allow beta go to -10."* Re-fitting with the floor widened to
+-10 gives:
+| beta floor | fitted beta | Ep | AIC |
+|---|---|---|---|
+| -5 (ours) | -5.000 railed | 12278 keV | -2052.03 |
+| -10 (XSPEC-like) | -9.999 railed | 12301 keV | -2052.11 |
+ΔAIC = -0.08, Ep moves 0.2%. So (a) it is NOT a bound artifact — the likelihood wants beta → -inf,
+which physically means *no measurable high-energy power-law tail* (Band degenerates to CPL); and
+(b) **the peak energy is bound-independent**. Confirmed by the model comparison: **CPL, which is
+`VALID=True`, gives 12499 keV — agreeing with the railed Band to 0.3%.**
+**RULE:** when the winner is railed, (1) check the derived quantity across the whole menu, (2) quote
+it from a VALID model, (3) report the spread when composites shift it. Here the honest statement is
+*"peak = 12.4 MeV for a single-component continuum (valid CPL); 7.7–9.7 MeV when an additive
+component is included"* — a range that BRACKETS Qin+2021's 8.5–11 MeV instead of contradicting it.
+Also record: our `beta` floor of -5 is OUR choice and is tighter than XSPEC's grbm (~-10); widening
+does not help here, but the floor must be stated in the methods.
+
+### L16 — ΔAIC is an EVIDENCE RATIO; grade it, don't threshold it — and our two gates were inconsistent  *(Vikas, 2026-08-04)*
+ΔAIC means `exp(ΔAIC/2)` : 1 odds. A bare "≥10 or nothing" throws away real evidence.
+| ΔAIC | evidence ratio | grade | ≈σ (2 extra par) |
+|---|---|---|---|
+| 2 | 2.7:1 | indistinguishable | 2.0 |
+| 4 | 7.4:1 | positive | 2.4 |
+| **6** | **20:1** | **STRONG** | 2.7 |
+| 8 | 55:1 | very strong | 3.0 |
+| 10 | 148:1 | decisive | 3.3 |
+| 26 | 4.4e5:1 | overwhelming | 5.1 |
+(Consistent with the Burnham & Anderson rule of thumb: Δ≤2 substantial support, 4–7 considerably
+less, >10 essentially none. ⚠ verify the exact wording against the source before a draft.)
+**ADOPTED:** ΔAIC ≥ 6 = STRONG, ≥ 10 = DECISIVE; **always report the evidence ratio**, never a bare
+verdict. This reclassifies bn130310840 as blk2 DECISIVE (26.0, 4.4e5:1), blk4 VERY STRONG (9.0,
+91:1), blk3 STRONG (8.0, 54:1) — not "one success, two failures".
+
+**⚠ DOCTRINE BUG this exposed:** our `+BB` gate `LRT ≥ 9.2` is p=0.010 (~2.6σ) for 2 extra
+parameters ⇒ **equivalent to ΔAIC ≈ 5.2**, while we simultaneously demanded **ΔAIC ≥ 10**
+(⇒ LRT = 14). The two gates disagree by ~5 AIC, so a component can pass one and fail the other on
+the same data. Make them consistent — ΔAIC ≥ 6 ↔ LRT ≈ 10 is the natural pairing.
+
+**⚠ CALIBRATION CAVEAT (limits BOTH gates):** for an ADDITIVE component the normalization is bounded
+at zero, so the LRT is **not** asymptotically chi-square and both LRT and ΔAIC are OPTIMISTIC at the
+boundary (Protassov, van Dyk, Connors, Kashyap & Siemiginowska 2002, "Statistics: Handle with Care"
+— ⚠ bibcode UNVERIFIED, check before citing). Any "a thermal component is required at Nσ" claim
+needs **Monte-Carlo / posterior-predictive calibration**, not the analytic p-value. Until that is
+done, all component-significance numbers stay provisional.

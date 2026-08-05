@@ -126,3 +126,35 @@ MNRAS 528 L45** (`2024MNRAS.528L..45R`) FS+RS internal shocks — RGB2024 predic
 low-energy "photospheric-like" bump AND the doubly-broken power law, i.e. it is a one-mechanism
 origin for the two shapes this project is named after.
 Verification briefs: `notes/litverify_2026-07-31_*.md` (every claim carries a bibcode).
+---
+
+## 9. ⚠ CORRECTIONS TO §5 (added 2026-08-04 after the Codex audit + a Vikas catch)
+**Read this section BEFORE acting on §5 — it retracts two claims made there.**
+
+**(a) "Ep = 12.4 MeV" — retracted, then RE-INSTATED with the right provenance.**
+The Codex audit correctly noted the blk2 **Band** fit is `VALID=False` (beta railed at our -5 floor)
+and said to stop quoting 12.4 MeV. But Vikas pointed out XSPEC allows beta to ~-10. Test: widening
+the floor to -10 changes Ep by 0.2% (12278 → 12301 keV, ΔAIC -0.08) — beta simply runs to whatever
+floor exists, i.e. the likelihood wants beta → -inf (= no measurable high-energy tail; Band → CPL).
+**The peak is bound-independent, and the VALID CPL fit gives 12499 keV, agreeing to 0.3%.**
+⇒ Correct statement: **peak = 12.4 MeV from a valid single-component CPL; 7.7–9.7 MeV once an
+additive component is included** (SBPL+BB 7681, CPL+BB 9716 keV). That range BRACKETS Qin+2021's
+8.5–11 MeV. See lesson **L15** in `SpectralFitting.md`.
+
+**(b) "2SBPL decisively loses by ΔAIC 11–26" — RETRACTED (Codex is right).**
+The blk2 head-to-head is void because the saved 2SBPL fit there is itself invalid. blk3/blk4 do show
+2SBPL losing by 11.0–13.2, but under the corrected grading those blocks are STRONG/VERY STRONG, not
+decisive, for needing extra structure at all. ⇒ **"additive component, not a second break" is NOT
+established.** Only blk2 robustly requires extra structure, and BB vs PL is unresolved there.
+
+**(c) The ΔAIC ≥ 10 rule is REPLACED by a graded scale (new doctrine, lesson L16).**
+ΔAIC is an evidence ratio `exp(ΔAIC/2)`: **≥6 = STRONG (20:1), ≥10 = DECISIVE (148:1)**; always
+report the ratio. bn130310840 becomes blk2 DECISIVE (26.0), blk4 VERY STRONG (9.0, 91:1), blk3
+STRONG (8.0, 54:1). **Doctrine bug found:** the `+BB` gate `LRT ≥ 9.2` is equivalent to ΔAIC ≈ 5.2,
+so it CONTRADICTS the ΔAIC ≥ 10 rule by ~5 AIC — make them consistent.
+**Calibration caveat:** for additive components the LRT is not asymptotically chi-square (bounded
+normalization), so both gates are optimistic; component significance needs MC calibration.
+
+**(d) The QC records used unvalidated fits.** `results/approval/bn130310840_qc.json` (and burst #3's)
+computed ΔAIC margins straight off the `*_AIC` columns **without checking `*_VALID`**. Recompute
+margins over VALID fits only — this is what made (a) and (b) wrong.
