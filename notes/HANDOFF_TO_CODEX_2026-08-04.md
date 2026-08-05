@@ -66,6 +66,13 @@ use it for one burst). Step 9 = `dev/ai_guides/qc_flagging.md` + the ΔAIC margi
    LLE+LAT files on disk, but the approved catalog has **no `lle` row** (only n0,n1,n2,b0).
    Fitting GBM-only discards the detector that constrains the high-E component on a burst where
    high-E emission is confirmed. **Stage-1 re-open decision required before Step 6.**
+   ✅ **D1 OFF-AXIS CHECK NOW DONE (2026-08-04): the LLE DRM is VALID.** Interval
+   [-300,+50] s fully brackets the source [-1.16,+27.11] s; theta 67.5 deg (DRM) vs 68.8 deg
+   (source) => **Delta-theta = 1.4 deg**. Unlike bn130427324 (19.9 deg) there is no slew problem.
+   ⇒ Recommend REOPEN Stage 1 and stamp the lle row. Caveat for provenance: the DRM is a
+   SINGLE time-averaged matrix (not RSP2), acceptable only because theta is near-constant;
+   and at theta~68 deg expect LLE to CONSTRAIN rather than detect - a non-detection there is
+   not a null result. Saved in results/qc/bn120624933_step1_response_coverage.ecsv.
 2. **bn130427324 (GRB 130427A) LLE DRM is INVALID — fix before its turn.** Its LLE `.rsp` was
    built at off-axis θ=48.1°; the stamped source window (the **2nd pulse**, 119–178 s) sits at
    θ=36.5°→23.0° ⇒ **Δθ=19.9°** (Fermi slewed). Regenerate the DRM (`mkdrm_ez`/gtburst) for the
