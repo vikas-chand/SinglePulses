@@ -504,3 +504,20 @@ find_lle_files: an approved `lle` row is authoritative precisely for this reason
 ⚠ Corollary: my earlier justification ("include LLE because the LAT detection is 10σ") was WRONG —
 that 10σ is >100 MeV LAT, a different band from 30–100 MeV LLE. Inclusion needs no such excuse.
 
+**EXTENSION (Vikas, same day): "we have to take data everywhere where it is possible for both LLE
+AND LAT."** The rule is not LLE-specific — it applies to every band with usable data.
+- **Binning:** LLE/LAT never need to DRIVE the bins. *"If we didn't make bins from LLE, then we can
+  just analyze on the bins we have from GBM."* The joint fit uses the GBM-fine blocks and each
+  higher-energy plugin contributes whatever counts fall in them. (The coarse 27c LLE grid is a
+  SEPARATE mode, for LLE-driven binning — not for joint fits.) This is already what
+  `scripts/10` does: `Canonical bins from det <NaI> (gbm_fine)`.
+- **⚠ SELF-AUDIT, 2026-08-05:** every walkthrough fit so far ran `--include-bgo --models highe` with
+  **NO `--include-lat`**. bursts #3/#4/#5/130427324/130518580 ALL have FT1+FT2 in `data/<trig>/LAT/`,
+  and bursts #3 and #5 have published LAT detections — yet the fits stopped at 100 MeV
+  (`fit_dets: n*,b*,lle`). The >100 MeV data that would break burst #3's composite degeneracy was
+  sitting unused on disk. **Same error as the LLE one, one band higher.**
+- **RULE:** for every burst, attempt EVERY band with data + a valid response — GBM NaI/BGO, LLE
+  (30–100 MeV), LAT (>100 MeV, `--include-lat`). Drop a band only on a DATA-QUALITY failure (D1
+  response geometry, unreviewed background, missing triplet), never on significance, and RECORD
+  which bands were attempted and why any was excluded.
+
