@@ -521,3 +521,38 @@ AND LAT."** The rule is not LLE-specific — it applies to every band with usabl
   response geometry, unreviewed background, missing triplet), never on significance, and RECORD
   which bands were attempted and why any was excluded.
 
+**PUBLISHED EXAMPLE — the error is not hypothetical (added 2026-08-07).**
+**Duan & Wang 2020, ApJ 890, 90 (`2020ApJ...890...90D`), "A Spectral Analysis of Fermi-LLE
+Gamma-Ray Bursts"** — 36 GRBs detected by GBM **and LAT and LLE**. Their §2, verbatim:
+> *"we perform the detailed time-resolved spectral analysis by using the TTE event data files of
+> two NaI detectors and the corresponding BGO detector(s) on Fermi/GBM, **but the use of LAT and
+> LLE data was abandoned because of their lower impact for peak energy Ep and low energy spectral
+> index α**."*
+The sample is **selected by LLE brightness** — i.e. exactly the bursts where LLE carries the most
+signal — and then the LLE and LAT data are discarded. The title describes an LLE *sample*, not an
+LLE *analysis*.
+
+Why the stated reason fails, and what it costs:
+1. **It is circular.** LLE/LAT have "lower impact for Ep and α" *because Ep and α are low-energy /
+   peak parameters*. The high-energy data constrains **β** and any high-E component — which is then
+   not measured. That is a statement about the chosen parameter list, not about the data.
+2. **It biases the parameter it claims not to affect.** **Ravasio, Ghirlanda & Ghisellini 2024,
+   A&A 685, A166 (`2024A&A...685A.166R`)**, on 22 bright GRBs with simultaneous GBM+LAT:
+   *"with the inclusion of the LAT data, the spectral index β is **softer** than what is typically
+   inferred from the analysis of Fermi/GBM data alone."* In a Band fit β and Ep are covariant, so a
+   systematically hard β pulls Ep. The claim "low impact on Ep" is testable and was not tested.
+3. **They were careful about a different artifact.** Their own headline caution is that some α–F and
+   Ep–α correlations are *"non-physical selection effects"* shown by simulation — genuinely good
+   practice — while a systematic β bias was introduced by construction. Guarding one artifact class
+   does not license ignoring another.
+
+**What WOULD have been defensible:** *"we exclude LLE because its response validity varies across
+the sample (single-matrix DRMs, geometry-dependent — see D1) and we require uniform treatment."*
+That is a DATA-QUALITY reason and it passes L17. "Lower impact on our parameters" does not.
+
+⇒ **This is L17 made in a refereed paper by people doing otherwise careful work.** Treat the
+inclusion gate as a field-wide failure mode, not local bookkeeping — and when we exclude a band,
+state the data-quality reason explicitly so the exclusion is auditable.
+⚠ Applies to US too: bursts #3 and #5 were fitted GBM+LLE with **LAT unused on disk**, so their β
+values carry exactly the bias Ravasio measured. Re-fit with `--include-lat` before quoting β.
+
