@@ -1,0 +1,116 @@
+---
+name: grb-two-shock-analysis
+description: Use when implementing, validating, explaining, or applying the Rahaman–Granot–Beniamini coupled forward-shock/reverse-shock prompt-GRB model; analyzing Fermi GBM/LAT single pulses; testing hard-to-soft evolution, pulse morphology, high-latitude decay, Band+BB or 2SBPL alternatives; deriving the shock-coupling relations; or updating this project's scientific learning notes.
+compatibility: Intended for a Python high-energy-astrophysics repository, especially threeML/astromodels workflows using Fermi GBM/LAT data. The bundled scientific notes are self-contained.
+metadata:
+  domain: high-energy-astrophysics
+  project: prompt-grb-two-shock
+  version: 0.1.0
+---
+
+# Mission
+
+Help build a rigorous observational test of the coupled forward-shock (FS) plus reverse-shock (RS) internal-collision model for prompt GRB emission.
+
+The goal is not merely to fit two spectral components. Require the same physically coupled model to account for:
+
+1. pulse morphology in multiple energy bands;
+2. time evolution of the spectral peak;
+3. peak-energy versus peak-flux tracks;
+4. high-latitude decay after shock crossing;
+5. the high-energy RS component;
+6. the lower-energy FS break or bump;
+7. the frequency and flux ratios implied by shock jump conditions.
+
+# Source hierarchy
+
+For every substantive statement, classify it internally as one of:
+
+- **PAPER** — explicitly stated or derived in Rahaman et al. (2024);
+- **PROPOSAL** — objective or deliverable in the user's Fermi project;
+- **INFERENCE** — algebraic or methodological inference from those sources;
+- **EXTENSION** — new work beyond the published model.
+
+Never silently promote an inference or extension into a published result.
+
+# Supporting files
+
+Read only the files needed for the task:
+
+- `references/01_paper_core.md` — physical model, assumptions, predictions, and limitations.
+- `references/02_observables_and_tests.md` — what to measure in real GRB data and how each observable tests the model.
+- `references/03_equations_and_inference.md` — key equations, careful algebra, parameter identifiability, and common notation traps.
+- `references/04_implementation_plan.md` — staged software architecture and reproducibility plan.
+- `references/05_validation_and_failure_modes.md` — simulations, model comparison, controls, and falsification criteria.
+- `references/06_case_study_grb130310a.md` — targeted application to the Qin et al. burst.
+- `references/07_learning_log.md` — corrections and unresolved questions from the reading sessions.
+- `templates/burst_analysis_report.md` — standard report for each pulse.
+- `templates/model_comparison_matrix.md` — standard model-comparison table.
+
+# Non-negotiable scientific constraints
+
+1. **Two emission zones are hydrodynamically coupled.** Do not fit two independent arbitrary components and call that the physical two-shock model.
+2. **RS is typically stronger; FS is weaker.** In the baseline, RS dominates the higher-energy peak and overall radiated energy, while FS shapes the lower-energy break or bump.
+3. **The source paper uses a normalized Band-shaped comoving spectrum.** It is not yet a full integration of the synchrotron kernel over a freely fitted electron distribution.
+4. **`beta_21` and `beta_34` are relative shock velocities.** They are not interchangeable with the ultra-relativistic bulk shell velocities `beta_1` and `beta_4`.
+5. **Observed peaks are not automatically the intrinsic `nu_0` and `F_0`.** Instantaneous and time-integrated peak locations contain arrival-time and radial-width corrections.
+6. **Hard-to-soft evolution is a baseline prediction.** Intensity tracking should be treated as a possible negative control or evidence for other physics.
+7. **A low-energy bump is not automatically photospheric.** Test FS emission, 2SBPL, Band+BB, and other alternatives under identical data treatment.
+8. **A good time-integrated fit is insufficient.** The model must survive time-resolved and pulse-morphology tests.
+9. **Do not introduce magnetization before reproducing the unmagnetized baseline.** Variable magnetization is a later model extension.
+10. **Report non-identifiability honestly.** Ratios often constrain combinations of parameters rather than absolute physical quantities.
+
+# Default workflow
+
+## A. Explanation or derivation task
+
+1. Identify the exact source equation or figure.
+2. Define every frame, symbol, and normalization.
+3. Translate the equation into physical language.
+4. Derive only what follows mathematically.
+5. State what remains degenerate.
+6. Flag notation collisions, especially different uses of `beta`.
+7. Add important corrections to the learning log.
+
+## B. Coding task
+
+1. Implement the published baseline exactly.
+2. Write unit tests before generalization.
+3. Reproduce Table 1 and Figures 2–4.
+4. Verify normalization, continuity, asymptotic slopes, and limiting cases.
+5. Add synthetic response-folded recovery tests.
+6. Only then expose additional microphysics or magnetization.
+
+## C. Burst-analysis task
+
+1. Confirm pulse isolation and detector coverage.
+2. Extract multi-band temporal observables.
+3. Perform time-resolved empirical fits.
+4. Fit the coupled model using physical ordering and coupling priors.
+5. Compare predictive performance and residual structure.
+6. Test hard-to-soft evolution, peak tracks, and high-latitude decay.
+7. Evaluate photospheric alternatives.
+8. Produce the standard burst report and model-comparison matrix.
+
+# Required output style
+
+When reporting a result:
+
+- state the data interval and detectors;
+- state whether the number is fitted, derived, assumed, or prior-driven;
+- give uncertainty or credible interval;
+- state the relevant source equation;
+- separate statistical preference from physical interpretation;
+- list at least one way the conclusion could fail;
+- do not hide unconstrained or pegged parameters.
+
+# Useful direct invocations
+
+```text
+/grb-two-shock-analysis explain Equation 7 and what can be inferred from observed peaks
+/grb-two-shock-analysis design a joint temporal-spectral likelihood
+/grb-two-shock-analysis review my EATS integration
+/grb-two-shock-analysis create the observables table for this burst
+/grb-two-shock-analysis assess whether a low-energy bump is FS or photospheric
+/grb-two-shock-analysis update the learning log from today's result
+```

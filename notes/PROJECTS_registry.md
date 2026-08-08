@@ -643,3 +643,49 @@ model preference); ARM A and ARM B are two physical readings applied AFTER the s
 SinglePulse_Temporal correlation #2 (KRL d / φ → engine); #39/#30 Hakkila lineage — Gowri's
 26% symmetric population directly revises Hakkila's universal-FRED claim.
 **Both PDFs in `Skills_training/` and indexed (read=N).**
+
+───────────────────────────────────────────────────────────────────
+### #42 UPDATE — Arm B now has a SKILL, and its central test is already ANSWERED (2026-08-07)
+
+**Installed:** `.claude/skills/grb-two-shock-analysis/` — a Claude Skill built by ChatGPT with
+Vikas after reading RGB2024 (SKILL.md + 7 reference notes + 2 report templates). Kept in its
+native skill layout so it is INVOCABLE, not flattened into `dev/ai_guides/`.
+**Its best features, adopted as doctrine:** a **source hierarchy** (PAPER / PROPOSAL / INFERENCE /
+EXTENSION — *"never silently promote an inference into a published result"*), and constraint #1:
+*"Do not fit two independent arbitrary components and call that the physical two-shock model"* —
+the FS and RS must be **hydrodynamically coupled**, which is what separates Arm B from just adding
+another additive component to the menu.
+
+**Its case study is OUR burst #5 (GRB 130310A), and we independently reproduce every Qin number:**
+| Qin/skill | our blind fit |
+|---|---|
+| early Band Ep 7.4–11.1 MeV | blk1 8.26, blk2 12.37, blk3 7.41 MeV ✓ |
+| early BB kT 5–7 keV | blk2 5.53, blk3 5.64 keV ✓ |
+| later Ep ~1 MeV | blk5 0.82, blk6 0.80, blk7 0.93 MeV ✓ |
+| T90 ~2.4 s | 2.09 s ✓ |
+
+**⭐ Their §3.1 central question — *"does the low-energy component remain necessary as a thermal BB
+after physically allowed nonthermal curvature is included?"* — is ALREADY ANSWERED by our
+walkthrough fit.** blk2 [4.107,4.131] s, the only block that decisively needs extra structure
+(ΔAIC = 26.0 vs the best simple continuum):
+| model | ΔAIC | VALID |
+|---|---|---|
+| **SBPL+PL** | **0.0** | ✓ |
+| CPL+BB+PL | 0.8 | ✓ |
+| CPL+PL | 1.1 | ✓ |
+| Band+PL | 1.1 | ✓ |
+| SBPL+BB | 1.8 | ✓ |
+| Band+BB | 4.0 | ✓ |
+| SBPL / 2SBPL / CPL / Band | 26.0 / 28.3 / 29.7 / 31.8 | — |
+⇒ **"Extra component necessary?" YES, decisively. "Necessary as a BLACKBODY?" NO** — a purely
+nonthermal `SBPL+PL` wins outright and `CPL+BB+PL` trails by 0.8 AIC (~1.5:1, indistinguishable).
+**Qin's photospheric interpretation is not required by the data.** This is the strongest empirical
+result the walkthrough has produced, and it is exactly the FS-vs-photosphere question RGB2024 poses.
+
+**What is still MISSING (the real Arm-B work):** their §3.1 list also needs a **single-zone
+synchrotron** model and the **coupled FS+RS** model. We have neither in the menu — everything above
+is still empirical additive components. The skill's §3.5 warns explicitly that RGB2024 explains
+*relative* structure and normalized evolution, and does **not** by itself prove the baseline
+microphysics can make an absolute 5–11 MeV RS peak: *"Do not claim that the two-shock model solves
+the extreme E_pk problem until this absolute scaling is checked."* Honour that.
+**Next:** implement the coupled FS+RS spectral model as an astromodels component and refit blk2.
