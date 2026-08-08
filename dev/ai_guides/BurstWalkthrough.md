@@ -55,6 +55,32 @@ BOUND_CAPPED tracing to a window, a residual anomaly pointing at background).
 | 8 | νFν panels & residual reading | ratio-unfolded panels + residual grammar (feeds step 6's loop) | in `SpectralFitting.md` (L10/L11) |
 | 9 | QC & flags | cross-step sanity, literature-consistency verdict | `qc_flagging.md` (exists) |
 
+## ⭐ THIS IS THE PRIORITY PROJECT (Vikas, 2026-08-08 — stated plainly)
+> *"the most important project at the moment is this one, where our goal is to analyze these all
+> one by one along with reading the literature papers and doing full pipeline sweep on them and
+> improving our skills files that will assist us better and better — and then once we build all
+> 106, all the skills, then run again full sweep with all learning and complete the project."*
+
+**The loop, and the reason it is not wasteful:** each burst is analysed end-to-end AND read about
+in the literature; what is learned hardens into the skill files; the next burst is analysed by a
+better pipeline. The per-burst numbers are NOT the product — **the matured skills are**. The
+product arrives at the end, when the frozen pipeline is run once over all 106 with every lesson
+applied.
+
+**Consequences for how we work — these override the temptation to start new things:**
+1. **Complete projects one by one; do not jump between them.** (Vikas, same day: *"let's do things
+   systematically and complete projects one by one rather than jumping to infinite many
+   projects"*.) As of 2026-08-08 the registry holds 10 projects: 1 running, 0 complete.
+2. **BUT bank everything.** (*"all possibilities and all new projects has to be banked and all the
+   important ideas related to them has to be deposited to their files"*.) Ideas are recorded in
+   `notes/PROJECTS_registry.md` the moment they appear — banking is cheap, and losing an idea is
+   not. Banking ≠ starting: a registered project is parked until this one finishes.
+3. **Every other project depends on this one.** #34 needs the census; #35 needs the fits; #37/#38
+   need the temporal catalog; #42 needs the shape results; the agentic paper needs the benchmark.
+   Finishing the walkthrough unblocks all of them; starting them first unblocks nothing.
+4. **A burst is not "done" for the paper — it is done for the SKILLS.** All walkthrough-era numbers
+   are provisional by definition (below); quoting them as results is a category error.
+
 ## Convergence & freeze
 - A burst that completes ALL steps with **zero new lessons** is a *clean pass*.
 - After **K consecutive clean passes** (Vikas sets K; suggest 2–3), the skills
