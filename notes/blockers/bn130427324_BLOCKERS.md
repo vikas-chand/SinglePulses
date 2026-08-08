@@ -21,7 +21,14 @@ portion of the light curve"*, citing Preece+2014 for the first peak (0–2.5 s).
 α₁ = −0.63, α₂ = −1.67, break 224 keV, Ep = 992 keV, β = −3.7.
 Ravasio+2024 (the 22-burst GBM+LAT high-energy paper) does **not** contain it at all.
 
-**Why this may NOT bite us:** pile-up scales with count rate, and the extreme rates are in the
+**✅ RESOLVED BY DESIGN (Vikas, 2026-08-07): "We were dealing with the non-piled-up pulse of it."**
+The second-pulse selection was made DELIBERATELY to avoid the piled-up episode — it is not an
+accident of the Busby cut. So blocker 2 does NOT apply to our window; it applies to the first
+pulse, which we do not analyse. Record this in the methods: our 130427A result is the
+**non-piled-up second pulse**, which is also why it is not directly comparable to Preece+2014
+or Toffano+2021 (both of whom analyse the bright first portion).
+
+**Why pile-up is confined to the first pulse:** pile-up scales with count rate, and the extreme rates are in the
 FIRST pulse (0–20 s) — which is what Preece+2014 analysed. Our window is the far fainter SECOND
 pulse at 119–178 s, so our selection may sidestep the exact problem that made Ravasio drop the burst.
 
