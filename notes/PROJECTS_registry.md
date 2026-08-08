@@ -34,6 +34,47 @@ with Band-only (β + Ep capture the rollover) on the bright, high-count bins.
 **Links:** L4 (cutoff continuum-degeneracy), C6 noise-artifact skill, #35 (physical
 twin), Oganesyan+2026 (the absorption mechanism).
 
+### ⬆ #34 UPGRADED 2026-08-08 (Vikas) — broadened from a cutoff TEST to a SHAPE CENSUS
+**WORKING TITLE:** *"The shape of prompt gamma-ray burst emission above the peak energy"*
+(alt: *"Power law or cutoff? The shape of GRB prompt emission above the peak energy"*)
+**WORKSPACE:** `~/Desktop/Projects/SingleRest/AbovePeakShape/` (sibling of Two_Breaks; has its own
+`CLAUDE.md` + `SCOPE.md`). ⚪ scoped, NOT started — parked until the walkthrough is complete.
+
+**THREE MEASURED OBSERVABLES, not model selection alone (Vikas):**
+1. **SMOOTHNESS** — the SBPL break sharpness `n`, fitted **FREE** (not fixed at 2).
+2. **WIDTH** — the νF_ν width. ⭐ **We ALREADY emit `*_WIDTH_HM` for all 8 models per block** —
+   the data for a pilot exists in every fit we have run.
+3. **SHAPE** — which family wins, reported as graded ΔAIC evidence ratios (L16).
+
+**MENU:** `Band` · `CPL` · `SBPL` (**free n**) · `Band+BB` · `SBPL+BB` — all already in
+`scripts/10 --models highe`. The `+BB` pair guards against a thermal component masquerading as
+tail curvature (the Li+2019 bias).
+**SAMPLE:** ALL GRBs, **single AND multi-pulse**, **time-resolved** (Vikas). Wider than
+Two_Breaks' 106 single-pulse — hence the separate directory. Multi-pulse needs MEPSA pulse ID
+(`../PulsewiseAmatiYonetoku/` has it, ⚠ but its Stage-1 catalog has 55 source/bkg overlaps).
+
+**⭐ THE CORE ARGUMENT — already demonstrated on bn130518580 blk8:** five models sat within
+**ΔAIC ≤ 3.3** (statistically indistinguishable) yet spanned **width 0.54 → 1.61** and
+**E_pk 185 → 708 keV**. *Model identity is undetermined; the shape is not.* That is why
+width/smoothness beat model selection, and it is the project's motivating figure.
+**Second finding:** free-n SBPL/2SBPL **RAILS at n = 10** in 3 of 4 decisive blocks (gated invalid);
+where it converged it was *worse* than fixed-n. ⇒ `n` is constrainable only in the brightest bins;
+railed-n = **BOUND_CAPPED**, not a failed model (L9). This also vindicates Ravasio/Toffano fixing n=2.
+**Third:** time-integration destroys the signal (same burst: integrated → 2SBPL decisive ΔAIC 82
+over Band, no thermal; resolved → cooling BB kT 50→33 keV over ~4 s). #34 MUST be time-resolved.
+
+**PRIOR ART — must beat or cite (⚠ = not yet in corpus):**
+| paper | why |
+|---|---|
+| ⚠ **Axelsson & Borgonovo 2015** `2015MNRAS.447.3150A` "The width of GRB spectra" | THE width reference — **adopt their definition**, do not invent one |
+| ⚠ **Yu, Preece+ 2015** `2015A&A...583A.129Y` "The sharpness of GRB prompt emission spectra" | the sharpness reference; model-independent synchrotron test |
+| **Li+2019** `2019ApJS..245....7L` "Thermal Components I: how do they affect nonthermal parameters?" | **most dangerous** — quantifies how a BB shifts α, β, E_p |
+| ⚠ **Uhm & Zhang 2014** `2014ApJ...780...82U` "Non-existence of a sharp cooling break" | argues against a sharp break ⇒ bears on the smoothness result |
+| **Ravasio+2024** `2024A&A...685A.166R` | cutoffs in 9/22 bright GBM+LAT at 14–298 MeV; **β softer with LAT** ⇒ LAT mandatory (L17) |
+| **Lu+2012** `2012ApJ...756..112L`, **Zhang+2011** `2011ApJ...730..141Z` (Comprehensive I/II) | their Band-vs-CPL selection rule is the baseline to beat |
+| **Ravasio+2019** `2019A&A...625A..60R`, **Toffano+2021** `2021A&A...652A.123T` | two-break lineage; α_Band as an average across a break |
+
+
 ───────────────────────────────────────────────────────────────────
 ## #35 — Rescue the SOFT-p problem in cool-synchrotron fits with wind ABSORPTION  🔬
 *(nominated 2026-07-30, Vikas)*
@@ -58,6 +99,16 @@ fit?). Together they attack the same feature from data-space and model-space.
 custom) + an absorption component. Heavier than #34; a real modeling project.
 **Links:** Burgess+2014/2020, Oganesyan+2026, Guiriec saddle-vs-additive history
 (L12), #34, the empirical→physical mapping fork (Intro-Q3).
+
+**⬆ UPDATE 2026-08-08:** **Burgess+2020 `2020NatAs...4..174B` is now IN the corpus** (was only a
+citation). ⭐ **Our walkthrough burst #6 `bn130518580` is IN that sample** — so #35's test case is
+already fitted by us: we have a 24-model census on the same data, with a **secure z = 2.488**, a
+LAT arm, and a **cooling BB (kT 50→33 keV) decisive in 4 blocks**. The immediate check is whether
+130518A is one of Burgess's soft-p bursts and what p they report; if so, #35 becomes runnable on a
+burst we already own rather than a hypothesis. Also relevant: **Ravasio+2024** finds exponential
+cutoffs in 9/22 bright GBM+LAT bursts at 14–298 MeV — i.e. a real cutoff population for the
+absorption hypothesis to explain; and **Ahlgren+2019 `2019MNRAS.485..474A`** (subphotospheric
+dissipation, also on this burst) is the competing physical reading.
 
 ───────────────────────────────────────────────────────────────────
 ## #36 — Revisit & extend Burgess 2014: does temporal binning PRESERVE spectral evolution?  🔬
@@ -189,6 +240,42 @@ the DISCRIMINANT, not the correlation.
 correlation"); the paper's TITLE (X-ray flares) hid its lag-MVT + curvature content. A
 novelty-deciding claim must be checked by OPENING THE PAPER, not the abstract-agent's summary.
 [feeds SpectralFitting P6 attribution rule.]
+
+### ⬆ #37 UPDATE 2026-08-08 — a FOURTH lag mechanism, and a stronger framing
+**Jiang, Liu, Shao & Li 2021, MNRAS 505, L26 (`2021MNRAS.505L..26J`)** — *"Interpreting the
+spectral lags of **single-pulsed** GRBs via the **photosphere in the jet** model"* (PDF now in
+corpus; no arXiv version). By analogy with blazar radio lags, the lag arises because different
+frequencies become optically thin at **different radii**. They study **five long bursts with known
+redshift** — the same design as #37, so it is both prior art AND a cross-check sample. They derive
+**R ≈ 1–several AU (~10¹³–10¹⁴ cm)** from the jet base and B ≈ 10⁴–10⁷ G (the B is explicitly *"not
+well constrained"*; the RADIUS is the usable number).
+
+**⇒ There are now FOUR published, mutually incompatible lag mechanisms:**
+| model | lag origin |
+|---|---|
+| Sonbas+2013 / Kocevski / Zhang+2006 | high-latitude **curvature** (our original null) |
+| **Uhm & Zhang 2016** `2016ApJ...825...97U` | curvature gives **ZERO** lag; sweeping peak from B-decay + bulk acceleration |
+| **Jiang+2021** `2021MNRAS.505L..26J` | **frequency-dependent photosphere radius** |
+| Li+2026 `2026ApJS..283...47L` §IV.2 | lag = **radiative** evolution, MVT = **geometric** scale |
+
+**PROPOSED REFRAMING (2026-08-08) — "what can we do with only MVT, lag and pulse shape?":**
+correlation-hunting in that space is closed (Sonbas, Göktaş, Golkhou, Norris). What is NOT closed
+is that the three observables **over-determine one geometry**: any model producing a pulse must
+simultaneously predict its **rise time, decay time, minimum variability and spectral lag**. Almost
+every paper tests one. A clean single-pulse sample has all four from the SAME episode ⇒ the
+question becomes **falsification, not correlation**: *does any published model reproduce all four
+at once?* Three consequences:
+1. **Use RATIOS, not correlations** — MVT ∝ Γ⁻², lag ∝ R/cΓ², rise ∝ δR/2cΓ² all track Γ, so a bare
+   correlation is half-guaranteed. Ratios (lag/MVT, rise/decay, lag/decay) are dimensionless and Γ
+   largely cancels. **This is the post-Sonbas version of the test.**
+2. **Four-way model discriminant** — the four mechanisms above predict different lag-vs-MVT-vs-shape
+   behaviour; nobody has laid them against one dataset.
+3. **The residual τ − (E_h/E_l−1)·δt_MVT is a NEW observable** — correlate it with the
+   hardness-evolution rate to separate spectral evolution from geometry.
+**Honest limits:** timing alone cannot settle photosphere vs synchrotron (needs spectra) — but it
+CAN constrain **radius**, where Gowri (~10¹²), Jiang (10¹³–10¹⁴) and Tak/RGB (10¹⁶) disagree by
+four orders of magnitude. **Three independent radius estimators from timing alone is the contribution.**
+⚠ ~40 measured-z single pulses is thin ⇒ few, PRE-REGISTERED, ratio-based predictions; no fishing.
 
 ───────────────────────────────────────────────────────────────────
 ### #37 RESTRUCTURED — discovery ➜ CONTROLLED REDO
@@ -689,3 +776,42 @@ is still empirical additive components. The skill's §3.5 warns explicitly that 
 microphysics can make an absolute 5–11 MeV RS peak: *"Do not claim that the two-shock model solves
 the extreme E_pk problem until this absolute scaling is checked."* Honour that.
 **Next:** implement the coupled FS+RS spectral model as an astromodels component and refit blk2.
+
+───────────────────────────────────────────────────────────────────
+### ⬆ #42 UPDATE 2026-08-08 — a MEASURED Γ discriminant, and burst-level evidence
+
+**⭐ THE Γ TEST IS NOW CONCRETE.** Arm A (Gowri+2025) requires **low Γ ~ few tens** — the
+photospheric timescale τ ~ R/Γ²c is what forces it, and τ ∝ Γ⁻⁵-ish makes the claim very
+Γ-sensitive. Against that:
+- **Ravasio+2024 `2024A&A...685A.166R`** measures **Γ = 130–330** from pair-production opacity on
+  22 bright GBM+LAT bursts, *"consistent with those inferred from the afterglow light curve onset
+  time"* — i.e. **two independent estimators agreeing**, an order of magnitude above Gowri.
+- **Wistemar+2025 `2025ApJ...986..118W`** gives a generalized Γ method (in corpus, via burst #6).
+⇒ Arm A's low-Γ requirement is in direct tension with a measured, doubly-confirmed Γ. **Test this
+before adopting any photospheric reading.**
+
+**RADIUS is the other axis, and it spans 4 orders of magnitude across the competing models:**
+Gowri ~10¹² cm (photosphere) · **Jiang+2021 10¹³–10¹⁴ cm** (frequency-dependent photosphere) ·
+Tak+2023 / RGB2024 ~10¹⁶ cm (large-radius HLE / internal shocks). Any of our timing or spectral
+constraints on R is therefore decisive between named models, not a detail.
+
+**BURST-LEVEL EVIDENCE ACCUMULATED SO FAR (the #42 question, answered empirically):**
+| burst | what the data say |
+|---|---|
+| #3 `bn081224887` | 0/10 blocks decisive; simplest model TIED in 6/10 ⇒ the 24-model menu buys nothing without high-E data |
+| #5 `bn130310840` | blk2 extra component **decisive (ΔAIC 26)** but **NOT required to be thermal** — nonthermal `SBPL+PL` wins, `CPL+BB+PL` 0.8 behind. Qin+2021's photospheric reading is not required by the data |
+| #6 `bn130518580` | 5 blocks decisive (up to 11 000:1), kT cooling 50→33 keV — but **2SBPL and Band+BB alternate between adjacent blocks within 1.8–4.8 AIC**. Integrated: **2SBPL decisive, ΔAIC 82 over Band, no thermal** |
+**⇒ Consistent verdict across three bursts: the data DEMAND extra low-energy structure, and CANNOT
+say whether it is thermal.** That is #42's question, and AIC alone will not settle it — which is
+precisely why Arm B needs the **coupled FS+RS** model (a shape-level discriminant), and why #34's
+**width/smoothness** observables matter: on bn130518580 blk8 five statistically indistinguishable
+models spanned width 0.54–1.61.
+
+**Skill installed:** `.claude/skills/grb-two-shock-analysis/` (Vikas + ChatGPT, from RGB2024).
+Adopted as doctrine: its **source hierarchy** (PAPER/PROPOSAL/INFERENCE/EXTENSION) and its
+constraint that FS and RS must be **hydrodynamically coupled** — two arbitrary additive components
+are NOT the two-shock model. Its §3.1 central test is already answered by our burst-#5 fit (above).
+**Still missing from the menu:** a single-zone synchrotron model and the coupled FS+RS model.
+⚠ Its §3.5 caveat stands: RGB2024 explains RELATIVE structure; it does **not** show the baseline
+microphysics can produce an absolute 5–11 MeV RS peak. Do not claim it solves the extreme-E_p
+problem until that absolute scaling is checked.
