@@ -115,3 +115,12 @@ notebooks/outputs/
 # ---- literature corpus: track the dedup INDEX, not the copyrighted PDFs ----
 # (37 MB of arXiv/journal PDFs — re-downloadable; keep out of the seed repo)
 Skills_training/*.pdf
+
+# ---- IDEA BANK / research strategy: LOCAL ONLY (Vikas 2026-08-08) ----
+# "the github is about the GRB_Handbook or SinglePulses but not about saving our all ideas there."
+# The repo carries the PIPELINE (code, skills, catalogs, docs). Project ideas, unpublished
+# research plans and literature strategy stay on disk and are NOT pushed.
+notes/PROJECTS_registry.md
+notes/litverify_*.md
+notes/AI_SCIENTIST_PROGRAM.md
+notes/physics_of_the_ai_scientist.md
