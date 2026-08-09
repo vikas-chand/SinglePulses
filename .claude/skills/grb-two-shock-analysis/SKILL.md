@@ -44,6 +44,10 @@ Read only the files needed for the task:
 - `references/05_validation_and_failure_modes.md` — simulations, model comparison, controls, and falsification criteria.
 - `references/06_case_study_grb130310a.md` — targeted application to the Qin et al. burst.
 - `references/07_learning_log.md` — corrections and unresolved questions from the reading sessions.
+- `references/08_toffano_low_energy_breaks.md` — sample selection, Band/2SBPL methodology, response-folded simulations, hidden-break inference, and the connection to FS+RS.
+- `references/09_single_pulse_execution_plan.md` — staged execution plan for the 106-pulse catalog and physical-test subset.
+- `references/10_methods_statistics_writing.md` — reusable methods language, likelihood rules, AIC cautions, and reporting checklist.
+- `references/11_project_idea_bank.md` — focused follow-up projects that must not interrupt the active analysis.
 - `templates/burst_analysis_report.md` — standard report for each pulse.
 - `templates/model_comparison_matrix.md` — standard model-comparison table.
 
@@ -59,6 +63,10 @@ Read only the files needed for the task:
 8. **A good time-integrated fit is insufficient.** The model must survive time-resolved and pulse-morphology tests.
 9. **Do not introduce magnetization before reproducing the unmagnetized baseline.** Variable magnetization is a later model extension.
 10. **Report non-identifiability honestly.** Ratios often constrain combinations of parameters rather than absolute physical quantities.
+11. **Band-only is not break-free.** Use response-folded hidden-break simulations before interpreting a non-detection.
+12. **Do not equate empirical and physical ratios.** A fitted `E_break/E_peak` is not automatically the intrinsic FS/RS characteristic-frequency ratio.
+13. **Use count-space statistics.** Do not choose chi-square merely because the total burst is bright; verify channel-level assumptions or use a Poisson-appropriate likelihood.
+14. **Finish the 106-pulse empirical catalog first.** New model extensions belong in the idea bank unless they block the active analysis.
 
 # Default workflow
 

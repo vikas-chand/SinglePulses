@@ -84,6 +84,19 @@ reported as a data problem. A QC check that cries wolf trains you to ignore it.
 TTE header. Silent `None` propagation makes the Δθ check fail with a TypeError, not a wrong
 answer — but budget for it.
 
+### D4 — a detection is a statement about an INTERVAL, and the trigger time is not the burst start  *(bn120624933, 2026-08-08)*
+GRB 120624B carries a 10σ LAT headline — and none of it is in our window: Ajello+2019
+`tab_durations` gives **T_LAT,0 = 73.7 s**, 47 s AFTER our window closes, with the ≥100 MeV
+signal peaking at 380±20 s. Worse, GBM triggered on the THIRD of three emission episodes
+(triggering was disabled at high geomagnetic latitude for the first two, GCN 13377 verbatim) —
+our entire analysis covers ~10% of the burst, and the catalog T90 = 271 s describes emission we
+never observed.
+**RULE:** during inventory, (a) never treat trigger time as burst start — check the catalog
+T05/T95 and the GCNs for pre-trigger episodes; (b) before expecting a published LAT/LLE
+detection to imply structure in OUR window, look up the detection's own interval
+(T_LAT,0/T_LAT,1). A detection outside the window predicts nothing inside it — in either
+direction.
+
 ## Hand-off
 Feeds Step 5 (binning) and Step 6 (fitting). A burst failing D1 must NOT enter a joint
 GBM+LLE fit until its DRM is regenerated — the high-energy component is exactly what the bad

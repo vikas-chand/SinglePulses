@@ -60,3 +60,16 @@ Rahaman_2024_2024MNRAS528L45R_arxiv.pdf,2023arXiv230800403R,2308.00403,internal-
 Toffano_2021_2021AA652A123T.pdf,2021A&A...652A.123T,2106.03868,low-energy-break;alpha-slope;2SBPL,project-core;two-break,0,N
 Duan_2020_2020ApJ89090D.pdf,2020ApJ...890...90D,1912.10587,LLE-sample;timeres;correlations;selection-effects,project-core;bn130427324;bn110721200,0,N
 Ravasio_2024_2024AA685A166R.pdf,2024A&A...685A.166R,2312.02259,GBM+LAT-joint;high-E-cutoff;Gamma;beta-bias,project-core;L17;proj34;proj42,0,N
+Ravasio_2019_2019AA625A60R.pdf,2019A&A...625A..60R,1903.02555,TWO-SPECTRAL-BREAKS;2SBPL-foundational,project-core;two-break;bn160625945,0,N
+Ravasio_2018_2018AA613A16R.pdf,2018A&A...613A..16R,1711.03106,synchrotron-160625B;2SBPL-origin,project-core;two-break;bn160625945,0,N
+Siddique_2022_2022ApJ938159S.pdf,2022ApJ...938..159S,,DEDICATED-burst-paper,bn130518580,1,N
+Burgess_2020_2020NatAs4174B.pdf,2020NatAs...4..174B,1810.06965,cool-synchrotron;soft-p,bn130518580;proj35,1,N
+FanaDirirsa_2019_2019ApJ88713F.pdf,2019ApJ...887...13F,1910.07009,LAT-spectral;known-z,bn130518580,1,N
+Ahlgren_2019_2019MNRAS485474A.pdf,2019MNRAS.485..474A,1901.06844,subphotospheric-dissipation,bn130518580;proj42,1,N
+Jiang_2021_2021MNRAS505L26J.pdf,2021MNRAS.505L..26J,,spectral-lag;SINGLE-PULSE,bn130518580;proj37,1,N
+Wistemar_2025_2025ApJ986118W.pdf,2025ApJ...986..118W,2504.00092,Lorentz-factor-method,bn130518580;proj42,1,N
+Veres_2015_2015ApJ81031V.pdf,2015ApJ...810...31V,1411.7368,VLA-afterglow,bn130518580,1,N
+(no pdf),2024ApJ...972..132C,,thermal-dominated,bn130518580,1,N
+Zhang_2011_2011ApJ730141Z.pdf,2011ApJ...730..141Z,1009.3338,comprehensive-I;spectral-components,proj34;proj42,1,N
+Qin_2013_2013ApJ76315Q.pdf,2013ApJ...763...15Q,1205.1188,comprehensive-III;energy-dep-T90,proj34,1,N
+Lu_2018_2018ApJ865153L.pdf,2018ApJ...865..153L,1808.00636,comprehensive-IV;lag-Ep,proj34;proj37,1,N

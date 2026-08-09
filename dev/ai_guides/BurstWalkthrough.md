@@ -49,9 +49,9 @@ BOUND_CAPPED tracing to a window, a residual anomaly pointing at background).
 | 2 | Detector selection | geometry/angles, occultation, BGO companion rule | `detector_selection.md` (exists) |
 | 3 | Background | pre/post windows hugging the burst; polyfit order; residual QC | `background_selection.md` (exists) |
 | 4 | Source interval | emission window in the common background gap | `source_selection.md` (exists) |
-| 5 | Binning (two-tier) | 27b fine GBM Bayesian blocks + significance merge; 27c coarse LLE grid (gated); **bin adequacy for the band that constrains each component** (L3/L6) | ✎ `Binning.md` |
+| 5 | Binning (two-tier) | 27b fine GBM Bayesian blocks + significance merge; 27c coarse LLE grid (gated); **bin adequacy for the band that constrains each component** (L3/L6) | `Binning.md` (exists) |
 | 6 | Spectral fitting & selection | the full menu, multistarts, chain gates, classes, admission, evolution tracks — THE DISCOVERY LOOP | `SpectralFitting.md` (flagship, L1–L13) |
-| 7 | Temporal | T90/T50, MVT, lag, pulse fits | ✎ `Temporal.md` |
+| 7 | Temporal | T90/T50, MVT, lag, pulse fits | `Temporal.md` (exists — carries the DEFECT LEDGER; check before quoting) |
 | 8 | νFν panels & residual reading | ratio-unfolded panels + residual grammar (feeds step 6's loop) | in `SpectralFitting.md` (L10/L11) |
 | 9 | QC & flags | cross-step sanity, literature-consistency verdict | `qc_flagging.md` (exists) |
 

@@ -743,6 +743,16 @@ def fit_one_model(data_list, spec, seed=None):
         # nuFnu curve of the FITTED model: peak energy from the curve itself +
         # half-max width W = log10(E2/E1) (Axelsson-Borgonovo-style, but from
         # the best-fit model curve, uniform across ALL models incl. composites).
+        # RESTORE FIRST (L20, bn130518580 blk8, 2026-08-08 four-channel audit):
+        # jl.get_errors() MINOS scans can leave the live model displaced from
+        # the minimum, so the curve was evaluated at a wandered point —
+        # stored EPK_CURVE 184.8 keV (the BB bump at an inflated K_BB) vs
+        # 839.0 keV recomputed at the stored best-fit parameters. Native
+        # threeML restore puts the model back at the fitted minimum.
+        try:
+            jl.restore_best_fit()
+        except Exception:
+            pass
         epk_curve = width_hm = float('nan')
         try:
             _E = np.logspace(np.log10(8.0), np.log10(1.0e6), 700)   # 8 keV - 1 GeV
@@ -995,12 +1005,31 @@ def select_best(per_spec_results, n_data):
     lrt_cplbb  = _lrt('CPL',  'CPL+BB')
     lrt_dsbpl_sbpl = _lrt('SBPL', 'DSBPL')
 
+    # A nested child strictly WORSE than its parent is mathematically
+    # impossible at the true optimum (the parent + a null extra component
+    # reproduces the parent's likelihood). LRT ~ 0 is legal (component pinned
+    # to zero); LRT < -0.5 means the child fit failed to converge and MUST NOT
+    # be read as a non-detection (L19, bn110721200 demo blk1 LRT=-0.0 lesson,
+    # 2026-08-08). NaN the value and stamp the pair so downstream "LRT < 9.2
+    # => no component" logic sees a missing measurement, not a clean null.
+    _lrt_bad = []
+    _pairs = {'LRT_BANDBB_BAND': lrt_bbband, 'LRT_CPLBB_CPL': lrt_cplbb,
+              'LRT_DSBPL_SBPL': lrt_dsbpl_sbpl}
+    for _nm, _v in _pairs.items():
+        if np.isfinite(_v) and _v < -0.5:
+            _lrt_bad.append(f'{_nm}={_v:.2f}')
+            _pairs[_nm] = float('nan')
+    if _lrt_bad:
+        print(f'    !! LRT_INVALID {_lrt_bad} — nested child worse than parent '
+              f'after all multistarts: broken fit, NOT a non-detection')
+
     return {
         'BEST_AIC_MODEL': best_aic,
         'BEST_BIC_MODEL': best_bic,
-        'LRT_BANDBB_BAND': lrt_bbband,
-        'LRT_CPLBB_CPL':   lrt_cplbb,
-        'LRT_DSBPL_SBPL':  lrt_dsbpl_sbpl,
+        'LRT_BANDBB_BAND': _pairs['LRT_BANDBB_BAND'],
+        'LRT_CPLBB_CPL':   _pairs['LRT_CPLBB_CPL'],
+        'LRT_DSBPL_SBPL':  _pairs['LRT_DSBPL_SBPL'],
+        'LRT_INVALID': ';'.join(_lrt_bad),
     }
 
 
@@ -1068,6 +1097,47 @@ def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
         flat.update(model_columns(spec, res, n_data))
         # Capture seeds — but only for the SAME spec key on next call
         seed_out.update(capture_seed(spec, res))
+
+    # SIMPLE-MODEL multistart (L18, bn110721200 blk9 regression, 2026-08-08):
+    # every composite family has a restart, but Band/CPL/SBPL/SBPLfree were
+    # fitted ONCE from the chained seed. When the L9 Ep-cap widening removed
+    # the bound that incidentally anchored faint blocks, blk9 (sig 7.8)
+    # inherited a bright-block seed and fell into a soft local minimum
+    # (alpha=+0.82, Ep=42 keV vs alpha in [-1.26,-0.93], Ep 373-424 across
+    # 9 archival runs). Unconditional restarts from pure defaults + two
+    # canonical seeds; validity-preferring keep-best (never worsens a fit).
+    # MUST run before the BB/DSBPL/cutoff/nested multistarts so composites
+    # seed from the CORRECTED parents.
+    SIMPLE_RESTART_SEEDS = {
+        'Band':     [{}, {'band_alpha': -1.0, 'band_Ep': 300.0, 'band_beta': -2.3},
+                         {'band_alpha': -0.5, 'band_Ep': 1000.0, 'band_beta': -2.5}],
+        'CPL':      [{}, {'cpl_index': -1.0, 'cpl_xc': 300.0},
+                         {'cpl_index': -0.5, 'cpl_xc': 1000.0}],
+        'SBPL':     [{}, {'sbpl_alpha': -1.0, 'sbpl_break': 300.0, 'sbpl_beta': -2.3},
+                         {'sbpl_alpha': -0.5, 'sbpl_break': 1000.0, 'sbpl_beta': -2.5}],
+        'SBPLfree': [{}, {'sbpl_alpha': -1.0, 'sbpl_break': 300.0,
+                          'sbpl_beta': -2.3, 'sbplf_scale': 0.3},
+                         {'sbpl_alpha': -0.5, 'sbpl_break': 1000.0,
+                          'sbpl_beta': -2.5, 'sbplf_scale': 0.3}],
+    }
+    idxs = {s['name']: i for i, (s, _) in enumerate(per_spec)}
+    for m_name, m_seeds in SIMPLE_RESTART_SEEDS.items():
+        if m_name not in idxs:
+            continue
+        m_spec, m_res = per_spec[idxs[m_name]]
+        best_m = m_res
+        for extra in m_seeds:
+            alt = fit_one_model(dl, m_spec, seed=extra)
+            alt['physical'] = _fit_is_physical(m_spec, alt)
+            if _keep_best(alt, best_m):
+                best_m = alt
+        if best_m is not m_res:
+            print(f'    [simple multistart] {m_name} n2logL '
+                  f'{m_res.get("neg2logL", float("nan")):.1f} '
+                  f'-> {best_m["neg2logL"]:.1f}')
+            per_spec[idxs[m_name]] = (m_spec, best_m)
+            flat.update(model_columns(m_spec, best_m, n_data))
+            seed_out.update(capture_seed(m_spec, best_m))
 
     # BB multi-start. The blackbody has a railing local minimum (kT -> lower
     # bound, K_BB -> 0, LRT ~ 0) that the T_INT-derived seed can fall into —
@@ -1274,6 +1344,37 @@ def fit_all_models(plugins, plugin_dets, ref_det, seed_in=None,
     if _bc:
         print(f'    !! BOUND_CAPPED {_bc} — peaked models rail at a shared '
               f'bound; widen and refit, do not trust the surviving family')
+
+    # SHARPNESS_CAPPED (bn130518580 blk6, 2026-08-08 four-channel audit): a
+    # one-break model whose free break SHARPNESS rails at its bound (SBPLfree
+    # break_scale=2.0, DSBPLfree n1/n2=10) is gated VALID=False and silently
+    # vanishes from the margin's reference set — inflating "extra structure"
+    # margins computed vs the best VALID one-break (blk6: 18.66 apparent vs
+    # <=4.75 admitting the capped fit as a lower limit). The EP/EBREAK/XP
+    # inspector above never fires on sharpness. Stamp it and shout: margins
+    # in a stamped block exclude a deeper capped one-break minimum.
+    _sharp_cols = ('SCALE', 'N1', 'N2')
+    _sc = []
+    for sp_, r_ in per_spec:
+        if r_.get('status') != 'OK':
+            continue
+        pb_ = PARAM_BOUNDS.get(sp_['prefix'], {})
+        for col_ in _sharp_cols:
+            if col_ not in pb_:
+                continue
+            short_ = sp_['pmap'].get(col_)
+            d_ = r_.get('params', {}).get(short_) if short_ else None
+            if d_ is None or not np.isfinite(d_.get('val', np.nan)):
+                continue
+            lo_, hi_ = pb_[col_]
+            span_ = hi_ - lo_
+            if (d_['val'] - lo_) < 0.02 * span_ or (hi_ - d_['val']) < 0.02 * span_:
+                _sc.append(f"{sp_['name']}:{col_}@{d_['val']:g}")
+    flat['SHARPNESS_CAPPED'] = ';'.join(_sc)
+    if _sc:
+        print(f'    !! SHARPNESS_CAPPED {_sc} — a free break-sharpness railed; '
+              f'margins vs the best VALID one-break exclude a deeper capped '
+              f'minimum and are UPPER LIMITS, not measurements')
 
     flat.update(select_best(per_spec, n_data))
     flat['_n_data'] = n_data
@@ -1627,7 +1728,12 @@ def _plot_evolution(t, trigger, out_dir):
     """Per-block evolution using Band+BB params (Burgess+ 2014 style)."""
     fig, axes = plt.subplots(3, 1, figsize=(8, 7), sharex=True)
     t_mid = t['T_MID']
+    # VALID, not just OK: a railed fit is a failed fit, and plotting it
+    # unmarked fakes structure in the evolution track (four-channel audit,
+    # bn130518580, 2026-08-08 — _plot_ep_kt gated on STATUS only).
     ok_bb = t['BANDBB_STATUS'] == 'OK'
+    if 'BANDBB_VALID' in t.colnames:
+        ok_bb = ok_bb & (np.asarray(t['BANDBB_VALID']).astype(bool))
     axes[0].errorbar(t_mid[ok_bb], t['BANDBB_EP'][ok_bb],
                      yerr=t['BANDBB_EP_ERR'][ok_bb], fmt='o', label='Band+BB Ep')
     axes[0].set_ylabel('Ep [keV]'); axes[0].set_yscale('log')
@@ -1650,6 +1756,9 @@ def _plot_evolution(t, trigger, out_dir):
 def _plot_ep_kt(t, trigger, out_dir):
     fig, ax = plt.subplots(figsize=(6, 5))
     ok = (t['BANDBB_STATUS'] == 'OK') & np.isfinite(t['BANDBB_EP']) & np.isfinite(t['BANDBB_KT'])
+    # VALID gate (same audit): railed kT/Ep must not enter the correlation.
+    if 'BANDBB_VALID' in t.colnames:
+        ok = ok & (np.asarray(t['BANDBB_VALID']).astype(bool))
     if ok.sum() < 2:
         plt.close(fig); return
     ep = t['BANDBB_EP'][ok]; kt = t['BANDBB_KT'][ok]

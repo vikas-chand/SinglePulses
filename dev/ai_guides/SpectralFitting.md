@@ -556,3 +556,111 @@ state the data-quality reason explicitly so the exclusion is auditable.
 ⚠ Applies to US too: bursts #3 and #5 were fitted GBM+LLE with **LAT unused on disk**, so their β
 values carry exactly the bias Ravasio measured. Re-fit with `--include-lat` before quoting β.
 
+
+### L18 — EVERY model family needs an unconditional multistart — a bound-widening fix must be re-validated on the FAINTEST blocks  *(bn110721200 blk9, 2026-08-08)*
+The L9 fix (widen the 5 MeV Ep cap) correctly un-railed blk0's 19 MeV peak — and silently destroyed
+blk9. The cap had been *incidentally anchoring* the faint late blocks; with it gone, blk9 (sig 7.8,
+seeded by the chain from a bright block) fell into a soft local minimum: **α = +0.82, Ep = 42 keV**
+against α ∈ [−1.26, −0.93], Ep 373–424 keV across **9 archival runs**. The gate auto-invalidated it
+(Ep near the 30 keV bound), so the winner stayed sane (CPL) — but the collapsed α sat in the table
+and got quoted in the Step-9 narrative.
+
+Root cause: **the simple models were the ONLY family without a multistart.** BB, DSBPL, cutoff and
+every nested composite had restarts; Band/CPL/SBPL/SBPLfree fit once from the chained seed with
+nothing to rescue them.
+
+**RULE:** (a) every family gets an unconditional restart from pure defaults + canonical seeds,
+keep-best validity-preferring (`SIMPLE_RESTART_SEEDS` in `scripts/10`, runs BEFORE the composite
+multistarts so children seed from corrected parents); (b) any fix that moves or removes a bound is
+re-validated on the LOWEST-significance blocks of the burst that motivated it, not just the block
+that motivated it; (c) a collapsed-but-invalidated fit is still a defect — its parameters pollute
+narratives and tracks.
+**TEST:** `tests/test_lessons.py::test_L18_*` — no OK Band fit with α > 0 in guarded tables; demo
+blk9 must recover the archival minimum. *A lesson is not learned until it is a claim + a test.*
+
+### L19 — a nested LRT ≤ −0.5 is not a non-detection; NaN it and stamp it  *(demo blk1 + blk0 of demo/b4, 2026-08-08)*
+A nested child strictly worse than its parent is impossible at the true optimum (parent + null
+component reproduces the parent's likelihood). LRT ≈ 0 is legal — the component pinned to zero.
+LRT < −0.5 means either a failed child fit **or** an approximately-nested pair (DSBPL vs SBPL:
+fixed-smoothness conventions differ, so exact nesting fails — demo/b4 blk0 gave −1.66/−1.12).
+Either way the number is **not χ²-distributed** and reporting it as a clean null is wrong.
+**RULE:** `select_best` NaNs any nested LRT < −0.5 and stamps `LRT_INVALID`; downstream logic sees
+a missing measurement, never a clean non-detection.
+**TEST:** `test_L19_no_impossible_negative_lrt`.
+
+### L20 — restore the model to the best fit BEFORE evaluating derived curves  *(bn130518580 blk8/blk14 + 13/19 blocks, four-channel audit 2026-08-08)*
+`jl.get_errors()` (MINOS scans) can leave the live astromodels object DISPLACED from the minimum.
+`EPK_CURVE`/`WIDTH_HM` were computed from that displaced curve: blk8 stored 184.8 keV — the BB bump
+(3.92 kT = 186.2) at an inflated K_BB — while the composite at the stored best-fit parameters peaks
+at **839 keV** (BB bump only 0.65× the Band peak). Systemic: 13/19 blocks of bn130518580, every
+walkthrough out-root affected.
+**RULE:** call the native `jl.restore_best_fit()` before evaluating anything from the live model.
+Derived quantities come from the FIT, not from wherever the error scan parked the parameters.
+⚠ **Consequence for #34 (AbovePeakShape):** every walkthrough-era `*_WIDTH_HM`/`*_EPK_CURVE` for
+composite models is unreliable until regenerated — including the blk8 "width 0.54→1.61" demo
+numbers. The argument survives (width spans stay wide); the specific values do not.
+**TEST:** `test_L20_epk_curve_not_displaced` (fails on stale tables by design — that is the test
+localizing which products need regeneration).
+
+### L21 — FRAME-ALIGN before you diff: "Ep" in a table may be Ec, and a sign may be flipped  *(bn081224887 reconciliation, 2026-08-08)*
+Li 2019 (`2019ApJS..245....7L`) and Yu 2019 (`2019ApJ...886...20Y`) tabulate **Ec — the CPL
+e-folding energy — not Epeak**: `Ep = (2+α)·Ec`. Verified on Yu Table 6, where both appear:
+α=−0.13, Ec=344.76 → Ep=644.75 = 1.87×344.76. Naively diffing our Ep against their "Ec" column
+fakes a factor-1.9 discrepancy. Same burst, same trap in sign: Suzaku-WAM quotes α=+0.83 in
+`dN/dE ∝ E^−α` — that is **−0.83** in our convention.
+**RULE — the P2 frame-alignment checklist, applied before ANY number is diffed:**
+(1) Ep convention (νFν peak vs e-folding vs break energy); (2) index sign convention;
+(3) energy band of the quoted fluence/flux; (4) time interval AND its T0 (Konus/WAM T0 ≠ GBM T0);
+(5) detector set. A diff without the checklist is not a diff.
+
+### L22 — a published component claim is a claim about the CONTINUUM it was measured against — and citation chains lie  *(bn081224887, Burgess 2014 vs our null, 2026-08-08)*
+Burgess+2014 (`2014ApJ...784...17B`) report a "significant" blackbody in 081224 at ΔC-stat>10 —
+**measured against a synchrotron-only continuum**, and say so verbatim: *"the Band function has
+more freedom in the shape below Ep"*, and the BB was added *"when Band α was much harder than
+zero [and] the synchrotron fit was poor"*. 081224's α is harder than −2/3 in 11/15 bins — the BB
+repairs synchrotron's rigidity, and vanishes against Band/CPL. **Our null and their detection are
+both correct**; they answer different questions. The apparent contradiction dissolved only when
+the continuum was named.
+**Chained claims rot:** Li 2019 Table 1 lists "Best Model = Band+BB" for 081224 citing Iyyani
+2016 — which fitted synchrotron+BB, never Band+BB, for this burst.
+**RULE:** before recording a literature entry as CONTRADICTING ours, (a) name the continuum the
+published component was measured against; (b) verify any chained claim at its PRIMARY source.
+"X requires a blackbody" with no continuum named is not yet a claim.
+
+### L23 — agreement can be a SHARED BAD MINIMUM; independence counts at the PRIMITIVE  *(bn130310840 slice c + the four-channel experiment, 2026-08-08/09)*
+Our kT = 52.0 keV and Qin+2021's kT = 54.6 agree to 5% — and **both are statistically
+unnecessary** (our ΔAIC₂ = 1.1, their ΔAIC = −0.8). Agreement from a shared unnecessary minimum
+looks exactly like corroboration. The FXT bug catalogue's B-49 (astropy Sun-angle) is the same
+disease; the four-channel experiment reproduced it on demand — two channels sharing one broken
+ECSV column corroborated a void claim, while the one REAL corroboration (NaI cross-norm offset)
+was seen at two genuinely different primitives (pixels vs railed EAC parameters).
+**Corollary — verify the adversary too:** the same experiment's adversary claimed the +BB
+multistart was non-deterministic; 5 identical runs gave spread 0.000 — its variance was its own
+invocations.
+**RULE:** before counting agreement as verification, name the deepest primitive the two paths
+SHARE (minimiser, table, column, skill file, response model). Agreement above that primitive is
+one opinion; agreement below it is evidence. N identical lookers are one look.
+
+### L24 — an EVOLVING component rails in the INTEGRATED fit; a railed T_INT BB with valid resolved kT is a BROKEN fit, not an absence  *(bn130518580, 2026-08-08)*
+Resolved blocks 6–16 return VALID kT = 30.7–50.3 keV (cooling, LRT up to 34.7). The T_INT
+Band+BB and SBPL+BB **railed at kT = 1.0 keV despite 30/80 keV multistart seeds**, were gated
+VALID=False — and "no integrated thermal" was then read as a result. It is an optimiser failure:
+one static Planck cannot track a cooling, fading component, and the deep minimum the resolved
+blocks find has no counterpart in the integrated likelihood. The converse also happened in the
+same burst: integrated DSBPL is decisive (ΔAIC 82) while resolved shows the cooling BB — time
+integration both destroys real components and manufactures static ones.
+**RULE:** if ANY resolved block has a VALID, significant kT and the T_INT BB rails → the T_INT
+fit is broken; report "T_INT: not measurable (railed)", never "no thermal component".
+**ENGINE (pending):** second-pass T_INT re-fit seeding kT from the flux-weighted resolved-block
+value. **TEST:** `test_L24_tint_bb_rail_vs_resolved` (xfail on b6 until the seeding fix lands).
+
+### L25 — the DSBPL low break and the blackbody are frequently ONE feature; test xb vs 3.92·kT every time  *(bn130518580, 2026-08-08)*
+Across 11 blocks of bn130518580, the DSBPL low break tracks the Band+BB blackbody peak:
+Pearson r = 0.87, median xb/(3.92 kT) = 1.13. The four-channel panel saw the same thing from the
+outside: the winning flavor flips Band+BB → DSBPL between consecutive 0.7-s blocks whose total
+νFν curves are visually identical — the LABEL alternates on timescales no emission mechanism can,
+because both models are fitting the same low-energy shoulder (the L12 degeneracy class made
+visible).
+**RULE:** whenever a burst shows both flavors, compute xb/(3.92 kT) block-by-block. If it sits
+near 1 with high correlation, report ONE spectral feature whose identity is undetermined — never
+a "blackbody" in some blocks and a "second break" in others.

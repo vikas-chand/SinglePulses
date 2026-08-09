@@ -1,0 +1,195 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\href{#1}{#1}}
+\providecommand{\dodoi}[1]{doi:~\href{http://doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\doeprint}[1]{\href{http://ascl.net/#1}{\nolinkurl{http://ascl.net/#1}}}
+\providecommand{\doarXiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{https://arxiv.org/abs/#1}}}
+
+\bibitem[{{Acuner} {et~al.}(2020){Acuner}, {Ryde}, {Pe'er}, {Mortlock}, \&
+  {Ahlgren}}]{Acuner2020}
+{Acuner}, Z., {Ryde}, F., {Pe'er}, A., {Mortlock}, D., \& {Ahlgren}, B. 2020,
+  \apj, 893, 128
+
+\bibitem[{{Akaike}(1974)}]{Akaike1974}
+{Akaike}, H. 1974, IEEE Transactions on Automatic Control, 19, 716
+
+\bibitem[{{Atwood} {et~al.}(2009){Atwood}, {Abdo}, {Ackermann},
+  {et~al.}}]{Atwood2009}
+{Atwood}, W.~B., {Abdo}, A.~A., {Ackermann}, M., {et~al.} 2009, \apj, 697, 1071
+
+\bibitem[{{Band} {et~al.}(1993){Band}, {Matteson}, {Ford}, {et~al.}}]{Band1993}
+{Band}, D., {Matteson}, J., {Ford}, L., {et~al.} 1993, \apj, 413, 281
+
+\bibitem[{{Basak} \& {Rao}(2013)}]{Basak2013}
+{Basak}, R., \& {Rao}, A.~R. 2013, \mnras, 436, 3082
+
+\bibitem[{{Basak} \& {Rao}(2014)}]{Basak2014}
+---. 2014, \mnras, 442, 419
+
+\bibitem[{{Burgess} {et~al.}(2020){Burgess}, {B{\'e}gu{\'e}}, {Bacelj},
+  {Giannios}, {Berlato}, \& {Greiner}}]{Burgess2020cool}
+{Burgess}, J.~M., {B{\'e}gu{\'e}}, D., {Bacelj}, A., {et~al.} 2020, Nature
+  Astronomy, 4, 174
+
+\bibitem[{{Burgess} {et~al.}(2019){Burgess}, {Greiner}, {B\'egu\'e}, \&
+  {Berlato}}]{Burgess2019}
+{Burgess}, J.~M., {Greiner}, J., {B\'egu\'e}, D., \& {Berlato}, F. 2019,
+  \mnras, 490, 927
+
+\bibitem[{{Burgess} {et~al.}(2014{\natexlab{a}}){Burgess}, {Preece},
+  {Connaughton}, {et~al.}}]{Burgess2014a}
+{Burgess}, J.~M., {Preece}, R.~D., {Connaughton}, V., {et~al.}
+  2014{\natexlab{a}}, \apjl, 784, L43
+
+\bibitem[{{Burgess} {et~al.}(2014{\natexlab{b}}){Burgess}, {Preece},
+  {Connaughton}, {et~al.}}]{Burgess2014b}
+---. 2014{\natexlab{b}}, \apj, 784, 17
+
+\bibitem[{{Busby} \& {Lazzati}(2024)}]{Busby2024}
+{Busby}, I., \& {Lazzati}, D. 2024, \apj, 972, 83
+
+\bibitem[{{Crider} {et~al.}(1997){Crider}, {Liang}, {Smith},
+  {et~al.}}]{Crider1997}
+{Crider}, A., {Liang}, E.~P., {Smith}, I.~A., {et~al.} 1997, \apjl, 479, L39
+
+\bibitem[{{D'Agostini}(2005)}]{DAgostini2005}
+{D'Agostini}, G. 2005, arXiv e-prints.
+\newblock \doarXiv{physics/0511182}
+
+\bibitem[{{Foreman-Mackey} {et~al.}(2013){Foreman-Mackey}, {Hogg}, {Lang}, \&
+  {Goodman}}]{ForemanMackey2013}
+{Foreman-Mackey}, D., {Hogg}, D.~W., {Lang}, D., \& {Goodman}, J. 2013, \pasp,
+  125, 306
+
+\bibitem[{{Golkhou} \& {Butler}(2014)}]{Golkhou2014}
+{Golkhou}, V.~Z., \& {Butler}, N.~R. 2014, ApJ, 787, 90
+
+\bibitem[{{Golkhou} {et~al.}(2015){Golkhou}, {Butler}, \&
+  {Littlejohns}}]{Golkhou2015}
+{Golkhou}, V.~Z., {Butler}, N.~R., \& {Littlejohns}, O.~M. 2015, ApJ, 811, 93
+
+\bibitem[{{Gowri} {et~al.}(2025){Gowri}, {Pe'er}, {Ryde}, \&
+  {Dereli-Begue}}]{Gowri2025}
+{Gowri}, A., {Pe'er}, A., {Ryde}, F., \& {Dereli-Begue}, H. 2025, ApJ, 991, 230
+
+\bibitem[{{Gruber} {et~al.}(2014){Gruber}, {Goldstein}, {Weller von Ahlefeld},
+  {et~al.}}]{Gruber2014}
+{Gruber}, D., {Goldstein}, A., {Weller von Ahlefeld}, V., {et~al.} 2014, \apjs,
+  211, 12
+
+\bibitem[{{Guiriec} {et~al.}(2010){Guiriec}, {Connaughton}, \&
+  {Briggs}}]{Guiriec2010}
+{Guiriec}, S., {Connaughton}, V., \& {Briggs}, M.~S. 2010, \apj, 725, 225
+
+\bibitem[{{Guiriec} {et~al.}(2011){Guiriec}, {Connaughton}, {Briggs},
+  {et~al.}}]{Guiriec2011}
+{Guiriec}, S., {Connaughton}, V., {Briggs}, M.~S., {et~al.} 2011, \apjl, 727,
+  L33
+
+\bibitem[{{Guiriec} {et~al.}(2015){Guiriec}, {Kouveliotou}, {Daigne},
+  {et~al.}}]{Guiriec2015}
+{Guiriec}, S., {Kouveliotou}, C., {Daigne}, F., {et~al.} 2015, \apj, 807, 148
+
+\bibitem[{{Hakkila} \& {Preece}(2011)}]{HakkilaPreece2011}
+{Hakkila}, J., \& {Preece}, R.~D. 2011, ApJ, 740, 104
+
+\bibitem[{{Kaneko} {et~al.}(2006){Kaneko}, {Preece}, {Briggs},
+  {et~al.}}]{Kaneko2006}
+{Kaneko}, Y., {Preece}, R.~D., {Briggs}, M.~S., {et~al.} 2006, \apjs, 166, 298
+
+\bibitem[{{Kocevski} {et~al.}(2003){Kocevski}, {Ryde}, \&
+  {Liang}}]{Kocevski2003}
+{Kocevski}, D., {Ryde}, F., \& {Liang}, E. 2003, ApJ, 596, 389
+
+\bibitem[{{Kumar} \& {Zhang}(2015)}]{KumarZhang2015}
+{Kumar}, P., \& {Zhang}, B. 2015, \physrep, 561, 1
+
+\bibitem[{{Li} {et~al.}(2021){Li}, {Ryde}, {Pe'er}, {Yu}, \& {Acuner}}]{Li2021}
+{Li}, L., {Ryde}, F., {Pe'er}, A., {Yu}, H.-F., \& {Acuner}, Z. 2021, \apjs,
+  254, 35
+
+\bibitem[{{Lu} {et~al.}(2012){Lu}, {Wei}, {Liang}, {et~al.}}]{Lu2012}
+{Lu}, R.-J., {Wei}, J.-J., {Liang}, E.-W., {et~al.} 2012, \apj, 756, 112
+
+\bibitem[{{Meegan} {et~al.}(2009){Meegan}, {Lichti}, {Bhat},
+  {et~al.}}]{Meegan2009}
+{Meegan}, C., {Lichti}, G., {Bhat}, P.~N., {et~al.} 2009, \apj, 702, 791
+
+\bibitem[{{Mei} {et~al.}(2025){Mei}, {Oganesyan}, \& {Macera}}]{Mei2025}
+{Mei}, A., {Oganesyan}, G., \& {Macera}, S. 2025, \aap, 693, A156
+
+\bibitem[{{Norris} {et~al.}(2005){Norris}, {Bonnell}, {Kazanas}, {Scargle},
+  {Hakkila}, \& {Giblin}}]{Norris2005}
+{Norris}, J.~P., {Bonnell}, J.~T., {Kazanas}, D., {et~al.} 2005, ApJ, 627, 324
+
+\bibitem[{{Norris} {et~al.}(1996){Norris}, {Nemiroff}, {Bonnell},
+  {et~al.}}]{Norris1996}
+{Norris}, J.~P., {Nemiroff}, R.~J., {Bonnell}, J.~T., {et~al.} 1996, \apj, 459,
+  393
+
+\bibitem[{{Oganesyan} {et~al.}(2017){Oganesyan}, {Nava}, {Ghirlanda}, \&
+  {Celotti}}]{Oganesyan2017}
+{Oganesyan}, G., {Nava}, L., {Ghirlanda}, G., \& {Celotti}, A. 2017, \apj, 846,
+  137
+
+\bibitem[{{Oganesyan} {et~al.}(2018){Oganesyan}, {Nava}, {Ghirlanda}, \&
+  {Celotti}}]{Oganesyan2018}
+---. 2018, \aap, 616, A138
+
+\bibitem[{{Preece} {et~al.}(1998){Preece}, {Briggs}, {Mallozzi},
+  {et~al.}}]{Preece1998}
+{Preece}, R.~D., {Briggs}, M.~S., {Mallozzi}, R.~S., {et~al.} 1998, \apjl, 506,
+  L23
+
+\bibitem[{{Ravasio} {et~al.}(2019){Ravasio}, {Ghirlanda}, {Nava}, \&
+  {Ghisellini}}]{Ravasio2019}
+{Ravasio}, M.~E., {Ghirlanda}, G., {Nava}, L., \& {Ghisellini}, G. 2019, \aap,
+  625, A60
+
+\bibitem[{{Ravasio} {et~al.}(2018){Ravasio}, {Oganesyan}, {Ghirlanda},
+  {et~al.}}]{Ravasio2018}
+{Ravasio}, M.~E., {Oganesyan}, G., {Ghirlanda}, G., {et~al.} 2018, \aap, 613,
+  A16
+
+\bibitem[{{Ravasio} {et~al.}(2023){Ravasio}, {Salafia}, {Oganesyan},
+  {et~al.}}]{Ravasio2023}
+{Ravasio}, M.~E., {Salafia}, O.~S., {Oganesyan}, G., {et~al.} 2023, arXiv
+  e-prints.
+\newblock \doarXiv{2303.16223}
+
+\bibitem[{{Ronchi} {et~al.}(2020){Ronchi}, {Fumagalli}, {Ravasio},
+  {et~al.}}]{Ronchi2020}
+{Ronchi}, M., {Fumagalli}, F., {Ravasio}, M.~E., {et~al.} 2020, \aap, 636, A55
+
+\bibitem[{{Ryde}(2004)}]{Ryde2004}
+{Ryde}, F. 2004, \apj, 614, 827
+
+\bibitem[{{Ryde} \& {Pe'er}(2009)}]{RydePeer2009}
+{Ryde}, F., \& {Pe'er}, A. 2009, \apj, 702, 1211
+
+\bibitem[{{Sari} {et~al.}(1998){Sari}, {Piran}, \& {Narayan}}]{Sari1998}
+{Sari}, R., {Piran}, T., \& {Narayan}, R. 1998, \apjl, 497, L17
+
+\bibitem[{{Scargle} {et~al.}(2013){Scargle}, {Norris}, {Jackson}, \&
+  {Chiang}}]{Scargle2013}
+{Scargle}, J.~D., {Norris}, J.~P., {Jackson}, B., \& {Chiang}, J. 2013, \apj,
+  764, 167
+
+\bibitem[{{Schwarz}(1978)}]{Schwarz1978}
+{Schwarz}, G. 1978, Annals of Statistics, 6, 461
+
+\bibitem[{{Varun} \& {others}(2025)}]{Varun2025}
+{Varun}, \& {others}. 2025, arXiv e-prints
+
+\bibitem[{{Vianello} {et~al.}(2015){Vianello}, {Lauer}, {Younk},
+  {et~al.}}]{Vianello2015}
+{Vianello}, G., {Lauer}, R.~J., {Younk}, P., {et~al.} 2015, arXiv e-prints.
+\newblock \doarXiv{1507.08343}
+
+\bibitem[{{Wilks}(1938)}]{Wilks1938}
+{Wilks}, S.~S. 1938, Annals of Mathematical Statistics, 9, 60
+
+\bibitem[{{Yu} {et~al.}(2016){Yu}, {Preece}, {Greiner}, {et~al.}}]{Yu2016}
+{Yu}, H.-F., {Preece}, R.~D., {Greiner}, J., {et~al.} 2016, \aap, 588, A135
+
+\end{thebibliography}

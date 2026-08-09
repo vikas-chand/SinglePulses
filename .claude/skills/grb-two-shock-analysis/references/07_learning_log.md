@@ -82,3 +82,39 @@ GRB 130310A is a high-value pilot because the main-pulse low-energy feature coul
 - Treat variable magnetization as a later extension after the baseline.
 - Define a negative-control intensity-tracking sample.
 - Define the inclusion rule for an additional LAT power law.
+
+---
+
+## 2026-08-08 — Toffano et al. synthesis and project focus
+
+### Project decision
+
+- Complete the existing 106 single-pulse GRB analysis before beginning an unbounded new literature sweep.
+- Preserve targeted paper reading, but make it serve concrete analysis choices.
+- Treat empirical break detection, detector identifiability, and physical interpretation as separate layers.
+
+### Toffano lessons
+
+- A Band-only fit does not prove that a low-energy break is absent.
+- Break detectability depends strongly on `E_break/E_peak`, absolute energies, S/N, background, and response.
+- `alpha_Band` may be an effective average over two unresolved spectral segments.
+- The paper's `Delta AIC >= 6` threshold is useful as a replication benchmark, not as a universal component-significance rule.
+- The primary pipeline should use a Poisson-appropriate count likelihood and simulation-calibrated component tests.
+- Time-integrated spectra maximize S/N but can mix spectral evolution; time-resolved checks are mandatory.
+- LLE can be decisive when GBM cannot constrain the high-energy turnover.
+
+### Connection to the coupled shock project
+
+- Toffano provides the empirical and detectability framework.
+- Rahaman et al. provide a candidate physical FS+RS framework.
+- The fitted 2SBPL ratio `E_break/E_peak` must not be equated directly with the intrinsic FS/RS frequency ratio without forward-model calibration.
+- Any observed 2SBPL, Band+BB, or related low-energy structure is a candidate morphology to test, not proof of FS/RS emission.
+
+### Immediate actions
+
+1. Freeze the 106-pulse master sample and data-coverage table.
+2. Inventory all LLE/LAT pulses.
+3. Run a ten-pulse end-to-end pilot.
+4. Add hidden-break simulations to the standard report.
+5. Scale the validated pipeline to all pulses.
+

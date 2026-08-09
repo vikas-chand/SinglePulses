@@ -124,3 +124,16 @@ notes/PROJECTS_registry.md
 notes/litverify_*.md
 notes/AI_SCIENTIST_PROGRAM.md
 notes/physics_of_the_ai_scientist.md
+
+# ---- LAT raw data: 0.4-2 GB per burst — never tracked, even inside sample-burst dirs ----
+data/*/LAT/
+
+# ---- two-shock skill idea bank: LOCAL ONLY (same rule as notes/PROJECTS_registry.md) ----
+.claude/skills/grb-two-shock-analysis/references/11_project_idea_bank.md
+
+# ---- GCN-fetch temp junk at repo root ----
+/__grb_*.txt
+/*.xml
+
+# ---- paper upload bundles (regenerable zips/dirs) ----
+paper/upload_*
