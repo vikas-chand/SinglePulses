@@ -98,8 +98,7 @@ mean. In the first architecture, a \emph{workflow}, the analysis follows
 predefined paths---the same stages, in the same order, for every burst---and
 software executes them. In the second, an \emph{agent}, a model directs its
 own process: it decides what to do next, which tools to call, and when it is
-finished \TODOcite{Anthropic 2024 workflow/agent distinction; verify against
-the published engineering post}. Workflows are auditable and dull; agents are
+finished \citep{anthropic2024agents}. Workflows are auditable and dull; agents are
 flexible and hard to trust. Most claims that ``AI analyzed the data'' blur
 the two.
 
@@ -125,14 +124,13 @@ decisions have no answer key. Two careful published analyses of the same
 burst, using overlapping data and defensible methods, can disagree about
 whether a thermal component exists at all; the literature is a
 \emph{distribution} over defensible choices, not a ground truth
-\TODOcite{Siddique et al. 2022; Dirirsa et al. 2019 -- the same-burst
-disagreement documented in our Burst Records}. Second, the instrument
+\citep{2022ApJ...938..159S,2019ApJ...887...13F}. Second, the instrument
 matters: responses age, detectors are occulted, backgrounds are fit, and a
 systematic that is invisible in one regime of burst brightness or hardness
 appears only when the sample happens to present the other. Third, the
 stakes are population-level: our science application is a census of
 spectral shapes across 106 single-pulse bursts selected morphologically
-\TODOcite{Busby \& Lazzati}, and a small per-burst bias becomes a
+\citep{2024ApJ...972...83B}, and a small per-burst bias becomes a
 population-level artifact. A system that merely \emph{runs} on such data is
 easy; a system whose outputs deserve trust must show its work at every one
 of these pressure points.
@@ -157,8 +155,7 @@ evidence only in proportion to how deep their shared primitives go.
 
 We are not the first to ask whether AI can do science end-to-end.
 Multi-agent systems now generate ideas, run analyses, and draft papers
-across disciplines \TODOcite{Denario / Villaescusa-Navarro et al. 2025;
-AI-Scientist v2; verify all}. Our design differs in direction: where those
+across disciplines \citep{2025arXiv251026887V,2025arXiv250408066Y}. Our design differs in direction: where those
 systems are breadth-first---an agent writes fresh analysis code for each
 project---ours is depth-first: the agents operate a single, tested,
 domain-specific engine, and the system's growth is the accumulation of
@@ -209,19 +206,19 @@ Selections (adopt) $\rightarrow$ Adaptive Binning $\rightarrow$\\
 \node[box, below=of ledger] (p0) {\textbf{P0 freeze} — our numbers + literature-derived predictions, immutable before any comparison};
 \node[box, below=of p0] (rec) {\textbf{Reconciliation Protocol} — verify at source · frame-align · diff};
 \node[dec, below=of rec] (att) {attribute};
-\node[box, below left=5mm and -14mm of att] (we) {\emph{we-wrong}\\fix engine\\$+$ test};
-\node[box, below=9mm of att] (they) {\emph{they-wrong}\\document\\w/ evidence};
-\node[box, below right=5mm and -14mm of att] (fr) {\emph{frame}\\normalization\\rule};
-\node[box, below=24mm of att, fill=black!5] (skill) {\textbf{lesson $\rightarrow$ Skill Library, with its executable test} (Lesson Test-Suite)};
-\node[dec, below=of skill] (conv) {$K$ clean\\passes?};
-\node[gate, below=of conv] (freeze) {\textbf{FREEZE} at a recorded commit $\rightarrow$ \textbf{one production sweep over all 106} $\rightarrow$ paper numbers};
+\node[box, below=8mm of att, text width=26mm] (they) {\emph{they-wrong}\\document w/ evidence};
+\node[box, left=6mm of they, text width=26mm] (we) {\emph{we-wrong}\\fix engine $+$ test};
+\node[box, right=6mm of they, text width=26mm] (fr) {\emph{frame-difference}\\normalization rule};
+\node[box, below=8mm of they, fill=black!5] (skill) {\textbf{lesson $\rightarrow$ Skill Library, with its executable test} (Lesson Test-Suite)};
+\node[dec, below=6mm of skill] (conv) {$K$ clean\\passes?};
+\node[gate, below=6mm of conv] (freeze) {\textbf{FREEZE} at a recorded commit $\rightarrow$ \textbf{one production sweep over all 106} $\rightarrow$ paper numbers};
 \draw[arr] (scope)--(s1); \draw[arr] (s1)--(ledger); \draw[arr] (ledger)--(p0);
 \draw[arr] (p0)--(rec); \draw[arr] (rec)--(att);
-\draw[arr] (att)--(we); \draw[arr] (att)--(they); \draw[arr] (att)--(fr);
-\draw[arr] (we)--(skill); \draw[arr] (they)--(skill); \draw[arr] (fr)--(skill);
+\draw[arr] (att.west) -| (we.north); \draw[arr] (att)--(they); \draw[arr] (att.east) -| (fr.north);
+\draw[arr] (we.south) -- (we.south |- skill.north); \draw[arr] (they)--(skill); \draw[arr] (fr.south) -- (fr.south |- skill.north);
 \draw[arr] (skill)--(conv);
 \draw[arr] (conv)-- node[lab, right]{yes} (freeze);
-\draw[arr] (conv.west) -- ++(-30mm,0) node[lab, above, pos=.4]{no: next burst runs a better pipeline} |- (ledger.west);
+\draw[arr] (conv.west) -- ++(-52mm,0) node[lab, above, sloped, pos=.5]{no --- next burst runs a better pipeline} |- (ledger.west);
 \end{tikzpicture}
 \caption{The campaign loop. Humans hold the scope gate, every step gate, lesson acceptance,
 and the freeze; the agent operates inside the ledger under the Campaign Protocol. The loop's
@@ -333,6 +330,18 @@ alone.
 
 \subsection{Who decides what} \label{sec:authority}
 
+\begin{deluxetable*}{lll}
+\tablecaption{The authority split: who decides what.\label{tab:authority}}
+\tablehead{\colhead{the workflow decides (predefined)} & \colhead{the AI decides (bounded agency)} & \colhead{the human decides (gates)}}
+\startdata
+step order and Protocol & model winner via the gated comparison & scope and completion contract \\
+energy selections; statistic & fit-validity verdicts & every Stage-1 selection (stamped) \\
+multistart seeds; bound gates & literature verification and frame alignment & every step gate \\
+provenance stamping & mismatch attribution; lesson drafting & lesson acceptance; convergence; freeze \\
+typed terminal states & anomaly flagging and escalation & promotion from the discovery plane; every claim \\
+\enddata
+\end{deluxetable*}
+
 Table~\ref{tab:authority} states the paper's honesty contract. The
 \emph{workflow} decides everything decided in advance: the step order, the
 energy selections, the statistic, the multistart seeds, the stamping of
@@ -385,8 +394,7 @@ optimization against human or model judgments; reinforcement learning on
 outcome can be checked mechanically (code passing tests, proofs verifying);
 and \emph{harness-side learning}, in which the model's weights are never
 touched and the surrounding harness---its instructions, procedures, and
-memory---accumulates capability instead \TODOcite{RLVR lineage; skill-library
-agents (Voyager); verbal self-improvement (Reflexion); verify all}. Our
+memory---accumulates capability instead \citep{2025Natur.645..633G,2023arXiv230516291W,2023arXiv230311366S}. Our
 campaign is training of the fifth kind carrying the fourth kind's essential
 ingredient. The weights of every model we use are frozen; the artifact that
 learns is the Skill Library; and the unit of learning is constrained to be
@@ -442,7 +450,7 @@ training sample must supply}.
 The second episode is a cross-validation. Our temporal chain carried a
 known, ledgered defect: a spectral-lag sign convention inverted with respect
 to the field's standard. The eighth burst has a published lag of
-$+7.08\pm0.45$~s in the conventional sign \TODOcite{Lu et al. 2018}; our
+$+7.08\pm0.45$~s in the conventional sign \citep{2018ApJ...865..153L}; our
 chain returned $-5.99$~s\prov. Same burst, same physical direction, opposite
 sign: the ledgered inversion was confirmed against external ground truth in
 the course of ordinary operations, and the lesson (state the convention with
@@ -560,8 +568,8 @@ blind-prediction outcomes, and human gate corrections; it is released with
 the paper, and Fig.~\ref{fig:curve} is computed from it. External,
 zero-cost validations accumulated along the way: our adaptive binning
 reproduces a published analysis' Bayesian-block edges to three decimal
-places on a shared burst, and twenty-two of our sample's bursts carry
-published lag, width, and evolution-class measurements against which the
+places on a shared burst \citep{2021ApJS..253...43L}, and twenty-two of our sample's bursts carry
+published lag, width, and evolution-class measurements \citep{2018ApJ...865..153L} against which the
 temporal chain is validated burst by burst as the campaign reaches them.
 
 % ===========================================================================
@@ -623,8 +631,7 @@ not results (a landmark observation can contain no creative jump)---while
 identifying a genuinely open architectural slot: a literature-scale
 knowledge graph in which each result carries its derivation assumptions as
 first-class metadata, with negation as a provenance-tracked generative
-operator \TODOcite{Boden; Swanson 1986; Uzzi et al. 2013;
-Foster, Rzhetsky \& Evans 2015; Wiggins 2006 --- all to verify}. The
+operator \citep{boden2004,swanson1986,2013Sci...342..468U,2013arXiv1302.6906F,wiggins2006}. The
 Reconciliation Protocol already extracts, burst by burst, exactly the
 assumption-level statements such a graph requires; the discovery plane is
 where they will compound.
