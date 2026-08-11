@@ -1,0 +1,22 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: int64}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn130518580}
+# - {src_start: 7.0503832167833025}
+# - {src_stop: 65.3004083916085}
+# - {lle_delta_theta_deg: 0.25}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n3 -7.168 108.545 2 PASS
+n4 -7.168 108.545 2 PASS
+b0 -7.168 108.545 2 PASS
+n6 -7.168 108.545 2 PASS
+n7 -7.168 108.545 2 PASS
+b1 -7.168 108.545 2 PASS
+lle 17.055 37.121 1 CHECK

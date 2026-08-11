@@ -1,0 +1,718 @@
+{
+ "numFound": 26,
+ "start": 0,
+ "numFoundExact": true,
+ "docs": [
+  {
+   "bibcode": "2009GCN..9439....1F",
+   "author": [
+    "Flewelling, H.",
+    "Schaefer, B. E.",
+    "Pandey, S."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530A: ROTSE-III detection of optical counterpart."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9458....1R",
+   "author": [
+    "Rossi, A.",
+    "Olivares, F.",
+    "Greiner, J."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: break in light curve."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN.10015....1S",
+   "author": [
+    "Smith, A.",
+    "Lacluyze, A.",
+    "Reichart, D.",
+    "Caton, D.",
+    "Hawkins, L.",
+    "Haislip, J.",
+    "Ivarsen, K.",
+    "Foster, A.",
+    "Moore, J.",
+    "Oza, A.",
+    "Schubel, M.",
+    "Styblova, J.",
+    "Trotter, A.",
+    "Crain, J. A.",
+    "Nysewander, M."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530A: Skynet/DSO detections."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9478....1W",
+   "author": [
+    "Wren, J.",
+    "Vestrand, W. T.",
+    "Wozniak, P. R.",
+    "Davis, H.",
+    "Norman, B."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: early RAPTOR optical observations."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9487....1B",
+   "author": [
+    "Balman, S.",
+    "Parmaksizoglu, M.",
+    "Eker, Z.",
+    "Kiziloglu, U.",
+    "Gogus, E.",
+    "Bikmaev, I.",
+    "Sakhibullin, N.",
+    "Burenin, R.",
+    "Pavlinsky, M.",
+    "Sunyaev, R."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: RTT150 optical observation."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9466....1S",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ],
+   "author": [
+    "Sakamoto, T.",
+    "Donato, D.",
+    "Gehrels, N.",
+    "Okajima, T.",
+    "Ukwatta, T. N.",
+    "Urata, Y.",
+    "Wallace, C."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: GRT optical observation."
+   ],
+   "year": "2009"
+  },
+  {
+   "bibcode": "2009GCN..9488....1X",
+   "author": [
+    "Xu, D.",
+    "Leloudas, G.",
+    "Malesani, D.",
+    "Fynbo, J. P. U.",
+    "Hjorth, J.",
+    "Jakobsson, P.",
+    "Liimets, T."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: further NOT optical observations."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9452....1M",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ],
+   "author": [
+    "Malesani, D.",
+    "Xu, D.",
+    "Leloudas, G.",
+    "Fynbo, J. P. U.",
+    "Jakobsson, P.",
+    "Brown, M. E.",
+    "Schaller, E. L.",
+    "Liimets, T."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: NOT optical observations."
+   ],
+   "year": "2009"
+  },
+  {
+   "bibcode": "2009GCN..9489....1N",
+   "author": [
+    "Noda, K.",
+    "Sonoda, E.",
+    "Yamauchi, M.",
+    "Ohmori, N.",
+    "Hayashi, H.",
+    "Kono, K.",
+    "Daikyuji, A.",
+    "Nishioka, Y.",
+    "Hanabata, Y.",
+    "Uehara, T.",
+    "Takahashi, T.",
+    "Fukazawa, Y.",
+    "Ohno, M.",
+    "Suzuki, M.",
+    "Kokubun, M.",
+    "Iwakiri, W.",
+    "Tashiro, M.",
+    "Terada, Y.",
+    "Endo, A.",
+    "Onda, K.",
+    "Sugasahara, T.",
+    "Urata, Y.",
+    "Enoto, T.",
+    "Nakazawa, K.",
+    "Makishima, K.",
+    "Yamaoka, K.",
+    "Sugita, S.",
+    "Nakagawa, Y. E.",
+    "Tamagawa, T.",
+    "Hong, S.",
+    "Vasquez, N."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530B: Suzaku WAM observation of the prompt emission."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCNR..222....1C",
+   "author": [
+    "Cannizzo, J. K.",
+    "Stamatikos, M.",
+    "Mangano, V.",
+    "Schady, P."
+   ],
+   "doctype": "article",
+   "title": [
+    "Swift observations of GRB 090530."
+   ],
+   "year": "2009",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "NOT REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9472....1V",
+   "author": [
+    "van der Horst, A. J."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530B: Fermi GBM detection."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9441....1N",
+   "author": [
+    "Nissinen, M.",
+    "Hentunen, V.-P."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: GRAS002 optical observations."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9442....1N",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ],
+   "author": [
+    "Nissinen, M.",
+    "Hentunen, V.-P."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: GRAS002 refined OA analysis."
+   ],
+   "year": "2009"
+  },
+  {
+   "bibcode": "2009GCN..9443....1P",
+   "author": [
+    "Palmer, D. M.",
+    "Barthelmy, S. D.",
+    "Baumgartner, W. H.",
+    "Cannizzo, J. K.",
+    "Cummings, J. R.",
+    "Fenimore, E. E.",
+    "Gehrels, N.",
+    "Krimm, H. A.",
+    "Markwardt, C. B.",
+    "Sakamoto, T.",
+    "Sato, G.",
+    "Stamatikos, M.",
+    "Tueller, J.",
+    "Ukwatta, T. N."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: Swift-BAT refined analysis."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9438....1C",
+   "author": [
+    "Cannizzo, J. K.",
+    "Barthelmy, S. D.",
+    "Baumgartner, W. H.",
+    "Cummings, J. R.",
+    "Gronwall, C.",
+    "Holland, S. T.",
+    "Mangano, V.",
+    "Markwardt, C. B.",
+    "Marshall, F. E.",
+    "Palmer, D. M.",
+    "Sakamoto, T.",
+    "Sbarufatti, B.",
+    "Siegel, M. H.",
+    "Stamatikos, M.",
+    "Ukwatta, T. N."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: Swift detection of a burst with an optical counterpart."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9445....1B",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ],
+   "author": [
+    "Beardmore, A. P.",
+    "Evans, P. A.",
+    "Goad, M. R.",
+    "Osborne, J. P."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: enhanced Swift-XRT position."
+   ],
+   "year": "2009"
+  },
+  {
+   "bibcode": "2009arXiv0910.2134G",
+   "author": [
+    "Guetta, Dafne",
+    "Pian, Elena"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Is the Gamma Ray Bursts emission suppressed at high energy?"
+   ],
+   "year": "2009",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2011A&A...526A.153K",
+   "author": [
+    "Kr\u00fchler, T.",
+    "Schady, P.",
+    "Greiner, J.",
+    "Afonso, P.",
+    "Bottacini, E.",
+    "Clemens, C.",
+    "Filgas, R.",
+    "Klose, S.",
+    "Koch, T. S.",
+    "K\u00fcpc\u00fc-Yolda\u0219, A.",
+    "Oates, S. R.",
+    "Olivares E., F.",
+    "Page, M. J.",
+    "McBreen, S.",
+    "Nardini, M.",
+    "Nicuesa Guelbenzu, A.",
+    "Rau, A.",
+    "Roming, P. W. A.",
+    "Rossi, A.",
+    "Updike, A.",
+    "Yolda\u0219, A."
+   ],
+   "doctype": "article",
+   "title": [
+    "Photometric redshifts for gamma-ray burst afterglows from GROND and Swift/UVOT"
+   ],
+   "year": "2011",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2013GCN.15571....1G",
+   "author": [
+    "Goldoni, P.",
+    "de Ugarte Postigo, A.",
+    "Fynbo, J. P. U."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090530: x-shooter redshift."
+   ],
+   "year": "2013",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2015arXiv150304580D",
+   "author": [
+    "Dereli, H\u00fcsne"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Study of a Population of Gamma-ray Bursts with Low-Luminosity Afterglows"
+   ],
+   "year": "2015",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2016PASP..128e5002S",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ],
+   "author": [
+    "Smith, Adam B.",
+    "Caton, Daniel B.",
+    "Hawkins, R. Lee"
+   ],
+   "doctype": "article",
+   "title": [
+    "Implementation and Operation of a Robotic Telescope on Skynet"
+   ],
+   "year": "2016"
+  },
+  {
+   "bibcode": "2019A&A...623A..92S",
+   "author": [
+    "Selsing, J.",
+    "Malesani, D.",
+    "Goldoni, P.",
+    "Fynbo, J. P. U.",
+    "Kr\u00fchler, T.",
+    "Antonelli, L. A.",
+    "Arabsalmani, M.",
+    "Bolmer, J.",
+    "Cano, Z.",
+    "Christensen, L.",
+    "Covino, S.",
+    "D'Avanzo, P.",
+    "D'Elia, V.",
+    "De Cia, A.",
+    "de Ugarte Postigo, A.",
+    "Flores, H.",
+    "Friis, M.",
+    "Gomboc, A.",
+    "Greiner, J.",
+    "Groot, P.",
+    "Hammer, F.",
+    "Hartoog, O. E.",
+    "Heintz, K. E.",
+    "Hjorth, J.",
+    "Jakobsson, P.",
+    "Japelj, J.",
+    "Kann, D. A.",
+    "Kaper, L.",
+    "Ledoux, C.",
+    "Leloudas, G.",
+    "Levan, A. J.",
+    "Maiorano, E.",
+    "Melandri, A.",
+    "Milvang-Jensen, B.",
+    "Palazzi, E.",
+    "Palmerio, J. T.",
+    "Perley, D. A.",
+    "Pian, E.",
+    "Piranomonte, S.",
+    "Pugliese, G.",
+    "S\u00e1nchez-Ram\u00edrez, R.",
+    "Savaglio, S.",
+    "Schady, P.",
+    "Schulze, S.",
+    "Sollerman, J.",
+    "Sparre, M.",
+    "Tagliaferri, G.",
+    "Tanvir, N. R.",
+    "Th\u00f6ne, C. C.",
+    "Vergani, S. D.",
+    "Vreeswijk, P.",
+    "Watson, D.",
+    "Wiersema, K.",
+    "Wijers, R.",
+    "Xu, D.",
+    "Zafar, T."
+   ],
+   "doctype": "article",
+   "title": [
+    "The X-shooter GRB afterglow legacy sample (XS-GRB)"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2019ApJ...883...97Z",
+   "author": [
+    "Zhao, Litao",
+    "Zhang, Binbin",
+    "Gao, He",
+    "Lan, Lin",
+    "L\u00fc, Houjun",
+    "Zhang, Bing"
+   ],
+   "doctype": "article",
+   "title": [
+    "The Shallow Decay Segment of GRB X-Ray Afterglow Revisited"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2023ApJ...951....4G",
+   "author": [
+    "Garcia-Cifuentes, K.",
+    "Becerra, R. L.",
+    "De Colle, F.",
+    "Cabrera, J. I.",
+    "Del Burgo, C."
+   ],
+   "doctype": "article",
+   "title": [
+    "Identification of Extended Emission Gamma-Ray Burst Candidates Using Machine Learning"
+   ],
+   "year": "2023",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2026A&A...707A.392Z",
+   "author": [
+    "Zhang, Xue",
+    "Yi, Shuang-Xi",
+    "Lei, Wei-Hua",
+    "Liu, Tong",
+    "Yang, Yu-Peng",
+    "Qin, Ying",
+    "Qu, Yan-Kun",
+    "Tang, Qing-Wen",
+    "Wang, Fa-Yin"
+   ],
+   "doctype": "article",
+   "title": [
+    "Exploring the central engines of gamma-ray bursts from prompt light curves"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2026ApJ..1004L..11Z",
+   "author": [
+    "Zhou, Yu-Qi",
+    "Yi, Shuang-Xi",
+    "Yang, Yu-Peng",
+    "Qu, Yan-Kun",
+    "Gai, Ning",
+    "Tang, Yanke",
+    "Wang, Fa-Yin"
+   ],
+   "doctype": "article",
+   "title": [
+    "Magnetar-powered Long Gamma-Ray Bursts and Connection to Superluminous Supernovae and Fast Radio Bursts"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  }
+ ]
+}

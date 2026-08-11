@@ -1,0 +1,357 @@
+% ===========================================================================
+% v2 REWRITE (2026-08-10, Vikas-approved outline: REWRITE_OUTLINE_v2.md).
+% v1 (agentic_grb.tex) PRESERVED untouched until the swap is approved.
+% Spine = docs/agentic_workflow_map.md (the collaborator page).
+% Nomenclature policy: NO internal filenames; paper names per the outline table
+%   (Skill Library, Campaign Protocol, Reconciliation Protocol, Lesson Test-Suite,
+%    Burst Records, Campaign Ledger, validity gates, ...).
+% Numbers policy: real walkthrough-era values ONLY, each \prov-flagged; refreshed
+%   mechanically at the frozen production sweep. No invented numbers, ever.
+% ===========================================================================
+\documentclass[twocolumn]{aastex631}
+
+\newcommand{\PENDING}[1]{\textbf{\textcolor{red}{[PENDING run: #1]}}}
+\newcommand{\TODOcite}[1]{\textbf{\textcolor{blue}{[cite: #1]}}}
+\newcommand{\prov}{\textsuperscript{(p)}}   % provisional walkthrough-era number
+\newcommand{\Ep}{E_{\rm p}}
+\newcommand{\kT}{kT}
+
+\shorttitle{Can AI Agents Analyze GRBs?}
+\shortauthors{Chand et al.}
+
+\begin{document}
+
+% --- TITLE: Vikas to pick; option B (v1) kept below ------------------------
+\title{Can AI Agents Analyze Gamma-Ray Bursts?}
+% \title{Can Agentic AI Do Gamma-Ray Burst (GRB) Analysis?
+% A Human-versus-Agent Benchmark on Time-Resolved \textit{Fermi}/GBM Spectroscopy}
+
+\author{Vikas Chand}
+\affiliation{Louisiana State University, Baton Rouge, LA, USA}
+\email{vikas.chand.physics@gmail.com}
+
+\author{Khushboo Sharma}
+\affiliation{Aryabhatta Research Institute of Observational Sciences (ARIES), Nainital, India}
+
+\author{Jagdish C. Joshi}
+\affiliation{Aryabhatta Research Institute of Observational Sciences (ARIES), Nainital, India}
+
+\begin{abstract}
+Yes---with a human at the gate, and the distinction matters. Analyzing a
+gamma-ray burst (GRB) is mostly judgement calls: which detectors to trust,
+where the background sits, where the burst starts and stops, how finely to
+slice it in time, and which of two dozen spectral models to believe.
+We describe a system that makes those calls, and we are precise about its
+architecture: it is not an autonomous agent but a \emph{gated workflow with
+bounded agency}---predefined analysis paths in which an AI makes named,
+auditable decisions (model selection, fit validity, literature verification,
+mismatch attribution) while a human approves every step, and every approval
+is stamped. The system's knowledge lives in a \emph{Skill Library}: versioned
+plain-language procedure documents that any AI agent---or any student---can
+read and execute. The Library is not documentation; it is the system's
+memory, and it learns. Each burst is analyzed blind, reconciled against the
+published literature, and every mismatch is attributed---our error, the
+literature's, or a difference of frames---and distilled into a numbered
+lesson that ships with an executable test, so that no lesson can be silently
+forgotten. Applied to a campaign over 106 single-pulse \textit{Fermi}/GBM
+bursts, the first ten walkthroughs\prov{} produced twenty-seven such lessons,
+found and fixed five engine defects (one of which---a validity gate whose
+linear margin silently disqualified soft spectra---would have biased the
+census toward spurious thermal components), confirmed blind predictions
+drawn from the literature, and refuted one of its own. The learning curve
+(lessons per burst) is the paper's central figure: the campaign trains a
+pipeline, not model weights, and the trained artifact is readable, testable,
+and transfers between AI systems. We release the Skill Library, the engine,
+the tests, and the per-burst records, and we report where the agent still
+cannot be trusted: adjudicating scientifically contested verdicts, where we
+show that panels of AI reviewers are strong \emph{generators} of checkable
+findings but weak \emph{adjudicators}---their unanimity can be an artifact of
+shared priors rather than independent measurement.
+\end{abstract}
+
+\keywords{Gamma-ray bursts (629) --- Astronomy data analysis (1858) ---
+Astronomy software (1855) --- Astrostatistics (1882)}
+
+% ===========================================================================
+\section{Introduction} \label{sec:intro}
+% ===========================================================================
+
+The question in our title is usually asked as if it had a yes-or-no answer.
+It does not, because ``AI doing analysis'' names at least two different
+architectures, and the difference between them decides what the answer can
+mean. In the first architecture, a \emph{workflow}, the analysis follows
+predefined paths---the same stages, in the same order, for every burst---and
+software executes them. In the second, an \emph{agent}, a model directs its
+own process: it decides what to do next, which tools to call, and when it is
+finished \TODOcite{Anthropic 2024 workflow/agent distinction; verify against
+the published engineering post}. Workflows are auditable and dull; agents are
+flexible and hard to trust. Most claims that ``AI analyzed the data'' blur
+the two.
+
+This paper builds and tests a deliberate hybrid, and names it honestly: a
+\emph{gated workflow with bounded agency}. The analysis pipeline---data
+acquisition, detector and background selection, adaptive binning, spectral
+fitting, temporal analysis, quality control---is a workflow: its stages are
+fixed, its statistics are chosen in advance, and its outputs are stamped
+with provenance. Inside that workflow, an AI exercises agency at exactly the
+points where judgement is required and we can afford to audit it: which of
+twenty-four spectral models wins a gated comparison, whether a fit is valid
+or sits on a parameter rail, whether a published value has been verified at
+its source, and---when our numbers disagree with the literature---whether the
+fault is ours, theirs, or a difference of analysis frames. A human approves
+every step before the next one runs. Nothing advances on silence, and no
+approval is ever fabricated: every decision carries a stamp naming who, or
+what, made it.
+
+Why is time-resolved GRB spectroscopy the right testbed rather than a
+convenient one? Because it concentrates, in one measurement problem, the
+three features that make scientific AI hard to evaluate. First, the
+decisions have no answer key. Two careful published analyses of the same
+burst, using overlapping data and defensible methods, can disagree about
+whether a thermal component exists at all; the literature is a
+\emph{distribution} over defensible choices, not a ground truth
+\TODOcite{Siddique et al. 2022; Dirirsa et al. 2019 -- the same-burst
+disagreement documented in our Burst Records}. Second, the instrument
+matters: responses age, detectors are occulted, backgrounds are fit, and a
+systematic that is invisible in one regime of burst brightness or hardness
+appears only when the sample happens to present the other. Third, the
+stakes are population-level: our science application is a census of
+spectral shapes across 106 single-pulse bursts selected morphologically
+\TODOcite{Busby \& Lazzati}, and a small per-burst bias becomes a
+population-level artifact. A system that merely \emph{runs} on such data is
+easy; a system whose outputs deserve trust must show its work at every one
+of these pressure points.
+
+Our design answer, developed in \S\ref{sec:workflow}, has one unusual
+component that we believe is the paper's main methodological contribution.
+The system's procedural knowledge lives in a \emph{Skill Library}: versioned,
+plain-language documents---one per pipeline stage---that state how the stage
+is run, what its known failure modes are, and what was learned from every
+burst that ever taught it something. The Library is executable culture: an
+AI agent reads the same document a new student would, and both are bound by
+the same rules. Crucially, the Library \emph{learns} under a discipline we
+call lessons-as-tests: a lesson enters the Library only as a claim with
+provenance (which burst, which date, which evidence) \emph{and} an
+executable test that fails if the lesson is ever violated again. Weights
+are never updated; the harness is. \S\ref{sec:learning} shows what this
+training regime produced over the first ten bursts of the campaign,
+including its learning curve, and \S\ref{sec:verify} develops the
+verification doctrine---blind-first analysis, frozen predictions, and an
+independence requirement we state as: agreement between two analyses is
+evidence only in proportion to how deep their shared primitives go.
+
+We are not the first to ask whether AI can do science end-to-end.
+Multi-agent systems now generate ideas, run analyses, and draft papers
+across disciplines \TODOcite{Denario / Villaescusa-Navarro et al. 2025;
+AI-Scientist v2; verify all}. Our design differs in direction: where those
+systems are breadth-first---an agent writes fresh analysis code for each
+project---ours is depth-first: the agents operate a single, tested,
+domain-specific engine, and the system's growth is the accumulation of
+verified domain lessons rather than of generated artifacts. The comparison
+is instructive in both directions, and we return to it in
+\S\ref{sec:discussion}: the breadth-first systems demonstrate, at scale,
+exactly the evaluation gap---qualitative review standing in for ground
+truth---that our gated, decision-level scoring is designed to close.
+
+The paper is organized as follows. \S\ref{sec:sample} describes the sample
+and data. \S\ref{sec:workflow} presents the workflow: the Campaign
+Protocol, the Skill Library, the authority split between workflow, agent,
+and human, and the doctrine distilled from its failures.
+\S\ref{sec:learning} presents harness learning and the campaign learning
+curve. \S\ref{sec:verify} presents the verification doctrine and the
+adversarial experiments. \S\ref{sec:design} describes the human-versus-agent
+benchmark design. \S\ref{sec:results} reports walkthrough-era results, all
+provisional\prov{} until a frozen production sweep. \S\ref{sec:discussion}
+discusses limits, and \S\ref{sec:conclusions} concludes. Throughout,
+walkthrough-era numbers carry the flag\prov{}; they will be regenerated
+mechanically when the converged pipeline is frozen and run once over the
+full sample.
+
+% ===========================================================================
+\section{Sample and Data} \label{sec:sample}
+% ===========================================================================
+% [KEEP from v1 with light compression: 106 single-pulse GBM bursts,
+%  morphological selection; TTE/CSPEC/RSP2/POSHIST + LLE/LAT where present;
+%  data quality (never detection significance) as the inclusion gate.]
+\PENDING{port v1 \S2 with the L17 inclusion-gate paragraph added}
+
+% ===========================================================================
+\section{The Agentic Workflow} \label{sec:workflow}
+% ===========================================================================
+% Fig 1 = campaign-loop diagram (vector redraw of the map). Fig 2 = fitting-step diagram.
+
+\subsection{The campaign loop} \label{sec:loop}
+
+The unit of work is one burst, walked through eleven gated steps
+(Fig.~\ref{fig:loop}). The \emph{Identity \& Circulars} step resolves which
+burst this actually is---same-day triggers exist, and we show below that this
+step has already intercepted a wrong redshift---and reads every real-time
+circular. The \emph{Literature Harvest} step finds and fetches every refereed
+paper that analyzed the burst, using four query forms (name, trigger name,
+day-fraction, trigger number), preferring the version of record, and
+recording each harvested value together with its conventions: which peak
+energy definition, which sign convention, which energy band, which time
+interval on whose clock, which detectors. The \emph{Data Inventory} step
+verifies that the downloaded data can support the analysis: file versions,
+response-matrix time coverage, and detector geometry---including checks that
+no geometrically well-placed detector is physically occulted, a failure mode
+invisible to pointing angles. The \emph{Selection} steps (detectors,
+background intervals, source interval) are made by a human in a purpose-built
+interface, or by a vision-capable agent, and in either case are recorded with
+an approval stamp naming the decision-maker and time; the pipeline treats
+these stamps as immutable inputs. The \emph{Adaptive Binning} step derives
+Bayesian-block time bins merged to a significance floor. The \emph{Spectral
+Fitting} step---where most of the agency lives---is described in
+\S\ref{sec:fitstep}. \emph{Temporal analysis}, \emph{spectral-energy
+panels}, and \emph{quality control} complete the ledger; the QC step returns
+one of a set of typed terminal states, of which \texttt{non-identifiable} is
+a \emph{successful} outcome: the workflow is forbidden to keep adjusting an
+analysis until it manufactures a preference.
+
+Two disciplines wrap the loop. Before any comparison with the literature, the
+agent's own results are frozen---written to the Burst Record in a form that
+cannot be revised---together with predictions derived from the harvested
+literature (\S\ref{sec:verify}). Only then are the two compared, and every
+mismatch is pushed to one of three attributions: \emph{we-wrong} (an error on
+our side, which must be fixed and tested), \emph{they-wrong} (a documented
+problem in the published analysis, stated with evidence), or
+\emph{frame-difference} (both analyses defensible; the difference traced to
+conventions, data selections, or eras, and recorded as a normalization rule).
+The attribution, not the mismatch, is the product: it becomes a numbered
+lesson in the Skill Library, shipped with an executable test
+(\S\ref{sec:learning}).
+
+The loop's exit condition is convergence: when $K$ consecutive bursts
+complete without producing a single new lesson, the Skill Library is declared
+converged, the pipeline is frozen at a recorded commit, and the entire
+106-burst sample is re-analyzed once, from scratch, by the frozen system.
+Only that production sweep produces citable numbers; every value in this
+paper from the campaign era carries the provisional flag\prov. The design
+premise, stated plainly: \emph{the per-burst numbers are not the product;
+the matured Skill Library is.}
+
+\subsection{Inside the fitting step} \label{sec:fitstep}
+
+The fitting engine confronts each time bin with twenty-four spectral models:
+four one-break continua, five carrying extra low-energy structure (thermal
+or a second break), and fifteen high-energy composites. Three rules govern
+what the numbers may mean. First, \emph{inclusion is gated on data quality,
+never on detection significance}: every detector band with usable data and a
+valid response enters the joint fit, because conditioning inclusion on
+significance manufactures spurious detections in exactly the bursts where a
+band fluctuated upward. Second, \emph{every model family receives
+unconditional multistarts}, because a chained seed from a bright epoch can
+strand a faint bin in a wrong local minimum---a failure we document in
+\S\ref{sec:learning}. Third, \emph{validity gates} exclude from model
+selection any fit whose shape parameters sit on a bound, with the margins
+computed in the parameter's natural geometry (logarithmic for
+energy-like parameters spanning decades)---a rule the campaign itself had to
+learn, at measurable cost, from its first soft burst.
+
+Model comparison is then reported as evidence, not verdicts: the winning
+model's margin is quoted both against the runner-up (\emph{which} model) and
+against the best one-break continuum (\emph{is extra structure needed at
+all}), each converted to an evidence ratio $e^{\Delta\mathrm{AIC}/2}$ and
+graded. A margin of 6 corresponds to roughly 20:1 and is called strong;
+10, roughly 150:1, decisive; anything less is reported as what it is. Where
+extra structure is required but thermal and non-thermal descriptions sit
+within a few units of each other, the bin is assigned to a degeneracy class
+rather than a physics claim: \emph{adequacy and identity are different
+questions}, and the second frequently cannot be answered from these data
+alone.
+
+\subsection{Who decides what} \label{sec:authority}
+
+Table~\ref{tab:authority} states the paper's honesty contract. The
+\emph{workflow} decides everything decided in advance: the step order, the
+energy selections, the statistic, the multistart seeds, the stamping of
+provenance. The \emph{AI} decides, within audited bounds: which model wins
+the gated comparison, whether a fit is valid, whether a published value has
+been verified at source and in which frame, how a mismatch is attributed,
+and which anomalies deserve escalation. The \emph{human} decides everything
+consequential: the scope, every step gate, whether a proposed lesson enters
+the Library, when convergence is declared, and every scientific claim that
+leaves the system. In ten bursts\prov{} of operation, no approval was ever
+generated by the system on the human's behalf; the reverse---the human
+overruling the agent's proposal---occurred repeatedly and is part of the
+record (\S\ref{sec:discussion}).
+
+\subsection{Two planes} \label{sec:planes}
+
+Everything above describes the \emph{production plane}. A second,
+\emph{discovery plane} exists for ideas that do not belong inside a frozen
+workflow: anomalies that suggest new observables, hypotheses formed after
+seeing data. Work there is sandboxed and carries no evidentiary weight until
+it passes a promotion gate---calibration on simulations, validation on data
+that did not motivate it, human approval. The governing rule is stated once
+and enforced always: \emph{the agent may invent a new scorecard after seeing
+the game; it may not pretend the scorecard was chosen before the game.}
+
+\subsection{The doctrine} \label{sec:doctrine}
+
+Seven rules, each purchased by a documented failure, govern all of the
+above: (1) analyze blind first---published values are harvested before
+fitting but the fit is never steered toward them; (2) margins are computed
+over valid fits only; (3) evidence ratios, never bare verdicts; (4)
+inclusion by data quality, never significance---and its absolute corollary:
+production fits never drop data that passes the quality gate, with/without
+refits are attribution diagnostics whose data-dropped member can never be
+quoted as a result, and omission of data is legal only through a documented
+quality exclusion; (5) a lesson is not learned
+until it is a claim \emph{and} a test; (6) no silent approvals---a skipped
+check is a fake pass; (7) verify claims at their source, and attribute
+agreement or disagreement at the level of shared primitives. The failures
+that funded each rule appear in \S\ref{sec:learning} and
+\S\ref{sec:discussion}.
+
+% ===========================================================================
+\section{Learning Without Gradients} \label{sec:learning}
+% ===========================================================================
+% Fig 3 = the learning curve from the Campaign Ledger.
+% L27 as the worked example; L26 as live cross-validation; convergence = K clean passes.
+\PENDING{draft per outline \S3}
+
+% ===========================================================================
+\section{Verification Doctrine} \label{sec:verify}
+% ===========================================================================
+% Blind-first frozen predictions (P0) + scorecards; false corroboration /
+% independence-at-the-primitive; the four-channel experiment; verify-the-adversary.
+\PENDING{draft per outline \S4}
+
+% ===========================================================================
+\section{Experimental Design: Human versus Agent} \label{sec:design}
+% ===========================================================================
+% KEEP v1 core; ADD two-arm (post-2020 vs 2015-19) inter-operator design;
+% ADD decision-level scoring against the expert band.
+\PENDING{port v1 \S4 + additions}
+
+% ===========================================================================
+\section{Walkthrough-Era Results} \label{sec:results}
+% ===========================================================================
+% Table 1 = the Campaign Ledger; per-burst one-liners from the Burst Records;
+% blind-prediction scoreboard. ALL \prov.
+\PENDING{draft per outline \S6}
+
+% ===========================================================================
+\section{Discussion} \label{sec:discussion}
+% ===========================================================================
+% 7.1 failure taxonomy (each mode WITH its caught instance);
+% 7.2 generator-vs-adjudicator; 7.3 discovery plane + creativity-as-graph-operations
+% (A' bridge / B' assumption-negation / C generative construction; stress-test verdict;
+%  scoped as OUTLOOK); 7.4 what generalizes.
+\PENDING{draft per amended outline \S7 (failure modes + creativity jumps at the end)}
+
+% ===========================================================================
+\section{Conclusions} \label{sec:conclusions}
+% ===========================================================================
+\PENDING{draft last}
+
+\appendix
+\section{Reproducibility} \label{app:repro}
+\PENDING{port v1 + fresh-clone truths + Lesson Test-Suite + release DOI}
+
+\section{Adversarial verification protocol} \label{app:verify}
+\PENDING{port v1 + feed the four-channel results}
+
+\bibliography{agentic_grb}
+\end{document}

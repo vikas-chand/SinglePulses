@@ -162,7 +162,7 @@ proportion to how deep the independence goes (the kT 52.0-vs-54.6 shared-minimum
 | **Lessons-as-tests suite** (`tests/test_lessons.py`, L11/13/16/18/19/20) | ✅ live — 28 pass, 9 xfail = the named regeneration-debt ledger |
 | +BB multistart "non-determinism" claim | ✅ **REFUTED** — 5 identical runs of 130518A blk8, spread 0.000; the adversary's variance was its own invocations |
 | L19 negative-LRT guard, L20 `restore_best_fit`, SHARPNESS_CAPPED, VALID plot gates | ✅ in engine (2026-08-09) |
-| EPK_CURVE/WIDTH_HM in walkthrough tables | 🟡 stale (L20, systemic — 13/19 blocks in #6); regenerate before #34 quotes widths |
+| b3–b6 `_v2` regeneration (fixed engine, LAT-inclusive) | ✅ done 2026-08-09 — all fixes verified on motivating blocks (b5 blk8 collapse gone; b4 blk0 LRT repaired −1.12→−0.17; b6 EPK stuck-blocks 13/19→1/19, blk8 837 vs numpy 839; SHARPNESS_CAPPED stamping incl. blk6 SCALE@2); suite 31 pass/1 xfail |
 | T_INT BB rails at kT=1.0 despite seeds (130518A) | open — seed T_INT from flux-weighted resolved-block kT |
 | T90 bootstrap (`T90_ERR > T90` in 84/89; bn130310840 row is a failed fit) | open — fix in handbook `temporal.py` |
 | `Binning.md`, `Temporal.md` | ✅ written 2026-08-09 — every ledger step now has a skill |

@@ -137,3 +137,11 @@ data/*/LAT/
 
 # ---- paper upload bundles (regenerable zips/dirs) ----
 paper/upload_*
+
+# ---- lag-energy project branches: an idea list, same LOCAL-ONLY rule as 11_project_idea_bank ----
+.claude/skills/grb-two-shock-analysis/references/16_lag_energy_project_branches.md
+.claude/skills/grb-two-shock-analysis/references/18_structured_jet_hle_project.md
+
+# ---- burst records are repo products: track GCN dossiers + step-1 QC ----
+!results/gcn/
+!results/qc/

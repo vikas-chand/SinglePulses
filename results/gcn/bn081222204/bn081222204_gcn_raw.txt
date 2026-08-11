@@ -1,0 +1,578 @@
+===== source: 081222.gcn3 =====
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8691
+SUBJECT: GRB 081222: Swift detection of a burst with a bright optical afterglow
+DATE:    08/12/22 05:28:23 GMT
+FROM:    David Palmer at LANL  <palmer@lanl.gov>
+
+D. Grupe (PSU), M. M. Chester (PSU), J. R. Cummings (NASA/UMBC),
+N. Gehrels (NASA/GSFC), C. B. Markwardt (CRESST/GSFC/UMD),
+D. M. Palmer (LANL), J. L. Racusin (PSU), M. Stamatikos (NASA/ORAU)
+and M. C. Stroh (PSU) report on behalf of the Swift Team:
+
+At 04:53:59 UT, the Swift Burst Alert Telescope (BAT) triggered and
+located GRB 081222 (trigger=337914).  Swift slewed immediately to the 
+burst.  The BAT on-board calculated location is 
+RA, Dec 22.751, -34.128 which is 
+   RA(J2000) = 01h 31m 00s
+   Dec(J2000) = -34d 07' 41"
+with an uncertainty of 3 arcmin (radius, 90% containment, including 
+systematic uncertainty).  The BAT light curve showed a multipeaked
+structure with a duration of about 20 sec.  The peak count rate
+was ~10000 counts/sec (15-350 keV), at 3 sec after the trigger. 
+
+The XRT began observing the field at 04:54:51.7 UT, 51.8 seconds after
+the BAT trigger. Using promptly downlinked data we find a bright, fading,
+uncatalogued X-ray source located at RA, Dec 22.74067, -34.09556 which
+is equivalent to:
+   RA(J2000)  = 01h 30m 57.76s
+   Dec(J2000) = -34d 05' 44.0"
+with an uncertainty of 3.6 arcseconds (radius, 90% containment). This
+location is 120 arcseconds from the BAT onboard position, within the
+BAT error circle. This position may be improved as more data are
+received; the latest position is available at
+http://www.swift.ac.uk/sper. 
+
+A power-law fit to a spectrum formed from promptly downlinked event
+data gives a column density consistent with the Galactic value of
+2.24e+20 cm^-2 (Kalberla et al. 2005). 
+
+The initial flux in the 2.5 s image was 3.91e-09 erg cm^-2 s^-1 (0.2-10
+keV). 
+
+UVOT took a finding chart exposure of 150 seconds with the White
+filter  starting 60 seconds after the BAT trigger. There is a
+candidate afterglow in  the rapidly available 2.7'x2.7' sub-image
+consistent with the XRT candidate.  A precise location and magnitude
+estimate are not available at this time. 
+
+This burst is consistent with the Fermi GBM burst   Trigger 251614441. 
+
+Burst Advocate for this burst is D. Grupe (grupe AT astro.psu.edu). 
+Please contact the BA by email if you require additional information
+regarding Swift followup of this burst. In extremely urgent cases, after
+trying the Burst Advocate, you can contact the Swift PI by phone (see
+Swift TOO web site for information: http://www.swift.psu.edu/too.html.)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8692
+SUBJECT: GRB081222: REM candidate afterglow
+DATE:    08/12/22 05:30:11 GMT
+FROM:    Stefano Covino at Brera Astronomical Observatory  <stefano.covino@gmail.com>
+
+S. Covino, P. D'Avanzo, L.A. Antonelli, D. Malesani, D. Fugazza, L.  
+Calzoletti,  S. Campana, G. Chincarini, M.L. Conciatore, S. Cutini,   
+V. D'Elia,  F. D'Alessio, F. Fiore, P. Goldoni, D. Guetta, C.  
+Guidorzi, G.L. Israel, E. Maiorano, N. Masetti, A. Melandri, E.J.A.  
+Meurs, L. Nicastro, E. Palazzi, E. Pian, S. Piranomonte, L. Stella,   
+G. Stratta, G. Tagliaferri, G. Tosti, V. Testa, S.D. Vergani, F.  
+Vitali report on behalf of the REM team:
+
+The robotic 60-cm REM telescope located at La Silla (Chile) observed  
+automatically the field of the GRB 081222 (Grupe et al. GCN8691)  
+starting about 28s after the burst.  We detect a bright object in  
+our  first H-band image inside the XRT error box at the following  
+coordinates (J2000):
+
+R.A. = 01:30:57.59
+Dec = -34:05:41.7
+
+with an uncertainty of about 1.0". The object is approximately H~11.1  
+at about 1min after the burst and faded rapidly during the next  
+observations.
+
+Further observations are in progress
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8693
+SUBJECT: GRB 081222: GROND Detection of the Optical/NIR Afterglow
+DATE:    08/12/22 08:42:04 GMT
+FROM:    Adria C. Updike at Clemson U  <aupdike@clemson.edu>
+
+A. Updike (Clemson University), P. Afonso, C. Clemens, and J. Greiner (all
+MPE Garching) report on behalf of the GROND team:
+
+We observed the field of GRB 081222 (Swift trigger 337914, Grupe et al.,
+GCN #8691) simultaneously in g'r'i'z'JHK with GROND (Greiner et al. 2008,
+PASP 120, 405) mounted at the 2.2 m ESO/MPI telescope at La Silla
+Observatory (Chile).
+
+Observations started at 05:26 UT on Dec 22, 2008, 32 min after the GRB
+trigger. They were performed at an average seeing of 1.0" and at high
+airmass.
+
+We detect the source within the Swift-XRT error circle reported by
+Grupe et al. (GCN #8691) and Covino et al. (GCN #8692) at
+
+RA (J2000.0) = 01h 30m 57.56s
+DEC (J2000.0) = -34d 05' 41.5''
+
+with an uncertainty of 0.5".
+
+We obtained 8 min of total exposures in g'r'i'z'JHK.  Preliminary
+magnitudes (calibrated against field stars in the USNO B1.0 and 2MASS
+catalogs), exposure length (in seconds, NIR bands co-added), and midtimes
+are as follows.
+
+BAND     MAGNITUDE        EXP   MIDTIME (UT)
+--------------------------------------------
+g'      19.08 +/- 0.01    115    05:27:13
+i'      18.04 +/- 0.01    115    05:27:13
+z'      18.24 +/- 0.01    115    05:27:13
+J       16.12 +/- 0.03    480    05:29:18
+H       15.45 +/- 0.02    480    05:29:18
+K       14.92 +/- 0.03    480    05:29:18
+
+
+Tracking problems made data reduction difficult, especially in the r'
+band, in which we detect the object but could not properly calibrate the
+field.  The object is seen in g' band, implying a redshift smaller than
+3.5.  No correction has been made for galactic extinction.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8696
+SUBJECT: GRB081222: Swift/UVOT detection of an optical afterglow
+DATE:    08/12/22 12:52:27 GMT
+FROM:    Alice Breeveld at MSSL-UCL  <aab@mssl.ucl.ac.uk>
+
+A.A. Breeveld (MSSL/UCL) and D. Grupe (PSU) report on behalf of the  
+Swift UVOT team:
+
+The Swift/UVOT started settled observations of the burst GRB081222  
+(Grupe et al. GCN Circ. 8691) with the finding chart exposure in  
+white, 60s after the BAT trigger. The afterglow is detected in the  
+white and u filters at:
+01h 30m 57.59s  -34d 05' 41.49" with a 0.5" 90% confidence limit.
+This position is consistent with the XRT (Grupe et al. GCN Circ.  
+8691), REM (Covino et al. GCN Circ. 8692) and GROND (Updike et al. GCN  
+Circ. 8693) positions. The two white exposures show that the afterglow  
+is fading with an estimated temporal slope of alpha = 0.85. The  
+initial UVOT magnitudes are as follows:
+Filter   Tstart(s)   Tstop(s)   Exp(s)   Magnitude
+white   60            210           147.4     14.84+/-0.02
+white   873          1023         147.4     17.36+/-0.03
+u          272           522           245.8     16.32+/-0.03
+The values quoted above are in the UVOT photometric system (Poole et  
+al. 2008, MNRAS, 383, 627) and are not corrected for the expected  
+Galactic extinction corresponding to a reddening of E(B-V)=0.021 mag  
+in the direction of the burst (Schlegel et al. 1998).
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8697
+SUBJECT: GRB081222, optical observation
+DATE:    08/12/22 13:43:55 GMT
+FROM:    Norisuke Ohmori at Miyazaki U  <ohmori@astro.miyazaki-u.ac.jp>
+
+E.Sonoda, H.Tanaka, R.Hara, N.Ohmori, K.Kono, H.hayasi, 
+A.Daikyuji, K.Noda, Y.Nisioka, M.Yamauchi
+(University of Miyazaki)
+
+
+ We have observed the field covering the error circle of
+GRB081222 (Swift trigger 337914, Grupe et al., GCN 8691) 
+with the unfiltered CCD camera on the 30-cm telescope 
+at University of Miyazaki.
+The observation was started 08:41:19 UT, about 3.78 hr
+after the Swift trigger time.
+We have compared our data of 30 sec exposures
+with the USNO-A2.0 catalog,
+the upper limits are as follows:
+--------------------------------------------------------------
+Start(UT)   End(UT)    Num. of frames    Limit (mag.)
+--------------------------------------------------------------
+10:36:04    10:36:19          1            ~16
+10:36:04    10:49:52         12            ~17
+---------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8699
+SUBJECT: GRB 081222: Faulkes Telescope South observations
+DATE:    08/12/22 13:51:17 GMT
+FROM:    Cristiano Guidorzi at Ferrara U,Italy  <guidorzi@fe.infn.it>
+
+A. Melandri (Liverpool JMU), C. Guidorzi (U. Ferrara), D. Carter 
+(Liverpool JMU)
+report on behalf of a larger collaboration:
+
+On 2008 December 22 (10:17:46 UT) we began observing the field of GRB 081222
+(Grupe et al. GCN Circ. 8691) with the Faulkes Telescope South.
+Observations consisted of two sequences of 6x300s exposures acquired
+using the SDSS-i and SDSS-r filters, respectively.
+
+We clearly detect the optical afterglow reported by REM (Covino et al.
+GCN Circ. 8692) and GROND (Updike et al. GCN Circ. 8693), with the following
+magnitudes:
+
+Telescope   Filter  T_mid[hr]   Exposure[s]      Mag
+--------------------------------------------------------------
+FTS          SDSS-i    5.47        2x300        20.45 +/- 0.25
+FTS          SDSS-r    6.01        2x300        21.34 +/- 0.30
+--------------------------------------------------------------
+
+The calibration was performed using the R2 and I magnitudes of several
+USNOB-1 catalogue field objects. Uncertainties include the different
+zero points of the USNOB-1 stars. Compared with the value reported by GROND
+(Updike et al. GCN Circ. 8693), we estimate a power-law index between the
+two epochs of about 1.1 .
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8705
+SUBJECT: GRB 081222: Swift XRT refined analysis
+DATE:    08/12/22 16:14:12 GMT
+FROM:    Dirk Grupe at PSU/Swift-XRT  <grupe@astro.psu.edu>
+
+Dirk Grupe (PSU) reports on behalf of the Swift-XRT team:
+
+
+The XRT began observing the field of GRB 081222 (trigger=337914; Grupe et al.,
+GCN Circ 8691) on 2008-December-22 at 04:54:51.7 UT, 51.8 seconds after
+the BAT trigger.
+
+
+The 0.3-10 keV X-ray light curve of the first five orbits
+displays a smooth light curve that can be fitted with an initial decay slope
+alpha1 = 0.90+/-0.02 with a break at 1420+/-100s followed by a steeper decay
+slope alpha2=1.20+/-0.02.
+
+The spectrum of the Windowed Timing data of the first orbit
+can be well fitted by an absorbed single
+power law model with a photon
+index Gamma = 2.01 +/- 0.20 and a column density
+NH=(4.61+/-0.80)e20 which is in excess of the Galactic column density in the
+direction of the burst of NH-gal=2.24e20 (Kalberla et al. 2005).
+The photon counting mode data of the first five orbits are consistent 
+with this
+result.
+
+
+If the underlying power law decay of 1.2
+continues as is, we predict an XRT count rate
+of 0.030 counts/s at T+24 hours or 1e-12 ergs/s/cm2 and at T+48 hours 0.015
+counts/s or 5e-13 ergs/s/cm2.
+
+This circular is an official product of the Swift-XRT team.
+
+[GCN OPS NOTE(23dec08):  Per author's request, the "081221" in the first line
+was changed to "081222".]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8707
+SUBJECT: GRB081222 optical limit by "Pi of the Sky"
+DATE:    08/12/22 16:23:11 GMT
+FROM:    Marcin Sokolowski at Soltan Inst. Nuc Studies,Warsaw  <msok@fuw.edu.pl>
+
+M.Cwiok, W.Dominik, G.Kasprowicz, A.Majcher, A.Majczyna,
+K.Malek, L.Mankiewicz, K.Nawrocki, L.W.Piotrowski,
+D.Rybka, M.Sokolowski, J.Uzycki, G.Wrochna, M.Zaremba, A.F.Zarnecki
+on behalf of "Pi of the Sky" collaboration http://grb.fuw.edu.pl
+
+During the night 20081222 the "Pi of the Sky" apparatus observed the
+position of GRB081222 in the sky scan mode.
+Three 10s images of this field have been taken at 02:10:44 - 02:11:21
+( 2 hours 43 min 16 sec before the GRB).
+No new object is seen within the error box and the limit is 12.5 
+magnitudo.
+
+After receiving the trigger from Swift, the field was observed 63s after
+the GRB. No new object has been found within the Swift-BAT error box.
+The limiting magnitude (unfiltered) on single 10s exposures is:
+
+         04:55:03 - 04:55:13 - 12.0 mag
+         04:55:16 - 04:55:26 - 12.0 mag
+         04:55:28 - 04:55:38 - 12.0 mag
+
+The field was observed until 06:00:17, no new object brighter then 12.0mag
+was observed. The limit on 20 coadded images is 12.5 mag.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8709
+SUBJECT: GRB 081222, Swift-BAT refined analysis
+DATE:    08/12/22 19:28:59 GMT
+FROM:    Jay R. Cummings at NASA/GSFC/Swift  <jayc@milkyway.gsfc.nasa.gov>
+
+E. E. Fenimore (LANL), S. D. Barthelmy (GSFC),
+W. H. Baumgartner (GSFC/UMBC), J. R. Cummings (GSFC/UMBC),
+N. Gehrels (GSFC), D. Grupe (PSU), H. A. Krimm (GSFC/USRA),
+C. B. Markwardt (GSFC/UMD), K. McLean (GSFC/UMD), D. M. Palmer (LANL),
+A. M. Parsons (GSFC), T. Sakamoto (GSFC/UMBC), G. Sato (ISAS),
+M. Stamatikos (GSFC/ORAU), J. Tueller (GSFC), T. N. Ukwatta (GWU)
+(i.e. the Swift-BAT team):
+
+Using the data set from T-119 to T+183 sec from the recent telemetry 
+downlink,
+we report further analysis of BAT GRB 081222 (trigger #337914)
+(Grupe, et al., GCN Circ. 8691).  The BAT ground-calculated position is
+RA, Dec = 22.748, -34.095 deg which is
+  RA(J2000)  =  01h 30m 59.5s
+  Dec(J2000) = -34d 05' 41.4"
+with an uncertainty of 1.0 arcmin, (radius, sys+stat, 90% containment).
+The burst was in the fully-coded field of view.
+
+The mask-weighted light curve shows a main peak with several subpeaks
+from about T+0 to T+20 sec and an exponential tail visible to about
+T+70 sec.  T90 (15-350 keV) is 24 +- 3 sec (estimated error including
+systematics).
+
+The time-averaged spectrum from T-0.6 to T+38.0 sec is best fit by a 
+power law
+with an exponential cutoff.  This fit gives a photon index 1.08 +- 0.15,
+and Epeak of 131 +- 31 keV (chi squared 45.61 for 56 d.o.f.).  For this
+model the total fluence in the 15-150 keV band is 4.8 +- 0.1 x 10^-06 
+erg/cm2
+and the 1-sec peak flux measured from T+3.45 sec in the 15-150 keV band is
+7.7 +- 0.2 ph/cm2/sec.  A fit to a simple power law gives a photon index
+of 1.48 +- 0.03 (chi squared 68.25 for 57 d.o.f.).  All the quoted errors
+are at the 90% confidence level.
+
+The results of the batgrbproduct analysis are available at
+http://gcn.gsfc.nasa.gov/notices_s/337914/BA/
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8712
+SUBJECT: GRB081222: Swift/UVOT further observations
+DATE:    08/12/23 12:15:56 GMT
+FROM:    Alice Breeveld at MSSL-UCL  <aab@mssl.ucl.ac.uk>
+
+Alice Breeveld (MSSL), Wayne Landsman (GSFC), Paul Kuin (MSSL) and  
+Dirk Grupe (PSU) report on behalf of the Swift/UVOT team:
+
+Further analysis of Swift/UVOT data of GRB081222 (Grupe et al., GCN  
+Circ. 8691), shows that the burst was detected in the v and b filters  
+in addition to the white and u filters described in the initial  
+circular (Breeveld et al., GCN Circ. 8696). The source is not detected  
+in any of the UV filters, in single or co-added exposures. The initial  
+magnitudes and upper limits are given in the table below:
+
+Filter    Tstart(s) Tstop(s)     Exp(s)   Magnitude
+white   60            210           147        14.84+/-0.02
+white   873          1023         147       17.36+/-0.03
+v           602          622           20          16.20+/-0.02
+b           528          548           20          16.86+/-0.02
+u           272           522           246       16.32+/-0.03
+uvw1    652          1815         142        >20.9  (3-sigma UL)
+uvm2    627          1790         127        >21.0  (3-sigma UL)
+uvw2    577          1914         124        >21.1  (3-sigma UL)
+
+A 49s UV grism spectrum was obtained beginning 216s after the  
+trigger.  The very low S/N quicklook spectrum shows a continuum of  
+about 3e-15 erg/s/cm2/A longward of ~3400 A.  No flux is detected  
+shortward of 3400 A, even though the grism sensitivity increases  
+toward shorter wavelengths.  If this is the wavelength of the Lyman  
+edge, then the redshift of GRB081222 is ~2.7.  The detection of  
+GRB081222 in the u filter and the non-detection in UVW1 filter are  
+consistent with this redshift.
+
+The values quoted above are in the UVOT photometric system (Poole et  
+al. 2008, MNRAS, 383, 627) and are not corrected for the expected  
+Galactic extinction corresponding to a reddening of E(B-V)=0.021 mag  
+in the direction of the burst (Schlegel et al. 1998).
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8713
+SUBJECT: GRB 081222: Gemini-South absorption redshift
+DATE:    08/12/23 14:58:35 GMT
+FROM:    Antonino Cucchiara at PSU  <cucchiara@astro.psu.edu>
+
+A. Cucchiara, D. B. Fox (Penn State), S. B. Cenko  (Berkeley) and E. Berger
+(Harvard) report on behalf of a larger collaboration:
+
+Starting at 01:02 UT on 2008 December 23  we observed the optical
+counterpart of GRB 081222 (Grupe et al., GCN 8691, Covino  et al.,
+GCN 8692 and Updike et al. 8693) using Gemini-South with the GMOS-South
+spectrograph (R~1600).
+We acquired 2x900s spectra covering the wavelength range 4000A-8000A.
+
+We detect a damped Lyman-alpha system (DLA) at redshift z=2.77.
+
+We also detect several metal absorption features which we interpret as
+SiIV(1393,1402), SiII1526 and 1260, SiII*1264, CII1334, CII*1335,
+CIV(1548,1550), FeII1608 and NiII(1454) at the same redshift.
+
+In combination with the strong metal absorption features, the detection of
+a DLA at z = 2.77 confirms that this is the redshift of GRB 081222 and its
+host galaxy.
+
+We thank the Gemini staff, in particular Henry Lee, for conducting
+these observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8715
+SUBJECT: GRB 081222: Fermi GBM observation
+DATE:    08/12/23 16:28:19 GMT
+FROM:    Elisabetta Bissaldi at MPE  <ebs@mpe.mpg.de>
+
+E.Bissaldi (MPE) and S. McBreen (UCD/MPE)
+report on behalf of the Fermi GBM Team: 
+
+
+"At 04:54:00.25 UT on 22 December 2008, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 081222 (trigger 251614441 / 081222204),
+which was also detected by the Swift-BAT (Grupe et al., GCN Circular 8691
+and Fenimore et al., GCN Circular 8709).
+ 
+The angle from the Fermi LAT boresight is 50 degrees.
+
+This burst was also independently detected by INTEGRAL SPI-ACS.
+
+The GBM light curve consists of a main pulse with a
+duration (T90) of about 30 s (8-1000 keV) and T50
+of about 10 s (8-1000 keV). 
+
+The time-averaged spectrum from T0 to T0+11.52 s is 
+best fit by a Band function with Epeak = 134 +/- 9,
+alpha = -0.55 +/- 0.07 and beta  = -2.10 +/- 0.06.
+
+The event fluence (8-1000 keV) in this time interval is 
+(1.35 +/- 0.08)E-05 erg/cm^2. The 1-sec peak photon flux 
+measured starting from T0+3.3 s in the 8-1000 keV band
+is 14.8 +/- 1.4 ph/s/cm^2.
+
+
+The spectral analysis results presented above are preliminary; 
+final results will be published in the GBM GRB Catalog." 
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8716
+SUBJECT: VLA radio upper limit on GRB 081222
+DATE:    08/12/23 16:34:08 GMT
+FROM:    Poonam Chandra at U Virginia/NRAO  <pc8s@virginia.edu>
+
+Poonam Chandra (RMC) and Dale A. Frail (NRAO) report on
+behalf of the Caltech-NRAO-Carnegie GRB Collaboration:
+
+"We used the Very Large Array to observe the field of view toward
+optically bright GRB 081222 (GCN 8691) at a frequency of 8.46 GHz
+on 2008 Dec 23.17 UT. The GRB radio afterglow is undetected and
+the peak radio flux at the REM optical afterglow position (GCN 8692)
+is 54 � 53 uJy.
+
+The National Radio Astronomy Observatory is a facility of the National
+Science Foundation operated under cooperative agreement by Associated
+Universities, Inc."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8717
+SUBJECT: GRB 081222:Optical afterglow observation
+DATE:    08/12/23 18:13:10 GMT
+FROM:    Rupak Roy at ARIES  <roy@aries.ernet.in>
+
+Rupak Roy, Brajesh Kumar, S. B. Pandey
+and Brijesh Kumar (ARIES, NainiTal, India, on behalf of larger
+Indian GRB collaboration) 
+
+
+GRB 081222, localized by Swift (Grupe
+et al. GCN 8691), was observed with 1.04m telescope at NainiTal
+starting ~ 9 hours after the burst in R_c  and I_c
+filters.
+Photometry of the co-added R_c frames (300 sec x 6)
+did not detect the optical afterglow candidate (Covino et al. GCN
+8692) down to a limiting magnitude of ~ 21 mag in comparison to
+nearby USNO stars.
+This message may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8718
+SUBJECT: GRB 081222: Gemini-N confirmation of redshift z=2.77
+DATE:    08/12/23 20:14:39 GMT
+FROM:    John Graham at STScI  <graham@stsci.edu>
+
+J. F. Graham (STScI/JHU), N. R. Tanvir (U. Leicester), A. S. Fruchter 
+(STScI), K. Wiersema (U. Leicester), A. J. Levan (U. Warwick) report on 
+behalf of a larger collaboration:
+
+We observed the afterglow of GRB 081222 with Gemini-North/GMOS Nod & 
+Shuffle spectroscopy beginning 22 Dec 2008 06:38 UT, approximately 105 
+minutes post-burst. From absorption lines of SiII, CIV, and FeII, we 
+confirm the redshift reported in GCN 8713 (Cucchiara et al.) of z=2.77. 
+We also find tentative evidence for a lower redshift system at z=2.74.
+
+We thank the Gemini staff, in particular Ricardo Schiavon, for 
+conducting these observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8721
+SUBJECT: Konus-Wind observation of GRB 081222
+DATE:    08/12/24 14:14:00 GMT
+FROM:    Valentin Pal'shin at Ioffe Inst  <val@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, E. Mazets, V. Pal'shin, D. Frederiks, P.
+Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf of the Konus-Wind
+team, report:
+
+The long GRB 081222 (Swift-BAT trigger #337914: Grupe et al., GCN 8691; 
+Fenimore et al., GCN 8709) triggered Konus-Wind at T0=17642.534 s UT 
+(04:54:02.534).
+
+The burst light curve shows a single pulse with a duration of ~12 s.
+There is a hint of the weak tail detected by the Swift-BAT (Fenimore et 
+al., GCN 8709) in the K-W G1 band (~20-80 keV).
+
+As observed by Konus-Wind the burst
+had a fluence of 1.32(-0.40, +0.48)x10^-5 erg/cm2,
+and a 256-ms peak flux measured from T0+4.688 s
+of 2.22(-0.73, +0.87)x10^-6 erg/cm2/s
+(both in the 20 keV - 1 MeV energy range).
+
+The time-integrated spectrum of the burst
+(from T0 to T0+16.640 s) can be fitted (in the 20 keV - 1 MeV
+range) by GRB (Band) model for which:
+the low-energy photon index is alpha = -0.67(-0.33, +0.39),
+the high energy photon index beta = -2.35(-1.25, +0.30),
+the peak energy Ep = 165(-29, +47) keV (chi2 = 63.0/51 dof).
+
+All the quoted errors are at the 90% confidence level.
+
+Assuming z = 2.77 (Cucchiara et al., GCN 8713; Graham et al., GCN 8718) 
+and a standard cosmology model with H_0 = 70 km/s/Mpc, Omega_M = 0.27, 
+Omega_\Lambda = 0.73, the isotropic energy release E_iso ~2.4x10^53 erg, 
+the peak luminosity (L_iso)_max ~ 1.5x10^53 erg/s, and Ep_rest ~600 keV.
+
+The Konus-Wind light curve of this GRB is available
+at http://www.ioffe.ru/LEA/GRBs/GRB081222_T17642/
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  8724
+SUBJECT: GRB 081222: MITSuME optical observation
+DATE:    08/12/25 01:51:58 GMT
+FROM:    Michitoshi Yoshida at Okayama Astrophysical Obs  <yoshida@oao.nao.ac.jp>
+
+D. Kuroda, M. Yoshida, K. Yanagisawa, Y. Shimizu, S. Nagayama,
+H. Toda (OAO, NAOJ) and N. Kawai (Tokyo Tech) report on behalf
+of the MITSuME collaboration:
+
+We observed the field of GRB 081222 (Grupe et al. GCN 8691) with
+the optical three color (g', Rc and Ic) imager attached to the
+MITSuME 50cm telescope of Okayama Astrophysical Observatory on
+Dec.22 2008 UT. We detected a fading point source at the position
+of the X-ray - optical afterglow candidate (Covino et al. GCN 8692;
+Updike et al. GCN8693; Grupe GCN 8705) in Rc band. Photometric
+results are listed below. We used GSC2.3 catalog for flux
+calibration.
+
+# Mid-MJD      Mid-UT   EXP-T    g'       Rc          Ic
+-------------------------------------------------------------
+54822.401100  09:37:36  540.0  >18.3  18.0+/-0.3  >17.8
+54822.438455  10:31:23 2940.0  >19.2  18.9+/-0.3  >18.2
+54822.469650  11:16:18 4500.0  >19.2  19.3+/-0.4  18.6+/-0.3
+-------------------------------------------------------------
+

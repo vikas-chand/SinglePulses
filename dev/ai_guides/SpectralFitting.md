@@ -1,4 +1,9 @@
 # Skill: SpectralFitting — learn to fit like the published experts
+> **PRECEDENCE (Vikas, 2026-08-10): read lessons NEWEST-FIRST, and on any conflict the LATEST
+> lesson governs.** Numbering is chronological (L1 oldest), but maturity runs the other way —
+> later lessons refine or supersede earlier ones (L18 refined L9; L27 refined the L9-era rail
+> test). When consulting this file for a decision, start from the highest Lxx and work back.
+
 ## (blind-reproduce → diff → reconcile → distill)
 
 **Purpose:** For a burst we have ALREADY analysed blind, compare our results with the
@@ -664,3 +669,19 @@ visible).
 **RULE:** whenever a burst shows both flavors, compute xb/(3.92 kT) block-by-block. If it sits
 near 1 with high correlation, report ONE spectral feature whose identity is undetermined — never
 a "blackbody" in some blocks and a "second break" in others.
+
+### L27 — the rail test must respect parameter GEOMETRY: linear margins on log-spanning bounds disqualify soft bursts  *(bn090530760, 2026-08-10)*
+`_fit_is_physical` flagged a parameter railed when `(v − lo) < 0.001·(hi − lo)`. On log-spanning
+bounds — Band Ep (30, 5×10⁴), CPL xc (10, 5×10⁴) — that linear margin is an absolute **~50 keV
+dead zone above the LOW bound**: every Ep < 80 keV / xc < 60 keV was auto-invalidated however
+well-constrained. Consequence on the first genuinely SOFT burst of the campaign (Ep 36–136 keV):
+**blocks 2–5 lost every simple model to false rails**, winners defaulted to BB-composites, one
+block went INCONCLUSIVE, and the ΔAIC-vs-simplest margins were incomputable. Uncorrected, the
+census would systematically prefer extra components in soft bursts — a selection bias
+masquerading as physics. No previous burst felt it (all had Ep ≳ 250 keV): **the defect was
+invisible until serial ordering delivered a soft burst.**
+**RULE:** bounds spanning > 2 decades (lo > 0) are tested in **log space** — margin = 1% of the
+log-span (30 → 32.3 keV; 5×10⁴ → 4.6×10⁴). Narrow/linear bounds (indices, kT) keep the linear
+rule. More generally: any threshold applied to a parameter must live in the parameter's natural
+geometry.
+**TEST:** `test_L27_rail_margin_respects_log_geometry` (unit-level, imports the gate directly).

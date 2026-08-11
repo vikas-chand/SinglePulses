@@ -1,0 +1,29 @@
+{
+ "numFound": 1,
+ "start": 0,
+ "numFoundExact": true,
+ "docs": [
+  {
+   "bibcode": "2026ApJ..1003...58B",
+   "author": [
+    "Bordoloi, Pragyan Pratim",
+    "Mittal, Shubh",
+    "Iyyani, Shabnam"
+   ],
+   "doctype": "article",
+   "title": [
+    "From Empirical to Physical Model: Direct Fits of Optically Thin Inverse Compton Scattering to Prompt GRB Spectra"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  }
+ ]
+}

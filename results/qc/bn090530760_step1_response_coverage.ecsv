@@ -1,0 +1,15 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP2, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# schema: astropy-2.0
+DETECTOR RSP2 N_MATRICES RSP_T0 RSP_T1 COVERS_SRC
+n1 glg_cspec_n1_bn090530760_v01.rsp2 5 -39.9 148.5 False
+n2 glg_cspec_n2_bn090530760_v01.rsp2 5 -39.9 148.5 False
+n5 glg_cspec_n5_bn090530760_v01.rsp2 5 -39.9 148.5 False
+b0 glg_cspec_b0_bn090530760_v01.rsp2 5 -39.9 148.5 False

@@ -1,0 +1,897 @@
+{
+ "numFound": 34,
+ "start": 0,
+ "numFoundExact": true,
+ "docs": [
+  {
+   "bibcode": "2008GCN..8713....1C",
+   "author": [
+    "Cucchiara, A.",
+    "Fox, D. B.",
+    "Cenko, S. B.",
+    "Berger, E."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222: gemini-south absorption redshift."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8693....1U",
+   "author": [
+    "Updike, A.",
+    "Afonso, P.",
+    "Clemens, C.",
+    "Greiner, J."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222: GROND detection of the Optical/NIR afterglow."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8699....1M",
+   "author": [
+    "Melandri, A.",
+    "Guidorzi, C.",
+    "Carter, D."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222: faulkes telescope south observations."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8717....1R",
+   "author": [
+    "Roy, R.",
+    "Kumar, B.",
+    "Pandey, S. B.",
+    "Kumar, B."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222:Optical afterglow observation."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8716....1C",
+   "author": [
+    "Chandra, P.",
+    "Frail, D. A."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "VLA radio upper limit on GRB 081222."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8721....1G",
+   "author": [
+    "Golenetskii, S.",
+    "Aptekar, R.",
+    "Mazets, E.",
+    "Pal'Shin, V.",
+    "Frederiks, D.",
+    "Oleynik, P.",
+    "Ulanov, M.",
+    "Svinkin, D.",
+    "Cline, T."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "Konus-wind observation of GRB 081222."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8691....1G",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ],
+   "author": [
+    "Grupe, D.",
+    "Chester, M. M.",
+    "Cummings, J. R.",
+    "Gehrels, N.",
+    "Markwardt, C. B.",
+    "Palmer, D. M.",
+    "Racusin, J. L.",
+    "Stamatikos, M.",
+    "Stroh, M. C."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222: Swift detection of a burst with a bright optical afterglow."
+   ],
+   "year": "2008"
+  },
+  {
+   "bibcode": "2008GCN..8709....1F",
+   "author": [
+    "Fenimore, E. E.",
+    "Barthelmy, S. D.",
+    "Baumgartner, W. H.",
+    "Cummings, J. R.",
+    "Gehrels, N.",
+    "Grupe, D.",
+    "Krimm, H. A.",
+    "Markwardt, C. B.",
+    "McLean, K.",
+    "Palmer, D. M.",
+    "Parsons, A. M.",
+    "Sakamoto, T.",
+    "Sato, G.",
+    "Stamatikos, M.",
+    "Tueller, J.",
+    "Ukwatta, T. N."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222, Swift-BAT refined analysis."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8724....1K",
+   "author": [
+    "Kuroda, D.",
+    "Yoshida, M.",
+    "Yanagisawa, K.",
+    "Shimizu, Y.",
+    "Nagayama, S.",
+    "Toda, H.",
+    "Kawai, N."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222: MITSuME optical observation."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8715....1B",
+   "author": [
+    "Bissaldi, E.",
+    "McBreen, S."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222: Fermi GBM observation."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8705....1G",
+   "author": [
+    "Grupe, D."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222: Swift XRT refined analysis."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8718....1G",
+   "author": [
+    "Graham, J. F.",
+    "Tanvir, N. R.",
+    "Fruchter, A. S.",
+    "Wiersema, K.",
+    "Levan, A. J."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081222: Gemini-N confirmation of redshift z=2.77."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCNR..190....1G",
+   "author": [
+    "Grupe, D.",
+    "Breeveld, A.",
+    "Landsman, W.",
+    "Fenimore, E. E.",
+    "Cummings, J.",
+    "Chester, M. M.",
+    "Palmer, D. M.",
+    "Barthelmy, S. D.",
+    "Burrows, D. N.",
+    "Roming, P.",
+    "Gehrels, N."
+   ],
+   "doctype": "article",
+   "title": [
+    "Swift observation of GRB 081222."
+   ],
+   "year": "2009",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "NOT REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2010A&A...511A..43G",
+   "author": [
+    "Ghirlanda, G.",
+    "Nava, L.",
+    "Ghisellini, G."
+   ],
+   "doctype": "article",
+   "title": [
+    "Spectral-luminosity relation within individual Fermi gamma rays bursts"
+   ],
+   "year": "2010",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2011A&A...526A.110D",
+   "author": [
+    "Daigne, F.",
+    "Bo\u0161njak, \u017d.",
+    "Dubus, G."
+   ],
+   "doctype": "article",
+   "title": [
+    "Reconciling observed gamma-ray burst prompt spectra with synchrotron radiation?"
+   ],
+   "year": "2011",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012grb..confE..26S",
+   "author": [
+    "Sonbas, E.",
+    "Ukwatta, T. N.",
+    "Dhuga, K. S.",
+    "Shenoy, A.",
+    "MacLachlan, G. A.",
+    "Bhat, P. N.",
+    "Dermer, C.",
+    "Hakkila, J.",
+    "Gehrels, N.",
+    "Parke, W. C.",
+    "Maximon, L. C."
+   ],
+   "doctype": "inproceedings",
+   "title": [
+    "GRB Spectral Lags in The Source Frame: An Investigation of Fermi-GBM Bursts"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "TOC"
+   ]
+  },
+  {
+   "bibcode": "2012MNRAS.419..614U",
+   "author": [
+    "Ukwatta, T. N.",
+    "Dhuga, K. S.",
+    "Stamatikos, M.",
+    "Dermer, C. D.",
+    "Sakamoto, T.",
+    "Sonbas, E.",
+    "Parke, W. C.",
+    "Maximon, L. C.",
+    "Linnemann, J. T.",
+    "Bhat, P. N.",
+    "Eskandarian, A.",
+    "Gehrels, N.",
+    "Abeysekara, A. U.",
+    "Tollefson, K.",
+    "Norris, J. P."
+   ],
+   "doctype": "article",
+   "title": [
+    "The lag-luminosity relation in the GRB source frame: an investigation with Swift BAT bursts"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012A&A...539A...3B",
+   "author": [
+    "Bernardini, M. G.",
+    "Margutti, R.",
+    "Mao, J.",
+    "Zaninoni, E.",
+    "Chincarini, G."
+   ],
+   "doctype": "article",
+   "title": [
+    "The X-ray light curve of gamma-ray bursts: clues to the central engine"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012MNRAS.421.1265M",
+   "author": [
+    "Melandri, A.",
+    "Sbarufatti, B.",
+    "D'Avanzo, P.",
+    "Salvaterra, R.",
+    "Campana, S.",
+    "Covino, S.",
+    "Vergani, S. D.",
+    "Nava, L.",
+    "Ghisellini, G.",
+    "Ghirlanda, G.",
+    "Fugazza, D.",
+    "Mangano, V.",
+    "Capalbi, M.",
+    "Tagliaferri, G."
+   ],
+   "doctype": "article",
+   "title": [
+    "The dark bursts population in a complete sample of bright Swift long gamma-ray bursts"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012PASP..124..297L",
+   "author": [
+    "Li, Zhaosheng",
+    "Chen, Li",
+    "Wang, Dehua"
+   ],
+   "doctype": "article",
+   "title": [
+    "Spectral Lags Obtained by CCF of Smoothed Light Curves"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012MNRAS.424.2821V",
+   "author": [
+    "Virgili, Francisco J.",
+    "Qin, Ying",
+    "Zhang, Bing",
+    "Liang, Enwei"
+   ],
+   "doctype": "article",
+   "title": [
+    "Spectral and temporal analysis of the joint Swift/BAT-Fermi/GBM GRB sample"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012PhRvD..86d3001B",
+   "author": [
+    "Barnacka, A.",
+    "Glicenstein, J.-F.",
+    "Moderski, R."
+   ],
+   "doctype": "article",
+   "title": [
+    "New constraints on primordial black holes abundance from femtolensing of gamma-ray bursts"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2013MNRAS.432.1231C",
+   "author": [
+    "Covino, S.",
+    "Melandri, A.",
+    "Salvaterra, R.",
+    "Campana, S.",
+    "Vergani, S. D.",
+    "Bernardini, M. G.",
+    "D'Avanzo, P.",
+    "D'Elia, V.",
+    "Fugazza, D.",
+    "Ghirlanda, G.",
+    "Ghisellini, G.",
+    "Gomboc, A.",
+    "Jin, Z. P.",
+    "Kr\u00fchler, T.",
+    "Malesani, D.",
+    "Nava, L.",
+    "Sbarufatti, B.",
+    "Tagliaferri, G."
+   ],
+   "doctype": "article",
+   "title": [
+    "Dust extinctions for an unbiased sample of gamma-ray burst afterglows"
+   ],
+   "year": "2013",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2013arXiv1307.4050B",
+   "author": [
+    "Barnacka, Anna"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Detection techniques for the H.E.S.S. II telescope, data modeling of gravitational lensing and emission of blazars in HE-VHE astronomy"
+   ],
+   "year": "2013",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2014ApJ...785...84J",
+   "author": [
+    "Japelj, J.",
+    "Kopa\u010d, D.",
+    "Kobayashi, S.",
+    "Harrison, R.",
+    "Guidorzi, C.",
+    "Virgili, F. J.",
+    "Mundell, C. G.",
+    "Melandri, A.",
+    "Gomboc, A."
+   ],
+   "doctype": "article",
+   "title": [
+    "Phenomenology of Reverse-shock Emission in the Optical Afterglows of Gamma-Ray Bursts"
+   ],
+   "year": "2014",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2015arXiv150304580D",
+   "author": [
+    "Dereli, H\u00fcsne"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Study of a Population of Gamma-ray Bursts with Low-Luminosity Afterglows"
+   ],
+   "year": "2015",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2015ApJ...815..134H",
+   "author": [
+    "Hakkila, Jon",
+    "Lien, Amy",
+    "Sakamoto, Takanori",
+    "Morris, David",
+    "Neff, James E.",
+    "Giblin, Timothy W."
+   ],
+   "doctype": "article",
+   "title": [
+    "Swift Observations of Gamma-Ray Burst Pulse Shapes: GRB Pulse Spectral Evolution Clarified"
+   ],
+   "year": "2015",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2016ApJ...828...36D",
+   "author": [
+    "Del Vecchio, Roberta",
+    "Dainotti, Maria Giovanna",
+    "Ostrowski, Micha\u0142"
+   ],
+   "doctype": "article",
+   "title": [
+    "Study of GRB Light-curve Decay Indices in the Afterglow Phase"
+   ],
+   "year": "2016",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2017ApJ...837..119A",
+   "author": [
+    "Atteia, J.-L.",
+    "Heussaff, V.",
+    "Dezalay, J.-P.",
+    "Klotz, A.",
+    "Turpin, D.",
+    "Tsvetkova, A. E.",
+    "Frederiks, D. D.",
+    "Zolnierowski, Y.",
+    "Daigne, F.",
+    "Mochkovitch, R."
+   ],
+   "doctype": "article",
+   "title": [
+    "The Maximum Isotropic Energy of Gamma-ray Bursts"
+   ],
+   "year": "2017",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2019MNRAS.483.5380T",
+   "author": [
+    "Tanvir, N. R.",
+    "Fynbo, J. P. U.",
+    "de Ugarte Postigo, A.",
+    "Japelj, J.",
+    "Wiersema, K.",
+    "Malesani, D.",
+    "Perley, D. A.",
+    "Levan, A. J.",
+    "Selsing, J.",
+    "Cenko, S. B.",
+    "Kann, D. A.",
+    "Milvang-Jensen, B.",
+    "Berger, E.",
+    "Cano, Z.",
+    "Chornock, R.",
+    "Covino, S.",
+    "Cucchiara, A.",
+    "D'Elia, V.",
+    "Gargiulo, A.",
+    "Goldoni, P.",
+    "Gomboc, A.",
+    "Heintz, K. E.",
+    "Hjorth, J.",
+    "Izzo, L.",
+    "Jakobsson, P.",
+    "Kaper, L.",
+    "Kr\u00fchler, T.",
+    "Laskar, T.",
+    "Myers, M.",
+    "Piranomonte, S.",
+    "Pugliese, G.",
+    "Rossi, A.",
+    "S\u00e1nchez-Ram\u00edrez, R.",
+    "Schulze, S.",
+    "Sparre, M.",
+    "Stanway, E. R.",
+    "Tagliaferri, G.",
+    "Th\u00f6ne, C. C.",
+    "Vergani, S.",
+    "Vreeswijk, P. M.",
+    "Wijers, R. A. M. J.",
+    "Watson, D.",
+    "Xu, D."
+   ],
+   "doctype": "article",
+   "title": [
+    "The fraction of ionizing radiation from massive stars that escapes to the intergalactic medium"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2021A&A...653A..83V",
+   "author": [
+    "Vielfaure, J.-B.",
+    "Vergani, S. D.",
+    "Gronke, M.",
+    "Japelj, J.",
+    "Palmerio, J. T.",
+    "Fynbo, J. P. U.",
+    "Malesani, D. B.",
+    "Milvang-Jensen, B.",
+    "Salvaterra, R.",
+    "Tanvir, N. R."
+   ],
+   "doctype": "article",
+   "title": [
+    "Gamma-ray bursts as probes of high-redshift Lyman-\u03b1 emitters and radiative transfer models"
+   ],
+   "year": "2021",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2025arXiv251213038S",
+   "author": [
+    "Sarkar, Milind",
+    "Dainotti, Maria Giovanna",
+    "Khatiya, Nikita S.",
+    "Bal, Dhruv S.",
+    "Bogdan, Malgorzata",
+    "Li, Ye",
+    "Pollo, Agnieszka",
+    "Hartmann, Dieter H.",
+    "Zhang, Bing",
+    "Deka, Simanta",
+    "Fraija, Nissim",
+    "Prochaska, J. Xavier"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Redshift Classification of Optical Gamma-Ray Bursts using Supervised Learning"
+   ],
+   "year": "2025",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2026A&A...707A.392Z",
+   "author": [
+    "Zhang, Xue",
+    "Yi, Shuang-Xi",
+    "Lei, Wei-Hua",
+    "Liu, Tong",
+    "Yang, Yu-Peng",
+    "Qin, Ying",
+    "Qu, Yan-Kun",
+    "Tang, Qing-Wen",
+    "Wang, Fa-Yin"
+   ],
+   "doctype": "article",
+   "title": [
+    "Exploring the central engines of gamma-ray bursts from prompt light curves"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2026arXiv260401980M",
+   "author": [
+    "Muccino, Marco",
+    "Della Valle, Massimo",
+    "Izzo, Luca",
+    "Luongo, Orlando"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "No evidence for dynamical dark energy from the Combo correlation of GRBs"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  }
+ ]
+}

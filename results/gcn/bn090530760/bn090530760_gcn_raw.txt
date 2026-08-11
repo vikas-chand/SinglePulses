@@ -1,0 +1,679 @@
+===== source: 090530?.gcn3 =====
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9438
+SUBJECT: GRB 090530: Swift detection of a burst with an optical counterpart
+DATE:    09/05/30 03:30:01 GMT
+FROM:    Scott Barthelmy at NASA/GSFC  <scott@lheamail.gsfc.nasa.gov>
+
+J. K. Cannizzo (NASA/UMBC), S. D. Barthelmy (GSFC),
+W. H. Baumgartner (GSFC/UMBC), J. R. Cummings (NASA/UMBC),
+C. Gronwall (PSU), S. T. Holland (CRESST/USRA/GSFC),
+V. Mangano (INAF-IASFPA), C. B. Markwardt (CRESST/GSFC/UMD),
+F. E. Marshall (NASA/GSFC), D. M. Palmer (LANL),
+T. Sakamoto (NASA/UMBC), B. Sbarufatti (INAF-IASFPA),
+M. H. Siegel (PSU), M. Stamatikos (NASA/ORAU) and
+T. N. Ukwatta (GSFC/GWU) report on behalf of the Swift Team:
+
+At 03:18:18 UT, the Swift Burst Alert Telescope (BAT) triggered and
+located GRB 090530 (trigger=353567).  Swift slewed immediately to the burst. 
+The BAT on-board calculated location is 
+RA, Dec 179.395, +26.584 which is 
+   RA(J2000) = 11h 57m 35s
+   Dec(J2000) = +26d 35' 01"
+with an uncertainty of 3 arcmin (radius, 90% containment, including 
+systematic uncertainty).  The BAT light curve shows a single peak
+with a duration of about 10 sec.  The peak count rate
+was ~5000 counts/sec (15-350 keV), at ~0 sec after the trigger. 
+
+The XRT began observing the field at 03:19:33.1 UT, 74.7 seconds after
+the BAT trigger. Using promptly downlinked data we find a bright,
+fading, uncatalogued X-ray source located at RA, Dec 179.41927,
+26.59282 which is equivalent to:
+   RA(J2000)  = 11h 57m 40.62s
+   Dec(J2000) = +26d 35' 34.2"
+with an uncertainty of 3.9 arcseconds (radius, 90% containment). This
+location is 84 arcseconds from the BAT onboard position, within the BAT
+error circle. This position may be improved as more data are received;
+the latest position is available at http://www.swift.ac.uk/sper. 
+
+A power-law fit to a spectrum formed from promptly downlinked event
+data gives a column density in excess of the Galactic value (1.78e+20
+cm^-2, Kalberla et al. 2005), with an excess column of 2.1
+(+2.01/-1.71) x 10^21 cm^-2 (90% confidence). 
+
+The initial flux in the 2.5 s image was 6.42e-10 erg cm^-2 s^-1 (0.2-10
+keV). 
+
+UVOT took a finding chart exposure of 150 seconds with the White filter
+starting 83 seconds after the BAT trigger. There is a candidate afterglow in
+the rapidly available 2.7'x2.7' sub-image at
+  RA(J2000)  =	11:57:40.50 = 179.41876
+  DEC(J2000) = +26:35:38.6  = 26.59405
+with a 90%-confidence error radius of about 0.75 arc sec. This position is 4.7
+arc sec. from the center of the XRT error circle. The estimated magnitude is
+17.39 with a 1-sigma error of about 0.14. No correction has been made for the
+expected extinction corresponding to E(B-V) of 0.02. 
+
+Burst Advocate for this burst is J. K. Cannizzo (cannizzo AT milkyway.gsfc.nasa.gov). 
+Please contact the BA by email if you require additional information
+regarding Swift followup of this burst. In extremely urgent cases, after
+trying the Burst Advocate, you can contact the Swift PI by phone (see
+Swift TOO web site for information: http://www.swift.psu.edu/too.html.)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9439
+SUBJECT: GRB 090530A: ROTSE-III Detection of Optical Counterpart
+DATE:    09/05/30 03:30:24 GMT
+FROM:    Heather Flewelling at IfA/Hawaii  <flewelling.heather@gmail.com>
+
+H. Flewelling (IfA), B. E. Schaefer (Louisiana State), Shashi Pandey (UMich)
+report on behalf of the ROTSE collaboration:
+
+ROTSE-IIIb, located at McDonald Observatory, Texas, responded to GRB 090530A
+(Swift trigger 353567). The first image was at 03:18:35.8 UT, 17.4 s after
+the burst (6.8 s after the GCN notice time). The unfiltered images are
+calibrated relative to USNO A2.0. We detect a new object, not visible in the
+DSS (second epoch), with coordinates:
+
+     11:57:40.5      +26:35:37.9    (J2000), with positional uncertainty of
+1" or better
+
+start UT    	mag     mlim(of image)
+----------------------------------
+03:18:42.7     16.0     16.2
+
+A jpeg image is available at
+http://www.rotse.net/images/gsb353567_3b00_img.jpg Note that the object
+marked 48 is the candidate in question.
+
+Continuing observations are in progress.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9441
+SUBJECT: GRB 090530: GRAS002 optical observations
+DATE:    09/05/30 09:13:47 GMT
+FROM:    Veli-Pekka Hentunen at Taurus Hill Obs,A95  <veli-pekka.hentunen@kassiopeia.net>
+
+Markku Nissinen (Taurus Hill Observatory) and Veli-Pekka Hentunen (Taurus
+Hill Observatory) report:
+
+We used Global-rent-a-scope GRAS002 Tak Mewlon 0.30m telescope with SBIG ST-8E
+CCD at RAS Observatory Mayhill H06 (New Mexico, USA) for follow-up observations
+of GRB090530 (J.K. Cannizzo et al., GCN 9438). The observations were started 
+on May 30, at 05:30 UTC (2.2 hours after the burst) and stopped on May 30, 
+at 06:16 UTC. Four unfiltered 600 seconds images were taken. We detected 
+very faint optical afterglow object at the position of RA 11h 57m 39s.8 and 
+Dec +26o 35' 47" (J2000) with possitional uncertainty of 10" with respect to
+POSSII F/USNO-B1.0. This is in correlation with ROTSE-III optical counterpart
+position (H. Flewelling et al., GCN 9439). Upper limit for the observations 
+is >20.2 mag (3UL). Quoted upper limit has been derived using POSSII F and 
+USNO-B1.0 field stars as reference.
+
+                
+Filter     Tmid(s)      Exp(s)     Mag (CR) USNO-B1.0
+                
+u         05:55:15      4x600      19.7
+ 
+
+A jpeg preview of the observation showing the position of the afterglow is
+at this URL: http://cutenews.kassiopeia.net/data/upimages/GRB090530A_new.jpg
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9442
+SUBJECT: GRB 090530: GRAS002 refined OA analysis
+DATE:    09/05/30 10:25:37 GMT
+FROM:    Veli-Pekka Hentunen at Taurus Hill Obs,A95  <veli-pekka.hentunen@kassiopeia.net>
+
+Markku Nissinen (Taurus Hill Observatory) and Veli-Pekka Hentunen (Taurus
+Hill Observatory) report:
+ 
+
+We used Global-rent-a-scope GRAS002 Tak Mewlon 0.30m telescope with SBIG ST-8E
+CCD at RAS Observatory Mayhill H06 (New Mexico, USA) for follow-up observations
+of GRB090530 (J.K. Cannizzo et al., GCN 9438). The observations were started 
+on May 30, at 05:30 UTC (2.2 hours after the burst) and stopped on May 30, 
+at 06:16 UTC. Four unfiltered 600 seconds images were taken. We detected 
+very faint optical afterglow object at the position of RA 11h 57m 40s.6 and 
+Dec +26o 35' 38".7 (J2000) with respect to POSSII F/USNO-B1.0 and this is in 
+good correlation with ROTSE-III optical counterpart position (H. Flewelling 
+et al., GCN 9439). Upper limit for the observations is >20.2 mag (3UL). Quoted
+upper limit has been derived using POSSII F and USNO-B1.0 field stars as 
+reference.
+
+                
+Filter     Tmid(s)      Exp(s)     Mag (CR) USNO-B1.0
+                
+u         05:55:15      4x600      19.2
+ 
+
+A jpeg preview of the observation showing the position of the afterglow is
+at this URL: http://cutenews.kassiopeia.net/data/upimages/GRB090530.jpg
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9440
+SUBJECT: GRB 090530: PAIRITEL NIR Detections
+DATE:    09/05/30 04:30:03 GMT
+FROM:    Adam Morgan at U.C. Berkeley  <qmorgan@gmail.com>
+
+A. N. Morgan, D. A. Perley,  J. S. Bloom,  (UC Berkeley),  and D.
+Starr (UCB, LCOGT) report:
+
+We observed the field of GRB 090530 (Cannizzo et al., GCN 9438) with
+the 1.3-m PAIRITEL located at Mt Hopkins, Arizona.  Observations began
+at 2009-05-30 03:19:30 UT, 72 seconds after the Swift Trigger.  We
+detect the optical afterglow (Cannizzo et al., GCN 9438, Flewelling et
+al., GCN 9439) in mosaics taken simultaneously in the J, H, and Ks
+filters.
+
+The preliminary photometry yields:
+
+post_burst
+t_mid (min) exp(s)  filt  mag   merr
+8.33        424     J     16.4  0.1
+8.33        424     H     15.4  0.1
+8.33        424     Ks    15.0  0.1
+
+All magnitudes given in the Vega system, calibrated to 2MASS.  No
+correction for Galactic extinction has been made to the above reported
+values.  Observations are ongoing.
+
+[GCN OPS NOTE(30may09); The typo in the Subject line was changed
+from "090515" to "090530".]
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9443
+SUBJECT: GRB 090530: Swift-BAT refined analysis
+DATE:    09/05/30 12:34:07 GMT
+FROM:    Scott Barthelmy at NASA/GSFC  <scott@lheamail.gsfc.nasa.gov>
+
+D. M. Palmer (LANL), S. D. Barthelmy (GSFC), W. H. Baumgartner (GSFC/UMBC),
+J. K. Cannizzo (NASA/UMBC), J. R. Cummings (GSFC/UMBC), E. E. Fenimore (LANL),
+N. Gehrels (GSFC), H. A. Krimm (GSFC/USRA), C. B. Markwardt (GSFC/UMD),
+T. Sakamoto (GSFC/UMBC), G. Sato (ISAS), M. Stamatikos (GSFC/ORAU),
+J. Tueller (GSFC), T. N. Ukwatta (GWU)
+(i.e. the Swift-BAT team):
+ 
+Using the data set from T-60 to T+243 sec from the recent telemetry downlink,
+we report further analysis of BAT GRB 090530 (trigger #353567)
+(Cannizzo, et al., GCN Circ. 9438).  The BAT ground-calculated position is
+RA, Dec = 179.400, 26.590 deg, which is 
+   RA(J2000)  =  11h 57m 36.0s 
+   Dec(J2000) = +26d 35' 23.0" 
+with an uncertainty of 1.9 arcmin, (radius, sys+stat, 90% containment).
+The partial coding was 41%.
+ 
+The mask-weighted light curve shows a FRED-like peak starting at ~T-0.3 sec,
+peaking at ~T+0.2 sec, and returning almost to background.  Then a second and
+much smaller peak starts at ~T+35 sec, peaks at ~T+45 sec, and ends
+at ~T+50 sec.  There is an ~3-sigma precursor peak at T-4sec.  T90 (15-350 keV)
+is 48 +- 36 sec (estimated error including systematics).
+ 
+The time-averaged spectrum from T-12.2 to T+51.8 sec is best fit by a simple
+power-law model.  The power law index of the time-averaged spectrum is
+1.61 +- 0.17.  The fluence in the 15-150 keV band is 1.1 +- 0.1 x 10^-6 erg/cm2.
+The 1-sec peak photon flux measured from T+0.0 sec in the 15-150 keV band
+is 2.5 +- 0.3 ph/cm2/sec.  All the quoted errors are at the 90% confidence
+level. 
+ 
+The results of the batgrbproduct analysis are available at
+http://gcn.gsfc.nasa.gov/notices_s/353567/BA/
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9445
+SUBJECT: GRB 090530: Enhanced Swift-XRT position
+DATE:    09/05/30 15:15:48 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@star.le.ac.uk>
+
+A.P. Beardmore, P.A. Evans, M.R. Goad and J.P. Osborne (U. Leicester) 
+report on behalf of the Swift-XRT team.
+
+Using 646 s of XRT Photon Counting mode data and 1 UVOT
+images for GRB 090530, we find an astrometrically corrected X-ray
+position (using the XRT-UVOT alignment and matching UVOT field sources
+to the USNO-B1 catalogue): RA, Dec = 179.41846, +26.59341 which is equivalent
+to:
+
+RA (J2000): 11h 57m 40.43s
+Dec (J2000): +26d 35' 36.3"
+
+with an uncertainty of 1.5 arcsec (radius, 90% confidence).
+
+This position may be improved as more data are received. The latest
+position can be viewed at http://www.swift.ac.uk/xrt_positions. Position
+enhancement is described by Goad et al. (2007, A&A, 476, 1401) and Evans
+et al. (2009, arXiv:0812.3662).
+
+This circular was automatically generated, and is an official product of the
+Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9450
+SUBJECT: GRB090530: Swift/UVOT afterglow detection
+DATE:    09/05/30 17:08:39 GMT
+FROM:    Patricia Schady at MSSL/Swift  <ps@mssl.ucl.ac.uk>
+
+P. Schady (MSSL-UCL) and J. K. Cannizzo (NASA/UMBC) report on behalf of 
+the Swift UVOT team:
+
+The Swift/UVOT began settled observations of the field of GRB 090530 158s 
+after the BAT trigger (Cannizzo et al., GCN Circ. 9438) and a decaying 
+source is detected in all UVOT filters within the XRT error circle 
+(Beardmore et al., GCN Circ. 9445), putting an upper limit on the redshift 
+of z < 1.7. The source initially rises, and at around 100s after the BAT 
+trigger decays at a constant rate of 0.73+/-0.03 for the duration of 
+intial UVOT observations, out to ~20ks after the BAT trigger.  The best 
+UVOT position determined from a co-added white band exposure is
+
+RA (J2000)  11:57:40.50   =  179.41873 (deg)
+Dec (J2000) +26:35:38.4   =  +26.59400 (deg)
+
+with an estimated uncertainty of 0.5 arcsec (radius, 90% confidence, 
+statistical + systematic), consistent with the ROTSE-IIIb afterglow 
+position (Flewelling et al., GCN Circ. 9439).
+
+The magnitudes for the observations currently available are as follows:
+
+Filter   T_start(s)  T_stop(s)  Exp(s)       Mag
+white       83         233       147    17.43 +/- 0.03
+v           624        644       19     17.69 +/- 0.29
+b           550        570       19     18.60 +/- 0.27
+u           295        545       246    17.46 +/- 0.05
+uvw1        5735       5935      197    20.15 +/- 0.37
+uvm2        5530       11687     1082   20.31 +/- 0.22
+uvw2        5121       17468     1279   21.31 +/- 0.32
+
+The values quoted above are not corrected for the Galactic extinction due 
+to the reddening of E(B-V) = 0.02 in the direction of the burst (Schlegel 
+et al. 1998). The photometry is on the UVOT photometric system described 
+in Poole et al. (2008, MNRAS, 383, 627).
+
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9451
+SUBJECT: GRB090530: Swift XRT refined analysis
+DATE:    09/05/30 21:09:24 GMT
+FROM:    Vanessa Mangano at INAF-IASFPA  <vanessa@ifc.inaf.it>
+
+Mangano V., Sbarufatti B. (INAF-IASFPA), J. K. Cannizzo (NASA/UMBC)
+report on behalf of the Swift XRT Team:
+
+We have analyzed the first five orbits of Swift-XRT data of
+GRB 090530 (trigger 353567; Cannizzo, et al., GCN Circ. 9438),
+consisting of 22 s in Windowed Timing (WT) mode from T+81 to T+103 s and
+9 ks in Photon Counting (PC) mode from T+105 s to T+24.4 ks.
+
+The best position for the X-ray afterglow is the XRT UVOT-enhanced
+position: RA, Dec = 179.41846, +26.59341 which is equivalent to:
+
+RA (J2000): 11h 57m 40.43s
+Dec (J2000): +26d 35' 36.3"
+
+with an uncertainty of 1.5 arcsec (radius, 90% confidence), as given
+by Beardmore, et al., GCN Circ 9445.
+
+The 0.3-10 keV X-ray light curve is best fitted by a broken powerlaw
+with early decay index of about -5.7, late decay index -0.60+/-0.04
+and a break at about 140 s after the trigger. In the first orbit
+a small amplitude flare is detected at T+300 s. Flaring activity
+is also visible along the later decay.
+If decaying at the present rate, the predicted rate after 24h from the
+trigger is 2.0e-2 counts/s. However, we remark that a second break
+followed by a steepening of the lightcurve is possibly expected.
+The issue will be clarified with following Swift observations that
+will resume on Sunday May 31st.
+
+The average initial WT spectrum (covering the initial steep decay)
+can be modeled as an absorbed power-law with index 2.3 (+0.5-0.4),
+absorbing column NH < 11E20 cm-2 (three sigma upper limit) and
+observed(unabsorbed) average flux in the 0.3-10 keV energy range of
+2.9(3.6)E-10 ergs cm-2 s-1.
+The average PC spectrum (roughly covering the flatter part of the
+afterglow)
+is best fitted by an absorbed power-law with index 2.00+/-0.15
+The absorbing column is NH = (8.2 -2.9+3.6)E20 cm-2 in excess with
+respect to the Galactic value of 1.78E+20 cm-2 (Kalberla et al. 2005).
+The average observed(unabsorbed) flux is 4.0(4.9)E-12 ergs cm-2 s-1.
+The count-rate to flux conversion factor is 5.4E-11.
+All quoted errors are at 90% confidence level.
+
+The results of the XRT-team automatic analysis are available at
+http://www.swift.ac.uk/xrt_products/00353567.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9452
+SUBJECT: GRB 090530: NOT optical observations
+DATE:    09/05/30 23:26:56 GMT
+FROM:    Daniele Malesani at Dark Cosmology Centre, Niels Bohr Inst  <malesani@astro.ku.dk>
+
+D. Malesani, D. Xu, G. Leloudas, J.P.U. Fynbo (DARK/NBI), P. Jakobsson 
+(Univ. Iceland), M.E. Brown (Caltech), E.L. Schaller (Univ. Hawaii), and 
+T. Liimets (NOT & Tartu Obs.) report on behalf of a larger collaboration:
+
+We observed the field of GRB 090530 (Cannizzo et al., GCN 9438) with the 
+NOT equipped with the MOSCA camera. Observations were carried out in the 
+R band, starting on 2009 May 30.879 UT (17.8 hr after the GRB).
+
+The optical afterglow (Cannizzo et al., GCN 9438; Flewelling et al., GCN 
+9439; Morgan et al., GCN 9440) is clearly detected in a single 300s 
+exposure, with a magnitude R = 21.6 assuming R = 18.17 for the USNO star 
+at RA = 11:57:41.68, Dec = +26:35:43.3.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9458
+SUBJECT: GRB 090530: break in light curve
+DATE:    09/05/31 12:36:48 GMT
+FROM:    Jochen Greiner at MPI  <jcg@mpe.mpg.de>
+
+A. Rossi (Tautenburg), F. Olivares, and J. Greiner (both MPE Garching)
+report on behalf of the GROND team:
+
+We observed the field of GRB 090530 (Swift trigger 353567, Cannizzo et al.,
+GCN #9438) simultaneously in g'r'i'z'JHK with GROND mounted at the 2.2m
+MPI/ESO telescope at La Silla Observatory (Chile). Observations started on
+31 May 2009 at 00:36 UT, 21.3 h after the burst.
+
+We detect the optical/NIR afterglow (Cannizzo et al., GCN #9438;
+Flewelling et al., GCN #9439; Morgan et al., GCN #9440; Nissinen & Hentunen,
+GCN #9442) in stacked exposures of 20 min in JHK and 24 min in g'r'i'z'. 
+
+Calibrating the r' band data against the USNO star at RA = 11:57:41.7, 
+Dec = +26:35:43, we obtain R = (22.2 +-0.2) mag. Comparing this with 
+the white light magnitudes obtained by ROTSE (Flewelling et al., GCN #9439),
+UVOT (Schady et al., GCN #9450) and GRAS002 (Nissinen & Hentunen,
+GCN #9442) as well as the NOT R-band magnitude (Malesani et al., GCN #9452),
+we find a break in the optical light at around 22 ksec post-burst (i.e.
+before the NOT observation), with slopes of 0.5+-0.1 (pre-break) and 
+1.8+-0.4 (post-break).  We note that a break at this time is also visible
+in the Swift/XRT data (see repository; Evans et al. 2007).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9459
+SUBJECT: GRB090530: R-band Observation
+DATE:    09/05/31 14:49:20 GMT
+FROM:    Myungshin Im at Seoul Nat U  <mim@astro.snu.ac.kr>
+
+  M. Im (CEOU/Seoul National Univ) and Y. Urata (NCU)
+  on behalf of EAFON team.
+
+   We observed GRB090530 (Cannizzo et al. GCN 9438) in R using
+  the 1.0m telescope at Mt. Lemmon (Arizona, US) operated by
+  the Korea Astronomy Space Science Institute.
+   The R-band imaging started at 2009 May 30, 04:18:02 UT
+  (~1 hr after the burst), with the mid-point at May 30,
+  04:45 UT.
+
+   In a stacked image of 9 frames (3 min exp. each),
+  the optical afterglow is clearly detected
+  at R=19.6 +- 0.15 mag.
+   The photometry was calibrated against R2mag of USNO-B1 stars
+  in the vicinity of GRB.
+
+   We thank the LOAO operator, J. Yoon for his assistance for this
+  observation.
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9466
+SUBJECT: GRB 090530: GRT Optical Observation
+DATE:    09/06/01 01:50:08 GMT
+FROM:    Takanori Sakamoto at NASA/GSFC  <takanori.sakamoto-1@nasa.gov>
+
+T. Sakamoto (UMBC/GSFC), D. Donato (ORAU/GSFC), N. Gehrels (GSFC),  
+T. Okajima (JHU/GSFC), T. N. Ukwatta (GWU/GSFC), Y. Urata (NCU),  
+C. Wallace (FGCU) 
+  
+We observed the field of GRB 090530 detected by Swift (trigger #353567;  
+Cannizzo et al., GCN #9438) with the 14-inch Goddard Robotic Telescope (GRT)  
+located at the Goddard Geophysical and Astronomical Observatory  
+(http://cddisa.gsfc.nasa.gov/ggao/).   
+ 
+100 set of 30 sec exposures were taken in the R filter starting 
+from May 30 03:33:00 (UT) about 15 min after the trigger and 
+stopped on May 30 04:29:30 (UT).  We do not detect the optical 
+afterglow (Cannizzo et al., GCN #9438, Flewelling et al., GCN #9439, 
+Nissinen et al., GCN #9441, Malesani et al., GCN #9452, Im et al., 
+GCN #9459) both in the individual images and the combined image.  
+The estimated three sigma upper limit of the combined image (total 
+exposure of 3000 sec) is ~18.1 mag using the USNO-B1 catalog. 
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9472
+SUBJECT: GRB 090530B: Fermi GBM detection
+DATE:    09/06/01 14:56:31 GMT
+FROM:    Alexander van der Horst at NASA/MSFC  <Alexander.J.VanDerHorst@nasa.gov>
+
+A.J. van der Horst (NASA/MSFC/ORAU) reports on behalf of the
+Fermi GBM Team:
+
+"At 18:14:24.42 UT on 30 May 2009, the Fermi Gamma-ray Burst Monitor
+(GBM) triggered and located GRB 090530B (trigger 265400066 / 090530.760).
+The on-ground calculated location, using the Fermi GBM trigger data,
+is RA = 73.2, Dec = +13.8 (J2000 degrees, equivalent to
+J2000 4h53m, +13d47'), with a statistical uncertainty of less than 1 degree
+(radius, 1-sigma containment, statistical only; there is additionally
+a systematic error which is currently estimated to be 2 to 3 degrees).
+The angle from the Fermi LAT boresight is 84 degrees.
+
+The GBM light curve of this long and soft GRB consists of a double peaked
+FRED, with a total duration (T90) of 194 s (8-1000 keV). The time-averaged
+spectrum from T0-3.1 to T0+110.6 s is best fit by a Band function with
+alpha = -0.71 +/- 0.06, beta = -2.42 +/- 0.05, and Epeak = 67 +/- 3.
+The fluence (8-1000 keV) in this interval is (5.9 +/- 0.4)E-5 erg/cm^2.
+The 1-sec peak photon flux measured starting from T0+10.2s in the
+8-1000 keV band is 10.8 +/- 2.0 ph/s/cm^2.
+
+The spectral and temporal analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9478
+SUBJECT: GRB 090530: Early RAPTOR Optical Observations
+DATE:    09/06/02 00:37:08 GMT
+FROM:    James Wren at LANL  <jwren@nis.lanl.gov>
+
+J. Wren, W.T. Vestrand, P.R. Wozniak, H. Davis, B. Norman
+of Los Alamos National Laboratory report:
+
+The RAPTOR telescope system responded to Swift trigger
+353567 (Cannizzo et al., GCN 9438) under fair observing conditions.
+Our narrow-field instruments began observing the location at
+03:18:37.96 UTC, 19.6 s after the Swift trigger.  We detect the
+optical counterpart initially reported by Cannizzo et al. (GCN 9438)
+and Flewelling et al. (GCN 9439).  Our first image at T+22.1 seconds
+shows the counterpart at R~17.1.  It appears to brighten over the
+next minute reaching a peak near R~16.3 and then begins fading in
+the manner described by Schady et al. (GCN 9450) and Rossi et al.
+(GCN 9458).  Our unfiltered images were calibrated against the
+USNO-B1 R-band.  The following table gives selected observations,
+not corrected for extinction, from this event.
+
+t-mid(s)    exp(s)     mag     mag-err
+--------------------------------------------
+22.08        5.0      17.13    0.25
+57.90        5.0      16.30    0.10
+84.50        5.0      16.60    0.13
+133.21      10.0      16.87    0.11
+414.65      30.0      17.31    0.09
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9487
+SUBJECT: GRB 090530: RTT150 Optical Observation
+DATE:    09/06/03 17:47:25 GMT
+FROM:    Solen Balman at METU  <solen@astroa.physics.metu.edu.tr>
+
+S. Balman (METU), M. Parmaksizoglu (TUG)
+Z. Eker (TUG), U. Kiziloglu (METU), E. Gogus (Sabanci Uni.)
+I. Bikmaev, N. Sakhibullin (KSU/AST)
+R. Burenin, M. Pavlinsky, R. Sunyaev (IKI),
+
+report:
+
+We observed the field of GRB 090530 (Swift trigger=353567, 
+Cannizzo et al.,2009 GCN Circ. 9438) with the Russian-Turkish 1.5-m telescope
+(RTT150, Bakirlitepe, TUBITAK National Observatory, Turkey) on
+30 May  starting at 18:30:37.7 UT about 15.2 hours (0.633 d) after the burst 
+using the TFOSC CCD (burst detected at 03:18:18 UT with Swift Burst Alert 
+Telescope(BAT)).
+
+Flewelling et al. 2009 GCN Circ. 9439 found the afterglow at
+16.0 mag at 03:18:42.7 UT. Calibrating the data against the USNO star at
+RA = 11:57:41.7, Dec = +26:35:43, Rossi et al. 2009 GCN Circ. 9458
+obtain R = (22.2 +-0.2) mag 21.3 hrs after burst. They also found a
+  break in the optical light at around 22 ksec post-burst (see also 
+GCN Circ.9440-9443, 9450-9452, 959, 9466, 9478 for white light
+and UV photometry).
+
+We obtained one 900 sec exposure using the  R band  filter (Bessell filter).
+We used the Swift XRT position derived by Breadmore at al. (2009) 
+GCN Circ. 9445 to locate the afterglow candidate. We were able see the 
+source, but unable to calculate a magnitude using PSF photometry with
+DAOPHOT within MIDAS software performed on the 13.3 by 13.3 arcmin field 
+around the candidate. We find a frame upper limit of R = 21.1+/-0.5 mag
+at 3 sigma and 21.9+/-0.5 mag at 2 sigma confidence level 
+calculated using the same  USNO star mentioned in the above paragraph.
+
+
+This message can be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9488
+SUBJECT: GRB 090530: Further NOT optical observations
+DATE:    09/06/03 19:51:39 GMT
+FROM:    Dong Xu at DARK,NBI  <dong@astro.ku.dk>
+
+D. Xu, G. Leloudas, D. Malesani, J. P. U. Fynbo, J. Hjorth (DARK/NBI), 
+P.  Jakobsson (Univ. Iceland), and T. Liimets (NOT & Tartu Obs.) report 
+on behalf of a larger collaboration:
+
+We continued to observe the field of GRB 090530 (Cannizzo et al., GCN 
+9438) with the Nordic Optical Telescope equipped with ALFOSC.  We 
+obtained 3x600 s R-band frames staring on June 01, 22:04:19 UT, 66.7669 
+hr after the burst.
+
+The optical afterglow (Cannizzo et al., GCN 9438) is still detected in 
+the stacked frame. The magnitude is R=22.6+/-0.2 against the same 
+reference star in Malesani et al. (GCN 9452).
+
+Balman et al. (GCN 9487) found a 3sigma upper limit of R=21.1+/-0.5 mag 
+at 15.2 hr after the burst. Our first observation shows R=21.6 mag at 
+17.8 hr after the burst. Rossi et al. (GCN 9458) found R=22.2+/-0.2 mag 
+at 21.3 hr after the burst, and a break in the light curve at around 22 
+ksec post-burst with slopes of 0.5+-0.1 (pre-break) and 1.8+-0.4 
+(post-break), using previous obs (Flewelling et al., GCN 9439; Schady et 
+al., GCN 9450; Nissinen & Hentunen, GCN 9442). Our new observation 
+indicates that the optical decay is becoming much slower. The slower 
+optical decay may be due to the presence of a fairly bright host galaxy.
+
+Further optical observations are encouraged.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  9489
+SUBJECT: GRB 090530B: Suzaku WAM observation of the prompt emission
+DATE:    09/06/04 11:05:56 GMT
+FROM:    Kazuhiro Noda at Miyazaki U  <kaz1206@astro.miyazaki-u.ac.jp>
+
+K. Noda, E. Sonoda, M. Yamauchi, N. Ohmori, H. Hayashi,
+K. Kono, A. Daikyuji, Y. Nishioka (Univ. of Miyazaki),
+Y. Hanabata, T. Uehara, T. Takahashi, Y. Fukazawa (Hiroshima U.),
+M. Ohno, M. Suzuki, M. Kokubun, T. Takahashi (ISAS/JAXA),
+W. Iwakiri, M. Tashiro, Y. Terada, A. Endo, K. Onda,
+T. Sugasahara (Saitama U.), Y. Urata (NCU),
+T. Enoto, K. Nakazawa, K. Makishima (Univ. of Tokyo),
+K. Yamaoka, S. Sugita (Aoyama Gakuin U.), Y. E. Nakagawa,
+T. Tamagawa (RIKEN), S. Hong (Nihon U.), N. Vasquez (Tokyo Tech.),
+on behalf of the Suzaku WAM team, report:
+
+The long GRB 090530B (Fermi/GBM trigger #265400066 / 090530.760;
+van der Horst et al., GCN 9472)
+
+was detected by the the Suzaku Wide-band All-sky Monitor (WAM) which
+covers an energy range of 50 keV - 5 MeV at 18:14:23 UT (=T0).
+
+The observed light curve shows a single peak
+starting at T0-1s, ending at T0+219s,
+with a duration (T90) of about 113 seconds.
+The fluence in 100 - 1000 keV was 2.41 ( +0.06/ -0.07 )x10-5 erg/cm2.
+The 1-s peak flux measured from T0+8s was 2.39 ( +0.08/ -1.41 )
+photons/cm2/s
+in the same energy range.
+
+Preliminary result shows that the time-averaged spectrum from T0-1s to
+T0+219s is well fitted by a single power-law with a photon index
+of 3.30 ( +0.14/ -0.13 ) (chi2/d.o.f = 31/17 ).
+
+All the quoted errors are at statistical 90% confidence level,
+in which the systematic uncertainties are not included.
+
+The light curves with 1-sec time resolution for this burst will be
+appeared at:
+
+http://www.astro.isas.jaxa.jp/suzaku/HXD-WAM/WAM-GRB/grb/untrig/grb_table.html
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10015
+SUBJECT: GRB 090530A: Skynet/DSO Detections
+DATE:    09/10/11 21:25:05 GMT
+FROM:    Aaron LaCluyze at U.North Carolina  <lacluyze@physics.unc.edu>
+
+A. Smith, A. LaCluyze, D. Reichart, D. Caton, L. Hawkins, J. Haislip, K. 
+Ivarsen, A. Foster, J. Moore, A. Oza, M. Schubel, J. Styblova, A. Trotter, J. 
+A. Crain, and M. Nysewander report:
+
+Skynet observed the Swift/BAT localization of GRB 090530A (Cannizzo et al., GCN 
+9438) with the 14" Dark Sky Observatory telescope in North Carolina beginning 
+61.8 minutes after the trigger in RI.
+
+We detect the afterglow (Cannizzo et al., GCN 9438).  Stacking only images that 
+increase the limiting magnitude yields:
+
+mean                                                        1-sig.  1-sig.
+time                                                        sys.    stat.
+since                                            cal.       cal.    cal.
+trig.  tel.    exp.     fil.  magnitude          stars*     unc.    unc.
+(m)            (# x s)                                      (mag)   (mag)
+
+88.8   DSO-14  20 x 80  I     19.26 +0.32 -0.25  7 SDSS 7   0.050   0.001
+102.2  DSO-14  23 x 80  R     19.53 +0.16 -0.14  10 SDSS 7  0.022   0.001
+
+* Transformed using Jester et al., 2005, ApJ, 130, 873.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  15571
+SUBJECT: GRB 090530: X-shooter redshift
+DATE:    13/12/03 18:31:28 GMT
+FROM:    Paolo Goldoni at U.Paris/APC  <goldoni@apc.univ-paris7.fr>
+
+ P. Goldoni (APC/Irfu - CEA), A. de Ugarte Postigo (IAA - CSIC and DARK/NBI) and J.P.U. Fynbo (DARK/NBI) report on behalf of the X-shooter GRB collaboration :
+
+
+ We reduced with the most recent pipeline the observations of the optical afterglow of GRB 090530 (Cannizzo et al., GCN 9438) made using the ESO VLT equipped with the X-shooter spectrograph. The observations were performed during commissioning with the instrument not fully calibrated. The observations started on 2009-05-30 at 23:56 UT (i.e., 20.63 hr after the burst). A total exposure of 1x900 s + 4x1200 s was obtained, covering the spectral range from ~3000 to ~24000 Ang. 
+The afterglow is detected in the UVB and VIS arms with a faint continuum. Superposed on the continuum we detected spectral features consistent with MgII, MgI, SiII, FeII and AlIII at a redshift ~1.266 fully consistent with the photometric redshift 1.28 (+0.16, -0.15) (Kruehler et al. 2011, A&A 526, 153).
+
+
+
+
+

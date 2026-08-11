@@ -1,0 +1,24 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn081224887}
+# - {src_start: -1.280220979020953}
+# - {src_stop: 20.164881118881155}
+# - {lle_theta_rsp_deg: 17.9}
+# - {lle_theta_src_deg: 18.1}
+# - {lle_delta_theta_deg: 0.2}
+# - {lle_drm_verdict: OK}
+# - {note: 'single-matrix/LLE responses judged by off-axis angle (D1), not interval overlap'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n6 -8.032 115.874 5 PASS
+n7 -8.032 115.874 5 PASS
+n9 -8.032 115.874 5 PASS
+b1 -8.032 115.874 5 PASS
+lle -0.514 0.486 1 LLE_OK

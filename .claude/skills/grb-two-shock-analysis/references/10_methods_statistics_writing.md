@@ -125,3 +125,32 @@ Before writing a claim, answer:
 8. Does the temporal behavior support the same interpretation?
 9. Are all uncertainty intervals propagated?
 10. What observation would falsify the claim?
+
+---
+
+## 11. Detector-exclusion paragraph
+
+Template:
+
+> Detector X was initially included but displayed a coherent residual trend not seen in the other selected detectors. Because the source geometry indicated a plausible blockage/calibration issue, we excluded it under the predeclared detector-quality rule. Fits with and without detector X are retained in the reproducibility archive.
+
+Do not state only that the fit improved after removal.
+
+## 12. LAT field-model paragraph
+
+Template:
+
+> The LAT source model included catalog point and extended sources within the model region together with the Galactic and isotropic diffuse components. Because the burst lies near the Galactic plane, we explicitly inspected nearby extended emission and allowed relevant nuisance normalizations to vary.
+
+## 13. Component-flux paragraph
+
+Template:
+
+> For intervals in which the added component was supported, we calculated its energy flux and fractional contribution over a common energy range. Intervals without a significant component are reported as conditional estimates or limits and are visually distinguished from detections.
+
+## 14. Conditional physical-inference paragraph
+
+Template:
+
+> The following outflow parameters are conditional on identifying the low-energy component as photospheric and on the assumptions of the adopted hybrid-jet framework. We therefore report their dependence on the launch radius, radiative efficiency, and alternative spectral decomposition rather than quoting a single model-independent value.
+

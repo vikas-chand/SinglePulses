@@ -1,0 +1,12 @@
+{
+ "burst": "bn090620400",
+ "frozen_utc": "2026-08-10 (pre-fit)",
+ "predictions": [
+  "P-A (Li&Zhang HLE): in DECAY blocks (t>~4.4s), Band beta and the flux decay should satisfy alpha_hat=2+beta_hat within errors; if our resolved spectra show STRONG intrinsic Ep evolution in the decay, pure curvature is challenged.",
+  "P-B (tracking, Lu/Li2026): Ep(t) should RISE then FALL following flux (peak ~4.4s), NOT decline monotonically \u2014 the first non-H2S burst of the campaign.",
+  "P-C (Li2026 CPL-preferred): our gated AIC should prefer CPL-family over Band in most blocks (beta unconstrained).",
+  "P-D (soft-regime guard): Ep~156 keV -> partially in the OLD L27 dead zone; with the fix, simple models must compete fairly; watch VALID counts.",
+  "P-E (binning): our 27b blocks should be ~consistent with Li&Zhang Ntot=11 given same src window; ours is [-0.9,18.3] vs their [-1,30] (tail difference expected)."
+ ],
+ "engine": "L18/L19/L20/L26/L27 active"
+}

@@ -118,3 +118,35 @@ GRB 130310A is a high-value pilot because the main-pulse low-energy feature coul
 4. Add hidden-break simulations to the standard report.
 5. Scale the validated pipeline to all pulses.
 
+---
+
+## 2026-08-09 — Siddique et al. (2022), GRB 130518A
+
+### Source-derived lessons
+
+- Joint GBM+LAT fits favor a subdominant BB added to the nonthermal continuum in the integrated spectrum and the two brightest bins.
+- The integrated BB fraction is about six percent in the source analysis.
+- H2013/G2013 and G2015 convert `F_BB`, `F_tot`, and `T_BB` into conditional outflow properties.
+- Both frameworks reject a pure fireball in the scenarios studied.
+- Small launch radii tend to favor internal shocks; large launch radii and low efficiency can permit reconnection.
+
+### Project corrections and cautions
+
+- The BB identification must be tested against 2SBPL, broadened photospheres, spectral evolution, and coupled FS+RS emission before hybrid-jet inference.
+- Use a source-plus-background likelihood and simulation-calibrated component tests; do not rely only on fixed Wilks thresholds for an added BB.
+- Treat BB fluxes in non-significant bins as conditional estimates or limits, not detections.
+- Recompute or verify LAT event probabilities with an interval-appropriate source model.
+- Record Galactic-plane proximity, extended sources, and diffuse models for every LAT field.
+- A detector can be removed for a documented detector-specific systematic residual trend, not because it changes the preferred physics.
+
+### New implementation priority
+
+Implement and validate the H2013/G2013 and G2015 scaling relations from the primary papers. Reproduce the GRB 130518A tables and parameter maps, then test how a synthetic FS low-energy bump biases the inferred photospheric magnetization when it is fitted as a BB.
+
+### Writing lessons
+
+- Use an introduction funnel from unknown -> physical stakes -> competing models -> observable discriminator -> target data -> inference framework.
+- Separate a concise preferred-model table from complete appendix fit tables.
+- Organize the discussion by physical questions and state model assumptions before derived claims.
+- Use component flux-fraction evolution as a compact diagnostic figure.
+

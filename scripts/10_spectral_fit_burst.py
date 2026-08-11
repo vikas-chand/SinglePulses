@@ -940,9 +940,24 @@ def _fit_is_physical(spec, result, frac=0.001):
         d = params.get(short)
         if d is None or not np.isfinite(d['val']):
             return False
-        v = d['val']; span = hi - lo
-        if (v - lo) < frac * span or (hi - v) < frac * span:
-            return False
+        v = d['val']
+        # L27 (bn090530760, 2026-08-10): the rail test must respect the
+        # parameter's GEOMETRY. A linear margin frac*(hi-lo) on a log-spanning
+        # bound like (30, 5e4) is ~50 keV of dead zone above the LOW bound —
+        # every Ep below ~80 keV was auto-flagged railed, disqualifying all
+        # simple models on soft bursts and biasing selection toward
+        # extra-component winners. For bounds spanning >2 decades with lo>0,
+        # test in LOG space (margin = 1% of the log-span, e.g. 30 -> 32.3 keV);
+        # keep the linear rule for narrow/linear bounds (indices, kT).
+        if lo > 0 and hi / lo > 100.0:
+            lg_lo, lg_hi, lg_v = np.log10(lo), np.log10(hi), np.log10(v)
+            lg_m = 0.01 * (lg_hi - lg_lo)
+            if (lg_v - lg_lo) < lg_m or (lg_hi - lg_v) < lg_m:
+                return False
+        else:
+            span = hi - lo
+            if (v - lo) < frac * span or (hi - v) < frac * span:
+                return False
     if prefix in ('DSBPL', 'DSBPLF'):
         xb = params.get('xb'); xp = params.get('xp')
         if (xb and xp and np.isfinite(xb['val']) and np.isfinite(xp['val'])

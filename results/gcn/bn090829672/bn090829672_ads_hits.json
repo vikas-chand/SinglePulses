@@ -1,0 +1,188 @@
+{
+ "numFound": 7,
+ "start": 0,
+ "numFoundExact": true,
+ "docs": [
+  {
+   "bibcode": "2009GCN..9856....1W",
+   "author": [
+    "Wilson-Hodge, C. A."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090829B: Fermi GBM detection."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9896....1N",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ],
+   "author": [
+    "Noda, K.",
+    "Sonoda, E.",
+    "Ohmori, N.",
+    "Kono, K.",
+    "Hayashi, H.",
+    "Daikyuji, A.",
+    "Nishioka, Y.",
+    "Yamauchi, M.",
+    "Hanabata, Y.",
+    "Uehara, T.",
+    "Takahashi, T.",
+    "Fukazawa, Y.",
+    "Ohno, M.",
+    "Suzuki, M.",
+    "Kokubun, M.",
+    "Iwakiri, W.",
+    "Tashiro, M.",
+    "Terada, Y.",
+    "Endo, A.",
+    "Onda, K.",
+    "Sugasahara, T.",
+    "Urata, Y.",
+    "Enoto, T.",
+    "Nakazawa, K.",
+    "Makishima, K.",
+    "Yamaoka, K.",
+    "Sugita, S.",
+    "Nakagawa, Y. E.",
+    "Tamagawa, T.",
+    "Hong, S.",
+    "Vasquez, N."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090829A: Suzaku WAM observation of the prompt emission."
+   ],
+   "year": "2009"
+  },
+  {
+   "bibcode": "2010ApJ...725L..15A",
+   "author": [
+    "Akerlof, C. W.",
+    "Zheng, W.",
+    "Pandey, S. B.",
+    "McKay, T. A."
+   ],
+   "doctype": "article",
+   "title": [
+    "Searching for Needles in Haystacks\u2014Using the Fermi/GBM to Find GRB \u03b3-rays with the Fermi/LAT Detector"
+   ],
+   "year": "2010",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2011A&A...525A..53G",
+   "author": [
+    "Guetta, D.",
+    "Pian, E.",
+    "Waxman, E."
+   ],
+   "doctype": "article",
+   "title": [
+    "FERMI constraints on the high energy, ~1 GeV, emission of long gamma ray bursts"
+   ],
+   "year": "2011",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2011MNRAS.418L.109G",
+   "author": [
+    "Ghirlanda, G.",
+    "Ghisellini, G.",
+    "Nava, L."
+   ],
+   "doctype": "article",
+   "title": [
+    "Short and long gamma-ray bursts: same emission mechanism?"
+   ],
+   "year": "2011",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2015A&A...583A.129Y",
+   "author": [
+    "Yu, Hoi-Fung",
+    "van Eerten, Hendrik J.",
+    "Greiner, Jochen",
+    "Sari, Re'em",
+    "Narayana Bhat, P.",
+    "von Kienlin, Andreas",
+    "Paciesas, William S.",
+    "Preece, Robert D."
+   ],
+   "doctype": "article",
+   "title": [
+    "The sharpness of gamma-ray burst prompt emission spectra"
+   ],
+   "year": "2015",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2017ifs..confE..74B",
+   "author": [
+    "Burgess, J. M."
+   ],
+   "doctype": "inproceedings",
+   "title": [
+    "Is Spectral Width a Reliable Measure of GRB Emission Physics?"
+   ],
+   "year": "2017",
+   "property": [
+    "ARTICLE",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  }
+ ]
+}

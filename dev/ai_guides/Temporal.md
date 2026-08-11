@@ -45,6 +45,34 @@ Gowri pulse parameters (A, s_l, s_r, r_l, r_r), φ = s_l/s_r, R², class.
 python scripts/40_temporal_survey.py
 ```
 
+## Frame rule: T90 is BAND-DEPENDENT — correct before diffing (Qin+2013, verified 2026-08-09)
+Comprehensive Analysis III (`2013ApJ...763...15Q`, published PDF on disk) measures
+**T̄₉₀ ∝ E^(−0.20 ± 0.02)** for long GRBs across six GBM sub-bands. Consequence: a harder-band
+instrument reports a SHORTER duration for the same burst, lawfully.
+Live demonstration (bn090530760): GBM catalog 157.7 s (8–1000 keV) vs Suzaku-WAM 113 s
+(50 keV–5 MeV). Band-centre ratio ⇒ predicted factor ≈ 0.72; observed 113/157.7 = **0.72**.
+What looked like three inconsistent durations was one burst obeying one power law.
+**RULE:** never diff a published T90 against ours without the E^−0.2 band correction (an L21
+frame-alignment item with a number attached). Cite Qin+2013; note their caveat that bright-burst
+samples give steeper (−0.4, Bissaldi+2011).
+
+## L26 — LAG SIGN is a systematic trap: state the convention, verify against a known burst  *(2026-08-10)*
+Two independent instances, one ours and one published:
+1. **Ours:** the handbook lag sign is INVERTED (defect ledger above) — caught only by cross-check.
+2. **Lu+2018 (`2018ApJ...865..153L`), published ApJ, verified in the PDF:** the text states t_p is
+   *"negatively related to the photon energy E"* — i.e. HIGH energy peaks EARLIER, low energy later,
+   the conventional positive lag — and then the very next sentence says the opposite: *"the pulse
+   profile in a lower energy band tends to **peak earlier**"*. One of the two is wrong; the trend
+   statement and their own positive τ̂₃₁ values (e.g. +7.08 s for bn090530760) say the sentence is.
+
+Two instances make it a class, not a slip. Sign errors survive refereeing because both conventions
+are "obvious" to their users and neither is usually written down.
+**RULE:** (a) every quoted lag carries its convention explicitly — *positive lag = low-energy
+photons arrive LATER* is ours; (b) validate the pipeline's sign on a burst with an unambiguous
+published direction before any lag science; (c) when diffing a published lag, check the paper's
+OWN internal consistency (trend statement vs prose vs table sign) rather than assuming.
+**TEST:** `test_L26_lag_sign_on_reference_burst` — pending the handbook sign fix.
+
 ## 🔴 Defect ledger (check BEFORE quoting any number)
 | defect | evidence | state |
 |---|---|---|

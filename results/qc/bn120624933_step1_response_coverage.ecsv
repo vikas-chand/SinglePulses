@@ -1,0 +1,27 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn120624933}
+# - {src_start: -1.1647552447551988}
+# - {src_stop: 27.11286153846163}
+# - {lle_drm_interval_s: '[-300.0, +50.0]'}
+# - {lle_theta_rsp_deg: 67.5}
+# - {lle_theta_src_deg: 68.8}
+# - {lle_delta_theta_deg: 1.4}
+# - {lle_drm_verdict: VALID}
+# - {lle_note: single time-averaged matrix (NOT rsp2); valid because theta is near-constant; theta~68deg so LLE constrains rather than
+#     detects}
+# - {checked: 2026-08-04 D1 check per dev/ai_guides/DataInventory.md}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n0 -399.394 299.606 37 PASS
+n1 -399.394 299.606 37 PASS
+n2 -399.394 299.606 37 PASS
+b0 -399.394 299.606 37 PASS
+lle -300.000 50.000 1 LLE_OK_theta1.4deg

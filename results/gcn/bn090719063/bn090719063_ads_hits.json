@@ -1,0 +1,434 @@
+{
+ "numFound": 16,
+ "start": 0,
+ "numFoundExact": true,
+ "docs": [
+  {
+   "bibcode": "2009GCN..9691....1V",
+   "author": [
+    "van der Horst, A. J."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090719: Fermi GBM detection."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2009GCN..9704....1G",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ],
+   "author": [
+    "Golenetskii, S.",
+    "Aptekar, R.",
+    "Frederiks, D.",
+    "Mazets, E.",
+    "Pal'Shin, V.",
+    "Oleynik, P.",
+    "Ulanov, M.",
+    "Svinkin, D.",
+    "Cline, T."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "Konus-wind and Konus-RF observations of GRB 090719."
+   ],
+   "year": "2009"
+  },
+  {
+   "bibcode": "2009arXiv0910.2134G",
+   "author": [
+    "Guetta, Dafne",
+    "Pian, Elena"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Is the Gamma Ray Bursts emission suppressed at high energy?"
+   ],
+   "year": "2009",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2011MNRAS.418L.109G",
+   "author": [
+    "Ghirlanda, G.",
+    "Ghisellini, G.",
+    "Nava, L."
+   ],
+   "doctype": "article",
+   "title": [
+    "Short and long gamma-ray bursts: same emission mechanism?"
+   ],
+   "year": "2011",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2014ApJ...784...17B",
+   "author": [
+    "Burgess, J. M.",
+    "Preece, R. D.",
+    "Connaughton, V.",
+    "Briggs, M. S.",
+    "Goldstein, A.",
+    "Bhat, P. N.",
+    "Greiner, J.",
+    "Gruber, D.",
+    "Kienlin, A.",
+    "Kouveliotou, C.",
+    "McGlynn, S.",
+    "Meegan, C. A.",
+    "Paciesas, W. S.",
+    "Rau, A.",
+    "Xiong, S.",
+    "Axelsson, M.",
+    "Baring, M. G.",
+    "Dermer, C. D.",
+    "Iyyani, S.",
+    "Kocevski, D.",
+    "Omodei, N.",
+    "Ryde, F.",
+    "Vianello, G."
+   ],
+   "doctype": "article",
+   "title": [
+    "Time-resolved Analysis of Fermi Gamma-Ray Bursts with Fast- and Slow-cooled Synchrotron Photon Models"
+   ],
+   "year": "2014",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2014ApJ...784L..43B",
+   "author": [
+    "Burgess, J. Michael",
+    "Preece, Robert D.",
+    "Ryde, Felix",
+    "Veres, Peter",
+    "M\u00e9sz\u00e1ros, Peter",
+    "Connaughton, Valerie",
+    "Briggs, Michael",
+    "Pe'er, Asaf",
+    "Iyyani, Shabnam",
+    "Goldstein, Adam",
+    "Axelsson, Magnus",
+    "Baring, Matthew G.",
+    "Bhat, P. N.",
+    "Byrne, David",
+    "Fitzpatrick, Gerard",
+    "Foley, Suzanne",
+    "Kocevski, Daniel",
+    "Omodei, Nicola",
+    "Paciesas, William S.",
+    "Pelassa, Veronique",
+    "Kouveliotou, Chryssa",
+    "Xiong, Shaolin",
+    "Yu, Hoi-Fung",
+    "Zhang, Binbin",
+    "Zhu, Sylvia"
+   ],
+   "doctype": "article",
+   "title": [
+    "An Observed Correlation between Thermal and Non-thermal Emission in Gamma-Ray Bursts"
+   ],
+   "year": "2014",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "author": [
+    "Shao, Lang",
+    "Zhang, Bin-Bin",
+    "Wang, Fu-Ri",
+    "Wu, Xue-Feng",
+    "Cheng, Ye-Hao",
+    "Zhang, Xi",
+    "Yu, Bang-Yao",
+    "Xi, Bao-Jia",
+    "Wang, Xue",
+    "Feng, Huan-Xue",
+    "Zhang, Meng",
+    "Xu, Dong"
+   ],
+   "doctype": "article",
+   "title": [
+    "A New Measurement of the Spectral Lag of Gamma-Ray Bursts and its Implications for Spectral Evolution Behaviors"
+   ],
+   "year": "2017",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2019ApJS..245....7L",
+   "author": [
+    "Li, Liang"
+   ],
+   "doctype": "article",
+   "title": [
+    "Thermal Components in Gamma-Ray Bursts. I. How Do They Affect Nonthermal Spectral Parameters?"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2019ApJ...886...20Y",
+   "author": [
+    "Yu, Hoi-Fung",
+    "Dereli-B\u00e9gu\u00e9, H\u00fcsne",
+    "Ryde, Felix"
+   ],
+   "doctype": "article",
+   "title": [
+    "Bayesian Time-resolved Spectroscopy of GRB Pulses"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2020ApJ...894..100L",
+   "author": [
+    "Li, Liang"
+   ],
+   "doctype": "article",
+   "title": [
+    "Thermal Components in Gamma-Ray Bursts. II. Constraining the Hybrid Jet Model"
+   ],
+   "year": "2020",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2021ApJS..253...43L",
+   "author": [
+    "Li, Liang",
+    "Zhang, Bing"
+   ],
+   "doctype": "article",
+   "title": [
+    "Testing the High-latitude Curvature Effect of Gamma-Ray Bursts with Fermi Data: Evidence of Bulk Acceleration in Prompt Emission"
+   ],
+   "year": "2021",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2022ApJ...932...25C",
+   "author": [
+    "Chen, Jia-Ming",
+    "Peng, Zhao-Yang",
+    "Du, Tan-Tan",
+    "Yin, Yue"
+   ],
+   "doctype": "article",
+   "title": [
+    "Spectral Properties and Hybrid Jet Model Constraints of Fermi GRB 210610B"
+   ],
+   "year": "2022",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2023MNRAS.519.3201C",
+   "author": [
+    "Caballero-Garc\u00eda, M. D.",
+    "Gupta, Rahul",
+    "Pandey, S. B.",
+    "Oates, S. R.",
+    "Marisaldi, M.",
+    "Ramsli, A.",
+    "Hu, Y.-D.",
+    "Castro-Tirado, A. J.",
+    "S\u00e1nchez-Ram\u00edrez, R.",
+    "Connell, P. H.",
+    "Christiansen, F.",
+    "Ror, A. Kumar",
+    "Aryan, A.",
+    "Bai, J.-M.",
+    "Castro-Tirado, M. A.",
+    "Fan, Y.-F.",
+    "Fern\u00e1ndez-Garc\u00eda, E.",
+    "Kumar, A.",
+    "Lindanger, A.",
+    "Mezentsev, A.",
+    "Navarro-Gonz\u00e1lez, J.",
+    "Neubert, T.",
+    "\u00d8stgaard, N.",
+    "P\u00e9rez-Garc\u00eda, I.",
+    "Reglero, V.",
+    "Sarria, D.",
+    "Sun, T. R.",
+    "Xiong, D.-R.",
+    "Yang, J.",
+    "Yang, Y.-H.",
+    "Zhang, B.-B."
+   ],
+   "doctype": "article",
+   "title": [
+    "Multiwavelength study of the luminous GRB 210619B observed with Fermi and ASIM"
+   ],
+   "year": "2023",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2023ApJ...949..110T",
+   "author": [
+    "Tak, Donggeun",
+    "Uhm, Z. Lucas",
+    "Racusin, Judith",
+    "Zhang, Bing",
+    "Guiriec, Sylvain",
+    "Kocevski, Daniel",
+    "Zhang, Bin-Bin",
+    "McEnery, Julie"
+   ],
+   "doctype": "article",
+   "title": [
+    "Temporal and Spectral Evolution of Gamma-Ray Burst Broad Pulses: Identification of High-latitude Emission in the Prompt Emission"
+   ],
+   "year": "2023",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2023arXiv231216265G",
+   "author": [
+    "Gupta, Rahul"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Multiwavelength Observations of Gamma Ray Bursts"
+   ],
+   "year": "2023",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2026arXiv260417835L",
+   "author": [
+    "Li, Liang"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Three Subclasses of the Intensity-tracking Pattern in Gamma-Ray Burst Spectral Evolution"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  }
+ ]
+}

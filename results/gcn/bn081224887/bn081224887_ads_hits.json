@@ -1,0 +1,890 @@
+{
+ "numFound": 23,
+ "start": 0,
+ "numFoundExact": true,
+ "docs": [
+  {
+   "bibcode": "2008GCN..8739....1H",
+   "author": [
+    "Hayashi, E.",
+    "Sonoda, H.",
+    "Yamauchi, M.",
+    "Tanaka, H.",
+    "Hara, R.",
+    "Ohmori, N.",
+    "Kono, K.",
+    "Endo, A.",
+    "Tashiro, M.",
+    "Terada, Y.",
+    "Urata, Y.",
+    "Onda, K.",
+    "Kodaka, N.",
+    "Morigami, K.",
+    "Sugasahara, T.",
+    "Iwakiri, W.",
+    "Enoto, T.",
+    "Nakazawa, K.",
+    "Makishima, K.",
+    "Sugita, S.",
+    "Yamaoka, K.",
+    "Ohno, M.",
+    "Kokubun, M.",
+    "Suzuki, M.",
+    "Takahashi, T.",
+    "Nakagawa, Y. E.",
+    "Tamagawa, T.",
+    "Hanabata, Y.",
+    "Uehara, T.",
+    "Fukazawa, Y.",
+    "Kira, C.",
+    "Hong, S."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081224: suzaku WAM observation of the prompt emission."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8725....1P",
+   "author": [
+    "Page, K. L.",
+    "Evans, P. A."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081224: Swift-XRT observation."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2008GCN..8723....1W",
+   "author": [
+    "Wilson-Hodge, C.",
+    "Connaughton, V.",
+    "Longo, F.",
+    "Omodei, N."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 081224: Fermi GBM detection &amp; LAT localization."
+   ],
+   "year": "2008",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2011ApJ...733...97B",
+   "author": [
+    "Bissaldi, Elisabetta",
+    "von Kienlin, Andreas",
+    "Kouveliotou, Chryssa",
+    "Briggs, Michael S.",
+    "Connaughton, Valerie",
+    "Greiner, Jochen",
+    "Gruber, David",
+    "Lichti, Giselher",
+    "Bhat, P. N.",
+    "Burgess, Michael",
+    "Chaplin, Vandiver",
+    "Diehl, Roland",
+    "Fishman, Gerald J.",
+    "Fitzpatrick, Gerard",
+    "Foley, Suzanne",
+    "Gibby, Melissa H.",
+    "Giles, Misty M.",
+    "Goldstein, Adam",
+    "Guiriec, Sylvain",
+    "van der Horst, Alexander J.",
+    "Kippen, R. Marc",
+    "Lin, Lin",
+    "McBreen, Sheila",
+    "Meegan, Charles A.",
+    "Paciesas, William S.",
+    "Preece, Robert D.",
+    "Rau, Arne",
+    "Tierney, Dave",
+    "Wilson-Hodge, Colleen"
+   ],
+   "doctype": "article",
+   "title": [
+    "First-year Results of Broadband Spectroscopy of the Brightest Fermi-GBM Gamma-Ray Bursts"
+   ],
+   "year": "2011",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012PASJ...64...26T",
+   "author": [
+    "Tashiro, Makoto S.",
+    "Onda, Kaori",
+    "Yamaoka, Kazutaka",
+    "Ohno, Masahiro",
+    "Sugita, Satoshi",
+    "Uehara, Takeshi",
+    "Seta, Hiromi"
+   ],
+   "doctype": "article",
+   "title": [
+    "Spectral Evolutions in Gamma-Ray Burst Exponential Decays Observed with Suzaku WAM"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "ESOURCE",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012IAUS..279..411T",
+   "author": [
+    "Tashiro, Makoto S.",
+    "Onda, Kaori",
+    "Yamaoka, Kazutaka",
+    "Ohno, Masahiro",
+    "Sugita, Satoshi",
+    "Uehara, Takeshi",
+    "Seta, Hiromi"
+   ],
+   "doctype": "inproceedings",
+   "title": [
+    "Spectral Evolutions Study of Gamma-Ray Burst Exponential Decays with Suzaku-WAM"
+   ],
+   "year": "2012",
+   "property": [
+    "ADS_OPENACCESS",
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "REFEREED",
+    "TOC"
+   ]
+  },
+  {
+   "bibcode": "2012ApJ...756..112L",
+   "author": [
+    "Lu, Rui-Jing",
+    "Wei, Jun-Jie",
+    "Liang, En-Wei",
+    "Zhang, Bin-Bin",
+    "L\u00fc, Hou-Jun",
+    "L\u00fc, Lian-Zhong",
+    "Lei, Wei-Hua",
+    "Zhang, Bing"
+   ],
+   "doctype": "article",
+   "title": [
+    "A Comprehensive Analysis of Fermi Gamma-Ray Burst Data. II. E <SUB>p</SUB> Evolution Patterns and Implications for the Observed Spectrum-Luminosity Relations"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2012A&A...547A..95L",
+   "author": [
+    "Longo, F.",
+    "Moretti, E.",
+    "Nava, L.",
+    "Desiante, R.",
+    "Olivo, M.",
+    "Del Monte, E.",
+    "Rappoldi, A.",
+    "Fuschino, F.",
+    "Marisaldi, M.",
+    "Giuliani, A.",
+    "Cutini, S.",
+    "Feroci, M.",
+    "Costa, E.",
+    "Pittori, C.",
+    "Tavani, M.",
+    "Argan, A.",
+    "Barbiellini, G.",
+    "Bulgarelli, A.",
+    "Caraveo, P.",
+    "Cardillo, M.",
+    "Cattaneo, P. W.",
+    "Chen, A. W.",
+    "D'Ammando, F.",
+    "Di Cocco, G.",
+    "Donnarumma, I.",
+    "Evangelista, Y.",
+    "Ferrari, A.",
+    "Fiorini, M.",
+    "Galli, M.",
+    "Gianotti, F.",
+    "Giusti, M.",
+    "Labanti, C.",
+    "Lapshov, I.",
+    "Lazzarotto, F.",
+    "Lipari, P.",
+    "Mereghetti, S.",
+    "Morselli, A.",
+    "Pacciani, L.",
+    "Pellizzoni, A.",
+    "Perotti, F.",
+    "Piano, G.",
+    "Picozza, P.",
+    "Pilia, M.",
+    "Prest, M.",
+    "Pucella, G.",
+    "Rapisarda, M.",
+    "Rubini, A.",
+    "Sabatini, S.",
+    "Soffitta, P.",
+    "Striani, E.",
+    "Trifoglio, M.",
+    "Trois, A.",
+    "Vallazza, E.",
+    "Vercellone, S.",
+    "Vittorini, V.",
+    "Zanello, D.",
+    "Antonelli, L. A.",
+    "Colafrancesco, S.",
+    "Giommi, P.",
+    "Santolamazza, P.",
+    "Verrecchia, F.",
+    "Lucarelli, F.",
+    "Salotti, L."
+   ],
+   "doctype": "article",
+   "title": [
+    "Upper limits on the high-energy emission from gamma-ray bursts observed by AGILE-GRID"
+   ],
+   "year": "2012",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2013ApJS..209...11A",
+   "author": [
+    "Ackermann, M.",
+    "Ajello, M.",
+    "Asano, K.",
+    "Axelsson, M.",
+    "Baldini, L.",
+    "Ballet, J.",
+    "Barbiellini, G.",
+    "Bastieri, D.",
+    "Bechtol, K.",
+    "Bellazzini, R.",
+    "Bhat, P. N.",
+    "Bissaldi, E.",
+    "Bloom, E. D.",
+    "Bonamente, E.",
+    "Bonnell, J.",
+    "Bouvier, A.",
+    "Brandt, T. J.",
+    "Bregeon, J.",
+    "Brigida, M.",
+    "Bruel, P.",
+    "Buehler, R.",
+    "Burgess, J. Michael",
+    "Buson, S.",
+    "Byrne, D.",
+    "Caliandro, G. A.",
+    "Cameron, R. A.",
+    "Caraveo, P. A.",
+    "Cecchi, C.",
+    "Charles, E.",
+    "Chaves, R. C. G.",
+    "Chekhtman, A.",
+    "Chiang, J.",
+    "Chiaro, G.",
+    "Ciprini, S.",
+    "Claus, R.",
+    "Cohen-Tanugi, J.",
+    "Connaughton, V.",
+    "Conrad, J.",
+    "Cutini, S.",
+    "D'Ammando, F.",
+    "de Angelis, A.",
+    "de Palma, F.",
+    "Dermer, C. D.",
+    "Desiante, R.",
+    "Digel, S. W.",
+    "Dingus, B. L.",
+    "Di Venere, L.",
+    "Drell, P. S.",
+    "Drlica-Wagner, A.",
+    "Dubois, R.",
+    "Favuzzi, C.",
+    "Ferrara, E. C.",
+    "Fitzpatrick, G.",
+    "Foley, S.",
+    "Franckowiak, A.",
+    "Fukazawa, Y.",
+    "Fusco, P.",
+    "Gargano, F.",
+    "Gasparrini, D.",
+    "Gehrels, N.",
+    "Germani, S.",
+    "Giglietto, N.",
+    "Giommi, P.",
+    "Giordano, F.",
+    "Giroletti, M.",
+    "Glanzman, T.",
+    "Godfrey, G.",
+    "Goldstein, A.",
+    "Granot, J.",
+    "Grenier, I. A.",
+    "Grove, J. E.",
+    "Gruber, D.",
+    "Guiriec, S.",
+    "Hadasch, D.",
+    "Hanabata, Y.",
+    "Hayashida, M.",
+    "Horan, D.",
+    "Hou, X.",
+    "Hughes, R. E.",
+    "Inoue, Y.",
+    "Jackson, M. S.",
+    "Jogler, T.",
+    "J\u00f3hannesson, G.",
+    "Johnson, A. S.",
+    "Johnson, W. N.",
+    "Kamae, T.",
+    "Kataoka, J.",
+    "Kawano, T.",
+    "Kippen, R. M.",
+    "Kn\u00f6dlseder, J.",
+    "Kocevski, D.",
+    "Kouveliotou, C.",
+    "Kuss, M.",
+    "Lande, J.",
+    "Larsson, S.",
+    "Latronico, L.",
+    "Lee, S.-H.",
+    "Longo, F.",
+    "Loparco, F.",
+    "Lovellette, M. N.",
+    "Lubrano, P.",
+    "Massaro, F.",
+    "Mayer, M.",
+    "Mazziotta, M. N.",
+    "McBreen, S.",
+    "McEnery, J. E.",
+    "McGlynn, S.",
+    "Michelson, P. F.",
+    "Mizuno, T.",
+    "Moiseev, A. A.",
+    "Monte, C.",
+    "Monzani, M. E.",
+    "Moretti, E.",
+    "Morselli, A.",
+    "Murgia, S.",
+    "Nemmen, R.",
+    "Nuss, E.",
+    "Nymark, T.",
+    "Ohno, M.",
+    "Ohsugi, T.",
+    "Omodei, N.",
+    "Orienti, M.",
+    "Orlando, E.",
+    "Paciesas, W. S.",
+    "Paneque, D.",
+    "Panetta, J. H.",
+    "Pelassa, V.",
+    "Perkins, J. S.",
+    "Pesce-Rollins, M.",
+    "Piron, F.",
+    "Pivato, G.",
+    "Porter, T. A.",
+    "Preece, R.",
+    "Racusin, J. L.",
+    "Rain\u00f2, S.",
+    "Rando, R.",
+    "Rau, A.",
+    "Razzano, M.",
+    "Razzaque, S.",
+    "Reimer, A.",
+    "Reimer, O.",
+    "Reposeur, T.",
+    "Ritz, S.",
+    "Romoli, C.",
+    "Roth, M.",
+    "Ryde, F.",
+    "Saz Parkinson, P. M.",
+    "Schalk, T. L.",
+    "Sgr\u00f2, C.",
+    "Siskind, E. J.",
+    "Sonbas, E.",
+    "Spandre, G.",
+    "Spinelli, P.",
+    "Suson, D. J.",
+    "Tajima, H.",
+    "Takahashi, H.",
+    "Takeuchi, Y.",
+    "Tanaka, Y.",
+    "Thayer, J. G.",
+    "Thayer, J. B.",
+    "Thompson, D. J.",
+    "Tibaldo, L.",
+    "Tierney, D.",
+    "Tinivella, M.",
+    "Torres, D. F.",
+    "Tosti, G.",
+    "Troja, E.",
+    "Tronconi, V.",
+    "Usher, T. L.",
+    "Vandenbroucke, J.",
+    "van der Horst, A. J.",
+    "Vasileiou, V.",
+    "Vianello, G.",
+    "Vitale, V.",
+    "von Kienlin, A.",
+    "Winer, B. L.",
+    "Wood, K. S.",
+    "Wood, M.",
+    "Xiong, S.",
+    "Yang, Z."
+   ],
+   "doctype": "article",
+   "title": [
+    "The First Fermi-LAT Gamma-Ray Burst Catalog"
+   ],
+   "year": "2013",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2014ApJ...784...17B",
+   "author": [
+    "Burgess, J. M.",
+    "Preece, R. D.",
+    "Connaughton, V.",
+    "Briggs, M. S.",
+    "Goldstein, A.",
+    "Bhat, P. N.",
+    "Greiner, J.",
+    "Gruber, D.",
+    "Kienlin, A.",
+    "Kouveliotou, C.",
+    "McGlynn, S.",
+    "Meegan, C. A.",
+    "Paciesas, W. S.",
+    "Rau, A.",
+    "Xiong, S.",
+    "Axelsson, M.",
+    "Baring, M. G.",
+    "Dermer, C. D.",
+    "Iyyani, S.",
+    "Kocevski, D.",
+    "Omodei, N.",
+    "Ryde, F.",
+    "Vianello, G."
+   ],
+   "doctype": "article",
+   "title": [
+    "Time-resolved Analysis of Fermi Gamma-Ray Bursts with Fast- and Slow-cooled Synchrotron Photon Models"
+   ],
+   "year": "2014",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2014ApJ...784L..43B",
+   "author": [
+    "Burgess, J. Michael",
+    "Preece, Robert D.",
+    "Ryde, Felix",
+    "Veres, Peter",
+    "M\u00e9sz\u00e1ros, Peter",
+    "Connaughton, Valerie",
+    "Briggs, Michael",
+    "Pe'er, Asaf",
+    "Iyyani, Shabnam",
+    "Goldstein, Adam",
+    "Axelsson, Magnus",
+    "Baring, Matthew G.",
+    "Bhat, P. N.",
+    "Byrne, David",
+    "Fitzpatrick, Gerard",
+    "Foley, Suzanne",
+    "Kocevski, Daniel",
+    "Omodei, Nicola",
+    "Paciesas, William S.",
+    "Pelassa, Veronique",
+    "Kouveliotou, Chryssa",
+    "Xiong, Shaolin",
+    "Yu, Hoi-Fung",
+    "Zhang, Binbin",
+    "Zhu, Sylvia"
+   ],
+   "doctype": "article",
+   "title": [
+    "An Observed Correlation between Thermal and Non-thermal Emission in Gamma-Ray Bursts"
+   ],
+   "year": "2014",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2014MNRAS.442..419B",
+   "author": [
+    "Basak, Rupal",
+    "Rao, A. R."
+   ],
+   "doctype": "article",
+   "title": [
+    "Time-resolved spectral study of Fermi gamma-ray bursts having single pulses"
+   ],
+   "year": "2014",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2014arXiv1409.5626B",
+   "author": [
+    "Basak, Rupal"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Spectral and Timing Analysis of the Prompt Emission of Gamma Ray Bursts"
+   ],
+   "year": "2014",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2014styd.confE.164T",
+   "author": [
+    "Tashiro, Makoto",
+    "Ueno, H.",
+    "Enomoto, J."
+   ],
+   "doctype": "inproceedings",
+   "title": [
+    "Swift and Suzaku observations of spectral evolution in the FRED type GRBs"
+   ],
+   "year": "2014",
+   "property": [
+    "ARTICLE",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2017PASJ...69R...2Y",
+   "author": [
+    "Yamaoka, Kazutaka",
+    "Ohno, Masanori",
+    "Tashiro, Makoto S.",
+    "Hurley, Kevin",
+    "Krimm, Hans A.",
+    "Lien, Amy Y.",
+    "Ohmori, Norisuke",
+    "Sugita, Satoshi",
+    "Urata, Yuji",
+    "Yasuda, Tetsuya",
+    "Enomoto, Junichi",
+    "Fujinuma, Takeshi",
+    "Fukazawa, Yasushi",
+    "Hanabata, Yoshitaka",
+    "Iwakiri, Wataru",
+    "Kawano, Takafumi",
+    "Kinoshita, Ryuuji",
+    "Kokubun, Motohide",
+    "Makishima, Kazuo",
+    "Matsuoka, Shunsuke",
+    "Nagayoshi, Tsutomu",
+    "Nakagawa, Yujin",
+    "Nakaya, Souhei",
+    "Nakazawa, Kazuhiro",
+    "Nishioka, Yusuke",
+    "Sakamoto, Takanori",
+    "Takahashi, Tadayuki",
+    "Takeda, Sawako",
+    "Terada, Yukikatsu",
+    "Yabe, Seiya",
+    "Yamauchi, Makoto",
+    "Yoshida, Hiraku"
+   ],
+   "doctype": "article",
+   "title": [
+    "Suzaku Wide-band All-sky Monitor (WAM) observations of GRBs and SGRs"
+   ],
+   "year": "2017",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "ESOURCE",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "author": [
+    "Shao, Lang",
+    "Zhang, Bin-Bin",
+    "Wang, Fu-Ri",
+    "Wu, Xue-Feng",
+    "Cheng, Ye-Hao",
+    "Zhang, Xi",
+    "Yu, Bang-Yao",
+    "Xi, Bao-Jia",
+    "Wang, Xue",
+    "Feng, Huan-Xue",
+    "Zhang, Meng",
+    "Xu, Dong"
+   ],
+   "doctype": "article",
+   "title": [
+    "A New Measurement of the Spectral Lag of Gamma-Ray Bursts and its Implications for Spectral Evolution Behaviors"
+   ],
+   "year": "2017",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2019ApJ...882...26M",
+   "author": [
+    "Meng, Yan-Zhi",
+    "Liu, Liang-Duan",
+    "Wei, Jun-Jie",
+    "Wu, Xue-Feng",
+    "Zhang, Bin-Bin"
+   ],
+   "doctype": "article",
+   "title": [
+    "The Time-resolved Spectra of Photospheric Emission from a Structured Jet for Gamma-Ray Bursts"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2019ApJS..245....7L",
+   "author": [
+    "Li, Liang"
+   ],
+   "doctype": "article",
+   "title": [
+    "Thermal Components in Gamma-Ray Bursts. I. How Do They Affect Nonthermal Spectral Parameters?"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2020ApJ...894..100L",
+   "author": [
+    "Li, Liang"
+   ],
+   "doctype": "article",
+   "title": [
+    "Thermal Components in Gamma-Ray Bursts. II. Constraining the Hybrid Jet Model"
+   ],
+   "year": "2020",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2021ApJS..253...43L",
+   "author": [
+    "Li, Liang",
+    "Zhang, Bing"
+   ],
+   "doctype": "article",
+   "title": [
+    "Testing the High-latitude Curvature Effect of Gamma-Ray Bursts with Fermi Data: Evidence of Bulk Acceleration in Prompt Emission"
+   ],
+   "year": "2021",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2023ApJ...949..110T",
+   "author": [
+    "Tak, Donggeun",
+    "Uhm, Z. Lucas",
+    "Racusin, Judith",
+    "Zhang, Bing",
+    "Guiriec, Sylvain",
+    "Kocevski, Daniel",
+    "Zhang, Bin-Bin",
+    "McEnery, Julie"
+   ],
+   "doctype": "article",
+   "title": [
+    "Temporal and Spectral Evolution of Gamma-Ray Burst Broad Pulses: Identification of High-latitude Emission in the Prompt Emission"
+   ],
+   "year": "2023",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2024AN....34530179M",
+   "author": [
+    "Ma, Guan-Lun",
+    "Xie, Wei",
+    "Wang, Wan-Kai",
+    "Dong, Ai-Jun",
+    "Zhi, Qi-Jun"
+   ],
+   "doctype": "article",
+   "title": [
+    "The statistical characteristics of the prompt emission lightcurves of gamma-ray bursts"
+   ],
+   "year": "2024",
+   "property": [
+    "ARTICLE",
+    "ESOURCE",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2025A&A...697A.161M",
+   "author": [
+    "Maraventano, C.",
+    "Ghirlanda, G.",
+    "Nava, L.",
+    "Di Salvo, T.",
+    "Leone, W.",
+    "Iaria, R.",
+    "Burderi, L.",
+    "Tsvetkova, A."
+   ],
+   "doctype": "article",
+   "title": [
+    "High energy time lags of gamma-ray bursts"
+   ],
+   "year": "2025",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  }
+ ]
+}

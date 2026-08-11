@@ -1,0 +1,122 @@
+{
+ "numFound": 5,
+ "start": 0,
+ "numFoundExact": true,
+ "docs": [
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "author": [
+    "Shao, Lang",
+    "Zhang, Bin-Bin",
+    "Wang, Fu-Ri",
+    "Wu, Xue-Feng",
+    "Cheng, Ye-Hao",
+    "Zhang, Xi",
+    "Yu, Bang-Yao",
+    "Xi, Bao-Jia",
+    "Wang, Xue",
+    "Feng, Huan-Xue",
+    "Zhang, Meng",
+    "Xu, Dong"
+   ],
+   "doctype": "article",
+   "title": [
+    "A New Measurement of the Spectral Lag of Gamma-Ray Bursts and its Implications for Spectral Evolution Behaviors"
+   ],
+   "year": "2017",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2019ApJ...886...20Y",
+   "author": [
+    "Yu, Hoi-Fung",
+    "Dereli-B\u00e9gu\u00e9, H\u00fcsne",
+    "Ryde, Felix"
+   ],
+   "doctype": "article",
+   "title": [
+    "Bayesian Time-resolved Spectroscopy of GRB Pulses"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2021ApJS..253...43L",
+   "author": [
+    "Li, Liang",
+    "Zhang, Bing"
+   ],
+   "doctype": "article",
+   "title": [
+    "Testing the High-latitude Curvature Effect of Gamma-Ray Bursts with Fermi Data: Evidence of Bulk Acceleration in Prompt Emission"
+   ],
+   "year": "2021",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2024AN....34530179M",
+   "author": [
+    "Ma, Guan-Lun",
+    "Xie, Wei",
+    "Wang, Wan-Kai",
+    "Dong, Ai-Jun",
+    "Zhi, Qi-Jun"
+   ],
+   "doctype": "article",
+   "title": [
+    "The statistical characteristics of the prompt emission lightcurves of gamma-ray bursts"
+   ],
+   "year": "2024",
+   "property": [
+    "ARTICLE",
+    "ESOURCE",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2026arXiv260417835L",
+   "author": [
+    "Li, Liang"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Three Subclasses of the Intensity-tracking Pattern in Gamma-Ray Burst Spectral Evolution"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  }
+ ]
+}

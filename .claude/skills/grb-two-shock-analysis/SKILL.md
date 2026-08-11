@@ -48,6 +48,9 @@ Read only the files needed for the task:
 - `references/09_single_pulse_execution_plan.md` — staged execution plan for the 106-pulse catalog and physical-test subset.
 - `references/10_methods_statistics_writing.md` — reusable methods language, likelihood rules, AIC cautions, and reporting checklist.
 - `references/11_project_idea_bank.md` — focused follow-up projects that must not interrupt the active analysis.
+- `references/12_siddique_grb130518a_hybrid_jet.md` — deep notes on the subdominant-BB analysis, hybrid-jet assumptions, results, critiques, and writing lessons.
+- `references/13_hybrid_jet_inference_workflow.md` — staged implementation and promotion rules for H2013/G2013 and G2015 inference.
+- `references/14_detector_and_lat_quality.md` — detector residual checks, Galactic-field modeling, `gtsrcprob`, and prompt/afterglow separation.
 - `templates/burst_analysis_report.md` — standard report for each pulse.
 - `templates/model_comparison_matrix.md` — standard model-comparison table.
 
@@ -67,6 +70,10 @@ Read only the files needed for the task:
 12. **Do not equate empirical and physical ratios.** A fitted `E_break/E_peak` is not automatically the intrinsic FS/RS characteristic-frequency ratio.
 13. **Use count-space statistics.** Do not choose chi-square merely because the total burst is bright; verify channel-level assumptions or use a Poisson-appropriate likelihood.
 14. **Finish the 106-pulse empirical catalog first.** New model extensions belong in the idea bank unless they block the active analysis.
+15. **A fitted BB is not automatically a photosphere.** Hybrid-jet inference is conditional until BB, broadened-photosphere, 2SBPL, spectral-evolution, and FS+RS alternatives are tested.
+16. **Do not treat fixed likelihood-ratio thresholds as universal component significance.** Added BB/PL components require simulation calibration when null parameters lie on boundaries or are undefined.
+17. **LAT event probabilities are model-dependent.** Record the fitted source model and interval used by `gtsrcprob`.
+18. **Conditional component fluxes are not detections.** Distinguish detections, upper limits, and assumed-component estimates in tables and figures.
 
 # Default workflow
 
@@ -91,14 +98,16 @@ Read only the files needed for the task:
 
 ## C. Burst-analysis task
 
-1. Confirm pulse isolation and detector coverage.
+1. Confirm pulse isolation, source interval, background, detector coverage, and response quality.
 2. Extract multi-band temporal observables.
-3. Perform time-resolved empirical fits.
-4. Fit the coupled model using physical ordering and coupling priors.
-5. Compare predictive performance and residual structure.
-6. Test hard-to-soft evolution, peak tracks, and high-latitude decay.
-7. Evaluate photospheric alternatives.
-8. Produce the standard burst report and model-comparison matrix.
+3. Perform time-integrated and time-resolved empirical fits.
+4. Classify the low-energy structure as resolved, hidden-but-allowed, excluded over a stated range, or non-informative using response-folded simulations.
+5. Fit the coupled model using physical ordering and coupling priors when the data are informative.
+6. Compare predictive performance and residual structure.
+7. Test hard-to-soft evolution, peak tracks, and high-latitude decay.
+8. Evaluate photospheric, one-zone synchrotron, and other alternatives.
+9. Produce the standard burst report and model-comparison matrix.
+10. Update the master 106-pulse catalog and learning log.
 
 # Required output style
 
@@ -122,3 +131,19 @@ When reporting a result:
 /grb-two-shock-analysis assess whether a low-energy bump is FS or photospheric
 /grb-two-shock-analysis update the learning log from today's result
 ```
+
+# Hybrid-jet branch
+
+When a statistically supported BB-like component is present:
+
+1. compare BB, multicolor/broadened BB, 2SBPL, spectral-evolution, and coupled FS+RS explanations;
+2. require temporal as well as spectral discrimination;
+3. only then use `F_BB`, `F_tot`, and `T_BB` for hybrid-jet inference;
+4. sample launch radius and efficiency assumptions explicitly;
+5. report parameter surfaces and regime changes;
+6. state that the physical result is conditional on the photospheric identification;
+7. use `templates/hybrid_jet_outflow_report.md`.
+
+# Paper-reading capture
+
+For every paper processed, use `templates/paper_reading_entry.md`. Add only project-changing lessons to the active skill; send speculative branches to the idea bank. Capture writing techniques as rhetorical moves rather than copying source prose.

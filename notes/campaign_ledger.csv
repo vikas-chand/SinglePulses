@@ -1,0 +1,9 @@
+order,burst,walked,engine,lessons_born,bugs_found,blind_preds,gates_corrections,clean_pass
+1,bn081125496,2026-07-29,old,G1;blind-first caveat (saw Yu first),0,n/a (protocol forming),protocol itself defined here,NO
+2,bn081222204,2026-07-30,old,ordering hardened,0,n/a,,NO
+3,bn081224887,2026-08-01..08,v2 regen,L10-L13 batch(081224 recon: Ep-vs-Ec; continuum-relative BB; citation-chain; binning-validation),2,null corroborated by Yu+2019,margins-without-VALID caught (retraction #1),NO
+4,bn120624933,2026-08-05..08,v2 regen,L17(data-every-band);D4(interval statements);trigger!=start,1,clean null confirmed by Chang+2026,"Vikas: ""take the data in any case"" (2.6sigma LLE exclusion overruled)",NO
+5,bn130310840,2026-08-06..09,v2 regen + LAT,L15(railed!=unusable);L23(shared-bad-minimum);beta-unrail via LAT,2,kT 5.5 vs Qin 6.0; Ep 7411 vs 7403 (0.1%),margins-without-VALID (retraction #2); XSPEC beta=-10 context from Vikas,NO
+6,bn130518580,2026-08-07..10,v2 regen + no-n6 test,L16(evidence ratios);L24(T_INT rail);L25(xb~3.92kT);L12-class;D5(blockage);width-discriminates,4,kT cooling reproduces Siddique; DSBPL result NEW,Vikas: relieve dAIC>=10 -> graded scale,NO
+7,bn110721200,2026-08-04..09 (demo),v2 refit,L9->L18 chain (blk9 regression found+fixed);L19(neg LRT);blk3=4-param verification,3,blk0 Ep 19.1 MeV vs Zhang 19.6+/-4.2,,NO
+8,bn090530760,2026-08-09..10,current (L27 born here),"L26-validated(lag sign,live);L27(log-space rails);T90-band-rule applied;W-double-definition",1,P-A alpha>0 CONFIRMED; P-B Ep monotonic CONFIRMED; P-C REFUTED(no BB needed); P-D neutral,"Vikas: per-detector bkg windows are fine (my re-flag wrong); ""did I not approve?"" x2",NO

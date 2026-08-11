@@ -44,6 +44,7 @@ BOUND_CAPPED tracing to a window, a residual anomaly pointing at background).
 ## The step ledger (each step = its skill file; ✎ = to be created on first use)
 | # | step | what the pipeline does | skill file |
 |---|---|---|---|
+| 0b | **Literature harvest** | find/fetch/mine the REFEREED papers for this burst (ADS 4-form query, published version, frame-align, file to the dossier) — the step that must become automatic by burst #20 | `LiteratureHarvest.md` |
 | 0 | Identity & GCN intelligence | resolve burst identity; fetch+read GCN circulars; extract position, T90, **redshift** (with circular as source), instrument notes, **and the published spectral/temporal values** — harvest once, file under "PUBLISHED VALUES (for the P3 diff)". Blindness lives in the FIT, not in what Step 0 may read. | ✎ `GCNIntelligence.md` (seed from LATBright `gcn_intelligence.md`) |
 | 1 | Data acquisition & inventory | TTE/CSPEC/RSP2/POSHIST (+LLE triplet, +LAT FT1/FT2) with versions; manifest; **response-coverage check vs source window** (the bn100130729 lesson) | ✎ `DataInventory.md` |
 | 2 | Detector selection | geometry/angles, occultation, BGO companion rule | `detector_selection.md` (exists) |

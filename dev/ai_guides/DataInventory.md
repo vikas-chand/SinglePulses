@@ -97,6 +97,50 @@ detection to imply structure in OUR window, look up the detection's own interval
 (T_LAT,0/T_LAT,1). A detection outside the window predicts nothing inside it — in either
 direction.
 
+### D5 — BLOCKAGE is invisible to the angle rule; catch it in the residuals  *(bn130518580 vs Siddique+2022, 2026-08-09)*
+Our detector rule tests the **geometric** source angle. A detector can pass that test and still
+be **occulted** by spacecraft structure (solar panel, LAT, radiators) — the angle is fine, the
+path is not. Siddique+2022 hit exactly this on a burst we had already analysed, verbatim:
+> *"Initially, we kept the n6 detector as well; however, it showed a clear trend of negative
+> residuals in the fits compared with the n3 and n7 detectors. As discussed by Goldstein et al.
+> (2012), this indicates **blockage** and the particular detector is removed from the analysis."*
+
+**We kept n6** (32.4°, geometrically clean) in every bn130518580 fit. The signature was in our
+own output and we misread it: across 25 fits the EAC cross-norms give **n6 = 0.890** against the
+n3 reference (an ~11% deficit), and the degeneracy propagates — **n7 rails at its 0.800 floor in
+76% of fits** while both BGOs push high to compensate. Our four-channel panel *saw* this (one
+NaI 30–40% below another, 20–300 keV, coherent −1…−3.5σ residual run; railed cross-norms) and
+labelled it "cross-calibration". The cause is a blocked detector. The affected band, 20–300 keV,
+is exactly where the contested low-energy shoulder lives.
+
+**RULE — inventory must test blockage, not just angle:**
+1. compare each NaI's residual trend against the OTHER NaIs at similar angles — a *coherent*
+   one-sided run (not scatter) is the blockage signature;
+2. treat a cross-norm sitting systematically low (≲0.9) or a neighbour railing at a bound as
+   corroboration, never as "calibration";
+3. **Exclusion is a recorded decision**, never a silent one. Log: viewing angle · residual
+   pattern · geometry/blockage evidence · response version · **fits WITH and WITHOUT** ·
+   rationale (protocol adopted from the v3 reading package, which took it from this paper).
+4. ⚠ **A detector may NOT be removed merely because its inclusion weakens a preferred
+   component.** The with/without pair is retained either way, so the reader can judge.
+
+**THE DATA-DROPPING HIERARCHY (Vikas, 2026-08-10: "we are not supposed to drop data no
+matter what") — three cases, never blurred:**
+1. **Production fits NEVER drop data that passes the quality gate.** Not for convenience,
+   not for significance, not because a model fits better without it (L17). No exceptions.
+2. **With/without refits are DIAGNOSTICS only** — legitimate for LOCALIZING a systematic
+   (the D5 blockage test), but a data-dropped fit can NEVER be quoted as a result, never
+   be evidence FOR a scientific claim, and never silently replace the full-data fit. The
+   four-channel adversary's drop-BGO run is the cautionary case: our own adjudicator
+   flagged the inference as over-read — removing a detector removes information along
+   with the suspected systematic, so the comparison is confounded by construction.
+3. **Quality exclusion is the ONLY path to omitting data from production**, and it runs
+   through the documented gate: demonstrated response invalidity (D1 off-axis) or
+   demonstrated blockage (D5 residual coherence + cross-norm evidence), recorded with the
+   full protocol (angle, residuals, evidence, with/without pair retained, rationale), and
+   reported prominently in the burst record. An exclusion without this record is a
+   doctrine violation.
+
 ## Hand-off
 Feeds Step 5 (binning) and Step 6 (fitting). A burst failing D1 must NOT enter a joint
 GBM+LLE fit until its DRM is regenerated — the high-energy component is exactly what the bad

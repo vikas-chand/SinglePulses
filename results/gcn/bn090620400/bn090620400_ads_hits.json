@@ -1,0 +1,149 @@
+{
+ "numFound": 7,
+ "start": 0,
+ "numFoundExact": true,
+ "docs": [
+  {
+   "bibcode": "2009GCN..9554....1R",
+   "author": [
+    "Rau, A."
+   ],
+   "doctype": "newsletter",
+   "title": [
+    "GRB 090620: Fermi GBM detecion."
+   ],
+   "year": "2009",
+   "property": [
+    "DATA",
+    "ESOURCE",
+    "NONARTICLE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2017ifs..confE..74B",
+   "author": [
+    "Burgess, J. M."
+   ],
+   "doctype": "inproceedings",
+   "title": [
+    "Is Spectral Width a Reliable Measure of GRB Emission Physics?"
+   ],
+   "year": "2017",
+   "property": [
+    "ARTICLE",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS",
+    "PUB_OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2019ApJ...886...20Y",
+   "author": [
+    "Yu, Hoi-Fung",
+    "Dereli-B\u00e9gu\u00e9, H\u00fcsne",
+    "Ryde, Felix"
+   ],
+   "doctype": "article",
+   "title": [
+    "Bayesian Time-resolved Spectroscopy of GRB Pulses"
+   ],
+   "year": "2019",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2021ApJS..253...43L",
+   "author": [
+    "Li, Liang",
+    "Zhang, Bing"
+   ],
+   "doctype": "article",
+   "title": [
+    "Testing the High-latitude Curvature Effect of Gamma-Ray Bursts with Fermi Data: Evidence of Bulk Acceleration in Prompt Emission"
+   ],
+   "year": "2021",
+   "property": [
+    "ARTICLE",
+    "ASSOCIATED",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2024AN....34530179M",
+   "author": [
+    "Ma, Guan-Lun",
+    "Xie, Wei",
+    "Wang, Wan-Kai",
+    "Dong, Ai-Jun",
+    "Zhi, Qi-Jun"
+   ],
+   "doctype": "article",
+   "title": [
+    "The statistical characteristics of the prompt emission lightcurves of gamma-ray bursts"
+   ],
+   "year": "2024",
+   "property": [
+    "ARTICLE",
+    "ESOURCE",
+    "REFEREED"
+   ]
+  },
+  {
+   "bibcode": "2026arXiv260417835L",
+   "author": [
+    "Li, Liang"
+   ],
+   "doctype": "eprint",
+   "title": [
+    "Three Subclasses of the Intensity-tracking Pattern in Gamma-Ray Burst Spectral Evolution"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "NOT REFEREED",
+    "OPENACCESS"
+   ]
+  },
+  {
+   "bibcode": "2026ApJ..1003...58B",
+   "author": [
+    "Bordoloi, Pragyan Pratim",
+    "Mittal, Shubh",
+    "Iyyani, Shabnam"
+   ],
+   "doctype": "article",
+   "title": [
+    "From Empirical to Physical Model: Direct Fits of Optically Thin Inverse Compton Scattering to Prompt GRB Spectra"
+   ],
+   "year": "2026",
+   "property": [
+    "ARTICLE",
+    "DATA",
+    "EPRINT_OPENACCESS",
+    "ESOURCE",
+    "OPENACCESS",
+    "PUB_OPENACCESS",
+    "REFEREED"
+   ]
+  }
+ ]
+}

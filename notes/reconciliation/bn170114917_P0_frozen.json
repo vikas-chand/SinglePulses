@@ -1,0 +1,16 @@
+{
+ "burst": "bn170114917 (GRB 170114A)",
+ "frozen_utc": "2026-08-10 pre-fit",
+ "predictions": [
+  "P-A (Yu 'h.t.s.->?'): Ep declines early; the TAIL becomes spectrally ambiguous - expect late blocks where classification is genuinely unstable (winner flips / margins ~0).",
+  "P-B (Yu CPL-preference): one-break continua should suffice; any BB/extra component must clear the graded bars, expectation: clean null like #8/#9.",
+  "P-C (polarization, EXTERNAL): PA rotates twice by 90 deg with PD~28% resolved / 4% integrated. IF our spectra demand multi-zone structure (e.g. decisive two-break or component), that would COHERE with PA rotation; a clean one-break null + rotating PA = the tension Wang+2024 models (geometry, not spectra).",
+  "P-D (binning): Li&Zhang Ntot=11 (7 with S>=15) on src -1..15; Yu 15 bins on -1..20; ours on approved [-0.9,20.0] should land 9-15 blocks.",
+  "P-E (FRED): t_p=2.05+/-0.14 s, asymmetric d/r=1.8 - Step 7 comparison."
+ ],
+ "frame_flags": [
+  "papers used detector na; we do not (approved n1,n2,b0)",
+  "Li&Zhang bkg row prints [-20~10, 80~100] - verify their pre-window sign in reproduction"
+ ],
+ "engine": "L18/L19/L20/L26/L27 active"
+}

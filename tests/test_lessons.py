@@ -24,11 +24,12 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # and are quarantined separately — do not add them here without a reason.)
 # results/demo_110721200 (v1) is SUPERSEDED by _v2 (refit 2026-08-09 with the
 # L18/L19/L20 engine) and deliberately not guarded.
+# v1 walkthrough roots + _lat forks are SUPERSEDED by the _v2 LAT-inclusive
+# regenerations (2026-08-09, fixed engine) and deliberately not guarded.
 GUARDED_ROOTS = [
     'results/demo_110721200_v2',
-    'results/walkthrough_b3', 'results/walkthrough_b3_lat',
-    'results/walkthrough_b4', 'results/walkthrough_b5',
-    'results/walkthrough_b5_lat', 'results/walkthrough_b6',
+    'results/walkthrough_b3_v2', 'results/walkthrough_b4_v2',
+    'results/walkthrough_b5_v2', 'results/walkthrough_b6_v2',
 ]
 
 # Known-stale debt ledger: tables generated BEFORE an engine fix, failing the
@@ -289,3 +290,31 @@ def test_L24_tint_bb_rail_vs_resolved(path, t):
         f'{path}: T_INT BB railed at kT={kt_tint:.2f} while '
         f'{len(good)} resolved blocks hold VALID significant kT — broken '
         f'T_INT fit read as a non-detection (L24)')
+
+
+# ---------------------------------------------------------------------------
+# L27 (bn090530760, 2026-08-10): the rail test must respect parameter
+# geometry. A linear margin on a (30, 5e4) bound is a ~50 keV dead zone above
+# the low bound: every simple model on a soft burst (Ep 36-136 keV) was
+# falsely flagged railed, handing the blocks to extra-component winners and
+# biasing the census against soft-burst nulls. Unit-test the gate directly.
+# ---------------------------------------------------------------------------
+def test_L27_rail_margin_respects_log_geometry():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        's10', os.path.join(BASE, 'scripts', '10_spectral_fit_burst.py'))
+    s10 = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(s10)
+    sp = {'prefix': 'BAND', 'pmap': {'ALPHA': 'alpha', 'EP': 'xp', 'BETA': 'beta'}}
+    def res(ep):
+        return {'status': 'OK',
+                'params': {'alpha': {'val': -0.5}, 'xp': {'val': ep},
+                           'beta': {'val': -2.4}}}
+    # soft-but-interior peaks MUST be valid (all were falsely railed pre-fix)
+    for ep in (36.0, 57.5, 70.4, 100.0):
+        assert s10._fit_is_physical(sp, res(ep)), (
+            f'Ep={ep} keV falsely flagged as railed (L27 linear-margin bug)')
+    # genuinely-at-bound peaks must still be caught
+    for ep in (30.1, 49900.0):
+        assert not s10._fit_is_physical(sp, res(ep)), (
+            f'Ep={ep} keV should be flagged as railed')
