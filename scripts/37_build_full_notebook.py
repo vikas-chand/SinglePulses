@@ -410,7 +410,16 @@ are listed in the burst's config under `literature:` — entered/verified by a
 human from real papers (never auto-filled, to avoid fabricated values). This
 cell puts them next to our result so agreement or tension is explicit. For
 well-studied bursts (e.g. 130427A, 110721A) fill several entries; a bare `[]`
-means the consistency check is still **pending** for this GRB."""))
+means the consistency check is still **pending** for this GRB.
+
+Each citation is additionally checked against **NASA ADS** (`scripts/ads_verify.py`):
+that confirms the paper the `ref:` names really exists and that its first author
+and year are what the ref claims — so a typo'd volume or mis-remembered year is
+caught before it reaches a draft. ADS **only validates the citation's identity**;
+it never writes the `finding:` text or sets `consistent:`, which stay human
+judgements. Statuses: `OK` verified, `FIX` author/year mismatch, `AMB` ambiguous
+(add a DOI), `MISS` no such record, `----` not checked (no token/offline — results
+are cached in `results/ads_cache.json`, so this stays reproducible offline)."""))
 cells.append(code(r"""
 lit = _cfg.get("literature") or []
 print(f"OUR result (this run): best-AIC = {flat.get('BEST_AIC_MODEL')}", end="")
@@ -425,11 +434,47 @@ if not lit:
     print("    literature:")
     print("      - {ref: 'Preece2014', finding: 'Band+BB, kT~40keV', consistent: null}")
 else:
+    # --- ADS citation check (identity only; never fills `finding`/`consistent`) ---
+    _av = None
+    try:
+        import importlib.util as _ilu
+        _sp = _ilu.spec_from_file_location("ads_verify",
+                                           os.path.join(BASE, "scripts", "ads_verify.py"))
+        _av = _ilu.module_from_spec(_sp); _sp.loader.exec_module(_av)
+        _tok, _cache = _av.load_token(), _av.load_cache()
+        print(f"ADS check: {'token found' if _tok else 'NO token — cache-only'}"
+              f" ({len(_cache)} cached)")
+    except Exception as _e:
+        print(f"ADS check unavailable ({type(_e).__name__}) — showing config as-is")
+
     print("\nprior work vs ours:")
     for e in lit:
         ref = e.get("ref", "?"); fnd = e.get("finding", ""); con = e.get("consistent")
         tag = {True: "CONSISTENT", False: "TENSION", None: "to-check"}.get(con, "to-check")
         print(f"  [{tag:10s}] {ref}: {fnd}")
+        if _av is not None:
+            for _r in _av.split_refs(str(ref)):
+                try:
+                    _rec = _av.resolve(_r, _tok, _cache)
+                except Exception:
+                    _rec = {"status": "UNVERIFIED", "reason": "lookup failed"}
+                _st = _rec.get("status", "UNVERIFIED")
+                _msg = ""
+                if _st == "VERIFIED":
+                    _msg = f"{_rec['bibcode']}  {_rec['first_author']} ({_rec['year']})"
+                elif _st == "MISMATCH":
+                    _msg = f"{_rec.get('bibcode')} !! " + "; ".join(_rec.get("problems", []))
+                elif _st == "AMBIGUOUS":
+                    _msg = f"{_rec.get('n')} matches {_rec.get('candidates')} — add a DOI"
+                elif _st == "NOT-FOUND":
+                    _msg = "no ADS record — check this citation"
+                else:
+                    _msg = _rec.get("reason", "")
+                print(f"      ADS[{_av.ICON.get(_st, _st)}] {_msg}")
+    try:
+        _av.save_cache(_cache)
+    except Exception:
+        pass
 """))
 
 nb = {"cells": cells,
