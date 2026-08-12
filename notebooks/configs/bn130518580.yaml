@@ -1,4 +1,16 @@
 grb: bn130518580
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 130518A — has a MEASURED REDSHIFT z=2.49, one of only three in this set. Enables rest-frame Ep and Eiso.'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# No dedicated paper exists for this burst (arXiv title+abstract search: 0 hits).
+# CATALOG values only, pulled 2026-08-05 from the HEASARC fermigbrst / fermilgrb
+# tables — machine-read, not transcribed by hand.
+literature:
+  - {ref: 'Poolakkil2021 (ApJ 913, 60; doi 10.3847/1538-4357/abf24d) / vonKienlin2020 (ApJ 893, 46; doi 10.3847/1538-4357/ab7a18)',
+     finding: 'GBM time-integrated (fluence) spectrum. Best-fitting model of the four catalog models: SBPL. Band: Ep=381.1 (+14.6/-14.6) keV, alpha=-0.86, beta=-2.18. Comptonized: Ep=452.9 (+12) keV, index=-0.91. T90=48.58 +/- 0.92 s (50-300 keV), fluence=9.459e-05 erg/cm2. These are CATALOG values from a fixed 4-model menu, so our 24-model AIC ranking is a strict superset — a different winner is expected and is not by itself a disagreement.',
+     consistent: null}
+  - {ref: 'Ajello2019 (ApJ 878, 52; doi 10.3847/1538-4357/ab1d4e)',
+     finding: 'Fermi-LAT: z=2.49. LLE T90=14.72 s, blocks significance 19 sigma. LAT photon index=-2.85 +/- 0.28, LAT fluence=3.543e-06 erg/cm2, TS=174, highest-energy photon 2100 MeV, last LAT detection at 316.9 s post-trigger.',
+     consistent: null}
+  # z=2.49 means our Ep can be compared in the REST frame with the Amati/Yonetoku samples.

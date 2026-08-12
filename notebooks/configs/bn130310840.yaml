@@ -1,4 +1,14 @@
 grb: bn130310840
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 130310A — no dedicated spectral-analysis paper found; cited only as a QPO candidate. Weak literature constraint.'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# VERIFIED 2026-08-05 against the published abstract (ApJ).
+literature:
+  - {ref: 'Li2023 (ApJ 955, 98; doi 10.3847/1538-4357/acefbf)',
+     finding: 'TIMING, NOT SPECTRAL. Proposes that Lense-Thirring precession of a hyper-accreting disk in a black-hole-neutron-star merger drives a precessing jet, producing quasi-periodic oscillation or modulation in the gamma-ray light curve with quasi-period ~0.01-0.1 s, possibly delayed relative to the trigger. States this feature may already be present in a few observed short GRBs, naming GRB 130310A among them.',
+     consistent: null}
+  # SCOPE WARNING for the Section-10 check: this is a light-curve/progenitor claim about a
+  # SHORT GRB, not a prompt-spectrum model. Our best-AIC spectral model neither confirms nor
+  # refutes it — leave consistent: null unless our temporal products actually test the QPO.
+  # An exhaustive arXiv title+abstract search returned exactly one paper naming this burst.

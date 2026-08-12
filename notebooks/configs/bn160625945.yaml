@@ -1,4 +1,16 @@
 grb: bn160625945
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 160625B — three-episode burst, one of the brightest Fermi GRBs. Strong discriminator between photospheric and synchrotron models; the literature itself disagrees (see below).'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# VERIFIED 2026-08-05 against the published abstracts/PDFs (Nature Astronomy + A&A).
+literature:
+  - {ref: 'Zhang2018 (Nature Astronomy 2, 69; doi 10.1038/s41550-017-0309-8)',
+     finding: 'Prompt emission is three isolated episodes separated by long quiescent intervals, durations ~0.8 s, ~35 s and ~212 s. Lp_iso ~4e53 erg/s. Time-resolved spectra of the first two sub-bursts differ markedly: quasi-thermal (blackbody) in the precursor, non-thermal in the main burst. Interpreted as a transition of jet composition from a hot fireball to a Poynting-flux-dominated outflow.',
+     consistent: null}
+  - {ref: 'Ravasio2018 (A&A 613, A16; doi 10.1051/0004-6361/201732245)',
+     finding: 'Standard empirical functions FAIL to fit the GBM prompt spectra; a low-energy break is required. Introduces 2SBPL (three smoothly connected power laws): Ebreak ~100 keV while Epeak evolves over 0.5-6 MeV. Slopes below and above Ebreak are consistent with -0.67 and -1.5, the synchrotron values for an electron population with a low-energy cutoff. 2SBPL is systematically FAVOURED over a non-thermal + blackbody combination. Implied magnetic field ~10 G, orders of magnitude below expectation for a dissipation radius of 1e13-1e14 cm.',
+     consistent: null}
+  # Direct tension within the literature: Zhang2018 reads the precursor as thermal,
+  # Ravasio2018 prefers a pure-synchrotron 2SBPL over adding a blackbody. Our 24-model
+  # menu can adjudicate — record WHICH episode/pulse our fit covers before comparing.

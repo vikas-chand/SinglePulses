@@ -1,4 +1,16 @@
 grb: bn151006413
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 151006A — first GRB detected by AstroSat CZTI. Directly on-topic for this project: a SINGLE-PULSE burst whose spectral evolution is anything but simple.'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# VERIFIED 2026-08-05 against the published abstracts/PDFs (MNRAS + ApJ).
+literature:
+  - {ref: 'Basak2017 (MNRAS 472, 891; doi 10.1093/mnras/stx1970)',
+     finding: 'Light curves in all energy bands show a SIMPLE single-pulse profile, but the spectrum evolves unusually: hard-to-soft until ~16-20 s, then a SUDDEN INCREASE of the spectral peak to a few MeV. The authors state such a dramatic spectral-evolution change in a single-pulse burst is reported for the first time. The behaviour is captured by every model tried: Band, blackbody+Band, and two blackbodies+power law. The Fermi-LAT first >100 MeV photon arrives during this time. Bayesian blocks plus hardness evolution give good evidence for a second hard pulse hidden in the otherwise smooth profile. CZTI 100-350 keV polarisation is high (77-94 per cent) in two epochs but only ~1 sigma.',
+     consistent: null}
+  - {ref: 'Rao2016 (ApJ 833, 86; doi 10.3847/1538-4357/833/1/86)',
+     finding: 'AstroSat CZT Imager detection on its first day of operation. Off-axis imaging/spectral response localises the burst to a few degrees and, with Swift, yields spectral parameters SIMILAR TO those from Fermi/GBM — a useful external cross-check on our GBM-derived parameters. Reports hints of a 100-300 keV polarisation signal at low significance.',
+     consistent: null}
+  # Highest-value comparison burst in this set: Basak2017 makes an explicit claim about
+  # single-pulse spectral evolution, which is exactly what this pipeline measures. If our
+  # Bayesian-Blocks binning does NOT recover the ~16-20 s hardening, that is a real finding.

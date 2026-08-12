@@ -1,5 +1,18 @@
 grb: bn130427324
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
 special_pulse: '2nd'   # analyse this pulse (special burst)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 130427A — the monster burst: largest LAT fluence, 95 GeV photon, 20 h of GeV emission. NOTE we fit the 2nd pulse, whereas Preece2014 analyses the 1st.'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# VERIFIED 2026-08-05 against the published abstracts/PDFs (Science + arXiv).
+literature:
+  - {ref: 'Preece2014 (Science 343, 51; doi 10.1126/science.1242302)',
+     finding: 'FIRST pulse only (to 2.5 s), described as the brightest well-isolated pulse observed to date. Fine time-resolved spectroscopy shows power-law decay of Ep from pulse onset, consistent with internal synchrotron shock pulses; but the luminosity-Ep correlation is a power law inconsistent with curvature effects in the relativistic outflow. No existing model accounts for all spectral and temporal behaviour simultaneously. CAUTION: our config sets special_pulse 2nd, so this is a contrast case, not a like-for-like comparison.',
+     consistent: null}
+  - {ref: 'Ackermann2014 (Science 343, 42; doi 10.1126/science.1242353)',
+     finding: 'Fermi-LAT view: largest fluence, highest-energy photon (95 GeV), longest gamma-ray duration (20 h), one of the largest Eiso ever observed. GBM 10 keV-20 MeV fluence ~4.2e-3 erg/cm2 in T0+400 s. Temporal and spectral behaviour challenges the standard external-shock synchrotron picture for the high-energy afterglow.',
+     consistent: null}
+  # PIPELINE-CRITICAL, not a physics result: Ackermann2014 EXCLUDES GBM data between
+  # T0+4.5 s and T0+11.5 s because pulse pile-up above ~80000 counts/s significantly
+  # distorts the spectrum. Check where our 2nd pulse falls relative to that window
+  # before trusting its fitted parameters. Residual systematic on GBM fluence <20%.

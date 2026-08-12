@@ -1,4 +1,15 @@
 grb: bn180703876
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 180703A — LAT emission detected out to ~1610 s.'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# No dedicated paper exists for this burst (arXiv title+abstract search: 0 hits).
+# CATALOG values only, pulled 2026-08-05 from the HEASARC fermigbrst / fermilgrb
+# tables — machine-read, not transcribed by hand.
+literature:
+  - {ref: 'Poolakkil2021 (ApJ 913, 60; doi 10.3847/1538-4357/abf24d) / vonKienlin2020 (ApJ 893, 46; doi 10.3847/1538-4357/ab7a18)',
+     finding: 'GBM time-integrated (fluence) spectrum. Best-fitting model of the four catalog models: Band. Band: Ep=350.8 (+32.2/-32.2) keV, alpha=-0.78, beta=-1.97. Comptonized: Ep=483.8 (+33.1) keV, index=-0.87. T90=20.74 +/- 1.56 s (50-300 keV), fluence=1.625e-05 erg/cm2. These are CATALOG values from a fixed 4-model menu, so our 24-model AIC ranking is a strict superset — a different winner is expected and is not by itself a disagreement.',
+     consistent: null}
+  - {ref: 'Ajello2019 (ApJ 878, 52; doi 10.3847/1538-4357/ab1d4e)',
+     finding: 'Fermi-LAT: no measured redshift. LLE T90=7.12 s, blocks significance 18 sigma. LAT photon index=-2.48 +/- 0.32, LAT fluence=2.384e-06 erg/cm2, TS=47.1, highest-energy photon 930 MeV, last LAT detection at 1610.1 s post-trigger.',
+     consistent: null}

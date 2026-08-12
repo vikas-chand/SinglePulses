@@ -1,4 +1,16 @@
 grb: bn081224887
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 081224A — WARNING: the LAT GRB catalog flags this burst as NOT LLE-detected (lle_t90=0, bbbd_sig_detected=0) and its LAT TS is only ~18. Depth ''full'' assumes LLE+LAT; verify this burst belongs in the LLE set.'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# No dedicated paper exists for this burst (arXiv title+abstract search: 0 hits).
+# CATALOG values only, pulled 2026-08-05 from the HEASARC fermigbrst / fermilgrb
+# tables — machine-read, not transcribed by hand.
+literature:
+  - {ref: 'Poolakkil2021 (ApJ 913, 60; doi 10.3847/1538-4357/abf24d) / vonKienlin2020 (ApJ 893, 46; doi 10.3847/1538-4357/ab7a18)',
+     finding: 'GBM time-integrated (fluence) spectrum. Best-fitting model of the four catalog models: Comptonized. Band: Ep=409.4 (+13.2/-13.2) keV, alpha=-0.75, beta=-8.34. Comptonized: Ep=408.5 (+12.2) keV, index=-0.75. T90=16.45 +/- 1.16 s (50-300 keV), fluence=3.757e-05 erg/cm2. These are CATALOG values from a fixed 4-model menu, so our 24-model AIC ranking is a strict superset — a different winner is expected and is not by itself a disagreement.',
+     consistent: null}
+  - {ref: 'Ajello2019 (ApJ 878, 52; doi 10.3847/1538-4357/ab1d4e)',
+     finding: 'Fermi-LAT: no measured redshift. NOT LLE-detected (lle_t90=0, detection flag 0). LAT photon index=-1.81 +/- 0.43, LAT fluence=1.825e-06 erg/cm2, TS=17.9, highest-energy photon 1800 MeV, last LAT detection at 262.7 s post-trigger.',
+     consistent: null}
+  # See notes: this burst may not be LLE-detected at all. Resolve before using depth: full.

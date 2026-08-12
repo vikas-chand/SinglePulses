@@ -1,4 +1,15 @@
 grb: bn201104001
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 201104A — classification oddity (long duration, short-GRB characteristics, repeating structure). No dedicated prompt-spectrum modelling paper found.'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# VERIFIED 2026-08-05 against the published abstract (ApJ).
+literature:
+  - {ref: 'Wang2022 (ApJ 935, 179; doi 10.3847/1538-4357/ac82ec)',
+     finding: 'Dedicated study. A long-duration burst carrying the statistical characteristics of a SHORT GRB, which additionally shows repetitive behaviour in a search of Fermi data for quasi-periodic oscillations. Tests a lensed-short-GRB origin with Bayesian inference: at least two distinct time periods have a NEARLY IDENTICAL SPECTRUM, but the authors find no strong evidence for lensing. Without lensing, a long burst resembling a short burst in its repetitive behaviour challenges the current duration-based classification scheme.',
+     consistent: null}
+  # USEFUL CROSS-CHECK: the "nearly identical spectrum" between the repeated episodes is a
+  # testable prediction for us — if our per-pulse fits give consistent parameters across the
+  # repeats, that corroborates Wang2022; if not, it weakens the repetition claim.
+  # Caveat: this burst is a classification/timing case, so the 24-model AIC ranking is only
+  # indirectly comparable. An arXiv search returned exactly one paper naming this burst.

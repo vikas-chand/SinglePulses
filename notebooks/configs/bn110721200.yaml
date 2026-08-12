@@ -1,4 +1,22 @@
 grb: bn110721200
 depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
-notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)
+notes: 'GRB 110721A — bright single pulse, LLE+LAT. Highest-priority verification burst.'
+# Prior published findings on THIS GRB, for the Section-10 consistency check.
+# consistent: null until compared; set true/false after reading our result.
+# VERIFIED 2026-07-30 against the published abstracts/PDFs (IOP + arXiv + MNRAS).
+literature:
+  - {ref: 'Axelsson2012 (ApJL 757, L31; doi 10.1088/2041-8205/757/2/L31)',
+     finding: 'Band + blackbody. Band Ep initially 15 +/- 2 MeV (highest ever detected), then decaying as a power law in time with index -1.89 +/- 0.10. Blackbody kT starts ~80 keV with a significant break in its decay after ~2 s. T90 ~24.5 s (GBM), peak flux (5.7 +/- 0.2)e-5 erg/s/cm2. Strong constraints on the standard synchrotron model.',
+     consistent: null}
+  - {ref: 'Iyyani2013 (MNRAS 433, 2739; doi 10.1093/mnras/stt863)',
+     finding: 'Photosphere (peaking ~100 keV) + non-thermal component (peaking ~1000 keV). Using the photospheric component: Lorentz factor DECREASES through the pulse from ~1000 to ~150 (assuming z=2), contrary to internal-shock and isolated-magnetar expectations; nozzle radius r0 grows from 1e6 to ~1e9 cm. These jet properties explain the observed broken power-law temperature decay.',
+     consistent: null}
+  - {ref: 'Guiriec2013 (ApJ 770, 32; doi 10.1088/0004-637X/770/1/32)',
+     finding: 'Primary source for the two-component (continuum + thermal) fit to this burst: 110721A is presented as a long GRB with intense photospheric emission behaving exactly like the short GRB 120323A analysed there. NOT the 3-component model.',
+     consistent: null}
+  # Secondary context only: ApJ 807, 148 reanalyses 080916C and 090926A, NOT this
+  # burst. 110721A enters only as an overplotted 'C+BB' point in its Fi-Ep figures,
+  # with the underlying fit attributed to Guiriec2013.
+  - {ref: 'Guiriec2015 (ApJ 807, 148; doi 10.1088/0004-637X/807/2/148)',
+     finding: 'Places 110721A on the non-thermal luminosity-hardness relation as a two-component (C+BB) burst, with Li_NT = (8.4 +/- 2.0)e52 erg/s.',
+     consistent: null}
