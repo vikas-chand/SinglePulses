@@ -156,7 +156,13 @@ def load_ctx(trig):
     gs = Table.read(os.path.join(ROOT, "results", "grb_sample.ecsv"), format="ascii.ecsv")
     row = gs[[str(x["TRIGGER_NAME"]).strip() == trig for x in gs]][0]
     eng.SRC_RA, eng.SRC_DEC = float(row["RA"]), float(row["DEC"])
-    bk = Table.read(os.path.join(ROOT, "results", "background_intervals.ecsv"), format="ascii.ecsv")
+    # BKG_FILE: same reasoning as BLOCKS_ROOT below -- the panels must use the SAME
+    # background windows as the fits they display. A run made with corrected/alternative
+    # windows (e.g. a walkthrough arm) otherwise gets panels drawn on the gated catalog's
+    # windows and silently disagrees with its own fit. Default = the gated catalog.
+    bk = Table.read(os.environ.get("BKG_FILE",
+                                   os.path.join(ROOT, "results", "background_intervals.ecsv")),
+                    format="ascii.ecsv")
     bk = bk[bk["TRIGGER_NAME"] == trig]
     appr = {str(r["DETECTOR"]).strip(): ((float(r["BKG_NEG_START"]), float(r["BKG_NEG_STOP"])),
             (float(r["BKG_POS_START"]), float(r["BKG_POS_STOP"]))) for r in bk}
@@ -268,7 +274,15 @@ def run(trig, dets, ref, mode, which, out, rebin):
     dets = [d for d in dets if d in appr]; os.makedirs(out, exist_ok=True)
 
     if mode == "bin":
-        b = int(which); t1, t2 = starts[b], stops[b]
+        # --bin tint (or -1): the TIME-INTEGRATED interval = the block union, i.e. the
+        # same window scripts/10 uses for its T_INT row ("fallback to BB block union").
+        # Without this, T_INT -- the row most often quoted against the literature -- is
+        # the ONE interval that can never be diagnosed with a panel.
+        is_tint = str(which).strip().lower() in ("tint", "t_int", "-1")
+        if is_tint:
+            b, t1, t2 = -1, float(min(starts)), float(max(stops))
+        else:
+            b = int(which); t1, t2 = starts[b], stops[b]
         plugins, names = build_plugins(trig, dets, ref, t1, t2, appr)
         specs = ALL_SPECS; nrow, ncol = _grid_shape(len(specs))
         fig = plt.figure(figsize=(4.2*ncol, 3.6*nrow))
@@ -277,8 +291,10 @@ def run(trig, dets, ref, mode, which, out, rebin):
             jl, comp, aic, ok = fit_spec(spec, plugins)
             draw_panel(fig, gs[i // ncol, i % ncol], plugins, names, jl, comp,
                        "%s   AIC=%.0f" % (spec['name'], aic) if ok else "%s (failed)" % spec['name'], ok, rebin)
-        fig.suptitle("%s  bin %d  [%.2f,%.2f]s  S=%.0f  -- ALL models (diagnostic)" % (trig, b, t1, t2, sigs[b]), fontsize=13)
-        fname = os.path.join(out, "%s_nuFnu_bin%d_allmodels.png" % (trig, b))
+        _lab = "T_INT (block union)" if is_tint else "bin %d" % b
+        _sig = "" if is_tint else "  S=%.0f" % sigs[b]
+        fig.suptitle("%s  %s  [%.2f,%.2f]s%s  -- ALL models (diagnostic)" % (trig, _lab, t1, t2, _sig), fontsize=13)
+        fname = os.path.join(out, "%s_nuFnu_%s_allmodels.png" % (trig, "TINT" if is_tint else "bin%d" % b))
 
     elif mode == "model":
         spec = SPEC_BY_NAME.get(which) or SPEC_BY_PREFIX.get(which)
