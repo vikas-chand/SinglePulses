@@ -34,9 +34,9 @@ _spec = importlib.util.spec_from_file_location("engine10", os.path.join(ROOT, "s
 eng = importlib.util.module_from_spec(_spec); sys.modules["engine10"] = eng; _spec.loader.exec_module(eng)
 from threeML import Model, PointSource, JointLikelihood, DataList
 
-plt.rcParams.update({"font.family": "serif", "mathtext.fontset": "stix", "font.size": 11,
-    "xtick.direction": "in", "ytick.direction": "in", "xtick.top": True, "ytick.right": True,
-    "xtick.minor.visible": True, "ytick.minor.visible": True, "savefig.dpi": 180})
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from plot_style import apply_pub_style, PUB   # noqa: E402
+apply_pub_style()
 
 COLORS = {"na": "#b3216a", "n0": "#b3216a", "n1": "#f08c4b", "n3": "#f5c518", "nb": "#f08c4b",
           "b0": "#3aa6a0", "b1": "#3aa6a0", "lle": "#5b3fa0", "lat": "#5b8fd6"}
@@ -432,14 +432,25 @@ def run(trig, dets, ref, mode, which, out, rebin):
         plugins, names = build_plugins(trig, dets, ref, t1, t2, appr)
         wname = str(row['BEST_AIC_MODEL'])
         ranked = []
-        for spec in eng.MODEL_SPECS:
+        for spec in ALL_SPECS:          # was eng.MODEL_SPECS -- the BASE SIX only, so
+            # any burst whose winner is a composite (Band+PL, SBPL+PL, ...) got an
+            # overlay that did NOT CONTAIN ITS OWN WINNER, and then silently skipped
+            # the data/residual/y-limit block that hangs off `wcomp`. Found by the
+            # figure-review agent, 2026-08-13.
             ea = engine_aic(row, spec)
             valid = bool(row["%s_VALID" % spec['prefix']]) if "%s_VALID" % spec['prefix'] in row.colnames else False
             if ea is not None and (valid or spec['name'] == wname):
                 ranked.append((ea, spec))
         ranked.sort(key=lambda x: x[0])
+        if wname not in {sp['name'] for _a, sp in ranked}:
+            raise SystemExit(f"binall: engine winner '{wname}' is not in the model set -- "
+                             f"refusing to draw an overlay that omits its own winner")
         MAXC = 8
         shown, dropped = ranked[:MAXC], [s['name'] for _, s in ranked[MAXC:]]
+        if wname not in {sp['name'] for _a, sp in shown}:
+            _w = [(a, sp) for a, sp in ranked if sp['name'] == wname][0]
+            shown = shown[:MAXC - 1] + [_w]
+            dropped = [n for n in dropped if n != wname] + [shown[MAXC - 2][1]['name']]
         if dropped:
             print("   binall: showing best %d of %d VALID models; dropped (by engine AIC): %s"
                   % (MAXC, len(ranked), ", ".join(dropped)))
@@ -454,7 +465,7 @@ def run(trig, dets, ref, mode, which, out, rebin):
         # residuals below must read the WINNER's predicted counts.
         others = [(ea, s) for ea, s in shown if s['name'] != wname]
         w_pair = [(ea, s) for ea, s in shown if s['name'] == wname]
-        wjl = wcomp = None; ci = 0
+        wjl = wcomp = None; ci = 0; _drawn = []
         for ea, spec in others + w_pair:
             jl, comp, aic, ok = fit_spec(spec, plugins, row=row)
             if not ok: continue
@@ -494,6 +505,11 @@ def run(trig, dets, ref, mode, which, out, rebin):
                     axr.errorbar(ud["emid"][rd], ud["resid"][rd], yerr=1.0, xerr=ud["xerr"][:, rd],
                                  fmt="o", ms=2.6, color=c, alpha=0.9, elinewidth=0.7)
             if data_max > 0: ax.set_ylim(bottom=data_max / 3.0e4, top=3.0 * data_max)
+        else:
+            # never let a plunging model set a 100-decade axis (review finding #1)
+            _mx = np.nanmax([np.nanmax(E**2 * _ev(c, E)) for _a, c in _drawn]) if _drawn else 0
+            if _mx > 0:
+                ax.set_ylim(_mx / 3.0e4, 3.0 * _mx)
         axr.axhline(0, color="k", lw=0.8)
         axr.set_ylim(-4, 4); axr.set_ylabel("resid (σ)"); axr.set_xlabel("Energy (keV)")
         ax.set_ylabel(r"$\nu F_\nu$ (keV$^2$ s$^{-1}$ cm$^{-2}$ keV$^{-1}$)")

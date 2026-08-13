@@ -68,6 +68,25 @@ what was dropped. (Shipping Gate.)
 Titles are declarative ("9 Bayesian blocks; bar colour and number give each block's
 significance"), not decorative.
 
+**F10 — A CONTINUOUS QUANTITY GETS A COLOURBAR, NOT PRINTED NUMBERS.** Block
+significance was written as a number over every block; at the peak, where blocks are
+narrowest, the labels collided and the eye could not rank them. Use a colourbar
+(`viridis`) and label it with the quantity AND its unit: `block significance ($\sigma$)`.
+Numbers on the figure only for a handful of values that must be read exactly.
+
+**F11 — DRAW THE THING, NOT A PRETTIER VERSION OF IT.** Bayesian blocks are
+independent piecewise-constant estimates: draw them as **horizontal bars, no vertical
+connectors**. Connectors made them read as one continuous step function, implying a
+continuity the method does not assert. (Vikas, 2026-08-13.)
+
+**F12 — BRACKET THE ANALYSED SPAN.** Where a figure shows a region that was analysed
+inside a wider plotted range, mark BOTH edges (dotted verticals at the first block
+start and last block stop). Marking only the end is worse than marking neither: it
+reads as a feature rather than a boundary.
+
+**F13 — UNITS ON EVERY SCALE, INCLUDING COLOUR.** `S` alone is not a label;
+significance is in σ. Same rule as an axis: the reader must not have to guess.
+
 ## 3 · Before declaring a figure done
 - [ ] rendered and **looked at** (vision or eyes) — not just "the script ran"
 - [ ] no clipped text, no legend over data, no label colliding with a frame
@@ -75,6 +94,9 @@ significance"), not decorative.
 - [ ] limits leave the data clear of the frame but waste no space
 - [ ] colours consistent with F2 across the whole figure set
 - [ ] the caption states what to LOOK FOR, not just what is plotted
+- [ ] **a FRESH-CONTEXT reviewer has seen it** — the producer never signs off its own
+      figure (ShippingGate). In practice: launch the figure-review agent over the set
+      and act on its list BEFORE showing a human.
 
 ## 4 · Common pitfalls seen here
 - Copying rcParams into a new script instead of importing the style (drift).
@@ -82,6 +104,16 @@ significance"), not decorative.
 - Anchoring y at 0 "because counts are positive" (F4).
 - A percentile y-limit clipping a real feature — check, and widen if it does.
 - Insets that collide with data: prefer a second panel (step 7 was rebuilt this way).
+
+## 5 · Enforcement (why this file is not advice)
+`tests/test_figure_style.py` reads the figure scripts as text and fails if: a script
+does not import and apply `plot_style`; a script sets its own `rcParams`; a style
+number (dpi, fontsize) is hard-coded instead of derived from `PUB`; a light curve is
+drawn with a bare `plot()`; or `plot_style` drifts from the values the cross-project
+reference states. Mechanical checks cannot judge whether a figure is GOOD — that is
+the review agent's job — but they guarantee it is CONSISTENT. Vikas, 2026-08-13:
+*"all this should be standardized and not like everytime we run something and we get
+something different."*
 
 ## Hand-off
 Every figure-producing script: `scripts/44_step_figures.py` (steps 1–9),

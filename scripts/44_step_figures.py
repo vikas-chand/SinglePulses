@@ -387,7 +387,32 @@ def fig_step345(trig, out, blocks_file=None):
 BANDS = [(8, 25), (25, 50), (50, 100), (100, 350), (350, 1000)]
 
 
+def _pipeline_tx():
+    """The PRODUCTION T90 estimator (scripts/40::_tx_core).
+
+    The figure previously computed its own t5/t95 with `np.interp` on the
+    cumulative — the very method the 2026-08-13 audit invalidated, because a
+    background-subtracted cumulative is NOT monotonic so np.interp's `xp`
+    contract is violated. That gave the figure different numbers from the
+    catalog: two T90 definitions inside one project. Import the real one.
+    """
+    import importlib.util
+    sp = importlib.util.spec_from_file_location(
+        "t40fig", os.path.join(ROOT, "scripts", "40_temporal_survey.py"))
+    m = importlib.util.module_from_spec(sp)
+    sys.modules.setdefault("t40fig", m)
+    sp.loader.exec_module(m)
+    return m._tx_core, m._tx_with_mc
+
+
 def fig_step7(trig, out):
+    """Energy-resolved T90 — ONE PANEL PER BAND, the LATBright layout
+    (GRB260226A/s01a_gbm_lightcurves.py): each band gets its OWN count-rate light
+    curve, its own t5-t95 span, its own T90. A single background light curve cannot
+    show why the duration shortens with energy; per-band panels can (Vikas,
+    2026-08-13: "does every energy range not have their own count rate lightcurves?").
+    The right-hand panel is the resulting T90(E) relation."""
+    _TXC, _TXMC = _pipeline_tx()
     rs = rows_for(trig)
     nais = [r for r in rs if str(r["DETECTOR"]).strip().startswith("n")]
     if not nais:
@@ -396,12 +421,17 @@ def fig_step7(trig, out):
               if str(r["DET_ANGLE"]) not in ("nan", "--") else 999)
     det = str(ref["DETECTOR"]).strip()
     p = tte_path(trig, det)
-    fig = plt.figure(figsize=(10.6, 4.3))
-    gsr = fig.add_gridspec(1, 2, width_ratios=[3.1, 1.0], wspace=0.28,
-                           left=0.075, right=0.985, top=0.88, bottom=0.15)
-    ax = fig.add_subplot(gsr[0]); axE = fig.add_subplot(gsr[1])
+    nb = len(BANDS)
+    fig = plt.figure(figsize=(13.5, 1.65 * nb + 1.9))
+    gsr = fig.add_gridspec(1, 2, width_ratios=[2.9, 1.05], wspace=0.26,
+                           left=0.085, right=0.965, top=0.90, bottom=0.11)
+    gl = gsr[0].subgridspec(nb, 1, hspace=0.0)
+    axes = [fig.add_subplot(gl[k]) for k in range(nb)]
+    for a in axes[1:]:
+        a.sharex(axes[0])
+    axE = fig.add_subplot(gsr[1])
     if p is None:
-        _note(ax, "no TTE"); _note(axE, "");
+        _note(axes[0], "no TTE"); _note(axE, "")
     else:
         with fits.open(p) as h:
             t0 = None
@@ -416,58 +446,92 @@ def fig_step7(trig, out):
         src = (float(ref["SRC_START"]), float(ref["SRC_STOP"]))
         pre = (float(ref["BKG_NEG_START"]), float(ref["BKG_NEG_STOP"]))
         post = (float(ref["BKG_POS_START"]), float(ref["BKG_POS_STOP"]))
-        _cols = ["#2b3a67", "#3aa6a0", "#6aa84f", "#f08c4b", "#b3216a"]
-        _t90s, _over = [], []
-        for _ib, (e1, e2) in enumerate(BANDS):
-            sel = (emid[np.clip(ch, 0, len(emid) - 1)] >= e1) & (emid[np.clip(ch, 0, len(emid) - 1)] < e2)
+        cols = ["#2b3a67", "#3aa6a0", "#6aa84f", "#f08c4b", "#b3216a"]
+        t90s, excluded = [], []
+        dt = 0.128
+        for ib, (e1, e2) in enumerate(BANDS):
+            ax = axes[ib]
+            c_ = cols[ib % len(cols)]
+            sel = (emid[np.clip(ch, 0, len(emid) - 1)] >= e1) & \
+                  (emid[np.clip(ch, 0, len(emid) - 1)] < e2)
             tb = tt[sel]
-            if tb.size < 50:
-                continue
-            tc, rate, dt, _ed = binned(tb, pre[0], post[1], dt=0.256)
+            if tb.size < 30:
+                _note(ax, f"{e1}-{e2} keV: too few events"); continue
+            edges = np.arange(pre[0], post[1] + dt, dt)
+            tc = 0.5 * (edges[:-1] + edges[1:])
+            rate = np.histogram(tb, bins=edges)[0] / dt
             c, _m = polyfit_bkg(tc, rate, pre, post)
             net = rate - (np.polyval(c, tc) if c is not None else 0.0)
+            m = (tc >= src[0] - 1.5) & (tc <= src[1] + 1.5)
+            # lc_hist takes EDGES (len N+1); build them from the masked bin set
+            _idx = np.flatnonzero(m)
+            _ed = np.append(edges[_idx], edges[_idx[-1] + 1])
+            lc_hist(ax, _ed, net[m], c_, alpha_fill=0.30, zorder=2)
             msrc = (tc >= src[0]) & (tc <= src[1])
-            cum = np.cumsum(net[msrc] * dt)
-            if cum[-1] <= 0:
-                continue
-            cum = cum / cum[-1]
-            tsrc = tc[msrc]
-            t5 = np.interp(0.05, cum, tsrc); t95 = np.interp(0.95, cum, tsrc)
-            c_ = _cols[_ib % len(_cols)]
-            ax.plot(tsrc, cum, lw=1.6, color=c_, zorder=3,
-                    label=f"{e1}–{e2} keV   $T_{{90}}$ = {t95-t5:.1f} s")
-            # mark the T90 SPAN rather than 10 separate vertical lines
-            ax.plot([t5, t95], [-0.10 - 0.045 * _ib] * 2, color=c_, lw=2.6,
-                    solid_capstyle="butt", zorder=4, clip_on=False)
-            _t90s.append((0.5 * (e1 + e2), t95 - t5))
-            if np.nanmax(cum) > 1.15:
-                _over.append(f"{e1}-{e2} keV")
-        ax.axhline(0.05, color="0.75", lw=0.6, zorder=1)
-        ax.axhline(0.95, color="0.75", lw=0.6, zorder=1)
-        ax.set_ylim(-0.34, 1.12)          # room below zero for the T90 span bars
-        ax.set_xlabel("time since trigger (s)")
-        ax.set_ylabel("cumulative net counts (normalised)")
-        ax.legend(fontsize=8.5, loc="upper left", framealpha=0.92, edgecolor="0.6")
-        if _over:
-            ax.text(0.985, 0.97, "cumulative overshoots 1 (low S/N, curve leaves frame): "
-                    + ", ".join(_over), transform=ax.transAxes, ha="right", va="top",
-                    fontsize=6.8, color="0.35")
-        # right panel: the E-dependence this figure exists to show
-        if len(_t90s) >= 3:
-            E_ = np.array([a for a, _ in _t90s]); T_ = np.array([b for _, b in _t90s])
-            for _i, (e_, t_) in enumerate(zip(E_, T_)):
-                axE.plot(e_, t_, "o", ms=6, color=_cols[_i % len(_cols)], zorder=4)
-            axE.plot(E_, T_, "-", color="0.4", lw=1.1, zorder=3)
-            k = np.polyfit(np.log10(E_), np.log10(T_), 1)[0]
-            xx = np.logspace(np.log10(E_.min()), np.log10(E_.max()), 20)
-            axE.plot(xx, T_[0] * (xx / E_[0]) ** (-0.20), ls="--", color="crimson",
-                     lw=1.0, zorder=2, label="$E^{-0.20}$ (pop. mean)")
+            tot_c = float(np.sum(net[msrc] * dt))
+            cum_c = np.cumsum(net[msrc] * dt)
+            # point AND uncertainty from the production estimator (same Poisson
+            # realizations of RAW counts minus the fitted background)
+            _rawc = rate * dt
+            _bkgc = (np.polyval(c, tc) if c is not None else np.zeros_like(tc)) * dt
+            t90v, t90e, t5, t95, _tr = _TXMC(tc, _rawc, _bkgc, src, 0.90, 400,
+                                             abs(hash((trig, e1, e2))) % (2 ** 32))
+            exc = float(cum_c.max() / tot_c - 1.0) if tot_c > 0 else np.inf
+            ok = np.isfinite(t90v) and tot_c >= 200.0 and exc <= 0.10
+            if ok:
+                ax.axvspan(t5, t95, color=c_, alpha=0.13, lw=0, zorder=1)
+                for x_ in (t5, t95):
+                    ax.axvline(x_, color=c_, lw=1.1, ls="--", alpha=0.8, zorder=3)
+                t90s.append((0.5 * (e1 + e2), t90v, t90e))
+                txt = rf"{e1}–{e2} keV   $T_{{90}}$ = {t90v:.1f} $\pm$ {t90e:.1f} s"
+            else:
+                excluded.append(f"{e1}–{e2}")
+                txt = (rf"{e1}–{e2} keV   $T_{{90}}$ not measured "
+                       rf"({tot_c:.0f} net cts)")
+            ax.text(0.012, 0.86, txt, transform=ax.transAxes, ha="left", va="top",
+                    fontsize=PUB["tick_size"] - 2, color=c_ if ok else "0.45")
+            ax.axhline(0, color="0.8", lw=0.7, zorder=0)
+            ylim_from_data(ax, net[m])
+            ax.set_xlim(src[0] - 1.5, src[1] + 1.5)
+            if ib < nb - 1:
+                ax.tick_params(labelbottom=False)
+        axes[-1].set_xlabel("time since trigger (s)")
+        axes[nb // 2].set_ylabel(r"net rate (cts s$^{-1}$)")
+        if len(t90s) >= 3:
+            E_ = np.array([a for a, _b, _e in t90s])
+            T_ = np.array([_b for _a, _b, _e in t90s])
+            S_ = np.array([_e for _a, _b, _e in t90s])
+            # weighted fit in log-log, with the slope's own uncertainty from the
+            # covariance (a slope quoted without one is not a measurement)
+            _w = 1.0 / np.maximum(S_ / (T_ * np.log(10)), 1e-6)
+            _cf, _cov = np.polyfit(np.log10(E_), np.log10(T_), 1, w=_w, cov=True)
+            k, b0 = _cf
+            k_err = float(np.sqrt(_cov[0, 0]))
+            xx = np.logspace(np.log10(E_.min()), np.log10(E_.max()), 24)
+            axE.plot(xx, 10 ** (b0 + k * np.log10(xx)), color="0.35", lw=1.4,
+                     zorder=2, label=rf"fit: $E^{{{k:+.2f}\pm{k_err:.2f}}}$")
+            axE.plot(xx, 10 ** (b0) * (xx ** -0.20) / (10 ** (b0) * (E_[0] ** -0.20))
+                     * T_[0] * (E_[0] / E_[0]), ls="--", color=PUB["c_bgo"],
+                     lw=PUB["lw_secondary"], zorder=1,
+                     label=r"$E^{-0.20}$ (slope only)")
+            for i_, (e_, t_, s_) in enumerate(zip(E_, T_, S_)):
+                axE.errorbar(e_, t_, yerr=s_, fmt="o", ms=7, color=cols[i_ % len(cols)],
+                             ecolor=cols[i_ % len(cols)], elinewidth=1.4, capsize=3,
+                             zorder=4)
             axE.set_xscale("log"); axE.set_yscale("log")
-            axE.set_xlabel("band centre (keV)"); axE.set_ylabel("$T_{90}$ (s)")
-            axE.set_title(f"this burst: slope {k:+.2f}", fontsize=9)
-            axE.legend(fontsize=7, framealpha=0.9, edgecolor="0.6", loc="lower left")
-    ax.set_title(f"{trig}  ·  step 7: energy-resolved $T_{{90}}$ — horizontal bars mark each "
-                 f"band's $t_5$–$t_{{95}}$ span", fontsize=10, loc="left")
+            axE.set_xlabel("band centre (keV)")
+            axE.set_ylabel(r"$T_{90}$ (s)")
+            axE.set_title(rf"$T_{{90}}(E)$: slope {k:+.2f} $\pm$ {k_err:.2f}"
+                          rf"  ({len(E_)} bands)",
+                          fontsize=PUB["label_size"] - 3, loc="left")
+            axE.legend(loc="lower left", fontsize=PUB["legend_size"] - 3)
+            axE.set_ylim(0.90 * (T_ - S_).min(), 1.10 * (T_ + S_).max())
+        if excluded:
+            axE.text(0.98, 0.97, "excluded: " + ", ".join(excluded) + " keV",
+                     transform=axE.transAxes, ha="right", va="top",
+                     fontsize=PUB["tick_size"] - 4, color=PUB["c_bgo"])
+    fig.suptitle(f"{trig} — step 7: energy-resolved $T_{{90}}$ (detector {det}); "
+                 f"dashed = $t_5$, $t_{{95}}$", fontsize=PUB["label_size"], y=0.965)
     f = os.path.join(out, f"{trig}_step7_temporal.png")
     fig.savefig(f, bbox_inches="tight"); plt.close(fig)
     return [f]
