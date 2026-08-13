@@ -1,0 +1,54 @@
+GCN CIRCULAR SWEEP — bn110920546  (Step 0, GCNIntelligence.md)
+Generated 2026-08-12 by the 106-burst doc-layer worker. NEW FILE (no prior results/gcn/bn110920546/).
+
+RESULT: n_circulars = 0.  ZERO GCN circulars exist for this burst.
+This is a RESULT, not an error (GCNIntelligence.md "Honest absence").
+
+Fetch log (every attempt, with its HTTP status):
+  1. https://gcn.gsfc.nasa.gov/other/110920A.gcn3   -> HTTP 404 (216 bytes, error page)
+  2. https://gcn.gsfc.nasa.gov/other/110920.gcn3    -> HTTP 404 (215 bytes, error page)
+  3. gcn.nasa.gov archive search API
+     (https://gcn.nasa.gov/circulars?query=<q>&_data=routes/circulars._archive._index)
+       query="110920A"      -> totalItems 0,  queryFallback false
+       query="110920"       -> totalItems 0,  queryFallback false
+       query="110920546"    -> totalItems 0,  queryFallback false
+       query="GRB110920A"   -> totalItems 0,  queryFallback false
+     CONTROL (proves the endpoint and its 2011 coverage are live):
+       query="110721A"      -> totalItems 9  (GCN 12187 Fermi GBM detection, 12188 LAT,
+                               12191 Konus-Wind, 12192/12193/12194/12212 counterpart,
+                               12195 IPN, 12245 EVLA)  -- i.e. a 2011 GBM burst with
+                               circulars IS returned by this query form.
+     NOTE on API syntax: a query string CONTAINING A SPACE (e.g. "GRB 110920A") is
+     ignored by this endpoint and returns the full unfiltered archive (totalItems 35680).
+     Only space-free tokens actually filter. All four filtering queries above returned 0.
+
+INTERPRETATION
+  bn110920546 was never circulated. The burst is known to the literature ONLY through
+  the GBM catalogues (von Kienlin+2014) and the papers that analysed the archival data
+  (McGlynn 2012; Iyyani+2015; Shenoy+2013; ...). There is therefore NO GCN-sourced
+  position refinement, NO GCN redshift, NO GCN afterglow report -- consistent with
+  Iyyani+2015 §2 verbatim: "No afterglow has been detected for the burst and therefore,
+  the redshift, z, is unknown."
+
+AUTHORITATIVE IDENTITY SUBSTITUTE (fetched instead of circulars, from the FSSC archive
+https://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/bursts/2011/bn110920546/current/):
+
+  glg_tcat_all_bn110920546_v01.fit  (primary header)
+    OBJECT   = GRB110920546
+    RA_OBJ   = 209.82        DEC_OBJ = -27.56      ERR_RAD = 1.0 deg
+    TRIGTIME = 338216745.81222  (Fermi MET)  = 2011-09-20T13:05:43.812 UTC
+    DATE-OBS = 2011-09-20T13:03:47
+    LOC_SRC  = Fermi, GBM    LOC_VER = dol v4.14gdb0   RELIABLT = 1.0
+    DET_MASK = 10010000000000
+    THETA    = 16.4408 deg (off LAT boresight)   PHI = 312.005
+    GEO_LONG = 343.6304      GEO_LAT = -0.2323
+
+  glg_bcat_all_bn110920546_v02.fit (primary header)
+    T90      = 160.771 +/- 5.221 s   T90START = 5.12005 s
+    T50      =  58.369 +/- 2.290 s   T50START = 18.4323 s
+    (GBM catalogue durations are computed in 50-300 keV; fluence band FLU_LOW/FLU_HIGH
+     = 10-1000 keV.)
+
+  glg_scat_all_bn110920546_*_v01.fit  -> see the dossier PUBLISHED VALUES table.
+    Detector set of the catalogue fits: BGO_00 + NAI_00 + NAI_01 + NAI_03, CSPEC,
+    NaI 8.0-930 keV, BGO 254-42948 keV.  (Identical to our stamped approved set.)

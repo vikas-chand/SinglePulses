@@ -1,0 +1,52 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: APPROVED, datatype: bool}
+# - {name: RSP_FILE, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC_INTERVAL, datatype: bool}
+# - {name: THETA_TRIG_DEG, datatype: float64}
+# - {name: THETA_SRC_START_DEG, datatype: float64}
+# - {name: THETA_SRC_STOP_DEG, datatype: float64}
+# - {name: DELTA_THETA_DEG, datatype: float64}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn120130938}
+# - {grb_name: 'GRB120130938 (GBM catalog name; NO lettered designation exists - see dossier §2)'}
+# - {trigtime_met: 349655436.465458}
+# - {trigger_time_utc: '2012-01-30 22:30:34.465'}
+# - {src_window: [-3.0, 26.0]}
+# - {src_window_source: 'results/background_intervals.ecsv (Vikas Chand, 2026-07-19T22:18:36Z, human_gui, accepted_suggestion)'}
+# - {approved_detectors: 'n0,n1,b0'}
+# - {bkg_windows: 'pre [-28.0,-13.0] s, post [+32.0,+132.0] s (identical for all three detectors)'}
+# - {source_position_used_for_angles: '323.30, +58.56 (GBM catalog final, = results/grb_sample.ecsv)'}
+# - {angle_estimator: 'PRODUCTION estimator - scripts/00_prototype_one_burst.py::get_detector_angle + ::get_pointing_at_trigger, loaded and called directly (not reimplemented). Reproduces the stamped DET_ANGLE column to 5 decimals: n0 40.02697 / n1 40.11552 / b0 97.97952.'}
+# - {poshist: 'data/bn120130938/glg_poshist_all_120130_v01.fit (quaternion QSJ_* format)'}
+# - {file_manifest: 'cspec .pha x6 (n0,n1,n9,na,b0,b1); tte .fit.gz x6 (same); rsp x6 (same); poshist x1'}
+# - {trigdat: 'MISSING - a NOTE, not a blocker (poshist present, so geometry is covered; Phase-1 rule)'}
+# - {lle_present: false}
+# - {lat_present: 'false (HAS_LAT=False in results/grb_sample.ecsv; no gll_* files on disk)'}
+# - {d1_theta_check: 'APPLIED. Every response here is SINGLE-MATRIX (DRM_NUM=1), so interval overlap is the WRONG test (D1) and the off-axis-angle test governs. Source-vs-spacecraft-+z angle theta_z: 49.24 deg at SRC_START, 48.66 deg at SRC_STOP -> drift 0.59 deg. Per-detector drift over the stamped window <= 1.19 deg (max: n8/n2, unapproved). For the three APPROVED detectors: n0 0.06 deg, n1 0.70 deg, b0 0.95 deg. All far below the 4-deg PASS threshold -> responses VALID over the source window.'}
+# - {d1_caveat: 'The .rsp header interval (TSTART/TSTOP = -135.17/+479.24 s rel. TRIGTIME) is the CSPEC file span, not a DRM validity domain; DRM_NUM=1 and RA_OBJ/DEC_OBJ are set, so the matrix corresponds to ONE attitude (trigger-time). Over that full header span theta_z drifts 13.27 deg (Fermi rocking) - which is why the naive interval test must NOT be used here. Verdict is taken against the trigger-referenced angle, per D1.'}
+# - {d2_naming_note: 'THIS BURST SHIPS .rsp, NOT .rsp2 - the bn130310840 case. A glob for glg_cspec_<det>_*.rsp2 would report NO RSP2 for all six detectors: 6 false alarms, 0 real. Confirmed against the naming the pipeline itself uses (scripts/10::find_rsp).'}
+# - {response_position_caveat: 'All six .rsp files were generated at the FLIGHT position RA_OBJ=320.9, DEC_OBJ=58.9 (CREATOR SA_GBM_RSP_Gen.pl-1.11, DATE 2012-01-31T14:58:20), which is 1.29 deg from the final GBM catalog position (323.30, +58.56). Per-detector angle shift from that offset is <= 1.29 deg (n0 -0.55, n1 +0.30, b0 +0.66) - still far below the 4-deg threshold, and well inside the catalog error_radius of 1.00 deg statistical. Recorded, not a blocker.'}
+# - {d4_check_burst_start: 'FLAGGED. Catalog T90_START = -5.120 s, i.e. the burst begins 5.1 s BEFORE the trigger; the trigger time is not the burst start. Stamped SRC_START = -3.0 s, so the first 2.12 s of the catalog T90 interval is OUTSIDE our window. The n9 light curve (plots/lc_for_ai/bn120130938_n9.png) shows a visible rise from about -5 s, consistent with the catalog.'}
+# - {d4_check_burst_end: 'FLAGGED. Catalog T90 span is [-5.12, +33.79] s (T90 = 38.913 +- 7.455 s); stamped SRC_STOP = +26.0 s leaves 7.79 s of the T90 tail outside the window. Combined with the head, the stamped window covers ~74% of the catalog T90 duration. Mitigating: T50 = [4.10, 13.31] s sits entirely inside our window, the 1024-ms peak is at +9.92 s, and the archival Bayesian blocks span only [1.24, 21.44] s - so the omitted emission is low-flux tail. Reported as a NOTE for Steps 5/6, not a FAIL.'}
+# - {bkg_overlap_note: 'The post-burst background window starts at +32.0 s, which is 1.79 s INSIDE the catalog T90 interval (ends +33.79 s). No entry for this burst exists in results/human_review_qc_flags.txt (the source-overruns-bkg-gap ledger), because SRC_STOP=26.0 < BKG_POS_START=32.0 - the existing check compares the SOURCE window to the gap, not the catalog T90. Given T90_error = 7.455 s and a light curve back to baseline by about +35 s, the contamination is expected to be small, but it is a real and previously unrecorded overlap.'}
+# - {detector_selection_observations: 'Two RECORDED HUMAN DECISIONS (results/approval/bn120130938_decision.json: approver Vikas Chand, mode human_gui) that a later reader will want the rationale for. (1) n9 was NOT approved despite being the closest NaI at 25.53 deg, a BCAT trigger detector (bcat_detector_mask 10000000010000 = n0,n9), and the brightest light curve in the set (peak ~1580 cts/s over ~930 baseline); the approved n0/n1 sit at 40.0/40.1 deg. na (46.29 deg) was likewise offered and not taken. (2) The approved BGO is b0 at 97.98 deg rather than b1 at 82.02 deg, the nearer BGO - and the GBM catalog spectral analysis itself used n0,n1,n9,b1 (scat_detector_mask 11000000010001). Per project doctrine Stage-1 flags ARE decisions, so these are logged as OPEN QUESTIONS for the decision owner, NOT as QC failures, and nothing here proposes changing them. Both dropped detectors have full data on disk (tte + cspec + rsp), so a with/without diagnostic is available if wanted - remembering the data-dropping hierarchy: a with/without refit is a diagnostic only and can never be quoted as a result.'}
+# - {d5_blockage_check: 'NOT PERFORMABLE at Step 1. The D5 test needs per-NaI residual coherence from fitted spectra, and this worker did not open any fit residuals (results/sweep106/ is off-limits and no fresh fit exists). Geometrically the two approved NaIs are near-twins (40.03 vs 40.12 deg), which makes a cross-norm comparison between them unusually clean when Step 6 runs - a near-equal pair should produce near-equal cross-norms, so any split between n0 and n1 is diagnostic rather than ambiguous. Flagged for the fit-layer worker.'}
+# - {literature_cross_check: 'NONE POSSIBLE - 0 GCN circulars and 0 refereed papers (see notes/reconciliation/bn120130938_harvest.json). No external detector-set or exclusion rationale exists to compare against.'}
+# - {verdict: 'PASS_WITH_NOTES - all 3 approved detectors resolve to a real single-matrix response whose off-axis angle is stable to <1 deg across the stamped source window (D1 PASS). Notes that must travel to Steps 5/6: (a) the stamped window covers ~74% of the catalog T90 and omits the pre-trigger rise (D4); (b) the post-background window overlaps the catalog T90 tail by 1.8 s; (c) responses were built at a position 1.29 deg from the final one; (d) two unexplained detector-selection decisions (n9 dropped, b0 chosen over b1).'}
+# - {checked_by: 'Claude (doc-layer worker, Steps 0/0b/1), 2026-08-12'}
+# - {sweep106_read: false}
+# schema: astropy-2.0
+DETECTOR APPROVED RSP_FILE N_MATRICES RSP_T0 RSP_T1 COVERS_SRC_INTERVAL THETA_TRIG_DEG THETA_SRC_START_DEG THETA_SRC_STOP_DEG DELTA_THETA_DEG VERDICT
+n0 True glg_cspec_n0_bn120130938_v00.rsp 1 -135.17 479.24 True 40.03 40.03 39.98 0.06 PASS
+n1 True glg_cspec_n1_bn120130938_v00.rsp 1 -135.17 479.24 True 40.12 40.04 40.74 0.70 PASS
+b0 True glg_cspec_b0_bn120130938_v00.rsp 1 -135.17 479.24 True 97.98 97.88 98.83 0.95 PASS
+n9 False glg_cspec_n9_bn120130938_v00.rsp 1 -135.17 479.24 True 25.53 25.65 24.48 1.17 NOT_APPROVED_DATA_PRESENT
+na False glg_cspec_na_bn120130938_v00.rsp 1 -135.17 479.24 True 46.29 46.30 46.24 0.06 NOT_APPROVED_DATA_PRESENT
+b1 False glg_cspec_b1_bn120130938_v00.rsp 1 -135.17 479.24 True 82.02 82.12 81.17 0.95 NOT_APPROVED_DATA_PRESENT

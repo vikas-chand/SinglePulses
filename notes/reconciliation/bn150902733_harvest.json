@@ -1,0 +1,225 @@
+{
+ "burst": "bn150902733",
+ "grb_name": "GRB 150902A",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1 four-form, 1b Scholar-note, 2 version-of-record, 3 mine, 3b latest-first, 3c prompt-scope, 4 frame+consensus, 5 file) + GCNIntelligence.md Step 0",
+ "identity": {
+  "trigger": "bn150902733 = Fermi-GBM trigger 462908143",
+  "trigger_utc": "2015-09-02T17:35:39.37 (MET 462908143.366242, from the response headers)",
+  "name_source": "GCN 18228 verbatim: 'also detected by Fermi-GBM (trigger 462908143/150902733)'; GCN 18229 is the GBM detection circular for GRB 150902A",
+  "position_best": "LAT on-ground 214.926, -69.361, r=0.127 deg (GCN 18228); Swift-XRT afterglow 214.9796, -69.3536, 4.3 arcsec (GCN 18243)",
+  "redshift": "NONE. No GCN reports z; 2FLGC Table 2 redshift column = '-'; Maccary+2025 VizieR z blank. He+2022 ASSUME z=1 for a CTA detectability figure only - not a measurement.",
+  "same_day_contamination_guard_T1": "150902.gcn3 and 150902A.gcn3 are byte-identical (12810 B, 8 circulars); no 150902B in the archive; every circular names GRB 150902A and quotes trigger 462908143. Clean."
+ },
+ "ads_queries": [
+  {"form": "full:\"GRB 150902A\"", "numFound": 15, "refereed_or_eprint_hits": 7, "note": "8 of the 15 are the GCN circulars themselves (doctype=newsletter)"},
+  {"form": "full:\"bn150902733\"", "numFound": 0, "note": "the GBM trigger-name form returns nothing - catalog tables are not full-text indexed"},
+  {"form": "full:\"150902733\"", "numFound": 2, "note": "CAUGHT TWO PAPERS THE NAME FORM MISSED: Li & Zhang 2021 (ApJS 253,43) and Li 2026 (arXiv:2604.17835) both refer to the burst by its GBM trigger digits only"},
+  {"form": "full:\"462908143\"", "numFound": 0},
+  {"form": "full:\"GRB150902A\" (no space)", "numFound": 1, "note": "He+2020 eprint (superseded by the 2022 A&A version)"},
+  {"form": "full:\"150902A\" doctype:(article OR eprint)", "numFound": 9, "note": "added Fraija+2026 and Nava 2018 on top of the name-form set"},
+  {"form": "citations(bibcode:2022MNRAS.516.4180N)", "numFound": 3, "note": "Chen+2024a, Chen+2024b, Siddique+2022 - the thermal/hybrid-jet citation cluster around the dedicated paper"}
+ ],
+ "ads_four_form_lesson": "The bare fraction-of-day form ('150902733') was the ONLY query that surfaced Li & Zhang 2021 and Li 2026 - the two papers that define this burst's HLE and Ep-lag frames. Running only the GRB-name form would have lost both. This is the four-form rule paying for itself for the second time in the campaign.",
+ "phase1b_scholar_channel": {
+  "used": false,
+  "why_not": "the ADS four-form query was rich (7 refereed/eprint analyses incl. a DEDICATED burst paper), so the Scholar bridge - which exists for THIN or vocabulary-mismatched cases - was not needed. Recorded here so the absence is a decision, not an omission.",
+  "web_channel_actually_used": "WebFetch on the publisher's article page for Nawaz & Sajjad 2022, because every scripted PDF route is blocked (see fetch_failures). URL: https://academic.oup.com/mnras/article/516/3/4180/6673870",
+  "vizier_row_lookups_run": [
+   "J/A+A/702/A95/table1 (Maccary+2025 MVT) with GRB=GRB150902A -> row returned",
+   "HEASARC TAP fermigbrst, SELECT * WHERE name='GRB150902733' -> full catalog row returned (bcatalog=3, scatalog=3)"
+  ]
+ },
+ "n_refereed_papers": 7,
+ "papers": [
+  {
+   "bibcode": "2026MNRAS.545f1970F",
+   "first_author": "Fraija, Nissim",
+   "year": 2026,
+   "title": "Variation of microphysical parameters in reverse-shock scenario",
+   "doctype": "article (REFEREED)",
+   "classification": "sample-member (2FLGC bursts tested against reverse-shock SSC closure relations) - NEWEST paper mentioning this burst (Phase 3b), but afterglow-only",
+   "verbatim_anchor": "p.8: 'Figure A7 for GRB 141028A, 141102A, 141222A, 150314A, 150523A, 150627A, 150902A, 160509A, 160521B and 160623A'; Fig. A7 panels show the (a,b) spectral/temporal index pairs for GRB 150902A under ISM/wind x thick/thin-shell RS closure relations",
+   "pdf": "Skills_training/Fraija_2026_2026MNRAS545f1970F_bn150902733.pdf (arXiv:2511.23426, 36 pp, verified %PDF; NEW to the corpus)",
+   "prompt_sections": "NONE - defer entirely. The prompt phase is not modelled; the burst enters only through its 2FLGC LAT temporal/spectral indices.",
+   "module_future_tags": "module-future;afterglow;reverse-shock;ssc"
+  },
+  {
+   "bibcode": "2026arXiv260417835L",
+   "first_author": "Li, Liang",
+   "year": 2026,
+   "title": "Three Subclasses of the Intensity-tracking Pattern in Gamma-Ray Burst Spectral Evolution",
+   "doctype": "eprint (NOT REFEREED - flag any number taken from it)",
+   "classification": "sample-member; this burst is the paper's HEADLINE Type-III case",
+   "verbatim_anchor": "p.5 Table row: '150902733 ... 13.57+/-0.36 CPL 15 9.17+/-0.24 11.33+/-0.72 2.16+/-0.76 2.84 0.73 0.03 0.00 0.97 -0.60 -0.42 0.67 III' ; p.5 text: 'GRB 150902733 represents the most unambiguous Type III burst, with PIII = 0.97'",
+   "definition_to_carry_T3": "lag = t_p(Ep) - t_p(F) with BOTH peak times from fits to the binned sequences; POSITIVE lag = Ep peaks AFTER the flux peak = Type III. 15 time bins, CPL continuum. Do not compare this to a CCF spectral lag - different quantity.",
+   "pdf": "Skills_training/Li_2026_intensity_tracking_arXiv260417835.pdf (ALREADY IN CORPUS as bibcode 2026arXiv260417835L, rows for bn090719063/bn090804940/bn090620400; NOT re-downloaded per G2)",
+   "prompt_sections": "Sect. 3.2-3.3 (Type classification + the Ep/F sequences), Fig. 5 (this burst's Ep(t) and F(t) panels), Fig. 9 (rising/decaying branch geometry), Fig. A3 (t_p(Ep) vs t_p(pulse)) - ALL prompt, feeds Step 6 (Ep evolution) and Step 7 (lag).",
+   "module_future_tags": "none (pure prompt)"
+  },
+  {
+   "bibcode": "2023ApJ...949..110T",
+   "first_author": "Tak, Donggeun",
+   "year": 2023,
+   "title": "Temporal and Spectral Evolution of Gamma-Ray Burst Broad Pulses: Identification of High-latitude Emission",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "sample-member (32 broad pulses from 175 bright GBM GRBs); this burst PASSED selection but its HLE evidence is graded 'Weak'",
+   "verbatim_anchor": "p.7 Table 1: 'GRB 150902A -0.032 8.500 14.500 19 Weak - -' (columns: pulse start | analysis start | analysis end | # of bins | HLE evidence | PL index | chi2_nu); p.12 Table 2 selection row: 'bn150902733 8.7 13.5 100 9.3 11.7 0.8 - - (yellow) - O'",
+   "definition_to_carry_T3": "HLE tested through F_nu,Ep = A Ep^delta and the t-Ep / t-F_nu,Ep relations, in the convention F_nu ~ t^-alphahat nu^-betahat with the prediction alphahat = 2 + betahat. Best model per bin by dPGSTAT (Band if CPL-Band > 11.83, CPL if PL-CPL > 8.58). rmfit background + Xspec 12.10.0, PGSTAT, NaI 8 keV-1 MeV, BGO 200 keV-40 MeV, log-spaced bins in the DECAY phase only.",
+   "pdf": "Skills_training/Tak_2023_2023ApJ949110T.pdf (ALREADY IN CORPUS, cited_by bn120624933;bn081224887;bn090719063;bn110920546; NOT re-downloaded per G2; corpus 'read' flag = READING)",
+   "prompt_sections": "Sect. 2 (sample criteria - explains WHY the analysis window is 8.5-14.5 s), Sect. 3 (time-resolved method), Table 1 row, Fig. 29 (this burst's Ep(t), alpha-Ep, and three HLE panels). All prompt; feeds Steps 6-7.",
+   "module_future_tags": "none (pure prompt)"
+  },
+  {
+   "bibcode": "2022MNRAS.516.4180N",
+   "first_author": "Nawaz, Alina",
+   "year": 2022,
+   "title": "The spectral analysis of GRB 150902A and the nature of its outflow",
+   "doctype": "article (REFEREED)",
+   "classification": "DEDICATED BURST PAPER - the single most important comparison frame for this burst, and the ONLY published claim of a blackbody in it",
+   "verbatim_anchor": "abstract (ADS/Semantic Scholar, verbatim): 'In both the time-integrated and time-resolved analyses, we find that the fit of the spectrum is significantly improved by the addition of a sub-dominant black-body component to the Band function. ... We find that GRB 150902A has a strong magnetic component in the initial outflow, such that eps_Th <= 0.5.' ; article page: 'the addition of a BB component to the Band model does lower the C-stat by 111.26'",
+   "harvested_numbers": {
+    "time_integrated_interval": "3.84-17.41 s (the catalog T90 window); dets n0,n1,n3 (8-900 keV, 30-40 keV K-edge omitted) + b0 (250 keV-40 MeV) + LAT 100 MeV-100 GeV; rmfit 4.3.2, Castor C-stat; LAT fermitools 2.0.8 unbinned, P8R3_TRANSIENT020E_V2",
+    "CPL": "Ep 434.2+/-6.1, alpha -0.61+/-0.01, C-stat 809.3/474",
+    "CPL+BB": "Ep 576.1+/-15.6, alpha -0.75+/-0.01, kT 39.2+/-1.2, C-stat 549.0/472",
+    "Band": "Ep 361.3+/-6.4, alpha -0.52+/-0.01, beta -2.58+/-0.03, C-stat 571.4/473",
+    "Band+BB (their best)": "Ep 516.8+/-18, alpha -0.71+/-0.02, beta -2.72+/-0.04, kT 38.1+/-1.4, C-stat 460.1/471",
+    "SBPL": "Ebreak 218.7+/-4.8, alpha -0.68+/-0.01, beta -2.49+/-0.02, C-stat 588.0/473",
+    "SBPL+BB": "Ebreak 391.2+/-19.5, alpha -0.85+/-0.02, beta -2.72+/-0.04, kT 34.4+/-1.2, C-stat 469.3/471",
+    "time_resolved": "3.84-8.2 s: Ep 555.2+/-32.7, alpha -0.62+/-0.04, beta -2.62+/-0.05, kT 35.8+/-2.3 (568.0/473) | 8.2-10.8 s: Ep 515.3+/-21.4, alpha -0.53+/-0.03, beta -2.86+/-0.08, kT 36.1+/-2.6 (564.3/470) | 10.8-17.4 s: Ep 545.2+/-37.1, alpha -0.91+/-0.03, beta -3.22+/-0.54, kT 30.6+/-2.2 (448.99/466)",
+    "BB_flux_fraction": "phi = F_BB/F_tot = 0.065+/-0.007 time-integrated; 0.047-0.052 time-resolved",
+    "LLE": "not used - no mention of LAT-LLE anywhere in the methods; their high-energy arm is standard LAT >100 MeV",
+    "bin_choice": "three intervals; the 8.2-10.8 s bin isolates 'one notable peak of high emission between ~8.9 and ~9.4 s'"
+   },
+   "verification_status": "HTML-READ, NOT PDF-VERIFIED. Two independent WebFetch passes on the OUP article page returned identical values for every number above. The PDF could not be obtained (see fetch_failures). Treat these as high-confidence-but-unverified until a PDF is in hand; T8 (recompute one statistic from k and dof) has NOT been possible.",
+   "T7_continuum_warning": "Their Ep = 516.8 keV belongs to the Band component OF A Band+BB FIT. Their own Band-only Ep is 361.3+/-6.4 keV. Diffing 517 keV against the catalog's 346 keV Band Ep would be a manufactured discrepancy.",
+   "pdf": "NOT FETCHED - academic.oup.com returns HTTP 403 (Cloudflare) to curl on the PDF, the article page and the DOI; Unpaywall reports oa_status=closed; no arXiv preprint exists (arXiv API: 0 hits for title and for au:Sajjad+abs:150902A).",
+   "prompt_sections": "Sects. 2-3 (data selection + time-integrated fits, Table 1), Sect. 4 (time-resolved fits, Table 2) = READ THESE, they are the whole P3 diff. Sect. 5-6 (outflow magnetisation, eps_Th, initial radius, reconnection vs internal shocks) = physics built ON the BB - read second, it is the bias we must disclose.",
+   "module_future_tags": "none (pure prompt), but its Sects. 5-6 feed project #43 (photospheric outflow diagnostics) - and NOTE: no redshift, so their outflow constraints are distance-independent/parametric"
+  },
+  {
+   "bibcode": "2022A&A...657A.111H",
+   "first_author": "He, Xin-Bo",
+   "year": 2022,
+   "title": "Searching for an additional high-energy component in Fermi-LAT GRB afterglows",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "sample-member (LAT afterglow spectra of a large 2FLGC-based sample); one of 6 'tentative/marginal' upturn cases",
+   "verbatim_anchor": "p.4: 'for GRB 190114C, 171210A, 150902A, 130907A, 130427A, and 090902B, they all satisfy dTS_BPL-PL > 3 and show a possible upturn above the Ebreak, therefore the improvements should be tentative or marginal'; p.4 Sect. 2.4: 'Only GRB 090902B, GRB 130427A and GRB 190114C show significant prompt emission' (i.e. the PROMPT-phase upturn test could NOT be run on 150902A); p.5: 'We assume z=1 for GRB 171210A and GRB 150902A'",
+   "pdf": "Skills_training/He_2022_2022AA657A111H_bn150902733.pdf (arXiv:2109.05177, 16 pp, verified %PDF; NEW to the corpus)",
+   "prompt_sections": "Sect. 2.4 ONLY (the T0 -> T0+2xT90 prompt re-analysis) - and its result for this burst is a NULL (too few LAT photons for a bin-wise prompt spectrum). Sects. 2.1-2.3, 3 (afterglow spectra, SSC modelling of 131231A) = defer.",
+   "module_future_tags": "module-future;afterglow;ssc;vhe"
+  },
+  {
+   "bibcode": "2021ApJS..253...43L",
+   "first_author": "Li, Liang",
+   "year": 2021,
+   "title": "Testing the High-latitude Curvature Effect of Gamma-Ray Bursts with Fermi Data: Evidence of Bulk Acceleration in Prompt Emission",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "sample-member - 24 single-pulse GBM bursts; THE reference frame for this burst's binning + HLE, and the closest published analogue of our own sample definition",
+   "verbatim_anchor": "p.3 Table 1: '150902733 13.568 +/- 0.362 (8.32 +/- 0.01) x 10-5 (n0)n1n3b0 -1 ~25 [-25 ~-10, 30 ~60] 17 9' (detectors, source interval, background intervals, N Bayesian-Block bins, N bins with S>15 in the decay wing; the bracketed detector is the brightest, used for background and BBlocks); p.4 Table 2 FRED: '150902733 0.128-s 0 ~25 137.63 4538 +/- 121 0 8.44 +/- 0.23 1.67 +/- 0.16 3.72 +/- 0.80 1794/190 -3069 -3056'; p.9 Table 3: '150902733(1) 8.934 ~25.000 112.07 0 (2.51 +/- 0.71)e-6 4.28 +/- 0.64 -260/-260 (1.65 +/- 0.03)e1 0.40 +/- 0.00 11345/2.01 (4.68 +/- 0.07)e-2 8.934 0.77 +/- 0.01 375.8 +/- 13.5 6656/2.97' and '150902733(2) 14.609 ~25.000 32.82 ... 5.62 +/- 1.03 ... 0.56 +/- 0.01 ... 0.87 +/- 0.07 161.8 +/- 19.8'; p.11 both Phase-I and Phase-II satisfying lists include GRB 150902733; p.12 Table 4: '150902733 1.0 1.0 8.03 2.4 x 1015 5.20 1.6 x 1015'; p.16: 'except for several apparent cases that violate the predictions (090719063, 090804940, 130305486, 150213001, 150902733, 170921168)'",
+   "definition_to_carry_T3": "alphahat/betahat in F_nu ~ t^-alphahat nu^-betahat (POSITIVE indices); HLE satisfied when alphahat >= betahat + 2. Ec in their CPL is the E-FOLDING energy, not the nuFnu peak: Ep = (2 + alpha)Ec, and their Gammahat is the POSITIVE photon index (alpha = -Gammahat). t0 fixed to 0 for every burst. 17 Bayesian-Block bins over the source interval -1 ~ 25 s; 9 of them have S > 15 in the decay wing.",
+   "internal_inconsistency_T5": "the same paper puts this burst in BOTH the 'satisfies alphahat >= betahat+2' lists (Phase I and Phase II, p.11) and the 'violate the predictions' list of the [F_nu,c, Ec] test (p.16). Two different tests, same burst, opposite verdicts. RECORD, do not resolve.",
+   "pdf": "Skills_training/Li_2021_2021ApJS253_43L_PUB.pdf (+ Li_2021_2021ApJS25343L.pdf) - ALREADY IN CORPUS; NOT re-downloaded per G2",
+   "prompt_sections": "Sect. 2 (sample + Table 1 selection/binning), Sect. 3.1-3.2 (FRED pulse fit + temporal index method), Sect. 4 + Tables 3-4 (the HLE tests and the inferred R, Gamma), p.16 discussion. ALL prompt; feeds Step 5 (their block edges and background windows are external validation of our binning) and Steps 6-7.",
+   "module_future_tags": "none (pure prompt)"
+  },
+  {
+   "bibcode": "2019ApJ...878...52A",
+   "first_author": "Ajello, M. (Fermi-LAT collaboration)",
+   "year": 2019,
+   "title": "A Decade of Gamma-Ray Bursts Observed by Fermi-LAT: The Second GRB Catalog (2FLGC)",
+   "doctype": "article (REFEREED)",
+   "classification": "catalog-member with SIX printed rows - the LAT/LLE primary for this burst",
+   "verbatim_anchor": "Table 2 p.58: '150902A 2015-09-02 17:35:39 462908143.360 214.95 -69.38 0.18 37.3 87.1 1 140 21 -' (RA, Dec, Loc.Err, theta, zeta, ARR, LTF TS, LLE Sig., Redshift GCN); Table 3 p.62: '150902A (L) 3.8 17.41 13.57 3.02 12.61 9.60 3.5 408.7 405 +/- 2' (TGBM,05/95/90, TLLE,05/95/90, TLAT,0, TLAT,1, TLAT,100); Table 4 p.72: 'GBM (3.8-17.4) 21 20.4 160 -3.1 +/- 0.4 37 +/- 8 0.15 +/- 0.05 | LTF (0.0-500.0) 110 51.1 203 -2.3 +/- 0.2 2.0 +/- 0.4 0.6 +/- 0.2 | EXT (17.4-408.7) 73 30.5 115 -2.1 +/- 0.2 | LAT (3.5-408.7) 94 49.3 212 -2.3 +/- 0.2'; Table 5 p.78: '150902A 60 +/- 20 5 +/- 3 1.0 +/- 0.2 - - - 1.0 +/- 0.2 405.2'; Table 6 p.82: '150902A 18 0.41 6.18 0.99 | 40 11.00 97.49 1.00'; Table 7 p.84: '150902A (L) 11.3 97.5 - -'",
+   "internal_inconsistency_T5": "Table 6 gives the highest-energy photon as 11.00 GeV at 97.49 s, Table 7 as 11.3 GeV at 97.5 s - the same photon, two numbers. Recorded, not resolved.",
+   "pdf": "Skills_training/Ajello_2019_2019ApJ87852A.pdf - ALREADY IN CORPUS (cited_by bn120624933); NOT re-downloaded per G2",
+   "prompt_sections": "Tables 2-4 and 6 rows = prompt-phase LAT/LLE (the GBM-interval likelihood row -3.1 +/- 0.4 index is directly comparable to our joint high-energy component; TLLE,05/95 tell us where LLE signal actually lives inside our window). Table 5 (afterglow decay) + the EXT/LTF rows = defer to the afterglow module.",
+   "module_future_tags": "module-future;afterglow (Table 5 + EXT rows only)"
+  }
+ ],
+ "catalogs_and_databases_used_directly": [
+  {
+   "source": "HEASARC fermigbrst (TAP, queried 2026-08-12)",
+   "role": "the GBM duration/fluence/peak-flux and time-integrated + peak-slice spectral primary",
+   "key_values": "T90 13.5682 +/- 0.3621 s from T0+3.84004 (50-300 keV); T50 4.60807 +/- 0.36205 from T0+6.91209; fluence 8.31916e-05 +/- 5.19988e-08 erg/cm2 (10-1000 keV); PF64 79.178 +/- 2.183 at 9.216 s, PF1024 60.696 +/- 0.491 at 8.768 s; flnc interval -2.048 to 31.744 s, best = Band (Ep 346.30 +/- 7.88, alpha -0.5366 +/- 0.0158, beta -2.2509 +/- 0.0416, redchisq 1.3587/481); pflx interval 9.216-10.240 s, best = Band (Ep 356.49 +/- 13.68, alpha -0.3212, beta -2.5315, redchisq 1.0102/481); scat mask 11010000000010 = n0,n1,n3,b0; bcat mask 11010100000000 = n0,n1,n3,n5; bcatalog=3, scatalog=3",
+   "note": "the flnc window (-2.048, +31.744 s) is nearly OUR stamped window (-2.199, +27.404 s) - the closest published frame we have for a window-integrated diff"
+  },
+  {
+   "source": "VizieR J/A+A/702/A95/table1 (Maccary+2025)",
+   "role": "MVT + peak count",
+   "key_values": "GRB150902A | bn150902733 | FWHM 0.89341 (-0.23112/+0.31177) s | t90 13.568 | Npeaks 3.0 | z blank | Class II"
+  },
+  {
+   "source": "GCN circulars 18228, 18229, 18230, 18233, 18234, 18237, 18238, 18243",
+   "role": "identity, ARR/slew, Konus-Wind independent spectroscopy, afterglow, optical limits",
+   "note": "raw text archived at results/gcn/bn150902733/bn150902733_gcn_raw.txt"
+  }
+ ],
+ "excluded_or_context_only": [
+  {"bibcode": "2020ARep...64..126E", "first_author": "Ershova, O. A.", "year": 2020, "reason": "MASTER early-optical population study; this burst enters only via the GCN 18234 upper limits. Not open access (no PDF fetched).", "keep_as": "module-future;afterglow;optical context"},
+  {"bibcode": "2024ApJ...972..132C", "first_author": "Chen, Jia-Ming", "year": 2024, "reason": "GRB 231129C paper; cites Nawaz+2022 as a thermal-dominated precedent, does not analyse 150902A", "keep_as": "citation-cluster context for the BB claim; already in corpus_index as '(no pdf)' for bn130518580"},
+  {"bibcode": "2024ApJ...964...45C", "first_author": "Chen, Jia-Ming", "year": 2024, "reason": "GRB 220304A paper; same citation role", "keep_as": "citation-cluster context"},
+  {"bibcode": "2022ApJ...938..159S", "first_author": "Siddique, Iqra", "year": 2022, "reason": "GRB 130518A hybrid-jet paper; cites Nawaz+2022; already in corpus (read=Y) for bn130518580", "keep_as": "methodological sibling - same Band+BB -> outflow-magnetisation chain, and the source of our D5 blockage lesson"},
+  {"bibcode": "2018IJMPD..2742003N", "first_author": "Nava, Lara", "year": 2018, "reason": "review of GRB high-energy emission; 150902A appears in the LAT population discussion only", "keep_as": "review context"},
+  {"bibcode": "2020arXiv200208734H", "first_author": "He, Xin-Bo", "year": 2020, "reason": "eprint superseded by 2022A&A...657A.111H", "keep_as": "superseded"}
+ ],
+ "local_corpus_check_G2": {
+  "index_read": "Skills_training/corpus_index.csv (160 lines, READ ONLY - not written, per the hard rule)",
+  "already_present_not_redownloaded": [
+   "2021ApJS..253...43L (Li_2021_2021ApJS253_43L_PUB.pdf + Li_2021_2021ApJS25343L.pdf)",
+   "2026arXiv260417835L (three per-burst copies + Li_2026_intensity_tracking_arXiv260417835.pdf)",
+   "2023ApJ...949..110T (Tak_2023_2023ApJ949110T.pdf)",
+   "2019ApJ...878...52A (Ajello_2019_2019ApJ87852A.pdf)",
+   "2022ApJ...938..159S (Siddique_2022, read=Y)",
+   "2024ApJ...972..132C (row exists with '(no pdf)')"
+  ],
+  "newly_downloaded": [
+   "Skills_training/Fraija_2026_2026MNRAS545f1970F_bn150902733.pdf (arXiv:2511.23426, 7.5 MB, %PDF verified)",
+   "Skills_training/He_2022_2022AA657A111H_bn150902733.pdf (arXiv:2109.05177, 1.7 MB, %PDF verified)"
+  ],
+  "not_obtainable": ["2022MNRAS.516.4180N (the dedicated paper) - see fetch_failures"]
+ },
+ "fetch_failures": [
+  {
+   "bibcode": "2022MNRAS.516.4180N",
+   "attempts": [
+    "https://academic.oup.com/mnras/article-pdf/516/3/4180/45743878/stac2217.pdf -> HTML, not a PDF",
+    "https://ui.adsabs.harvard.edu/link_gateway/2022MNRAS.516.4180N/PUB_PDF -> HTTP 403 (Cloudflare __cf_bm)",
+    "https://academic.oup.com/mnras/article/516/3/4180/6673870?login=false -> HTTP 403",
+    "https://doi.org/10.1093/mnras/stac2217 -> HTTP 403",
+    "Unpaywall api v2 -> is_oa false, oa_status closed (despite the ADS PUB_OPENACCESS property flag)",
+    "arXiv API by title and by au:Sajjad + abs:150902A -> 0 hits; no preprint exists"
+   ],
+   "workaround": "two independent WebFetch passes on the article page, which agreed on every number; values recorded in the dossier and flagged 'HTML-read, not PDF-verified'",
+   "action_for_vikas": "this is the single most important paper for this burst - please pull the PDF through the institutional proxy so the numbers can be PDF-verified and the T8 statistic check run"
+  }
+ ],
+ "prompt_vs_future_classification": {
+  "prompt_analysis_targets": ["2022MNRAS.516.4180N (all of it)", "2021ApJS..253...43L", "2026arXiv260417835L", "2023ApJ...949..110T", "2019ApJ...878...52A Tables 2-4,6", "HEASARC fermigbrst", "Maccary+2025 MVT row", "GCN 18229 + 18233"],
+  "module_future": ["2026MNRAS.545f1970F (afterglow/RS)", "2022A&A...657A.111H (LAT afterglow upturn; one prompt null in Sect. 2.4)", "2020ARep...64..126E (optical)", "2019ApJ...878...52A Table 5 + EXT/LTF rows", "GCN 18237/18238/18243 (XRT/UVOT afterglow)"]
+ },
+ "vikas_reading_list": [
+  "1. Nawaz & Sajjad 2022 (MNRAS 516, 4180) - Sects. 2-4 + Tables 1-2. THE dedicated paper and the only published BB claim on this burst. (PDF blocked; article page works in a browser.)",
+  "2. Li & Zhang 2021 (ApJS 253, 43) - Table 1 row (their binning/background choices vs ours), Table 2 FRED (chi2_nu ~ 9.4 - the pulse is NOT FRED-like), Tables 3-4 + p.11/p.16 (the two contradictory HLE verdicts).",
+  "3. Li 2026 (arXiv:2604.17835) - Sect. 3.2-3.3 + Fig. 5: this burst is the paper's cleanest Type III (Ep peaks 2.16 +/- 0.76 s AFTER the flux peak). NOT refereed.",
+  "4. Tak+2023 (ApJ 949, 110) - Table 1 row + Fig. 29: HLE evidence graded 'Weak' over 8.5-14.5 s.",
+  "5. Ajello+2019 (2FLGC) - Tables 2-4 rows only: LLE 21 sigma, TLLE 3.02-12.61 s, and the very soft LAT index (-3.1 +/- 0.4) inside the GBM window.",
+  "DEFER (afterglow module): Fraija+2026, He+2022, Ershova+2020, GCN 18237/18238/18243."
+ ],
+ "pending_shared_csv_rows": {
+  "note": "NO shared CSV was written by this worker. The rows below are queued for whoever owns the merge.",
+  "Skills_training/corpus_index.csv": [
+   "Fraija_2026_2026MNRAS545f1970F_bn150902733.pdf,2026MNRAS.545f1970F,2511.23426,module-future;afterglow;reverse-shock;ssc,bn150902733,1,N,",
+   "He_2022_2022AA657A111H_bn150902733.pdf,2022A&A...657A.111H,2109.05177,module-future;afterglow;lat-upturn;ssc,bn150902733,1,N,",
+   "(no pdf),2022MNRAS.516.4180N,,DEDICATED-burst-paper;Band+BB;photosphere-magnetisation;PDF-BLOCKED-OUP,bn150902733,1,N,",
+   "2021ApJS..253...43L (Li_2021_2021ApJS253_43L_PUB.pdf): cited_by += bn150902733, n_bursts += 1",
+   "2026arXiv260417835L (Li_2026_intensity_tracking_arXiv260417835.pdf): cited_by += bn150902733, n_bursts += 1",
+   "2023ApJ...949..110T (Tak_2023_2023ApJ949110T.pdf): cited_by += bn150902733, n_bursts += 1",
+   "2019ApJ...878...52A (Ajello_2019_2019ApJ87852A.pdf): cited_by += bn150902733, n_bursts += 1"
+  ],
+  "results/gcn/gcn_index.csv": [
+   "bn150902733,base,8,none (no z reported by any circular; 2FLGC redshift column '-'),15,7"
+  ]
+ },
+ "finding": "GRB 150902A is one of the best-documented bursts in the campaign so far: 8 circulars, a DEDICATED refereed paper claiming a significant sub-dominant blackbody (Band+BB, kT = 38.1 +/- 1.4 keV, dC-stat = 111.26 vs Band, phi = 0.065 +/- 0.007), a 21-sigma LLE detection with an 11 GeV photon at ~97 s, and three independent prompt-temporal frames (Li&Zhang 2021 HLE, Tak 2023 broad-pulse HLE, Li 2026 Ep-flux lag) that DISAGREE with each other about whether the decay is curvature-dominated. There is no redshift. The dominant frame-alignment hazards are (i) T7: Nawaz's Ep = 516.8 keV is the Band component of a Band+BB fit, not comparable to the 346 keV Band-only catalog Ep; (ii) T9/tail coverage: Konus-Wind sees a weak tail to ~100 s and the LAT to 408 s, while our window stops at +27.4 s and our POST background opens at +48 s."
+}

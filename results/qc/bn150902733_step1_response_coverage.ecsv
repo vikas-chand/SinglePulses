@@ -1,0 +1,31 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: TRIGGER, datatype: string}
+# - {name: DETECTOR, datatype: string}
+# - {name: CLASS, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: N_MATRIX, datatype: int64}
+# - {name: RSP_TSTART_REL, datatype: float64}
+# - {name: RSP_TSTOP_REL, datatype: float64}
+# - {name: SRC_START, datatype: float64}
+# - {name: SRC_STOP, datatype: float64}
+# - {name: INTERVAL_BRACKETS, datatype: string}
+# - {name: THETA_DRM, datatype: float64}
+# - {name: THETA_SRC_MIN, datatype: float64}
+# - {name: THETA_SRC_MAX, datatype: float64}
+# - {name: DTHETA, datatype: float64}
+# - {name: VERDICT, datatype: string}
+# - {name: NOTE, datatype: string}
+# meta: !!omap
+# - comments: [Step-1 response-coverage QC for bn150902733 (dev/ai_guides/DataInventory.md), 'stamped window from results/background_intervals.ecsv
+#       (human_gui, 2026-07-19T22:18:36Z)', 'GBM ships SINGLE-MATRIX .rsp (v02) for this burst - no .rsp2 (D2: check the pipeline naming,
+#       not one glob)', 'D1: single-matrix DRMs are validated by OFF-AXIS ANGLE stability, not interval overlap', LLE theta from gll_pt
+#       RA_SCZ/DEC_SCZ; TRIGTIME taken from the response header (D3), GBM detector angles from glg_poshist via scripts/00_prototype_one_burst.get_detector_angle]
+# schema: astropy-2.0
+TRIGGER DETECTOR CLASS RSP_FILE N_MATRIX RSP_TSTART_REL RSP_TSTOP_REL SRC_START SRC_STOP INTERVAL_BRACKETS THETA_DRM THETA_SRC_MIN THETA_SRC_MAX DTHETA VERDICT NOTE
+bn150902733 n0 GBM glg_cspec_n0_bn150902733_v02.rsp 1 -136.19394201040268 478.2158579826355 -2.199317482517415 27.403949650349745 YES 30.097235946758975 30.04659540334318 30.729392809077297 0.6321568623183218 PASS "single-matrix .rsp (no .rsp2 shipped); interval brackets window AND detector angle stable (D1/D2)"
+bn150902733 n1 GBM glg_cspec_n1_bn150902733_v02.rsp 1 -136.19394201040268 478.2158579826355 -2.199317482517415 27.403949650349745 YES 36.1421527703526 36.04246127963577 37.3763030202258 1.2341502498731955 PASS "single-matrix .rsp (no .rsp2 shipped); interval brackets window AND detector angle stable (D1/D2)"
+bn150902733 n3 GBM glg_cspec_n3_bn150902733_v02.rsp 1 -136.19394201040268 478.2158579826355 -2.199317482517415 27.403949650349745 YES 24.376024280388645 23.11721796080695 24.477820565193234 1.2588063195816943 PASS "single-matrix .rsp (no .rsp2 shipped); interval brackets window AND detector angle stable (D1/D2)"
+bn150902733 b0 GBM glg_cspec_b0_bn150902733_v02.rsp 1 -136.19394201040268 478.2158579826355 -2.199317482517415 27.403949650349745 YES 53.35124618734896 53.31899616212306 53.78047216793993 0.42922598059096373 PASS "single-matrix .rsp (no .rsp2 shipped); interval brackets window AND detector angle stable (D1/D2)"
+bn150902733 lle LLE gll_cspec_bn150902733_v00.rsp 1 -4.991781175136566 15.108218789100647 -2.199317482517415 27.403949650349745 NO 37.247899368177684 37.13764513304679 37.28393278834696 0.1102542351308955 PASS "single-matrix LLE DRM; D1 off-axis test: Dtheta<=4 deg"

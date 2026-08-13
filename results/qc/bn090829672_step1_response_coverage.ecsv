@@ -1,0 +1,25 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn090829672}
+# - {src_start: 30.403622477764912}
+# - {src_stop: 70.23489520503769}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z human_gui, WINDOW_SOURCE adjusted)'}
+# - {coverage_rule: 'GBM multi-matrix rsp2: PASS if min(TSTART)<=SRC_START and max(TSTOP)>=SRC_STOP, rel TRIGTIME=273254860.864052'}
+# - manifest: {n_cspec_pha: 8, n_lat: 0, n_lle: 0, n_poshist: 1, n_rsp: 1, n_rsp2: 7, n_trigdat: 0, n_tte: 8}
+# - {manifest_note: 'trigdat absent = note not blocker (poshist present, DataInventory Phase 1); no gll_* files -> no LLE arm (2009 burst,
+#     LLE products not produced; LAT boresight 47 deg + autonomous repoint per GCN 9849 but no LAT/ dir shipped); b0 ships single-matrix
+#     .rsp but b0 is NOT in the approved set (n6,n9,na,b1) - no D1 angle test needed; ARR slew during burst is covered for GBM by the
+#     multi-matrix rsp2 files'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n6 -7.168 104.450 3 PASS
+n9 -7.168 104.450 3 PASS
+na -7.168 104.450 3 PASS
+b1 -7.168 104.450 3 PASS

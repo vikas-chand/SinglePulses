@@ -1,0 +1,82 @@
+{
+ "burst": "bn110928180",
+ "grb_name": "GRB 110928B",
+ "tally": null,
+ "tally_note": "campaign doc-layer worker, not a numbered walkthrough burst; no tally assigned",
+ "frozen_utc": "2026-08-12; frozen BEFORE any of our fit tables was opened",
+ "freeze_hygiene": {
+  "not_read": [
+   "results/sweep106/** - never touched (blind fits in progress; hard rule)",
+   "results/clean_per_burst_final/bn110928180/spectral_fits.ecsv - EXISTS on disk but was NOT opened: it is an older-era archive, not the designated human-final prior, and opening it would break the freeze",
+   "results/clean_per_burst_consensus/bn110928180/spectral_fits.ecsv - same, NOT opened",
+   "results/bb_blocks_spectral_bn110928180.ecsv and its clean_blocks* siblings - NOT opened"
+  ],
+  "read_and_disclosed": [
+   "results/clean_sample_all_models_human.ecsv - COUNT ONLY (0 rows for this trigger); no values seen",
+   "plots/review/bn110928180.png - the Stage-1 approval/binning review panel. Disclosed because it is not a fit table but it does carry binning information: the CONSENSUS-era run (src(-3.0,42.0), superseded by the human window) shows 3 Bayesian blocks. This is an archival binning product from a different window and is NOT treated as our prediction.",
+   "results/background_intervals.ecsv, results/approval/bn110928180_decision.json, results/human_review_qc_flags.txt - Stage-1 selection provenance"
+  ]
+ },
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "archival_prior": {
+  "spectral_fits_ecsv": "ABSENT - results/clean_per_burst_human_final/bn110928180/ does not exist (the human-final archive has no directory for this trigger)",
+  "union_rule_counts": "N/A - no archival human-final fit table exists, so there are ZERO blocks to count for LRT_BANDBB_BAND>=9.2 & kT>1.05 AND LRT_CPLBB_CPL>=9.2 (the union rule needs BOTH nested tests and neither table is available)",
+  "kt_values": "N/A",
+  "aic_winners": "N/A",
+  "corroboration": "independently, results/clean_sample_all_models_human.ecsv has 0 rows for bn110928180 (counted without reading values) - this burst never entered the human-final fit archive",
+  "note": "P0 for this burst rests ENTIRELY on the external catalog + literature frame harvested 2026-08-12 (notes/reconciliation/bn110928180_harvest.json)"
+ },
+ "external_frame": {
+  "identity": "GRB 110928B = GBM bn110928180, 2011-09-28 04:19:51 UT. NOT GRB 110928A (Swift 504215, 01:51:31) and NOT Augusto+2012's 'GRB110928B' (Swift 504307 = MAXI J1836-194, 19:17:20).",
+  "component_structure_T9": "PRECURSOR at ~T0-120 s (Narayana Bhat+2016 Table-6 footnote n, used once in the entire catalog: 'Localization of precursor at T0 -120 s is consistent with burst location and was included in the duration analysis') + MAIN PULSE ~T0 -> T0+30 s. OUR stamped window [-7.338, +30.455] s = MAIN ONLY.",
+  "durations": "T90 = 148.226 +/- 1.925 s from T0-119.298 (50-300 keV, NaI 0+1+3+4) = precursor+main; T50 = 15.424 +/- 0.500 s from T0+0.576 = main only",
+  "fluence": "1.42e-05 +/- 9.36e-08 erg/cm2 (10-1000 keV, NaI-only, duration interval => precursor+main); 8.23e-06 +/- 4.71e-08 (50-300 keV)",
+  "peak_flux": "PF1024 = 4.20 +/- 0.19 ph/cm2/s at T0+9.792 s; PF64 = 6.50 +/- 0.89 at T0+9.984 s (10-1000 keV)",
+  "flnc_spectra": "interval [-62.464, +29.696] s, dets n0+n3+b0 (MAIN only). Band (declared best): Ep=151.27+/-17.35 keV, alpha=-0.561+/-0.122, beta=-1.962+/-0.088, redchisq=1.2479/337. SBPL: Ebreak=43.13+/-9.42 keV, indx1=-0.0001+/-0.485, indx2=-1.851+/-0.055, redchisq=1.2377/337 (LOWER than Band at equal dof - the catalog's 'best' label is its own rule, not a margin). Comp: Ep=226.83+/-17.50, index=-0.853+/-0.071, redchisq=1.2926/338. PL: index=-1.563, redchisq=1.6361/339.",
+  "pflx_spectra": "interval [8.192, 9.216] s, same dets. Comp (declared best): Ep=238.63+/-40.41 keV, index=-0.527+/-0.222. Band: Ep=166.86+/-30.80, alpha=-0.157+/-0.356, beta=-2.031+/-0.449. SBPL: Ebreak=101.85+/-35.06, indx1=-0.498, indx2=-2.143.",
+  "temporal": "Golkhou+2015: dt_min < 0.203 s (upper limit), dt_S/N = 0.110 +/- 0.010 s, T_start/stop_100 = -192.673 / +91.909 s. Maccary+2025 (latest frame): FWHMmin = 3.024 (-0.782/+1.055) s via MEPSA, Npeaks = 2, Class II. The two MVT numbers are DIFFERENT ESTIMATORS, not a conflict.",
+  "localization": "IPN 3-sigma box 0.212 deg2 centred 149.627/+31.888 (Hurley+2017), 3.97 deg from the GBM position (153.4/+34.29) and 3390x smaller than the GBM contour; 7-instrument detection (GBM, INT, Kon, MES, MO, RHE, Suz)",
+  "redshift": "NONE (no afterglow, no host, no follow-up; blank in Golkhou/Maccary/HEASARC; absent from Poolakkil+2021's z-subset)",
+  "model_advocacy_in_literature": "NONE. No dedicated paper, no photospheric claim, no synchrotron claim, no BB claim, no two-break claim. Zero prior bias to disclose in P3."
+ },
+ "predictions": [
+  "P-A (spectral shape, falsifiable): over our stamped MAIN-ONLY window [-7.338, +30.455] s the window-integrated AIC winner is a CURVED one-break family (Band / CPL / SBPL) with Ep between the flnc-Band frame (151 keV) and the peak-slice CPL frame (239 keV), i.e. 100 <= Ep <= 320 keV. FALSIFIED if the winner's Ep < 80 keV or > 400 keV, or if a straight PL wins by dAIC >= 10 (catalog PL is the worst of four by a wide margin: redchisq 1.636 vs 1.238-1.293).",
+  "P-A2 (high-energy tail, falsifiable): the catalog constrains beta = -1.962 +/- 0.088 with BGO b0 in the fit, i.e. a HARD tail (nuFnu ~ E^0.04 above Ep). Predict models carrying a high-energy power law (Band / SBPL / DSBPL) beat CPL window-integrated. FALSIFIED if CPL beats Band by dAIC >= 10 window-integrated.",
+  "P-A3 (Ep degeneracy warning, falsifiable as a procedure): because beta sits at the -2 boundary, Ep is only weakly pinned - the four catalog models disagree by 1.6x in Ep (151/227/239 keV) while all sit within d(redchisq) < 0.4. Predict our per-block Ep uncertainties are correspondingly large (>=15% fractional) in at least half the blocks, and predict at least one block triggers the L9 BOUND_CAPPED / wide-Ep-cap diagnosis. FALSIFIED if every block returns Ep to better than 10% with no bound interaction.",
+  "P-B (null-streak baseline, falsifiable): NO published BB / photosphere / quasi-thermal claim exists for this burst anywhere in its 5-paper record. Predict the union rule (LRT_BANDBB_BAND >= 9.2 AND kT > 1.05 AND LRT_CPLBB_CPL >= 9.2 - BOTH nested tests) fires in ZERO blocks. Any significant-BB block is an UNPUBLISHED-DECISION finding to be scored against the expert band, not a literature reconciliation.",
+  "P-C (two-break, falsifiable): the catalog's one-break SBPL (Ebreak = 43.1 +/- 9.4 keV) and Band are statistically TIED (redchisq 1.2377 vs 1.2479 at equal dof) and no two-break evidence is published. Predict DSBPL does NOT win by dAIC >= 10 in any block of this moderate burst (PF1024 = 4.2 ph/cm2/s). A DSBPL win would be a genuine unpublished discovery candidate and MUST first clear the L8 default-seed artifact check.",
+  "P-D (temporal, falsifiable): Maccary+2025 report Npeaks = 2 and FWHMmin = 3.02 (-0.78/+1.06) s over the whole light curve; Golkhou+2015 put dt_min < 0.203 s. Predict our block decomposition over the MAIN-ONLY window yields >= 2 significant blocks, and that our MVT-equivalent lands in [0.1, 4] s depending on estimator. FALSIFIED by a single-block decomposition of the main pulse, or by an MVT outside that decade-wide band. NOTE: the consensus-era archival panel (different window, src(-3,42)) gave 3 blocks - disclosed in freeze_hygiene, NOT used as the prediction.",
+  "P-E (component-coverage trap, procedural - the dominant hazard on this burst): our window EXCLUDES the T0-120 s precursor that Bhat+2016 explicitly INCLUDED in the duration analysis. Therefore predict our window-integrated 10-1000 keV fluence comes out BELOW the catalog's 1.42e-05 erg/cm2, and predict any 'our T90 disagrees with the catalog' statement is an artifact of coverage, not of method. Any duration/fluence diff MUST first re-align (i) component coverage (precursor+main vs main-only), (ii) energy band (our fits vs their 50-300 keV durations, with T90 ~ E^-0.20 per Qin+2013 which Bhat+2016 itself cites), and (iii) detector set (their NaI-only 0+1+3+4 for durations, n0+n3+b0 for spectra, vs our n0,n1,n3,n4,b0).",
+  "P-F (background validity, falsifiable): the pre-burst background windows open at T0-83 s (n0), -98.3 s (n1,n3), -103.0 s (n4), -100.0 s (b0) - the earliest of them sits only ~17 s after the localized precursor. Predict the precursor does NOT measurably contaminate the fitted background (no systematic positive residual at the early edge of the pre-window). FALSIFIED if the polynomial background shows a coherent excess in the first ~10 s of any pre-window, in which case the pre-window inner/outer edges must be revisited before any block-level flux is quoted."
+ ],
+ "harvest_snippets": {
+  "NarayanaBhat2016": [
+   "bn110928180n 0+1+3+4 148.226 +/- 1.925 -119.298 15.424 +/- 0.500 0.576   [Table 6, p.118]",
+   "nLocalization of precursor at T0 -120 s is consistent with burst location and was included in the duration analysis.   [Table 6 footnote block, p.135 - footnote 'n' is used ONCE in the whole catalog]",
+   "bn110928180 1.42E-05 +/- 9.36E-08 6.50 +/- 0.89 5.15 +/- 0.41 4.20 +/- 0.19   [Table 7, 10-1000 keV, p.160]",
+   "bn110928180 8.23E-06 +/- 4.71E-08 3.70 +/- 0.55 3.01 +/- 0.25 2.37 +/- 0.11   [Table 8, 50-300 keV, p.205]",
+   "bn110928180 <-> 110928B   [Table 5 name pairing, p.74, x-coordinate verified]"
+  ],
+  "Maccary2025": [
+   "GRB110928B | bn110928180 | FWHM 3.02394 (-0.78226/+1.05524) s | t90 148.226 | Npeaks 2.0 | z blank | Class II   [VizieR J/A+A/702/A95 table1 recno 671]",
+   "'the MVT, defined as the full width at half maximum (FWHM) of the narrowest pulse in the light curve'   [abstract; narrowest pulse from MEPSA]"
+  ],
+  "Golkhou2015": [
+   "110928180 110928B < 0.203 0.110 +/- 0.010 148.226 +/- 1.925 -192.673 91.909 0.20 0.23 ...   [Table 2, arXiv p.25]"
+  ],
+  "Hurley2017": [
+   "2011-09-28T04:19:51 | GRB | 110928180 | INT,Kon,MES,MO,RHE,Suz   [VizieR J/ApJS/229/31 table2 recno 273]",
+   "error box centre 149.627 +31.888, aGBM=719 deg2, aIPN=0.212 deg2, ratio=3390   [table6 recno 105]"
+  ],
+  "HEASARC_fermigbrst": [
+   "flnc [-62.464,+29.696] s, dets n0+n3+b0: Band Ep=151.27+/-17.35, alpha=-0.561+/-0.122, beta=-1.962+/-0.088 (redchisq 1.2479/337); SBPL Ebreak=43.13+/-9.42 (redchisq 1.2377/337 - LOWER than the declared best)",
+   "pflx [8.192,9.216] s: Comp Ep=238.63+/-40.41, index=-0.527+/-0.222 (declared best); Band Ep=166.86+/-30.80"
+  ],
+  "GCN_circulars": [
+   "absent for this burst (0). The 110928.gcn3 archive is entirely Swift GRB 110928A (01:51:31 UT, trigger 504215); 110928B.gcn3 = 404. T1 contamination guard applied."
+  ],
+  "vonKienlin2014": [
+   "membership only (bcatalog=2 + CDS 'GBM2' cross-link in the Hurley+2017 VizieR row); no printed per-burst row"
+  ]
+ }
+}

@@ -1,0 +1,22 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn180720213}
+# - {src_start: -1.7}
+# - {src_stop: 16.0}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z human_gui)'}
+# - {manifest: '{''tte'': 4, ''cspec_pha'': 4, ''rsp2'': 4, ''rsp'': 0, ''poshist'': 1, ''trigdat'': 1, ''lle_triplet'': 0, ''lat'': 0}'}
+# - {note: all four approved GBM detectors ship multi-matrix .rsp2 v02; no LLE/LAT holdings for this burst; D1 off-axis test n/a (no single-matrix
+#     response in use)}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n3 -36.353 193.028 5 PASS
+n4 -36.353 193.028 5 PASS
+n5 -36.353 193.028 5 PASS
+b0 -36.353 193.028 5 PASS

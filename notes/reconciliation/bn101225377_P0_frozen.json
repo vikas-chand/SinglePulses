@@ -1,0 +1,97 @@
+{
+  "burst": "bn101225377",
+  "grb_name": "GRB101225377 (GBM designation; NO IAU letter. 'GRB 101225A' = the Swift Christmas burst, a DIFFERENT event 47.52 deg away and 9h35m later - see dossier T1 block)",
+  "tally": null,
+  "tally_note": "walkthrough serial not assigned by this doc-layer worker",
+  "frozen_utc": "2026-08-12; frozen BEFORE any fresh/sweep106 fit table was opened (results/sweep106/ NEVER read, per hard rule). Only the sanctioned archival prior (clean_per_burst_human_final) and the public literature/catalog frame were consulted.",
+  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+  "identity_guard": {
+    "trigger_time_met": 314960575.49784,
+    "utc": "2010-12-25T09:02:53.498",
+    "position_deg": [60.68, 32.77],
+    "why_it_matters": "every literature search on the NAME returns the Christmas burst (165 ADS hits, 27 GCN circulars). Identity is fixed by trigger/MET only."
+  },
+  "archival_prior": {
+    "source": "results/clean_per_burst_human_final/bn101225377/spectral_fits.ecsv (pre-L18-era engine; production numbers provisional per AGENTS.md §6)",
+    "n_blocks": 3,
+    "plus_integrated": true,
+    "block_edges_s": [[76.795, 79.360], [79.360, 97.979], [97.979, 102.369]],
+    "integrated_span_s": [76.795, 102.369],
+    "stamped_source_window_s": [75.629, 108.915],
+    "coverage_gap_note": "the archival binning stops at 102.369 s, 6.5 s short of the stamped window stop (108.915 s) and short of the visible emission end (~108 s) and of the GBM catalog fluence interval stop (108.54 s)",
+    "detectors": "n7,n8,nb,b1 (4, all blocks) - IDENTICAL to the GBM catalog scat set, so the P3 diff carries NO detector-set confound",
+    "union_rule_bb_blocks": {
+      "rule": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05)",
+      "bandbb_pass": [],
+      "cplbb_pass": [],
+      "union": [],
+      "count": 0,
+      "detail": {
+        "integrated_[76.795,102.369]s": "LRT_BANDBB_BAND=7.018 (kT=7.81 keV, BANDBB_VALID=True), LRT_CPLBB_CPL=4.668 (kT=8.28 keV, CPLBB_VALID=True) - the closest approach; both below 9.2. AIC winner Band+BB at a margin of only 2.52 over the 2nd model; BIC winner CPL.",
+        "blk0_[76.795,79.360]s": "LRT_BANDBB=4.463 (kT=10.97), LRT_CPLBB=4.100 (kT=10.79). AIC winner CPL+BB by 0.10 (a tie); BIC winner CPL.",
+        "blk1_[79.360,97.979]s": "LRT_BANDBB=4.237 (kT=7.49), LRT_CPLBB=1.647 (kT=8.17). AIC winner Band+BB by 0.24 (a tie); BIC winner CPL.",
+        "blk2_[97.979,102.369]s": "LRT_BANDBB=1.974, LRT_CPLBB=1.881 (kT 7.62/7.60). AIC and BIC winner CPL; BANDBB_VALID=False and BAND_VALID=False here."
+      },
+      "headline": "ZERO BB blocks under the union rule, in a burst where AIC nevertheless names a +BB model in 3 of 4 rows. This is the clean specimen of 'AIC prefers BB, the nested test refuses it' - and the AIC margins are 0.10-3.02, i.e. noise."
+    },
+    "aic_winners_by_block": {"-1": "Band+BB", "0": "CPL+BB", "1": "Band+BB", "2": "CPL"},
+    "bic_winners_by_block": {"-1": "CPL", "0": "CPL", "1": "CPL", "2": "CPL"},
+    "aic_best_minus_second_margin": {"-1": 2.52, "0": 0.10, "1": 0.24, "2": 2.01},
+    "kT_keV_bandbb_by_block": {"-1": 7.81, "0": 10.97, "1": 7.49, "2": 7.62},
+    "kT_keV_cplbb_by_block": {"-1": 8.28, "0": 10.79, "1": 8.17, "2": 7.60},
+    "band_params_by_block": {
+      "-1": {"alpha": -0.769, "alpha_err": [-0.041, 0.044], "Ep": 245.73, "Ep_err": [-16.14, 16.70], "beta": -2.688, "beta_err": [-0.540, 0.288], "valid": true},
+      "0": {"alpha": -0.645, "alpha_err": [-0.175, 0.210], "Ep": 411.80, "Ep_err": [-96.90, 146.31], "beta": -3.071, "beta_err": [-1.929, 1.010], "valid": true},
+      "1": {"alpha": -0.702, "alpha_err": [-0.045, 0.047], "Ep": 226.77, "Ep_err": [-13.64, 15.36], "beta": -2.529, "beta_err": [-0.350, 0.200], "valid": true},
+      "2": {"alpha": -1.161, "alpha_err": [-0.115, 0.127], "Ep": 278.99, "Ep_err": [-67.90, 128.12], "beta": -5.000, "beta_err": [0.0, 2.885], "valid": false, "flag": "BETA RAILED at the -5 bound with zero negative error -> BOUND_CAPPED class (L9/L19)"}
+    },
+    "cpl_params_by_block": {
+      "-1": {"index": -0.792, "xc": 215.21, "Epk_curve": 258.51},
+      "0": {"index": -0.650, "xc": 310.81, "Epk_curve": 420.66},
+      "1": {"index": -0.741, "xc": 195.82, "Epk_curve": 245.81},
+      "2": {"index": -1.161, "xc": 332.61, "Epk_curve": 281.15}
+    },
+    "secondary_signals": "LRT_DSBPL_SBPL max = 5.639 (integrated, DSBPL_VALID=True); 3.750 / 4.681 / 3.352 in blocks 0/1/2 with DSBPL_VALID=False in all three. SBPL_VALID=False in blocks 0 and 2 (SBPL beta railed at -4.999). No two-break signal anywhere in the archival prior.",
+    "validity_flags": "BAND_VALID False and BANDBB_VALID False in blk2; SBPL_VALID False in blk0+blk2; DSBPL_VALID False in blk0+blk1+blk2. Bound-railing (beta = -5.000 / -4.999) is the recurring cause."
+  },
+  "published_frame_for_the_diff": {
+    "papers_fitting_this_burst": 0,
+    "frame": "HEASARC fermigbrst catalog row ONLY (Castor C-STAT, 10-1000 keV, detectors n7,n8,nb,b1 = ours)",
+    "flnc_interval_s": [76.8, 108.54],
+    "flnc_best": "Band: Ep=208.68+-15.32 keV, alpha=-0.703+-0.057, beta=-2.163+-0.168 (redchisq 1.0904)",
+    "flnc_comp": "Ep=257.97+-12.02, index=-0.801+-0.035",
+    "flnc_sbpl": "indx1=-0.894+-0.040, Ebreak=128.04+-13.74 keV, indx2=-2.216+-0.116 (brksc 0.3 fixed)",
+    "pflx_interval_s": [93.184, 94.208],
+    "pflx_best": "Comptonized: Ep=220.78+-32.35, index=-0.789+-0.130",
+    "component_coverage_T9": "MAIN (single) PULSE for every published row; only one emission episode exists"
+  },
+  "predictions": [
+    "P-A (integrated Ep, the one real cross-frame test): the fresh blind integrated fit over the stamped window 75.629-108.915 s - which includes ~6.5 s more decaying tail than the archival 76.795-102.369 s and matches the catalog fluence interval 76.80-108.54 s to within ~1.2 s - will land Band Ep BELOW the archival 245.7 (-16.1/+16.7) keV and within ~1.5 sigma of the catalog 208.7 +- 15.3 keV, i.e. PREDICTED Ep in 195-235 keV, with alpha in [-0.78,-0.62] and beta in [-2.55,-2.05]. FALSIFIER: an integrated Ep > 250 keV or < 180 keV, or alpha outside [-0.90,-0.55]. If Ep stays near 246 keV while covering the catalog's own interval, the 37 keV offset is NOT tail coverage - and since the detector set is IDENTICAL (n7,n8,nb,b1), the residual cause would have to be response handling, background model, or statistic, which the P3 diff must then name.",
+    "P-B (BB / union rule): predict union count = 0 AGAIN - no block reaching LRT_BANDBB_BAND >= 9.2 or LRT_CPLBB_CPL >= 9.2 with kT > 1.05 (archival maxima 7.018 and 4.668, both in the integrated row). Predict AIC nevertheless keeps naming a +BB model in the integrated row and in the pulse core, at margins < 5. FALSIFIER: any block passing the union rule under the L18+ engine -> the archival zero was a seed/cap artifact (L8/L9 class), bn101225377 joins the BB population, and kT is expected in 7.5-11 keV (archival kT: Band+BB 7.81/10.97/7.49/7.62; CPL+BB 8.28/10.79/8.17/7.60). Either outcome is a publishable data point because NO paper has ever tested a thermal component in this burst - there is no literature claim to agree or disagree with.",
+    "P-C (break structure / the two-break question): predict NO valid two-break block. Archival LRT_DSBPL_SBPL maxes at 5.639 (integrated) with DSBPL_VALID=False in every real block, and the catalog's own SBPL fit (E_break = 128.04 +- 13.74 keV, indices -0.894/-2.216) is a single-break description of the same data. FALSIFIER: a DSBPL_VALID block with dAIC >= 10 over SBPL in the fresh run.",
+    "P-D (model indifference - the characteristic feature of this burst): predict the fresh run reproduces near-degeneracy, best-minus-second AIC margin < 5 in EVERY block (archival margins 0.10, 0.24, 2.01, 2.52 - all far below the project's dAIC >= 10 doctrine). FALSIFIER: a decisive winner (dAIC >= 10) anywhere; that would signal an engine change, not new information in the data.",
+    "P-E (binning coverage): predict the fresh 27b binning of 75.629-108.915 s extends past 104 s (the archival binning stopped at 102.369 s while counts persist to ~108 s) and yields 3-5 blocks, with the last block the softest and least constrained. FALSIFIER: a fresh binning that again stops before 103 s.",
+    "P-F (bound-capping diagnosis, L9/L19): predict the L18+ engine labels the archival railings explicitly - blk2 Band beta = -5.000 (zero negative error, BAND_VALID=False) and SBPL beta = -4.999 in blk0/blk2 - as BOUND_CAPPED rather than propagating them as silent invalidity, and that widened caps move blk2's Band beta off the rail (predicted beta < -2.5 but not at the bound).",
+    "P-G (spectral evolution): predict hard-to-soft across the first two blocks - Ep(blk0) > Ep(blk1) at >1 sigma (archival 411.8 -96.9/+146.3 vs 226.8 -13.6/+15.4) - and predict the tail block remains UNCONSTRAINED (Ep error > 50% ) rather than showing a real re-hardening, despite the archival blk2 central value of 279 keV. FALSIFIER: a tail-block Ep constrained to better than 25% and higher than the pulse-core Ep, which would be a genuine re-hardening worth a paragraph."
+  ],
+  "harvest_snippets": {
+    "Hurley2017_IPN": [
+      "table2: '2010 Dec 25 09:02:53  GRB101225377  INT,Kon,MO,RHE,Suz,Swi  d' -> INTEGRAL, Konus-Wind, Mars Odyssey, RHESSI, Suzaku, Swift all detected it; flag d = 'Burst was outside the coded field of view of the BAT, and not localized by it'",
+      "table6: IPN 3-sigma error box 12.600 deg2 vs GBM 3-sigma contour 8210 deg2 (ratio 652); box corners (78.432,-5.889)(72.805,+55.007)(78.634,-5.814)(73.173,+54.967)",
+      "table5: annulus 1 (104.4910,+23.7495) R=38.9563+-0.0931 deg; annulus 2 (67.0176,+23.6916) R=15.7952+-15.8136 deg [half-width > radius: flagged, transcribed verbatim]"
+    ],
+    "Crupi2024_DeepGRB": [
+      "Table A.1 row 30 / ID 2010_31: '2010-12-25 09:04:12 | 106.50 | n1 n2 n3 n4 n5 n6 n7 n8 n9 na nb | GRB101225377 | > 10 | > 10 | 0 | R' - independent ML re-detection at T0+78.5 s with 11 NaI detectors; zero significance in their highest energy range r2"
+    ],
+    "literature_spectral_claims": [
+      "absent - no paper fits, bins, or times this burst. Zero Ep values, zero alpha/beta values, zero thermal claims, zero lag/pulse-width measurements exist in the refereed literature."
+    ],
+    "literature_BB_claims": [
+      "absent - and no paper has ever tested one. Our BB verdict for this burst is therefore unconstrained by prior work in BOTH directions (no confirmation bias available, no memorization channel)."
+    ],
+    "GCN": [
+      "ZERO circulars. Never announced. The 101225 archive page belongs entirely to the Swift Christmas burst GRB 101225A."
+    ]
+  },
+  "why_this_burst_is_valuable_for_the_benchmark": "It is a memorization-free specimen: no GCN, no analysis paper, no redshift, no name-level literature at all, yet a bright (fluence 2.02e-5 erg/cm2), clean single pulse with an unambiguous published catalog frame whose detector set matches ours exactly. Whatever the blind engine produces here cannot have been read off the literature - the only external numbers in existence are a catalog row and two table lines."
+}

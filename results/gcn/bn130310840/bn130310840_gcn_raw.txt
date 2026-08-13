@@ -1,0 +1,402 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14282
+SUBJECT: GRB 130310A: Fermi-LAT detection and localization
+DATE:    13/03/11 07:36:13 GMT
+FROM:    Sylvain Guiriec at UAH  <sylvain.guiriec@lpta.in2p3.fr>
+
+S. Guiriec (NASA/GSFC/NPP), G. Vianello (Stanford)
+and M. Ohno (Hiroshima U.)
+report on behalf of the Fermi-LAT team:
+
+The Fermi Large Area Telescope (LAT) detected emission from
+GRB 130310A (GBM trigger 130310840/384638984) at approximately
+20:09:44 UT on March 10th, 2013, about 3s after Fermi-GBM trigger time.
+
+The burst location was outside the LAT nominal field of view, at an angle
+of ~79 degrees from the LAT boresight, and ~50 degrees from the Zenith.
+
+Using the non-standard LAT Low Energy (LLE) data selection, featuring
+a large effective area and a larger field of view below 100 MeV but a much
+larger PSF with respect to the standard classes, we clearly detect
+the prompt emission of the GRB (significance > 10 sigma above the
+background). With this selection and in this energy range the GRB shows
+a single FRED-like pulse, peaking ~3 s after the GBM trigger in good
+coincidence with the peak of the GBM emission.
+
+The high peak flux of the burst triggered an Autonomous Repointing
+Request (ARR) starting about 50s after the trigger time, which placed
+the GRB within the LAT nominal field of view for standard data
+classes (~65 deg) approximately 200 s after the trigger.
+Using the P7SOURCE_V6 class we detect ~18 photons between 100 MeV
+and 3 GeV in the time interval 200 s - 800 s from the trigger, clearly clustered
+in a point source ~4.8 deg away from the best GBM position and with
+a significance larger than 5 sigma. Our best localization is:
+
+R.A., Dec = 142.34, -17.23 (J2000)
+90 % containment radius (statistical only) = 0.45 deg.
+
+A GBM circular on GRB 130310A is forthcoming.
+
+The Fermi LAT point of contact for this burst is Sylvain Guiriec
+(sylvain.guiriec@nasa.gov)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14283
+SUBJECT: GRB 130310A: Fermi GBM detection
+DATE:    13/03/11 08:48:12 GMT
+FROM:    Shaolin Xiong at UAH  <sx0002@uah.edu>
+
+Shaolin Xiong (UAH) and Vandiver Chaplin (UAH)
+report on behalf of the Fermi GBM Team:
+
+"At 20:09:41.50 UT on 10 March 2013, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 130310A (trigger 384638984 / 130310840),
+which was also detected by the Fermi/LAT (Guiriec et al. 2013, GCN 14282)
+The GBM on-ground location is consistent with the LAT position.
+At the time of triggering the angle from the Fermi LAT boresight was
+79 degrees. GBM generated a Autonomous Repointing
+Request (ARR) due to the high peak flux of this GRB, causing
+Fermi to reorient so that the LAT could better observe this GRB.
+
+The GBM light curve consists of a precursor and a FRED pulse
+with a duration (T90) of about 2.4 s (50-300 keV).
+The time-averaged spectrum from T0+4.1 s to T0+5.0 s is
+adequately fit by a Band function with Epeak = 2.1 +/- 0.2 MeV,
+alpha = -1.01 +/- 0.02, and beta = -2.27 +/- 0.1.
+
+The event fluence (10-1000 keV) in this time interval is
+(1.4 +/- 0.02)E-5 erg/cm^2. The 0.064 sec peak photon flux measured
+starting from T0+4.1 s in the 10-1000 keV band is 170 +/- 3 ph/s/cm^2.
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14284
+SUBJECT: IPN triangulation of GRB 130310A
+DATE:    13/03/11 13:10:43 GMT
+FROM:    Dmitry Svinkin at Ioffe Institute  <svinkin@mail.ioffe.ru>
+
+S. Golenetskii, R. Aptekar, E. Mazets, V. Pal'shin, D. Frederiks,
+D. Svinkin, and T. Cline on behalf of the Konus-Wind team,
+
+K. Hurley and J. Goldsten, on behalf of MESSENGER GRNS GRB team,
+
+I. G. Mitrofanov, D. Golovin, M. L. Litvak, and A. B. Sanin,
+on behalf of the HEND-Odyssey GRB team,
+
+V. Connaughton, M. Briggs, and C. Meegan, on behalf of the Fermi
+GBM team,
+
+K. Yamaoka, M. Ohno, Y. Hanabata, Y. Fukazawa, T. Takahashi, M.
+Tashiro, Y. Terada, T. Murakami, and K. Makishima on behalf of the
+Suzaku WAM team, and
+
+A. von Kienlin, X. Zhang, A. Rau, V. Savchenko, E. Bozzo, and C.
+Ferrigno, on behalf of the INTEGRAL SPI-ACS GRB team, report:
+
+
+The short-duration, hard-spectrum, intense GRB 130310A (Fermi/LAT 
+detection: Guiriec,  Vianello, Ohno, GCN 14282; Fermi/GBM detection: 
+Xiong and Chaplin, GCN 14283) has been also observed by Konus-Wind, 
+Suzaku (WAM), INTEGRAL (SPI-ACS), MESSENGER (GRNS), and Mars Odyssey 
+(HEND), so far, at about 72585 s UT (20:09:45).
+
+We have triangulated it to a preliminary, 3 sigma error box whose
+coordinates are:
+     ---------------------------------------------
+      RA(2000), deg                 Dec(2000), deg
+     ---------------------------------------------
+    Center:
+     141.905 (09h 27m 37s) -17.431 (-17d 25' 53")
+    Corners:
+     141.722 (09h 26m 53s) -16.780 (-16d 46' 50")
+     141.801 (09h 27m 12s) -17.435 (-17d 26' 06")
+     142.093 (09h 28m 22s) -18.072 (-18d 04' 18")
+     142.008 (09h 28m 02s) -17.428 (-17d 25' 40")
+     ---------------------------------------------
+The error box area is 465 sq. arcmin, and its maximum
+dimension is 80 arcmin (the minimum one is 12 arcmin; the minimum 
+annulus width is 11 arcmin).
+
+This box can be improved.
+
+A triangulation map is posted at
+http://www.ioffe.ru/LEA/GRBs/GRB130310_T72588/IPN/
+
+The center of the LAT position (Guiriec,  Vianello, Ohno, GCN 14282) is 
+0.46 deg from the box center.
+
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14285
+SUBJECT: Konus-Wind observation of GRB 130310A
+DATE:    13/03/11 14:14:12 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The short hard intense GRB 130310A
+(Fermi-LAT detection: Guiriec et al., GCN 14282;
+Fermi-GBM detection: Xiong and Chaplin, GCN 14283
+IPN triangulation: Golenetskii et al., GCN 14284)
+triggered Konus-Wind at T0=72588.897s UT (20:09:48.897)
+
+The light curve shows a bright hard FRED-like structure
+with a total duration of ~3 s.
+The emission is seen up to 10 MeV.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB130310_T72588/
+
+As observed by Konus-Wind, the burst
+had a fluence of (3.0 ± 0.3)x10-5 erg/cm2,
+and a 16-ms peak flux, measured from T0+0.000s,
+of (3.6 ± 0.2)x10-4 erg/cm2/s
+(both in the 20 keV - 10 MeV energy range).
+
+The time-integrated spectrum (measured from T0 to T0+8.448 s)
+is best fit in the 20 keV - 15 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -1.03 ± 0.05,
+the high energy photon index beta = -1.85 ± 0.15,
+the peak energy Ep = 855 ± 270 keV,
+chi2 = 85.8/97 dof.
+
+The spectrum at the maximum count rate (measured from T0 to T0+0.064 s)
+is best fit in the 20 keV - 15 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -0.87 ± 0.13,
+the high energy photon index beta = -1.62 ± 0.28,
+the peak energy Ep = 2600 ± 1400 keV,
+chi2 = 27.9/26 dof.
+
+All the quoted results are preliminary.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14288
+SUBJECT: Swift XRT observations of GRB 130310A
+DATE:    13/03/12 03:12:58 GMT
+FROM:    Boris Sbarufatti at INAF-OAB/IASFPA  <boris.sbarufatti@brera.inaf.it>
+
+B. Sbarufatti (INAF-OAB/PSU), D. N. Burrows (PSU), J. L. Racusin
+(NASA/GSFC), C. J. Mountford (U Leicester), N. Gehrels (NASA/GSFC) report
+on behalf of the Swift team:
+
+Swift performed 3 pointings of 1.5 ks each to cover the IPN error box for
+GRB 130310A (Golenetskii et al., GCN #14284). A single, uncatalogued
+source is detected at coordinates:
+
+   RA/Dec (J2000) = 09 27 36.35   -17 06 16.1
+   RA/Dec (J2000) = 141.901   -17.1044
+
+Error radius (arcsec) = 3.6 (90% confidence level)
+
+The source is inside the IPN error box, and 0.44 degrees from the Fermi
+LAT position (Guiriec et al., GCN #14282), just inside the LAT error
+circle.
+
+The countrate is 7.60E-03 +/- 2.5E-03 c/sec
+At present is not possible to tell if the source is fading.
+
+This circular is an official product of the Swift-XRT team.
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14289
+SUBJECT: GRB 130310A: optical observations
+DATE:    13/03/12 08:00:05 GMT
+FROM:    Antonino Cucchiara at UCSC/UCO Lick  <acucchia@ucolick.org>
+
+A. Cucchiara (UCSC/UCO Lick Observatory), S. B. Cenko 
+(UC Berkeley), D. Perley (Caltech) report on behalf of 
+a large collaboration:
+
+"On March 12.4 UT we observed the field of the short-hard 
+GRB 130313A (GCN 14282, 14283, 14284, 14285 and 14288) 
+with the Gemini-South telescope equipped with the GMOS camera.
+
+We obtained 5x180s exposures, for a total integration time
+of 15 minutes (T_mid = T0+1.22 days). 
+
+
+A snapshot of our imaging campaign can be seen here:
+https://www.dropbox.com/s/jqt714c44b7ngei/0310A_rband.jpeg
+We note the presence of two irregular objects (marked as "G1" adn "G2") 
+within the current XRT error circle (3.6 arcsec radius, GCN 14288).
+
+The coordinates of this objects are:
+
+"G1"
+RA: 09:27:36.34  (J2000)
+Dec: -17:06:18.92 (J2000)
+
+"G2"
+RA: 09:27:36.46  (J2000)
+Dec: -17:06:13.80 (J2000)
+
+
+Using 3 USNO-B1 stars we estimate a preliminary 
+brightness for "G1" of r' = 25.05 +- 0.15 and for
+"G2" r'=23.80 +- 0.10.
+
+At this point the nature of these objects as well as the relation with 
+GRB 130313A afterglow is still uncertain. Further observations
+are encouraged.
+
+We thank the Gemini staff for performing this observations,
+in particular J. Thomas-Osip"
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14290
+SUBJECT: Swift XRT RETRACTION of GRB 130310A afterglow detection 
+DATE:    13/03/12 14:44:15 GMT
+FROM:    Boris Sbarufatti at INAF-OAB/IASFPA  <boris.sbarufatti@brera.inaf.it>
+
+B. Sbarufatti (INAF-OAB/PSU), D. N. Burrows (PSU), P. E. Evans (U
+Leicester), E. Troja (NASA/GSFC/UMCP) report on behalf of the Swift team:
+
+Upon further analysis of the Swift XRT observations of the IPN error box
+for GRB 130310A (Svinkin et al., GCN #14284) we RETRACT the detection of a
+candidate afterglow reported by Sbarufatti et al., GCN #14288.
+
+Further analysis is ongoing.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14310
+SUBJECT: GRB 130310A : Suzaku WAM observation of the prompt emission
+DATE:    13/03/15 10:55:37 GMT
+FROM:    Masanori Ohno at Hiroshima U  <ohno@hep01.hepl.hiroshima-u.ac.jp>
+
+T. Kawano, M. Ohno, Y. Hanabata, Y. Tanaka, R. Nakamura, K. Takaki,
+Y. Fukazawa (Hiroshima U.),
+A. Sakamoto, M. Tashiro, Y. Terada, W. Iwakiri, T. Yasuda, K. Takahara,
+M. Asahina, S. Kobayashi, H. Ueno (Saitama U.),
+M. Akiyama, N. Ohmori,  M. Yamauchi (Univ. of Miyazaki),
+Y. E. Nakagawa (Waseda U.), S. Sugita (Nagoya U.), K. Yamaoka,
+M. Kokubun, T. Takahashi (ISAS/JAXA), Y. Urata, P. Tsai (NCU), K. Nakazawa,
+K. Makishima (Univ. of Tokyo), on behalf of the Suzaku WAM team, report:
+
+The bright short GRB (Fermi-LAT detection ; Guiriec et al., GCN14282;
+Sbarufatti et al., GCN 14288) triggered by the Suzaku Wide-band All-sky
+Monitor (WAM)
+which covers an energy range of 50 keV - 5 MeV at 20:09:45 UT (=T0).
+
+The observed light curve shows a single peak structure starting at
+T0 s, ending at T0+1 s with a duration (T90) of about 0.3 seconds.
+The fluence in 100 - 1000 keV was 7.78 (-1.13, +2.72) x 10^-6 erg/cm^2.
+The 1-s peak flux measured from T0 s was 14.34(-1.37,+2.30)
+photons/cm^2/s in the same energy range.
+
+Preliminary result shows that the time-averaged spectrum from T0 to
+T0+1 s is well fitted by GRB Band model:
+the low-energy photon index alpha: -1.13 (-0.25, +0.16),
+                      beta        : -2.07 (-0.32, +0.19)
+and the peak energy Epeak: 1000 (-442, +639) keV (chi^2/d.o.f = 43.2/44).
+All the quoted errors are at statistical 90% confidence level.
+
+The light curves for this burst will be available at:
+http://www.astro.isas.jaxa.jp/suzaku/HXD-WAM/WAM-GRB/grb/untrig/grb_table.html
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14316
+SUBJECT: Swift XRT observations of GRB 130310A
+DATE:    13/03/15 22:03:36 GMT
+FROM:    Boris Sbarufatti at INAF-OAB/IASFPA  <boris.sbarufatti@brera.inaf.it>
+
+B. Sbarufatti (INAF-OAB/PSU), D. N. Burrows (PSU), P. E. Evans (U
+Leicester) report on behalf of the Swift XRT team:
+
+Swift performed a total of 7 pointings for this burst on March 11th: 4x1ks
+covering the Fermi LAT error circle (Guiriec et al., GCN #1482) and 3x1.5
+ks covering the IPN error box (Golenetskii et al., GCN #14284). We detect
+a total of 5 sources:
+
+#  RA          DEC          Err     counts  rate(counts/ks)
+1  09 28 45.9  -17 18 49.5  7.4"    9	    11  (+11/-7)
+2  09 29 27.0  -17 30 13.8  6.8"    12	    13  (+14/-8)
+3  09 28 59.0  -17 00 40.8  5.4"    8	    9   (+10/-7)
+4  09 27 58.9  -17 12 57.9  8.6"    10	    11  (+12/-7)
+5  09 27 31.7  -17 08 55.3  11.0"   5	    4.7 (+6/-4)
+
+The fluxes are computed at the 99% confidence level, following Kraft,
+Burrows & Nousek (1991). The background level was computed both generally,
+using the 'background' task of XIMAGE on each pointing, and locally, using
+the 'sosta' task of XIMAGE, and selecting the highest value.
+All sources are inside the LAT error circle, but only source #5 is inside
+the IPN error box.
+
+Swift performed another observation in the direction of source #5 on March
+13th, with a 3.4 ks exposure. The 99% confidence level upper limit at the
+position of source #5 is 4.6E-3 counts/s, which does not give strong
+evidence for fading.
+
+No further observations are planned.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14350
+SUBJECT: GRB 130310A: RATIR Observations
+DATE:    13/03/28 15:50:17 GMT
+FROM:    Nat Butler at Az State U  <natbutler@asu.edu>
+
+Nat Butler (ASU), Alan M. Watson (UNAM), Alexander Kutyrev (GSFC), William
+H. Lee (UNAM), Michael G. Richer (UNAM), Chris Klein (UCB), Ori Fox (UCB)
+J. Xavier Prochaska (UCSC), Josh Bloom (UCB), Antonino Cucchiara (UCSC),
+Eleonora Troja (GSFC), Enrico Ramirez-Ruiz (UCSC), José A. de Diego (UNAM),
+Leonid Georgiev (UNAM), Jesús González (UNAM), Carlos Román-Zúñiga (UNAM),
+Neil Gehrels (GSFC), and Harvey Moseley (GSFC) report:
+
+We observed the field of the Fermi-LAT detected GRB 130310A (Guiriec, et
+al., GCN 14282) with the Reionization and Transients Infrared Camera
+(RATIR; www.ratir.org) on the 1.5m Harold Johnson Telescope at the
+Observatorio Astronómico Nacional on Sierra San Pedro Mártir.  Data were
+taken in the r' and i' channels for a central 9.8 x 7.3 arcmin^2 portion of
+the IPN error region (Golenetskii, et al., GCN 14284), centered on RA, DEC
+= 141.90061, -17.10809 (J2000),  in 2 epochs, 1.31-1.47 days after the
+Fermi trigger and 3.31-3.45 days after the Fermi trigger.  We reach a
+limiting magnitude ~24 (AB) in both channels in both epochs.  Data were
+captured in the Z, Y, J, and H bands over a larger field (14.8 x 12.5
+arcmin^2), reaching a shallower limit (~22 AB).
+
+Of the XRT candidate afterglows (Sbarufatti, et al., GCN 14316), only
+source #5 is contained in our images.  We detect that source in both epochs
+at a position RA, DEC = 141.881334, -17.147639 (+/-0.5" J2000):
+
+Epoch 1:
+  r' = 23.6 +/- 0.1
+  i' = 23.6 +/- 0.2
+
+Epoch 2:
+  r' = 23.5 +/- 0.1
+  i' = 23.3 +/- 0.2
+
+These magnitudes are in the AB system, not corrected for Galactic
+extinction in the direction of the GRB, and calibrated relative to USNO-B1.
+ We find that source #5 has remained approximately constant in flux over a
+2 day period.  It has not faded and is therefore unlikely to be the
+afterglow of GRB 130310A.  This source is not detected in the Z, Y, J, or H
+bands. We also note that we have searched for additional fading sources
+(delta_mag > 0.5) in all bands and have found none.
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.

@@ -1,0 +1,439 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10837
+SUBJECT: GRB 100614A: Swift detection of a burst
+DATE:    10/06/14 22:09:01 GMT
+FROM:    Scott Barthelmy at NASA/GSFC  <scott@lheamail.gsfc.nasa.gov>
+
+G. Stratta (ASDC), S. D. Barthelmy (GSFC),
+W. H. Baumgartner (GSFC/UMBC), D. N. Burrows (PSU), V. D'Elia (ASDC),
+J. M. Gelbord (PSU), C. Gronwall (PSU),
+S. T. Holland (CRESST/USRA/GSFC), J. A. Kennea (PSU),
+H. A. Krimm (CRESST/GSFC/USRA), N. P. M. Kuin (UCL-MSSL),
+W.B Landsman (GSFC), J. Mao (INAF-OAB), F. E. Marshall (NASA/GSFC),
+J. P. Osborne (U Leicester), T. Sakamoto (NASA/UMBC),
+C. J. Saxton (UCL-MSSL), B. Sbarufatti (INAF-OAB/IASFPA),
+M. Stamatikos (OSU/NASA/GSFC), T. N. Ukwatta (GSFC/GWU) and
+L. Vetere (PSU) report on behalf of the Swift Team:
+
+At 21:38:26 UT, the Swift Burst Alert Telescope (BAT) triggered and
+located GRB 100614A (trigger=424716).  Swift slewed immediately to the burst. 
+The BAT on-board calculated location is 
+RA, Dec 263.519, +49.227, which is 
+   RA(J2000)  =  17h 34m 05s
+   Dec(J2000) = +49d 13' 36"
+with an uncertainty of 3 arcmin (radius, 90% containment, including 
+systematic uncertainty).  As is typical for image triggers, the TDRSS
+lightcurve does not show anything significant. 
+
+The XRT began observing the field at 21:40:39.1 UT, 133.0 seconds after
+the BAT trigger. Using promptly downlinked data we find a bright,
+fading, uncatalogued X-ray source with an enhanced position: RA, Dec
+263.4992, 49.2347 which is equivalent to:
+   RA(J2000)  = 17h 33m 59.81s
+   Dec(J2000) = +49d 14' 05.1"
+with an uncertainty of 2.1 arcseconds (radius, 90% containment). This
+position may be improved as more data are received; the latest position
+is available at http://www.swift.ac.uk/sper. 
+
+A power-law fit to a spectrum formed from promptly downlinked event
+data gives a column density in excess of the Galactic value (2.2e+20
+cm^-2, Kalberla et al. 2005), with an excess column of 1.3
+(+1.11/-1.03) x 10^21 cm^-2 (90% confidence). 
+
+The initial flux in the 0.1 s image was 4.41e-08 erg cm^-2 s^-1 (0.2-10
+keV). 
+
+UVOT took a finding chart exposure of nominal 250 seconds with the U filter
+starting 873 seconds after the BAT trigger.  No white observations were taken
+because there is a V = 7.4 star in the UVOT field of view.  The UVOT image covers
+100% of the XRT error circle.  No credible afterglow candidate has been found in 
+the initial data products to an estimated magnitude limit of u > 19.2.  No 
+correction has been made for the expected extinction  corresponding to E(B-V) of 
+0.03 mag. 
+
+Burst Advocate for this burst is G. Stratta (giulia.stratta AT asdc.asi.it). 
+Please contact the BA by email if you require additional information
+regarding Swift followup of this burst. In extremely urgent cases, after
+trying the Burst Advocate, you can contact the Swift PI by phone (see
+Swift TOO web site for information: http://www.swift.psu.edu/too.html.)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10838
+SUBJECT: GRB 100614A: Liverpool Telescope Observations
+DATE:    10/06/14 23:07:02 GMT
+FROM:    Carole Mundell at ARI, JMU,Liverpool  <cgm@astro.livjm.ac.uk>
+
+C.G. Mundell and I.A. Steele (Liverpool JMU) report on behalf of a larger 
+collaboration:
+
+"The 2-m Liverpool Telescope robotically followed up GRB100614A
+(SWIFT trigger 424716; Stratta et al. GCN10837) 17.07 min after the GRB 
+trigger time. Initial analysis shows no optical counterpart is detected in 
+the XRT error circle to the following limiting magnitudes (wrt USNOB1):
+
+Time from trigger      Filter  Limiting Mag
+-----------------     -------  ------------
+29 mins		         R      > 21 mag
+31 mins			 i'	> 21 mag
+
+We note also that no counterpart is detected in z'-band images.
+
+Observations and analysis are ongoing.
+
+This message may be cited"
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10839
+SUBJECT: GRB 100614A: BOOTES-2/TELMA optical observations
+DATE:    10/06/14 23:16:03 GMT
+FROM:    Alberto Castro-Tirado at Inst.de Astro. de Andalucia  <ajct@iaa.es>
+
+M. Jelinek, A. J. Castro-Tirado (IAA-CSIC Granada), P. Kubanek (IAA-CSIC 
+and IPL-UV) and A. de Ugarte Postigo (OAB), on behalf of a larger 
+collaboration, report:
+
+"The TELMA 0.6m robotic telescope at the BOOTES-2 astronomical station 
+in South Spain has responded to GRB 100614A 18s after the GCN notice 
+(and about 6.9 min after the onset of the GRB).  The co-add of 36 images 
+(3-s each, unfiltered) obtained through cirrusses provides a R = 18 
+limiting magnitude at the position of the X-ray atterglow (Stratta et 
+al. GCNC 10837)."
+
+This message can be quoted.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10840
+SUBJECT: GRB 100614A: WHT I-band observations
+DATE:    10/06/15 01:32:15 GMT
+FROM:    Andrew Levan at U.of Leicester  <A.J.Levan@warwick.ac.uk>
+
+A.J. Levan (U. Warwick), N.R. Tanvir (U. Leicester) and P. Groot
+(Nijmegen) report for a larger collaboration:
+
+"We obtained imaging of GRB 100614A (Stratta et al. GCN 10837) with 
+the 4.2m William Herschel Telescope (WHT). Observations began at 
+22:38 UT, approximately 1.0 hours after the burst. A total of 1200s 
+integration was obtained in the I-band. Within the refined XRT 
+position we do not locate any obvious sources to a preliminary 
+limiting magnitude of I>24."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10845
+SUBJECT: GRB 100614 :  XMM-Newton observation
+DATE:    10/06/15 07:16:47 GMT
+FROM:    Norbert Schartel at XMM-Newton/ESA  <too@xmm.esac.esa.int>
+
+XMM-Newton is observing GRB 100614 (RA=17h 34m 05s, DEC=+49d 13' 16", J2000),
+starting at 04:12 UT, on June 15, 2010, for an exposure of 42 ksec.
+
+
+================================================================================================
+This message and any attachments are intended for the use of the addressee or addressees only.
+
+The unauthorised disclosure, use, dissemination or copying (either in whole or in part) of its content is prohibited.
+
+If you received this message in error, please delete it from your system and notify the sender.
+
+E-mails can be altered and their integrity cannot be guaranteed.
+
+ESA shall not be liable for any e-mail if modified.
+=================================================================================================
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10846
+SUBJECT: GRB 100614A: Swift-XRT refined analysis
+DATE:    10/06/15 10:01:56 GMT
+FROM:    Raffaella Margutti at U. di Milano Bicocca  <raffaella.margutti@brera.inaf.it>
+
+R. Margutti, B. Sbarufatti (INAF-OAB) and G. Stratta (ASDC) report on
+behalf of the Swift-XRT team:
+
+We have analysed 1.4 ks of XRT data for GRB 100614A (Stratta et al. GCN
+Circ. 10837), from 136 s to 1.6 ks after the BAT trigger. The data
+comprise 319 s in Windowed Timing (WT) mode with the remainder in Photon
+Counting (PC) mode. The light curve can be modelled with an initial
+power-law decay with an index of alpha=1.79 (+/-0.11) followed by a break
+around T+300 s to an alpha of 2.51 (+0.12, -0.10). X-ray flaring activity
+is detected in the first 300 s of observation.
+
+A spectrum formed from the WT mode data can be fitted with an absorbed
+power-law with a photon spectral index of 1.84 (+/-0.05). The best-fitting
+absorption column is 1.80 (+/-0.15) x 10^21 cm^-2, in excess of the
+Galactic value of 2.2 x 10^20 cm^-2 (Kalberla et al. 2005). The PC mode
+spectrum has a photon index of 1.92 (+0.21, -0.20) and a best-fitting
+absorption column of 1.0 (+/-0.5) x 10^21 cm^-2. The counts to observed
+(unabsorbed) 0.3-10 keV flux conversion factor deduced from this spectrum
+is 4.1 x 10^-11 (5.1 x 10^-11) erg cm^-2 count^-1.
+
+If the light curve continues to decay with a power-law decay index of
+2.51, the count rate at T+24 hours will be 1.3 x 10^-5 count s^-1,
+corresponding to an observed (unabsorbed) 0.3-10 keV flux of 5.2 x 10^-16
+(6.5 x 10^-16) erg cm^-2 s^-1.
+
+The results of the XRT-team automatic analysis are available at
+http://www.swift.ac.uk/xrt_products/00424716.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10849
+SUBJECT: GRB 100614A: Enhanced Swift-XRT position
+DATE:    10/06/15 11:50:36 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@star.le.ac.uk>
+
+J.P. Osborne, A.P. Beardmore, P.A. Evans and M.R. Goad (U. Leicester) 
+report on behalf of the Swift-XRT team.
+
+Using 3444 s of XRT Photon Counting mode data and 4 UVOT
+images for GRB 100614A, we find an astrometrically corrected X-ray
+position (using the XRT-UVOT alignment and matching UVOT field sources
+to the USNO-B1 catalogue): RA, Dec = 263.49923, +49.23434 which is equivalent
+to:
+
+RA (J2000): 17h 33m 59.82s
+Dec (J2000): +49d 14' 03.6"
+
+with an uncertainty of 1.7 arcsec (radius, 90% confidence).
+
+This position may be improved as more data are received. The latest
+position can be viewed at http://www.swift.ac.uk/xrt_positions. Position
+enhancement is described by Goad et al. (2007, A&A, 476, 1401) and Evans
+et al. (2009, MNRAS, 397, 1177).
+
+This circular was automatically generated, and is an official product of the
+Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10852
+SUBJECT: GRB 100614A: Swift-BAT refined analysis
+DATE:    10/06/15 13:59:10 GMT
+FROM:    Scott Barthelmy at NASA/GSFC  <scott@lheamail.gsfc.nasa.gov>
+
+T. Sakamoto (GSFC/UMBC), S. D. Barthelmy (GSFC), W. H. Baumgartner (GSFC/UMBC),
+J. R. Cummings (GSFC/UMBC), N. Gehrels (GSFC), H. A. Krimm (GSFC/USRA),
+C. B. Markwardt (GSFC/UMD), D. M. Palmer (LANL), M. Stamatikos (GSFC/ORAU),
+G. Stratta (ASDC), J. Tueller (GSFC), T. N. Ukwatta (GWU)
+(i.e. the Swift-BAT team):
+ 
+Using the data set from T-239 to T+963 sec from recent telemetry downlinks,
+we report further analysis of BAT GRB 100614A (trigger #424716)
+(Stratta, et al., GCN Circ. 10837).  The BAT ground-calculated position is
+RA, Dec = 263.534, 49.232 deg which is 
+   RA(J2000)  =  17h 34m 08.2s 
+   Dec(J2000) = +49d 13' 56.4" 
+with an uncertainty of 1.6 arcmin, (radius, sys+stat, 90% containment).
+The partial coding was 56%.
+ 
+The mask-weighted light curve shows a relatively smooth peak starting
+at ~T-10 sec, peaking around T+50 sec, and ending at ~T+275 sec.
+T90 (15-350 keV) is 225 +- 55 sec (estimated error including systematics).
+ 
+The time-averaged spectrum from T-9.0 to T+282.0 sec is best fit by a simple
+power-law model.  The power law index of the time-averaged spectrum is
+1.88 +- 0.15.  The fluence in the 15-150 keV band is 2.7 +- 0.2 x 10^-6 erg/cm2.
+The 1-sec peak photon flux measured from T+31.00 sec in the 15-150 keV band
+is 0.7 +- 0.2 ph/cm2/sec.  All the quoted errors are at the 90% confidence
+level. 
+ 
+The results of the batgrbproduct analysis are available at
+http://gcn.gsfc.nasa.gov/notices_s/424716/BA/
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10853
+SUBJECT: GRB 100614A: MASTER-Net  optical alert observations 
+DATE:    10/06/15 14:22:59 GMT
+FROM:    Vladimir Lipunov at Moscow State U/Krylov Obs  <gcncirc@observ.inetcomm.ru>
+
+E. Gorbovskoy, V. Lipunov, V.Kornilov, A.Belinski, N.Shatskiy, N.Tyurina,
+D.Kuvshinov, P.Balanutsa, V.V.Chazov, P.V.Kortunov, A.Kuznetsov, D.Zimnukhov,
+M. Kornilov
+Sternberg Astronomical Institute, Moscow State University
+
+A. Tlatov, A.V. Parhomenko, D. Dormidontov
+Kislovodsk Solar Station of the Pulkovo Observatory
+
+
+V.Yurkov, Yu.Sergienko, D.Varda, I.Kudelina
+Blagoveschensk Educational State University, Blagoveschensk
+
+
+V.Krushinski, I.Zalozhnich, T.Kopytova, A. Popov
+Ural State University, Kourovka
+
+K.Ivanov, S.Yazev, N.M.Budnev, E.Konstantinov, V.Lenok, O.Gres, 
+O.Chuvalaev
+Irkutsk State University
+
+MASTER II  robotic telescope (MASTER-Net: http://observ.pereplet.ru) 
+located near Kislovodsk   was pointed to the  GRB 100614A (Stratta et al., 
+GCN 10837) 26 s after notice time and 7 min 59 s after GRB time in two
+polarizations at 2010-06-14 21:46:25 UT.
+
+We have a number images with  180-s exposition.
+We haven't found optical transient within Swift-XRT error-box.
+The 3-sigma unfiltred upper limit has been about 20.9 mag on  34 
+coadded images (21:46:25  -  22:42:05 UT).
+
+The message may be cited.
+
+mailto: lipunov@sai.msu.ru
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10854
+SUBJECT: GRB 100614A: NOT optical upper limits
+DATE:    10/06/15 16:34:46 GMT
+FROM:    Daniele Malesani at Dark Cosmology Centre, Niels Bohr Inst  <malesani@dark-cosmology.dk>
+
+D. Malesani (DARK/NBI), D. Xu (Weizmann Inst.), T. Pursimo (NOT), P. 
+Jakobsson (Univ. Iceland), report on behalf of a larger collaboration:
+
+We observed the field of GRB 100614A (Stratta et al., GCN 10837) with 
+the NOT equipped with ALFOSC. Observations were carried out in the R, I, 
+and z filters, with mean times 54, 79, and 107 minutes after the GRB 
+trigger, respectively.
+
+We do not detect any source within the refined XRT error circle (Osborne 
+et al., GCN 10849) in any of our images. The limiting magnitudes are R > 
+24.0, I > 22.8 calibrated against the USNO-B1 catalog (calibration of 
+the z-band data is not presently feasible). Our findings are in 
+agreement with non-detections reported by other groups (Mundell & 
+Steele, GCN 10838; Jelinek et al., GCN 10839; Levan et al., GCN 10840; 
+Gorbovskoy et al., GCN 10853).
+
+We acknowledge prompt reaction and careful assistence of the NOT staff.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10855
+SUBJECT: GRB 100614A: Swift/UVOT Upper Limits
+DATE:    10/06/15 19:20:53 GMT
+FROM:    Stephen Holland at USRA/NASA/GSFC/SSC  <Stephen.T.Holland@nasa.gov>
+
+S. T. Holland (CRESST/GSFC/USRA) and
+G. Stratta (ASDC)
+report on the behalf of the Swift UVOT team:
+
+      The Swift/UVOT observed the field of GRB 100614A starting 123 s
+after the BAT trigger (Stratta, et al., 2010, GCN Circ. 10837).
+Settled observations started at 139 s.  No white observations were
+taken due to the presence of the bright A0 star HD 159607 (V = 7.4)
+located 11.5 arcmin from the XRT source.  We do not find any new
+source, relative to the DSS, USNO-B1.0, or 2MASS at the position of
+the XRT afterglow (Osborne, et al. 2010, GCN Circ. 10849).
+Preliminary 3-sigma upper limits for detecting a source in the u-band
+finding chart, and in the co-added images, using a 2.5 arcsecond
+radius circular aperture, are
+
+Filter    T_start   T_stop   Exp(s)      Mag
+--------------------------------------------
+ u (fc)       139      339      246    >21.0
+
+ v            445   12,065     1218    >21.4
+ b            395     7165      549    >21.8
+ u            139     6960      897    >21.7
+ uvw1         494   13,145      675    >21.2
+ uvm2         770   12,970     1102    >21.4
+ uvw2         421     7365      484    >21.1
+--------------------------------------------
+
+The quoted upper limits have not been corrected for the expected
+Galactic extinction along the line of sight corresponding to a
+reddening of E_{B-V} = 0.03 mag (Schlegel, et al., 1998, ApJS, 500,
+525).  All photometry is on the UVOT photometry system described in
+Poole et al. (2008, MNRAS, 383, 627).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10862
+SUBJECT: GRB 100614A: Gemini/NIRI Observations
+DATE:    10/06/16 17:22:59 GMT
+FROM:    S. Bradley Cenko at Caltech  <cenko@srl.caltech.edu>
+
+S. B. Cenko, D. A. Perley (UC Berkeley), N. R. Tanvir (U. Leicester), A.
+J. Levan (U. Warwick), J. S. Bloom, B. E. Cobb (UC Berkeley), K. Wiersema
+(U. Leicester) report on behalf of a larger collaboration:
+
+We have imaged the field of GRB100614A (Stratta et al., GCN 10837) with
+the Gemini Near InfraRed Imager on the 8-m Gemini North telescope.
+Observations were obtained in the Y, J, and K filters beginning at 7:05 UT
+on 15 June 2010 (~ 9.5 hours after the burst).
+
+We find no sources inside the revised XRT error circle (Osborne et al.,
+GCN 10849) to limiting magnitudes of J > 22.7, K > 21.6 (Vega mags,
+calibrated with respect to 2MASS).  The lack of optical/NIR detections at
+other facilities (Mundell and Steele, GCN 10838; Jelinek et al., GCN
+10839; Levan et al., GCN 10840; Gorbovskoy et al., GCN 10853, Malesani et
+al., GCN 10854, Holland and Stratta, GCN 10857), coupled with the moderate
+excess column inferred from the XRT spectrum (Margutti et al., GCN 10846),
+suggest a highly extinguished optical/NIR afterglow.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10893
+SUBJECT: GRB 100614A: CrAO optical limit
+DATE:    10/06/26 19:55:21 GMT
+FROM:    Vasilij Rumjantsev at CrAO  <rum@crao.crimea.ua>
+
+D. Shakhovskoy, V. Rumyantsev (CrAO), A. Pozanenko (IKI)  report on behalf
+of  larger GRB follow-up collaboration:
+
+We observed the field of the Swift GRB 100614A (Stratta  et al. GCN 10837)
+with AZT-11 telescope of  CrAO between (UT) June, 15  19:18 -- 20:19.
+We do not detect any source in enhanced XRT error circle (Osborne et al.,
+GCN 10849).
+The photometry based on USNO-B1.0 star 1392-0274963 (RA(J2000) = 17:34:02.22
+Dec(J2000)= +49:14:58.3 )  assuming  R=17.73  is following:
+
+T0+      Filter,   Exposure,  mag. UL
+(mid, d)              (s)
+
+0.9236     R       20x180    > 21.9
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10967
+SUBJECT: GRB 100614A: 10.4-m GTC deep-optical limit  
+DATE:    10/07/23 15:00:20 GMT
+FROM:    Sergey Guziy at IAA CSIC  <gss@iaa.es>
+
+S. Guziy, M. Jelínek, J. Gorosabel (IAA-CSIC Granada), P. Kubánek (U.
+Valencia), A. de Ugarte Postigo (INAF-OAB), D. Pérez-Ramírez (U, Jaén),
+G. Gómez (GTC La Palma) and A. J. Castro-Tirado (IAA-CSIC), on behalf of
+a larger collaboration, report:
+
+"We observed the field of GRB 100614A  (G.Stratta et al., GCN #10837)
+in ugriz bands with the 10.4-m Gran Telescopio Canarias (GTC)
+at the Observatorio del Roque de los Muchachos on the island of La Palma.
+
+Observations started at 01:55 UT on 2010 June 15th, 4.3 h after the GRB
+trigger. Images were obtained at an average seeing of 0."6 and an
+average airmass of 1.1 with the OSIRIS instrument (Cepa et al. 2010,
+HSA5,conf.) and a total integration time of 180-s for each band. We do
+not detect any source within the Swift-XRT error circle reported by
+Osborne et al. (GCN #10849) with the following 3-sigma limiting magnitudes
+(Vega
+system):
+
+u > 25.2,
+g > 27.1,
+r > 26.4,
+i > 25.9,
+z > 24.9.
+
+The given limits were obtained by observation of standard stars and
+compared with
+the SSDS catalog and are not corrected for the Galactic foreground
+extinction."
+
+This message can be quoted.
+

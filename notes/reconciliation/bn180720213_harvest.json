@@ -1,0 +1,72 @@
+{
+ "burst": "bn180720213",
+ "grb_name": "GRB 180720A",
+ "tally": 29,
+ "harvest_utc": "2026-08-11T16:45:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5, 3b, 3c)",
+ "ads_queries": {
+  "token": "ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env",
+  "form1_name": {"q": "full:\"GRB 180720A\"", "numFound": 8, "breakdown": "5 GCN circulars (2 of them actually 180720B under the pre-correction name: 22973, 22984) + 3 refereed articles (all contaminated, see papers)"},
+  "form2_trigger_name": {"q": "full:\"bn180720213\"", "numFound": 0},
+  "form3_dayfrac": {"q": "full:\"180720213\"", "numFound": 0},
+  "form4_trigger_number": {"q": "full:\"553755967\"", "numFound": 0}
+ },
+ "finding": "PAPERLESS BURST: zero refereed papers analyze bn180720213. All three refereed full-text hits for 'GRB 180720A' are identity-checked misnamings of GRB 180720B (the same-day Swift/VHE burst, initially announced as 180720A in GCN 22973 and corrected in GCN 22975). The P3 diff frame is GCN 22974 (GBM) + GCN 22970 (AGILE/MCAL) only.",
+ "papers": [
+  {
+   "bibcode": "2024A&A...684L..10M",
+   "title": "The dispersion of the Ep,i-Liso correlation of long gamma-ray bursts",
+   "first_author": "Maistrello, M.",
+   "year": 2024,
+   "refereed": true,
+   "esources": "PUB_OPENACCESS + arXiv:2403.11923",
+   "identity_check": "sample table lists '180720B 0.654 ...' (z=0.654); 'GRB 180720A' on arXiv pp.5-6 (Tables 2-3 context: '160625B, 171010A, and 180720A') is an internal typo for 180720B — the Ep,i-Liso correlation requires z and only the B burst has one",
+   "verdict": "CONTAMINATED (T1) — about GRB 180720B, NOT bn180720213",
+   "pdf_filed": null,
+   "pdf_note": "verification copy fetched to scratchpad only; NOT filed to Skills_training/ under this burst (would poison the corpus graph)",
+   "oa_fetched": true,
+   "prompt_sections": "n/a for this burst",
+   "module_future_tags": "none (belongs to bn180720598 if that burst is ever worked)"
+  },
+  {
+   "bibcode": "2021PhRvD.104f3043M",
+   "title": "Nature of the ultrarelativistic prompt emission phase of GRB 190114C",
+   "first_author": "Moradi, R.",
+   "year": 2021,
+   "refereed": true,
+   "esources": "EPRINT_OPENACCESS arXiv:2110.12410",
+   "identity_check": "single mention, p.2: 'the X-ray afterglow in GRB 130427A, GRB 160509A, GRB 160625B, GRB 180720A and GRB 190114C' — BdHN afterglow list of z-bearing GeV bursts; misnaming of 180720B (the ICRANet group's own GCN made the SN prediction for 180720B, z=0.654)",
+   "verdict": "CONTAMINATED (T1) — about GRB 180720B, NOT bn180720213",
+   "pdf_filed": null,
+   "pdf_note": "verification copy fetched to scratchpad only; NOT filed to Skills_training/ under this burst",
+   "oa_fetched": true,
+   "prompt_sections": "n/a for this burst",
+   "module_future_tags": "none (belongs to bn180720598 if that burst is ever worked)"
+  },
+  {
+   "bibcode": "2019ApJ...874...39W",
+   "title": "Two Predictions of Supernova: GRB 130427A/SN 2013cq and GRB 180728A/SN 2018fip",
+   "first_author": "Wang, Y.",
+   "year": 2019,
+   "refereed": true,
+   "esources": "PUB_OPENACCESS + arXiv:1811.05433",
+   "identity_check": "p.4 of on-disk PUB PDF: 'We also predicted the SN appearance in GRB 140206A (Ruffini et al. 2014a) and GRB 180720A (Ruffini et al. 2018a)' — the Ruffini 2018 SN-prediction GCN is verbatim about 'GRB 180720B, which has redshift z = 0.654 (GCN 22996)'; pre-correction-name leakage",
+   "verdict": "CONTAMINATED (T1) for this burst — already in corpus as Wang_2019_2019ApJ87439W_PUB.pdf for bn180728728 (G2 dedup: no re-fetch)",
+   "pdf_filed": "Skills_training/Wang_2019_2019ApJ87439W_PUB.pdf (pre-existing, filed under bn180728728)",
+   "pdf_note": "do NOT append bn180720213 to its cited_by_bursts — the mention is not our burst",
+   "oa_fetched": true,
+   "prompt_sections": "n/a for this burst",
+   "module_future_tags": "already tagged module-future;sn under bn180728728"
+  }
+ ],
+ "standard_sample_papers_checked": {
+  "Li&Zhang2021_2021ApJS253_43L": "absent (no 180720 hit)",
+  "Lu2018_2018ApJ865153L": "absent (no 180720 hit)",
+  "Li2026_2026ApJS28318L": "absent for our burst (all 180720 hits are 180720B: Tables 12, pp.31-32, Figs 17/21)",
+  "Bordoloi2026_2026ApJ1003_58B": "absent (no 180720 hit)",
+  "Yu2019_ApJ_886_20": "absent (no 180720 hit)"
+ },
+ "corpus_index_actions": "NONE PERFORMED — Skills_training/corpus_index.csv is a shared CSV forbidden to this worker. Nothing needs adding anyway: no genuine paper exists for this burst, and the Wang 2019 row must NOT gain bn180720213 (contaminated mention).",
+ "gcn_index_action_deferred": "results/gcn/gcn_index.csv row NOT appended (shared CSV) — orchestrator may add: bn180720213, GRB 180720A, n_circulars=3 (22970, 22974, 22975), no z, no afterglow",
+ "dossier": "results/gcn/bn180720213_dossier.md (PUBLISHED VALUES section = GCN-only anchors)"
+}

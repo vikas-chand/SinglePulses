@@ -1,0 +1,77 @@
+GCN CIRCULAR SWEEP — bn150630223 — run 2026-08-12 (campaign doc-layer worker)
+Skill: dev/ai_guides/GCNIntelligence.md, "Fetch (cheapest first)" + "Honest absence".
+
+RESULT: ZERO GCN CIRCULARS. No raw circular text exists to archive. This file records
+the EVIDENCE for the null, because a null is a result and must be auditable.
+
+--------------------------------------------------------------------------------
+1. CLASSIC PER-GRB ARCHIVE (https://gcn.gsfc.nasa.gov/other/<name>.gcn3)
+--------------------------------------------------------------------------------
+   150630.gcn3    -> HTTP 404 (215 bytes)
+   150630A.gcn3   -> HTTP 404 (216 bytes)
+   150630B.gcn3   -> HTTP 404 (216 bytes)
+   457334449.gcn3 -> HTTP 404 (218 bytes)   [trigger-MET form, tried for completeness]
+
+   CONTROL (proves the endpoint is alive and the 404s are real absences, not an outage;
+   run in the same session, same command):
+   150627.gcn3    -> HTTP 200, 12629 bytes
+   150626A.gcn3   -> HTTP 200, 10327 bytes
+   150702A.gcn3   -> HTTP 200, 11808 bytes
+   150301A.gcn3   -> HTTP 200, 12772 bytes
+   150629.gcn3    -> HTTP 404   (also a circular-less GBM day)
+
+   The classic archive creates a page for a burst name only when circulars exist for it.
+   Four 200s from the same date range establish the endpoint works; the 404 on 150630
+   is therefore a genuine "no circulars were ever issued under this name".
+
+--------------------------------------------------------------------------------
+2. NEW GCN SITE JSON API (https://gcn.nasa.gov/...)
+--------------------------------------------------------------------------------
+   /api/circulars?query=150630223  -> {"message":"Unexpected Server Error"}
+   /circulars.json?query=150630223 -> SPA HTML shell (not JSON)
+   /api/v1/circulars?query=150630  -> SPA HTML shell (not JSON)
+
+   The service was returning errors/shells this session. This channel is therefore
+   RECORDED AS UNAVAILABLE and contributes NO evidence in either direction. The null
+   above rests on channels 1 and 3 only.
+
+--------------------------------------------------------------------------------
+3. ADS CIRCULAR-BIBCODE SWEEP (the independent channel)
+--------------------------------------------------------------------------------
+   bibstem:GCN full:"150630"      -> numFound 1, and it is 2022GCN.31471....1P
+                                     (Pankov+, "GRB 220101A: TSHAO optical observation")
+                                     — an unrelated 2022 circular whose text happens to
+                                     contain the digit string. NOT our burst.
+   full:"GRB 150630A"             -> numFound 0
+   full:"GRB150630A"              -> numFound 0
+   full:"GRB 150630"              -> numFound 0
+   full:"bn150630223"             -> numFound 0
+   full:"150630223"               -> numFound 0
+   full:"GRB150630223"            -> numFound 0
+   full:"457334449"               -> numFound 0
+
+--------------------------------------------------------------------------------
+4. WHY THIS BURST HAS NO CIRCULARS (the physical reason, not a guess)
+--------------------------------------------------------------------------------
+   - GBM-only trigger. von Kienlin+2020 Table 4 gives Loc = "Fermi-GBM" with a 1.5 deg
+     error radius; there is no arcsecond position, hence nothing to follow up.
+   - The burst is 1.96 deg from the GALACTIC PLANE (l = 238.152, b = +1.959) — a heavily
+     extincted, crowded field, the worst case for optical follow-up even if a position
+     had existed.
+   - Fermi-LAT did NOT see it: the LAT boresight angle at the GBM position is 112.3 deg
+     at T0 (computed here from the poshist quaternions), i.e. far outside the LAT FoV.
+     Consistent with von Kienlin+2020's "Other" column, which lists K, IA, Mo but NOT L.
+   - No letter-suffixed GRB designation was ever assigned (see the dossier's IDENTITY
+     section): with no GCN circular there was no occasion to assign one.
+
+   Real-time detection by OTHER instruments did happen and is recorded in the catalog
+   ("Other" = K [Konus-Wind], IA [INTEGRAL SPI-ACS], Mo [Mars Observer/Odyssey]) — those
+   teams simply never issued a circular for it either.
+
+--------------------------------------------------------------------------------
+5. REDSHIFT
+--------------------------------------------------------------------------------
+   NONE. Honest "none", not an omission: no circular, no afterglow, no host, no
+   follow-up. Independently corroborated by the blank z field in Maccary+2025
+   (VizieR J/A+A/702/A95 table1 recno 1449) and by absence from the redshift subset
+   of Poolakkil+2021 (VizieR J/ApJ/913/60 table5 -> 0 rows matching 150630).

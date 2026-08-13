@@ -1,0 +1,136 @@
+{
+ "burst": "bn120905657",
+ "grb_name": "GRB 120905657",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1 four-form query; Phase 1b Scholar-note; Phase 2 version-of-record; Phase 3b latest-first; Phase 3c prompt-scope; Phase 4 frame-align + multi-instrument consensus; traps T1-T9) + GCNIntelligence.md (Step 0, G1/G2) + DataInventory.md (Step 1)",
+ "pre_existing_material_extended": {
+  "results/gcn/bn120905657/": "did NOT exist; created this pass (bn120905657_dossier.md + bn120905657_gcn_raw.txt). Nothing overwritten.",
+  "notes/reconciliation/bn120905657_P0_frozen.json": "did NOT exist; created this pass.",
+  "results/qc/bn120905657_step1_response_coverage.ecsv": "did NOT exist; created this pass.",
+  "notes/READING_LIST_106.md lines 145-146": "EXISTED: '## bn120905657 (t)' + '2026ApJ..1003...58B (0c) From Empirical to Physical Model: Direct Fits of Optically Thin Inverse Compton Scattering to P'. CORROBORATED - the bibcode is correct and the paper is real. EXTENDED, not replaced: the line does not say WHAT the paper says about this burst (it is an EXCLUDED member of the initial 41, on time-resolved Band alpha/beta grounds). Sharpening queued below.",
+  "notes/literature_tier1/": "no file for this burst (checked).",
+  "notes/literature_ledger.md": "no row for this burst (checked).",
+  "results/gcn/gcn_index.csv": "no row for this burst (checked); row queued below.",
+  "Skills_training/corpus_index.csv row 131": "EXISTED: Bordoloi_2026_2026ApJ100358B_bn091209001.pdf | 2026ApJ..1003...58B | arXiv:2511.20310 | quasi-thermal/IC physical model (initial-41 Band sample) | bn091209001 | 1 | N | . PDF NOT re-downloaded (G2). cited_by_bursts update queued below.",
+  "results/human_review_qc_flags.txt line 7": "EXISTED: bn120905657 source[-2,110]_overruns_bkg_gap n7[gap -21.5082,47.4918],na[gap -21.5079,88.4921] 2026-07-19T22:18:36Z. This is an ACCEPTED HUMAN DECISION (Stage-1 flags ARE decisions) - re-stated with its magnitude in the dossier and the QC file, NOT re-litigated."
+ },
+ "identity": {
+  "trigger": "bn120905657 / MET 368552784.166064",
+  "trigger_utc": "2012-09-05 15:46:21.166",
+  "name_source": "NO GRB designation with a letter suffix exists. Both GBM catalogs print the GRB-name column BLANK for this trigger while naming the neighbouring triggers: Narayana Bhat+2016 (2016ApJS..223...28N) p.81 shows 'bn120905657 ... 15:46:21.1660' between 'bn120831901 ...' and 'bn120907017 GRB 120907A'; von Kienlin+2020 (2020ApJ...893...46V) p.51 is identical, and VizieR J/ApJ/893/46/table4 recno 990 carries Fermi=bn120905657 with GRB=(blank). HEASARC fermigbrst name = GRB120905657. The burst is therefore cited as GRB 120905657, which is exactly the string the one refereed paper uses.",
+  "same_day_contamination_guard": "T1 SATISFIED. ADS full:\"GRB 120905A\" = 0 hits; full:\"GRB 120905\" = 0 hits; full:\"120905A\" = 1 hit (2008AsBio...8.1169K, a spore-lethality paper where 120905A is a sample code) and full:\"120905B\" = 1 hit (same paper family) - both identified and DISCARDED. No other GRB on 2012-09-05 exists in the refereed record, so no foreign-burst material can enter. The single legitimate hit contains the string 'GRB 120905657' verbatim, i.e. it is keyed to the trigger, not to an ambiguous name.",
+  "position": "RA 355.96, Dec +16.99, 1.8 deg error (GBM only; l=100.616, b=-42.933). No refined position exists - no circular, so no follow-up.",
+  "redshift": "NONE. No circular, no host, no catalog z."
+ },
+ "gcn_circulars": {
+  "n_circulars": 0,
+  "evidence_file": "results/gcn/bn120905657/bn120905657_gcn_raw.txt",
+  "probes": "gcn.gsfc.nasa.gov/other/{120905,120905A,120905B,120905657}.gcn3 all HTTP 404 (control 100122A.gcn3 = HTTP 200, 3366 bytes, same session); gcn.nasa.gov live search totalItems = 0 for queries 120905 / 120905A / 120905B / 120905657 / GRB120905A (control 100122A = totalItems 2).",
+  "root_cause": "the burst never received a GRB designation, so there was never a circular to file it under - see identity.name_source.",
+  "consequence": "no circular-sourced position, T90, Ep, fluence, redshift or afterglow; there is no 'GCN preliminary' tier to diff against for this burst. The earliest published frame is the GBM catalog itself."
+ },
+ "ads_queries": [
+  {"form": "full:\"GRB 120905657\"", "numFound": 1, "refereed_hits": 1, "note": "the ONLY productive form - because 'GRB 120905657' is the burst's only name"},
+  {"form": "full:\"120905657\"", "numFound": 1, "refereed_hits": 1, "note": "same paper"},
+  {"form": "full:\"bn120905657\"", "numFound": 0, "refereed_hits": 0, "note": "the GBM trigger-name form is DEAD for this burst"},
+  {"form": "full:\"368552784\"", "numFound": 0, "refereed_hits": 0, "note": "the trigger MET - dead"},
+  {"form": "full:\"GRB120905657\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"GRB 120905\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"GRB 120905A\"", "numFound": 0, "refereed_hits": 0, "note": "T1 probe - confirms no letter-suffix burst exists on this date"},
+  {"form": "full:\"120905A\"", "numFound": 1, "refereed_hits": 0, "note": "2008AsBio...8.1169K, Bacillus atrophaeus spore lethality - unrelated, discarded"},
+  {"form": "full:\"120905B\"", "numFound": 1, "refereed_hits": 0, "note": "same unrelated paper, discarded"},
+  {"form": "abs:\"120905657\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"100122616\"", "numFound": 5, "refereed_hits": 4, "note": "CONTROL - token verified live in the same session"}
+ ],
+ "ads_query_verdict": "Exactly ONE refereed paper, found by two of the four canonical forms. The trigger-name (bn...) and MET forms return zero, which is itself the diagnostic: this burst has no name for a paper to use except 'GRB 120905657'.",
+ "local_corpus_scan": {
+  "method": "PyMuPDF text scan of all 206 PDFs in Skills_training/ for tokens '120905' and '368552784' (the bn120420858 lesson: catalog machine tables are invisible to ADS full-text)",
+  "hits": [
+   "Skills_training/Bordoloi_2026_2026ApJ1003_58B_PUB.pdf (p.17) and its two per-burst copies (_bn090620400, _bn091209001) - the same paper ADS found",
+   "Skills_training/NarayanaBhat_2016_2016ApJS22328N_bn110928180.pdf (pp. 81, 123, 166, 211) - 3rd GBM catalog, four table rows",
+   "Skills_training/vonKienlin_2020_2020ApJ89346V_bn160625945.pdf (pp. 51, 118, 180, 239) - 4th GBM catalog, four table rows"
+  ],
+  "result": "the corpus scan found NO ADS-invisible paper for this burst - it returned the same journal paper plus the two GBM catalogs. Contrast bn120420858, where the corpus scan was the ONLY channel that worked. Both outcomes are informative; the scan is cheap and should stay mandatory.",
+  "negative_check": "Poolakkil_2021_2021ApJ91360P (4th GBM spectral catalog) does NOT contain the token 120905657 in its PDF (it contains 120907017, so 2012 bursts are represented) - its per-burst spectral rows are machine-readable-only, which is why the spectral frame in the dossier is taken from the live HEASARC fermigbrst row rather than from a printed table."
+ },
+ "google_scholar_channel": {
+  "trigger_condition_met": true,
+  "reason": "Phase 1b condition 1 - the ADS four-form query returned a single paper (thin)",
+  "what_was_actually_run": "NOT Google Scholar. This worker has no browser. One general WebSearch was run: 'GRB 120905657 Fermi GBM prompt emission spectral analysis'. It returned nothing about this burst (only GRB 221009A / 090902B / 090618 / 090510 and general GBM methodology material). Recorded honestly: the Scholar channel proper is UNRUN and remains open for a human or browsing agent.",
+  "expected_yield": "low - the gap here is not vocabulary (as it was for the ZTF/LFBOT specimen); the burst simply has one name, and ADS finds the one paper that uses it."
+ },
+ "n_refereed_papers": 1,
+ "papers": [
+  {
+   "bibcode": "2026ApJ..1003...58B",
+   "first_author": "Bordoloi, Pragyan Pratim",
+   "authors": "Bordoloi, P. P.; Mittal, S.; Iyyani, S.",
+   "year": 2026,
+   "title": "From Empirical to Physical Model: Direct Fits of Optically Thin Inverse Compton Scattering to Prompt GRB Spectra",
+   "pub": "The Astrophysical Journal, 1003:58 (20pp), 2026 May 20",
+   "doi": "10.3847/1538-4357/ae623d",
+   "arxiv": "arXiv:2511.20310",
+   "open_access": "PUB_OPENACCESS + EPRINT_OPENACCESS",
+   "citation_count": 0,
+   "classification": "sample-member of the INITIAL 41, then EXCLUDED from the final 4. Not a dedicated analysis; but it makes a specific, testable, TIME-RESOLVED claim about our burst.",
+   "what_it_says_about_this_burst": "GRB 120905657 satisfies their initial cuts on the GBM catalog time-integrated and peak-flux Band parameters (fluence > 1e-5 erg/cm2; flnc alpha > -0.5; flnc beta in (-1.7,-3.3); pflx alpha > -0.45; pflx beta in (-1.7,-3.3)) - verified independently against the live HEASARC row, all five cuts pass. It was then excluded at the time-resolved stage. Figure 10 caption p.17 verbatim: 'GRB 120905657 / GRB 181227262 / GRB 221206516 ... A few representative GRBs that were excluded from the initial sample because their time-resolved Band alpha and beta did not meet the selection criteria.' Their gate: at least ~80% of Bayesian-Block bins inside the T70 region (15%-85% of cumulative background-subtracted counts) must satisfy alpha > -0.45 AND -1.7 > beta > -3.3.",
+   "in_corpus_already": true,
+   "pdf": "Skills_training/Bordoloi_2026_2026ApJ100358B_bn091209001.pdf + _PUB.pdf (and Bordoloi_2026_2026ApJ1003_58B_PUB.pdf, and a _bn090620400 pair). NOT re-downloaded (G2). corpus_index row 131, read=N.",
+   "prompt_sections": "IN SCOPE and short. READ: SS2 'Criteria and Sample Selection' p.2 (the cuts, the Bayesian-Block binning on the brightest NaI+BGO, the T70 definition at 15%/85% cumulative counts, the ~80%-of-bins gate) and the Figure 10 caption p.17 (the verdict on our burst). OPTIONAL: SS5.4/SS6 for the physical picture of the four survivors. SKIP: SS3-SS4 (the Naima/3ML optically-thin-IC machinery, applied only to their four survivors - GRB 131014A, GRB 200412B, GRB 200829A, GRB 230614C, none of them ours) unless the IC-model question is on the table. Appendix A is distributions only - the per-burst 41-row table is machine-readable-only and NOT in the PDF.",
+   "module_future_tags": "none - this paper is entirely prompt-phase. Nothing afterglow/SN/cosmology/multimessenger.",
+   "traps_applied": "T5 (their Fig-10 caption says 'excluded from the initial sample' while SS2 and the same page treat the 41 AS the initial sample reduced to four - recorded, we adopt 'excluded from the FINAL sample', flagged not silently resolved). T7 (their alpha/beta gate is a statement about BAND-function parameters, i.e. a selector for quasi-thermal-looking fits, not a claim about a physical component - our diff compares Band alpha/beta to their windows, it does not translate them). T9 (their numbers are time-integrated / peak-flux / T70-region quantities - three different coverages, labelled as such).",
+   "feeds_prediction": "P-B1 in notes/reconciliation/bn120905657_P0_frozen.json"
+  }
+ ],
+ "catalog_frames_not_papers": [
+  {
+   "source": "HEASARC fermigbrst (live TAP row, 2026-08-12) - the GBM burst + spectral catalog product",
+   "why_not_a_paper_row": "the burst is a table entry; no catalog paper's TEXT names it (it has no name), so it can never surface in a full-text query. Treated as a catalog FRAME, filed in the dossier's PUBLISHED VALUES with T9 coverage labels.",
+   "key_values": "T90 = 195.587 +/- 16.795 s starting -7.168 s (50-300 keV, TOTAL) => T95 = 188.419 s; T50 = 83.969 +/- 7.384 s starting 10.240 s; fluence(10-1000 keV) = 1.95674e-5 +/- 6.316e-7 erg/cm2; fluence(50-300) = 1.08608e-5 +/- 3.153e-7; peak flux 64 ms = 5.090 +/- 1.032 ph/cm2/s at t=6.080 s, 1024 ms = 3.553 +/- 0.228 at t=12.992 s. flnc BEST = Band over -4.096..794.230 s: Ep = 76.811 +/- 3.950 keV, alpha = -0.2516 +/- 0.1088, beta = -2.5851 +/- 0.1297, redchisq 1.0795/440; flnc_comp Ep = 91.797 +/- 2.776, index = -0.5508 +/- 0.0672; flnc_sbpl Ebreak = 51.954 +/- 6.085 keV (BREAK, not Ep), indices -0.5025 / -2.6051, brksc 0.30 fixed; flnc_plaw index = -1.6822. pflx BEST = Comptonized over 12.288..13.312 s: Ep = 101.263 +/- 12.908 keV, index = -0.4391 +/- 0.3040; pflx_band Ep = 80.764 +/- 13.893, alpha = -0.0139 +/- 0.5812, beta = -2.538 +/- 4.387 (beta unconstrained). DETECTOR SET for both catalog spectral fits = n9 + na + nb + b1 ONLY (scat mask 00000000011101); statistic Castor C-STAT. Catalog background intervals -297.5..-10.0 s and +230.0..+492.5 s.",
+   "frame_note": "the flnc interval runs to +794.230 s, i.e. 606 s past T95 - the catalog time-integrated spectrum contains the whole burst plus ~10 minutes of near-background. Our stamped window is 112 s. This is a real frame difference and must be carried into every diff (L21)."
+  },
+  {
+   "source": "von Kienlin+2020 (4th GBM catalog) VizieR J/ApJ/893/46 tables 4 and 5, recno 990",
+   "key_values": "table4: Fermi=bn120905657, GRB=(blank), Obs=2012-09-05T15:46:21, RA=356.0, Dec=+17.0, Error=1.8 deg, Loc=Fermi-GBM, Al=14, Time=2048 ms, Energy=47-291 keV, Other=(blank). table5: Det='6+7+9+10+11', T90=195.587 +/- 16.795 (start -7.168), T50=83.969 +/- 7.384 (start 10.240).",
+   "significance": "(a) the blank GRB column is the name evidence; (b) the blank Other column means NO Konus-Wind / INTEGRAL SPI-ACS / Suzaku / Swift detection; (c) Det = 6+7+9+10+11 is IDENTICAL to our approved NaI set - an independent corroboration of the Stage-1 detector decision; (d) a 2048 ms trigger timescale is the slowest class in the GBM ladder, consistent with a soft, slowly-rising burst."
+  },
+  {
+   "source": "Narayana Bhat+2016 (3rd GBM catalog, 2016ApJS..223...28N) printed tables pp. 81/123/166/211",
+   "key_values": "identical durations, fluences and peak fluxes to the live row (agreement exact at printed precision), plus the same blank GRB-name entry. Used as the independent cross-check that the live HEASARC row was read correctly (T4 guard)."
+  },
+  {
+   "source": "HEASARC fermilgrb (the machine-readable 2FLGC)",
+   "key_values": "ZERO rows for any name matching %120905%. Combined with HAS_LAT=False in results/grb_sample.ecsv and the absence of any gll_* file on disk, this burst has NO LAT and NO LLE arm."
+  }
+ ],
+ "multi_instrument_consensus_note": "Phase 4's consensus rule is NOT APPLICABLE, by structural absence rather than by failure to look: von Kienlin+2020's 'Other' column is blank (no K / IA / W / Swift flag), f_Fermi carries no LAT flag, and fermilgrb has no row. Exactly ONE instrument frame (GBM) exists, so there is no inter-instrument spread to fold into the uncertainty. Unlike bn120420858 there is nothing at Ioffe/IPN to chase.",
+ "latest_first_ordering": "Phase 3b applied. (1) Bordoloi+2026 (2026ApJ..1003...58B) - the newest and the ONLY journal analysis; DEFAULT comparison frame for the time-resolved Band alpha/beta question. (2) HEASARC fermigbrst live row - the newest team catalog fits; DEFAULT frame for time-integrated and peak-flux spectra. (3) von Kienlin+2020 - identity and durations. (4) Narayana Bhat+2016 - superseded by (2)/(3), kept as the independent printed cross-check. There is no GCN tier at all, so the usual 'the circular is preliminary by its own statement' bottom rung is absent.",
+ "finding": "A NAMELESS, CIRCULAR-LESS, GBM-ONLY LONG BURST WITH EXACTLY ONE REFEREED MENTION - AND THAT MENTION IS A TESTABLE NEGATIVE. (a) IDENTITY: no letter-suffix designation was ever assigned (two GBM catalogs print the name column blank), no GCN circular exists, no other mission detected it, no LAT/LLE data exist, and there is no redshift or afterglow of any kind - so the module-future reading shelf for this burst is EMPTY and its entire value to the campaign is in the prompt phase. (b) PHYSICS: it is LONG (T90 = 195.6 s, 50-300 keV), moderately bright (fluence 1.96e-5 erg/cm2), SOFT (time-integrated Comptonized Ep = 91.8 +/- 2.8 keV), triggered on the slowest 2048 ms timescale, and - the striking part - almost NON-EVOLVING in Ep: peak-interval Ep = 101.3 +/- 12.9 keV against time-integrated Ep = 91.8 +/- 2.8 keV in the SAME model family, a ratio of 1.10 +/- 0.15 across a 195 s burst. That is the opposite end of the campaign's dynamic range from bn120420858 (7993 vs 363 keV). (c) THE ONE PAPER: Bordoloi+2026 pulled it into their initial 41 on exactly those catalog Band parameters and then threw it out because its TIME-RESOLVED Band alpha and beta failed their quasi-thermal window in more than ~20% of T70 bins - which is a published, falsifiable statement about the very quantity our Step 6 measures, and the archival prior predicts the failing parameter is beta (railing steeper than -3.3), not alpha. (d) STAGE-1 EXPOSURE: our stamped window [-2, +110] s holds only ~81-87% of the 50-300 keV counts of a burst that runs to +188 s, and every approved post-burst background window opens before T95 (n7's opens INSIDE the source window) - an accepted human decision whose magnitude is now on the record.",
+ "fetch_failures": [
+  "Bordoloi+2026's per-burst machine-readable table (their Table 2 / the 41-image figure set) was NOT fetched - it is an online-only MRT + figure set behind the IOP article page, and this worker has no browser session. This is the single highest-value outstanding item: it would give their actual block-by-block alpha, beta and Ep for GRB 120905657 and turn P-B1 from a qualitative into a numerical diff.",
+  "Google Scholar proper: not run (no browser). One general WebSearch run instead; returned nothing burst-specific.",
+  "HEASARC TAP rejects FORMAT=csv and FORMAT=text/csv ('Unsupported format'); FORMAT=votable works. Noted so the next worker does not lose the round-trip.",
+  "gcn.nasa.gov has no working JSON API for circular search on this endpoint (/circulars.json -> 404, /api/circulars -> 400 'Unexpected Server Error'); the totalItems value was parsed out of the server-rendered search page instead. Control-verified."
+ ],
+ "step1_summary": {
+  "file": "results/qc/bn120905657_step1_response_coverage.ecsv",
+  "verdict": "PASS 6/6",
+  "detail": "all six approved detectors (n6,n7,n9,na,nb,b1) resolve to glg_cspec_<det>_bn120905657_v*.rsp2 with 8 matrices spanning -40.961..+196.611 s, bracketing the stamped source window [-2.0, +110.0] s. b1 is v01 while the NaIs are v00 - different version, identical span. No LLE/LAT files and HAS_LAT=False, so the D1 off-axis check does not apply. No trigdat, but poshist is present (note, not blocker). Two WARNs recorded: partial window coverage of a 195.6 s burst, and post-burst background windows that all open before T95 (the latter already an accepted human Stage-1 decision).",
+  "det_angles_deg": "n9 19.23, b1 40.58, nb 42.91, na 45.42, n6 51.53, n7 53.13"
+ },
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   {"action": "append_cited_by", "row": 131, "bibcode": "2026ApJ..1003...58B", "filename": "Bordoloi_2026_2026ApJ100358B_bn091209001.pdf", "add": "bn120905657", "current_value": "bn091209001", "new_value": "bn091209001;bn120905657", "n_bursts": "1 -> 2", "read": "leave N (only Vikas sets Y)", "note": "already in corpus; NOT re-downloaded per G2. Also present as _bn090620400 copies and Bordoloi_2026_2026ApJ1003_58B_PUB.pdf - the index may want a dedup pass, flagged not acted on."}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "add_row", "trigger": "bn120905657", "gcn_page": "results/gcn/bn120905657/", "n_circulars": 0, "z_mention": "-", "ads_hits": 1, "ads_refereed": 1, "note": "n_circulars=0 is literal and control-verified; the burst has no GRB designation, hence no circular could exist"}
+  ],
+  "notes/READING_LIST_106.md": [
+   {"action": "sharpen_lines", "lines": "145-146", "current": "## bn120905657 (t)\\n  - 2026ApJ..1003...58B (0c) From Empirical to Physical Model: Direct Fits of Optically Thin Inverse Compton Scattering to P", "proposed": "## bn120905657 (GRB 120905657 - NO letter-suffix name exists; 0 GCN circulars; GBM-only, no LAT/LLE, no z)\\n  - 2026ApJ..1003...58B [corpus, read=N] Bordoloi, Mittal & Iyyani 2026, ApJ 1003:58 - our burst is in their INITIAL 41 and was EXCLUDED at the time-resolved stage: 'excluded ... because their time-resolved Band alpha and beta did not meet the selection criteria' (Fig. 10 caption p.17). READ SS2 (p.2, the cuts + T70 definition) and the Fig. 10 caption; SKIP SS3-4 (Naima IC machinery, only for their surviving four). Feeds P-B1.\\n  - no dedicated analysis, no time-resolved spectroscopy published -> our block-resolved fits will be the first"}
+  ],
+  "notes/literature_ledger.md": [
+   {"action": "add_row", "trigger": "bn120905657", "n_papers": 1, "n_circulars": 0, "class": "one refereed mention (sample-member, excluded); catalogs otherwise", "note": "no row existed"}
+  ]
+ },
+ "vikas_reading_list": "Prompt-curated (Phase 3c). This burst is a ~15-minute read, and it is worth the 15 minutes. (1) Bordoloi, Mittal & Iyyani 2026 (ApJ 1003:58) - read SS2 on p.2 ONLY (one page: the fluence/alpha/beta cuts, the Bayesian-Block binning on the brightest NaI+BGO, the T70 definition at 15%/85% of cumulative background-subtracted counts, and the '>= ~80% of bins' gate), then the Figure 10 caption on p.17 where GRB 120905657 is named as an excluded burst. That caption is a published, falsifiable statement about exactly what our Step 6 measures, and it is the whole reason this burst is interesting. Skip SS3-4 entirely (Naima IC fitting of their surviving four). (2) The catalog frame in dossier SS4 - specifically the pflx-vs-flnc Comptonized Ep pair, 101.3 +/- 12.9 keV over 1.024 s versus 91.8 +/- 2.8 keV over 798 s, SAME model family: a ratio of 1.10 across a 195 s burst. This burst barely evolves, and that is its physics. (3) Dossier SS6 WARN-1 and WARN-2 - our window holds ~81-87% of the counts of a 195.6 s burst, and every post-burst background window opens before T95 (n7's opens 62.5 s INSIDE the source window). The overrun is your own accepted 2026-07-19 GUI decision; what is new is the magnitude, and the fact that the GBM catalog puts its post-background at +230 s, clear of T95. That is a Stage-1 call to look at again, and it is yours. (4) One ask: the Bordoloi MRT / 41-image figure set is online-only at IOP and would give their per-block alpha, beta, Ep for our burst - if you can pull it in a browser, P-B1 becomes a numerical diff instead of a qualitative one. Deferred (module-future): NOTHING. This burst has no afterglow, no host, no z, no counterpart at any wavelength - the future-module shelf is empty."
+}

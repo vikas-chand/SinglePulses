@@ -1,0 +1,1155 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19580
+SUBJECT: GRB 160625B: Fermi-LAT detection of a bright burst 
+DATE:    16/06/26 00:23:32 GMT
+FROM:    Judith Racusin at GSFC  <judith.racusin@nasa.gov>
+
+F. Dirirsa (U. Johannesburg), J. Racusin (NASA/GSFC), J. McEnery (NASA/GSFC), 
+and R. Desiante (INFN Torino) report on behalf of the Fermi-LAT team:
+
+At 22:43:24 on June 25, 2016, Fermi/LAT detected a sharp increase in the rate of 
+high-energy photons, resulting in an onboard trigger on GRB 160625B.  Fermi/GBM 
+triggered on this object two separate times (160625945/488587220, 
+160625952/488587880), with emission evident between triggers, including the time 
+at which LAT triggered.
+
+Note that all of these triggers are distinct from the Swift/BAT trigger on GRB160625A 
+(Maselli et al., GCN 19577) that occurred 15 seconds after the first GBM trigger, and 
+was occulted by the Earth to Fermi at the time, and >100 degrees away on the sky.
+
+The onboard location is:
+RA, Dec = 308.3, +6.9  (J2000)
+
+with an error radius of 0.5 deg (90% containment, systematic error only). 
+
+This was 12.3 deg from the LAT boresight at the time of the LAT trigger. 
+
+We anticipate providing a refined location within the next 8 hours when the LAT 
+science data for this burst is downlinked and processed.
+
+A Swift TOO request has been approved, and given the unusual nature of this trigger, 
+a Fermi TOO will extended the pointed-mode observations to T0+24 hours beyond the 
+initial autonomous repoint.
+
+The Fermi-LAT point of contact for this burst is Feraol Dirirsa (fdirirsa@uj.ac.za).
+
+The Fermi-LAT is a pair conversion telescope designed to cover the energy band 
+from 20 MeV to greater than 300 GeV. It is the product of an international collaboration 
+between NASA and DOE in the U.S. and many scientific institutions across France, 
+Italy, Japan and Sweden.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19581
+SUBJECT: GRB 160625B: Fermi GBM initial observations
+DATE:    16/06/26 00:53:38 GMT
+FROM:    Eric Burns at U of Alabama  <eb0016@uah.edu>
+
+E. Burns (UAH) reports on behalf of the Fermi GBM Team:
+
+"At 22:40:16.28 UT on 25 June 2016, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 160625B for the first time
+(trigger 488587220 / 160625945).
+
+The trigger resulted in an Autonomous Repoint Request (ARR)
+by the GBM Flight Software owing to the high peak flux of the GRB.
+This ARR was accepted and the spacecraft slewed to the GBM in-flight
+location. The initial angle from the Fermi LAT boresight to
+the GBM ground location is 40 degrees.
+
+At 22:43:24.82 the Fermi LAT triggered on a bright
+pulse from the same GRB (Dirirsa et al. 2016, GCN 19580). Owing to
+the ARR the initial angle from the Fermi LAT boresight to the
+LAT position at LAT trigger time was 12 degrees.
+
+At 22:51:16.03 GBM triggered again on GRB 160625B
+(trigger 488587880 / 160625952).
+
+GRB 160625B is distinct from the Swift BAT GRB 160625A
+(Maselli et al. 2016, GCN 19577).
+
+The GBM light curve consists of multiple peaks over
+approximately 700 seconds. The first peak is soft with a
+duration of about 1 second. The main peak, corresponding
+to the LAT trigger, is about 25 seconds long and is very
+hard. The peak that triggered GBM for the second time is
+about 30 seconds long and soft.
+
+Standard GBM temporal and spectral analysis is awaiting
+downlink of the full dataset and will be reported when
+available."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19582
+SUBJECT: GRB 160625B: Tiled Swift observations
+DATE:    16/06/26 01:18:16 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+P. A. Evans (U. Leicester) reports on behalf of the Swift team:
+
+Swift has initiated a series of observations, tiled on the sky, of the
+Fermi/LAT GRB 160625B. Automated analysis of the XRT data will
+be presented online at http://www.swift.ac.uk/xrt_products/TILED_GRB00056
+
+Any uncatalogued X-ray sources detected in this analysis will be
+reported on this website and via GCN COUNTERPART notices. The probability of finding
+serendipitous sources, unrelated to the Fermi/LAT event is high: any X-ray source
+considered to be a probable afterglow candidate will be reported via a GCN Circular
+after manual consideration.
+
+Details of the XRT automated analysis methods are detailed in Evans et
+al. (2007, A&A, 469, 379; 2009, MNRAS, 397, 1177 and 2014, ApJS, 210, 8).
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19585
+SUBJECT: GRB 160625B: Swift-XRT afterglow detection
+DATE:    16/06/26 06:54:13 GMT
+FROM:    Antonino D'Ai at IASF-PA  <antonino.dai@ifc.inaf.it>
+
+A. Melandri (INAF-OAB), P. D'Avanzo (INAF-OAB), V. D'Elia (ASDC), D.N.
+Burrows (PSU), T.G.R. Roegiers (PSU), L.M. McCauley (PSU), S.L. Gibson
+(U. Leicester), J.P. Osborne (U. Leicester) and P.A. Evans (U.
+Leicester) report on behalf of the Swift-XRT team:
+
+Swift-XRT has performed follow-up observations of the
+Fermi/LAT-detected burst GRB 160625B (Dirirsa et al. GCN Circ. 19580)
+in a series of observations tiled on the sky. The total exposure time
+is 2.7 ks, distributed over 8 tiles; the maximum exposure at a single
+sky location was 1.1 ks. The data were collected between T0+9.6 ks and
+T0+10.0 ks, and are entirely in Photon Counting (PC) mode. 
+
+An uncatalogued X-ray source is detected and is above the RASS limit,
+and is therefore likely the GRB afterglow.  The position of this source
+is RA, Dec=308.5969, +6.9196 which is equivalent to:
+
+RA (J2000): 20:34:23.25
+Dec(J2000): +06:55:10.5
+
+with an uncertainty of 3.8 arcsec (radius, 90% confidence).  This
+position is 19.7 arcmin from the Fermi/LAT position. 
+
+The light curve can be modelled with a power-law decay with a decay
+index of alpha=3.156 (+0.011, -2.764).
+
+A spectrum formed from the WT mode data can be fitted with an absorbed
+power-law with a photon spectral index	of 2.09 (+0.20, -0.19). The
+best-fitting absorption column is  1.6 (+/-0.6) x 10^21 cm^-2, in
+excess of the Galactic value of 9.8 x 10^20 cm^-2 (Willingale et al.
+2013). The counts to observed (unabsorbed) 0.3-10 keV flux conversion
+factor deduced from this spectrum  is 3.1 x 10^-11 (4.3 x 10^-11) erg
+cm^-2 count^-1. 
+
+A summary of the WT-mode spectrum is thus:
+Total column:	     1.6 (+/-0.6) x 10^21 cm^-2
+Galactic foreground: 9.8 x 10^20 cm^-2
+Excess significance: 1.8 sigma
+Photon index:	     2.09 (+0.20, -0.19)
+
+If the light curve continues to decay with a power-law decay index of
+3.156, the count rate at T+24 hours will be 6.1 x 10^-3 count s^-1,
+corresponding to an observed (unabsorbed) 0.3-10 keV flux of 1.9 x
+10^-13 (2.6 x 10^-13) erg cm^-2 s^-1.
+
+The results of the XRT-team automatic analysis of the likely afterglow
+are at http://www.swift.ac.uk/xrt_products/TILED_GRB00056/index_1.php.
+The results of the full analysis of the tiled XRT observations are
+available at http://www.swift.ac.uk/xrt_products/TILED_GRB00056.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19586
+SUBJECT: GRB 160625B: Fermi-LAT refined analysis
+DATE:    16/06/26 07:55:38 GMT
+FROM:    Judith Racusin at GSFC  <judith.racusin@nasa.gov>
+
+F. Dirirsa (U. Johannesburg), G. Vianello (Stanford), J. Racusin (NASA/GSFC), and
+M. Axelsson (KTH Stockholm) report on behalf of the Fermi-LAT team:
+We report the on-ground localization and analysis of GRB 160625B, which triggered 
+the LAT onboard (Dirisa et al., GCN 19580).  All times are relative to the initial GBM 
+trigger (Burns et al, GCN 19581).
+The best LAT on-ground location is found to be:
+RA, Dec = 308.56, 6.93 deg (J2000)
+with an error radius of 0.06 deg (90 % containment, statistical error only). This is fully 
+compatible with the position of the afterglow detected by Swift/XRT (Melandri et al., 
+GCN 19585).
+This was 42 deg from the LAT boresight at the time of the GBM trigger and triggered 
+an autonomous repoint of the spacecraft.
+
+More than 300 photons were detected above 100 MeV.  The LAT emission became 
+detectable during the second bright pulse observed by GBM at ~T0+181 s.  The 
+highest-energy photon is a 15 GeV event which is observed ~345 seconds after 
+the GBM trigger.  The GRB was detectable by the LAT up to ~1 ks after the 
+trigger.  Data are still being collected, and pointed mode observations are continuing 
+to maximize exposure to the GRB location. 
+The Fermi-LAT point of contact for this burst is Feraol Dirirsa (fdirirsa@uj.ac.za <mailto:fdirirsa@uj.ac.za>).
+The Fermi-LAT is a pair conversion telescope designed to cover the energy band from 
+20 MeV to greater than 300 GeV. It is the product of an international collaboration 
+between NASA and DOE in the U.S. and many scientific institutions across France, 
+Italy, Japan and Sweden.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19587
+SUBJECT: GRB 160625B: Fermi GBM refined analysis
+DATE:    16/06/26 08:01:15 GMT
+FROM:    Eric Burns at U of Alabama  <eb0016@uah.edu>
+
+E. Burns (UAH) reports on behalf of the Fermi GBM Team:
+
+"We report temporal and spectral analysis on GRB 160625B, covering
+all three Fermi trigger times (LAT trigger 488587408 / 160625947
+GBM triggers 488587220 / 160625945 and 488587880 / 160625952).
+All times are relative to the first GBM trigger time.
+
+The GBM light curve consists of multiple peaks
+with a total duration (T90) of about 460 s (50-300 keV).
+The 1.024-sec peak photon flux of the main peak measured starting
+from T0+188.707 s in the 10-1000 keV band is 167 +/- 1 ph/s/cm^2.
+
+The soft peak that initially triggered GBM is about 1 second long.
+The time-averaged spectrum from T0+0.002 s to T0+1.056 s is
+well fit by a power law function with an exponential
+high-energy cutoff.  The power law index is -0.2 +/- 0.1 and
+the cutoff energy, parameterized as Epeak, is 68 +/- 1 keV.
+The event fluence (10-1000 keV) in this time interval is
+(1.65 +/- 0.03)E-06 erg/cm^2.
+
+The main peak that triggered the LAT is about 25 seconds long.
+The time-averaged spectrum from T0+187.427 s to T0+212.003 s is
+well fit by a Band function with Epeak = 657 +/- 5 keV,
+alpha = -0.74 +/- 0.00, and beta = 2.36 +/- 0.01.
+The event fluence (10-1000 keV) in this time interval is
+(5.00 +/- 0.01)E-04 erg/cm^2.
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19588
+SUBJECT: GRB 160625B: RATIR Optical and NIR Afterglow Detection
+DATE:    16/06/26 08:18:57 GMT
+FROM:    Eleonora Troja at GSFC  <eleonora.troja@nasa.gov>
+
+Eleonora Troja (GSFC), Nat Butler (ASU), Alan M. Watson (UNAM),
+Alexander Kutyrev (GSFC), William H. Lee (UNAM), Michael G. Richer (UNAM),
+Ori Fox (STScI), J. Xavier Prochaska (UCSC), Josh Bloom (UCB),
+Antonino Cucchiara (GSFC/STScI), Owen Littlejohns (ASU),
+Enrico Ramirez-Ruiz (UCSC), JosÃ© A. de Diego (UNAM), Leonid Georgiev
+(UNAM), JesÃºs GonzÃ¡lez (UNAM), Carlos RomÃ¡n-ZÃºÃ±iga (UNAM), Neil
+Gehrels (GSFC), Harvey Moseley (GSFC), John Capone (UMD), V. Zach
+Golkhou (ASU), and Vicki Toy (UMD) report:
+
+We observed the field of the Fermi LAT GRB 160625B (Dirirsa, et al., GCN 
+19580)
+with the Reionization and Transients Infrared Camera (RATIR; www.ratir.org)
+on the 1.5m Harold Johnson Telescope at the Observatorio AstronÃ³mico 
+Nacional
+on Sierra San Pedro MÃ¡rtir from 2016/06 26.30 to 2016/06 26.32 UTC (8.53
+to 9.02 hours after the LAT trigger), obtaining a total of 0.36 hours
+exposure in the r and i bands and 0.15 hours exposure in the Z, Y, J
+and H bands.
+
+We detect a bright, fading and uncatalogued source at the edge of the 
+Swift-XRT
+error circle (Melandri, et al., GCN 19585), at a position RA, Dec = 
+20:34:23.50,
++6:55:8.1 (J2000, +/-0.5"). In comparison with the USNO-B1 and 2MASS 
+catalogs,
+we obtain the following values:
+
+   r    = 18.28 +/- 0.01
+   i    = 18.08 +/- 0.01
+   Z    = 17.95 +/- 0.01
+   Y    = 17.78 +/- 0.01
+   J    = 17.77 +/- 0.02
+   H    = 17.65 +/- 0.02
+
+These magnitudes are in the AB system and are not corrected for Galactic
+extinction in the direction of the GRB.
+
+Further observations are on-going.
+
+We thank the staff of the Observatorio AstronÃ³mico Nacional in San Pedro
+MÃ¡rtir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19589
+SUBJECT: GRB 160625B: Swift/UVOT Detection
+DATE:    16/06/26 11:15:45 GMT
+FROM:    Samantha Oates at MSSL  <sro@mssl.ucl.ac.uk>
+
+GRB 160625B: Swift/UVOT Detection
+
+S. R. Oates (U. Warwick) and A. D'Aì (INAF-IASFPA)
+report on behalf of the Swift/UVOT team:
+
+The Swift/UVOT began settled observations of the field of GRB 160625B
+9616 s after the LAT trigger (Dirirsa et al., GCN Circ. 19580).
+A source consistent with the RATIR position (Troja et al. GCN Circ. 19588)
+and the edge of the XRT position (Melandri et al. GCN Circ. 19585)
+is detected in the initial UVOT exposures.
+
+Preliminary detections using the UVOT photometric system
+(Breeveld et al. 2011, AIP Conf. Proc. 1358, 373) for the early exposures are: 
+
+Filter         T_start(s)   T_stop(s)      Exp(s)           Mag
+
+u                 9616         9978          353         16.41 +/- 0.04
+
+The magnitudes in the table are not corrected for the Galactic extinction
+due to the reddening of E(B-V) = 0.12 in the direction of the burst
+(Schlegel et al. 1998).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19599
+SUBJECT: GRB 160625B: MITSuME Ishigakijima Optical Observation
+DATE:    16/06/27 02:51:23 GMT
+FROM:    Daisuke Kuroda at OAO/NAOJ  <dikuroda@oao.nao.ac.jp>
+
+D. Kuroda (OAO, NAOJ),  H. Hanayama, T. Miyaji, J. Watanabe (IAO, NAOJ),
+K. Yanagisawa (OAO, NAOJ), S.Nagayama (NAOJ), M. Yoshida (Hiroshima),
+K. Ohta (Kyoto) and N. Kawai(Tokyo Tech)
+report on behalf of the MITSuME and OISTER collaboration:
+
+We observed the field of GRB 160625B (Dirirsa et al., GCNC 19580;
+Melandri et al., GCNC 19585) with the optical three color (g', Rc
+and Ic) CCD camera attached to the Murikabushi 1m telescope of
+Ishigakijima Astronomical Observatory.
+
+The observation started on 2016-06-26 14:03:44 UT (~15.3 h after
+the burst). We detected the previously reported afterglow
+(Troja et al., GCNC 19588) in in all the three bands.
+
+The photometric results of the OT are listed below.
+We used GSC2.3 catalog for flux calibration.
+
+#T0+[day]  MID-UT    T-EXP[sec] g'    g'_e  Rc    Rc_e  Ic    Ic_e
+-------------------------------------------------------------------
+0.64273    14:08:57     540.0   19.16 0.10  18.59 0.05  18.08 0.10
+0.73075    16:15:41     540.0   19.27 0.08  18.78 0.06  18.28 0.08
+-------------------------------------------------------------------
+T0+ : Elapsed time after the burst [day]
+T-EXP: Total Exposure time [sec]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19600
+SUBJECT: GRB 160625B: VLT/X-shooter redshift
+DATE:    16/06/27 09:50:38 GMT
+FROM:    Daniele Malesani at Dark Cosmology Centre, Niels Bohr Inst  <malesani@dark-cosmology.dk>
+
+D. Xu (NAOC/CAS), D. Malesani (DARK/NBI), J. P. U. Fynbo (DARK/NBI), N. 
+R. Tanvir (Univ. Leicester), A. J. Levan (Univ. Warwick), D. A. Perley 
+(DARK/NBI), report on behalf of a larger collaboration:
+
+We observed the optical afterglow of the Fermi GRB 160625B (Dirirsa et 
+al., GCN 19580; Burns, GCN 19581; Troja et al., GCN 19588) with the ESO 
+VLT UT2 (Kueyen) equipped with the X-shooter spectrograph. Observations 
+started on 2016 June 27.19 UT (1.25 days after the Fermi trigger) and 
+consisted of 4 spectra by 600 s each, covering the wavelength range 
+3500-20000 AA.
+
+The afterglow is well detected in the acquisition image with R ~ 19.1 +- 
+0.3, where the large error is due to scatter in the USNO magnitudes used 
+as reference, and the r versus R filter transformation.
+
+The continuum trace is well detected in our exposures, down to ~3100 AA. 
+The lack of any drop sets an upper limit to the redshift z < 1.55. A 
+number of superimposed absorption features are visible; among others, we 
+detect Mg I, Mg II, Fe II, C IV, Si IV, O I, Si II, Zn II, Al II, and Al 
+III, all at a common redshift z = 1.406, which we conclude to be the 
+redshift of GRB 160625B. We also detect an intervening Mg II absorption 
+system at z = 1.319.
+
+At z = 1.406, the fluence in the 10-1000 keV Fermi band (Burns, GCN 
+19587) corresponds to an isotropic-equivalent energy of ~2.5*10^54 erg.
+
+We acknowledge excellent support from the ESO observing staff in 
+Paranal, in particular Juan Carlos Munoz, Elizabeth (Liz) Bartlett, 
+Dimitri Gadotti and Francisco Caceres.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19601
+SUBJECT: GRB 160625B: TNG redshift confirmation
+DATE:    16/06/27 09:51:06 GMT
+FROM:    Valerio D'Elia at ASDC  <delia@asdc.asi.it>
+
+V. D’Elia (INAF-OAR/ASI-ASDC), A. Melandri (INAF-OAB) and D. Malesani (DARK/NBI) report on behalf of the CIBO collaboration:
+
+We observed the afterglow of GRB 160625B (Dirirsa et al., GCN 19580) with the TNG equipped with DOLORES and the LR-B grism. The spectrum was acquired on 2016-06-26 and covers the range between 3000 and 7800 AA. The observation consisted of 2400 s exposure, starting at 23:04:20.836 (24 hr after the trigger).
+
+The optical counterpart is clearly detected in the acquisition images with a magnitude r = 19.0 +/- 0.3 at the position reported by Troja et al. (GCN 19588) and Oates and D'Aì (GCN 19589).
+
+The spectrum shows a clear continuum. We detect absorption features consistent with Mg I, Mg II, Mn II and Fe II lines a redshift of z = 1.41 +/- 0.01, thus confirming the redshift reported by Xu et al. (GCN 19600).
+
+We thanks the TNG staff for excellent support, in particular Luca di Fabrizio and Albar Garcia.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19602
+SUBJECT: GRB 160625B: RATIR Optical and NIR Observations 
+DATE:    16/06/27 14:12:33 GMT
+FROM:    Alan M. Watson at Instituto de Astronomia UNAM  <alan@astro.unam.mx>
+
+Alan M. Watson (UNAM), Eleonora Troja (GSFC), Nat Butler (ASU),
+Alexander Kutyrev (GSFC), William H. Lee (UNAM), Michael G. Richer
+(UNAM), Ori Fox (STScI), J. Xavier Prochaska (UCSC), Josh Bloom (UCB),
+Antonino Cucchiara (GSFC/STScI), Owen Littlejohns (ASU), Enrico
+Ramirez-Ruiz (UCSC), José A. de Diego (UNAM), Leonid Georgiev (UNAM),
+Jesús González (UNAM), Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC),
+Harvey Moseley (GSFC), John Capone (UMD), V. Zach Golkhou (ASU), and
+Vicki Toy (UMD) report:
+
+We observed the field of the Fermi LAT GRB 160625B (Dirirsa, et al., GCN
+19580) with the Reionization and Transients Infrared Camera (RATIR;
+www.ratir.org) on the 1.5m Harold Johnson Telescope at the Observatorio
+Astronómico Nacional on Sierra San Pedro Mártir from 2016/06 27.36 to
+2016/06 27.47 UTC (33.89 to 36.56 hours after the BAT trigger),
+obtaining a total of 1.73 hours exposure in the r and i bands and 0.73
+hours exposure in the Z, Y, J, and H bands.
+
+We detect the afterglow reported by Troja et al. (GCN Circ. 19588) and,
+in comparison with the USNO-B1 and 2MASS catalogs, obtain the following
+magnitudes:
+
+  r	= 19.63 +/- 0.01
+  i	= 19.52 +/- 0.01
+  Z	= 19.34 +/- 0.02
+  Y	= 19.17 +/- 0.02
+  J	= 19.11 +/- 0.02
+  H	= 18.98 +/- 0.03
+
+These magnitudes are in the AB system and are not corrected for Galactic
+extinction in the direction of the GRB.
+
+The afterglow has faded by about 1.20 magnitude in all bands compared to
+our earlier epoch, confirming the fading seen during the first epoch.
+The fading is consistent with a temporal index of -0.90.
+
+More observations are planned.
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+[GCN OPS NOTE(27jun16): Per author's request, the GRB name in the Title
+was changed from "A" to "B".  The name in the text was/is correct.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19603
+SUBJECT: GRB 160625B: Mini-MegaTORTORA detection of bright optical flash simultaneous with LAT event
+DATE:    16/06/27 15:37:31 GMT
+FROM:    Sergey Karpov at SAO RAS  <karpov@sao.ru>
+
+S.Karpov, G.Beskin (SAO RAS and Kazan Federal University, Russia), S.Bondar,
+E.Ivanov, E.Katkova, N.Orekhova, A.Perkov (OJS RPC PSI, Russia), A.Biryukov
+(SAI MSU and Kazan Federal University, Russia), V.Sasyuk (Kazan Federal
+University, Russia)
+
+The on-sky position of GRB 160625B (Dirirsa et al., GCN Circ. 19580) has
+been observed by Mini-MegaTORTORA nine-channel wide-field monitoring system
+ with high temporal resolution (http://mmt.favor2.info) before, during and
+just after the LAT trigger time (T0 = 2016-06-25 22:43:24).
+
+Mini-MegaTORTORA reacted to Fermi GBM trigger 488587220 and started
+observing its error box at 2016-06-25 22:41:07, 52 seconds after GBM
+trigger and 136 seconds before LAT trigger. Due to large size of error box,
+the observations have been performed in "widefield+deep" regime, with
+channels simultaneously covering ~30x30 deg field of view with 30 s
+exposures in white light to achieve deepest detection limit. The system
+acquired 20 frames in such regime, covering time interval from T0-136 to
+T0+466 s.
+
+The system detected a bright optical flash on a frame coincident with LAT
+trigger time (T0-15.9 - T0+14.1 s) at position reported by Troja et al.
+(GCN Circ. 19588), with a magnitude of about V=8.8 mag. Next frame
+displayed a slight rebrightening of about 0.1 mag, and then the light curve
+followed nearly  smooth power-law decay  with slope of about -1.6, down to
+V=12.2 at last acquired frame. The images acquired prior to LAT trigger do
+not display any object at that position down to about V=13.5 mag.
+
+The system also reacted to second GBM trigger 488587880 with slightly
+different coordinates, and due to large field of view again covered the
+position of a transient, acquiring 20 more frames from T0+1691 to T0+2264
+s. No object is seen in these frames down to about V=13.5 mag.
+
+Snapshots of a frames from first follow-up (20 arcmin fields around the
+transient) is available at
+http://vo.astronet.ru/~karpov/grb160625b_mosaic.png
+
+Further analysis and calibration of the data is ongoing.
+
+Mini-MegaTORTORA belongs to Kazan Federal University and is located at
+Special Astrophysical Observatory near Russian 6-m telescope.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19604
+SUBJECT: Konus-Wind observation of GRB 160625B
+DATE:    16/06/27 16:30:09 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+D. Svinkin, S. Golenetskii, R. Aptekar, D. Frederiks, P. Oleynik,
+M. Ulanov,  A. Tsvetkova, A. Lysenko, A. Kozlova, and T. Cline
+on behalf of the Konus-Wind team, report:
+
+The long-duration, extremely bright GRB 160625B
+(Fermi-LAT detection: Dirirsa et al., GCN Circ. 19580;
+Fermi-GBM detection: Burns, GCN Circ. 19581)
+triggered Konus-Wind at T0=81619.875 s UT (22:40:19.875).
+
+The burst light curve starts, at ~T0-0.3 s, with a short soft
+initial pulse (precursor) which had a duration of about 1 s.
+The precursor is followed, starting at ~T0+180 s, by the main, extremely 
+bright and spectrally-hard episode with a duration of
+about 40 s. This episode evolves into a weak emission traceable
+up to ~T0+680 s.
+The emission in the main episode is seen up to ~20 MeV.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB160625_T81619/
+
+As observed by Konus-Wind, the burst
+had a fluence of 9.44(-0.16,+0.16)x10^-4 erg/cm2,
+and a 256-ms peak flux, measured from T0+188.928 s,
+of 1.26(-0.10,+0.10)x10^-4 erg/cm2/s
+(both in the 20 keV - 10 MeV energy range).
+
+The time-averaged spectrum of the initial pulse
+(measured from T0 to T0+8.448 s)
+is best fit in the 20 keV - 1 MeV range
+by a simple power law model with
+the photon index alpha = -2.34(-0.22,+0.25)
+(chi2 = 38/61 dof)
+
+The time-averaged spectrum of the main episode
+(measured from T0+180.480 to T0+229.632 s)
+is best fit in the 20 keV - 20 MeV range
+by the GRB (Band) model with the following parameters:
+the low-energy photon index alpha = -0.79(-0.02,+0.02),
+the high energy photon index beta = -2.25(-0.04,+0.04),
+the peak energy Ep = 554(-19,+20) keV
+(chi2 = 353/97 dof)
+
+The spectrum near the maximum count rate
+(measured from T0+188.928 to T0+189.184 s)
+is best fit in the 20 keV - 20 MeV range
+by the Band model with the following parameters:
+the low-energy photon index alpha = -0.77(-0.08,+0.10),
+the high energy photon index beta = -2.22(-0.25,+0.17),
+the peak energy Ep = 937(-179,+195) keV
+(chi2 = 62/67 dof)
+
+Assuming the redshift z=1.406 (Xu, et al., GCN Circ. 19600)
+and a standard cosmology model with H_0 = 70 km/s/Mpc,
+Omega_M = 0.27, and Omega_Lambda = 0.73,
+we estimate the following rest-frame parameters:
+the isotropic energy release E_iso is ~5.0x10^54 erg,
+the peak luminosity L_iso is ~1.6x10^54 erg/s,
+and the rest-frame peak energy of the time-integrated spectrum,
+Ep,i, is ~1.3 MeV.
+
+This Eiso is the highest one measured by Konus-Wind for
+more than 21 years of its GRB observations and, probably,
+the highest Eiso recorded for a GRB ever.
+
+All the quoted errors are at the 90% confidence level.
+All the quoted values are preliminary.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19605
+SUBJECT: GRB 160625B: TSHAO optical observations
+DATE:    16/06/27 19:59:50 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+E. Mazaeva (IKI), A. Kusakin (Fesenkov Astrophysical Institute), P. 
+Minaev (IKI), I. Reva (Fesenkov Astrophysical Institute), A. Volnova 
+(IKI), A. Pozanenko (IKI) report on behalf of larger GRB follow-up 
+collaboration:
+
+We observed the field of GRB 160625B (Dirirsa et al., GCN 19580; Burns 
+et al. GCN 19581) with Zeiss-1000 (East) 1-m telescopes of Tien Shan 
+Astronomical Observatory. We obtained several images in R filter 
+starting on June 26 (UT) 19:39:18. We detect optical afterglow of  GRB 
+160625B (Troja et al., GCN 19588; Oates  et al., GCN  19589). 
+Preliminary photometry of a combined image is following
+
+Date       UT start   t-T0    Filter  Exp.   OT     Err.  UL
+                       (mid, days)     (s)
+
+2016-06-26 19:39:18   0.91784 R       50*120 19.07  0.05  22.0
+
+Photometry is based on nearby USNO-B1.0 stars
+USNO-B.1_id  R2
+0969-0608423 16.38
+0969-0608416 16.28
+0969-0608335 15.00
+0969-0608366 16.05
+0969-0608449 17.38
+0969-0608443 16.78
+0969-0608456 16.79
+
+The GRB 160625B triggered Fermi LAT and GBM (Dirirsa et al., GCN 19580; 
+Burns et al. GCN 19581), Konus-Wind (Svinkin et al. GCN 19604) and  D. 
+Kann (GCN 19579) reported about CALET and SPI-ACS/INTEGRAL trigger.
+
+A light curve of SPI-ACS/INTEGRAL  can be found in
+http://grb.rssi.ru/GRB160625B/GRB160625B_API-ACS.png
+
+The SPI-ACS time profile of  GRB 160625B consists of 3 episodes of total 
+duration about 750 seconds and compatible with time profiles reported by 
+GBM (Burns, GCN 19581) and Konus-Wind (Svinkin et al. GCN 19604).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19606
+SUBJECT: GRB 160625B: VLA Detection
+DATE:    16/06/27 20:43:24 GMT
+FROM:    Kate Alexander at Harvard  <kalexander@cfa.harvard.edu>
+
+K. D. Alexander (Harvard), T. Laskar (NRAO / UC Berkeley), W. Fong
+(University of Arizona) and E. Berger (Harvard) report on behalf of a
+larger collaboration:
+
+We observed the Fermi/LAT GRB 160625B (Diririsa et al., GCN 19580) at
+multiple frequencies with the Karl G. Jansky Very Large Array (VLA)
+beginning 2016 June 27.28 UT (1.34 days after the burst). At a mean
+frequency of 9.8 GHz, we detect a radio source with a preliminary flux
+density of ~400 uJy at
+
+RA (J2000) = 20:34:23.507 +/- 0.003
+Dec (J2000) = +06:55:07.89 +/- 0.03
+
+consistent with the position of the optical afterglow (Troja et al., GCN
+19588; Oates et al., GCN 19589) and the Swift/XRT position (Melandri et
+al., GCN 19585). Follow-up observations are planned.
+
+We thank the VLA staff for rapidly executing these observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19610
+SUBJECT: GRB 160625B: 15 GHz detection from AMI
+DATE:    16/06/28 13:15:59 GMT
+FROM:    Kunal Mooley at Oxford U  <kunal.mooley@physics.ox.ac.uk>
+
+K. P. Mooley, T. D. Staley, R. P. Fender (Oxford), G. E. Anderson 
+(Curtin), T. Cantwell (Manchester), C. Rumsey, D. Titterington, S. H. 
+Carey, J. Hickish, Y. C. Perrott, N. Razavi-Ghods, P. Scott (Cambridge), 
+K. Grainge, A. Scaife (Manchester)
+
+We observed the Fermi/LAT GRB 160625B (Dirirsa et al., GCN 19580) with 
+the AMI Large Array at 15 GHz on 2016 Jun 28.06 (UT), 2.1 days 
+post-burst, as part of the 4pisky program. We detect a radio source 
+consistent with the VLA location (Alexander et al., GCN 19606) at 
+640+/-40 uJy.
+
+Monitoring of this source is underway. We thank the AMI staff for 
+scheduling these observations. The AMI-GRB database is a log of all GRB 
+follow up observations with the AMI, and is available at 
+http://4pisky.org/ami-grb/.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19611
+SUBJECT: GRB 160625B: SAO RAS optical observations
+DATE:    16/06/28 14:00:13 GMT
+FROM:    Moskvitin Alexander at SAO RAS  <mosk@sao.ru>
+
+A. Moskvitin (SAO RAS, Russia) report on behalf of the larger team.
+
+After fruitful multiband observations of the GRB 160625B optical
+counterpart by several telescopes including Mini-MegaTORTORA
+system located at SAO RAS (Karpov et al. GCNC #19603)
+we observed the GRB160625B field (Dirirsa et al. GCNC #19580)
+with the 1-meter telescope Zeiss-1000 of SAO RAS on June, 27.923
+(1.976 days after the trigger). 7 x 300 sec. images in Rc band
+were obtained under good weather conditions.
+
+The OT is clearly visible in separate frames and in the stacked frame.
+It's position is perfectly consistent with the coordinates reported by
+Troja et al. (GCNC #19588) and Alexander et al. (GCNC #19606).
+During our observations the OT magnitude was R = 19.87 +/- 0.07.
+This estimation is based on the R2 magnitudes of nearby USNO-B1 stars,
+without any correction for the Galactic extinction in the GRB direction.
+The finding chart can be found at
+ftp://ftp.sao.ru/pub/grb/GRB160625B/GRB160625B_z1000.jpg
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19612
+SUBJECT: GRB 160625B: Global MASTER-Net prompt optical emission detection  
+DATE:    16/06/28 14:05:38 GMT
+FROM:    Vladimir Lipunov at Moscow State U/Krylov Obs  <lipunov@xray.sai.msu.ru>
+
+E. Gorbovskoy, V. Lipunov, N.Tyurina, V.Kornilov,
+P.Balanutsa,  A.Kuznetsov, D.Kuvshinov,
+Lomonosov Moscow State University, Sternberg Astronomical Institute
+
+R. Rebolo, M. Serra, N. Lodieu, G. Israelian, L. Suarez-Andres
+The Instituto de Astrofisica de Canarias
+
+D.Buckley, S. Potter, A.Kniazev, M.Kotze
+South African Astronomical Observatory
+
+O.Gres, K.Ivanov, S.Yazev, N.M.Budnev, O.Chuvalaev, V.A.Poleshchuk
+Irkutsk State University
+
+A. Tlatov, A.V. Parhomenko, D. Dormidontov, V.Senik
+Kislovodsk Solar Station of the Pulkovo Observatory
+
+V.Yurkov, Yu.Sergienko, A.Gabovich, E.Sinyakov
+Blagoveschensk Educational State University, Blagoveschensk
+
+Ricardo Podesta, Carlos Lopez and Federico Podest
+Observatorio Astronomico Felix Aguilar (OAFA)
+
+Hugo Levato and Carlos Saffe
+Instituto de Ciencias Astronomicas, de la Tierra y del Espacio (ICATE)
+
+MASTER-IAC  robotic telescope (MASTER-Net: http://observ.pereplet.ru)
+was pointed to the  GRB 160625B (Burns et al., GCN19581) 31 sec after GBM
+notice time   and  57 sec after GBM trigger (131 sec before LAT Trigger, 
+Dirirsa et al., GCN 19580)    at 2016-06-25 22:41:13UT .
+
+Starting from this time we continiously observed Swift X-ray 
+error box (Melandri et al., GCN 19585) by MASTER-IAC wide field camera 
+with 5 sec unfiltered exposition. We have several thousands frames.
+The OT appears at 22 43 30 (+- 2.5 sec) UT and rised to  maximum ~8 mag 
+after  ~5 sec  at RATIR position (Troja et al., GCN 19588).
+
+The prompt optical emission strongly correlated with Konus Wind gamma ray 
+light curve ( Svinkin et al., GCN 19604 ).
+
+MASTER-IAC  robotic telescope  started OT error box observation 43 
+sec after  LAT notice time and 95 sec after trigger time at 2016-06-25 22:44:59
+in two polarisations. The OT was about ~ 9.7 mag at this moment ( 0.2B + 
+0.8R with respect  to USNOB1.0 stars)
+
+The delay with publication connected with installation new MASTER 
+telescope at Argentina (http://master.sai.msu.ru/masternet/).
+
+
+The message may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19615
+SUBJECT: Pi of the Sky detection of an optical flash accompanying GRB 160625B
+DATE:    16/06/28 19:34:52 GMT
+FROM:    Lech Wiktor Piotrowski at U Warsaw  <lewhoo@fuw.edu.pl>
+
+T. Batsch, A.J. Castro-Tirado, R. Cunniffe, H. Czyrkowski, A. ¿wiek, M. ¿wiok, R. D¿browski,
+M. Jelínek, G. Kasprowicz, A.Majcher, K. Ma¿ek, L. Mankiewicz, K. Nawrocki, ¿. Obara,
+R. Opiela, M. Siudek, M. Soko¿owski, L. W. Piotrowski, R. Wawrzaszek, G. Wrochna,
+A Zadro¿ny, M. Zaremba, A.F. ¿arnecki (Pi of the Sky Collaboration)
+
+Following GCN 19603 we present the reconstructed light curve of GRB 160625B.
+One of four Pi of the Sky North detectors located at INTA - El Arenosillo
+observatory in Mazagón near Huelva, Spain imaged the region of GRB 160625B
+(Swift-XRT error circle (Melandri, et al., GCN 19585), at a position RA, Dec =
+20:34:23.50, +6:55:8.1) before, during and after the GRB with 10s exposures
+(the exposures were taken in white light, IR-cut and UV-cut filters only,
+to achieve deepest detection limit).
+
+Cameras of the Pi of the Sky North observatory were observing the position of the GRB160625B
+48s after Fermi GBM trigger 488587220 time (Jun 25 22:40:16.28 UT) 140 seconds 
+before the LAT 488587408 trigger (Jun 25 22:43:24.82 UT). We observed optical emission
+at the position given by Swift XRT recording a bright light curve starting -5.9 s 
+before the LAT trigger. The first 10 s exposure shows initial magnitude of ~9.18 (unfiltered)
+brightening to ~8.04 on the second exposure, than becoming gradually dimmer. 
+It is important to note that both cameras, 35 and 39, identified a new object
+on exposures starting just  before the time of the trigger. Below we give the light curve of 
+GRB 160625B separately for two cameras:
+
+For camera id = 35
+
+t - t0            MagV           ErrV
+-5.90351900 9.17858000 0.01979590
+7.30034010 8.04185240 0.00692530
+20.50411000 8.85256720 0.01464740
+33.70891000 9.16411390 0.01958250
+46.91391000 9.35221170 0.02310580
+60.12562000 9.48356820 0.02605830
+73.33060000 9.76273220 0.03348310
+86.53484000 9.88869010 0.03764580
+110.75906000 10.36167800 0.05831040
+123.96549000 10.36315500 0.05835510
+137.17366000 10.65792100 0.07717340
+150.37855000 10.78365300 0.08672800
+163.58296000 10.90103300 0.09643880
+176.79191000 11.10503700 0.11532510
+190.00141000 11.27645400 0.13539200
+203.20498000 11.43088800 0.15646540
+216.40969000 11.52125300 0.16944510
+229.59719000 11.66219300 0.19535900
+242.80196000 11.97388500 0.26215110
+255.98556000 11.44272600 0.15893520
+269.18835000 12.22780400 0.33061590
+282.39288000 11.70644300 0.20138410
+295.59737000 12.10355100 0.29637090
+308.80171000 12.01954200 0.27279960
+348.41412000 12.14943500 0.30407830
+388.02095000 12.20940300 0.32526530
+
+For camera id = 39
+
+t-t0               MagV            ErrV
+-0.21738000 8.08332450 0.00848860
+15.13208000 8.39624730 0.01125160
+30.48032000 9.30388780 0.02600590
+45.83497000 9.38090950 0.02766380
+61.69324000 9.60060770 0.03356240
+77.04026000 9.76118030 0.03894990
+92.38808000 10.00068600 0.04923380
+107.71683000 10.23761200 0.05958340
+123.06963000 10.43917000 0.07335490
+138.42439000 10.63567700 0.08856020
+153.77331000 10.78614800 0.10097800
+169.12145000 10.99128200 0.12175100
+184.46995000 11.23445500 0.15126550
+199.82483000 11.04686000 0.12786780
+215.17292000 11.27135000 0.15866670
+232.56505000 11.47398300 0.19109480
+247.89472000 11.99905600 0.31466480
+263.75136000 11.78799000 0.25153010
+279.09823000 12.08530200 0.33607390
+294.44611000 11.95412600 0.30025650
+325.14680000 12.14188100 0.35312590
+432.59537000 12.18551500 0.36922680
+
+Indicated errors are statistical only. Estimated systematic uncertainty of the image calibration is around 0.06-0.08 mag.
+
+T0 is the Fermi GBM trigger 488587408 time (Jun 25 22:43:24.82 UT) and t is the time of shutter oppening. Each image taken covers approximately 400 square degrees. The 
+magnitudo limit was about 12.5 mag.
+
+Pi of the Sky observations are performed in wide visible band, with IR-cut and UV-cut filters only. We calibrate our observations to the reference stars from Tycho 2 using 
+the transformation from Tycho to Pi of the Sky system given by:
+
+VPi =  VT + 0.235313 - 0.292266*(BT - VT)
+
+Due to the proximity of the burst to the edge of our FoV, the transient was not detected automatically. However, this allowed us to record it with two cameras, with 
+exposures slightly shifted in time.
+
+The light curve is available at:  http://grb.fuw.edu.pl/results/gamma-ray-bursts/grb160625b/.
+More information will be published at http://grb.fuw.edu.pl and  http://grb.fuw.edu.pl/results/gamma-ray-bursts/grb160625b/
+
+[GCN OPS NOTE(04jul16): Per author's request, the GRB name in the 2nd paragraph was corrected,
+and RC was added to the author list.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19616
+SUBJECT: GRB 160625B: SMARTS optical/IR afterglow observations
+DATE:    16/06/28 20:56:18 GMT
+FROM:    Bethany Cobb at GWU  <bcobb@gwu.edu>
+
+B. E. Cobb (GWU) reports:
+
+Using the ANDICAM instrument on the 1.3m telescope at CTIO, we
+obtained optical/IR imaging of the error region of GRB 160625B
+(GCN 19580, Dirirsa et al.) with a mid-exposure time of about
+32 hours post-burst (2016-06-27 06:51 UT). Total summed exposure
+times amounted to 36 minutes in I and 30 minutes in J.
+
+The afterglow of GRB 160625B (e.g. GCN 19585, Melandri et al.;
+GCN 19588, Troja et al.; GCN 19589, Oates et al.) is detected
+in our images. Preliminary comparison to USNO-B1.0 stars in I
+and 2MASS stars in J indicates the following afterglow magnitudes:
+
+mid-exposure
+time post-burst       I mag           J mag
+1.338 days            18.9+/-0.2      18.6+/-0.1
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19617
+SUBJECT: GRB 160625B CALET Gamma-Ray Burst Monitor detection
+DATE:    16/06/29 08:09:50 GMT
+FROM:    Takanori Sakamoto at AGU  <tsakamoto@phys.aoyama.ac.jp>
+
+S. Nakahira (JAXA), A. Yoshida, T. Sakamoto, Y. Kawakubo, M. Moriyama,
+Y. Yamada (AGU), K. Yamaoka (Nagoya U), I. Takahashi (IPMU), Y. Asaoka,
+S. Ozawa, S. Torii (Waseda U), Y. Shimizu, T. Tamura (Kanagawa U), W. Ishizaki (ICRR),
+M. L. Cherry (LSU), S. Ricciarini (U of Florence) P. S. Marrocchesi (U of Siena)
+and the CALET collaboration:
+
+The long-duration GRB 160625B (Burns et al., GCN Circ. 19581;
+Dirirsa et al. GCN Circ. 19586; INTEGRAL-ACS #7495) triggered the CALET Gamma-ray
+Burst Monitor (CGBM) at 22:40:15.49 on 25 June 2016.  The burst signal
+was seen by all CGBM instruments.
+
+The light curve of the SGM shows a precursor emission starting at T+0.5 sec,
+peaking at T+1 sec and ending at T+2 sec.  Then, the bright main burst episode
+follows starting from T+183 sec and ending at T+233 sec with overlapping
+multiple pulses.  The T90 duration measured by the SGM data for the main
+bright episode is 20.0 +- 0.4 sec (40-1000 keV).  The T90 duration of the precursor
+emission measured by the SGM data is 0.8 +- 0.1 sec (40-1000 keV).
+The light curve is available at
+
+http://cgbm.calet.jp/cgbm_trigger/flight/1150929566/
+
+Furthermore, the main pulse was also detected by Imaging Calorimeter (IMC;
+plastic scintillating fibers) and Charge Detector (CHD; plastic scintillators),
+which are subsystems of the CALET main instrument Calorimeter (CAL).  The
+incident angles for this burst was 61 degrees and 67 degrees from the boresight
+of CAL at the trigger time and at the main peak, respectively.
+The CAL gamma-ray analysis (>1 GeV) is in progress.
+
+The CALET data used in this analysis are provided by the Waseda CALET Operation
+Center located at the Waseda University.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19619
+SUBJECT: GRB 160625B: TSHAO optical observations
+DATE:    16/06/29 15:18:38 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+E. Mazaeva (IKI), A. Kusakin (Fesenkov Astrophysical Institute), P. 
+Minaev (IKI), I. Reva (Fesenkov Astrophysical Institute), A. Volnova 
+(IKI), A. Pozanenko (IKI) report on behalf of larger GRB follow-up 
+collaboration:
+
+We observed the field of GRB 160625B (Dirirsa et al., GCN 19580; Burns 
+et al. GCN 19581) with Zeiss-1000 (East) 1-m telescopes of Tien Shan 
+Astronomical Observatory. We obtained several images in R filter 
+starting on June 27 (UT) 20:15:57. We detect optical afterglow of  GRB 
+160625B (Troja et al., GCN 19588; Oates  et al., GCN  19589). 
+Preliminary photometry of a combined image is following
+
+Date       UT start   t-T0    Filter  Exp.   OT     Err.  UL
+                       (mid, days)     (s)
+
+2016-06-27 20:15:57   1.92994 R       54*60 19.56  0.06  22.0
+
+Photometry is based on nearby USNO-B1.0 stars reported in GCN 19605 
+(Mazaeva et. al).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19620
+SUBJECT: GRB 160625B: TSHAO optical observations, correction GCN 19619
+DATE:    16/06/29 15:45:03 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+A. Pozanenko (IKI) report on behalf of larger GRB follow-up  collaboration:
+
+
+Corrected text of the GCN 19619 (Mazaeva et al.) should be as follows.
+
+E. Mazaeva (IKI), A. Kusakin (Fesenkov Astrophysical Institute), P. 
+Minaev (IKI), I. Reva (Fesenkov Astrophysical Institute), A. Volnova 
+(IKI), A. Pozanenko (IKI) report on behalf of larger GRB follow-up 
+collaboration:
+
+We observed the field of GRB 160625B (Dirirsa et al., GCN 19580; Burns 
+et al. GCN 19581) with Zeiss-1000 (East) 1-m telescopes of Tien Shan 
+Astronomical Observatory. We obtained several images in R filter 
+starting on June 28 (UT) 18:12:30. We detect optical afterglow of  GRB 
+160625B (Troja et al., GCN 19588; Oates  et al., GCN  19589). 
+Preliminary photometry of a combined image is following
+
+Date       UT start   t-T0    Filter  Exp.   OT     Err.   UL
+                       (mid, days)     (s)
+
+2016-06-28 18:12:30   2.86135 R       63*120 20.32   0.06  22.7
+
+Photometry is based on nearby USNO-B1.0 stars reported in GCN 19605 
+(Mazaeva et. al).
+
+
+I thank D. A. Kann who noticed the apparent error.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19640
+SUBJECT: GRB 160625B: LCOGT FTN observations
+DATE:    16/07/01 16:43:58 GMT
+FROM:    Cristiano Guidorzi at Ferrara U,Italy  <guidorzi@fe.infn.it>
+
+C. Guidorzi (U. Ferrara), S. Kobayashi (LJMU), C.G. Mundell (U. Bath), 
+A. Gomboc (U. Nova Gorica), on behalf of a large collaboration report:
+
+We observed Fermi GRB 160625B (Dirirsa et al. GCN 19580) with the 2-m 
+LCOGT Faulkes Telescope North in Hawaii on July 01 from 11:12 UT to 
+12:46 UT with the SDSS-r filter for a total exposure of 1500 s. We 
+clearly detect the optical afterglow (Troja et al. GCN 19588; Oates et 
+al. GCN 19589; Kuroda et al. GCN 19599; Xu et al. GCN 19600; D'Elia et 
+al. GCN 19601; Karpov et al. GCN 19603; Mazaeva et al. GCN 19605; 
+Moskvitin et al. GCN 19611; Gorbovskoy et al. GCN 19612; Batsch et al. 
+GCN 19615; Cobb et al. GCN 19616) with a magnitude of r=21.15 +- 0.15 
+mag at a mid epoch of 5.5 days post burst, as calibrated against nearby 
+USNOB1 stars.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19642
+SUBJECT: GRB 160625B: SAO RAS monitoring
+DATE:    16/07/02 13:55:29 GMT
+FROM:    Vladimir Sokolov at SAO RAS  <sokolov@sao.ru>
+
+A. F. Valeev, A. S. Moskvitin, G. M. Beskin, V. V. Vlasyuk, V. V. Sokolov
+(SAO RAS, Russia) report on behalf of the larger GRB follow-up team.
+
+We observed the GRB160625B field (Dirirsa et al. GCNC #19580) with
+two optical telescopes of SAO RAS: the 6-m BTA + Scorpio (B, V, Rc, Ic
+bands),
+and the 1-meter telescope Zeiss-1000 + CCD photometer (Rc band)
+at the June 29/30 night.
+We clearly detected an OT (Troja et al. ,GCNC #19588; Karpov et al GCNC
+#19603;
+Alexander et al. GCNC #19606) in our stacked frames.
+Preliminary Rc band  results are shown in the following table.
+These estimations are based on the R2 magnitudes of the same nearby
+USNO-B1 stars as in our previous GCNC #19611.
+Mid_date, UT   T-T0,d   exp,s    R_mag    err    Telescope
+=================================================================
+June, 29.827   3.880    3 x 200  20.53 +/- 0.07  BTA
+June, 29.983   4.036    8 x 300  20.56 +/- 0.20  Zeiss-1000
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19651
+SUBJECT: GRB 160625B: RTT150 optical observations
+DATE:    16/07/04 13:42:20 GMT
+FROM:    Rodion Burenin at IKI, Moscow  <rodion@hea.iki.rssi.ru>
+
+I. Bikmaev, E. Irtuganov, N. Sakhibullin (KFU/AST),
+R. Burenin, M. Pavlinsky, R. Sunyaev (IKI),
+I. Khamitov, H. Kirbiyik (TUG), U. Kiziloglu (METU), E. Gogus (Sabanci Uni.)
+
+report:
+
+We observed field of Fermi GRB 160625B (Dirirsa et al. GCN 19580) at
+the position of optical afterglow (Troja et al. ,GCN 19588) with
+Russian-Turkish 1.5-m telescope (RTT150, Bakirlitepe, TUBITAK National
+Observatory, Turkey) using the TFOSC instrument.
+
+We obtained series of Rc exposures in June 30 / July 01(6 frames x 600
+sec, UT = 00:21 - 01:30 ), in July 01 / 02 (4 frames x 900 sec, UT =
+00:36 - 01:42), in July 02 / 03 (6 frames x 900 sec, UT = 23:49 -
+01:29), and in July 03 / 04, 2016, (14 frames x 600 sec, UT = 22:50 -
+01:39). The optical transient (Troja et al. GCN 19588; Oates et
+al. GCN 19589; Kuroda et al. GCN 19599; Xu et al. GCN 19600; D'Elia et
+al. GCN 19601; Watson at al. GCN 19602; Karpov et al. GCN 19603;
+Mazaeva et al. GCN 19605, 19620; Moskvitin et al. GCN 19611;
+Gorbovskoy et al. GCN 19612; Batsch et al.  GCN 19615; Cobb et al. GCN
+19616; Guidorzi et al. GCN 19640; Valeev et al. GCN 19642) is clearly
+detected in each images.
+
+Using USNO-B1 0969-0608410 star at RA,DEC = 308.580912 +06.909881
+(J2000.0) with R = 16.73 mag as a reference we estimated the
+Rc-magnitudes of the afterglow in stacked images:
+
+ T-T0,  Mag., Mag.err
+ days
+
+ 5.09   20.69 +- 0.03  
+ 6.10   20.96 +- 0.04  
+ 7.08   21.04 +- 0.03  
+ 8.06   21.24 +- 0.04  
+
+RTT-150 data show that OT is fading at approximately the same power
+law rate as it was observed earlier.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19680
+SUBJECT: GRB 160625B: TSHAO optical observations
+DATE:    16/07/11 12:56:47 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+E. Mazaeva (IKI), A. Kusakin (Fesenkov Astrophysical Institute), P. 
+Minaev (IKI), I. Reva (Fesenkov Astrophysical Institute), A. Volnova 
+(IKI), A. Pozanenko (IKI) report on behalf of larger GRB follow-up 
+collaboration:
+
+We observed the field of GRB 160625B (Dirirsa et al., GCN 19580; Burns 
+et al. GCN 19581) with Zeiss-1000 (East) 1-m telescopes of Tien Shan 
+Astronomical Observatory. We obtained several images in R filter on July 
+8 and 10. We detect optical afterglow of  GRB 160625B (Troja et al., GCN 
+19588; Oates  et al., GCN  19589). Preliminary photometry of a combined 
+image is following
+
+Date       UT start   t-T0    Filter  Exp.   OT     Err.   UL
+                       (mid, days)     (s)
+
+2016-07-08 19:01:43   12.9172 R       30*300 21.60  0.15  22.7
+2016-07-10 18:19:18   14.8713 R       29*300 21.64  0.08  23.3
+
+
+Photometry is based on nearby USNO-B1.0 stars reported in GCN 19605 
+(Mazaeva et. al).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19683
+SUBJECT: GRB 160625B: Global MASTER-Crimea prompt optical emission detection (fwd)
+DATE:    16/07/12 19:03:59 GMT
+FROM:    Vladimir Lipunov at Moscow State U/Krylov Obs  <lipunov@xray.sai.msu.ru>
+
+V. Lipunov, E. Gorbovskoy, N.Tyurina, V.Kornilov,
+P.Balanutsa,  A.Kuznetsov, D.Kuvshinov,
+Lomonosov Moscow State University, Sternberg Astronomical Institute
+
+R. Rebolo, M. Serra, N. Lodieu, G. Israelian, L. Suarez-Andres
+The Instituto de Astrofisica de Canarias
+
+D.Buckley, S. Potter, A.Kniazev, M.Kotze
+South African Astronomical Observatory
+
+O.Gres, K.Ivanov, S.Yazev, N.M.Budnev, O.Chuvalaev, V.A.Poleshchuk
+Irkutsk State University
+
+A. Tlatov, A.V. Parhomenko, D. Dormidontov, V.Senik
+Kislovodsk Solar Station of the Pulkovo Observatory
+
+V.Yurkov, Yu.Sergienko, A.Gabovich, E.Sinyakov
+Blagoveschensk Educational State University, Blagoveschensk
+
+Ricardo Podesta, Carlos Lopez and Federico Podest
+Observatorio Astronomico Felix Aguilar (OAFA)
+
+Hugo Levato and Carlos Saffe
+Instituto de Ciencias Astronomicas, de la Tierra y del Espacio (ICATE)
+
+
+
+MASTER-Crimea  robotic telescope (testing camera 20 cm)  pointing to LAT 
+error box (Dirirsa et al., GCN 19580) 12  sec after LAT notice time and 66 
+sec after trigger time at 
+2016-06-25  22:44:30 UT in unfiltered mode. The OT was about 9.55 +-0.01 
+mag at this  moment ( 0.2B + 0.8R with respect  to USNOB1.0 stars)
+The automatic photometry and astrometry  are:
+
+
++id-		    time	           coord2000		mag
+
+179841451	22:44:30.055	20h 34m 23.49s , +06d 55m 07s.6	 9.55
+179890027	22:44:30.055	20h 34m 23.52s , +06d 55m 07s.9	10.11
+179845079	22:45:00.899	20h 34m 23.50s , +06d 55m 07s.8	10.03
+179878574	22:45:37.806	20h 34m 23.52s , +06d 55m 08s.0	10.54
+179909653	22:46:25.105	20h 34m 23.53s , +06d 55m 07s.8	11.46
+179883969	22:46:25.105	20h 34m 23.52s , +06d 55m 07s.8	11.04
+179895778	22:47:20.57	20h 34m 23.52s , +06d 55m 07s.9	11.52
+179901960	22:48:26.68	20h 34m 23.52s , +06d 55m 08s.0	11.91
+
+
+The delay with internet problems last time .
+
+
+The message may be cited.
+

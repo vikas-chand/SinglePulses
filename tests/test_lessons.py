@@ -318,3 +318,52 @@ def test_L27_rail_margin_respects_log_geometry():
     for ep in (30.1, 49900.0):
         assert not s10._fit_is_physical(sp, res(ep)), (
             f'Ep={ep} keV should be flagged as railed')
+
+
+# ---------------------------------------------------------------------------
+# L28 (2026-08-11; Tierney+2013 2013A&A...550A.102T, Ravasio+2019
+# 2019A&A...625A..60R App. B): a feature is constrained by its in-band nuFnu
+# turnover (3.92*kT or xb). Ravasio's App. B shows GBM fits with the feature
+# below ~20 keV are artifact-prone (railed hard alpha1); such values are
+# stamped EDGE_CONSTRAINED: retained in records, excluded from population
+# statistics/promotion until the L28 checks pass. Unit-test the classifier.
+# ---------------------------------------------------------------------------
+def test_L28_edge_feature_class():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        's10', os.path.join(BASE, 'scripts', '10_spectral_fit_burst.py'))
+    s10 = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(s10)
+    fc = s10.edge_feature_class
+    # the night-shift low-kT class: turnover deep below the trust boundary
+    assert fc(kt=3.0)[0] == 'EDGE_CONSTRAINED'      # 11.8 keV (b16 tail, b17)
+    assert fc(kt=4.5)[0] == 'EDGE_CONSTRAINED'      # 17.6 keV (b11, b15)
+    # kT 5.6-6.1 -> 22-24 keV: above Ravasio's boundary, below the clear zone
+    assert fc(kt=6.1)[0] == 'EDGE_MARGINAL'
+    # comfortably in-band temperatures stay unstamped
+    assert fc(kt=10.0)[0] == 'IN_BAND'              # 39.2 keV
+    assert fc(kt=41.0)[0] == 'IN_BAND'              # the high-kT class (b18)
+    # published anchor cases, break costume
+    assert fc(xb=12.4)[0] == 'EDGE_CONSTRAINED'     # Ravasio 171010 (quarantined)
+    assert fc(xb=93.6)[0] == 'IN_BAND'              # Ravasio 180720 Fig. 1
+    # L25 one-feature consistency: kt and xb = 3.92*kt classify identically,
+    # and the reported feature energy is the same number
+    for kt in (2.0, 4.4, 5.1, 6.1, 9.0, 25.0):
+        c_kt, e_kt = fc(kt=kt)
+        c_xb, e_xb = fc(xb=3.92 * kt)
+        assert c_kt == c_xb and abs(e_kt - e_xb) < 1e-9, (
+            f'kT={kt}: BB and break costumes classify differently (L25 breach)')
+    # degenerate inputs fail closed
+    assert fc()[0] == 'NO_FEATURE'
+    assert fc(kt=float('nan'))[0] == 'NO_FEATURE'
+    # exact boundaries (Codex audit 2026-08-11): 20 keV is MARGINAL (the
+    # quarantine is < 20), 30 keV is IN_BAND ([20,30) marginal zone)
+    assert fc(xb=19.999)[0] == 'EDGE_CONSTRAINED'
+    assert fc(xb=20.0)[0] == 'EDGE_MARGINAL'
+    assert fc(xb=29.999)[0] == 'EDGE_MARGINAL'
+    assert fc(xb=30.0)[0] == 'IN_BAND'
+    # dual input is the caller's L25 decision — must raise, never silently
+    # prefer kT (Codex audit 2026-08-11)
+    import pytest
+    with pytest.raises(ValueError):
+        fc(kt=5.0, xb=20.0)

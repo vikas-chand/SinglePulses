@@ -1,0 +1,51 @@
+{
+ "burst": "bn191017391",
+ "tally": 23,
+ "frozen_utc": "2026-08-11T16:41:36Z (frozen BEFORE any new fit table opened; walkthrough_b2* never read)",
+ "engine": "L18/L19/L20/L26/L27/L28 active",
+ "predictions": [
+  "P-A (census class = BB-null): NO block in the new fits will pass the BB significance gate (LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 keV). Census prior: 0/4 rows pass; blk0 BANDBB_KT = 1.0000000 (railed at the 1 keV lower bound = edge-constrained, L28 class) and CPLBB_KT rails likewise in blk-1/blk0. If the re-fit engine surfaces any BB at all, it will be low-kT edge-constrained, not a significant photosphere.",
+  "P-A2 (model family): the AIC winner stays in the smooth curved-continuum family (CPL/SBPL/Band) in at least 3 of the time-resolved blocks, and NO two-break (DSBPL) detection appears: census LRT_DSBPL_SBPL max = 3.01 << 9.2 across all 4 rows.",
+  "P-B (literature frame = GBM catalog only; PAPERLESS burst, 0 refereed papers in 4-form ADS search 2026-08-11): the new time-integrated fit over our stamped -2..33 s window returns Ep in the ~170-350 keV range with a low-energy index HARDER than the catalog flnc Band alpha = -0.209 +/- 0.046, because our window excludes the soft tail the catalog integrates (catalog flnc interval -3.072..90.112 s vs bcat T90 = 67.8 s starting at +3.6 s; identical detector set n2,n5,b0 = our approved set).",
+  "P-C (evolution): hard-to-soft Ep decay reproduces monotonically across the time-resolved blocks (census: Ep 350 -> 199 -> 72 keV over blocks 0-2); the final soft block stays Ep(or xc) < 100 keV, and census blk2's anomalous rising Band low-energy index (BAND_ALPHA = +1.90) resolves as a soft CPL-like block rather than a genuinely rising spectrum."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn191017391/spectral_fits.ecsv (previous production run; allowed prior)",
+  "n_rows": 4,
+  "structure": "1 integrated row (BLOCK=-1, 3.53-28.32 s) + 3 time-resolved blocks (3.53-10.82, 10.82-19.96, 19.96-28.32 s)",
+  "detectors": "n2,n5,b0 (N_DETS=3, all rows)",
+  "bb_gate_LRT_ge_9p2_and_kT_gt_1p05": {"count": 0, "kT_values": [], "median_kT": null},
+  "LRT_BANDBB_BAND_per_row": [3.88, 2.43, 0.75, 0.0],
+  "BANDBB_KT_per_row": [24.58, 1.0000000, 2.70, 6.98],
+  "aic_winners": {"SBPL": 2, "CPL": 1, "CPL+BB": 1},
+  "bic_winners": {"CPL": 3, "CPL+BB": 1},
+  "note_blk2_aic_cplbb": "blk2 AIC picks CPL+BB despite LRT_CPLBB_CPL = 0.98 and BANDBB_KT_ERR = 32.5 (unconstrained) - a weak-preference artifact, not a significant BB",
+  "band_ep_evolution_keV": [228.3, 350.1, 199.4, 72.5],
+  "band_alpha_per_row": [-0.232, -0.258, -0.108, 1.897],
+  "band_beta_blk0_railed": -5.0
+ },
+ "harvest_snippets": {
+  "GCN_26020_Hamburg_GBM": [
+   "The Fermi Gamma-ray Burst Monitor (GBM) trigger (trigger 592997024 / 191017391) at 09:23:39.27 UT on 17 October, 2019, was misclassified by the GBM flight software as a particle event but is in fact due to a GRB.",
+   "Therefore, the Fermi GBM team reports the detection of GRB 191017A. The on-ground calculated location ... is RA = 171.25, Dec = +38.05 ... with a statistical uncertainty of 1.5 degrees. The angle from the Fermi LAT boresight is 131.44 degrees."
+  ],
+  "GCN_26016_Kunzweiler_BALROG": [
+   "The best-fit position (1 sigma statistical errors) is: RA(2000.0) = 169.0+/-2.3 deg Decl.(2000.0) = 44.7+/-2.8 deg. We estimate an additional systematic error of 1 deg."
+  ],
+  "GBM_catalog_bcat_v00": [
+   "T90 = 67.8412 +/- 5.72444 s (T90START = +3.58402 s); T50 = 15.1043 +/- 1.14488 s; fluence(10-1000 keV) = 2.05247e-05 +/- 1.51741e-07 erg/cm^2; PF64 = 10.32, PF256 = 8.39 ph/s/cm^2 [glg_bcat_all_bn191017391_v00.fit]"
+  ],
+  "GBM_catalog_scat_flnc_band_v01": [
+   "FLNC Band, -3.072..90.112 s, dets n5,n2,b0 (TTE): Epeak = 176.58 +/- 5.05 keV, alpha = -0.209 +/- 0.046, beta = -2.0001 -0.176/+2.2e-15 (positive error ~0: bound artifact), redchisq 0.618/355 dof [glg_scat_all_bn191017391_flnc_band_v01.fit]"
+  ],
+  "GBM_catalog_scat_flnc_comp_v01": [
+   "FLNC Comptonized, same interval/dets: Epeak = 272.41 +/- 9.32 keV, index = -0.567 +/- 0.047, Epiv = 100 keV [glg_scat_all_bn191017391_flnc_comp_v01.fit]"
+  ],
+  "GBM_catalog_scat_pflx_comp_v00": [
+   "PFLX Comptonized, 7.168..8.192 s: Epeak = 345.87 +/- 25.42 keV, index = -0.143 +/- 0.205 [glg_scat_all_bn191017391_pflx_comp_v00.fit]"
+  ],
+  "refereed_literature": [
+   "absent - 0 refereed papers in ADS full-text for 'GRB 191017A' / 'GRB191017A' / 'bn191017391' / '191017391' / '592997024' (queried 2026-08-11); only the 2 GCN circulars index. 0/92 local corpus PDFs mention 191017 (fitz scan); Busby_2024_ApJ_972_83.pdf (sample parent) has no per-trigger text mention."
+  ]
+ }
+}

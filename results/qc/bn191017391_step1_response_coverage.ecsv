@@ -1,0 +1,27 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP2, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# meta: !!omap
+# - {trigger: bn191017391}
+# - {grb_name: GRB 191017A}
+# - {generated_utc: '2026-08-11T16:41:36Z'}
+# - {src_start: -2.0}
+# - {src_stop: 33.0}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand, 2026-07-19T22:18:36Z, human_gui)'}
+# - {trigtime_met: 592997024.266108}
+# - {manifest_counts: tte=3 cspec_pha=3 rsp2=3 rsp=0 poshist=1 trigdat=0 lle=0 lat=0}
+# - {notes: 'trigdat absent: note not blocker, poshist present (DataInventory Phase 1). No LLE/LAT data expected or present: LAT boresight
+#     angle 131.44 deg (GCN 26020). All three approved detectors resolve to multi-matrix cspec .rsp2 (D2 naming); coverage test = min(TSTART)<=SRC_START
+#     and max(TSTOP)>=SRC_STOP rel. TRIGTIME.'}
+# - {verdict: PASS}
+# schema: astropy-2.0
+DETECTOR RSP2 N_MATRICES RSP_T0 RSP_T1 COVERS_SRC
+n2 glg_cspec_n2_bn191017391_v01.rsp2 12 -124.93 481.288 True
+n5 glg_cspec_n5_bn191017391_v01.rsp2 12 -124.93 481.288 True
+b0 glg_cspec_b0_bn191017391_v01.rsp2 12 -124.93 481.288 True

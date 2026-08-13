@@ -1,0 +1,151 @@
+{
+ "burst": "bn140608153",
+ "grb_name": "GRB140608153 (GBM catalog OBJECT name). THERE IS NO IAU-STYLE LETTER DESIGNATION: 'GRB 140608A' does not exist and must never be written for this burst.",
+ "grb_name_evidence": [
+  "glg_tcat_all_bn140608153_v01.fit keyword OBJECT = 'GRB140608153'.",
+  "Bhat+2016 (3rd GBM catalog, VizieR J/ApJS/223/28/GBM) leaves the 'GRB' (YYMMDDA) name column BLANK for BOTH 2014-06-08 triggers (140608153 and 140608713), while neighbours in the same month carry names (140606133 -> GRB 140606B, 140610689 -> GRB 140610A, 140619475 -> GRB 140619B).",
+  "GCN circular archive: zero circulars under either endpoint for 140608A / 140608 / 140608B, with positive controls passing (140606A -> 8, 140610A -> 10, 140611A -> 4, 110721A -> 9).",
+  "Second GBM trigger that day, bn140608713 (T90 = 6.400 s, MJD 56816.7133161), is 13.4 h later and is NOT confusable with ours (T1-style check done by trigger time, not by name)."
+ ],
+ "harvest_utc": "2026-08-12",
+ "generated_by": "106-burst campaign doc-layer worker (Steps 0, 0b, 1); parallel sweep, not a numbered gated-walkthrough burst",
+ "skills_followed": [
+  "dev/ai_guides/GCNIntelligence.md",
+  "dev/ai_guides/LiteratureHarvest.md (Phases 1, 1b, 2, 3, 3b, 3c, 4, 5; traps T1-T9)",
+  "dev/ai_guides/DataInventory.md"
+ ],
+ "idempotency": "results/gcn/bn140608153/ did NOT exist; notes/reconciliation/bn140608153_{harvest,P0_frozen}.json did NOT exist; results/qc/bn140608153_step1_response_coverage.ecsv did NOT exist. ALL FOUR PRODUCTS ARE NEW. Nothing was overwritten. Pre-existing archival material that was READ (never modified): results/clean_per_burst_human_final/bn140608153/{spectral_fits.ecsv,refit.log}, results/clean_blocks/bb_blocks_spectral_bn140608153.ecsv, results/background_intervals.ecsv, results/grb_sample.ecsv, results/human_review_qc_flags.txt, Skills_training/corpus_index.csv, notebooks/configs/bn140608153.yaml (listed only).",
+ "blind_barrier": "results/sweep106/ was NEVER listed, opened, or read by this worker.",
+
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query, header 'Authorization: Bearer $ADS_DEV_KEY' from ~/Desktop/Projects/FXTs/.env (40 chars, working)",
+ "ads_queries": {
+  "four_required_forms": {
+   "full:\"GRB 140608A\"": {"numFound": 0, "note": "the NAME form. Zero - and correctly so: the name does not exist."},
+   "full:\"bn140608153\"": {"numFound": 0},
+   "full:\"140608153\"": {"numFound": 0, "note": "the bare fraction-of-day form that normally catches catalog/sample papers. CONTROL full:\"110920546\" -> 5, so the form itself works."},
+   "full:\"423891664\"": {"numFound": 0, "note": "trigger NUMBER = int(MET 423891663.976584). Never appears in print."}
+  },
+  "extra_forms_run": {
+   "full:\"GRB140608A\"": 0,
+   "full:\"GRB 140608\"": 0,
+   "full:\"140608A\"": 0,
+   "full:\"GRB140608153\"": 0,
+   "full:\"GRB 140608153\"": 0,
+   "full:\"140608B\"": 0,
+   "full:\"GRB 140608B\"": 0,
+   "full:\"140608713\"": 0,
+   "full:\"423891663\"": 0,
+   "full:\"423891667\"": 0,
+   "full:\"bn140608\"": 0
+  },
+  "positive_controls_same_session": {
+   "full:\"GRB 110721A\"": 160,
+   "full:\"110920546\"": 5,
+   "full:\"bn110920546\"": 1,
+   "full:\"140606A\"": 17
+  },
+  "same_day_contamination_check_T1": "PASSED but INVERTED. The usual T1 failure is inheriting another burst's numbers via a shared name; here the risk is the opposite - FABRICATING the name 'GRB 140608A' for a burst that was never named. Both 2014-06-08 GBM triggers are anonymous in Bhat+2016. Identity was fixed by trigger time and trigger number, never by name.",
+  "scholar_channel_phase_1b": {
+   "used": true,
+   "reason_triggered": "Phase 1b condition 1 - the ADS four-form query came back EMPTY.",
+   "channel_actually_used": "PROXY, explicitly labelled: no Google Scholar API exists and this worker had no browser, so a public web-search tool was used as the vocabulary-bridging finding channel in Scholar's place.",
+   "queries": [
+    "\"GRB 140608153\" OR \"bn140608153\" Fermi GBM",
+    "Fermi GBM trigger 140608153 gamma-ray burst 2014 June 8 03:41 UT"
+   ],
+   "result": "No candidate paper. Hits were generic instrument/catalog pages (HEASARC fermigbrst description, the 4th GBM catalog PDF, the FSSC GBM pages) plus unrelated 2014-June bursts. NOTHING to resolve back to an ADS bibcode, so nothing entered the corpus. Recorded as ATTEMPTED-AND-EMPTY, not as skipped.",
+   "caveat": "A real Scholar query (human browser or browsing agent) would be a strictly stronger check and is the correct follow-up if this burst is ever promoted to a deep-dive. The negative here is strong but not Scholar-grade."
+  },
+  "series_check": "Not applicable - no hit, therefore no numbered series to complete."
+ },
+
+ "n_refereed_papers": 0,
+ "papers": [],
+ "finding": "ZERO refereed literature and ZERO GCN circulars. bn140608153 is a PAPERLESS, CIRCULAR-LESS burst. This is a recorded RESULT, not a failure of the harvest: 15 distinct ADS full-text query forms returned numFound=0 while four positive controls returned 160/17/5/1 in the same session, and two independent GCN endpoints returned 404/totalItems=0 while four positive controls returned 200/9/8/10/4.",
+ "why_it_is_still_in_the_catalogs": "VERIFIED: the trigger IS a row in Bhat+2016 (3rd GBM catalog) - retrieved from VizieR J/ApJS/223/28/GBM, T90/T50/fluence/peak-flux matching HEASARC to printed precision. fermigbrst records bcatalog=3, scatalog=3. Catalog membership lives in MACHINE-READABLE TABLES, which ADS full-text does not index - which is exactly why the bare trigger-id form finds nothing here although it works elsewhere.",
+
+ "published_value_sources": {
+  "rule": "Because no paper exists, every 'published value' for the P3 diff comes from the Fermi-GBM catalog products, read in this pass from the FSSC FITS files themselves (not from a secondary table).",
+  "files_read": [
+   "https://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2014/bn140608153/current/glg_tcat_all_bn140608153_v01.fit",
+   ".../glg_bcat_all_bn140608153_v01.fit",
+   ".../glg_scat_all_bn140608153_flnc_comp_v01.fit",
+   ".../glg_scat_all_bn140608153_flnc_band_v01.fit",
+   ".../glg_loclist_all_bn140608153_v01.txt",
+   "HEASARC TAP: SELECT * FROM fermigbrst WHERE trigger_name='bn140608153'",
+   "VizieR J/ApJS/223/28/GBM (Bhat+2016)"
+  ],
+  "downloaded_to": "scratchpad only (not committed, not placed in data/bn140608153/ so the blind sweep's input tree is untouched)",
+  "key_numbers": {
+   "T90_s": "71.681 +/- 7.371 (50-300 keV), T90START = -4.608 s -> pulse spans -4.6 to +67.1 s; duration analysis on NaI 0 ONLY (bcat DETECTOR DATA, CTIME, 'channels 1: 6')",
+   "T50_s": "26.880 +/- 2.919, T50START = +12.800",
+   "fluence_10_1000keV_erg_cm2": "1.23024e-5 +/- 2.2467e-7",
+   "flnc_interval_s": "-3.072 to +68.608 (T0 = trigger), dets NAI_00 NAI_01 NAI_09 BGO_01, TTE, Castor C-STAT; COVERAGE = TOTAL single pulse",
+   "flnc_best_model": "COMP: Ep = 146.86 +/- 7.92 keV, index = -0.9750 +/- 0.0516, redchisq 1.1162/474",
+   "flnc_band": "Ep = 149.67 +/- 11.13 keV, alpha = -0.98645 +/- 0.04286, beta = -8.154 +/- 1586.3 (UNCONSTRAINED), redchisq 1.1184/473",
+   "flnc_sbpl": "Ebreak = 230.61 +/- 59.83 keV, lam1 = -1.2446 +/- 0.0388, lam2 = -4.843 +/- 5.489, brkscale 0.3 fixed, redchisq 1.1219/473",
+   "flnc_plaw": "index = -1.6098 +/- 0.0118, redchisq 1.3793/475 (rejected)",
+   "pflx_interval_s": "+16.384 to +17.408 (1.024 s); COVERAGE = PEAK BIN ONLY (1.4% of T90)",
+   "pflx_best_model": "COMP: Ep = 161.57 +/- 23.42 keV, index = -0.7391 +/- 0.2023, redchisq 1.0169/474",
+   "pflx_band_beta": "-11.944 +/- 281262 (UNCONSTRAINED)",
+   "gbm_team_intervals_tcat_HISTORY": "SRCINT1 = (-6.656, 59.905); BKG_POLY_ORDER=2; BKGINT1 = (-124.711, -18.044); BKGINT2 = (91.760, 250.191)"
+  },
+  "frame_alignment_L21_phase4": {
+   "Ep_convention": "GBM comp/band Ep = nuFnu PEAK in keV. Our pipeline's CPL_XC is the E-FOLDING energy Ec; the comparable quantity is Ep = (2+index)*Ec.",
+   "index_sign": "photon-index convention, negative = soft; identical to ours.",
+   "energy_band": "NaI channels 4-122 (~8-860 keV), BGO channels 5-124 (~278-40511 keV) for the scat fits; 50-300 keV for T90/T50; 10-1000 keV for fluence.",
+   "T0": "identical to ours - TRIGTIME = MET 423891663.976584. NO T0 offset correction needed.",
+   "detector_set": "catalog scat = n0, n1, n9, b1. OURS (stamped) = n0, n1, n9, na, b0. Differences: we ADD na, and we use b0 where the catalog used b1.",
+   "component_coverage_T9": "Single pulse, no precursor, no separate late episode: TOTAL == MAIN for this burst. The live coverage axis is HOW MUCH OF THE SINGLE PULSE each window holds - catalog flnc (-3.07..68.61 s) = ~total; our stamped window (-4.0..78.0 s) = total + 11 s of post-burst; the ARCHIVAL PRIOR's blocks (3.82..28.88 s) = only 35% of T90.",
+   "multi_instrument_consensus_Rossi2026": "NOT APPLICABLE - one instrument only. The catalog Ep error is a single-fit error with no inter-instrument spread folded in, and should be treated as a FLOOR, not as a realistic systematic."
+  }
+ },
+
+ "prompt_vs_future_classification_phase_3c": {
+  "prompt_relevant": "everything above (GBM prompt spectroscopy + durations) - this is the module's own scope.",
+  "module_future": [],
+  "beyond_prompt_context": "EMPTY. No afterglow, SN, cosmology or multimessenger literature exists, because no counterpart was ever found and no circular was ever issued. There is no future-module reading shelf to build for this burst."
+ },
+ "vikas_reading_list": {
+  "n_items": 0,
+  "handoff_line": "bn140608153 is a PAPERLESS burst - nothing to read. The P3 diff frame is the GBM catalog alone (tcat/bcat/scat v01 + fermigbrst + Bhat+2016 table row), all of it already extracted into results/gcn/bn140608153/bn140608153_dossier.md section 6.",
+  "prompt_sections_named": "n/a - no paper."
+ },
+
+ "local_corpus_check_G2": {
+  "corpus_index_read": "Skills_training/corpus_index.csv (READ ONLY, per the worker's hard rule)",
+  "action": "NONE. No bibcode to look up, no PDF to download, no cited_by_bursts to extend, no new row. The G2 deduplication rule is trivially satisfied by an empty hit set.",
+  "pdfs_fetched": []
+ },
+
+ "pending_shared_csv_rows": {
+  "rule": "worker hard rule - no writes to shared CSVs; rows queued here for the coordinator to apply",
+  "Skills_training/corpus_index.csv": [],
+  "results/gcn/gcn_index.csv": [
+   {
+    "action": "ADD",
+    "row": "bn140608153,none,0,-,0,0",
+    "column_header_reference": "trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed",
+    "note": "gcn_page = 'none' because no per-GRB .gcn3 page exists (all three name forms 404). n_circulars = 0, z_mention = '-', ads_hits = 0, ads_refereed = 0 - all verified against positive controls."
+   }
+  ]
+ },
+
+ "redshift": {
+  "value": null,
+  "status": "NONE - hard absence, not an unsearched one",
+  "reasoning": "No GCN circular exists at all, therefore no follow-up, no host, no afterglow, no spectroscopy. Bhat+2016's other-instrument column is empty. Any energetics statement about this burst must be distance-independent."
+ },
+
+ "step1_data_inventory_summary": {
+  "local_files": "6 detectors (n0,n1,n9,na,b0,b1): TTE + CSPEC .pha + 20-matrix .rsp2 each, plus glg_poshist_all_140608_v01.fit. No trigdat locally (note, not blocker - poshist present). No gll_* (no LLE), no LAT/ dir.",
+  "lat_lle": "NONE EXIST UPSTREAM: https://heasarc.gsfc.nasa.gov/FTP/fermi/data/lat/triggers/2014/bn140608153/current/ -> HTTP 404. HAS_LAT = False. DataInventory D1 (off-axis LLE DRM check) does not apply.",
+  "verdict": "PASS with 5 WARNs - see results/qc/bn140608153_step1_response_coverage.ecsv"
+ },
+
+ "harvest_lessons": {
+  "HL1_zero_is_a_result_but_only_with_controls": "A numFound=0 is worthless without a control run in the SAME session on the SAME token/endpoint. Fifteen zero-returning ADS forms here are only credible because full:\"GRB 110721A\" -> 160 and full:\"110920546\" -> 5 ran alongside them; likewise the GCN 404s only mean something because 140606A/140610A/140611A - the SAME WEEK - returned 8/10/4.",
+  "HL2_an_unnamed_burst_is_a_naming_trap": "The reflex for a GBM trigger bnYYMMDDfff is to write 'GRB YYMMDDA'. For bn140608153 that name is a FABRICATION: Bhat+2016 leaves it blank and no circular ever assigned it. RECOMMENDATION for GCNIntelligence.md: add an explicit third outcome to identity resolution - name RESOLVED / name AMBIGUOUS / name DOES NOT EXIST - and require the Bhat+2016 (or 4th-catalog) name-column lookup before any letter suffix is written.",
+  "HL3_full_text_search_cannot_see_a_machine_readable_table": "This burst IS in the 3rd GBM catalog and yet EVERY ADS full-text form returns zero, because its only appearance is a row in the electronic table. RECOMMENDATION for LiteratureHarvest.md Phase 1: when all forms return zero, run the VizieR/HEASARC catalog-membership check before declaring the burst absent from the literature - 'no paper analyses it' and 'no catalog contains it' are different findings, and only the first is true here."
+ }
+}

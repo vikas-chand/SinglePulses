@@ -1,0 +1,148 @@
+# bn190726642 = GRB 190726A — raw GCN circulars (fetched 2026-08-11)
+# Sources: https://gcn.gsfc.nasa.gov/other/190726.gcn3 + https://gcn.nasa.gov/circulars/25160.json
+# OURS: 25154, 25155, 25160, 25305.
+# SIBLING (GRB 190726B = bn190726843, same-day, 20:14:30 UT) in the same archive file: 25157, 25158, 25247
+#   -> T1 contamination trap: CZTI GCN 25247 (T90=209 s) and MASTER GCN 25161 belong to the SIBLING, not to bn190726642.
+
+TITLE:   GCN CIRCULAR
+NUMBER:  25154
+SUBJECT: GRB 190726A: Fermi GBM Final Real-time Localization
+DATE:    19/07/26 15:36:44 GMT
+FROM:    Fermi GBM Team at MSFC/Fermi-GBM  <do_not_reply@GIOC.nsstc.nasa.gov>
+
+The Fermi GBM team reports the detection of a likely LONG GRB
+
+At 15:24:53 UT on 26 Jul 2019, the Fermi Gamma-ray Burst Monitor (GBM) triggered and located GRB 190726A (trigger 585847498.610468 / 190726642).
+
+The on-ground calculated location, using the Fermi GBM trigger data, is RA = 310.3, Dec = 34.3 (J2000 degrees, equivalent to J2000 20h 41m, 34d 17'), with a statistical uncertainty of 1.2 degrees.
+
+The angle from the Fermi LAT boresight is 72.0 degrees.
+
+The skymap can be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn190726642/quicklook/glg_skymap_all_bn190726642.png
+
+The HEALPix FITS file, including the estimated localization systematic, can be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn190726642/quicklook/glg_healpix_all_bn190726642.fit
+
+The GBM light curve can be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn190726642/quicklook/glg_lc_medres34_bn190726642.gif
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  25155
+SUBJECT: GRB 190726A: BALROG localization (Fermi Trigger 585847498 / GRB 190726642)
+DATE:    19/07/26 15:59:52 GMT
+FROM:    Jochen Greiner at MPE,Garching  <jcg@mpe.mpg.de>
+
+B. Biltzinger, F. Kunzweiler, F. Berlato, J. Burgess & J. Greiner (all MPE Garching) report:
+
+The public trigdat data of the Fermi Gamma-ray Burst Monitor (GBM) trigger
+585847498 at 15:24:53 on 26 July 2019 were automatically fitted for spectrum
+and sky location with BALROG (Burgess et al. 2018, MNRAS 476, 1427;
+Berlato et al. 2019, ApJ 873, 60).
+
+The best-fit position (1 sigma statistical errors) is:
+RA(2000.0) = 310.8+/-0.9 deg
+Decl.(2000.0) = 34.9+/-1.2 deg
+We estimate an additional systematic error of 2 deg.
+
+Further details are available at:
+https://grb.mpe.mpg.de/grb/GRB190726642/
+
+The Healpix map can be downloaded from:
+https://grb.mpe.mpg.de/grb/GRB190726642/healpix
+
+The location parameters are available as JSON at:
+https://grb.mpe.mpg.de/grb/GRB190726642/json
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  25160
+SUBJECT: Fermi  trigger No 585847498 Global MASTER-Net observations report
+BODY:
+V. Lipunov, E. Gorbovskoy, V.Kornilov, N.Tyurina, P.Balanutsa, A.Kuznetsov, F.Balakin,
+V.Vladimirov, D. Vlasenko, I.Gorbunov, D.Zimnukhov, V.Senik, T.Pogrosheva, D.Kuvshinov
+(Lomonosov Moscow State University, SAI, Physics Department),
+
+R. Podesta, C.Lopez, F. Podesta, C.Francile
+(Observatorio Astronomico Felix Aguilar OAFA),
+
+H.Levato
+(Instituto de Ciencias Astronomicas, de la Tierra y del Espacio ICATE),
+
+R. Rebolo, M. Serra
+(The Instituto de Astrofisica de Canarias)
+
+D. Buckley
+(South African Astronomical Observatory),
+
+O.A. Gres, N.M. Budnev, O.Ershova
+(Irkutsk State University, API),
+
+A. Tlatov, D. Dormidontov
+(Kislovodsk Solar Station of the Pulkovo Observatory),
+
+V. Yurkov, A. Gabovich, Yu. Sergienko
+(Blagoveschensk Educational State University)
+
+
+
+
+
+MASTER-IAC robotic telescope  (Global MASTER-Net: http://observ.pereplet.ru, Lipunov et al., 2010, Advances in Astronomy, vol. 2010, 30L)  located in Spain (IAC Teide Observatory) started inspect of the Fermi GRB190726.64 (trigger No 585847498, 20h 41m 02.40s , +34d 17m 24.00s, R=1.17) errorbox  19135 sec after trigger time at 2019-07-26 20:43:48 UT, with upper limit up to  16.6 mag. Observations started at twilight.  The observations began at zenit distance = 58 deg. The sun  altitude  is -10.2 deg.
+
+The galactic latitude b = -60 deg., longitude l = 98 deg.
+
+
+Real time updated cover map and OT discovered available here:
+https://master.sai.msu.ru/site/master2/observ.php?id=1087011
+
+We obtain a following upper limits.
+
+Tmid-T0  |      Date Time      |          Site       |             Coord (J2000)          |Filt.| Expt. | Limit| Comment
+_________|_____________________|_____________________|____________________________________|_____|_______|_______|________
+
+   19165 | 2019-07-26 20:43:48 |          MASTER-IAC | ( 20h 28m 47.34s , +33d 56m 28.84s) |   C |    60 | 16.6 |
+   19165 | 2019-07-26 20:43:48 |          MASTER-IAC | ( 20h 38m 42.01s , +33d 52m 18.44s) |   C |    60 | 16.1 |
+Filter C is a clear (unfiltred) band.
+
+
+The observation and reduction will continue.
+The message may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  25305
+SUBJECT: GRB 190726A: Insight-HXMT/HE detection
+DATE:    19/08/09 13:00:51 GMT
+FROM:    YaoGuang Zheng at IHEP  <zhengyg@ihep.ac.cn>
+
+Y. G. Zheng, C. Cai, Q. Luo, S. Xiao, Q. B. Yi, 
+Y. Huang, C. K. Li, G. Li, X. B. Li, J. Y. Liao, S. L. Xiong,
+C. Z. Liu, X. F. Li, Z. W. Li, Z. Chang, A. M. Zhang, 
+Y. F. Zhang, X. F. Lu, C. L. Zou (IHEP), Y. J. Jin, 
+Z. Zhang (THU), T. P. Li (IHEP/THU), F. J. Lu, L. M. Song, 
+M. Wu, Y. P. Xu, S. N. Zhang (IHEP), 
+report on behalf of the Insight-HXMT team:
+
+At 2019-07-26T15:24:59.20 (T0), Insight-HXMT/HE detected 
+GRB 190726A (trigger ID: HEB190726642) in a routine search of the data, 
+which was also triggered by Fermi/GBM (GCN #25154).
+
+The Insight-HXMT/HE light curve mainly consists of a single  
+pulse with a duration (T90) of 2.94 s measured from T0-2.19 s. 
+The 1-ms peak rate, measured from T0-1.91 s, is 1319 cnts/sec. 
+The total counts from this burst is 3047 counts. 
+URL_LC: http://www.hxmt.org/images/GRB/HEB190726642_lc.jpg 
+
+All measurements above are made with the CsI detectors operating in the 
+regular mode with the energy range of about 80-800 keV (deposited energy). 
+Only gamma-rays with energy greater than about 200 keV can penetrate 
+the spacecraft and leave signals in the CsI detectors installed inside 
+of the telescope. 
+
+Insight-HXMT is the first Chinese space X-ray telescope, which was 
+funded jointly by the China National Space Administration (CNSA) and 
+the Chinese Academy of Sciences (CAS). 
+More information about it could be found at: 
+http://www.hxmt.org.

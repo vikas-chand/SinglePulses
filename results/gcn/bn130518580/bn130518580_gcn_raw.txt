@@ -1,0 +1,432 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14674
+SUBJECT: GRB 130518A: Fermi GBM detection
+DATE:    13/05/18 20:52:02 GMT
+FROM:    Shaolin Xiong at UAH  <sx0002@uah.edu>
+
+Shaolin Xiong (UAH) reports on behalf of the Fermi GBM Team:
+
+"At 13:54:37.53 UT on 18 May 2013, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 130518A (trigger 390578080 / 130518580).
+
+High peak flux from the GRB caused GBM to issue a repoint request,
+but the spacecraft did not slew to this burst due to the Solar TOO.
+
+The on-ground calculated location, using the GBM trigger
+data, is RA = 355.88, DEC = 46.05 (J2000 degrees,
+equivalent to 23 h 43 m, 46 d 03 '), with an uncertainty
+of 1 degrees (radius, 1-sigma containment,
+statistical only; there is additionally a systematic
+error which is currently estimated to be 2 to 3 degrees).
+The angle from the Fermi LAT boresight is 43 degrees.
+
+The GBM light curve consists of several pulses
+with a duration (T90) of about 48 s (50-300 keV).
+The time-averaged spectrum from T0+10 s to T0+60 s is
+adequately fit by a Band function with Epeak = 396 +/- 9 keV,
+alpha = -0.86 +/- 0.01, and beta = -2.27 +/- 0.04.
+
+The event fluence (10-1000 keV) in this time interval is
+(9.3 +/- 0.06)E-5 erg/cm^2. The 1-sec peak photon flux measured
+starting from T0+25.6 s in the 10-1000 keV band
+is 45.4 +/- 0.4 ph/s/cm^2.
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14675
+SUBJECT: GRB 130518A: Fermi LAT detection
+DATE:    13/05/18 21:02:32 GMT
+FROM:    Julie McEnery at NASA/GSFC  <julie.e.mcenery@nasa.gov>
+
+Nicola Omodei (Stanford) and Julie McEnery (GSFC) report on behalf of 
+the Fermi-LAT team:
+
+At 13:54:37.53 UT on 18 May 2013, Fermi LAT detected high energy 
+emission from GRB 130518A, which was also detected by Fermi-GBM (trigger 
+390578080 /130518580, GCN 14674).
+
+The best LAT on-ground location is found to be RA=355.809, DEC=47.641 
+(J2000) with an error radius of 0.34 deg (68% containment, statistical 
+error only).
+
+The burst was about 43 deg from the LAT boresight at the time of the 
+trigger.
+The data from the Fermi LAT shows emission lasting approximately 100 
+seconds with a TS of 50.
+Multi-peaked emission lasting roughly 40 seconds can be seen using the 
+non-standard LAT Low Energy (LLE) with a significance of ~15 sigma.
+
+A Swift TOO request has been submitted.
+
+The Fermi LAT point of contact for this burst is Sara Cutini 
+(sara.cutini@asdc.asi.it).
+
+The Fermi LAT is a pair conversion telescope designed to cover the 
+energy band from 20 MeV to greater than 300 GeV. It is the product of an 
+international collaboration between NASA and DOE in the U.S. and many 
+scientific institutions across France, Italy, Japan and Sweden.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14676
+SUBJECT: GRB 130518A Swift-BAT position from ground analysis
+DATE:    13/05/19 00:04:25 GMT
+FROM:    Jay R. Cummings at NASA/GSFC/Swift  <james.r.cummings@nasa.gov>
+
+J. R. Cummings (UMBC/CRESST/GSFC) reports on behalf of the BAT team
+
+
+At 13:55:07.4 UT, the Swift Burst Alert Telescope (BAT) triggered on the
+Fermi GBM and LAT GRB 130518A (Xiong, GCN # 14674 and Omodei et al., GCN#
+14675) (BAT trigger=556113).  No significant source was found onboard.  In
+ground analysis, a significant source was found at RA, Dec 355.671, +47.478
+which is:
+    RA(J2000)  =23h 42m 41.1s 		
+    Dec(J2000) = +47d 28' 41.5"
+with an uncertainty of 2.9 arcmin (radius, 90% containment, including
+systematic uncertainty).  This position is 11 arcmin from the LAT position,
+within the LAT error circle.  BAT partial coding was 5%.  The unweighted
+lightcurve shows two overlapping peaks with a duration of about 14 sec.
+The peak count rate was ~9400 counts/sec (15-350 keV), at ~4 sec before the
+trigger.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14677
+SUBJECT: Konus-Wind observation of GRB 130518A
+DATE:    13/05/19 13:50:14 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The long-duration intense GRB 130518A
+(Fermi-GBM detection: Xiong, GCN 14674;
+Fermi-LAT detection: Omodei and Julie McEnery, GCN 14675;
+Swift-BAT trigger 556113: Cummings, GCN 14676)
+triggered Konus-Wind at T0=50097.501s UT (13:54:57.501)
+against very high and variable solar particles background.
+
+The light curve shows a bright hard pulse from ~T0-10 s to ~T0+20s,
+followed by a weaker count rate increase at ~T0+33s
+and a tail of soft extended emission, which is traceable out to ~T0+100s.
+
+The emission in the main pulse is seen up to 12 MeV.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB130518_T50097/
+
+As observed by Konus-Wind, the burst
+had a fluence of (1.5 ± 0.15)x10-4 erg/cm2,
+and a 64-ms peak flux, measured from T0+1.856s,
+of (2.1 ± 0.2)x10-5 erg/cm2/s
+(both in the 20 keV - 10 MeV energy range).
+
+The time-integrated spectrum (measured from T0 to T0+20.224 s)
+is best fit in the 20 keV - 15 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -0.92 ± 0.08,
+the high energy photon index beta = -1.97 ± 0.08,
+the peak energy Ep = 370 ± 55 keV,
+chi2 = 85/94 dof.
+
+The spectrum at the maximum count rate
+(measured from T0+0.768 to T0+2.304 s)
+is best fit in the 20 keV - 15 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -0.80 ± 0.09,
+the high energy photon index beta = -2.04 ± 0.11,
+the peak energy Ep = 452 ± 72 keV,
+chi2 = 95/97 dof.
+
+For both spectra, we note a hint of counts excess
+over the model flux in the spectral channels around ~10 MeV.
+
+All the quoted results are preliminary.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14678
+SUBJECT: GRB 130518A: Swift XRT and UVOT possible afterglow
+DATE:    13/05/19 16:05:05 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+P.A. Evans (U.Leicester), M. de Pasquale (MSSL/UCL), M.C. Stroh (PSU)
+and M. H. Siegel (PSU) report on behalf of the Swift team:
+
+Swift conducted a series of observations, tiled on the sky, of the
+Fermi/LAT GRB 130518A. In these observations we find an uncatalogued
+source at RA,Dec = 355.6658, +47.4653 degrees (J2000.0) which is
+equivalent to:
+
+RA(J2000.0) =    23h 42m 39.79s
+Dec (J2000.0) = +47d 27' 55.2"
+
+with an uncertainty of 3.6 arcsec (radius, 90% confidence).
+
+This source shows weak evidence of fading: a power-law fit gives a decay
+index of 0.66 (+/- 0.80); at this level we therefore cannot confirm
+whether this is the afterglow of GRB 130518A.
+
+The spectrum of this source can be fitted with an absorbed power-law
+with a spectral index of 2.5 (+0.8, -0.6). The best-fitting absorption
+column is 2.4 (+2.2, -1.4) x 10^21 cm^-2, consistent with the Galactic
+value of 1.0 x 10^21 cm^-2 (Kalberla et al., 2005).
+
+UVOT observed the field of the XRT source in u filter between 30.5 ks
+and 59.9 ks after the trigger, for a total exposure time of 2.7 ks. We
+detect an optical object with magnitude  u = 19.0 ± 0.1 just outside the
+3.6 arcsec XRT error circle. The source shows weak indication of  fading
+between the beginning and the end of observations.
+
+This circular is an official product of the Swift team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14679
+SUBJECT: GRB 130518A: RATIR Optical and NIR Observations
+DATE:    13/05/19 17:59:08 GMT
+FROM:    Eleonora Troja at GSFC  <eleonora.troja@nasa.gov>
+
+Eleonora Troja (GSFC), Nat Butler (ASU), Alan M. Watson (UNAM),
+Alexander Kutyrev (GSFC), William H. Lee (UNAM), Michael G. Richer (UNAM),
+Chris Klein (UCB), Ori Fox (UCB) J. Xavier Prochaska (UCSC), Josh Bloom
+(UCB), Antonino Cucchiara (UCSC), Owen Littlejohns (ASU), Enrico
+Ramirez-Ruiz (UCSC), José A. de Diego (UNAM), Leonid Georgiev (UNAM),
+Jesús González (UNAM), Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC),
+and Harvey Moseley (GSFC) report:
+
+We observed the field of GRB 130518A (Xiong, et al., GCN 14674; Omodei,
+et al., GCN 14675) with the Reionization and Transients Infrared Camera
+(RATIR;www.ratir.org) on the 1.5m Harold Johnson Telescope at the
+Observatorio Astronómico Nacional on Sierra San Pedro Mártir from
+from 2013/05 19.44 to 2013/05 19.47 UTC (20.54 to 21.49 hours after
+the GBM trigger), obtaining a total of 0.64 hours exposure in the r'
+and i' bands, 0.27 hours exposure in the Z and Y bands, and 0.15 hours
+exposure in the J, and H bands.
+
+We detect a new, uncatalogued source at RA,Dec = 355.66781, +47.46493
+(J2000) with an uncertainty of 0.5 arcsec.
+This position is 5 arcsec from the XRT localization, just outside the
+XRT error circle (Evans, et al., GCN 14678). In comparison with SDSS DR8
+and 2MASS, we obtain the following detections:
+
+     r'    19.38 ± 0.02
+     i'    19.10 ± 0.02
+     Z     18.83 ± 0.04
+     Y     18.65 ± 0.04
+     J     18.28 ± 0.07
+     H     18.47 ± 0.11
+
+These magnitudes are in the AB system and not corrected for Galactic
+extinction in the direction of the GRB. We have evidence at the 2-3 sigma
+level of fading in r' and i' over the duration of our observations.
+
+Further observations are planned.
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14680
+SUBJECT: GRB 130518A: P60 Afterglow Observations
+DATE:    13/05/20 04:03:37 GMT
+FROM:    S. Bradley Cenko at Caltech  <cenko@srl.caltech.edu>
+
+S. B. Cenko (UC Berkeley) reports on behalf of a larger collaboration:
+
+We have imaged the location of the Fermi GBM (Xiong et al., GCN 14674),
+LAT (Omodei et al., GCN 14675), Swift BAT (Cummings et al., GCN 14676),
+and Konus-Wind (Golenetskii et al., GCN 14677) GRB 130518A with the
+robotic Palomar 60 inch telescope.  Observations were obtained in the r'
+and i' filters beginning at 10:24 UT on 2013 May 19 (~ 0.85 d after the
+GBM trigger).
+
+We detect the optical afterglow (Evans et al., GCN 14678; Troja et al.,
+GCN 14679) in both filters.  Using several nearby point sources from SDSS
+for calibration, we measure a magnitude of r' = 19.3 at this time.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14681
+SUBJECT: GRB 130518A: Confirmation of the X-ray afterglow.
+DATE:    13/05/20 09:05:11 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+P.A. Evans (U.Leicester), M.C. Stroh (PSU) and M. H. Siegel (PSU) report
+on behalf of the Swift-XRT team:
+
+Swift has performed a second observation of GRB 130518A. We collected
+1 ks of data, starting 122.5 ks after the Fermi trigger (Xiong, GCN
+Circ. 14674; Omodei & McEnery, GCN Circ. 14675). The XRT source reported
+by Evans et al. (GCN Circ. 14678) is detected at a level of 0.013 Â±
+0.005 ct/sec, significantly below the level in the previous
+observations, confirming that it has faded. The best-fitting power-law
+decay index is 1.1 (+0.5, -0.3).
+
+We therefore conclude that this object is the afterglow of GRB 130518A.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14684
+SUBJECT: GRB 130518A: Continued RATIR Optical Observations - Fading
+DATE:    13/05/20 15:30:09 GMT
+FROM:    Eleonora Troja at GSFC  <eleonora.troja@nasa.gov>
+
+Eleonora Troja (GSFC), Nat Butler (ASU), Alan M. Watson (UNAM),
+Alexander Kutyrev (GSFC), William H. Lee (UNAM), Michael G. Richer (UNAM),
+Chris Klein (UCB), Ori Fox (UCB) J. Xavier Prochaska (UCSC), Josh Bloom
+(UCB), Antonino Cucchiara (UCSC), Owen Littlejohns (ASU), Enrico
+Ramirez-Ruiz (UCSC), José A. de Diego (UNAM), Leonid Georgiev (UNAM),
+Jesús González (UNAM), Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC),
+and Harvey Moseley (GSFC) report:
+
+We again observed the field of GRB 130518A (Xiong, et al., GCN 14674;
+Omodei, et al., GCN 14675) with the Reionization and Transients Infrared
+Camera (RATIR;www.ratir.org) on the 1.5m Harold Johnson Telescope at
+the Observatorio Astronómico Nacional on Sierra San Pedro Mártir from
+2013/05 20.43 to 2013/05 20.46 UTC (44.41 to 45.24 hours after the GBM
+trigger), obtaining a total of 0.71 hours exposure in the r' and i' bands.
+
+In comparison with SDSS DR8, we obtain the following detections of the source
+reported earlier (Troja, et al., GCN 14678; Cenko, GCN 14680):
+
+r'    20.47 ± 0.04
+i'    20.19 ± 0.04
+
+These magnitudes are in the AB system and not corrected for Galactic
+extinction in the direction of the GRB.
+
+In comparison with our earlier observations (Troja, et al., GCN 14678), the source
+has faded by slightly more than 1 magnitude in r' and i' between about 21 hours
+and 45 hours after the trigger. This confirms that the source corresponds to the
+afterglow of GRB 130518A.
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14685
+SUBJECT: GRB 130518A: 10.4m GTC/OSIRIS redshift
+DATE:    13/05/20 15:32:04 GMT
+FROM:    Alberto Castro-Tirado at Inst.de Astro. de Andalucia  <ajct@iaa.es>
+
+R. Sánchez-Ramírez (IAA-CSIC), J. Gorosabel (UPV-EHU, IAA-CSIC), A. J.
+Castro-Tirado (IAA-CSIC), J. Cepa and G. Gómez-Velarde (IAC), on behalf of
+a larger collaboration, report:
+
+We observed the location of the Fermi GRB 130518A (Xiong et al. GCNC 14674,
+Omodei et al. GCNC 14675) -also detected by Swift and Konus (Cummings et
+al. GCNC 14676, Golenetskii et al. GCNC 14677)- with the OSIRIS
+spectrograph mounted at the 10.4m GTC located at Roque de los
+Muchachos Observatory (La Palma, Spain). Observations began on May 20.1995
+UT (i.e. 38.9 hr post burst). The optical afterglow (Evans et al. GCNC
+14678, Troja et al. GCNC 14579) is well detected with the blue (R1000B)
+grism and in the resulting spectrum we see a strong, broad damped-Lya
+absorption feature at ~4100A, combined with many metal lines including
+SII, SiII, CII, SiIV, CIV, FeII, AlII and AlIII at a common redshift of
+z=2.49.
+
+We thank E. Troja and the RATIR Team for providing the ID-chart.
+
+[GCN OPS NOTE(20may13): Per author's request, (a) the "40.9 hr post burst"
+was changed to "38.9 hr post burst", and (b) the "We thank E. Troja"
+was changed to "We thank E. Troja and the RATIR Team".]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14687
+SUBJECT: GRB 130518A: Gemini Redshift confirmation
+DATE:    13/05/21 05:20:33 GMT
+FROM:    Antonino Cucchiara at UCSC/UCO Lick  <acucchia@ucolick.org>
+
+A. Cucchiara (UCSC), S. B. Cenko (UC Berkeley) report on behalf 
+of a larger collaboration:
+
+"We obtained spectroscopy of the afterglow of the LAT-GRB 130518A 
+(Xiong et al. GCN 14674, Omodei et al. GCN 14675, Evans et al. 
+GCN 14678) with Gemini-North / GMOS, beginning a May 20.60 UT 
+roughly 2.05 days after the burst. 
+Two different central wavelengths were observed giving a coverage 
+from ~3850-6730 A. 
+We identify several absorption features, including Lyman-alpha,
+SiIV(1394,1402), SiII1526, and CIV(1548,1550) at the common
+redshift of z=2.488.
+
+This result is consistent with the one reported by Sánchez-Ramírez
+et al. (GCN 14685).
+
+We thank the Gemini-staff for their help in performing these
+observations."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14689
+SUBJECT: GRB 130518A: mm detection at PdBI
+DATE:    13/05/21 16:39:02 GMT
+FROM:    Alberto Castro-Tirado at Inst.de Astro. de Andalucia  <ajct@iaa.es>
+
+A. J. Castro-Tirado (IAA-CSIC Granada), M. Bremer and J.-M. Winters (IRAM
+Grenoble), on behalf of a larger collaboration, report:
+
+"We conducted mm observations towards GRB 130518A (Xiong et al. GCNC
+14674, Omodei et al. GCNC 14675) starting at 61 hr post burst with the
+PdBI at 86.7 GHz. At the position of the optical afterglow (Evans et al.
+GCNC 14678, Troja et al. GCNC 14579), we detect a ~2 mJy point source.
+Further mm observations are planned."
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14725
+SUBJECT: GRB 130518A: Suzaku WAM observation of the prompt emission
+DATE:    13/05/30 10:45:47 GMT
+FROM:    Takafumi Kawano at Hiroshima U/Suzaku-HXD-WAM  <tkawano@hep01.hepl.hiroshima-u.ac.jp>
+
+T. Kawano, M. Ohno, K. Takaki, R. Nakamura, S. Furui, Y. Fukazawa
+(Hiroshima U.),
+T. Yasuda, M. Tashiro, Y. Terada, Y. Ishida, H. Ueno, S. Sugimoto (Saitama U.),
+M. Yamauchi, N. Ohmori, M. Akiyama (Univ. of Miyazaki),
+K. Yamaoka (Nagoya U.),  S. Sugita (Ehime U.), Y. E. Nakagawa, M. Kokubun,
+T. Takahashi (ISAS/JAXA), W. Iwakiri(RIKEN), Y. Hanabata (ICRR),
+Y. Urata (NCU), K. Nakazawa, K. Makishima (Univ. of Tokyo)
+on behalf of the Suzaku WAM team, report:
+
+
+The bright, long GRB 130518A (Fermi-GBM detection: Xiong, GCN 14674;
+Fermi-LAT detection: Omodei and Julie McEnery, GCN 14675;
+Swift-BAT trigger 556113: Cummings, GCN 14676)
+triggered the Suzaku Wide-band  All-sky Monitor (WAM) which covers an
+energy range of 50 keV - 5 MeV at  UT 13:54:50.635(=T0).
+
+The observed light curve shows a bright peak followed by a weaker emission seen
+up to T0+24 s with a duration (T90) of about 22 seconds.
+The fluence in 100 - 1000 keV was 7.05 (-0.34, +0.20) x10^-5 erg/cm^2.
+The 1-s peak flux measured from T0+11 s was  15.9 (-0.89, +0.61) photons/cm^2/s
+in the same energy range.
+
+Preliminary result shows that the time-averaged spectrum from
+T0-5 s to T0+30 s is well fitted by a GRB Band model as follows.
+the low-energy photon index alpha: -1.42 (-0.18, +0.26),
+the high-energy photon index beta: -2.27 (-0.22, +0.12),
+and the peak energy Epeak: 550 (-91, +99) keV, (chi^2/d.o.f = 74.0/68).
+
+Due to the brightness of this burst, a 5% systematic error was added
+for low energy channels.
+All the quoted errors are at statistical 90% confidence level.
+
+
+The light curves for this burst are available at:
+http://www.astro.isas.jaxa.jp/suzaku/HXD-WAM/WAM-GRB/grb/trig/grb_table.html
+

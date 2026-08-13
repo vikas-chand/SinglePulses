@@ -1,0 +1,35 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: CLASS, datatype: string}
+# - {name: RESPONSE_FILE, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_TSTART_REL_S, datatype: float64}
+# - {name: RSP_TSTOP_REL_S, datatype: float64}
+# - {name: SRC_START_S, datatype: float64}
+# - {name: SRC_STOP_S, datatype: float64}
+# - {name: DET_ANGLE_DEG, datatype: float64}
+# - {name: VERDICT, datatype: string}
+# - {name: NOTE, datatype: string}
+# meta: !!omap
+# - comments: [Step-1 data inventory & response-validity QC - bn160625945 / GRB 160625B, 'Generated 2026-08-12 per dev/ai_guides/DataInventory.md
+#       (Phase 1 manifest, Phase 2 validity; D1 off-axis, D2 naming, D3 TRIGTIME source, D4 detection-interval).', 'TRIGTIME = MET 488587220.275348
+#       (taken from a RESPONSE header - the gll_pt_* pointing file carries none, D3).', 'Stamped selection: results/background_intervals.ecsv,
+#       APPROVED_BY Vikas Chand, 2026-07-19T22:18:36Z, human_gui, accepted_suggestion.', 'Source window [182.644, 225.884] s; backgrounds
+#       pre [91.240,171.240], post [233.884,309.592] (identical for all 5 plugins).', 'FILE MANIFEST: cspec .pha x5 (n6,n7,n9,nb,b1);
+#       TTE x5; .rsp2 x5 (v06); poshist x1 (glg_poshist_all_160625_v01.fit); TRIGDAT ABSENT (a note, not a blocker - poshist covers geometry);',
+#     '  LLE triplet COMPLETE (gll_lle_bn160625945_v00.fit, gll_pt_bn160625945_v00.fit, gll_cspec_bn160625945_v00.rsp + .pha); LAT/ FT1
+#       (L260717005402F357373F38_EV00.fits) + FT2 (..._SC00.fits) present.', '  Detector nb ships data on disk but is NOT in the approved
+#       set - recorded so no future glob silently adds it.', 'D4: the LAT detection interval (>=100 MeV emission from ~T0+181 s, GCN 19586)
+#       OVERLAPS our window - the LLE/LAT arm is expected to carry real signal. The 15 GeV photon at ~T0+345 s is OUTSIDE the window and
+#       predicts nothing inside it.', 'D4 (second half): the trigger is NOT the burst start - bn160625945 triggered on the ~1 s PRECURSOR;
+#       our window covers the MAIN EPISODE only (T0+183-233 s). The catalog T90 = 453.385 s (von Kienlin+2020) starts at T0+188.451 s
+#       and covers main+extended emission.', 'OVERALL VERDICT: PASS (4 GBM PASS + LLE PASS_MARGINAL). No blocker. Proceed to Step 5 binning.']
+# schema: astropy-2.0
+DETECTOR CLASS RESPONSE_FILE N_MATRICES RSP_TSTART_REL_S RSP_TSTOP_REL_S SRC_START_S SRC_STOP_S DET_ANGLE_DEG VERDICT NOTE
+n6 GBM glg_cspec_n6_bn160625945_v06.rsp2 22 -109.538 480.295 182.644 225.884 31.9518 PASS "multi-matrix .rsp2, 22 matrices; coverage brackets the stamped source window on both sides"
+n7 GBM glg_cspec_n7_bn160625945_v06.rsp2 22 -109.538 480.295 182.644 225.884 34.3187 PASS "multi-matrix .rsp2, 22 matrices; coverage brackets the stamped source window on both sides"
+n9 GBM glg_cspec_n9_bn160625945_v06.rsp2 22 -109.538 480.295 182.644 225.884 27.1983 PASS "multi-matrix .rsp2, 22 matrices; coverage brackets the stamped source window on both sides"
+b1 GBM glg_cspec_b1_bn160625945_v06.rsp2 22 -109.538 480.295 182.644 225.884 48.5653 PASS "multi-matrix .rsp2, 22 matrices; coverage brackets the stamped source window on both sides"
+lle LLE gll_cspec_bn160625945_v00.rsp 1 185.0 202.0 182.644 225.884 nan PASS_MARGINAL "D1 off-axis test (interval overlap is the WRONG test for a single-matrix DRM): theta over DRM interval 13.09->10.59 deg (mean 11.76); over source window 13.47->8.24 deg (mean 10.43); Delta-theta(mean)=1.33 deg, full span 5.23 deg. Thresholds: <~4 fine, >~15 invalid. At trigger theta was 40.5-42.9 deg: Fermi executed the GCN-19581 ARR slew (42->11 deg) BEFORE both the DRM interval and the source window, so the DRM is valid where we use it. Naive interval test would FAIL (window opens 2.36 s early, closes 23.88 s late) - correctly overridden by D1."

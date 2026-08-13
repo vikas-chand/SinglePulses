@@ -1,0 +1,34 @@
+{
+ "burst": "bn191017391",
+ "grb_name": "GRB 191017A",
+ "harvest_utc": "2026-08-11T16:41:36Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form query; Phase 3c scope rules)",
+ "identity": {
+  "trigger": "bn191017391 / 592997024",
+  "trigger_utc": "2019-10-17 09:23:39.27",
+  "name_source": "GCN 26020 (Hamburg, Fermi GBM Team): 'the Fermi GBM team reports the detection of GRB 191017A' - name<->trigger verified by trigger number 592997024 quoted in the circular itself",
+  "same_day_contamination_guard": "GRB 191017B = Swift BAT trigger 929981 at 14:36:06 UT (GCN 26021, different burst); GRB 191017C = bn191017957 at 22:58:20 UT, likely short (GCN 26023). No 191017B/C value may enter this burst's record (LiteratureHarvest T1)."
+ },
+ "ads_queries": [
+  {"form": "full:\"GRB 191017A\"", "numFound": 1, "refereed_hits": 0, "note": "only 2019GCN.26020....1H (newsletter)"},
+  {"form": "full:\"bn191017391\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"191017391\"", "numFound": 2, "refereed_hits": 0, "note": "the two GCN circulars only"},
+  {"form": "full:\"592997024\"", "numFound": 2, "refereed_hits": 0, "note": "the two GCN circulars only"},
+  {"form": "full:\"GRB191017A\" (defensive)", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"191017A\" property:refereed (defensive)", "numFound": 0, "refereed_hits": 0}
+ ],
+ "n_refereed_papers": 0,
+ "papers": [],
+ "finding": "PAPERLESS BURST. Zero refereed papers analyze or even mention GRB 191017A / bn191017391 in ADS full-text as of 2026-08-11. The only literature record is the two GCN circulars (26016 BALROG localization, 26020 GBM final localization). The strongest external comparison frame is therefore the Fermi GBM catalog products themselves (bcat/tcat/scat FITS files, fetched from the HEASARC FTP burst directory 2026-08-11) - values filed in the dossier's PUBLISHED VALUES section and in the P0 freeze.",
+ "local_corpus_check": {
+  "method": "PyMuPDF text scan of all 92 PDFs in Skills_training/ for the token '191017'",
+  "hits": 0,
+  "busby_sample_parent": "Busby_2024_ApJ_972_83.pdf scanned separately: no per-trigger text mention (sample membership is via the machine-readable selection, not named in text)"
+ },
+ "corpus_index_updates": "none - zero papers to add; shared CSV Skills_training/corpus_index.csv deliberately NOT touched per campaign hard rule",
+ "prompt_vs_future_classification": {
+  "prompt_relevant": "GCN 26016 + 26020 (localization/identity) and GBM catalog bcat/scat values (durations + time-integrated/peak spectral fits) - all prompt-phase; these are the P3 diff targets",
+  "module_future": "NONE to defer: no afterglow, SN, cosmology, or multimessenger literature exists for this burst (no XRT/optical follow-up was ever triggered; GBM-only, LAT boresight angle 131.44 deg per GCN 26020)"
+ },
+ "vikas_reading_list": "nothing new to read for this burst - paperless; the GBM catalog numbers are filed in results/gcn/bn191017391/bn191017391_dossier.md"
+}

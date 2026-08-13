@@ -1,0 +1,76 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn110618366}
+# - {grb_name: GRB 110618A}
+# - {run_type: campaign doc-layer Step 1 per dev/ai_guides/DataInventory.md (2026-08-12)}
+# - {src_start: -4.876}
+# - {src_stop: 60.636}
+# - {trigtime_met: 330079658.383098}
+# - {trigger_utc: '2011-06-18 08:47:36.3831'}
+# - {window_stamp: 'APPROVED_BY=''Vikas Chand + margin-reselect'' 2026-07-19T22:18:36Z human_gui WINDOW_SOURCE=adjusted (results/background_intervals.ecsv,
+#     2 rows: n2, b0); bkg [-86.808,-17.0] U [+78.0,+207.192]'}
+# - {qc_flag: NONE - bn110618366 has no row in results/human_review_qc_flags.txt (checked); no source-overruns-bkg-gap adjudication exists
+#     for this burst}
+# - {manifest_tte: 3}
+# - {manifest_cspec_pha: 3}
+# - {manifest_rsp2: 3}
+# - {manifest_rsp: 0}
+# - {manifest_poshist: 1}
+# - {manifest_trigdat: 0}
+# - {manifest_lle: 0}
+# - {manifest_lat_ft1: 0}
+# - {manifest_lat_ft2: 0}
+# - {note_detectors_on_disk: 'n2, na, b0 (cspec pha + rsp2 + tte each). APPROVED set = n2 + b0. na is present, geometrically the 2nd-best
+#     NaI (67.29 deg), and was used by BOTH GBM catalogs - it is NOT approved here. Recorded as an inventory fact; the human-stamped selection
+#     stands. Three detector sets exist for this one burst: durations/fluence n2+na (von Kienlin+2014 T7/T8/T9), spectral catalog n2+na+b0
+#     (scat v02), ours n2+b0.'}
+# - {note_geometry: 'Source at THETA_SC=145.234 deg, PHI_SC=75.5235 deg (tcat v02) - REPRODUCED here to 3 decimals from the poshist quaternions,
+#     so the geometry chain is verified end-to-end. The burst arrived from BELOW the spacecraft; consequently NO NaI is near on-axis:
+#     n2=56.77, na=67.29, n5=80.12, b0=81.81, b1=98.20, all others >99 deg. Both NaIs exceed the <=50 deg preference - this is a geometry-limited
+#     burst, not a selection error.'}
+# - {note_slew: 'No slew: theta_SC drifts 145.21 -> 145.64 deg across the stamped window (delta = 0.43 deg over 65 poshist samples). Detector
+#     angles are effectively constant; the D1 concern (response built at a different off-axis angle) does not arise.'}
+# - {note_occultation: 'Source-to-nadir angle 84.4 -> 84.1 deg against an Earth angular radius of 66.8 deg (s/c altitude 561 km): the
+#     source sat 17.3 deg above the limb at closest approach and was NEVER occulted - during the source window OR either background window
+#     (min margins: src 17.27, bkg_neg 17.74, bkg_pos 16.49 deg). No occultation step contaminates the background fit.'}
+# - {note_rsp_test: 'All three responses are multi-matrix .rsp2 (DRM_NUM=5) -> the interval-coverage test vs the stamped source window
+#     applies (bn100130729 rule), NOT the D1 off-axis test. Matrix boundaries (rel. TRIGTIME): [-40.961, 9.216], [9.216, 59.393], [59.393,
+#     114.690], [114.690, 172.035], [172.035, 196.611]. min(TSTART)=-40.961 <= SRC_START=-4.876 and max(TSTOP)=196.611 >= SRC_STOP=60.636
+#     -> PASS; the window spans matrices 1-3. No single-matrix .rsp and no LLE response in data/bn110618366/ -> D1 not applicable.'}
+# - {note_lle_lat: 'No LLE triplet (gll_lle_*/gll_pt_*/gll_cspec_*) and no LAT/ directory - and none exists UPSTREAM either: the HEASARC
+#     trigger directory for bn110618366 lists only cspec/tte/rsp2/rsp, poshist, trigdat, bcat, scat, tcat. HAS_LAT=False in results/grb_sample.ecsv.
+#     Expected: at theta_SC=145 deg the source was ~55 deg behind the LAT. No LAT/LLE detection is claimed in any circular or paper.'}
+# - {note_trigdat: 'No trigdat on disk - a note, not a blocker: glg_poshist_all_110618_v01.fit covers geometry (DataInventory Phase 1
+#     rule) and was sufficient for every geometry check above. glg_trigdat_all_bn110618366_v01.fit exists upstream at HEASARC if ever
+#     needed.'}
+# - {note_other_products: 'data/pha/bn110618366/ holds an older-era single-detector extraction (bn110618366_n2.pha, _n2.rsp, _n2_bak.pha)
+#     - n2 only, no b0. Not used by the current pipeline; recorded so it is not mistaken for a current product.'}
+# - {note_d4_coverage: 'D4/T9 COVERAGE CAVEAT (does not change the verdict): the stamped window [-4.876,+60.636] s covers 65.5 s of an
+#     event whose GBM T90 = 163.843 +/- 11.406 s from -3.072 s (50-300 keV, dets n2+na), whose Golkhou+2015 T100 = [-59.600,+241.866]
+#     s, and which Konus-Wind describes as ''~250 s'' total. The window contains the rise, the peak (+16 to +26 s) and BOTH catalog peak-flux
+#     intervals, but truncates the long soft decay tail. The post-burst background window [+78,+207] s OVERLAPS the catalog T90 span
+#     ([-3.07,+160.77] s) over its first ~83 s, i.e. the background is partly fitted over an interval where weak tail emission is still
+#     present per the catalog - a known, accepted consequence
+#     of the human margin-reselect, recorded here as a frame caveat for any fluence/T90 diff. Component-coverage label for all our fits:
+#     MAIN PULSE - rise + peak + early decay, tail truncated.'}
+# - {note_d5_blockage: 'D5 CANNOT BE FULLY EXERCISED: with exactly ONE NaI in the approved set there is no cross-NaI residual-coherence
+#     comparison available, so neither the blockage conviction test (D5) nor the L28 coherence ACQUITTAL of a low-energy component can
+#     be run on this burst. Any low-energy/BB component found here must carry that caveat. (na, at 67.29 deg, is the only candidate second
+#     NaI and is on disk.) No exclusion is proposed - per the data-dropping hierarchy this is a recorded limitation, not a change.'}
+# - {verdict: 'PASS - both approved detectors (n2, b0) resolve to a 5-matrix .rsp2 whose coverage [-40.961,+196.611] s brackets the stamped
+#     source window [-4.876,+60.636] s; geometry verified against tcat to 3 decimals; no slew, no occultation, no LLE/LAT to validate.
+#     Two non-blocking caveats recorded: main-pulse-truncated window coverage (D4/T9) and the single-NaI limitation on D5/L28 (blockage
+#     + coherence checks unavailable).'}
+# schema: astropy-2.0
+DET RSP_FILE COV_START COV_STOP N_MAT VERDICT
+n2 glg_cspec_n2_bn110618366_v00.rsp2 -40.961 196.611 5 PASS
+b0 glg_cspec_b0_bn110618366_v00.rsp2 -40.961 196.611 5 PASS
+na glg_cspec_na_bn110618366_v00.rsp2 -40.961 196.611 5 "PASS (NOT in the approved set - inventory row only)"

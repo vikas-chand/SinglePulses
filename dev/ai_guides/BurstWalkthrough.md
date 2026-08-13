@@ -94,6 +94,20 @@ applied.
   quoted from walkthrough-era outputs.
 
 ## Rules of the campaign
+- **THE SHIPPING GATE (Vikas, 2026-08-12):** no product ships unverified — figures,
+  tables, records, citations, code. Product-typed checklists + the generator≠adjudicator
+  independence rule live in `ShippingGate.md`. Born from the bn200524211 montage incident
+  (a delivered figure contradicting the engine table). Machine stamps inline; vision and
+  judgment checks in a FRESH subagent context.
+- **SCOPE: the ANALYSIS is prompt-only; the LITERATURE is FREE (Vikas, 2026-08-11):**
+  this Agent is the prompt-emission module — analysis targets, P0 predictions, and
+  reconciliation items are prompt-phase only. But *"the literature should be free"*
+  (Vikas, verbatim): read, fetch, and catalog the WHOLE record of each burst —
+  afterglow, associated SN, cosmology, multimessenger — summarized in the dossier
+  under BEYOND-PROMPT CONTEXT and corpus-tagged `module-future;*` (LiteratureHarvest
+  Phase 3c). That material is groundwork the future sibling modules inherit and raw
+  material for the discovery plane; it just never becomes a target here. Same shape
+  as blind-first: the lock binds the analysis, never the reading.
 - **Blind-first ORDERING (Vikas, 2026-07-31; CLARIFIED 2026-08-03) — the
   non-negotiable order:** we ANALYSE first, then compare to published, then diagnose
   the mismatch, then *attribute* it (were WE wrong or were THEY wrong), then write

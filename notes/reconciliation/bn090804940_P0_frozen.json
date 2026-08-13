@@ -1,0 +1,61 @@
+{
+ "burst": "bn090804940",
+ "grb_name": "GRB 090804940",
+ "frozen_utc": "2026-08-12; BEFORE any new fit table opened (results/sweep106/ never read by this worker - hard rule)",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "frozen_before_any_new_fit_output": true,
+ "archival_prior": {
+  "source": "results/clean_per_burst_human_final/bn090804940/spectral_fits.ecsv",
+  "n_blocks": 8,
+  "layout": "blk-1 = time-integrated [-0.052, 10.332] s + blk0..blk6 time-resolved",
+  "plugin_dets": "n3,n4,n5,b0",
+  "criterion": "UNION rule (both nested pairs): (LRT_BANDBB_BAND>=9.2 AND BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 AND CPLBB_KT>1.05)",
+  "significant_bb_blocks_union": 2,
+  "significant_bb_blocks_resolved_only": 1,
+  "union_pass_detail": {
+   "blk-1": {"LRT_BANDBB_BAND": 14.13, "BANDBB_KT": 26.50, "LRT_CPLBB_CPL": 7.45, "CPLBB_KT": 5.08, "passes_via": "Band+BB arm only; note kT is continuum-dependent (T7): 26.5 keV vs Band, 5.1 keV vs CPL"},
+   "blk3": {"interval_s": [2.714, 4.729], "LRT_BANDBB_BAND": 13.35, "BANDBB_KT": 4.68, "LRT_CPLBB_CPL": 12.46, "CPLBB_KT": 4.62, "passes_via": "BOTH arms; kT ~4.6-4.7 keV (low-kT class; L25 confusable with an SBPL break at xb~3.92kT~18 keV)"}
+  },
+  "significant_bb_kt_values": [26.50, 4.68],
+  "max_LRT_BANDBB_BAND_nonpassing": {"block": 6, "value": 8.29, "kt": 4.04},
+  "aic_winners": {"Band+BB": 4, "DSBPL": 2, "Band": 1, "SBPL": 1},
+  "aic_winner_by_block": {"blk-1": "Band+BB", "blk0": "DSBPL", "blk1": "Band", "blk2": "DSBPL", "blk3": "Band+BB", "blk4": "Band+BB", "blk5": "SBPL", "blk6": "Band+BB"},
+  "bic_winners": {"CPL": 3, "Band+BB": 2, "DSBPL": 1, "Band": 1, "SBPL": 1},
+  "LRT_DSBPL_SBPL_ge_9p2": {"blk-1": 16.15, "blk2": 11.84, "blk3": 13.07},
+  "dsbpl_valid_in_those_blocks": true,
+  "time_integrated_band": {"alpha": -0.569, "ep_keV": 95.76, "beta": -3.863},
+  "caveat": "archival two-break and BB counts are LOWER LIMITS (L8 seed artifact, L9 Ep caps) - the L18-L28 engine may find MORE, not fewer"
+ },
+ "predictions": [
+  "P-A (BB census, union rule): the new fits will pass the union criterion in the time-integrated block (via the Band+BB arm, kT ~20-30 keV against Band) AND in at least one resolved block covering ~2.7-4.7 s (both arms, kT ~4-5 keV). bn090804940 ENTERS the BB census; >=1 resolved-block detection. FALSIFIED IF: no block passes either arm, or only blocks outside ~2-5 s pass.",
+  "P-A2 (low-kT diagnosis): the resolved-block BB will sit in the low-kT (~4-5 keV) class where L25/L28 warn of break-masquerade (xb~3.92kT~18 keV) - the per-bin-coverage/BOUND_CAPPED diagnostics will NOT flag it OUT_OF_FAMILY at the time-integrated level, but the blk3-class detection may be reclassified as an SBPL-break alias. Falsifiable form: if reclassified, the DSBPL arm (P-A3) must strengthen correspondingly.",
+  "P-A3 (two-break): DSBPL will beat SBPL by LRT >= 9.2 with DSBPL_VALID in the time-integrated block and in >=1 resolved block (archival: blk-1=16.15, blk2=11.84, blk3=13.07, all VALID). bn090804940 ENTERS the two-break census. Given the L8 fix (default-seed DSBPL restart), the new engine should find >= 3 qualifying blocks. FALSIFIED IF: max LRT_DSBPL_SBPL < 9.2 everywhere.",
+  "P-B (catalog anchor, falsifiable numbers): time-integrated Band over the stamped window gives alpha = -0.58 +/- 0.06, Ep = 96 +/- 6 keV, beta <= -3.0 (steep, poorly constrained). Sources: FERMIGBRST flnc_band (alpha=-0.582+/-0.035, Ep=96.15+/-1.71, beta=-3.584+/-0.372; interval -1.024..11.264 s, dets n3,n4,n5,b0 = our set) and archival blk-1 (-0.569 / 95.76 / -3.863).",
+  "P-B2 (winner family): time-integrated AIC winner = an added-component or two-break model (Band+BB or DSBPL), NOT plain Band/CPL; BIC winner = CPL (parsimony flip, archival pattern). The catalog's own best FLNC model is Comptonized - the beta is unbound-steep, so any Band preference over CPL will be marginal.",
+  "P-B3 (temporal frame): T90 = 5.57 +/- 0.36 s (50-300 keV, T90START +0.64 s); single FRED pulse, tp = 1.88 +/- 0.08 s (Li&Zhang 2021, 0.128-s LC; Lu+2018 NaI pulse fit ~2.19 s - convention differs, T3); achromatic peak time (Li&Zhang fn 5); intensity-tracking Ep evolution with alpha ~ -0.5 roughly constant and a PROMINENT Golenetskii relation (Yu+2019); small positive lag ~0.19+/-0.09 s (Lu+2018 p55 row, column mapping hedged)."
+ ],
+ "harvest_snippets": {
+  "FERMIGBRST_living_catalog": [
+   "T90=5.568+/-0.362 s (50-300 keV), FLU(10-1000)=1.44259e-05 erg/cm2; flnc BEST=Comptonized Ep=98.19+/-1.50 keV index=-0.610; flnc_band Ep=96.15+/-1.71 alpha=-0.582+/-0.035 beta=-3.584+/-0.372 (interval -1.024..11.264 s); pflx BEST=Comptonized Ep=119.3 index=-0.378 (1.024..2.048 s); scat dets n3,n4,n5,b0"
+  ],
+  "Yu2019": [
+   "GRB 090804 is an interesting case in which the Golenetskii relation is prominent, but both Ep-alpha and the F-alpha relations are very weak. Such a behavior is, however, an exception.",
+   "In one of these cases (GRB 090804), though, there is only little variation in alpha as well, it even being consistent with a constant at around alpha ~ -0.5.",
+   "Table 1: 090804940 n3n4(n5)b0, src -1..15 s, KRL, 14 bins, class i.t."
+  ],
+  "LiZhang2021": [
+   "Table 1: 090804940 T90 5.568+/-0.362, fluence (1.42+/-0.02)e-5, n3n4(n5)b0, src -1..15, bkg [-25..-10, 40..60], 11/6 bins",
+   "FRED tp=1.88+/-0.08 s (0.128-s LC); Phase I PL 1.10+/-0.16 (1.279-8.705 s); Phase II PL 3.09+/-0.53 (4.678-8.705 s); Phase II satisfies alpha>=2+beta (HLE on late); NOT in Phase I sample; among six 'apparent cases that violate the predictions' of the constant-Gamma Ec(t) HLE test"
+  ],
+  "Lu2018": [
+   "'GRB 090804A (bn090804940)' time-resolved Band: [-0.77,1.28] Ep=88.58+/-6.25 a=-0.15+/-0.16 b=-2.63+/-0.18; [1.28,1.74] Ep=127.42+/-11.82 a=-0.46+/-0.12 b=-2.36+/-0.14 (p41)",
+   "p55 row: class T[racking], 0.19+/-0.09 (lag-like, hedged)"
+  ],
+  "Li2026_eprint": [
+   "subclass II intensity-tracking; CPL; 8 bins; T90 5.57+/-0.36 (p5 table; NOT REFEREED)"
+  ],
+  "GCN": [
+   "absent - zero circulars (classic archive 404 + new-site search totalItems=0); GBM-only burst, no redshift, no follow-up"
+  ]
+ }
+}

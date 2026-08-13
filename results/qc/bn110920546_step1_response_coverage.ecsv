@@ -1,0 +1,72 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP2, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# meta: !!omap
+# - {trigger: bn110920546}
+# - {grb_name: 'GRB 110920A (= bn110920546 / trigger 338216745; "GRB 110920B" in Lu+2018; the GBM catalog name GRB 110920A is SHARED with
+#     a different trigger, bn110920338)'}
+# - {generated_utc: '2026-08-12'}
+# - {src_start: -3.240117482517377}
+# - {src_stop: 111.30377062937083}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand, 2026-07-19T22:18:36Z, human_gui, WINDOW_SOURCE=accepted_suggestion)'}
+# - {trigtime_met: 338216745.81222}
+# - {manifest_counts: tte=7 cspec_pha=7 rsp2=7 rsp=0 poshist=1 trigdat=0 lle=0 lat=0}
+# - {notes: "PHASE 1 (file manifest). data/bn110920546/ holds 22 files: glg_tte_{b0,b1,n0,n1,n3,n6,n7}_v00.fit.gz, glg_cspec_{same 7}_v00.pha\
+#     \ + _v00.rsp2, and glg_poshist_all_110920_v01.fit. trigdat is ABSENT: a note, not a blocker, because poshist is present (DataInventory\
+#     \ Phase 1). NO LLE and NO LAT products exist, locally or in the FSSC current/ directory - and that is correct, not a download gap:\
+#     \ Iyyani+2015 \xA72 states verbatim \"There is no detection of Large Area Telescope (LAT, 100 MeV - 300 GeV) and LAT Low Energy\
+#     \ (LLE, 30 - 130 MeV) emission for this burst\", and results/grb_sample.ecsv carries HAS_LAT=False. The D1 off-axis LLE check therefore\
+#     \ does not apply. ||| PHASE 2 (response validity). All four APPROVED detectors (n0,n1,n3,b0) resolve through the production naming\
+#     \ (scripts/10::find_rsp glob glg_cspec_<det>_*.rsp*) to 7-matrix multi-matrix .rsp2 files spanning -36.353 to +397.831 s relative\
+#     \ to TRIGTIME. min(TSTART) = -36.353 <= SRC_START = -3.240 and max(TSTOP) = +397.831 >= SRC_STOP = +111.304, so the GBM .rsp2 bracket\
+#     \ test PASSES for every detector, with wide margin. The rsp2 span also brackets every stamped background interval (widest: n1/n3\
+#     \ post-window to +285.0 s, and b0 pre-window from -16.54 s). No single-matrix .rsp is in play, so the D1 angle-rule route is not\
+#     \ needed. ||| STAMP VERIFICATION. Off-axis angles recomputed from glg_poshist_all_110920_v01.fit with the production scripts/00::get_detector_angle\
+#     \ at the trigger sample: n0 26.96, n1 48.41, n3 28.85, b0 79.09 deg. The stamped DET_ANGLE values in background_intervals.ecsv are\
+#     \ 26.958, 48.406, 28.848, 79.086 - reproduced to 2 decimals, so the stamps used the tcat position (209.82,-27.56) and trigger-time\
+#     \ attitude. ||| ATTITUDE STABILITY ACROSS THE WINDOW. n0 27.06 -> 25.21 -> 23.34 deg, n1 48.49 -> 46.96 -> 45.33, n3 28.76 -> 30.29\
+#     \ -> 31.68, b0 79.07 -> 79.29 -> 79.27, source-to-+z 16.51 -> 14.95 -> 13.70 deg, sampled at src_start / src_mid / src_stop. Max\
+#     \ drift 3.7 deg (n0); n1 stays inside the 50-deg NaI preference throughout. Independently corroborated by von Kienlin+2014 p.25\
+#     \ verbatim: \"There were in addition two positive ARRs for GBM trigger 100701.490 and 110920.546 with NO SLEW, which was disabled\
+#     \ at spacecraft level at that time.\" The multi-matrix rsp2 tracks this drift anyway. ||| WARN-1 (BACKGROUND, the real risk on this\
+#     \ burst - D-class, new). Fermi exited the SAA only 120.1 s before the trigger: poshist FLAGS bit 1 transitions 1 -> 0 at t-T0 =\
+#     \ -120.1 s (verified locally in this pass, not merely quoted). ALL stamped pre-burst background windows sit inside that activation-decay\
+#     \ tail - n0 [-16.54,-5.54], n1/n3 [-19.53,-9.00], b0 [-16.54,-6.54] s. Biltzinger+2020 (2020A&A 640 A8) \xA74.1 uses THIS EXACT\
+#     \ BURST as their showcase for the failure mode, verbatim: \"GRB 110920A was a bright, single pulse GRB that occurred only about\
+#     \ 100 seconds after an SAA exit of GBM. This causes the background to have a significant component from the exponential decay of\
+#     \ the activated material\" and \"...for which the classical approach of using polynomial fits can give ambiguous answers.\" This\
+#     \ is NOT a response problem and does not change the verdict, but it is the largest foreseeable systematic on the low-energy shoulder\
+#     \ - i.e. on exactly the low-kT blackbody and low DSBPL break that dominate this burst. ACTION: inspect the pre-burst polynomial\
+#     \ residuals for curvature before trusting any first-block low-energy component. ||| WARN-2 (ALREADY-ACCEPTED DECISION, not a new\
+#     \ flag). results/human_review_qc_flags.txt line 5: \"bn110920546  source[-3.24012,111.304]_overruns_bkg_gap  b0[gap -6.54055,79.4595]\
+#     \  2026-07-19T22:18:36Z\" - the b0 post-burst background starts at +79.46 s, i.e. 32 s INSIDE the stamped source window. Per the\
+#     \ project rule that Stage-1 flags ARE decisions, this is recorded as a standing human decision and is not re-raised. ||| WARN-3\
+#     \ (COMPONENT COVERAGE, T9/D4). T90 = 160.771 +/- 5.221 s starting at T90START = +5.120 s, so the burst runs to about +165.9 s while\
+#     \ the stamped window closes at +111.30 s: we analyse roughly 65 percent of T90 and omit the entire 111-166 s tail. The GBM catalog\
+#     \ fluence spectrum integrates -3.584 to +245.252 s and Iyyani+2015 analysed 0-200 s, so any integrated-spectrum diff against either\
+#     \ is a PARTIAL-vs-FULL pulse comparison. The omitted tail is the softest part of the burst (Yu+2016 best-fit model degrades to a\
+#     \ plain power law after 67 s and to \"none\" after 102.9 s), so our integrated alpha and beta must come out harder than the catalog\
+#     \ values. ||| WARN-4 (DETECTOR SET, informational). n6 sits at 25.3 deg - geometrically CLOSER than the approved n3 at 28.8 deg\
+#     \ - and n7 at 47.6 deg, yet both are excluded by the GBM catalog masks (BCAT 11010000000000 = n0,n1,n3; SCAT 11010000000010 = n0,n1,n3,b0)\
+#     \ and by the human approval. Their TTE/CSPEC/rsp2 files are present but unused. The GBM team gave no reason we can read, so no blockage\
+#     \ claim is made here (D5 requires residual + cross-norm evidence, which only exists post-fit); recorded so the D5 test is run on\
+#     \ n6 if it is ever re-admitted. NOTE FOR THE SWEEP: the archival prior run results/clean_per_burst_final/bn110920546 (2026-07-17)\
+#     \ DID fit 7 detectors (n0,n1,n3,n6,n7,b0,b1) - it predates the 2026-07-19 human selection, so prior-vs-new differences carry a detector-set\
+#     \ change on top of any engine change. ||| EXTERNAL CORROBORATION of the approved set: the GBM catalog scat fits use exactly BGO_00\
+#     \ + NAI_00 + NAI_01 + NAI_03 (read from glg_scat_all_bn110920546_flnc_band_v01.fit DETECTOR DATA); McGlynn 2012 uses \"NaI detectors\
+#     \ 0, 1 and 3 and BGO detector 0\"; Iyyani+2015 uses \"NaI 0,1,3 and the BGO 0\". Our approved set is identical to every published\
+#     \ analysis of this burst, so a detector-set explanation for any P3 disagreement is closed in advance."}
+# - {verdict: 'PASS (responses valid; 4/4 approved detectors bracket the stamped window with margin). Carries WARN-1 background/SAA, WARN-2
+#     accepted bkg-gap overrun, WARN-3 partial T90 coverage, WARN-4 detector-set/stale-prior notes.'}
+# schema: astropy-2.0
+DETECTOR RSP2 N_MATRICES RSP_T0 RSP_T1 COVERS_SRC
+n0 glg_cspec_n0_bn110920546_v00.rsp2 7 -36.3526 397.8306 True
+n1 glg_cspec_n1_bn110920546_v00.rsp2 7 -36.3526 397.8306 True
+n3 glg_cspec_n3_bn110920546_v00.rsp2 7 -36.3526 397.8306 True
+b0 glg_cspec_b0_bn110920546_v00.rsp2 7 -36.3526 397.8306 True

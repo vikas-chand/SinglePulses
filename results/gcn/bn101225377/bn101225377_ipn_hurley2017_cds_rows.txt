@@ -1,0 +1,24 @@
+# Hurley et al. 2017, ApJS 229, 31 -- IPN Supplement to the 2nd Fermi GBM Catalog
+# Machine-readable tables retrieved 2026-08-12 from CDS/VizieR J/ApJS/229/31
+# (DOI 10.26093/cds/vizier.22290031).  The IOP PDF is Radware-captcha blocked;
+# these are the SAME tables as published (see fetch note in the dossier).
+
+## table2.dat (IPN/GBM gamma-ray bursts) -- row for our burst
+2010 Dec 25 09:02:53    GRB101225377 INT,Kon,MO,RHE,Suz,Swi         d
+# cols: UT date/time | Fermi GBM designation | instruments | flag
+# Note (3) instruments: INT=INTEGRAL, Kon=Konus-Wind, MO=Mars Odyssey,
+#   RHE=RHESSI, Suz=Suzaku, Swi=Swift.
+# Note (4) flag d = "Burst was outside the coded field of view of the BAT, and
+#   not localized by it".
+
+## table5.dat (IPN annuli) -- raw fixed-format line
+GRB101225377 104.491   23.7495 38.9563 0.0931  67.0176  23.6916 15.7952 15.8136
+# cols: Fermi | RA1 DE1 R1 dR1 | RA2 DE2 R2 dR2   (deg, J2000)
+# NB dRIPN2 = 15.8136 deg is larger than RIPN2 = 15.7952 deg -> the 2nd annulus
+#   degenerates to a cone of radius <=31.6 deg. Value transcribed verbatim from
+#   the published byte-format record (bytes 65-71 / 73-79); flagged, not edited.
+
+## table6.dat (IPN 3-sigma error box)
+ bn101225377  62.725  26.528  78.432  -5.889  72.805  55.007  78.634  -5.814  73.173  54.967  8210.  12.600   652.0
+# cols: Fermi | centre RA,DE | 4 corners RA,DE | area_GBM(3sig)=8210 deg2 |
+#       area_IPN=12.600 deg2 | ratio=652.0

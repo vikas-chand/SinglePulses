@@ -1,0 +1,98 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: N_MAT, datatype: int64}
+# - {name: COV_START, datatype: float64}
+# - {name: COV_STOP, datatype: float64}
+# - {name: THETA_TRIG, datatype: float64}
+# - {name: THETA_SRC_START, datatype: float64}
+# - {name: THETA_SRC_STOP, datatype: float64}
+# - {name: DTHETA_SRC_WINDOW, datatype: float64}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn100707032}
+# - {grb_name: GRB 100707A}
+# - {run_type: 'campaign doc-layer Step 1 per dev/ai_guides/DataInventory.md (2026-08-12); FIRST era for this trigger - no prior results/qc/bn100707032_*
+#     existed, nothing overwritten'}
+# - {src_start: -2.0}
+# - {src_stop: 32.0}
+# - {trigtime_met: 300156400.98703}
+# - {window_stamp: 'APPROVED_BY="Vikas Chand" APPROVED_UTC=2026-07-19T22:18:36Z APPROVAL_MODE=human_gui (results/background_intervals.ecsv;
+#     n7/n8 WINDOW_SOURCE=adjusted, b1=accepted_suggestion)'}
+# - {approved_dets: 'n7,n8,b1'}
+# - {bkg_windows: 'n7 pre[-19.414,-5.414] post[48.586,115.586]; n8 pre[-20.414,-4.414] post[38.586,101.586]; b1 pre[-24.000,-10.000] post[40.000,140.000]
+#     (s rel. TRIGTIME)'}
+# - {qc_flag: 'NONE - bn100707032 does not appear in results/human_review_qc_flags.txt. Gap check reproduced: the source window (-2.0,
+#     32.0) s lies inside every detector''s background gap (n7 -5.414..48.586; n8 -4.414..38.586; b1 -10.000..40.000)'}
+# - {manifest_cspec_pha: 3}
+# - {manifest_rsp2: 3}
+# - {manifest_rsp: 0}
+# - {manifest_tte: 3}
+# - {manifest_poshist: 1}
+# - {manifest_trigdat: 0}
+# - {manifest_lle: 0}
+# - {manifest_lat_ft1: 0}
+# - {manifest_lat_ft2: 0}
+# - {note_manifest: 'data/bn100707032/ holds exactly the approved set: glg_cspec_{n7,n8,b1}_bn100707032_v00.pha + .rsp2, glg_tte_{n7,n8,b1}_bn100707032_v00.fit.gz,
+#     glg_poshist_all_100707_v00.fit (10 files). No trigdat: a NOTE, not a blocker - poshist is present and carries the geometry (DataInventory
+#     Phase 1)'}
+# - {note_rsp_class: 'D2 - these are MULTI-matrix .rsp2 (3 SPECRESP MATRIX extensions each), so the GBM interval-coverage test is the
+#     governing test and the off-axis test is reported as corroboration. A glob for *.rsp alone would have produced 3 false alarms here,
+#     the mirror image of the bn130310840 case'}
+# - {note_rsp_test: 'GBM .rsp2 rule: PASS if min(TSTART) <= SRC_START and max(TSTOP) >= SRC_STOP. Every .rsp2 spans T0-33.729 to T0+97.346
+#     s, bracketing the stamped window (-2.0, +32.0) s with 31.7 s of margin before and 65.3 s after. PASS on all three detectors'}
+# - {note_angle_validation: 'theta(t) computed with the PRODUCTION estimator - scripts/00_prototype_one_burst.py get_pointing_at_trigger
+#     + get_detector_angle (gtburst Vincenty + Rodrigues chain), loaded by importlib from the production file, not reimplemented. It reproduces
+#     the stored results/background_intervals.ecsv DET_ANGLE values exactly: n7 47.400 vs 47.400, n8 7.324 vs 7.324, b1 63.925 vs 63.925'}
+# - {note_dtheta: 'Delta-theta across the stamped source window is <= 0.69 deg (n7), 0.17 deg (n8), 0.18 deg (b1) - far inside the D1
+#     PASS threshold (<~4 deg). Fermi did NOT slew: this burst sat at ~90 deg from the LAT boresight and no autonomous repoint occurred.
+#     Even over the widest background span (-24 to +140 s) the drift is only 3.2 deg (n7)'}
+# - {note_lat_lle: 'D1''s LLE arm is NOT APPLICABLE - no gll_* triplet and no LAT/ directory exist on disk, and results/grb_sample.ecsv
+#     has HAS_LAT=False. This is CORRECT for the standard analysis: GCN 10945 verbatim ''This burst was at an angle of 90 degrees to the
+#     LAT boresight, which means that neither directional nor energy information can be obtained with the standard analysis procedures'',
+#     and Rubtsov+2012 independently report their standard-analysis pipeline FAILED on this burst for that reason. VERIFIED HERE: the
+#     source sits 90.34 deg from the spacecraft +z axis at trigger, computed from the poshist quaternions - the circular''s ''90 degrees''
+#     reproduces to 0.34 deg'}
+# - {open_item_lle: 'OPEN, non-blocking: Ackermann+2013 (first LAT GRB catalog, Sect.5) reports ''GRB 100707A which had a significance
+#     of 3.7 sigma using the LLE data'', listed among bursts formally below that catalog''s detection threshold. LLE data therefore EXIST
+#     for this burst while data/ has none. Per L17 (inclusion gated on DATA QUALITY, never on significance) this is a data-acquisition
+#     gap, not a quality exclusion. Caution if acquired: at ~90 deg inclination an LLE DRM is the exact D1 hazard class, so acquisition
+#     and the theta check must be done together'}
+# - {note_d4: 'D4 PARTIAL. bcat/Paciesas+2012: T90 = 81.793 +/- 1.218 s with T90START = +1.088 s -> catalog emission span (1.088, 82.881)
+#     s, which our stamped window (-2.0, +32.0) s covers only to ~38% by duration. BUT T50 = 20.672 +/- 0.345 s from +3.712 s, so the
+#     whole T50 span (3.712, 24.384) s IS inside our window - we hold essentially all of the fluence. The trigger time IS the burst start
+#     here: no pre-trigger episode is claimed in any of the 5 circulars, and Yu+2016 bin 1 starts at -1.024 s with the first detection.
+#     Every dedicated time-resolved paper stops at 20-30 s (Basak -1..22.6; Burgess -0.2..22.2; Li&Zhang 2021 -1..20; Yu+2019 0..30),
+#     so our coverage MATCHES the literature''s'}
+# - {warn_bkg_contamination: 'WARN, evidence-backed. All three post-background windows begin INSIDE the catalog T90 span. Yu+2016 (A&A
+#     588 A135) Table A.1 bin 38, 52.131-69.442 s, is a DETECTION: PL, photon index -1.704 +/- 0.041, energy flux (2.09 +/- 0.69)e-7 erg/cm2/s
+#     - i.e. real burst emission at ~1% of the peak flux lies inside n7''s [48.6,115.6], n8''s [38.6,101.6] and b1''s [40,140] post-background
+#     windows (17.3 s of a 63-100 s window). Their bins 35-37 (21.2-52.1 s) and 39-40 (69.4-97.3 s) are ''none''. Expected effect: a slight
+#     OVER-estimate of the background and hence a slight UNDER-estimate of source flux, at the ~1-2% level, largest for n7. Not a re-selection
+#     trigger; recorded so it is not rediscovered as a mystery at the fit stage'}
+# - {warn_rsp2_vs_bkg_span: 'WARN, informational. The .rsp2 matrices stop at T0+97.346 s while n7''s post-background runs to +115.586
+#     s and b1''s to +140.000 s. This is NOT a fit-validity failure - the background polynomial is fitted in COUNT space and needs no
+#     response - but any future step that folds a response over the background interval would be extrapolating'}
+# - {warn_tte_margin: 'WARN, tight margin. TTE spans T0-24.4 to T0+300.5 s for all three detectors. b1''s pre-background starts at exactly
+#     -24.000 s, leaving only ~0.4 s of TTE before it. n7 (-19.414) and n8 (-20.414) are comfortable'}
+# - {note_position: 'Detector angles were computed from the GBM position RA/Dec = 351.070/-6.570 (GCN 10944; also results/grb_sample.ecsv).
+#     GCN 10947 states the IPN 3-sigma box centre lies 7.2 deg away, larger than the GBM 1-sigma statistical (1 deg) + 2-3 deg systematic
+#     budget quoted in GCN 10944. Position sensitivity was NOT re-derived this pass - flagged as an open item, since a 7.2 deg shift could
+#     move n7 (47.4 deg) across the project''s <=50 deg NaI rule'}
+# - {note_d5: 'Blockage screening (D5) is DEFERRED to the fit stage where residual coherence and EAC cross-norms live. Advance warning:
+#     with only TWO NaI detectors (n8 at 7.3 deg, n7 at 47.4 deg, i.e. very different viewing angles) there is no third NaI to arbitrate
+#     a coherent one-sided residual run, so any D5 diagnosis on this burst will be weak in either direction. Note the catalog itself used
+#     detectors 7+8 (Paciesas+2012 Table 2) and Yu+2019 / Li&Zhang 2021 both used n7(n8)b1 - the same set we approved; Basak&Rao 2014
+#     additionally used n4'}
+# - {verdict: 'PASS (2 recorded WARNs). All 3 approved detectors resolve to an existing multi-matrix .rsp2 whose interval brackets the
+#     stamped source window with wide margin, and whose off-axis angle is stable to <= 0.69 deg across that window. D1''s LLE arm is not
+#     applicable (no LLE/LAT data; source at 90.34 deg off the LAT boresight, verified from poshist). WARNs: (1) published emission (Yu+2016
+#     bin 38) lies inside all three post-background windows; (2) .rsp2 coverage ends before the post-background windows close. Neither
+#     blocks binning or fitting'}
+# schema: astropy-2.0
+DET RSP_FILE N_MAT COV_START COV_STOP THETA_TRIG THETA_SRC_START THETA_SRC_STOP DTHETA_SRC_WINDOW VERDICT
+n7 glg_cspec_n7_bn100707032_v00.rsp2 3 -33.729 97.346 47.4 47.442 46.751 0.691 PASS
+n8 glg_cspec_n8_bn100707032_v00.rsp2 3 -33.729 97.346 7.324 7.315 7.488 0.173 PASS
+b1 glg_cspec_b1_bn100707032_v00.rsp2 3 -33.729 97.346 63.925 63.914 64.089 0.175 PASS

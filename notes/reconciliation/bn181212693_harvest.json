@@ -1,0 +1,44 @@
+{
+ "burst": "bn181212693",
+ "grb_name": "GRB 181212A",
+ "harvest_utc": "2026-08-11",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5; Phase 3c scope rules applied)",
+ "ads_queries": {
+  "token": "ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env (working)",
+  "forms": {
+   "full:\"GRB 181212A\"": {"numFound": 5, "refereed_articles": 1, "gcn_newsletters": 4},
+   "full:\"bn181212693\"": {"numFound": 0},
+   "full:\"181212693\"": {"numFound": 0},
+   "full:\"566325471\"": {"numFound": 0},
+   "full:\"GRB181212A\" (no-space variant)": {"numFound": 0}
+  },
+  "note": "Burst post-dates the 4th GBM GRB catalog / Poolakkil+2021 spectral-catalog coverage window (2008-2018 Jul), consistent with zero trigger-form hits."
+ },
+ "n_refereed_papers": 1,
+ "papers": [
+  {
+   "bibcode": "2020JHEAp..27....1L",
+   "first_author": "Luo, Qi",
+   "year": 2020,
+   "title": "Calibration of the instrumental response of Insight-HXMT/HE CsI detectors for gamma-ray monitoring",
+   "pub": "Journal of High Energy Astrophysics, 27, 1",
+   "arxiv": "2005.01367",
+   "doi_pub": "10.1016/j.jheap.2020.04.004",
+   "open_access": ["PUB_OPENACCESS", "EPRINT_OPENACCESS"],
+   "pdf_fetched": "Skills_training/Luo_2020_2020JHEAp271L_bn181212693.pdf (arXiv version, 3.2 MB, 22 pp, %PDF verified)",
+   "role_of_burst": "cross-calibration sample member (1 of 10 joint-fit GRBs), and the paper's single anomalous case",
+   "prompt_relevant_sections": "S5 Joint spectral fittings (pp.13-17): Table 4 row 181212A (joint Band fit alpha=-1.40 +0.02/-0.03, beta=-2.96 +0.07/-0.18, Ep=105.0 +14.6/-9.1 keV, A_FB=10.71, A_FN=6.40, chi2/dof=661/586); p.14 amplitude-deviation paragraph (NaI deviates ~40% from BGO+CsI, persists in GBM-only fits); Fig 15; Fig 17(f); p.16 exclusion of 181212A from the C0 amplitude-ratio statistic",
+   "module_future_sections": "none (S2-S4 are HXMT instrument calibration, out of scope for any GRB module; no afterglow/SN/cosmo/mm content exists for this burst)",
+   "module_future_tags": "none",
+   "why_it_matters_to_us": "published NaI-vs-BGO normalization tension for THIS burst (A_FN=6.40 vs A_FB=10.71) is a D5-class systematic directly adjacent to any low-energy component (BB / low break) claim; our EAC cross-norms must be checked against it in P3",
+   "corpus_index_row_pending": "Luo_2020_2020JHEAp271L_bn181212693.pdf,2020JHEAp..27....1L,2005.01367,instrument-calibration;joint-fit;detector-normalization,bn181212693,1,N, (NOT appended by this worker - shared-CSV write forbidden; parent must merge)"
+  }
+ ],
+ "gcn_circulars": {
+  "n": 4,
+  "ids": ["23524 Fermi GBM detection", "23534 IPN triangulation", "23540 Konus-Wind", "23541 Insight-HXMT/HE"],
+  "raw": "results/gcn/bn181212693/bn181212693_gcn_raw.txt",
+  "dossier": "results/gcn/bn181212693_dossier.md"
+ },
+ "finding": "NEAR-PAPERLESS burst: exactly one refereed paper, and it is an instrument-calibration paper in which GRB 181212A appears as the anomalous joint-fit case. No dedicated analysis paper, no catalog paper (post-dates 10-yr GBM catalogs), no afterglow/redshift literature. The P3 diff frame = census prior + 4 circulars + Luo+2020 Table 4."
+}

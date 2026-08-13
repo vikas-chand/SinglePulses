@@ -1,0 +1,179 @@
+{
+ "burst": "bn151006413",
+ "grb_name": "GRB 151006A",
+ "tally": null,
+ "tally_note": "doc-layer wave; no walkthrough tally assigned by the orchestrator for this burst",
+ "frozen_utc": "2026-08-12 (doc-layer worker); BEFORE any new fit table was opened - results/sweep106/ was NEVER read (hard rule), no fit was run, and no new-era product for this burst existed",
+ "frozen_before_any_new_fit_output": true,
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "criterion_note": "BB significance uses the UNION RULE over BOTH nested tests: a block counts as BB-significant if (LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 keV) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05 keV). Margins are always quoted against a NAMED baseline (T8).",
+
+ "predictions": [
+  "P-A1 (BB union class = CPL-SIDE ONLY): the new fits will again find ZERO blocks passing the Band+BB arm (LRT_BANDBB_BAND >= 9.2 & BANDBB_KT > 1.05), while the CPL+BB arm passes in the TIME-INTEGRATED block and in the long main-emission block. Archival: Band+BB max LRT = 1.39 (blk0), i.e. the Band beta already absorbs everything a BB could add; CPL+BB LRT = 34.28 (blk-1, kT = 26.68 keV) and 31.52 (blk1, kT = 26.75 keV). FALSIFIED IF any block passes the Band+BB arm.",
+
+  "P-A2 (the CPL+BB 'detection' is CONTINUUM INADEQUACY, not a photosphere): in every block where CPL+BB passes, the bare CPL cutoff energy is railed far above the fitted band (archival CPL_XC = 8447 keV in blk-1, 6560 keV in blk1, 8498 keV in blk3), i.e. CPL degenerates to a power law over 8 keV-100 MeV and the 'blackbody' at kT ~ 27 keV is absorbing curvature that Band's beta and DSBPL's second break handle directly. PREDICTION: in the new fits the CPL+BB advantage will VANISH or shrink below 9.2 once measured against the DSBPL/Band baseline, and no CPL+BB kT will fall in the L28 edge-constrained (<~5 keV) class. FALSIFIED IF a CPL+BB block survives with the DSBPL/Band baseline also fitted and a well-constrained CPL_XC inside the band.",
+
+  "P-A3 (TWO-BREAK BURST - the headline prediction): this burst WILL enter the two-break census. Archival DSBPL wins by BOTH AIC and BIC in the time-integrated block (DSBPL_AIC 8128.43 vs next-best Band 8152.38 => Delta AIC = 23.96 vs Band and 28.65 vs SBPL; Delta BIC = 14.88 vs Band; LRT_DSBPL_SBPL = 32.65) and in blk1 = 0.395-11.725 s (DSBPL_AIC 6256.53 vs Band 6279.39 => Delta AIC = 22.86, Delta BIC = 13.79, LRT = 30.87), with DSBPL_MINOS_OK = True in both. PREDICTION: at least ONE resolved block will satisfy Delta AIC >= 10 for DSBPL against the best single-break model, and the integrated block will do so too. FALSIFIED IF no block reaches Delta AIC >= 10 for DSBPL against a NAMED single-break baseline.",
+
+  "P-A4 (the two breaks land where synchrotron says they should): archival DSBPL gives blk-1 alpha1 = -0.804, xb = 33.6 keV, alpha2 = -1.560, xp = 3660 keV, beta = -3.05; blk1 alpha1 = -0.566, xb = 28.5 keV, alpha2 = -1.461, xp = 2839 keV, beta = -2.91. PREDICTION: the new DSBPL fits will again place the LOW break at xb = 20-60 keV with alpha1 within ~0.25 of -2/3 and alpha2 within ~0.15 of -3/2, and the PEAK at xp = 2-5 MeV. This is the Ravasio-type slow-to-fast-cooling synchrotron signature and it is UNTESTED in the literature for this burst - no published analysis (Basak+2017, Rao+2016, Chattopadhyay+2019/2021) ever fitted a double-broken model. FALSIFIED IF xb lands outside 10-120 keV, or alpha1 is softer than -1.0, or xp falls below 1 MeV, in the blocks where DSBPL wins.",
+
+  "P-A5 (block-2/3 are the null blocks): archival blk2 (11.73-21.03 s) and blk3 (21.03-31.33 s) show no model separation at all (blk2 AIC spread SBPL 5878.77 / Band 5879.20 / DSBPL 5881.84 = Delta AIC < 3.1; blk3 CPL+BB 6017.25 / SBPL 6017.96 / Band 6018.81 / DSBPL 6019.70 = Delta AIC < 2.5, and the BIC winner there is bare CPL). PREDICTION: the new fits will again find NO decisive winner in the late blocks (all Delta AIC < 10 among Band/SBPL/CPL/DSBPL). FALSIFIED IF a late block produces a >= 10 AIC margin for any model.",
+
+  "P-B1 (Ep is NOT in the GBM band - the frame prediction): every published wide-band time-integrated fit gives beta = -1.68 to -1.75, HARDER than -2 (GBM catalog FLNC Band beta = -1.6813 -0.0359/+0.0309; GCN 18404 beta = -1.68 +/- 0.04; Konus 20 keV-15 MeV beta = -1.73 (-0.13,+0.09); Rao+2016 GBM beta = -1.8 +/- 0.1). PREDICTION: our LLE-included fits will again put the nuFnu peak at MeV energies, NOT at the GBM-catalog Band 'Ep' of 178.9 keV: the time-integrated BAND_EP will exceed 1 MeV (archival 2626 keV; Konus peak-interval CPL Ep = 2600 (-1200,+2900) keV is the independent anchor). FALSIFIED IF the new time-integrated Band Ep comes out below 800 keV with the LLE plugin loaded.",
+
+  "P-B2 (hard-to-soft Ep track inside our window, matching Basak+2017): archival Ep(Band) across our blocks runs 4989 -> 2063 -> 319 -> 283 keV (blk0 -> blk3). Basak+2017 Table 2 (n0+n1+n3+b0+LLE, 14 S/N=20 bins) runs 3082, 2325, 921, 625, 1292, 582, 411, 492, 208 keV over bins 1-9 (-2.0 to 27.5 s). PREDICTION: our new per-block Ep will be monotonically decreasing across blk0->blk3 and will agree with the Basak bin overlapping each block to within the (large, often +100%) published errors. FALSIFIED IF the Ep track is non-monotonic inside -1.3..31.3 s, or if any block's Ep sits outside the union of the overlapping Basak bins' error ranges.",
+
+  "P-B3 (we will NOT see the published 'Ep jump' - a coverage prediction, D4/T9): Basak+2017's headline is a sudden Ep rise to a few MeV. In their Band-only frame the rise is at bins 10-11 (27.5-53.2 s, Ep = 580 then 8318 keV) and in their Band+BB frame already at bin 8 (16.3-20.6 s, Ep = 5274 keV). Our stamped window stops at 42.0 s and the archival blocks stop at 31.3 s, so we cover bin 11 NOT AT ALL and bin 10 only partially. PREDICTION: the new fits will NOT reproduce a >5 MeV late-time Ep, and the absence is a WINDOW artefact, not a disagreement. FALSIFIED IF a block beyond ~20 s returns a well-constrained Ep above 3 MeV (which would instead corroborate their Band+BB-frame bin-8 jump).",
+
+  "P-B4 (binning - two independent external anchors for Step 5): Basak+2017 Bayesian blocks on NaI 0+1+3, 8-900 keV are -1--1, 1--10, 10--15, 15--24 s (NaI 3 alone: -1--1, 1--14, 14--24 s); Chattopadhyay+2021 chose -1.11 -> 30.21 s by Bayesian blocks, versus our archival -1.299 -> 31.326 s. PREDICTION: our Step-5 blocks will again start within 0.5 s of -1.3 s and the first block edge will fall at 0.0-1.5 s; the total block span will end within 2 s of 31 s. FALSIFIED IF the new block set's outer edges move by more than 2 s or the first internal edge is not in 0-2 s.",
+
+  "P-B5 (temporal, Step 7): (a) pulse width narrows with energy - Rao+2016 Norris w = 26 +/- 14 s (50-100 keV), 21.2 +/- 2.3 s (100-200 keV), 15.6 s (200-500 keV), asymmetry kappa = 0.72-0.92 (definitions: w = tau2(1+4 sqrt(tau1/tau2))^0.5, kappa = tau2/w); (b) large POSITIVE spectral lag - Maraventano+2025 over (-2.0, 13.5) s give tau12 = 1.53 +/- 0.33 s, tau13 = 2.55 +/- 0.41 s, tau14 = 3.92 +/- 0.80 s (bands NaI 10-100 keV / BGO 150-500 keV / BGO 0.5-1 MeV / LLE 30-100 MeV; positive = harder band leads), an extremum of their 70-GRB sample, and Basak+2017 independently report the 0.1-100 MeV peak at ~1.4 s versus the 8-100 keV peak at ~5.4 s (~4 s, matching tau14). PREDICTION: our Step-7 lag will be positive and of order seconds (tau(NaI vs BGO) = 1-3 s), and our measured pulse width will decrease with energy. FALSIFIED IF our lag is negative or consistent with zero at 2 sigma, or if pulse width does not decrease with energy.",
+
+  "P-B6 (the LLE high-energy slope is already measured): Maraventano+2025 fit an LLE-only power law over Delta t = (-1.0, 45.0) s - essentially our stamped window (-1.3, 42.0) - obtaining alpha_LLE = -2.90 +0.60/-0.51 (PG-Stat/DOF = 2.39/6). Archival DSBPL beta over the integrated block = -3.05, SBPL beta = -2.68, Band beta = -2.84. PREDICTION: our new time-integrated high-energy photon index will land in [-3.5, -2.3], consistent with -2.90 +0.60/-0.51. FALSIFIED IF beta is harder than -2.3 or softer than -3.5 with the LLE plugin loaded.",
+
+  "P-B7 (no redshift, so no rest-frame claim): there is no z for this burst (8 optical campaigns, all non-detections; dark burst with intrinsic NH ~ 4.3-5.1e21 cm-2 at 7.1 sigma, GCN 18407). PREDICTION/RULE: no rest-frame Ep, E_iso, Amati or Yonetoku placement may be produced for bn151006413. FALSIFIED only by the appearance of a redshift measurement that this harvest missed."
+ ],
+
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn151006413/spectral_fits.ecsv (PREVIOUS production run; allowed as prior)",
+  "n_rows": 5,
+  "layout": "blk-1 = time-integrated [-1.299, 31.326] s + blk0..blk3 time-resolved",
+  "plugin_dets": "n0,n1,n3,n5,b0,lle (N_DETS = 6 - the LLE plugin IS in the archival fits)",
+  "block_edges_s": [-1.2991, 0.3954, 11.7252, 21.0312, 31.3264],
+  "stamped_window": {"SRC_START": -1.3, "SRC_STOP": 42.0, "detectors": ["n0", "n1", "n3", "n5", "b0", "lle"], "det_angles_deg": {"n0": 23.33, "n1": 33.32, "n3": 27.90, "n5": 59.67, "b0": 59.64}, "approved_by": "Vikas Chand", "approved_utc": "2026-07-19T22:18:36Z", "mode": "human_gui", "window_source": "accepted_suggestion"},
+  "coverage_caveat": "archival blocks end at 31.33 s = 10.7 s short of the stamped SRC_STOP (42.0 s), and the stamped window itself covers only ~44% of GBM T90 = 93.44 s and ~14% of BAT T90 = 203.9 s",
+
+  "bb_union_rule": {
+   "criterion": "(LRT_BANDBB_BAND >= 9.2 & BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 & CPLBB_KT > 1.05)",
+   "band_arm_count": 0,
+   "band_arm_max_LRT": {"block": 0, "value": 1.388, "kt_keV": 18.01},
+   "band_arm_LRT_all_rows": {"blk-1": -0.0002, "blk0": 1.388, "blk1": 0.0000068, "blk2": 0.382, "blk3": 0.000995},
+   "cpl_arm_count": 2,
+   "cpl_arm_passing": {"blk-1": {"LRT_CPLBB_CPL": 34.277, "CPLBB_KT_keV": 26.684, "CPL_XC_keV": 8447.1}, "blk1": {"LRT_CPLBB_CPL": 31.518, "CPLBB_KT_keV": 26.754, "CPL_XC_keV": 6560.2}},
+   "cpl_arm_LRT_all_rows": {"blk-1": 34.277, "blk0": 0.0058, "blk1": 31.518, "blk2": 4.776, "blk3": 6.944},
+   "union_count_all_rows": 2,
+   "union_count_resolved_only": 1,
+   "union_kT_values_keV": [26.684, 26.754],
+   "union_median_kT_keV": 26.719,
+   "bandbb_kt_track_keV_blk0_to_blk3": [18.014, 7.998, 4.204, 6.232],
+   "cplbb_kt_track_keV_blk0_to_blk3": [2.689, 26.754, 1.033, 18.188],
+   "cplbb_valid_flags": {"blk-1": true, "blk0": true, "blk1": true, "blk2": false, "blk3": true},
+   "interpretation": "the BB signal is entirely CPL-side, at kT ~ 27 keV, in exactly the two blocks where CPL_XC rails to 6.5-8.5 MeV; the archival kT tracks are incoherent (Band+BB 18 -> 8 -> 4 -> 6 keV; CPL+BB 2.7 -> 26.8 -> 1.0 -> 18.2 keV), the classic unconstrained-component signature. L25 caution: do NOT read this as a photosphere."
+  },
+
+  "aic_winners_all_rows": {"DSBPL": 2, "SBPL": 2, "CPL+BB": 1},
+  "bic_winners_all_rows": {"DSBPL": 2, "SBPL": 2, "CPL": 1},
+  "aic_table_by_row": {
+   "blk-1": {"DSBPL": 8128.428, "Band": 8152.383, "CPL+BB": 8155.775, "Band+BB": 8156.383, "SBPL": 8157.079, "CPL": 8186.052},
+   "blk0": {"SBPL": 2750.950, "Band": 2751.010, "Band+BB": 2753.623, "DSBPL": 2753.691, "CPL": 2757.731, "CPL+BB": 2761.725},
+   "blk1": {"DSBPL": 6256.528, "Band": 6279.390, "Band+BB": 6283.390, "SBPL": 6283.401, "CPL+BB": 6292.345, "CPL": 6319.863},
+   "blk2": {"SBPL": 5878.770, "Band": 5879.198, "DSBPL": 5881.841, "Band+BB": 5882.817, "CPL+BB": 5897.416, "CPL": 5898.192},
+   "blk3": {"CPL+BB": 6017.249, "SBPL": 6017.959, "Band": 6018.805, "DSBPL": 6019.695, "CPL": 6020.193, "Band+BB": 6022.804}
+  },
+  "two_break": {
+   "LRT_DSBPL_SBPL_by_row": {"blk-1": 32.651, "blk0": 1.259, "blk1": 30.873, "blk2": 0.930, "blk3": 2.264},
+   "deltaAIC_DSBPL_vs_best_other": {"blk-1": 23.955, "blk1": 22.862},
+   "deltaBIC_DSBPL_vs_best_other": {"blk-1": 14.882, "blk1": 13.789},
+   "dsbpl_params": {
+    "blk-1": {"alpha1": -0.804, "xb_keV": 33.563, "alpha2": -1.560, "xp_keV": 3660.0, "beta": -3.047, "minos_ok": true},
+    "blk0": {"alpha1": 0.189, "xb_keV": 11.330, "alpha2": -0.925, "xp_keV": 3998.2, "beta": -3.042, "minos_ok": true},
+    "blk1": {"alpha1": -0.566, "xb_keV": 28.494, "alpha2": -1.461, "xp_keV": 2839.3, "beta": -2.910, "minos_ok": true},
+    "blk2": {"alpha1": -1.183, "xb_keV": 142.36, "alpha2": -1.999, "xp_keV": 364.6, "beta": -3.173, "minos_ok": false},
+    "blk3": {"alpha1": -0.906, "xb_keV": 32.959, "alpha2": -1.765, "xp_keV": 3706.8, "beta": -3.236, "minos_ok": true}
+   },
+   "note": "the census two-break count is a LOWER LIMIT until the L8 default-seed DSBPL restart lands; for this burst the archival DSBPL already wins outright, so L8 can only add blocks, not remove them"
+  },
+  "band_track": {
+   "alpha_blk0_to_blk3": [-0.835, -1.222, -1.175, -1.280],
+   "ep_keV_blk0_to_blk3": [4988.9, 2063.0, 318.6, 283.2],
+   "beta_blk0_to_blk3": [-3.035, -2.686, -2.249, -2.180],
+   "integrated": {"alpha": -1.315, "ep_keV": 2625.8, "beta": -2.843},
+   "sbpl_ebreak_keV_by_row": {"blk-1": 1594.9, "blk0": 4901.8, "blk1": 1577.3, "blk2": 253.5, "blk3": 125.5}
+  }
+ },
+
+ "harvest_snippets": {
+  "GCN_18398_Swift_BAT_discovery": [
+   "At 09:55:01 UT, the Swift Burst Alert Telescope (BAT) triggered and located GRB 151006A (trigger=657750).",
+   "The BAT light curve shows a single FRED-like peak structure with a duration of about 40 sec. The peak count rate was ~4000 counts/sec (15-350 keV), at ~0 sec after the trigger.",
+   "XRT found a bright, uncatalogued X-ray source located at RA, Dec 147.4256, 70.5036 ... with an uncertainty of 4.8 arcseconds"
+  ],
+  "GCN_18404_FermiGBM": [
+   "At 09:54:57.83 UT on 06 October 2015, the Fermi Gamma-Ray Burst Monitor triggered and located GRB 151006A (trigger 465818101/151006413), which was also detected by Swift BAT and XRT",
+   "The angle from the Fermi LAT boresight at the GBM trigger time using the Swift position is 30 degrees.",
+   "The GBM light curve consists of a FRED-like peak with a duration (T90) of about 84 s (50-300 keV). The time-averaged spectrum from T0+0 s to T0+83.7 s is best fit by a Band function with Epeak = 227 +/- 53 keV, alpha = -1.17 +/- 0.07, and beta = -1.68 +/- 0.04"
+  ],
+  "GCN_18406_FermiLAT": [
+   "Using the LAT Low Energy (LLE) data selection, over 400 counts above background were detected within a 30 s interval coinciding with the time of the GBM emission. This data selection has insufficient spatial resolution to provide a reliable LAT localization."
+  ],
+  "GCN_18409_SwiftBAT_refined": [
+   "The mask-weighted light curve shows a FRED-like structure that starts at ~T-5 s, peaks at ~ T+1 s, and ends at ~T+310 s. T90 (15-350 keV) is 203.9 +- 41.6 sec",
+   "The time-averaged spectrum from T-4.9 to T+311.2 sec is best fit by a simple power-law model. The power law index of the time-averaged spectrum is 1.56 +- 0.06."
+  ],
+  "GCN_18413_KonusWind": [
+   "The long-duration, hard-spectrum GRB 151006A ... triggered Konus-Wind at T0=35697.746 s UT (09:54:57.746).",
+   "The burst light curve shows a single FRED-like pulse with a total duration of ~114 s. The emission is seen up to ~10 MeV.",
+   "The time-integrated spectrum of the burst (measured from T0 to T0+73.984 s) is best fit in the 20 keV - 15 MeV range by the GRB (Band) model with ... alpha = -1.26(-0.23,+0.42), ... beta = -1.73(-0.13,+0.09), the peak energy Ep = 223(-132,+514) keV, chi2 = 85/97 dof.",
+   "The spectrum near the peak count rate (measured from T0 to T0+8.448 s) is best fit ... by a power law with exponential cutoff model ... with alpha = -1.40(-0.06,+0.07), and Ep = 2600(-1200,+2900) keV (chi2 = 71/98 dof)."
+  ],
+  "GCN_18422_AstroSat_CZTI": [
+   "Analysis of Astrosat commissioning data showed the presence of GRB 151006A ... in the Cadmium Zinc Telluride Imager. The source was located 60.7 degrees away from the pointing direction and was detected at energies above 60 keV.",
+   "Modelling the profile as a fast rise and exponential decay, we measure T90 of 65s, 75s, and 50s in 60-80 keV, 80-100 keV and 100-250 keV bands respectively."
+  ],
+  "GCN_18475_CALET_CGBM": [
+   "The long-duration GRB 151006A ... triggered the CALET Gamma-Ray Burst Monitor (CGBM) at 09:54:59.97 UT on 6 October 2015.",
+   "The SGM light curve shows two spikes peaking at T0-2s and T0+2s, and the emission ending around T0+~60s. The T90 duration measured by the SGM data is 63 +- 5 s (30 - 1000 keV)."
+  ],
+  "GBM_catalog_bcat_v00": [
+   "T90 = 93.44 +/- 6.14933 s (T90START = 1.536 s); T50 = 30.464 +/- 1.05552 s (T50START = 7.168 s); FLU(10-1000 keV) = 1.22355e-05 +/- 4.69563e-08 erg/cm^2; PFLX(1.024 s) = 4.9673 +/- 0.2322 ph/s/cm^2 from T0+5.248 s (HEASARC glg_bcat_all_bn151006413_v00.fit)"
+  ],
+  "GBM_catalog_scat_flnc_v01": [
+   "FLNC Band, interval -1.024..84.992 s: Ep = 178.93 -36.49/+45.59 keV, alpha = -1.0493 -0.0765/+0.0951, beta = -1.6813 -0.0359/+0.0309, NRGFLNC(10-1000) = 2.0719e-5 erg/cm^2, REDCHSQ 0.9165/480",
+   "FLNC Comptonized same interval: Epeak = 983.07 +/- 183.31 keV, index = -1.3434 +/- 0.0229, REDCHSQ 0.9906/481",
+   "FLNC SBPL same interval: lambda_low = -1.0966, Ebreak = 56.27 -11.52/+15.34 keV (break scale 0.3 fixed), lambda_high = -1.6821, REDCHSQ 0.9151/480"
+  ],
+  "Basak_Iyyani_Chand_2017_MNRAS_472_891": [
+   "The first phase exhibits a hard-to-soft (HTS) evolution until ~16-20 s, followed by a sudden increase in the spectral peak reaching a few MeV. Such a dramatic change in the spectral evolution in case of a single pulse burst is reported for the first time.",
+   "Table 2 (Band, n0+n1+n3+b0+LLE, S/N=20 bins): bin1 -2.0-2.7 s Ep=3082+1110-631 alpha=-0.90 beta=-2.7; bin7 13.2-16.3 s Ep=411+237-135; bin9 20.6-27.5 s Ep=208+950-86; bin11 37.1-53.2 s Ep=8318+7462-4801",
+   "Table A1 (Band+BB, bins 1-9): kT = 22, 14, 23, 28, 12, 12, 10, 33, 19 keV; Ep(bin8, 16.3-20.6 s) = 5274 +3102/-4511 keV",
+   "During the interval shown in the Figure, we find the Bayesian blocks as -1-1 s, 1-10 s, 10-15 s and 15-24 s. With only the NaI 3 detector these blocks are -1-1 s, 1-14 s and 14-24 s.",
+   "high energy emission in the energy range, 100 keV - 30 MeV and 30 MeV - 100 MeV, peaks nearly simultaneously at ~1.4 s, whereas the low energy emission in the energy range, 8 keV - 100 keV, peaks later at ~5.4 s",
+   "The LLE emission is quite significant with a detection sigma of 54, and extends for about ~30 s",
+   "EAC: n3: 1 (fixed), n0: 0.95 +/- 0.03, n1: 0.93 +/- 0.03, b0: 1.0 +/- 0.1 ... we freeze the EAC constant factor corresponding to the LAT-LLE and the LAT data (> 100 MeV) to 1 for all spectral fitting"
+  ],
+  "Rao_Chand_2016_ApJ_833_86": [
+   "Band time-integrated -5.5 to 85.2 s: GBM alpha = -1.1 +0.2/-0.1, beta = -1.8 +/- 0.1, Ep = 218 +126/-78 keV, chi2red 0.67; GBM+CZTI Ep = 189.0 +87.2/-66.5 keV; BAT+CZTI Ep = 160.26 +214.84/-67.0 keV",
+   "Norris pulse fits (w = tau2(1+4 sqrt(tau1/tau2))^0.5, kappa = tau2/w): GBM n0 50-100 keV w = 26 +/- 14 s; 100-200 keV w = 21.2 +/- 2.3 s, kappa = 0.72 +/- 0.13; BGO b0 200-500 keV w = 15.61",
+   "The fitted modulation factor mu is quite high and it has a value of ~0.32 with a detection significance of 1.5 sigma"
+  ],
+  "Chattopadhyay_2021_JApA_42_82": [
+   "Table 1: GRB151006A Tstart -1.11 s Tstop 30.21 s, alpha = -1.31 +0.02/-0.02, beta = -2.19 +0.03/-0.04, Epeak = 1000 +1008/-139 keV, log10(Flux) = -6.37 +/- 0.005, chi2/dof = 664.70/772, Band, GBM + LAT + BAT",
+   "In case of GRB151006A, GRB160509A and GRB160821A, the low energy Large Area Telescope (LLE) data are also used."
+  ],
+  "Chattopadhyay_2019_ApJ_884_123": [
+   "Table 1: 151006A (GBM) localization 2.3'', T90 84.0 s, (t1,t2) = (0, 37.0) s, alpha = -1.17 +0.08/-0.07, beta = -2.16 +0.05/-0.18, Ep = 447 +207/-121 keV, incident direction (60.82, 67.57)",
+   "GRB 151006A, GRB 160509A and GRB 160703A have Bayes factor slightly higher than 1, therefore the possibility that these GRBs are unpolarized can not be completely ruled out."
+  ],
+  "Maraventano_2025_AA_697_A161": [
+   "the largest spectral lags obtained for GRBs 131231A ... and GRB 151006A (with tau13 ~2.6 s)",
+   "151006A -2.0 13.5 | tau12 1.53 +/- 0.33 | tau13 2.55 +/- 0.41 | tau14 3.92 +/- 0.80 (s)",
+   "151006A (-1.0, 45.0) alpha_LLE = -2.90 +0.60/-0.51, Norm = 4.54 +1.38/-1.38 (1e-8 erg/cm2/s), PG-Stat/DOF = 2.39/6",
+   "Band 1 GBM-NaI 0.01-0.1 MeV; Band 2 GBM-BGO 0.15-0.5; Band 3 GBM-BGO 0.5-1; Band 4 LAT (LLE) 30-100"
+  ],
+  "Zhang_BB_2016_ApJ_820_L32": [
+   "we show GRB 151006A, which has a single 'FRED' ... shape light curve with a duration about 20 s, and a significant X-ray flare between ~50 s and ~100 s"
+  ],
+  "redshift": [
+   "NONE - 8 optical/NIR campaigns, zero detections (deepest R > 22.4, GCN 18416); dark burst, intrinsic NH = 4.3-5.1e21 cm-2 at 7.1 sigma (GCN 18407), E(B-V) = 0.24. No rest-frame quantity is computable."
+  ]
+ },
+
+ "conflicts_recorded_not_resolved": [
+  "T90 spans 63-204 s across six instruments/bands (GBM 93.44, BAT 203.9, KW ~114, CZTI 50-75, CALET 63): band-dependent AND coverage-dependent; not a discrepancy to fix.",
+  "Morphology: every instrument but one calls it a single FRED; CALET CGBM SGM reports 'two spikes peaking at T0-2s and T0+2s' (GCN 18475). Recorded, not adjudicated (L26).",
+  "Basak+2017's own 'jump time' is model-dependent: ~16-20 s in the Band+BB frame (Table A1 bin 8) but >=27.5 s in the Band-only frame (Table 2 bins 10-11), while their hardness-ratio and Bayesian-block evidence points to ~15-18 s. Recorded, not adjudicated (T5).",
+  "Basak+2017 Table 4 bin-2 Band+BB BIC is printed as 525.1; recomputation from their own definition gives 487.5 (the cell duplicates bin 1). Their stated preference for bin 2 (Band) is unaffected (T8).",
+  "Polarization arc: mu ~ 0.32 at 1.5 sigma (Rao+2016) -> 77%/94% at 1 sigma in two phases (Basak+2017) -> Bayes factor only slightly >1, unpolarised not excluded (Chattopadhyay+2019). Phase 3b: the 2019 frame supersedes; this burst has NO polarization detection.",
+  "Ep spans 56 keV (catalog SBPL break) to 2600 keV (Konus peak-interval CPL) to 8318 keV (Basak bin 11) across published frames - driven by beta > -2 and by which band each fit reached, not by measurement scatter."
+ ]
+}

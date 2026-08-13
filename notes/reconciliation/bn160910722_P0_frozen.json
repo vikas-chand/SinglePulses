@@ -1,0 +1,25 @@
+{
+ "burst": "bn160910722",
+ "tally": 18,
+ "frozen_utc": "2026-08-11 night shift 2; BEFORE any fit table opened",
+ "engine": "L18/L19/L20/L26/L27 active",
+ "predictions": [
+  "archival BB-leader (3/18 blocks, median kT 41 keV -> the HIGH-kT class this time)",
+  "P-A: expect ~40 keV component candidates; REQUIRED or degenerate?"
+ ],
+ "harvest_snippets": {
+  "Li&Zhang2021": [
+   "absent"
+  ],
+  "Lu2018": [
+   "absent"
+  ],
+  "Li2026": [
+   "\u2026I 160821857 \u00b7 \u00b7 \u00b7 43.01\u00b10.72 Band 35 136.30\u00b10.67 119.93\u00b11.96 -16.37\u00b12.07 -7.92 -2.48 0.00 1.00 0.00 -0.96 -0.92 0.00 II 160910722 \u00b7 \u00b7 \u00b7 24.32\u00b10.36 Band 11 8.68\u00b10.48 7.20\u00b10.21 -1.48\u00b10.52 -2.84 -0.51 0.03 0.97 0.00 -0.39 -0.24 1.00 II 180305393 \u00b7 \u00b7 \u00b7\u2026",
+   "\u20261857 Ep 10 7 10 6 10 5 10 4 F (erg cm 2 s 1) F 10 0 10 20 30 40 Time since trigger (s) 10 1 10 2 10 3 10 4 Ep (keV) GRB 160910722 Ep 10 7 10 6 10 5 10 4 F (erg cm 2 s 1) F 10 5 0 5 10 15 20 25 30 Time since trigger (s) 10 1 10 2 10 3 10 4 Ep (keV) G\u2026"
+  ],
+  "Bordoloi2026": [
+   "absent"
+  ]
+ }
+}

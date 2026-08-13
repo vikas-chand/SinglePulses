@@ -1,0 +1,888 @@
+{
+ "burst": "bn110721200",
+ "grb_name": "GRB 110721A",
+ "harvest_utc": "2026-08-12 (doc-layer parallel sweep; Step 0b per dev/ai_guides/LiteratureHarvest.md)",
+ "identity_verified_by": "GCN 12187 verbatim: 'triggered and located GRB 110721A (trigger 332916465 / 110721200)' at 04:47:43.75 UT 2011-07-21; cross-checked vs results/background_intervals.ecsv TRIGGER_NAME and gll_cspec TRIGTIME=332916465.761",
+ "ads_token_source": "ADS_DEV_KEY in ~/Desktop/Projects/FXTs/.env (working; Astrograph token stale/401)",
+ "phase1_four_query_forms": {
+  "full:\"GRB 110721A\"": {
+   "numFound": 160,
+   "note": "the NAME form; 129 of these are doctype:article + property:refereed"
+  },
+  "full:\"bn110721200\"": {
+   "numFound": 2,
+   "hits": [
+    "2018ApJ...865..153L",
+    "2012PhRvD..86b2001A"
+   ],
+   "note": "GBM trigger-name form; surfaced Lu+2018 Comprehensive-Analysis IV, which the NAME form ranked far down"
+  },
+  "full:\"110721200\"": {
+   "numFound": 8,
+   "hits": [
+    "2016A&A...588A.135Y",
+    "2017ApJ...844..126S",
+    "2019ApJS..245....7L",
+    "2021ApJS..253...43L",
+    "2023ApJS..266...31L",
+    "2024A&A...691A.158G",
+    "2024AN....34530179M",
+    "2015arXiv150204714B"
+   ],
+   "note": "bare fraction-of-day form; THIS is the form that surfaced the catalog/table papers"
+  },
+  "full:\"332916465\"": {
+   "numFound": 4,
+   "hits": [
+    "2013ApJS..209...11A",
+    "2012ApJ...757L..31A",
+    "2024A&A...691A.158G",
+    "2015arXiv150204714B"
+   ],
+   "note": "trigger NUMBER form"
+  },
+  "abs/title:\"GRB 110721A\"": {
+   "numFound": 26,
+   "note": "used to separate dedicated analyses from citation-only mentions; 9 of the 26 are the GCN circulars"
+  }
+ },
+ "phase1b_google_scholar": {
+  "triggered": false,
+  "reason": "None of the three trigger conditions fires: (1) the ADS four-form query is not thin (160 hits / 129 refereed); (2) no cross-community vocabulary gap identified - the connecting literature (polarization, LIV/WEP tests, photosphere theory) all uses GRB vocabulary and is reachable by the fielded queries; (3) no discovery-plane bridging sweep was requested for this burst.",
+  "queries_run": [],
+  "candidate_bridge_query_recorded_not_run": "gamma ray burst polarization photosphere asymmetry IKAROS",
+  "note": "This worker has no browser. Per the skill Scholar is a FINDING channel only and every hit must be resolved back to an ADS bibcode before entering a dossier or citation; nothing entered through this channel this pass."
+ },
+ "counts": {
+  "ads_full_text_hits_name_form": 160,
+  "refereed_articles_name_form": 129,
+  "papers_recorded_in_this_manifest": 26,
+  "papers_with_a_verified_110721A_datum": 22,
+  "pdfs_downloaded_this_pass": 10,
+  "already_in_corpus_index": 12,
+  "identity_contamination_rejects": 4,
+  "_note": "22 of the 26 carry a NUMERIC 110721A datum; the other 4 (Veres+2012, Li+2020, Meng+2026, Li+2026) carry a verified qualitative statement about this burst."
+ },
+ "papers": [
+  {
+   "bibcode": "2026MNRAS.546ag060A",
+   "first_author": "Aldowma, T. K. M.",
+   "year": 2026,
+   "title": "Implications of joint spectral analysis of gamma-ray bursts detected by Fermi LAT and GBM on phenomenological correlations",
+   "arxiv": "2510.16475",
+   "role": "sample-member (joint GBM+LAT+LLE)",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Aldowma_2026_2026MNRAS546ag060A_bn110721200.pdf",
+   "prompt_sections": [
+    "Table 1 row 'GRB 110721A GBM+LAT+LLE 0.003-21.825 ISSM+BB'",
+    "Table 1 row 'GRB 110721A GBM ... ISSM'",
+    "section on joint- vs GBM-only fitting (they state 110721A is one of the GRBs where adding LAT raises Ep / prefers a more complex model)"
+   ],
+   "module_future_tags": [
+    "module-future; cosmo (Amati/Yonetoku plane sections, Figs 1 and the z-table)"
+   ],
+   "harvested_values": {
+    "GBM+LAT+LLE 0.003-21.825 s [TOT]": "ISSM+BB: alpha=-1.20+/-0.03, beta=-3.0+/-0.1, Ep=1700+/-260 keV, kT=35+/-2.7 keV, flux=3.1+/-0.65e-6, stat=6499, delta=42",
+    "GBM-only 0.003-21.825 s [TOT]": "ISSM: alpha=-9.78+/-0.32 (ISSM parameterisation, NOT a Band alpha), beta=-2.21+/-0.05, Ep=1450+/-230 keV, flux=1.12+/-0.07e-5, stat=5963, delta=21",
+    "redshift adopted": "z = 3.512 (the HIGH branch), attributed to 'Greiner et al. (2011)'"
+   },
+   "traps_flagged": [
+    "T6: the z=3.512 attribution points at GCN 12192 (Greiner, counterpart candidate) which contains NO spectroscopy; the lines are Berger GCN 12193",
+    "L21: ISSM alpha is not a Band alpha - do not diff the two"
+   ],
+   "why_it_matters": "Phase-3b LATEST joint frame. Reports kT=35+/-2.7 keV over a WHOLE-BURST integration with LAT+LLE in the fit; our archival integrated Band+BB gives kT=1.344 keV with LRT 0.61 (no BB). Sharpest new P3 tension."
+  },
+  {
+   "bibcode": "2026A&A...706A.142M",
+   "first_author": "Meng, Yan-Zhi",
+   "year": 2026,
+   "title": "Clues to the photosphere emission origin of gamma-ray burst polarization",
+   "role": "citation + interpretation (uses Yonetoku's 110721A polarization)",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Meng_2026_2026AA706A142M.pdf",
+   "prompt_sections": [
+    "p6 GAP-sample paragraph (110721A named as 'the well-known burst with thermal component')",
+    "p9 conclusion attributing its polarization to photosphere emission with jet asymmetry"
+   ],
+   "module_future_tags": [
+    "module-future; polarization"
+   ],
+   "harvested_values": {
+    "claim": "110721A polarization 'likely caused by the photosphere emission with jet asymmetry', keyed on the Axelsson BB"
+   },
+   "traps_flagged": [
+    "CIRCULARITY: a prompt-spectroscopy claim (the BB) is used to interpret the polarization, which is then cited back as support for the photosphere. Our census must not inherit the loop."
+   ],
+   "why_it_matters": "Documents the bias direction the literature carries about what this burst's prompt spectrum should be (Phase 3c disclosure item)."
+  },
+  {
+   "bibcode": "2026MNRAS.546ag047C",
+   "first_author": "Chang, Xue-Zhao",
+   "year": 2026,
+   "title": "Identifying the Poynting-flux-dominated outflow of Fermi GRBs with non-thermal spectrum and its energy-resolved light curve fitting",
+   "role": "sample-member",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Chang_2026_2026MNRAS546ag047C.pdf",
+   "prompt_sections": [
+    "p16 Table row '110721A 0.382 0~20 100.6 6378 6317 6329 6314 12835 8682 Band+BB'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "0-20 s [MAIN-partial]": "best model = Band+BB across their 6-model menu (Band/CPL/BB/NDP/Band+BB/CPL+BB)",
+    "redshift adopted": "z = 0.382 (the LOW branch)"
+   },
+   "traps_flagged": [
+    "Redshift-branch conflict with Aldowma+2026 (3.512); neither discloses the ambiguity"
+   ],
+   "why_it_matters": "Independent modern Band+BB preference over a near-whole-burst interval; a direct P-A anchor."
+  },
+  {
+   "bibcode": "2026ApJS..283...18L",
+   "first_author": "Li, Liang",
+   "year": 2026,
+   "title": "A Novel Method of Estimating GRB Peak Energies beyond the Swift/BAT Limit",
+   "role": "explicit EXCLUSION",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Li_2026_2026ApJS28318L.pdf",
+   "prompt_sections": [
+    "p4 sample-selection criterion 5, which names 110721A as excluded"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "statement": "excludes 'events like GRB 110721A ... which is characterized by a prominent sub-thermal component' because their sample needs CPL/Band to be optimal"
+   },
+   "why_it_matters": "A published, citable statement that this burst is NOT adequately described by a Band/CPL-only continuum - independent support for a non-Band winner."
+  },
+  {
+   "bibcode": "2025A&A...700A..88M",
+   "first_author": "Macera, Samanta",
+   "year": 2025,
+   "title": "Gamma-ray burst prompt emission spectra at high energies",
+   "role": "sample-member (GBM+LAT, 35 GRBs)",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Macera_2025_2025AA700A88M_bn180703876.pdf",
+   "prompt_sections": [
+    "p2 sample description (110721A is the one burst localized by IPN triangulation)",
+    "p4 Table row 'GRB 110721A 0.0 - 1.4 ... 21.8'",
+    "p29 SED figure panel 'GRB 110721A 0.00 s - 1.40 s'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "0.0-1.4 s [EARLY]": "index 2.09 (+0.08/-0.06); 27 (+3/-3); 0.61 (+0.25/-0.16); 3.44 (+0.23/-2.97); no redshift used (marked X)"
+   },
+   "caveat": "Column identities not fully resolved from the text dump - the row is recorded verbatim and MUST be re-read against their Table 1 header before it enters a diff.",
+   "why_it_matters": "Modern GBM+LAT treatment of exactly our early high-Ep epoch."
+  },
+  {
+   "bibcode": "2024ApJ...972....1L",
+   "first_author": "Li, An",
+   "year": 2024,
+   "title": "Magnetization Factors of GRB Jets Revealed by a Systematic Analysis of the Fermi Sample",
+   "role": "sample-member",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Li_2024_2024ApJ9721L.pdf",
+   "prompt_sections": [
+    "p11 Table rows 'GRB110721A -2.048 3.072 Band+BB' and 'GRB110721A 3.072 10.240 Band'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "-2.048 to 3.072 s [MAIN-partial]": "Band+BB, Ep=1334.871 keV, kT=34.419 keV, (further cols 0.0854 / 4.784 / 22.206)",
+    "3.072 to 10.240 s [MAIN-partial]": "Band (no BB), Ep=428.720 keV, kT-col=50.000 (bound?), 0.1595 / 4.376"
+   },
+   "traps_flagged": [
+    "The 50.000 entry in the second row looks like a bound, not a measurement - do not read it as kT"
+   ],
+   "why_it_matters": "Third independent kT ~34 keV for the bright early phase; and an explicit BB-on -> BB-off transition at ~3 s."
+  },
+  {
+   "bibcode": "2024RAA....24b5006W",
+   "first_author": "Wang, Wan-Kai",
+   "year": 2024,
+   "title": "Time-resolved Spectral Properties of Fermi-GBM Bright Long Gamma-Ray Bursts",
+   "arxiv": "2401.14969",
+   "role": "sample-member",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Wang_2024_2024RAA24b5006W_bn110721200.pdf",
+   "prompt_sections": [
+    "p4 Table 1 row '110721200 (n6),n7,n9,b1 21.822 0.0 to 25.0 -25.0 to -10.0 35.0 to 50.0 9(8) 1'",
+    "p9 evolution-class paragraph",
+    "p12 Table row '110721200 no h.t.s to s.t.h i.t 1(0.02) 1(0.52) 1(0.67) 1'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "selection": "dets (n6),n7,n9,b1; T90=21.822 s; src 0.0-25.0 s; bkg [-25,-10] and [35,50]; 9 bins, 8 fitted; 1 pulse",
+    "evolution": "Ep: hard-to-soft THEN soft-to-hard - explicitly 'One burst (GRB 110721A) demonstrated a hard-to-soft evolution followed by soft-to-hard pattern', the only such burst in their 28 single-pulse set; alpha: intensity-tracking"
+   },
+   "why_it_matters": "A named, falsifiable prediction for our block-resolved Ep(t): a MINIMUM followed by re-hardening, not a monotonic decay."
+  },
+  {
+   "bibcode": "2023ApJ...949..110T",
+   "first_author": "Tak, Donggeun",
+   "year": 2023,
+   "title": "Temporal and Spectral Evolution of GRB Broad Pulses: Identification of High-latitude Emission",
+   "role": "sample-member",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Tak_2023_2023ApJ949110T.pdf",
+   "prompt_sections": [
+    "p7 Table row 'GRB 110721A -0.132 0.500 22.500 14 Clear 2.0 +/- 1.4 0.1'",
+    "p11 bn110721200 selection row",
+    "p19 Figure 14 'Spectral analysis on GRB 110721A'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "HLE": "pulse start/peak/end = -0.132 / 0.500 / 22.500 s, 14 bins, HLE 'Clear', measured index 2.0 +/- 1.4 (HLE theory predicts F(nu,Ep) ~ Ep^2)"
+   },
+   "caveat": "The +/-1.4 error makes this consistent with almost anything; it is a weak constraint and must be quoted with its error.",
+   "why_it_matters": "Step-7 HLE cross-check; the pulse window 0.500-22.500 s brackets our stamped window."
+  },
+  {
+   "bibcode": "2021ApJS..253...43L",
+   "first_author": "Li, Liang",
+   "year": 2021,
+   "title": "Testing the High-latitude Curvature Effect of GRBs with Fermi Data: Evidence of Bulk Acceleration in Prompt Emission",
+   "role": "sample-member",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Li_2021_2021ApJS25343L.pdf",
+   "prompt_sections": [
+    "p14 Table row '110721200 21.822+/-0.572 (3.70+/-0.01)e-5 (n6)n7n9b1 -1~25 [-20~10,40~60] 10 8'",
+    "p15 peak-flux spectrum row '110721200 0.128-s 0~10 112.92 3865+/-68 ...'",
+    "p16 HLE decay rows '110721200(1) 0.470~25.000' and '110721200(2) 6.252~25.000'",
+    "p6 detector peak-time-shift paragraph",
+    "p9 thermal-component paragraph naming 110721200"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "selection": "dets (n6)n7n9b1; T90=21.822+/-0.572 s; fluence (3.70+/-0.01)e-5; src -1~25 s; bkg [-20~10, 40~60]; 10 blocks, 8 fitted",
+    "peak-flux spectrum": "0.128-s binning, 0~10 s, S=112.92, 3865+/-68, 0, 1.28+/-0.07, 0.28+/-0.03, 2.62+/-0.86, 77/73 dof",
+    "HLE episodes": "episode 1 starts 0.470 s; episode 2 starts 6.252 s",
+    "note": "110721200 listed among bursts whose pulse peak time SHIFTS between detectors (with 081224887, 120426090, 160216801, 170921168, 171210493)"
+   },
+   "why_it_matters": "The 0.470 s and 6.252 s episode starts coincide to 3 decimals with our archival Bayesian-Blocks edges (blk2 start, blk7 start) - a candidate Step-5 external validation, PENDING confirmation that their quantity is a block edge and not a fitted decay start."
+  },
+  {
+   "bibcode": "2020ApJ...894..100L",
+   "first_author": "Li, Liang",
+   "year": 2020,
+   "title": "Thermal Components in Gamma-Ray Bursts. II. Constraining the Hybrid Jet Model",
+   "role": "sample-member (8 bursts)",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Li_2020_2020ApJ894100L.pdf",
+   "prompt_sections": [
+    "p1 abstract (110721A among the five with (1+sigma0)>1)",
+    "p4 the 'top-down' application to 110721A",
+    "p5 sample list"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "hybrid jet": "eta >> 1 for all; (1+sigma0) > 1 for 110721A -> a cold Poynting-flux component in addition to the hot fireball; (1+sigma_r15) > 1 in a few time bins"
+   },
+   "why_it_matters": "Registry #43 (photospheric outflow diagnostics) precedent on one of our own bursts - and a worked Gao&Zhang top-down example. NOTE: distance-dependent, so it inherits the unsafe redshift."
+  },
+  {
+   "bibcode": "2019ApJS..245....7L",
+   "first_author": "Li, Liang",
+   "year": 2019,
+   "title": "Thermal Components in Gamma-Ray Bursts. I. How Do They Affect Nonthermal Spectral Parameters?",
+   "role": "sample-member (8 bursts)",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Li_2019_2019ApJS2457L.pdf",
+   "prompt_sections": [
+    "p1 abstract Group I/II split",
+    "p5 Group I definition (110721A is thermal-SUBDOMINANT)",
+    "p7 the kT / Ec(CPL) / Ec(CPL+BB) ordering for 110721A",
+    "p12 Table row '110721200 21.82+/-0.57 3.70+/-0.004 (n6)n7n9b1 0.-25. [-20-10,40-60] 8/9 Band+BB Iyyani et al. (2013)'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "class": "Group I = thermal-subdominant",
+    "selection/row": "T90=21.82+/-0.57 s, fluence 3.70e-5, dets (n6)n7n9b1, src 0-25 s, bkg [-20,-10]+[40,60], 8 of 9 bins take Band+BB; model attributed to Iyyani et al. (2013)",
+    "component ordering": "kT=31.24 keV, Ec(CPL)=398.09 keV, Ec(CPL+BB)=943.05 keV, E(BB)=2.8*kT=87.47 keV => E(BB) < Ec(CPL) < Ec(CPL+BB)"
+   },
+   "traps_flagged": [
+    "T7: the BB claim here is relative to a NAMED continuum; the kT/Ec ordering is the whole point and must travel with the numbers"
+   ],
+   "why_it_matters": "8/9 bins requiring Band+BB is the strongest published per-block BB frequency for this burst - the direct comparator for our union-rule count."
+  },
+  {
+   "bibcode": "2020ApJ...890...90D",
+   "first_author": "Duan, Ming-Ya",
+   "year": 2020,
+   "title": "A Spectral Analysis of Fermi-LLE Gamma-Ray Bursts",
+   "role": "sample-member (LLE)",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Duan_2020_2020ApJ89090D.pdf",
+   "prompt_sections": [
+    "p11 peak-slice table row '110721A 0.889~1.660'",
+    "p12 time-integrated row '110721A 0.382 24.45 0~30.015'",
+    "p15 selection/evolution row '110721A n6,n9,b1 7 0.62 0.76 0.07 h.t.s./s.t.h. to h.t.s.'",
+    "p16 Ep(t) and flux(t) figure panels for 110721A"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "0-30.015 s [TOT]": "alpha=-1.0790+/-0.0343, beta=-1.742+/-0.035, Ep=411.1+/-56.3 keV, chi2r=1.10",
+    "0.889-1.660 s [PEAK]": "alpha=-0.8542+/-0.0321, beta=-2.111+/-0.095, Ep=1236.0+/-145 keV, chi2r=1.18",
+    "selection": "dets n6,n9,b1; 7 time bins; evolution 'h.t.s./s.t.h. to h.t.s.'; z=0.382 adopted; T90=24.45 s"
+   },
+   "traps_flagged": [
+    "Their integrated beta=-1.742 reproduces the GCN circulars' -1.77, i.e. it inherits the same time-integration-over-a-sweeping-Ep primitive (our L-E false-corroboration case), NOT independent confirmation"
+   ],
+   "why_it_matters": "The only LLE-arm published comparator, and a second published claim of late re-hardening."
+  },
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "first_author": "Lu, Rui-Jing",
+   "year": 2018,
+   "title": "A Comprehensive Analysis of Fermi GRB Data. IV. Spectral Lag and its Relation to Ep Evolution",
+   "role": "sample-member",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Lu_2018_2018ApJ865153L.pdf",
+   "prompt_sections": [
+    "p14 and p27 bn110721200 Ep-evolution / tpE-E / WE-E panels",
+    "p35 Table row 'bn110721200 NaI 194.81+/-3.05 1.63+/-0.04 1.12+/-0.05 2.09+/-0.10 0.46 1.43'",
+    "p43 time-resolved Band rows for 'GRB 110721A (bn110721200)'",
+    "p51 lag row 'bn110721200 (1) 0.40 +/- 0.11'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "lag": "0.40 +/- 0.11 (their convention - MUST be copied with its definition, trap T3)",
+    "time-resolved Band": "row A: Ep=3972.97+/-458.76 keV, alpha=-0.98+/-0.02, beta=-2.06+/-0.11, F=4.91e-6+/-8.80e-8, chi2r 0.96 (t -0.77 to -1.19?); row B: Ep=1734.53+/-263.45 keV, alpha=-0.98+/-0.04, beta=-2.48+/-0.26, F=7.84e-6"
+   },
+   "traps_flagged": [
+    "T2: this is part IV of a numbered series (Comprehensive Analysis I-IV); parts I/II serve Step 6 and part III serves Step 7. Parts I-III were NOT surfaced by any of the four query forms for this burst and their 110721A membership is UNVERIFIED - open item.",
+    "T3: symbols in this paper are defined twice (W = T_d+T_r vs W = FWHM); copy the definition with the number",
+    "T5: this paper contradicts itself on the sign of t_p vs E"
+   ],
+   "why_it_matters": "The lag and Ep-evolution comparator for Step 7."
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "first_author": "Shao, Lang",
+   "year": 2017,
+   "title": "A New Measurement of the Spectral Lag of GRBs and its Implications for Spectral Evolution Behaviors",
+   "role": "sample-member (50 single-pulsed GRBs)",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Shao_2017_2017ApJ844126S.pdf",
+   "prompt_sections": [
+    "p9 Table row '110721200 21.82+/-0.57 0.50 -3.272(+1.258/-0.143) 8.470+/-0.848 0.098(+0.065/-0.009) 2.497(+0.329/-0.242) 0.109(+0.031/-0.024) n7 0.964+/-0.088'",
+    "p20 the 110721200 panel"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "row": "T90=21.82+/-0.57 s; reference detector n7; energy-independent lag parameterisation (column identities to be read off their Table 1 header before use)"
+   },
+   "caveat": "Column identities NOT resolved from the text dump - recorded verbatim, must be header-matched before diffing.",
+   "why_it_matters": "An independent lag measurement with a DIFFERENT definition from Lu+2018 - the pair is the sign-convention check for Step 7."
+  },
+  {
+   "bibcode": "2017ApJ...848...94F",
+   "first_author": "Fraija, N.",
+   "year": 2017,
+   "title": "Modeling the High-energy Emission in GRB 110721A and Implications on the Early Multiwavelength and Polarimetric Observations",
+   "arxiv": "1709.06263",
+   "role": "DEDICATED analysis",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Fraija_2017_2017ApJ84894F_bn110721200.pdf",
+   "prompt_sections": [
+    "Section 2.1 observational recap (polarization, 15 MeV Ep, thermal component)",
+    "Section 2.2 LAT data analysis - re-reduction of the >100 MeV data with modern software/IRFs; the LAT light curve above 100 MeV"
+   ],
+   "module_future_tags": [
+    "module-future; afterglow (Section 3: early-afterglow external-shock model in a stellar wind; Section 4: implications for early multiwavelength + polarimetry)"
+   ],
+   "harvested_values": {
+    "recap": "phi_p = 160 deg +/- 11, Pi = 84 (+16/-28) %, Ep = 15+/-2 MeV, subdominant prompt thermal component",
+    "claim": "the >100 MeV photons originate in the external-shock region rather than internal shocks"
+   },
+   "why_it_matters": "The only modern re-reduction of this burst's LAT data; directly relevant to whether our LAT plugin should see structure inside our window (D4)."
+  },
+  {
+   "bibcode": "2016A&A...588A.135Y",
+   "first_author": "Yu, Hoi-Fung",
+   "year": 2016,
+   "title": "The Fermi GBM gamma-ray burst time-resolved spectral catalog: brightest bursts in the first four years",
+   "arxiv": "1601.05206",
+   "role": "catalog with a full 110721200 time-resolved table",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Yu_2016_2016AA588A135Y_bn110721200.pdf",
+   "prompt_sections": [
+    "Section 5 'the largest value of Ep found in this study is 7,409 +/- 597 keV, in GRB 110721A'",
+    "Section 5 comparison to Axelsson's lower-resolution first bin",
+    "Section 4 FRED/hard-to-soft discussion naming 110721200",
+    "Appendix table rows '110721200 1' through '110721200 N'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "bin 1 (-1.024:0.711) [EARLY]": "COMP, K=0.0198+/-0.0011, index=-0.980+/-0.020, Ep=7409.00+/-597.00 keV, chi2/dof=554.56/478, S=8.8715+/-0.50, F=3.0120e-6+/-1.3e-7",
+    "bin 2 (0.711:1.132)": "COMP, index=-0.889+/-0.024, Ep=2632.00+/-216.00 keV, 585.61/478",
+    "bin 3 (1.132:1.633)": "BAND, alpha=-0.834+/-0.036, beta=-2.388+/-0.206, Ep=1182.00+/-165.00 keV, (782.80+/-138.22), 550.21/477",
+    "bin 4 (1.633:2.043)": "COMP, index=-0.926+/-0.037, Ep=749.40+/-85.90 keV, 533.31/478",
+    "bin 5 (2.043:2.434)": "SBPL, indices -0.662+/-0.067 and -2.104+/-0.091, 305.63+/-102.84 / 130.80+/-16.30, 537.44/477",
+    "bin 6 (2.434:2.798)": "BAND, alpha=-0.588+/-0.098, beta=-1.925+/-0.078, Ep=184.70+/-23.00, (91.30+/-10.98), 508.08/477",
+    "bin 7 (2.798:3.213)": "SBPL, -0.947+/-0.081 and -1.933+/-0.085, 331.13+/-120.61 / 93.68+/-18.00",
+    "quoted": "'The largest value of Ep found in this study is 7,409 +/- 597 keV, in GRB 110721A (GBM trigger #110721200)'; 'Our aforementioned Ep = 7,409 +/- 597 keV is consistent at 2 sigma level with their lower resolution first time bin of Ep = 5,410 (+410/-420) keV'"
+   },
+   "traps_flagged": [
+    "L21: for the SBPL rows the tabulated energy is a BREAK energy, not the nuFnu Ep - conversion required before any diff",
+    "T4: PDF minus signs normalised before parsing"
+   ],
+   "why_it_matters": "CLOSES a long-open campaign item: notes/reconciliation/bn110721200.md line ~129 records that the often-quoted Ep=7409+/-597 keV 'could NOT be retrieved from source this run'. Retrieved at source here, with the interval, the model (COMP, not Band), and the fit statistic."
+  },
+  {
+   "bibcode": "2016ApJ...821...12P",
+   "first_author": "Preece, Robert",
+   "year": 2016,
+   "title": "Which Epeak? The Characteristic Energy of Gamma-ray Burst Spectra",
+   "role": "sample-member",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Preece_2016_2016ApJ821_12P_PUB.pdf",
+   "prompt_sections": [
+    "p1-2 abstract/intro using 110721A as the exemplar of >decade Ep evolution",
+    "p5 Fig. 3 the 110721A NaI-9 256 ms light curve vs a Norris pulse simulation",
+    "p9 Table row '110721200 1506+/-756 237+/-32 1.7'"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "table row": "110721200: 1506+/-756 and 237+/-32, ratio 1.7 (time-averaged vs peak-flux Ep contrast - column identities to be header-matched)",
+    "note": "'The GRB 110721A light curve from GBM NaI detector 9 at 256 ms time resolution shows some deviation from a simple pulse profile at the peak'"
+   },
+   "why_it_matters": "Independent statement that 110721A's light curve DEVIATES from a simple single pulse - the second such published statement (with Basak & Rao 2014)."
+  },
+  {
+   "bibcode": "2015ApJ...811...93G",
+   "first_author": "Golkhou, V. Zach",
+   "year": 2015,
+   "title": "The Energy Dependence of GRB Minimum Variability Timescales",
+   "role": "WORKED EXAMPLE - 110721A is the paper's demonstration burst",
+   "in_corpus_before": false,
+   "in_corpus_index": false,
+   "pdf": "Skills_training/Golkhou_2015_2015ApJ81193G_bn120119170.pdf",
+   "pdf_note": "PDF already on disk under a DIFFERENT burst's filename tag (bn120119170) and has NO row in corpus_index.csv. Not re-downloaded; a corpus row is queued.",
+   "prompt_sections": [
+    "Section 2 + Figure 1: the 4-band GBM light curve of 110721A and the Haar wavelet scaleogram",
+    "Section 2 discussion of the softest band"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "MVT per band": "Delta_t_min = 0.56+/-0.09, 0.28+/-0.05, 0.24+/-0.04, 0.22+/-0.04 s for channels 1,2,3,4 (softest -> hardest); 'clear evolution in Delta_t_min with bandpass, decreasing from the softest to the hardest energy band'"
+   },
+   "why_it_matters": "A direct, per-band external check on our Step-7 MVT-Haar for this exact burst - and it is energy-resolved, which our single-number MVT is not."
+  },
+  {
+   "bibcode": "2014ApJS..211...12G",
+   "first_author": "Gruber, David",
+   "year": 2014,
+   "title": "The Fermi GBM Gamma-Ray Burst Spectral Catalog: Four Years of Data",
+   "arxiv": "1401.5069",
+   "role": "catalog",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Gruber_2014_2014ApJS21112G_bn110721200.pdf",
+   "prompt_sections": [
+    "p31 the high-Epeak caveat paragraph naming 110721A"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "quoted": "'there are indeed GRBs with very high Epeak values in their time-resolved spectra, such as e.g. GRB 110721A (Axelsson et al. 2012) which has the highest observer-frame Epeak value (15 +/- 2 MeV) known to date'"
+   },
+   "caveat": "Only ONE textual hit for '110721' in the whole 74-page PDF. The catalog's own per-burst fit row for this trigger was NOT located in this pass - it may live in a machine-readable table rather than the PDF. OPEN ITEM.",
+   "why_it_matters": "The standard catalog frame; its per-burst row is still missing from our record."
+  },
+  {
+   "bibcode": "2014MNRAS.442..419B",
+   "first_author": "Basak, Rupal",
+   "year": 2014,
+   "title": "Time-resolved spectral study of Fermi gamma-ray bursts having single pulses",
+   "role": "sample-member (dedicated section)",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Basak_2014_2014MNRAS442419B.pdf",
+   "prompt_sections": [
+    "p2 'We have added GRB 110721A to this catalog. This GRB has a hard-to-soft evolution and high energy GeV detection ... we could obtain 15 time-resolved [bins]'",
+    "p3 Table row '110721A ... -1.0, 10.6 | 15 | n6, n7, n9, b1'",
+    "p5 classification table row '110721A HTS Clear delay and lingering -0.95+/-0.02 27.5 sigma (56.2) 2/15 0.94 (0.10) 30.0 sigma'",
+    "p6 the TWO-PULSE result"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "selection": "dets n6,n7,n9,b1; interval -1.0 to 10.6 s; 15 time-resolved bins",
+    "class": "HTS (hard-to-soft), 'clear delay and lingering' of the BB",
+    "models compared": "Band, BBPL, mBBPL, 2BBPL - 'models other than the BBPL give better chi2_red for the HTS pulses'",
+    "CONTESTED SINGLE-PULSE": "'for GRB 110721A, we found that fitting two pulses is significantly better than a single pulse fitting (an improvement of Delta chi2 = 205.1 ... to the expense of 4 degrees of freedom)'; also notes 110721A 'falls short in the fluence criteria of Lu12'"
+   },
+   "traps_flagged": [
+    "T7: their BB claims are relative to BBPL/mBBPL/2BBPL continua, NOT to Band+BB - do not diff kT across continuum families without saying so"
+   ],
+   "why_it_matters": "Directly challenges this burst's membership in a SINGLE-PULSE sample - a sample-definition caveat we must state, not bury."
+  },
+  {
+   "bibcode": "2013MNRAS.433.2739I",
+   "first_author": "Iyyani, S.",
+   "year": 2013,
+   "title": "Variable jet properties in GRB 110721A: time resolved observations of the jet photosphere",
+   "arxiv": "1305.3611",
+   "role": "DEDICATED analysis",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Iyyani_2013_2013MNRAS4332739I_bn110721200.pdf",
+   "prompt_sections": [
+    "time-resolved BB+Band fits (their Fig. 1, bin 2.2-2.7 s)",
+    "the jet-property derivation (Gamma, r_ph, r_0)"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "already mined in notes/reconciliation/bn110721200.md P1": "best model BB (kT~100 keV) + Band (Ep~1 MeV) in bin 2.2-2.7 s; Gamma decreasing 1000 -> 150; r_ph ~ 1e12 cm; r_ph ~ t^(0.58+/-0.06); ADOPTS z=2 as a placeholder because the redshift is unknown"
+   },
+   "why_it_matters": "The only paper that handles the redshift ambiguity honestly. Also the source of the kT~100 keV figure, which is on a DIFFERENT continuum from Axelsson's 30-39 keV - a T7 case."
+  },
+  {
+   "bibcode": "2013ApJS..209...11A",
+   "first_author": "Ackermann, M.",
+   "year": 2013,
+   "title": "The First Fermi-LAT Gamma-Ray Burst Catalog",
+   "role": "catalog with a dedicated per-burst appendix",
+   "in_corpus_before": true,
+   "pdf": "Skills_training/Ackermann_2013_2013ApJS20911A.pdf",
+   "prompt_sections": [
+    "Appendix B.35 'GRB 110721A' (p170) - the per-burst LAT page",
+    "p37 peak-flux discussion naming 110721"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "note": "110721 is called out as having a 'notably high' LAT peak flux among the non-brightest set; the per-burst appendix page B.35 carries the LAT durations/fluxes"
+   },
+   "caveat": "The B.35 numbers (T_LAT,0 / T_LAT,1) were NOT extracted this pass - needed for the D4 check (does the LAT detection's own interval overlap our window?). OPEN ITEM.",
+   "why_it_matters": "D4: a LAT detection outside our window predicts nothing inside it. GCN 12188 says '~16 s duration' at tens of MeV and >100 MeV over the first 20 s, which DOES overlap our [-1.15, 18.93] s window - but the catalog interval is the authoritative version."
+  },
+  {
+   "bibcode": "2012ApJ...761L..18V",
+   "first_author": "Veres, Peter",
+   "year": 2012,
+   "title": "The Extremely High Peak Energy of GRB 110721A in the Context of a Dissipative Photosphere Synchrotron Emission Model",
+   "arxiv": "1208.1790",
+   "role": "DEDICATED interpretation (theory)",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Veres_2012_2012ApJ761L18V_bn110721200.pdf",
+   "prompt_sections": [
+    "Abstract + Sections 2-3: why internal shocks and a standard blackbody photosphere both fail, and how dissipative photospheric SYNCHROTRON accommodates a 15 MeV Ep"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "claim": "'We find that an interpretation is unlikely in terms of internal shock models, and confirm that a standard black-body photospheric model also falls short. We show that dissipative photospheric synchrotron models ranging from extreme magnetically dominated to baryon dominated dynamics, on the other hand, are able to accommodate such high peak values.'"
+   },
+   "why_it_matters": "The photosphere-vs-synchrotron framing for THIS burst is not a binary - Veres's answer is 'dissipative photosphere WITH synchrotron'. Corrects the dossier's earlier either/or framing."
+  },
+  {
+   "bibcode": "2012ApJ...758L..34Z",
+   "first_author": "Zhang, Bing",
+   "year": 2012,
+   "title": "GRB 110721A: Photosphere 'Death Line' and the Physical Origin of the GRB Band Function",
+   "arxiv": "1208.1812",
+   "role": "DEDICATED analysis",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Zhang_2012_2012ApJ758L34Z_bn110721200.pdf",
+   "prompt_sections": [
+    "the independent Band-only fit of the first epoch [-0.512, 0.064] s (NaI 6,7 + BGO 1 + LAT, no LLE, RMFIT)",
+    "the Ep-L death-line test (rest-frame; z-blocked for us)"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "already mined in notes/reconciliation/bn110721200.md P1": "Ep = 19.56 +/- 4.22 MeV, alpha = -0.944+/-0.046, beta = -4.543+/-0.887; 'We confirm the conclusion of Axelsson et al. (2012) that adding a shoulder thermal component can improve the fits to the data significantly'; the Band component clears the photosphere death line for BOTH candidate redshifts"
+   },
+   "why_it_matters": "The independent Band-only comparator our blk0 matches to 0.1 sigma; and the paper that shows the published picture is BOTH/AND, not either/or."
+  },
+  {
+   "bibcode": "2012ApJ...758L...1Y",
+   "first_author": "Yonetoku, Daisuke",
+   "year": 2012,
+   "title": "Magnetic Structures in Gamma-Ray Burst Jets Probed by Gamma-Ray Polarization",
+   "arxiv": "1208.5287",
+   "role": "DEDICATED polarization measurement",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Yonetoku_2012_2012ApJ758L1Y_bn110721200.pdf",
+   "prompt_sections": [
+    "Abstract + Sections 2-3: the IKAROS-GAP polarization of GRB 110721A"
+   ],
+   "module_future_tags": [
+    "module-future; polarization"
+   ],
+   "harvested_values": {
+    "polarization": "Pi = 84 (+16/-28) % at 3.3 sigma; no significant change of polarization angle detected",
+    "timing/geometry": "'GRB 110721A was detected on 2011 July 21 at 04:47:38.9 (UT) at 0.699 AU from the Earth' (IKAROS timebase, ~4.85 s before the GBM T0 - a light-travel/timebase offset, NOT a phase offset); source 30 deg off-axis for GAP",
+    "band context": "'GAP mainly observed in the energy range of E < Ep'; fluence 3.52e-5 (10-1000 keV) quoted from GCN 12187",
+    "redshift": "adopts z = 0.382 flatly, citing Berger - the ambiguity is dropped"
+   },
+   "caveat": "The exact polarization integration interval is defined by dashed lines in their Fig. 1 and was NOT read off this pass; the text only gives the GAP data span '-16 s to 176 s since the GRB'. OPEN ITEM before any T9 component-coverage label is attached to Pi.",
+   "why_it_matters": "The primary source for every downstream polarization claim about this burst; and a THIRD independent timebase (IKAROS) whose offset must be handled like the Konus one."
+  },
+  {
+   "bibcode": "2012ApJ...757L..31A",
+   "first_author": "Axelsson, M.",
+   "year": 2012,
+   "title": "GRB110721A: An Extreme Peak Energy and Signatures of the Photosphere",
+   "arxiv": "1207.6109",
+   "role": "DEDICATED analysis - THE ANCHOR",
+   "in_corpus_before": false,
+   "pdf": "Skills_training/Axelsson_2012_2012ApJ757L31A_bn110721200.pdf",
+   "prompt_sections": [
+    "all 4 pages",
+    "Table 1 (Band-only | Band+BB, 8 SNR-40 bins over -0.32 to 8.38 s) = our named regression test (L-A)",
+    "the Monte-Carlo dC-stat significance calibration",
+    "the 13-bin first-bin Ep = 15+/-2 MeV"
+   ],
+   "module_future_tags": [],
+   "harvested_values": {
+    "already fully transcribed in notes/reconciliation/bn110721200.md P1": "Table 1 all 8 bins; Ep(t) power-law decay index -1.89+/-0.10; kT from ~80 keV decaying with a break after ~2 s; BB significant up to ~6 s; time-integrated Band C=1078/618 -> Band+BB 901/616 (>5 sigma) -> Band+mBB 871/615; dC=30 (2 dof) <-> p=1e-7; Bayesian-Blocks cross-binning 'fully consistent'"
+   },
+   "why_it_matters": "PDF was cited throughout the 2026-08-08 reconciliation but was NOT in Skills_training/ - now on disk and indexable."
+  }
+ ],
+ "identity_rejects_T1_LF": [
+  {
+   "bibcode": "2026ApJ...998...24C",
+   "title": "Evidence for the Transition from Thermal to Nonthermal Emission in the Prompt Emission of GRB 161117A",
+   "verdict": "NOT 110721A - subject is GRB 161117A; surfaced by full:\"GRB 110721A\" as a citation only. Caught THIS pass."
+  },
+  {
+   "bibcode": "2013ApJ...770...32G",
+   "title": "Evidence for a Photospheric Component in the Prompt Emission of the Short GRB 120323A",
+   "verdict": "NOT 110721A - subject is short GRB 120323A; 110721A is a cited analogue only, and it credits the BB to Axelsson+2012. Previously caught (L-F)."
+  },
+  {
+   "bibcode": "2016ApJ...816...72Z",
+   "title": "Synchrotron Origin of the Typical GRB Band Function - A Case Study of GRB 130606B",
+   "verdict": "NOT 110721A - subject is GRB 130606B. Previously caught (L-F). The 2026-08-05 dossier still lists it as this burst's synchrotron counter-claim ABOVE the extension line; that framing is superseded."
+  },
+  {
+   "bibcode": "2018NatAs...2...69Z",
+   "title": "Transition from fireball to Poynting-flux-dominated outflow in the three-episode GRB 160625B",
+   "verdict": "NOT 110721A - subject is GRB 160625B. Previously caught (L-F)."
+  }
+ ],
+ "open_items": [
+  "Gruber+2014: the per-burst catalog fit row for trigger 110721200 was NOT located in the PDF (one textual hit only) - likely in a machine-readable table. Unresolved.",
+  "Ackermann+2013 Appendix B.35: the LAT duration interval (T_LAT,0 / T_LAT,1) was not extracted - needed for the D4 check.",
+  "Lu+2018 is part IV of a numbered series (T2). Parts I-III were not surfaced by any of the four query forms for this burst; their 110721A membership is UNVERIFIED.",
+  "Yonetoku+2012: the polarization integration interval (Fig. 1 dashed lines) not read - no T9 coverage label can yet be attached to Pi = 84%.",
+  "Macera+2025, Shao+2017, Preece+2016: table rows recorded verbatim but column identities not header-matched. Must be resolved before any of them enters a numeric diff.",
+  "Yu+2016: only bins 1-7 were captured from the text dump; the remaining 110721200 rows were not enumerated.",
+  "Konus 3.137 s T0 offset: PLAUSIBLY resolved as a propagation/timebase difference (see dossier) but NOT proven; falsification path recorded."
+ ],
+ "pending_shared_csv_rows": {
+  "_policy": "This worker does NOT write shared CSVs. Rows below are queued for the integrator.",
+  "results/gcn/gcn_index.csv": [
+   {
+    "trigger": "bn110721200",
+    "gcn_page": "110721A",
+    "n_circulars": 9,
+    "z_mention": "Y-AMBIGUOUS",
+    "ads_hits": 160,
+    "ads_refereed": 129,
+    "note": "no row existed for this burst; header is trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed. z_mention is deliberately NOT plain 'Y': two branches (0.382 / 3.512) AND the IPN calls the counterpart unlikely (GCN 12195)."
+   }
+  ],
+  "Skills_training/corpus_index.csv": {
+   "new_rows": [
+    {
+     "filename": "Axelsson_2012_2012ApJ757L31A_bn110721200.pdf",
+     "bibcode": "2012ApJ...757L..31A",
+     "arxiv": "1207.6109",
+     "theme": "dedicated-110721A;Band-vs-BandBB;extreme-Ep;photosphere;REGRESSION-TEST-L-A",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Zhang_2012_2012ApJ758L34Z_bn110721200.pdf",
+     "bibcode": "2012ApJ...758L..34Z",
+     "arxiv": "1208.1812",
+     "theme": "dedicated-110721A;Band-only-independent;photosphere-death-line;both-and-not-either-or",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Veres_2012_2012ApJ761L18V_bn110721200.pdf",
+     "bibcode": "2012ApJ...761L..18V",
+     "arxiv": "1208.1790",
+     "theme": "dedicated-110721A;dissipative-photosphere-synchrotron;theory;15MeV-Ep",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Iyyani_2013_2013MNRAS4332739I_bn110721200.pdf",
+     "bibcode": "2013MNRAS.433.2739I",
+     "arxiv": "1305.3611",
+     "theme": "dedicated-110721A;BB+Band;jet-photosphere;redshift-ambiguity-handled-honestly;T7-continuum",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Fraija_2017_2017ApJ84894F_bn110721200.pdf",
+     "bibcode": "2017ApJ...848...94F",
+     "arxiv": "1709.06263",
+     "theme": "dedicated-110721A;LAT-rereduction;module-future-afterglow;polarization-context",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Yonetoku_2012_2012ApJ758L1Y_bn110721200.pdf",
+     "bibcode": "2012ApJ...758L...1Y",
+     "arxiv": "1208.5287",
+     "theme": "dedicated-110721A;IKAROS-GAP-polarization;module-future-polarization;third-timebase",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Yu_2016_2016AA588A135Y_bn110721200.pdf",
+     "bibcode": "2016A&A...588A.135Y",
+     "arxiv": "1601.05206",
+     "theme": "GBM-timeresolved-catalog;highest-Ep-7409keV;binning-external-validation;SBPL-break-vs-Ep-L21",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Gruber_2014_2014ApJS21112G_bn110721200.pdf",
+     "bibcode": "2014ApJS..211...12G",
+     "arxiv": "1401.5069",
+     "theme": "GBM-4yr-spectral-catalog;high-Ep-caveat",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Aldowma_2026_2026MNRAS546ag060A_bn110721200.pdf",
+     "bibcode": "2026MNRAS.546ag060A",
+     "arxiv": "2510.16475",
+     "theme": "joint-GBM-LAT-LLE;ISSM+BB;latest-frame-phase3b;redshift-branch-conflict;module-future-cosmo",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Wang_2024_2024RAA24b5006W_bn110721200.pdf",
+     "bibcode": "2024RAA....24b5006W",
+     "arxiv": "2401.14969",
+     "theme": "timeresolved-78-bright-LGRB;evolution-class;hts-to-sth-rehardening",
+     "cited_by_bursts": "bn110721200",
+     "n_bursts": 1,
+     "read": "N",
+     "read_date": ""
+    },
+    {
+     "filename": "Golkhou_2015_2015ApJ81193G_bn120119170.pdf",
+     "bibcode": "2015ApJ...811...93G",
+     "arxiv": "1501.05948",
+     "theme": "MVT-Haar;energy-dependent-Dtmin;110721A-is-the-worked-example",
+     "cited_by_bursts": "bn120119170;bn110721200",
+     "n_bursts": 2,
+     "read": "N",
+     "read_date": "",
+     "note": "PDF is ALREADY ON DISK under the bn120119170 filename tag but has NO corpus_index row. Add the row; do NOT re-download or rename."
+    }
+   ],
+   "append_trigger_to_cited_by_bursts": [
+    {
+     "bibcode": "2019ApJS..245....7L",
+     "filename": "Li_2019_2019ApJS2457L.pdf",
+     "add": "bn110721200",
+     "evidence": "p5 Group I list + p12 table row '110721200'"
+    },
+    {
+     "bibcode": "2020ApJ...894..100L",
+     "filename": "Li_2020_2020ApJ894100L.pdf",
+     "add": "bn110721200",
+     "evidence": "p1 abstract + p5 sample list"
+    },
+    {
+     "bibcode": "2021ApJS..253...43L",
+     "filename": "Li_2021_2021ApJS25343L.pdf",
+     "add": "bn110721200",
+     "evidence": "p14/p15/p16 table rows '110721200'"
+    },
+    {
+     "bibcode": "2018ApJ...865..153L",
+     "filename": "Lu_2018_2018ApJ865153L.pdf",
+     "add": "bn110721200",
+     "evidence": "p14/p27/p35/p43/p51 rows 'bn110721200'"
+    },
+    {
+     "bibcode": "2017ApJ...844..126S",
+     "filename": "Shao_2017_2017ApJ844126S.pdf",
+     "add": "bn110721200",
+     "evidence": "p9 table row '110721200'"
+    },
+    {
+     "bibcode": "2014MNRAS.442..419B",
+     "filename": "Basak_2014_2014MNRAS442419B.pdf",
+     "add": "bn110721200",
+     "evidence": "p2/p3/p5/p6 dedicated 110721A treatment"
+    },
+    {
+     "bibcode": "2013ApJS..209...11A",
+     "filename": "Ackermann_2013_2013ApJS20911A.pdf",
+     "add": "bn110721200",
+     "evidence": "Appendix B.35 p170"
+    },
+    {
+     "bibcode": "2023ApJ...949..110T",
+     "filename": "Tak_2023_2023ApJ949110T.pdf",
+     "add": "bn110721200",
+     "evidence": "p7/p11/p19 rows"
+    },
+    {
+     "bibcode": "2026MNRAS.546ag047C",
+     "filename": "Chang_2026_2026MNRAS546ag047C.pdf",
+     "add": "bn110721200",
+     "evidence": "p16 table row '110721A 0.382 0~20 ... Band+BB'"
+    },
+    {
+     "bibcode": "2024ApJ...972....1L",
+     "filename": "Li_2024_2024ApJ9721L.pdf",
+     "add": "bn110721200",
+     "evidence": "p11 table rows 'GRB110721A'"
+    },
+    {
+     "bibcode": "2025A&A...700A..88M",
+     "filename": "Macera_2025_2025AA700A88M_bn180703876.pdf",
+     "add": "bn110721200",
+     "evidence": "p2/p4/p29"
+    },
+    {
+     "bibcode": "2026A&A...706A.142M",
+     "filename": "Meng_2026_2026AA706A142M.pdf",
+     "add": "bn110721200",
+     "evidence": "p6/p9"
+    },
+    {
+     "bibcode": "2026ApJS..283...18L",
+     "filename": "Li_2026_2026ApJS28318L.pdf",
+     "add": "bn110721200",
+     "evidence": "p4 - EXCLUSION, not membership; tag accordingly"
+    },
+    {
+     "bibcode": "2020ApJ...890...90D",
+     "filename": "Duan_2020_2020ApJ89090D.pdf",
+     "add": "ALREADY PRESENT - no change",
+     "evidence": "cited_by_bursts already contains bn110721200"
+    },
+    {
+     "bibcode": "2016ApJ...821...12P",
+     "filename": "Preece_2016_2016ApJ821_12P_PUB.pdf",
+     "add": "ALREADY PRESENT - no change",
+     "evidence": "cited_by_bursts already contains bn110721200"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,111 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP2, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# - {name: THETA_SRC_START, datatype: float64}
+# - {name: THETA_SRC_MID, datatype: float64}
+# - {name: THETA_SRC_STOP, datatype: float64}
+# - {name: DELTA_THETA, datatype: float64}
+# meta: !!omap
+# - {trigger: bn140608153}
+# - {grb_name: 'GRB140608153 (GBM catalog OBJECT name). NO IAU-style letter designation exists - "GRB 140608A" was never assigned: Bhat+2016
+#     (VizieR J/ApJS/223/28/GBM) leaves the GRB-name column blank for both 2014-06-08 triggers, and the GCN circular archive returns zero
+#     under two endpoints with same-week positive controls (140606A 8, 140610A 10, 140611A 4).'}
+# - {generated_utc: '2026-08-12'}
+# - {generated_by: '106-burst campaign doc-layer worker (Steps 0, 0b, 1); DataInventory.md'}
+# - {src_start: -4.0}
+# - {src_stop: 78.0}
+# - {bkg_windows: '(-115.0, -15.0) and (95.0, 180.0), identical for all five detectors'}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand, 2026-07-19T22:18:36Z, human_gui, WINDOW_SOURCE=accepted_suggestion)'}
+# - {approved_detectors: 'n0, n1, n9, na, b0'}
+# - {trigtime_met: 423891663.976584}
+# - {trigger_utc: '2014-06-08T03:41:00.977'}
+# - {t90: '71.681 +/- 7.371 s (50-300 keV), T90START = -4.608 s -> pulse spans -4.6 to +67.1 s'}
+# - {manifest_counts: tte=6 cspec_pha=6 rsp2=6 rsp=0 poshist=1 trigdat=0 lle=0 lat=0}
+# - {theta_columns: 'THETA_SRC_START / _MID / _STOP are the source-to-detector angles in deg at t-T0 = -4.0 / +37.0 / +78.0 s, recomputed
+#     from glg_poshist_all_140608_v01.fit with scripts/00::get_detector_angle. DELTA_THETA = max-min over the window. They are NOT constant
+#     because the spacecraft slewed (WARN-1).'}
+# - {notes: 'PHASE 1 (file manifest). data/bn140608153/ holds 19 files: glg_tte_{b0,b1,n0,n1,n9,na}_v00.fit.gz, glg_cspec_{same 6}_v00.pha
+#     + _v00.rsp2, and glg_poshist_all_140608_v01.fit. Counts: tte=6 cspec_pha=6 rsp2=6 rsp=0 poshist=1 trigdat=0 lle=0 lat=0. trigdat
+#     is ABSENT locally: a note, not a blocker, because poshist is present (DataInventory Phase 1); glg_trigdat_all_bn140608153_v01.fit
+#     does exist at the FSSC if it is ever wanted. NO LLE and NO LAT products exist ANYWHERE - the FSSC LAT trigger directory https://heasarc.gsfc.nasa.gov/FTP/fermi/data/lat/triggers/2014/bn140608153/current/
+#     returns HTTP 404, results/grb_sample.ecsv carries HAS_LAT=False, and no gll_* file is present locally. The D1 off-axis LLE check
+#     therefore DOES NOT APPLY. ||| PHASE 2 (response validity) = PASS. All five APPROVED detectors (n0,n1,n9,na,b0) resolve through the
+#     PRODUCTION naming used by the pipeline itself (scripts/10::find_rsp, glob glg_cspec_<det>_*.rsp*, newest version) to 20-matrix multi-matrix
+#     .rsp2 files spanning -40.9607 to +98.3056 s relative to TRIGTIME (TRIGTIME = 423891663.976584, taken from a RESPONSE header per
+#     D3, not from the pointing file). min(TSTART) = -40.9607 <= SRC_START = -4.000 and max(TSTOP) = +98.3056 >= SRC_STOP = +78.000, so
+#     the GBM .rsp2 bracket test PASSES for every detector with margin on both sides. No single-matrix .rsp is in play locally, so the
+#     D1 angle-rule route is not needed for response selection - but see WARN-1, where the angle matters for a different reason. D2 respected:
+#     the FAIL/PASS decision was made with the production glob, not a hand-written one. ||| STAMP VERIFICATION. Off-axis angles recomputed
+#     from glg_poshist_all_140608_v01.fit with the production primitive scripts/00::get_detector_angle at the trigger sample: n0 47.38,
+#     n1 43.47, n9 30.13, na 39.96, b0 98.05 deg. The stamped DET_ANGLE values in results/background_intervals.ecsv are 47.367, 43.458,
+#     30.131, 39.967, 98.044 - reproduced to 2 decimals. INDEPENDENT CROSS-CHECK AT A DIFFERENT PRIMITIVE: my computed source-to-+z angle
+#     at the trigger, 57.63 deg, reproduces the tcat''s own THETA = 57.6919 deg, which was written by GBM flight software in 2014 and
+#     never passed through this repo. ||| WARN-1 (THE SPACECRAFT SLEWED THROUGH THE BURST - the real story on this burst, D-class, new).
+#     Verified locally from the poshist quaternions: the +z axis moves at 0.0405 deg/s at t-T0 = -270..-180 s (the survey/orbital rate),
+#     accelerates to a sustained 0.331 deg/s from -90 s to +150 s, then decelerates to 0.0003 deg/s by +240 s - an accelerate/coast/decelerate
+#     profile ending in an INERTIAL HOLD, i.e. a slew into a pointed attitude. It BEGAN about 140 s BEFORE the trigger, so it is NOT an
+#     autonomous repoint for this burst. Consequences, all of them inside our source window: the source-to-boresight angle runs 58.81
+#     -> 36.14 deg; na degrades 38.84 -> 64.10 deg and CROSSES THE PROJECT''S 50-deg NaI PREFERENCE AT t ~ +35 s; n0 improves 48.59 ->
+#     22.67 deg; n1 44.39 -> 25.63 deg; n9 is nearly stationary (30.54 -> 34.92 deg, and it is the only detector whose geometry is stable).
+#     NO DATA IS DROPPED (data-dropping hierarchy, case 1): the approved five-detector set is defensible at every epoch, but NO SINGLE
+#     EPOCH''S ANGLES DESCRIBE IT, and the stamped DET_ANGLE column - a trigger-time snapshot - is therefore an incomplete summary for
+#     this burst. The 20-matrix .rsp2 is exactly the instrument-team mechanism for this situation (about 2.3 deg of motion per matrix
+#     at 0.331 deg/s), and it covers the whole window, so the RESPONSE verdict stays PASS. What the sweep must expect instead is TIME-DEPENDENT
+#     EFFECTIVE AREA: per-detector cross-normalisations that drift across blocks rather than sitting constant. NO NAI IS MISSING: the
+#     only non-downloaded NaI that could compete is n2 at 50.62 deg at T0, and it only worsens (53.67 deg by +20 s), so the six downloaded
+#     detectors cover every epoch''s best geometry. ||| WARN-2 (BGO CHOICE, informational - a standing human decision, NOT re-flagged).
+#     The approved BGO is b0 (98.48 -> 85.51 deg across the window). The GBM catalog''s own spectral fits used b1 (81.52 -> 94.49 deg),
+#     the BGO on the same side as the dominant NaIs n9/na - read directly from the DETECTOR DATA extension of glg_scat_all_bn140608153_flnc_{comp,band}_v01.fit,
+#     which lists BGO_01 + NAI_00 + NAI_01 + NAI_09, all INCLUDED, all TTE. b1''s TTE/CSPEC/rsp2 are on disk and unused. Per the project
+#     rule that Stage-1 flags ARE decisions this is recorded, not re-raised - results/human_review_qc_flags.txt has NO row for this burst,
+#     and the selection is stamped APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z human_gui. It is logged here because the archival prior
+#     already shows the matching symptom: in refit block 2 the cross-norm cons_b0 rails at its 0.800 FLOOR while cons_n1 rails at its
+#     1.200 CEILING. Under D5 that pattern is corroboration to be tested, not a conclusion - and no D5 blockage claim is made, because
+#     a coherent one-sided residual run has not been demonstrated. ACTION for the sweep: if the BGO cross-norm rails again, run the with/without
+#     DIAGNOSTIC pair (b0 vs b1) and record both; never quote a data-dropped fit as a result. ||| WARN-3 (TTE FILES ARE UNSORTED - real,
+#     and demonstrably harmless here). 3ML emits, for all six local files, ''contains duplicate time tags and is thus invalid. Contact
+#     the FSSC'' followed by ''was not sorted in time but contains no duplicate events. We will sort the times, but use caution with this
+#     file.'' Verified independently in this pass by reading the EVENTS TIME column: EXACTLY ONE out-of-order step per file, at t-T0 =
+#     +352.02 -> +351.92 s (a -0.099 s backward jump), plus a handful of exact duplicate timestamps (b0 5, n0 3, b1 2, n9 1, n1 0, na
+#     0 out of 0.57-1.59 million events). The defect occurs at the SAME instant in all six detectors, so it is one out-of-order telemetry
+#     packet, not per-detector corruption. It lies +274 s beyond the stamped source window (-4.0, +78.0) and +172 s beyond the last background
+#     window (+95, +180), so it cannot touch any number this pipeline produces. The warning is real and is correctly ignored - recorded
+#     so nobody has to re-derive that conclusion. ||| WARN-4 (rsp2 SPAN vs BACKGROUND WINDOWS, informational). The rsp2 span (-40.96,
+#     +98.31) does NOT bracket the stamped background windows (-115, -15) and (+95, +180) - only 3.3 s of the post-burst window is covered
+#     and none of the pre-burst one. This is NOT a failure: the background is estimated in COUNT space by polynomial fitting, with no
+#     response folded, and DataInventory''s Phase-2 test is against the SOURCE window, which passes. It is recorded because any response-folded
+#     quantity (a flux, an unfolded nuFnu point, a model-space background) computed for a time outside [-40.96, +98.31] s would be invalid.
+#     ||| WARN-5 (COMPONENT COVERAGE, T9/D4). T90 = 71.681 +/- 7.371 s with T90START = -4.608 s, so the single pulse runs -4.6 -> +67.1
+#     s. The stamped source window (-4.0 -> +78.0 s) covers it well, missing only ~0.6 s of the earliest rise and adding 11 s of post-burst
+#     baseline. BUT the ARCHIVAL PRIOR (results/clean_per_burst_human_final/bn140608153) binned only 3.82 -> 28.88 s = 35% of T90, and
+#     a second archival binning (results/clean_blocks/bb_blocks_spectral_bn140608153.ecsv) used yet a different set of edges, 1.972 /
+#     9.716 / 22.260 / 42.036 s. Any comparison of an ''integrated'' prior number against the GBM catalog''s flnc fit (-3.072 -> +68.608
+#     s, TOTAL coverage) is a PARTIAL-vs-TOTAL comparison and will manufacture a discrepancy in the low-energy index if that is not stated.
+#     ||| CLEAN POINTS worth recording because their absence is usually the problem. (a) BACKGROUND IS SAA-FREE: poshist FLAGS bit 1 -
+#     identified as the SAA bit by its 13.4% duty cycle and its lat -25.5..+1.9 deg, lon 284-360 + 0-8 deg footprint - is 0 throughout
+#     [-200, +300] s; the previous SAA passage ENDED 3288 s before the trigger and the next BEGAN 1468 s after. The bn110920546 activation-decay
+#     failure mode does not apply. (b) OUR STAGE-1 INTERVALS AGREE WITH THE INSTRUMENT TEAM''S: the tcat HISTORY records the GBM team''s
+#     own SRCINT1 = (-6.656, 59.905), BKGINT1 = (-124.711, -18.044), BKGINT2 = (91.760, 250.191) with BKG_POLY_ORDER = 2, close to our
+#     stamped source (-4.0, 78.0) and background (-115, -15) / (+95, +180). (c) No row for this burst in results/human_review_qc_flags.txt.
+#     (d) The archival census run used EXACTLY the currently stamped detector set, so prior-vs-new differences are engine/binning differences,
+#     not detector-set differences.'}
+# - {verdict: 'PASS (responses valid; 5/5 approved detectors resolve to 20-matrix .rsp2 files bracketing the stamped source window with
+#     margin; no LLE/LAT so D1 not applicable; background is SAA-free). Carries WARN-1 SPACECRAFT SLEW (per-detector angles change by
+#     5-26 deg across the window; na leaves the 50-deg NaI preference at t~+35 s; expect time-dependent cross-normalisations), WARN-2
+#     BGO b0 approved where the GBM catalog used b1 (standing human decision; cross-norm railing already visible in the archival prior),
+#     WARN-3 unsorted TTE (single out-of-order packet at +352 s, outside every analysis window - harmless), WARN-4 rsp2 span does not
+#     cover the background windows (fine for count-space backgrounds, invalid for any response-folded quantity there), WARN-5 archival
+#     prior covers only 35% of T90.'}
+# schema: astropy-2.0
+DETECTOR RSP2 N_MATRICES RSP_T0 RSP_T1 COVERS_SRC THETA_SRC_START THETA_SRC_MID THETA_SRC_STOP DELTA_THETA
+n0 glg_cspec_n0_bn140608153_v00.rsp2 20 -40.9607 98.3056 True 48.59 35.91 22.67 25.92
+n1 glg_cspec_n1_bn140608153_v00.rsp2 20 -40.9607 98.3056 True 44.39 34.78 25.63 18.76
+n9 glg_cspec_n9_bn140608153_v00.rsp2 20 -40.9607 98.3056 True 30.54 29.48 34.92 5.44
+na glg_cspec_na_bn140608153_v00.rsp2 20 -40.9607 98.3056 True 38.84 50.93 64.1 25.26
+b0 glg_cspec_b0_bn140608153_v00.rsp2 20 -40.9607 98.3056 True 98.48 92.94 85.51 12.97

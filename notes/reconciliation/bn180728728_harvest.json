@@ -1,0 +1,79 @@
+{
+ "burst": "bn180728728",
+ "tally": 11,
+ "harvested": "2026-08-11 (Rossi deep-read by agent; Wang deep-read by Vikas+package, PDF-verified)",
+ "papers": [
+  {
+   "bibcode": "2019ApJ...874...39W",
+   "file": "Wang_2019_2019ApJ87439W_PUB.pdf",
+   "read_by_vikas": "Y 2026-08-11",
+   "prompt_values_frame_tagged": {
+    "precursor": {
+     "interval_s": "-1.57..1.18 (GBM, their t0=GBM trigger)",
+     "model": "PL",
+     "index": "-2.31+-0.08",
+     "detector": "NaI7"
+    },
+    "main_spike": {
+     "interval_s": "8.72..22.54, peak 11.50",
+     "bins": [
+      "8.72-10.80",
+      "10.80-12.30",
+      "12.30-22.54"
+     ]
+    },
+    "thermal": {
+     "8.72-10.80": {
+      "kT_keV": "7.9+-0.7",
+      "thermal_frac": "7.3 +5.8/-3.7 %"
+     },
+     "10.80-12.30": {
+      "kT_keV": "5.6+-0.5",
+      "thermal_frac": "3.6 +3.3/-1.6 %"
+     },
+     "12.30-22.54": "no convincing BB (CPL preferred, dBIC=10.61 vs CPL+BB)"
+    },
+    "combined_8.72-12.30_Fig2": {
+     "alpha": -1.55,
+     "beta": -3.48,
+     "Ep_keV": 129,
+     "kT_keV": 7.3
+    }
+   },
+   "traps": [
+    "Log(Likelihood) column is a POSITIVE statistic (T8)",
+    "BB verdict baseline-dependent: dAIC 10.0 (Band) vs 20.3 (CPL) same interval",
+    "App C nested/non-nested AIC/BIC claim is Kass&Raftery citation, not a general rule",
+    "CPL+BB vs Band+BB tie dAIC=0.01 in 10.80-12.30 (adequacy!=identity)"
+   ]
+  },
+  {
+   "bibcode": "2026A&A...708A..60R",
+   "file": "Rossi_2026_2026AA708A60R_PUB.pdf",
+   "read_by_vikas": "N (sections 2.1+4.1 assigned)",
+   "prompt_values_frame_tagged": {
+    "T90": "8.68+-0.30 s, Swift/BAT 15-350 keV (Markwardt+2018) \u2014 MAIN PULSE ONLY; full emission: ~3 s precursor + pulse t0+11..t0+40 s (BAT frame t0=17:29:00)",
+    "Ep_i_rest": "123+-28 keV (multi-instrument consensus: BAT own-analysis + GBM + KW spreads folded in)",
+    "Eiso_rest_1_10000keV": "(2.5+-0.5)e51 erg",
+    "logLiso": "50.4",
+    "z": 0.117,
+    "amati": "consistent within 2sigma (their Fig 2)"
+   },
+   "traps": [
+    "Rossi 2.1 says GBM 'detected its precursor' while Wang analyze BOTH spikes with GBM \u2014 component-coverage question; check Veres+2018 GCN at the gate",
+    "their OWN caveat: Ep/Eiso depend on band+sensitivity+EXPOSURE across instruments (= our L21, in print)"
+   ]
+  }
+ ],
+ "component_coverage_table": {
+  "BAT_T90_8.68s": "main pulse only",
+  "Wang_GBM_analysis": "precursor + main spike",
+  "KW/CZTI": "burst detected; coverage per-instrument TBD at gate"
+ },
+ "beyond_prompt_context_module_future": "Rossi+2026 (sn;afterglow): SN 2018fip = broad-lined Ic (best SNID match SN 2002ap); TARDIS modelling -> ASPHERICAL two-component ejecta (outer >20000 km/s early, inner spherical 15000 km/s massive late); afterglow break at 0.215 d -> jet half-opening 4.8+-0.2 deg (uniform jet, ISM n=1, eta=0.215); slightly underluminous afterglow, between cosmological and nearby-low-E GRBs; host = irregular low-mass blue star-forming; one of the nearest high-energy GRBs (z<0.2, cf. 030329).",
+ "reading_pointers": {
+  "vikas_now": "Rossi 2.1 + 4.1 (~3 pp)",
+  "shelf": "Rossi 2.2-3, 4.2-4.7, 5, 6",
+  "optional": "Hu+2021 (precursor structure, cited in 4.1)"
+ }
+}

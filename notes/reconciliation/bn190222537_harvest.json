@@ -1,0 +1,68 @@
+{
+ "burst": "bn190222537",
+ "grb_name": "GRB 190222537 (GBM catalog name; no letter designation exists — 0 GCN circulars; see naming-collision note)",
+ "harvest_utc": "2026-08-11T16:45Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form query; Phase 3c scope rules applied)",
+ "ads_queries": {
+  "full:\"GRB 190222B\"": 0,
+  "full:\"bn190222537\"": 0,
+  "full:\"190222537\"": 1,
+  "full:\"GRB190222537\"": 0,
+  "full:\"GRB 190222A\"": "2 (BOTH checked for same-day contamination — 1 ours, 1 contaminated)",
+  "full:\"572532812\"": 0,
+  "note": "identity of every hit verified by trigger time / detector mask, never by name (T1)"
+ },
+ "n_papers_this_burst": 2,
+ "papers": [
+  {
+   "bibcode": "2025arXiv251018207Y",
+   "title": "The Origin of Cross-Energy-Similar FRED Profiles in Gamma-Ray Bursts Pulses",
+   "first_author": "Yi, S.-X.",
+   "year": 2025,
+   "doctype": "eprint (arXiv v2 dated 2026-03-23; NOT yet refereed — flag when citing)",
+   "identity_check": "their Table 1 'GRB 190222A' T0 = 2019-02-22T12:53:27.151 == bn190222537 TRIGTIME exactly",
+   "oa_fetched": true,
+   "file": "Skills_training/Yi_2025_2025arXiv251018207Y_bn190222537.pdf",
+   "classification": "dedicated-sample-member (17-burst 'general single FRED' catalogue; ours = row j / Fig 12k)",
+   "prompt_sections": "S4 empirical relationships + Table 1 (slope_tp=-0.46+0.04-0.04, slope_tw=-0.45+0.03-0.03; Norris+2005 FRED, tp=sqrt(tr*td), tw=tr+td, 4 TTE bands 8-900 keV) + Fig 12 panel k; S2-S3 reconnection model = context. Feeds Step 7 (temporal), not Step 6.",
+   "module_future_tags": "none (paper is entirely prompt-emission)",
+   "cross_burst_note": "their sample also contains our bn171210493 ('GRB 171210A') and bn170921168 ('GRB 170921B') — coordinator may want cited_by_bursts extended"
+  },
+  {
+   "bibcode": "2020ApJ...895...40G",
+   "title": "Evaluation of Automated Fermi GBM Localizations of Gamma-ray Bursts",
+   "first_author": "Goldstein, A.",
+   "year": 2020,
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "identity_check": "names 'GRB 190222537' explicitly (Fig 1 caption)",
+   "oa_fetched": true,
+   "file": "Skills_training/Goldstein_2020_2020ApJ89540G_bn190222537.pdf",
+   "classification": "catalog-mention / worked example (Fig 1: RoboBA processing of long GRB 190222537 alongside short GRB 170817A)",
+   "prompt_sections": "Fig 1 only (all-NaI 50-300 keV lightcurve + RoboBA signal selection for our burst); no spectral/temporal values anywhere",
+   "module_future_tags": "methods-localization (not afterglow/sn/cosmo/mm; deferred as methods context, not a future-module science paper)"
+  }
+ ],
+ "contaminated_hits": [
+  {
+   "bibcode": "2021MNRAS.508.3910C",
+   "title": "Search for gamma-ray bursts and gravitational wave electromagnetic counterparts with High Energy X-ray Telescope of Insight-HXMT",
+   "first_author": "Cai, C.",
+   "year": 2021,
+   "reason": "their 'GRB 190222A' = 2019-02-22T07:29:35.526 = bn190222312 (day's first GBM GRB); detector check: their 'two triggered detectors (NaI 4, NaI 8)' matches bn190222312 mask 00001000100001, ours is 00000000100101 (n8,nb,b1). T1 same-day contamination — verified at the PDF (arXiv:2109.12270), excluded.",
+   "fetched_to": "scratchpad only (not filed in Skills_training)"
+  }
+ ],
+ "gcn_circulars": {
+  "n_circulars": 0,
+  "evidence": "gcn.gsfc.nasa.gov/other/190222[A|B].gcn3 all 404; gcn.nasa.gov exact searches '190222537'/'bn190222537'/'190222A'/'190222B' totalItems=0 queryFallback=false (2026-08-11)"
+ },
+ "published_timeresolved_spectroscopy": "NONE anywhere — the only external spectral anchors are GBM-catalog time-integrated values (HEASARC fermigbrst: flnc_comp Epeak=249.2 keV index=-0.818; Band Epeak=231.8 alpha=-0.777 beta=-2.734; fluence 1.5106e-5; T90=13.312 s 50-300 keV)",
+ "corpus_index_status": "PENDING — Skills_training/corpus_index.csv is write-locked for parallel burst workers (campaign hard rule); two NEW rows (Yi_2025, Goldstein_2020, both read=N) + gcn_index.csv row to be added by the coordinator",
+ "outputs": {
+  "dossier": "results/gcn/bn190222537/bn190222537_dossier.md",
+  "pdfs": [
+   "Skills_training/Yi_2025_2025arXiv251018207Y_bn190222537.pdf",
+   "Skills_training/Goldstein_2020_2020ApJ89540G_bn190222537.pdf"
+  ]
+ }
+}

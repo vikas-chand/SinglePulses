@@ -1,0 +1,165 @@
+{
+ "burst": "bn130310840",
+ "grb_name": "GRB 130310A",
+ "tally": 5,
+ "tally_note": "walkthrough burst #5 (per results/gcn/bn130310840/bn130310840_dossier.md, 2026-08-04). This P0 file is written by a 2026-08-12 doc-layer worker; no P0 freeze existed for this burst before now.",
+ "frozen_utc": "2026-08-12T18:45:00Z",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "blind_discipline": {
+  "sweep106": "NOT READ. Nothing under results/sweep106/ was listed, opened, globbed, or referenced by this worker at any point. The blind fits in flight are untouched.",
+  "archival_prior_deliberately_opened": "results/clean_per_burst_human_final/bn130310840/spectral_fits.ecsv WAS opened - by explicit instruction, as the ARCHIVAL PRIOR that P0 is frozen against. It is a PRE-L9 artefact: BAND_EP sits at EXACTLY 5000.0 keV in blocks 1, 2, 3 (the old 5-MeV Ep cap) and the menu is the OLD SIX (BAND, BANDBB, CPL, CPLBB, DSBPL, SBPL), not the 24-model menu. It is not the blind run.",
+  "HONEST_DECLARATION_this_freeze_is_NOT_fully_blind": "notes/reconciliation/bn130310840.md exists (2026-08-08, status VERIFIED) and is a COMPLETED P0-P6 reconciliation of this burst against Qin+2021, built on a NEWER fit run than the archival prior above. This worker READ IT (it was the natural first read for a doc-layer task on this trigger) BEFORE writing the predictions below. That record quotes our blk1/blk2/blk3 Band Ep = 8256.6 / 12373.9 / 7411.4 keV, blk2 kT = 5.5, blk3 kT = 5.6, blk4 kT = 3.4, an SBPL+PL winner at blk2 with dAICsimp = 29.7, and a beta = -5.00 rail. Those numbers are therefore KNOWN to the author of these predictions and the predictions CANNOT be scored as a blind forecast of them. They are declared here rather than concealed. What IS still genuinely forward-looking: every prediction below is keyed to engine behaviour that did NOT exist in either prior run (widened Ep/beta bounds, L19 BOUND_CAPPED diagnosis, L25 xb-kT degeneracy band, L28 per-NaI coherence, the LAT-photon validity check) and to EXTERNAL anchors harvested this run that appear in NEITHER prior record (Maraventano+2025's LLE-only index, Ajello+2019's LAT/LLE intervals and the 0.84 GeV photon, Zhang+2022's CPL sharp-peak Ep, Zhong+2019's near-identical window).",
+  "order": "external literature/catalog frame harvested FIRST (Step 0/0b, 13 papers), archival prior read SECOND, predictions written LAST and never revised after."
+ },
+ "window": {
+  "src_start": 3.3610892055180557,
+  "src_stop": 9.082704398970513,
+  "block_span": [4.0891, 6.2338],
+  "detectors": "n9, na, nb, b1, lle (5 plugins; PLUGIN_DETS='n9,na,nb,b1,lle', N_DETS=5 in every archival row)",
+  "stamp": "human-approved 2026-07-19, Vikas Chand; SRC=[3.361, 9.083] in results/background_intervals.ecsv",
+  "coverage_label_T9": "MAIN PULSE ONLY. Window OPENS at +3.361 s, inside the 3.65 s quiescent gap (Zhong+2019 T_quie) between the precursor and the main burst - so the precursor ([-0.66,+0.58] s Qin / [-0.18,+0.40] s Zhong / T90 ~1.3 s Zhang) is ENTIRELY EXCLUDED. Blocks cover the sharp peak ([4.108,4.135] s), the whole LLE-signal interval ([4.13,4.21] s), the QPO interval ([4.4,4.9] s) and ~1.2 s of soft tail. They truncate the remaining ~14 s of the catalog T90 tail and miss the LAT extended emission entirely (T_LAT,0 = 67.2 s).",
+  "step1_qc": "results/qc/bn130310840_step1_response_coverage.ecsv PRE-EXISTING and NOT regenerated. Verdict: n9/na/nb/b1 PASS (single-matrix .rsp, coverage -134.914 -> 479.496 s brackets the stamped window); lle LLE_OK by the D1 off-axis rule (theta_rsp 76.1 deg, theta_src 76.2 deg, D-theta 0.1 deg). NEW corroboration this run: Bissaldi+2015 Table II independently reports theta = 75.9 deg for this burst - a cross-PRIMITIVE check (their pointing reconstruction, not our poshist), agreeing to 0.2 deg."
+ },
+ "external_frame": "TWO dedicated papers and a contested progenitor. (a) Qin+2021 (2021RAA....21...72Q, REFEREED, n9+na+b1+LLE, menu {Band, Band+BB, BB}): sub-dominant BB kT ~5-7 keV in [4.03-4.14] s read as photosphere; Band Ep 11.12 +/- 2.61 MeV at [4.12,4.13] with beta RAILED at -5.00; integrated [4.03,5.00] Band Ep = 2446.2 +/- 226.6 keV, alpha = -1.03, beta = -2.58; precursor pure-BB kT = 45.4 +/- 7.0 keV at dBIC = 7.1 (raw PGSTAT slightly favours Band). (b) Zhang B.-B.+2022 (2022arXiv220507670Z, NOT REFEREED, never published, n9+na+b1 GBM-ONLY spectra): the same burst read as a MAGNETAR GIANT FLARE; 27-ms sharp peak [4.108,4.135] s fitted CPL alpha = -1.19 +/- 0.02, Ep = 9.8 (+2.2/-1.2) MeV, fluence 9.88e-6; main burst [3.85,5.25] s CPL Ep = 2732.60 (+229.75/-197.80) keV, alpha = -1.10 +/- 0.01; precursor BB kT = 45.06 (+13.57/-5.69) keV; T90 = 1.3 s (precursor) / 2.93 s (main), 8 keV-1 MeV; QPO 12.4 Hz (P = 80 ms), >5 sigma, FAP <= 5.7e-7, strongest 50-300 keV over [4.4,4.9] s; and - contra Qin - 'alpha and Ep evolution shows an INTENSITY TRACKING behavior'. (c) Zhong+2019 (2019ApJ...884...25Z): main burst [4.05,6.20] s - within 40 ms of OUR block span - CPL Ec = 4560 +/- 309 keV, Gamma = 1.15 +/- 0.02, chi2 359/283, BB rejected at dBIC = -1838; and the PRECURSOR fitted CPL (non-thermal) preferred at dBIC = -4, contradicting (a) and (b). (d) Lu+2017 sGRB catalog [4.056,5.004] s Band Ep = 2671.11 +/- 261.03 keV, alpha = -1.04, beta = -2.60, GBM+LLE, T90 = 0.778 +/- 0.017 s. (e) Narayana Bhat+2016 GBM 3rd catalog: T90 = 16.000 +/- 2.561 s from 4.096 s, T50 = 0.704 +/- 0.091 s from 4.160 s (50-300 keV, dets 9+10+11 = our three NaIs); fluence 1.13e-5 (10-1000 keV), PF64 = 172.82. (f) Ajello+2019 2FLGC: CLASS (L); T_GBM,90 = 16.00; T_LLE,05/95/90 = 4.13 / 4.21 / 0.08 s; T_LAT,0 = 67.2 s, T_LAT,1 = 560.1 s, T_LAT,100 = 490 +/- 30 s; 2 LAT events P>0.9 in the GBM window, max 0.84 GeV at t = 4.12 s. (g) Maraventano+2025: tau12 = tau13 = +0.05 +/- 0.01 s, tau14 = +0.21 +/- 0.01 s over [3.5,5.5] s (Band 1 = 10-100 keV NaI, Band 2 = 150-500 keV, Band 3 = 500 keV-1 MeV, Band 4 = 30-100 MeV LLE; positive = soft lags hard); and an LLE-ONLY power-law fit over Dt = (4.1, 4.4) s giving alpha_LLE = -2.77 (+1.74/-1.68), Norm 527.37e-8 erg/cm2/s, PG-Stat 4.79/4. (h) Bissaldi+2015: theta = 75.9 deg, sigma_BGO(0.5-1 MeV) = 45.1, sigma_BGO(5-10 MeV) = 43.4, sigma_LLE(<100 MeV) = 26.3. (i) NO MEASURED REDSHIFT - XRT afterglow RETRACTED (GCN 14290), GROND non-detection (Greiner+2024); Zhang+2022's candidate host g0927191-170053 at z = 0.0155 is circular (MGF assumed -> z range derived -> host selected in that range) and Li+2023's z = 0.0108-0.3394 is model-dependent. Phase-4 consensus derived this run: Ep(sharp peak) = 10 +/- 2 MeV (spread-dominated, EVERY member railed or beta-less); Ep(main pulse, Band frame) = 2.6 +/- 0.3 MeV.",
+ "archival_prior": {
+  "spectral_fits_ecsv": "results/clean_per_burst_human_final/bn130310840/spectral_fits.ecsv - PRESENT, 11 rows (BLOCK -1 = window-integrated [4.0891,6.2338] s, then 10 time-resolved blocks), PLUGIN_DETS='n9,na,nb,b1,lle' and N_DETS=5 throughout, model menu = 6 (BAND, BANDBB, CPL, CPLBB, DSBPL, SBPL)",
+  "blocks": [
+   {"BLOCK": -1, "T": [4.0891, 6.2338], "note": "window-integrated"},
+   {"BLOCK": 0, "T": [4.0891, 4.0994], "width_ms": 10.3},
+   {"BLOCK": 1, "T": [4.0994, 4.1068], "width_ms": 7.4},
+   {"BLOCK": 2, "T": [4.1068, 4.1308], "width_ms": 24.0, "note": "THE SHARP PEAK - Zhang+2022's SP is [4.108,4.135] s; the 0.84 GeV LAT photon arrives at t = 4.12 s INSIDE this block"},
+   {"BLOCK": 3, "T": [4.1308, 4.1467], "width_ms": 15.9, "note": "LLE signal begins here (T_LLE,05 = 4.13 s)"},
+   {"BLOCK": 4, "T": [4.1467, 4.2241], "width_ms": 77.4, "note": "LLE signal ends inside this block (T_LLE,95 = 4.21 s)"},
+   {"BLOCK": 5, "T": [4.2241, 4.2628], "width_ms": 38.7},
+   {"BLOCK": 6, "T": [4.2628, 4.4832], "width_ms": 220.4},
+   {"BLOCK": 7, "T": [4.4832, 4.9303], "width_ms": 447.1, "note": "the QPO interval [4.4,4.9] s lies almost entirely inside blocks 6-7"},
+   {"BLOCK": 8, "T": [4.9303, 5.2678], "width_ms": 337.5, "note": "past Qin's last slice (5.0 s) and Lu's (5.004 s)"},
+   {"BLOCK": 9, "T": [5.2678, 6.2338], "width_ms": 966.0, "note": "past Zhang's last slice (5.25 s); only Zhong+2019's tail-inclusive CPL covers this"}
+  ],
+  "union_rule_counts": {
+   "rule": "(LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05) - both nested tests, union",
+   "time_resolved_blocks_firing": 5,
+   "time_resolved_blocks_total": 10,
+   "which": "BLOCK 2 (BOTH pairs: LRT_BANDBB_BAND=52.910 kT=5.900; LRT_CPLBB_CPL=31.726 kT=5.641), BLOCK 3 (Band+BB ONLY: 15.726 kT=5.483; CPL+BB 7.198 below bar), BLOCK 4 (BOTH: 14.002 kT=3.341; 11.399 kT=105.174), BLOCK 5 (CPL+BB ONLY: 11.150 kT=58.300; Band+BB 2.053 below bar), BLOCK 8 (Band+BB ONLY: 9.570 kT=8.861; CPL+BB 8.026 below bar)",
+   "integrated_row": "BLOCK -1 fires via the Band+BB pair ONLY (LRT_BANDBB_BAND=10.709, kT=4.028); the CPL+BB pair does NOT fire (3.195 < 9.2) - the MIRROR IMAGE of the bn110618366 case and a textbook T8 baseline-dependence result",
+   "non_firing": "BLOCK 0 (0.391 / -0.000), BLOCK 1 (3.294 / 2.841), BLOCK 6 (7.316 / 1.527), BLOCK 7 (0.120 / 1.136), BLOCK 9 (1.844 / 0.737)",
+   "T8_baseline_dependence_is_SEVERE_here": "3 of the 5 firing blocks fire against only ONE baseline, and in BLOCK 4 the two baselines return kT = 3.341 keV (vs Band) and kT = 105.174 keV (vs CPL) for the SAME data - a factor of 31. In BLOCK 5 only the CPL baseline fires, at kT = 58.300 keV. No BB margin from this burst may be quoted without naming its baseline."
+  },
+  "LRT_BANDBB_BAND": [10.709, 0.391, 3.294, 52.910, 15.726, 14.002, 2.053, 7.316, 0.120, 9.570, 1.844],
+  "LRT_CPLBB_CPL": [3.195, -0.000, 2.841, 31.726, 7.198, 11.399, 11.150, 1.527, 1.136, 8.026, 0.737],
+  "LRT_DSBPL_SBPL": [-2.053, null, 0.902, 2.266, 0.753, 0.718, 5.425, 3.677, 1.297, 2.547, 2.130],
+  "kt_values_keV": {
+   "BANDBB_KT": [4.028, 4.203, 9.742, 5.900, 5.483, 3.341, 49.925, 63.757, 3.545, 8.861, 4.294],
+   "BANDBB_KT_ERR": [0.581, 1.625, 1.833, 0.682, 1.045, 0.528, 16.012, 29.118, 1.619, 1.084, 0.810],
+   "CPLBB_KT": [3.685, 1.259, 9.749, 5.641, 4.989, 105.174, 58.300, 3.345, 38.702, 96.315, 4.954],
+   "CPLBB_KT_ERR": [0.750, 6.043, 1.846, 0.772, 0.993, 17.369, 15.783, 0.058, 16.371, 0.000, 1.666],
+   "order": "[BLOCK -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
+  },
+  "aic_winners": {
+   "BEST_AIC_MODEL": ["Band+BB", "CPL", "CPL", "CPL+BB", "Band+BB", "Band+BB", "CPL+BB", "Band+BB", "CPL", "Band+BB", "CPL"],
+   "BEST_BIC_MODEL": ["SBPL", "CPL", "CPL", "CPL+BB", "Band+BB", "SBPL", "SBPL", "SBPL", "CPL", "CPL", "CPL"],
+   "margin_over_next_VALID_model": [4.44, 1.70, 1.16, 27.72, 11.25, 7.93, 0.53, 0.83, 1.28, 0.51, 3.26],
+   "verdict": "Only TWO rows clear the framework-locked dAIC >= 10 bar: BLOCK 2 (CPL+BB over CPL by 27.72) and BLOCK 3 (Band+BB over CPL+BB by 11.25). AIC and BIC disagree in 6 of 11 rows. CRITICAL CAVEAT: at BLOCK 2 the margin is a FORCED CHOICE - BAND, BANDBB, SBPL and DSBPL are ALL flagged VALID=False there, leaving only CPL and CPL+BB in contention, because BAND_EP and SBPL_EBREAK both rail at exactly 5000.0 keV. The same is true at BLOCK 1. At BLOCK 3, BAND, DSBPL and SBPL are invalid for the same reason."
+  },
+  "band_Ep_evolution_keV": [2722.632, 2294.007, 5000.0, 5000.0, 5000.0, 1694.036, 815.512, 789.023, 927.512, 40.556, 149.093],
+  "engine_health_flags_in_the_archive": [
+   "BAND_EP = EXACTLY 5000.000 keV in BLOCKS 1, 2 and 3 -> the pre-L9 5-MeV Ep cap, railed. BAND_VALID = False in all three. This is the SAME failure that made bn110721200's blk0 falsely INCONCLUSIVE (L9).",
+   "SBPL_EBREAK = 5000.0 / 5000.0 / 4999.728 keV in BLOCKS 1, 2, 3 and 4994.885 / 4999.990 in BLOCKS 8, 9 - the same cap, on a second model, in five rows.",
+   "BAND_BETA = -4.999 at BLOCK 1 (railed at the -5.00 bound, matching Qin+2021's own -5.00 and -8.00 rails in the same bins). Qin used -8; we used -5; NEITHER measured a high-energy slope there.",
+   "BAND_ALPHA = +0.064 at BLOCK 8 - unphysical positive low-energy index, in the same block where BAND_EP collapses to 40.556 keV.",
+   "CPL_XC = 16494.4 keV (BLOCK 2), 13041.0 keV (BLOCK 3), 11867.8 keV (BLOCK 1) - i.e. the CPL e-folding energy in the sharp peak sits at ~16 MeV while a 0.84 GeV LAT photon (P = 1.00, Ajello+2019 Table 6) arrived at t = 4.12 s INSIDE BLOCK 2. exp(-840/16.5) makes that photon impossible under the winning archival model. The EC-vs-max-LAT-photon validity gate is not merely advisable here; the archive fails it.",
+   "CPLBB_KT_ERR = 0.058 keV at BLOCK 6 and EXACTLY 0.000 at BLOCK 8 - collapsed/absent uncertainties, i.e. unconverged errors, on the CPL+BB temperature.",
+   "DSBPL_VALID = False in 7 of 11 rows (BLOCKS 1, 2, 4, 5, 6, 8, 9); DSBPL_XB pinned near the low bound at 10.001 / 13.960 / 10.713 keV in BLOCKS 3, 8, 9 and near a high bound at 899.998 / 897.451 / 882.980 keV in BLOCKS 4, 2, 1. DSBPL never wins any row.",
+   "L25 xb/kT degeneracy check: DSBPL_XB / BANDBB_KT = [38.6, -, 90.6, 152.1, 1.82, 269.4, 4.14, 4.70, 77.0, 1.58, 2.49]. The ~3.92 signature appears at BLOCKS 5 (4.14) and 6 (4.70) - the two blocks whose fitted 'BB' is a ~50-64 keV pseudo-thermal component. Consistent with the 2026-08-08 record's finding that the ~50 keV BB at blk5 is a fitting artifact both we and Qin+2021 recovered and both found statistically unnecessary."
+  ],
+  "archival_verdict_summary": "Pre-L9 engine, 6-model menu, 5 detectors, 10 time-resolved blocks: FIVE blocks fire the BB union rule, but the two decisive rows (BLOCK 2 at 27.72, BLOCK 3 at 11.25) are decided inside a CRIPPLED candidate set, because the Band and SBPL families are invalidated by the 5-MeV Ep cap in exactly the blocks where the true Ep is ~10 MeV. No two-break detection anywhere. The archival Ep track is uninformative in the peak (three railed rows) and collapses to an unphysical 40.6 keV with a positive alpha in BLOCK 8."
+ },
+ "predictions": [
+  "P-A (evolution class, literature-contested, falsifiable): Qin+2021 and Konus GCN 14285 describe hard-to-soft / 'FRED-like'; Zhang+2022 state verbatim that 'alpha and Ep evolution shows an INTENSITY TRACKING behavior'. PREDICT the nuFnu peak energy of the AIC-winning model is NOT monotonically decreasing across BLOCKS 0-9: it RISES from BLOCK 0 to a maximum, then falls. FALSIFIED if Ep(BLOCK 0) is the maximum of the whole track, or if Ep decreases monotonically block-to-block from BLOCK 0 onward. [archival is uninformative here - BLOCKS 1-3 are railed at the 5000 keV cap]",
+  "P-A2 (where the peak Ep sits, falsifiable): PREDICT the block containing t = 4.12 s - BLOCK 2, [4.1068, 4.1308] s - carries the maximum Ep of the burst, matching Zhang+2022's sharp peak [4.108,4.135] s and Qin+2021's [4.12,4.13] s. FALSIFIED if the maximum-Ep block is BLOCK 0, or any block at t > 4.25 s (i.e. BLOCK 5 or later).",
+  "P-A3 (magnitude, Phase-4 anchored, falsifiable): PREDICT Ep(BLOCK 2) of the AIC-winning model lands in 6-16 MeV, bracketing the derived consensus 10 +/- 2 MeV (Zhang CPL 9.8 +2.2/-1.2; Qin Band 11.1 +/- 2.6; Qin Band+BB 8.5 +/- 1.7). FALSIFIED if Ep(BLOCK 2) < 6 MeV or > 16 MeV, or if it returns at a bound (see P-E).",
+  "P-B (blackbody / union rule, falsifiable): PREDICT the union rule fires in 3-7 of the 10 time-resolved blocks, that BLOCK 2 and BLOCK 3 are both among the firing blocks, and that at least two firing blocks return kT inside the PUBLISHED 3-10 keV band (Qin+2021: 6.0 +/- 0.8 keV at [4.12,4.13], 5.0 +/- 1.0 at [4.13,4.14], 3.2 +/- 1.4 at [4.14,4.23]). FALSIFIED if zero blocks fire, if >= 8 fire, if BLOCK 2 does not fire, or if NO firing block has kT in 3-10 keV. NOTE the pre-registered separation (lesson L-A of the 2026-08-08 record): a firing union rule is an ADEQUACY statement ('extra structure is required'), NEVER an identification ('the component is thermal').",
+  "P-B2 (baseline dependence, falsifiable, T8): PREDICT the BB verdict remains baseline-dependent - at least ONE block fires against exactly one of the two baselines while failing the other, and the window-integrated row continues to fire against Band while failing against CPL. FALSIFIED if LRT_BANDBB_BAND and LRT_CPLBB_CPL agree (both >= 9.2 or both < 9.2) in EVERY row including BLOCK -1. [archival: 3 of 5 firing blocks are single-baseline; BLOCK 4 returns kT = 3.34 vs Band and 105.17 vs CPL]",
+  "P-C (two-break, falsifiable): PREDICT NO block reaches dAIC >= 10 for DSBPL over the best VALID one-break model, i.e. bn130310840 does NOT enter the two-break census as a detection. FALSIFIED by any block with dAIC(best_single_break - DSBPL) >= 10 AND DSBPL alpha1/xb not at a bound AND xb separated from the co-fitted kT by more than the L25 degeneracy band. [archival: DSBPL wins nothing, is VALID=False in 7 of 11 rows, max LRT_DSBPL_SBPL = 5.425, and its xb pins at 10.0 keV or ~900 keV in six rows]",
+  "P-D (THE BETA ANCHOR - the strongest external test available on this burst, falsifiable): Maraventano+2025 fit LLE data ALONE over Dt = (4.1, 4.4) s - covering BLOCKS 1-4 - and obtain a power-law photon index alpha_LLE = -2.77 (+1.74/-1.68). This is an INDEPENDENT measurement of the high-energy slope in exactly the interval where BOTH our archival fit and Qin+2021 railed (ours at -5.00 / -4.999; Qin's at -5.00 and -8.00, quoted with no error). PREDICT that with the L9/L19-widened beta bound the Band beta over BLOCKS 1-4 comes OFF the rail and lands in [-3.6, -2.2], consistent with alpha_LLE within its (large) errors, and that L19 flags the archival value as BOUND_CAPPED. FALSIFIED if beta rails again at the widened bound in any of BLOCKS 1-4, or if an unrailed beta returns steeper than -4.0, or if L19 does not raise BOUND_CAPPED on the archival -4.999.",
+  "P-E (L9 Ep cap - mechanistic, falsifiable, and it should CHANGE the winner): the archive rails BAND_EP at EXACTLY 5000.0 keV in BLOCKS 1, 2, 3 and SBPL_EBREAK at ~5000 keV in BLOCKS 1, 2, 3, 8, 9, invalidating BAND, BANDBB, SBPL and DSBPL at BLOCKS 1-2 and leaving only {CPL, CPL+BB} in contention. PREDICT that with the widened Ep bound (Band xp.bounds up to 5.0e4 keV) (i) none of BLOCKS 1-3 returns Ep at a bound, (ii) BAND and BANDBB become VALID at BLOCKS 1-3, and (iii) the BLOCK 2 winning margin over the next VALID model FALLS BELOW the archival 27.72 once the Band family is allowed to compete. FALSIFIED if any of BLOCKS 1-3 still returns Ep or Ebreak at a bound, or if the BLOCK 2 candidate set is still restricted to {CPL, CPL+BB}, or if the BLOCK 2 margin over the next VALID model is >= 27.72. NOTE: L9's twin failure on bn110721200 makes this the highest-prior-probability engine change on this burst.",
+  "P-F (LAT-photon validity gate - the archive FAILS it; falsifiable): Ajello+2019 Table 6 records 2 LAT events with P > 0.9 inside the GBM window, the highest being 0.84 GeV at t = 4.12 s (P = 1.00) - which lands inside BLOCK 2 = [4.1068, 4.1308] s. The archival BLOCK 2 winner is CPL+BB with CPL_XC = 16494.4 keV = 16.5 MeV; exp(-840/16.5) makes that photon impossible. PREDICT the new engine either (i) returns a BLOCK 2 cutoff/e-folding energy above 840 MeV, or (ii) raises an explicit validity flag on the block, or (iii) the winning model at BLOCK 2 is not exponentially cut off below 840 MeV. FALSIFIED if BLOCK 2's AIC winner again carries an e-folding energy below 840 MeV with NO flag. This is a data-vs-model contradiction, not a model-selection preference, and it must be reported whichever way it resolves.",
+  "P-G (LLE information budget, inventory-anchored, falsifiable): Ajello+2019 gives T_LLE,05 = 4.13 s, T_LLE,95 = 4.21 s, T_LLE,90 = 0.08 s. PREDICT the LLE plugin supplies SIGNAL in BLOCKS 3 and 4 only, and contributes background-dominated data in BLOCKS -1, 0, 1, 2, 5, 6, 7, 8, 9. Consequence to record: any high-energy constraint claimed in BLOCK 2 (the extreme-Ep block) rests on BGO b1 alone up to ~40 MeV, NOT on LLE - even though LLE is in the plugin list. FALSIFIED if the per-bin-coverage bookkeeping shows a significant LLE excess outside [4.13, 4.21] s. Corroboration that the BGO CAN carry it: Bissaldi+2015 measures sigma_BGO(5-10 MeV) = 43.4, essentially equal to sigma_BGO(0.5-1 MeV) = 45.1.",
+  "P-H (unpublished territory, falsifiable as a NOVELTY claim): BLOCKS 8 [4.930,5.268] and 9 [5.268,6.234] lie past the last time slice of Qin+2021 (5.0 s), Lu+2017 (5.004 s) and Zhang+2022 (5.25 s). The ONLY published analysis covering them is Zhong+2019's tail-inclusive CPL over [4.05,6.20] s (Ec = 4560 +/- 309 keV, time-integrated). PREDICT the Ep of these two blocks has NO per-interval published counterpart and must be reported as new. Also PREDICT the archival BLOCK 8 result (BAND_EP = 40.556 keV with BAND_ALPHA = +0.064, an unphysical positive low-energy index) does NOT survive the new engine. FALSIFIED if a published per-interval value for t > 5.25 s is found, or if BLOCK 8 again returns a positive Band alpha.",
+  "P-I (frame trap, procedural, NON-NEGOTIABLE): no published number may be diffed before re-alignment on (i) INTERVAL - ours [4.089,6.234] vs Zhang SP [4.108,4.135] vs Qin [4.12,4.13] vs Qin int [4.03,5.00] vs Lu [4.056,5.004] vs Zhang main [3.85,5.25] vs Zhong [4.05,6.20]; (ii) T0 - Konus T0 = GBM T0 + 7.397 s, Suzaku WAM T0 = GBM T0 + 3.5 s; (iii) BAND - 50-300 keV (GBM catalog T90/fluence) vs 10-1000 keV (fluence) vs 8 keV-1 MeV (Zhang T90) vs 20 keV-15 MeV (Konus) vs 30-100 MeV (LLE) vs our joint 8 keV-100 MeV; (iv) MODEL FRAME - a CPL Ec (Zhong 4560 keV, Zhang 2733 keV) is NOT a Band Ep (Qin 2446, Lu 2671); Ep = (2+alpha)*Ec where the source quotes an e-folding energy; (v) DETECTOR SET - Qin n9+na+b1+LLE, Zhang n9+na+b1 (GBM only), Lu GBM+LLE, catalog durations n9+na+nb, OURS n9+na+nb+b1+lle; (vi) COMPONENT COVERAGE (T9) - ours is MAIN-PULSE-ONLY with the precursor excluded and ~14 s of catalog tail truncated; (vii) ERROR CONVENTION - Konus/Suzaku 90% CL, GBM catalog 1 sigma, Zhang 1 sigma.",
+  "P-J (prior-bias disclosure, procedural): three progenitor stories are live in print for this burst - photospheric GRB (Qin+2021), magnetar giant flare (Zhang+2022, whose derived magnetar age swings from weeks to 'about several hours' on the beaming assumption alone, per Tong 2022), and BH-NS merger with a precessing jet (Li+2023, Li+2025). EACH needs the prompt spectrum to be a particular shape: the photosphere story needs the sub-dominant thermal component; the MGF story needs the extreme Ep and the low Eiso at a nearby z; the BH-NS story needs the QPO. Per Phase 3c this is exactly the bias to DISCLOSE in P3, not to arbitrate. PREDICT (and require) that our record states which of our findings each camp would claim, and reports the BB and the extreme Ep with their adequacy-vs-identification margins separated (L-A). Non-numeric; scored on whether the record does it."
+ ],
+ "harvest_snippets": {
+  "Zhang2022_MGF": [
+   "'we treat the 27-ms sharp peak (SP) (ranging from 4.108 to 4.135 s) as the characteristic emission of the event ... The time-integrated spectrum of the SP is best fitted by a CPL model parameterized by alpha = -1.19 +/- 0.02 and Ep = 9.8 +2.2/-1.2 MeV, with a fluence of 9.88 +0.90/-0.82 x 10^-6 erg cm^-2.'",
+   "'The time-integrated spectrum of the main burst is characterized by a Cutoff Power Law (CPL) model with Ep = 2732.60 +229.75/-197.80 keV and alpha = -1.10 +0.01/-0.01.'",
+   "'We use the data of sodium iodide (NaI) detectors n9 & na and germanium oxide (BGO) detector b1' ... 'using the data from the two NaI and one BGO detectors as mentioned ahead' (SPECTRA ARE GBM-ONLY; LLE/LAT used for light curves and photons only)",
+   "'the time-resolved spectral analysis suggests even more extreme values of Ep ... Ep reaches at ~10 +1.5/-3.2 MeV around the peak region ... we note that alpha and Ep evolution shows an intensity tracking behavior'",
+   "'a significant periodic signal of 12.4 Hz with a confidence > 5 sigma found in the 8-1000 keV light curve in the time region between 4.4 s and 4.9 s' ; 'FAP of <= 5.7 x 10^-7' ; strongest in 50-300 keV",
+   "'the T90 ... is ~1.3 s for the precursor and is ~2.93 s for the main burst' (8 keV - 1 MeV)",
+   "'The f parameter of the sharp peak of GRB 130310A is 11.22 +/- 1.32, which is the highest among all the GRBs' (tip-of-iceberg)"
+  ],
+  "Qin2021": [
+   "Table 1 [4.12-4.13]: Band alpha=-1.10+/-0.03, beta=-5.00 (no error, RAILED), Ep=11121.6+/-2605.1, PGSTAT 411/391 | Band+BB alpha=-0.87+/-0.06, beta=-4.41+/-2.40, Ep=8499.4+/-1695.4, kT=6.0+/-0.8, 382/389; dAIC=24.9, dBIC=16.9",
+   "Table 1 [4.03-5.00] integrated: Band alpha=-1.03+/-0.01, beta=-2.58+/-0.09, Ep=2446.2+/-226.6 | Band+BB kT=1.2+/-35.5 keV (UNCONSTRAINED - a non-result, not an exclusion), dAIC=+0.5",
+   "'we perform spectral analysis using data from the NaI9, NaIa and BGO 1 detectors. Also, the LLE data are included.'",
+   "'The interpretation of the high peak energy Ep within the photosphere and internal shock model is difficult ... the Band component must invoke a non-thermal origin in the optically thin region.'"
+  ],
+  "Zhong2019": [
+   "Table 1 p.10: '130310840 | -0.18~0.40 | 1.2 | 52.59 | 4.05~6.20 | 56+/-65 | 1.10+/-2.61 | 3.65' = precursor interval | F_prec | HR_prec | MAIN BURST [4.05,6.20] s | F_main | HR_main | T_quiescent = 3.65 s",
+   "Table 2 p.11 main burst: 'Gamma_CPL = 1.15 +/- 0.02 | Ec = 4560 +/- 309 keV | chi2 359/283 | BB kT = 76 +/- 2 | chi2 2203/284 | dBIC = -1838 | CPL(VS)'",
+   "Table 2 p.11 precursor: 'Gamma_CPL = 0.71 +/- 0.38 | Ec = 797 +/- 928 keV | chi2 395/358 | BB kT = 71 +/- 13 | chi2 405/359 | dBIC = -4 | CPL(P)' -> NON-thermal precursor, contradicting Qin+2021 and Zhang+2022",
+   "'we defined the time interval that the blocks over background occupy for each episode as its duration' (BBlocks-defined, NOT T90; 8-1000 keV for GBM)"
+  ],
+  "Ajello2019_2FLGC": [
+   "Table 3 p.61: '130310A | (L) | 4.1 | 20.10 | 16.00 | 4.13 | 4.21 | 0.08 | 67.2 | 560.1 | 490 +/- 30' = CLASS | T_GBM,05 | T_GBM,95 | T_GBM,90 | T_LLE,05 | T_LLE,95 | T_LLE,90 | T_LAT,0 | T_LAT,1 | T_LAT,100",
+   "Table 6 p.81: '130310A | 2 | 0.84 | 4.12 | 1.00 | 11 | 1.40 | 329.90 | 1.00' = GBM-window N events (P>0.9), max GeV, arrival s, prob; then time-resolved 11 events, max 1.40 GeV at 329.90 s",
+   "D4: T_LAT,0 = 67.2 s is 58 s AFTER our window closes at +9.083 s. GCN 14282's 'about 3s after Fermi-GBM trigger time' is an alert-time statement and conflicts with it - recorded, not resolved (T5)."
+  ],
+  "NarayanaBhat2016_GBM3": [
+   "Table 6 p.126: 'bn130310840 | 9+10+11 | 16.000 +/- 2.561 | 4.096 | 0.704 +/- 0.091 | 4.160' = Detectors | T90 | T90 start | T50 | T50 start (50-300 keV)",
+   "Table 7 p.170 (10-1000 keV): 'bn130310840 | 1.13E-05 +/- 6.71E-08 | 172.82 +/- 3.36 | 90.41 +/- 1.25 | 39.29 +/- 0.45'",
+   "Table 8 p.215 (50-300 keV): 'bn130310840 | 4.97E-06 +/- 3.51E-08 | 78.95 +/- 1.73 | 42.22 +/- 0.77 | 18.23 +/- 0.25'",
+   "T50 = 0.704 s INSIDE T90 = 16.000 s - the fact that dissolves the '16 s vs 2.4 s outlier' framing in the 2026-08-04 dossier."
+  ],
+  "Maraventano2025_lag_and_LLE": [
+   "Table 2 p.8: '130310A | 3.5 | 5.5 | 0.05 | 0.01 | 0.05 | 0.01 | 0.21 | 0.01' = t_start | t_stop | tau12 +/- | tau13 +/- | tau14 +/- (s)",
+   "Table 4 p.10: '130310A | (4.1, 4.4) | -2.77 +1.74/-1.68 | 527.37 +278.85/-246.32 | 4.79/4' = Dt | alpha_LLE | Norm (1e-8 erg/cm2/s) | PG-Stat/DOF",
+   "Bands: 1 = 10-100 keV (NaI), 2 = 150-500 keV (BGO), 3 = 500 keV-1 MeV (BGO), 4 = 30-100 MeV (LAT-LLE). Sign: 'Positive lags ... where soft photons lag behind harder ones.'",
+   "tau12 = +0.05 +/- 0.01 s equals the committed temporal_catalog_human.ecsv LAG = +0.055 s that the 2026-08-08 record's D7 condemned alongside the failed T90 - the LAG half of D7 needs re-adjudication on its own."
+  ],
+  "Lu2017_sGRB_catalog": [
+   "Table 2 p.18: 'bn130310840 | band | 0.778+/-0.017 | -1.04 +/- 0.02 | -2.60 +/- 0.09 | 2671.11 +/- 261.03 | - | 4.96E-05+/-3.33E-06 | 5.19E+01+/-1.19E+00 | 315/284' (GBM+LLE sample)",
+   "Fig. p.27 caption: 'bn130310840 4.056-5.004 s'",
+   "T4/T5 flag: the identical six numbers also appear in Table 1 under CPL headers (PhotoIndex / Ecut). Recorded, not resolved."
+  ],
+  "Bissaldi2015": [
+   "Table II p.4: '130310A | 130310840 | 384638984.503 | 75.9 | 16.0 +/- 2.6 | 1 | 10+9+11 | 45.1 | 43.4 | 26.3' = MET | theta (deg) | GBM T90 | BGO det | NaI dets | sigma_BGO 0.5-1 MeV | sigma_BGO 5-10 MeV | sigma_LLE <100 MeV",
+   "theta = 75.9 deg corroborates the Step-1 QC off-axis angle (76.1/76.2 deg) to 0.2 deg from an INDEPENDENT primitive."
+  ],
+  "GCN_14283_GBM": [
+   "'The GBM light curve consists of a precursor and a FRED pulse with a duration (T90) of about 2.4 s (50-300 keV). The time-averaged spectrum from T0+4.1 s to T0+5.0 s is adequately fit by a Band function with Epeak = 2.1 +/- 0.2 MeV, alpha = -1.01 +/- 0.02, and beta = -2.27 +/- 0.1.'",
+   "'The spectral analysis results presented above are preliminary; final results will be published in the GBM GRB Catalog.' -> SUPERSEDED by Narayana Bhat+2016."
+  ],
+  "GCN_14285_KonusWind": [
+   "KW T0 = 72588.897 s UT (20:09:48.897) = GBM T0 + 7.397 s",
+   "integrated T0..T0+8.448 s, 20 keV - 15 MeV: alpha=-1.03+/-0.05, beta=-1.85+/-0.15, Ep=855+/-270 keV, chi2 85.8/97",
+   "peak T0..T0+0.064 s: alpha=-0.87+/-0.13, beta=-1.62+/-0.28, Ep=2600+/-1400 keV, chi2 27.9/26",
+   "fluence (20 keV-10 MeV) = (3.0 +/- 0.3)e-5 erg/cm2; 'a bright hard FRED-like structure'"
+  ],
+  "GCN_14310_SuzakuWAM": [
+   "WAM T0 = 20:09:45 UT = GBM T0 + 3.5 s; 'covers an energy range of 50 keV - 5 MeV'",
+   "T0..T0+1 s: Band alpha=-1.13 (-0.25,+0.16), beta=-2.07 (-0.32,+0.19), Epeak=1000 (-442,+639) keV, chi2/dof 43.2/44; T90 ~0.3 s; fluence(100-1000 keV) = 7.78 (-1.13,+2.72)e-6",
+   "D4-of-2026-08-08 stands: WAM's quoted 100-1000 keV band cannot see an 8-11 MeV peak; 1.0 MeV is the top of its usable range, not a measurement."
+  ],
+  "GCN_14282_LAT_and_14290_retraction": [
+   "14282: 'The Fermi Large Area Telescope (LAT) detected emission from GRB 130310A (GBM trigger 130310840/384638984) at approximately 20:09:44 UT on March 10th, 2013, about 3s after Fermi-GBM trigger time.' LAT position RA 142.34, Dec -17.23, 0.45 deg (90%). NOT retracted.",
+   "14290: 'Swift XRT RETRACTION of GRB 130310A afterglow detection' - the X-ray afterglow candidate was withdrawn. No redshift exists."
+  ],
+  "Suvorov2024_and_Greiner2024": [
+   "Suvorov p.31: 'Zhong et al. 2019 noted a strong favouring for a non-thermal, cutoff power-law in the (dim) precursor from GRB 130310A, which occurred ~4 s prior to the main event.'",
+   "Suvorov Table p.32: '130310A | 0.9 +/- 0.32 | 4.45 +/- 0.8 | ~2.15 | Debated spectra (Qin et al., 2021); Magnetar flare? QPOs'",
+   "Greiner p.3: 'For 3 further GRBs (100225A, 110426A and 130310A), the original error boxes were much larger than the FOV of GROND ... This didn't happen for those three GRBs'; log p.21: '130310A1 | L | 0312-06:57:18 | 125256 | n' (no detection)"
+  ]
+ }
+}

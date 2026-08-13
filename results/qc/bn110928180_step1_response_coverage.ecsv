@@ -1,0 +1,69 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: DET_ANGLE_GBMPOS, datatype: string}
+# - {name: DET_ANGLE_IPNPOS, datatype: string}
+# - {name: TEST, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn110928180}
+# - {grb_name: GRB 110928B}
+# - {run_type: campaign doc-layer Step 1 per dev/ai_guides/DataInventory.md (2026-08-12)}
+# - {src_start: -7.3380251748251055}
+# - {src_stop: 30.45473566433577}
+# - {trigtime_met: 338876393.41039}
+# - {window_stamp: 'APPROVED_BY=Vikas Chand 2026-07-19T22:18:36Z human_gui accepted_suggestion (results/background_intervals.ecsv, 5 rows
+#     n0/n1/n3/n4/b0)'}
+# - {verdict_overall: 'PASS (5/5 approved detectors) with TWO recorded NOTES: a LAT/LLE fetch gap and a precursor/component-coverage frame
+#     warning - neither is a response-validity failure'}
+# - {qc_flag: 'results/human_review_qc_flags.txt line 6: bn110928180 source[-7.33803,30.4547]_overruns_bkg_gap b0[gap -21.9929,29.0071]
+#     2026-07-19T22:18:36Z - human-ACCEPTED adjudication; a DECISION, not a defect (Stage-1 flags ARE decisions)'}
+# - {manifest_tte: 7}
+# - {manifest_cspec_pha: 7}
+# - {manifest_rsp2: 7}
+# - {manifest_rsp_single: 0}
+# - {manifest_poshist: 1}
+# - {manifest_trigdat: 0}
+# - {manifest_lle: 0}
+# - {manifest_lat_ft1: 0}
+# - {manifest_lat_ft2: 0}
+# - {note_detectors_on_disk: 'n0,n1,n3,n4,n6,b0,b1 (cspec pha + rsp2 + tte each). Approved set = n0,n1,n3,n4,b0. n6 (44.6 deg at the GBM
+#     position, 45.7 deg at the IPN position - inside the <=50 deg NaI preference) and b1 (119.3 deg, correctly excluded) are on disk
+#     but NOT approved: an inventory note on a human decision, not a re-decision. GBM catalog frames differ from ours: durations NaI-only
+#     0+1+3+4 (Bhat+2016 Table 6), spectra n0+n3+b0 (scat_detector_mask 10010000000010).'}
+# - {note_trigdat: 'no trigdat on disk - a note, not a blocker: glg_poshist_all_110928_v01.fit covers geometry (DataInventory Phase 1
+#     rule).'}
+# - {note_rsp_test: 'All five approved responses are multi-matrix .rsp2 (DRM_NUM=4) -> the bn100130729 interval-coverage test applies:
+#     min(TSTART)<=SRC_START=-7.338 and max(TSTOP)>=SRC_STOP=30.455, times rel. TRIGTIME. All five cover [-130.050,+49.153] s, which also
+#     brackets the T0-120 s precursor. No single-matrix .rsp and no LLE response in the data dir -> D1 off-axis test NOT APPLICABLE.'}
+# - {note_position_provenance: 'Detector angles recomputed here from glg_poshist_all_110928_v01.fit quaternions + Meegan+2009 detector
+#     table reproduce the stamped DET_ANGLE column to <=0.004 deg using the GBM CATALOG position (RA 153.4, Dec +34.29). The TTE primary
+#     header carries RA_OBJ=30.0, DEC_OBJ=-15.0 - a stale flight-software placeholder 122.8 deg away that would have put n11/n8/b1 closest;
+#     it never entered Stage 1. Column DET_ANGLE_IPNPOS gives the angles at the far more precise Hurley+2017 IPN box centre (149.627,+31.888,
+#     0.212 deg2), 3.97 deg from the catalog position: angles shift by up to 3.9 deg, the ordering is unchanged, and no approved detector
+#     crosses a hard gate.'}
+# - {note_lat_gap: 'ISSUE (fetch gap, not an exclusion): LAT boresight angle computed from the poshist quaternions is 40.2 deg at SRC_START,
+#     40.4 deg at T0, 41.4 deg at SRC_STOP (36.7 deg at T0-119 s, 43.6 deg at T0+92 s) - the burst was well INSIDE the LAT FoV for the
+#     whole event with no slew, yet no gll_* (LLE) and no LAT/ FT1+FT2 products were ever downloaded. Under the take-data-in-EVERY-band
+#     doctrine (inclusion gated on data quality, never on significance) this is a gap to close upstream. The stable theta means a future
+#     LLE DRM would be D1-safe over our window.'}
+# - {note_component_coverage_T9: 'FRAME WARNING carried into Steps 5-7: Narayana Bhat+2016 Table-6 footnote n (used once in the entire
+#     catalog, on this burst) states verbatim "Localization of precursor at T0 -120 s is consistent with burst location and was included
+#     in the duration analysis". The catalog T90 = 148.226 s from T0-119.298 s therefore covers PRECURSOR + MAIN, while the stamped window
+#     covers MAIN ONLY. The earliest pre-burst background edge is T0-102.99 s (n4), ~17 s after the precursor - P-F of the P0 freeze predicts
+#     no measurable contamination and names the residual test that would falsify it.'}
+# - {note_blockage_D5: 'not testable at Step 1 (needs per-NaI residuals from a fit). Deferred to Step 6 with a flag: n0/n1/n3/n4 span
+#     9.4-55.3 deg at the catalog position; Bhat+2016 Sect. 3.2 used exactly 0+1+3+4 for this burst after their own "no apparent blockage"
+#     screen, which is weak external corroboration that the set is clean.'}
+# schema: astropy-2.0
+DET RSP_FILE N_MAT COV_START COV_STOP DET_ANGLE_GBMPOS DET_ANGLE_IPNPOS TEST VERDICT
+n0 glg_cspec_n0_bn110928180_v00.rsp2 4 -130.050 49.153 39.706 43.576 rsp2_interval_coverage_vs_stamped_window PASS
+n1 glg_cspec_n1_bn110928180_v00.rsp2 4 -130.050 49.153 51.769 55.578 rsp2_interval_coverage_vs_stamped_window PASS
+n3 glg_cspec_n3_bn110928180_v00.rsp2 4 -130.050 49.153 9.439 5.522 rsp2_interval_coverage_vs_stamped_window PASS
+n4 glg_cspec_n4_bn110928180_v00.rsp2 4 -130.050 49.153 55.312 51.641 rsp2_interval_coverage_vs_stamped_window PASS
+b0 glg_cspec_b0_bn110928180_v00.rsp2 4 -130.050 49.153 60.723 60.797 rsp2_interval_coverage_vs_stamped_window PASS

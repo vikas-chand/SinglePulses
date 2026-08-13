@@ -1,0 +1,67 @@
+{
+ "burst": "bn180703876",
+ "tally": 30,
+ "frozen_utc": "2026-08-11T16:42:13Z; BEFORE any new fit table opened (walkthrough_b2* never read)",
+ "engine": "L18/L19/L20/L26/L27/L28 active",
+ "predictions": [
+  "P-A (census prior, high-kT class): the new fits will show at most ~2 blocks with significant Band+BB (LRT>=9.2 & kT>1.05), anchored on the 2.9-5.1 s block, with kT in the 20-50 keV HIGH-kT class (NOT the <5 keV edge-constrained L28 class); median significant kT > 10 keV. FALSIFIED IF: >=3 significant-BB blocks, or median significant kT < 5 keV.",
+  "P-A2 (census prior, model menu): AIC winners remain dominated by single-break shapes (SBPL/Band/CPL >= 6 of ~8 blocks); the time-integrated block winner is SBPL or Band, not a BB-composite. FALSIFIED IF: a BB-composite or DSBPL wins the time-integrated block.",
+  "P-A3 (census prior, two-break watch): archival LRT_DSBPL_SBPL peaked at 8.0 (blk2, 2.94-5.07 s) - sub-threshold. With the L18/L19/L20 engine (default-seed DSBPL restart, wider Ep caps) the DSBPL preference in that early-rise block either crosses DeltaAIC>=10 (upgrade to two-break) or stays sub-threshold; prediction: it stays SUB-threshold in >=6 of 8 blocks, but blk2 is the single most likely two-break upgrade. FALSIFIED IF: DSBPL wins >=3 blocks.",
+  "P-B1 (literature, Chang+2026 2026MNRAS.546ag047C): their -5~35 s integrated fit gives CPL alpha=-0.86+/-0.07, Ep=419.7+57.3-56.9 keV with Band+BB and CPL+BB non-converged (their Table: '180703A ... CPL'). Prediction: our time-integrated fit gives a curvature Ep in 300-480 keV and a low-energy index near -0.8..-0.9; no BB-composite wins time-integrated. FALSIFIED IF: integrated Ep < 250 keV or > 550 keV, or BB-composite wins integrated.",
+  "P-B2 (literature, Macera+2025 2025A&A...700A..88M): their 0-22.3 s GBM+LAT synchrotron fit gives nu_c = 97+11-9 keV and nu_m = 1.42+0.50-0.38 MeV, p = 4.40+0.40-0.48, no high-energy cutoff required, Emax = 0.2 GeV. Prediction: when DSBPL is fit to our integrated/early blocks its LOW break lands at ~70-130 keV and the high (Ep-like) break at ~0.4-1.5 MeV, i.e. the two-break geometry of a marginally-fast-cooling synchrotron spectrum. FALSIFIED IF: any DSBPL-preferred block has its low break > 200 keV or the break ordering inverted.",
+  "P-B3 (literature, GCN 22896 GBM + GCN 22927 Konus): GBM time-averaged (T0-3.1 to T0+25.6 s) Band Epeak=360+/-33 keV, alpha=-0.80+/-0.04, beta=-1.95+/-0.08; Konus (T0 to T0+49.4 s) Band Ep=367-136+196 keV, alpha=-0.85, beta=-1.89. Prediction: our integrated Band alpha within +/-0.15 of -0.80 and Ep within 2 sigma of 360 keV; beta softer than -1.8. FALSIFIED IF: alpha harder than -0.6 or Ep outside [250, 500] keV integrated.",
+  "P-B4 (literature, 2FLGC Ajello+2019 p63/p83 + GCN 22883): LAT onset T_LAT,0 = 3.8 s (INSIDE our -3..33 s window, unlike the bn120624933 D4 case) but the highest-energy photon is only ~0.93 GeV at T0+40.5 s (outside the window); 2FLGC GBM-window (1.5-22.3 s) >100 MeV fit has 4 events, TS=24, index -3+/-1. Prediction: the LAT plugin contributes only weakly inside our window (few >100 MeV counts); no block shows a rising high-energy extra PL that overturns the GBM-band winner. FALSIFIED IF: any block needs an additional high-energy component at DeltaAIC>=10 driven by LAT."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn180703876/spectral_fits.ecsv (previous production run; allowed prior)",
+  "n_blocks": 8,
+  "blocks": "blk-1 integrated 0.313-23.484 s + blk0..blk6 resolved (0.313-23.484 s)",
+  "plugin_dets": "n6,n7,n8,b1,lle (5 dets, all 8 blocks)",
+  "aic_winners": {"SBPL": 4, "CPL": 1, "Band+BB": 2, "Band": 1},
+  "integrated_winner": "SBPL (blk-1, AIC 5955.8 vs Band 5959.3, DSBPL 5957.0)",
+  "significant_bb_blocks_LRT9.2_kT1.05": 1,
+  "significant_bb_detail": "blk2 (2.944-5.074 s): LRT_BANDBB_BAND=19.57, kT=35.108 keV (MINOS errs NaN - fragile)",
+  "significant_kT_values_keV": [35.108],
+  "significant_kT_median_keV": 35.108,
+  "class": "high-kT (~35 keV), single-block; NOT the low-kT (<5 keV) L28 edge class",
+  "lrt_dsbpl_sbpl_max": 8.02,
+  "lrt_dsbpl_sbpl_max_block": "blk2 (2.944-5.074 s) - sub-threshold two-break hint",
+  "caveat": "archival counts are LOWER LIMITS until L18/L19 hardening (default-seed DSBPL restart, widened Ep caps) - per project doctrine"
+ },
+ "harvest_snippets": {
+  "GCN22896_GBM_Poolakkil": [
+   "The GBM light curve shows a single peak with a duration (T90) of about 20.2 s (50-300 keV).",
+   "best fit by a Band function with Epeak = 360 +/- 33 keV, alpha = -0.80 +/- 0.04 and beta = -1.95 +/- 0.08 (T0-3.1 s to T0+25.6 s); fluence (10-1000 keV) = (2.001 +/- 0.043)E-05 erg/cm^2"
+  ],
+  "GCN22883_LAT_Racusin": [
+   "The highest-energy photon is a ~930 MeV event which is observed at 40 seconds after the GBM trigger.",
+   "trigger 552344505 / 180703876; RA, Dec = 6.54, -67.1; 48 deg from the LAT boresight"
+  ],
+  "GCN22927_KonusWind_Frederiks": [
+   "single, FRED-like pulse with a total duration of ~50 s ... weak count rate increase in the softest KW light curve around T0 + 170 s; emission in the main peak seen up to ~10 MeV",
+   "time-integrated (T0 to T0+49.408 s) Band: alpha = -0.85 (-0.21,+0.33), beta = -1.89 (-0.37,+0.19), Ep = 367 (-136,+196) keV"
+  ],
+  "GCN23889_VLT_MUSE_Izzo_redshift": [
+   "we identify three strong emission lines which can be consistently interpreted as [O III] 4960,5008 AA and [O II] 3727/29 AA at a common redshift of z = 0.6678 ... we conclude that this is the redshift of GRB 180703A"
+  ],
+  "Chang2026_2026MNRAS.546ag047C": [
+   "180703A 0.6687 -5~35 35.4 7225 7226 Non-Con. Non-Con. 7827 7343 CPL (their model-comparison row; note their z=0.6687 vs GCN 0.6678)",
+   "180703A -5~35 35.4 CPL -0.86+0.07-0.08 419.7+57.3-56.9 12.86 18.56 (their best-fit row)",
+   "group (I): single pulse, width inversely proportional to energy ... GRBs 100414A, 160509A, and 180703A show moderately strong negative trends"
+  ],
+  "Macera2025_2025A&A...700A..88M": [
+   "GRB 180703A 0.0-22.3 0.6678 20.7 [LLE x] pindex 4.40+0.40-0.48, nu_c 97+11-9 keV, nu_m 1.42+0.50-0.38 MeV, Flux 1.59+1.38-1.20 e-6, Emax 0.2 GeV (Table 2, Sample-2; no high-energy-cutoff asterisk)"
+  ],
+  "Ajello2019_2FLGC_2019ApJ...878...52A": [
+   "p63 durations row: 180703A (L) 1.5 22.27 20.74 | 0.93 8.05 7.12 | 3.8 1614.0 1610 +/- 80 (GBM T05/T95/T90; LLE; LAT onset 3.8 s, end 1614 s)",
+   "p75 spectral row: 180703A GBM (1.5-22.3): 4 events, TS=24, index -3 +/- 1; LTF (0.0-4000.0): TS=54, index -2.5 +/- 0.3",
+   "p83: highest-energy photon row: 0.93 GeV at 40.46 s, prob 1.00"
+  ],
+  "Pasumarti2023_2023JHEAp..40...41P": [
+   "For linear LIV, we find five GRBs with Bayes factor > 100. These are GRB 210204A, GRB 190114C, GRB 160625B, GRB 180703A, and GRB 130925A (SBPL intrinsic lag model; E0=20 keV, z=0.67)"
+  ],
+  "Ahlgren2020_2020ApJ...897..178A": [
+   "four GRBs in the sample selected for time-resolved spectral analysis that have reported positions from Swift (GRB 120119A, GRB 161004B, GRB 180703A and GRB 190720A) ... new response files ... best-fit parameters being consistent within 1 sigma"
+  ]
+ }
+}

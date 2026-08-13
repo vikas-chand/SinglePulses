@@ -1,0 +1,39 @@
+{
+ "burst": "bn090719063",
+ "grb_name": "GRB 090719 / GRB 090719A",
+ "frozen_utc": "2026-08-12; BEFORE any new fit table opened (results/sweep106/ untouched per blind-fit rule; archival clean_per_burst_human_final table read ONLY as the recorded prior, as instructed)",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "archival_prior": {
+  "source": "results/clean_per_burst_human_final/bn090719063/spectral_fits.ecsv (11 rows: integrated blk -1 + resolved blks 0-9; dets n7,n8,b1; window -0.138..20.707 s)",
+  "union_rule": "significant BB = (LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05)",
+  "integrated_blk_-1": "significant by BOTH tests: LRT_BandBB=15.75 (kT=36.75+-3.27 keV), LRT_CplBB=26.94 (kT=36.41+-3.15 keV); AIC winner Band+BB",
+  "resolved_significant_blocks": {
+   "count": 2,
+   "blk2_0.894-3.158s": "CPL+BB pair only: LRT=13.31, kT=32.94+-7.01 keV (BandBB pair 4.07 n.s.)",
+   "blk4_4.299-6.873s": "CPL+BB pair only: LRT=33.90, kT=33.69+-3.04 keV (BandBB pair 7.86 n.s.)"
+  },
+  "bandbb_test_alone_resolved": 0,
+  "cplbb_test_alone_resolved": 2,
+  "near_misses": "blk0 (BandBB 7.58, kT 5.75+-1.36), blk6 (BandBB 7.86, kT 29.38+-1.67) - watch under the L27-fixed engine",
+  "kT_track_bandbb_blks0-9": [5.75, 6.29, 31.85, 42.41, 32.91, 22.22, 29.38, 24.29, 19.7, 3.8],
+  "aic_winners_blk-1_to_9": ["Band+BB", "Band+BB", "CPL", "SBPL", "SBPL", "SBPL", "CPL", "CPL", "SBPL", "SBPL", "SBPL"],
+  "band_ep_track_blks0-9_keV": [676.8, 376.7, 199.2, 303.5, 234.8, 182.3, 120.9, 76.4, 57.4, 30.0],
+  "caveat": "archival fits predate the L28/per-bin-coverage engine; two-break (DSBPL) results there are a lower limit per the L8/L9 doctrine"
+ },
+ "predictions": [
+  "P-A (thermal component; Burgess14a/Iyyani16/Li19-20 photospheric lineage): the re-fit union rule keeps a significant BB in >=2 resolved blocks around the pulse peak with kT ~ 30-40 keV, and the integrated spectrum keeps BB by BOTH nested tests. FALSIFIED IF: zero resolved blocks pass the union rule, or kT lands off the 30-40 keV shelf (<10 or >100 keV) in the passing blocks.",
+  "P-B (Ep evolution class; Yu19 'h.t.s.-to-i.t.', Li26 Type II with tp(Ep)=0.36+-0.36 s vs tp(F)=5.61+-1.17 s): our Ep(t) peaks in the FIRST resolved block (<~1 s) and decays across the flux peak (~4-6 s) - hard-to-soft, NOT flux-tracking at the peak. FALSIFIED IF: Ep(t) peaks with or after the flux peak.",
+  "P-C (hard alpha; Li19 'majority of alpha beyond synchrotron limit', Lu18 early Band alpha -0.08..+0.23): early resolved blocks (t<~3 s) return low-energy index harder than -2/3. FALSIFIED IF: all resolved alpha <= -2/3.",
+  "P-D (HLE weak/spurious; Li&Zhang21 Phase-I 'spurious' flag + Tak23 'Weak'): the late decay (t>~7 s) does NOT satisfy a clean curvature closure; expect real spectral evolution in the tail (archival Band beta drifts -2.4 -> -2.0, Ep 76->30 keV) rather than the alpha_hat=2+beta_hat locus. FALSIFIED IF: decay blocks reproduce the pure-curvature closure within errors.",
+  "P-E (binning cross-check; Li&Zhang21 Ntot=13 in [-1,20] vs our archival 10 resolved in [-0.91,24.0]): the 27b re-block returns 9-14 resolved blocks; a count far outside that band flags a binning-regime difference to reconcile before any spectral diff."
+ ],
+ "harvest_snippets": {
+  "Iyyani2016": ["significant and strong blackbody component: GRB081224A, GRB090719A, GRB100707A, GRB110920A", "In bursts GRB081224A, GRB090719A and GRB100707A the two breaks [Esync and kT broken-PL] are consistent"],
+  "Li&Zhang2021": ["090719063 11.392+-0.896 (4.68+-0.02)e-5 n7(n8)b1 -1~20 [-20~-10,40~60] 13 7", "three cases (GRB 090719063, GRB 130305486, GRB 150213001) ... in the Phase I sample but not in the Phase II sample indeed do not satisfy the simple model predictions ... supporting that the cases are spurious", "090719063 ... 5.06 [s] 1.5e15 [cm]"],
+  "Li2026": ["090719063 ... 11.39+-0.47 CPL 11 5.61+-1.17 0.36+-0.36 -5.25+-1.22 -4.30 -0.72 0.00 1.00 0.00 -0.40 -0.41 0.64 II"],
+  "Tak2023": ["GRB 090719A -0.136 3.480 14.480 14 Weak - -"],
+  "Yu2019": ["090719063 n7(n8)b1 -1. to 25. ... K 15 11 ... h.t.s. to i.t."],
+  "Burgess2014a": ["GRB 090719A 26.52 30.09 [BB yes] [LLE no]", "F_BB/F_syn = 0.4; BB decay -0.1+-0.05 -> -2.0+-0.7"],
+  "Lu2018": ["GRB 090719A (bn090719063) -0.26 -1.51 ... 359.92+-23.02 -0.08+-0.08 -2.58+-0.22"]
+ }
+}

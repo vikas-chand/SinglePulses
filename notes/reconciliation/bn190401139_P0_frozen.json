@@ -1,0 +1,33 @@
+{
+ "burst": "bn190401139",
+ "tally": 25,
+ "frozen_utc": "2026-08-11T16:47Z; BEFORE any fit table opened (walkthrough_b2* never read; forbidden and untouched)",
+ "engine": "L18/L19/L20/L26/L27/L28 active",
+ "census_prior": {
+  "status": "NONE - bn190401139 is outside the 89-burst human census set; no archival census consulted or available; P0 is LITERATURE-ONLY (orchestrator directive, 2026-08-11). No internal fit product of any era was read before this freeze.",
+  "kt_class": "no census kT class exists; literature carries no BB/photosphere claim either -> baseline is the null-BB streak (see P-D)"
+ },
+ "predictions": [
+  "P-A (catalog-anomaly, PRIMARY): the fermigbrst auto-catalog records ONLY a simple power law for this burst (flnc_plaw index -1.9585+/-0.0084; comp/band/sbpl AND all pflx columns empty). Prediction: our blind fits will constrain the curvature the catalog lacks - the brightest blocks prefer a curved photon model (COMP/Band family) over PLAW with dAIC>=10 and a bounded Ep inside the fit band. FALSIFIED IF: blind fits also return PL-preferred blocks with unbounded Ep (which would instead validate the catalog PL as faithful).",
+  "P-B (soft-spectrum prior): an effective 10-1000 keV PL slope of ~ -1.96 over a 50-s fluence window implies the nuFnu peak sits low in the band. Prediction: where Ep is bounded, time-integrated-equivalent Ep <~ 200 keV, and the burst trends soft (HXMT sees only the harder half: its >~200 keV T90 = 23.5 s is ~half the GBM 50-300 keV T90 = 42.8 s). FALSIFIED IF: bounded Ep >~ 400 keV in the fluence-weighted mean.",
+  "P-C (single-pulse morphology): GCN 24038 ('mainly consists of one pulse') and Cai+2021 Fig.1 show one-pulse structure. Prediction: the BB segmentation inside the stamped window (-2.52 to +38.38 s) resolves a single rise/decay pulse - no separated second emission episode. FALSIFIED IF: blocks show a distinct second pulse separated by a return-to-background interval.",
+  "P-D (null-BB baseline): no photospheric/BB claim exists anywhere in this burst's literature (1 circular + 2 sample-mention papers, zero spectral analyses). Prediction: no block REQUIRES a significant BB component (null-streak baseline); if one emerges it lands in the low-kT edge-constrained class (kT <~ 5 keV, to be adjudicated per L28 residual-coherence rules, cf. L25 xb~3.92kT degeneracy). FALSIFIED IF: a robust mid/high-kT BB (kT >~ 10 keV) survives L28.",
+  "P-E (paperless-burst finding): zero dedicated-analysis papers exist (ADS four-form + HEB-id queries, 2026-08-11). Prediction: every P3 diff item for this burst will be against the GBM auto-catalog and GCN 24038 only - our fits will be the FIRST published-grade spectroscopy of GRB 190401A."
+ ],
+ "harvest_snippets": {
+  "GCN24038": [
+   "At 2019-04-01T03:20:21.000 (T0), the Insight-HXMT/HE detected GRB 190401A(trigger ID: HEB190401139) in a routine search of the data, which was also triggered by INTEGRAL(trigger_num:8247) and Fermi/GBM (trigger_num:575781625).",
+   "The Insight-HXMT/HE light curve mainly consists of one pulse with a duration (T90) of 23.50 s measured from T0-1.64 s."
+  ],
+  "fermigbrst_2026-08-11": [
+   "t90 42.753 +/- 2.573 (start +1.024); t50 11.520 +/- 0.572; fluence 1.6671e-05; flux_1024 16.0781 @ 5.120 s; flnc_best_fitting_model=flnc_plaw; flnc_plaw_index -1.958514 +/- 8.407411e-03; flnc interval -1.024..49.152; comp/band/sbpl + all pflx columns EMPTY; scat mask n3,n6,n7,b1; bcat mask n6,n7,n8"
+  ],
+  "Cai2021_2021MNRAS.508.3910C": [
+   "Figure 1. Insight-HXMT/HE CsI light curves of GRB 190401A, which triggered the blind search.",
+   "light curves of GRB 190401A are shown in Figure 1, which was also observed by Fermi/GBM"
+  ],
+  "Abbott2021_2021ApJ...915...86A": [
+   "The GRBs we were unable to analyze with either of the searches are: GRB 190401139, GRB 190406745, GRB 190411407, ..."
+  ]
+ }
+}

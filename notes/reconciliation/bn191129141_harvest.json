@@ -1,0 +1,36 @@
+{
+ "burst": "bn191129141",
+ "grb_name": "GRB 191129A",
+ "harvest_utc": "2026-08-11T16:41:07Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5, Phase 3c scope rules applied)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "query_forms": [
+  {"form": "full:\"GRB 191129A\"", "numFound": 2, "note": "both GCN newsletters (26301, 26316); zero refereed"},
+  {"form": "full:\"bn191129141\"", "numFound": 0, "note": ""},
+  {"form": "full:\"191129141\"", "numFound": 4, "note": "GCN 26301 + 3 digit-coincidence false positives (unrelated arXiv eprints: Ebner 2023 statistics, Seddik 2020 sign-language CV review, Maass 2019 IMRT optimization)"},
+  {"form": "full:\"596690552\"", "numFound": 2, "note": "GCN 26301 + GCN 26302 (MASTER)"},
+  {"form": "full:\"GRB191129A\"", "numFound": 0, "note": "defensive no-space form"},
+  {"form": "full:\"GRB 191129.14\" OR full:\"GRB191129.14\"", "numFound": 1, "note": "MASTER day-fraction form -> GCN 26302 only"}
+ ],
+ "n_refereed_papers": 0,
+ "papers": [],
+ "finding": "PAPERLESS BURST: zero refereed papers analyze GRB 191129A (six ADS full-text forms, 2026-08-11). The burst post-dates the coverage windows of the published GBM team catalogs (4th burst catalog and 10-yr spectral catalog end 2018-07), so its only published record is the three GCN circulars plus the living HEASARC FERMIGBRST catalog entry (bcat/scat files).",
+ "published_value_sources": [
+  {"source": "glg_bcat_all_bn191129141_v00.fit (HEASARC FTP, fermi/data/gbm/bursts/2019/bn191129141/current/)", "values": "T90=19.9683+/-1.0555 s (T90START=2.048 s), T50=5.8881+/-0.5724 s, FLU(10-1000 keV)=1.15399e-05+/-4.77e-08 erg/cm^2, PF64=14.364, PF256=13.753 ph/s/cm^2"},
+  {"source": "glg_scat_all_bn191129141_flnc_band_v00.fit", "values": "FLNC Band, interval -4.096..22.528 s, dets NAI_08/NAI_11/BGO_01, PSTAT: Ep=183.58 -9.12/+9.57 keV, alpha=-0.899+/-0.028, beta=-2.0001 (+err ~0, pegged), NRGFLNC(10-1000)=1.554e-5 erg/cm^2, REDCHSQ=0.666 (353 dof)"},
+  {"source": "glg_scat_all_bn191129141_flnc_comp_v02.fit", "values": "FLNC Comptonized: Epeak=304.84 -18.75/+20.16 keV, index=-1.089+/-0.026, NRGFLNC=1.557e-5 erg/cm^2, REDCHSQ=0.711 (354 dof)"},
+  {"source": "glg_scat_all_bn191129141_flnc_sbpl_v01.fit", "values": "FLNC SBPL: Ebreak=87.99 -6.82/+8.05 keV, low index=-1.020+/-0.042, high index=-1.962+/-0.069, REDCHSQ=0.667 (353 dof)"},
+  {"source": "glg_scat_all_bn191129141_flnc_plaw_v01.fit", "values": "FLNC PLAW: index=-1.530+/-0.013, REDCHSQ=1.173 (355 dof) - disfavored vs curved models"},
+  {"source": "glg_scat_all_bn191129141_pflx_comp_v01.fit", "values": "PFLX Comptonized, interval 7.168..8.192 s: Epeak=276.64 -30.54/+34.97 keV, index=-1.065+/-0.051"},
+  {"source": "GCN 26316 (Gaikwad et al., AstroSat CZTI)", "values": "T90=26.6 s (40-200 keV, cumulative rates); single peak at 2019-11-29 03:22:27.0 UT; also seen in CsI Veto 100-500 keV"},
+  {"source": "GCN 26302 (Lipunov et al., MASTER-OAFA)", "values": "optical upper limits from T0+582 s, up to 18.5 mag (unfiltered); no OT"}
+ ],
+ "prompt_relevant": "Everything harvested above is PROMPT-relevant (GBM catalog spectral fits, T90s, peak-flux spectrum, single-pulse morphology). These feed the P3 diff directly.",
+ "module_future": [
+  {"item": "GCN 26302 MASTER optical upper limits (no afterglow candidate)", "tag": "module-future;afterglow", "summary": "only afterglow-adjacent record: optical non-detection to 18.5 mag starting 582 s post-trigger; no XRT/UVOT follow-up existed (GBM-only localization, 2.5 deg radius)"},
+  {"item": "LIGO/Virgo S191129u (GCN 26303 etc.)", "tag": "module-future;mm", "summary": "same-day GW BBH candidate at 13:40:29 UTC, ~10.3 h AFTER the GRB; BBH 99%, HasNS <1%, d=763+/-200 Mpc; NOT associated - recorded only to inoculate against same-day-designation contamination (T1)"}
+ ],
+ "corpus_index_note": "corpus_index.csv NOT updated: hard rule for this worker forbids writing shared CSVs; zero new papers were fetched so no corpus rows are pending anyway.",
+ "redshift": "none (no optical/NIR spectroscopy exists; GBM-only localization)",
+ "same_day_contamination_check": "GCN query for '191129' returns 15 circulars about LIGO/Virgo S191129u (GW BBH candidate, 13:40 UTC same day) - a different event; excluded per LiteratureHarvest T1. Only GCNs 26301, 26302, 26316 concern GRB 191129A."
+}

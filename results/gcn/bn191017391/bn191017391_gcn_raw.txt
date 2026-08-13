@@ -1,0 +1,290 @@
+RAW GCN CIRCULARS for the 2019-10-17 date fragment (fetched 2026-08-11 from https://gcn.gsfc.nasa.gov/other/191017.gcn3)
+IDENTITY NOTE: only GCN 26016 and 26020 concern OUR burst (bn191017391 / trigger 592997024 = GRB 191017A).
+GCN 26021/26022/26027/26029/26030 = GRB 191017B (Swift trigger 929981, 14:36 UT) and GCN 26023 = GRB 191017C (bn191017957, 22:58 UT) -- DIFFERENT same-day bursts, kept here only as the disambiguation evidence.
+New-GCN-site search 'query=191017391' returns exactly circulars 26016 and 26020 (complete set for this trigger).
+========================================================================
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  26016
+SUBJECT: 191017A: BALROG localization (Fermi Trigger 592997024 / GRB 191017391)
+DATE:    19/10/17 09:51:07 GMT
+FROM:    Jochen Greiner at MPE,Garching  <jcg@mpe.mpg.de>
+
+F. Kunzweiler, B. Biltzinger, F. Berlato, J. Burgess & J. Greiner (all MPE Garching) report:
+
+The public trigdat data of the Fermi Gamma-ray Burst Monitor (GBM) trigger
+592997024 at 09:23:39 on 17 Oct. 2019 were automatically fitted for spectrum
+and sky location with BALROG (Burgess et al. 2018, MNRAS 476, 1427;
+Berlato et al. 2019, ApJ 873, 60).
+
+The best-fit position (1 sigma statistical errors) is:
+RA(2000.0) = 169.0+/-2.3 deg
+Decl.(2000.0) = 44.7+/-2.8 deg
+We estimate an additional systematic error of 1 deg.
+
+Further details are available at:
+https://grb.mpe.mpg.de/grb/GRB191017391/
+
+The Healpix map can be downloaded from:
+https://grb.mpe.mpg.de/grb/GRB191017391/healpix
+
+The location parameters are available as JSON at:
+https://grb.mpe.mpg.de/grb/GRB191017391/json
+
+                        
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  26020
+SUBJECT: GRB 191017A: Fermi GBM Final Localization
+DATE:    19/10/17 14:22:00 GMT
+FROM:    Rachel Hamburg at UAH  <rkh0007@uah.edu>
+
+R. Hamburg (UAH) reports on behalf of the Fermi GBM Team:
+
+The Fermi Gamma-ray Burst Monitor (GBM) trigger (trigger 592997024 /
+191017391)
+at 09:23:39.27 UT on 17 October, 2019, was misclassified by the GBM flight
+software as a particle event but is in fact due to a GRB.
+
+Therefore, the Fermi GBM team reports the detection of GRB 191017A. The
+on-ground calculated location, using the Fermi GBM trigger data, is
+RA = 171.25, Dec = +38.05 (J2000 degrees, equivalent to J2000 11h 25m, 38d
+03'),
+with a statistical uncertainty of 1.5 degrees. The angle from the Fermi LAT
+boresight is 131.44 degrees.
+
+The skymap can be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn191017391/quicklook/glg_skymap_all_bn191017391.png
+
+The HEALPix FITS file, including the estimated localization systematic, can
+be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn191017391/quicklook/glg_healpix_all_bn191017391.fit
+
+The GBM light curve can be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn191017391/quicklook/glg_lc_medres34_bn191017391.gif
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  26021
+SUBJECT: GRB 191017B: Swift detection of a burst
+DATE:    19/10/17 14:55:44 GMT
+FROM:    David Palmer at LANL  <palmer@lanl.gov>
+
+B. Sbarufatti (PSU), J.D. Gropp (PSU), J. A. Kennea (PSU),
+N. J. Klingler (PSU), A. Y. Lien (GSFC/UMBC), M. J. Moss (GWU),
+K. L. Page (U Leicester), D. M. Palmer (LANL) and
+A. Tohuvavohu (Toronto) report on behalf of the Neil Gehrels Swift
+Observatory Team:
+
+At 14:36:06 UT, the Swift Burst Alert Telescope (BAT) triggered and
+located GRB 191017B (trigger=929981).  Swift slewed immediately to the burst. 
+The BAT on-board calculated location is 
+RA, Dec 245.151, -73.561 which is 
+   RA(J2000) = 16h 20m 36s
+   Dec(J2000) = -73d 33' 40"
+with an uncertainty of 3 arcmin (radius, 90% containment, including 
+systematic uncertainty).  The BAT light curve showed a single-peaked
+structure with a duration of about 8 sec.  The peak count rate
+was ~1000 counts/sec (15-350 keV), at ~0 sec after the trigger. 
+
+The XRT began observing the field at 14:37:50.7 UT, 103.8 seconds after
+the BAT trigger. Using promptly downlinked data we find an uncatalogued
+X-ray source with an enhanced position: RA, Dec 245.1255, -73.5404
+which is equivalent to:
+   RA(J2000)  = 16h 20m 30.13s
+   Dec(J2000) = -73d 32' 25.3"
+with an uncertainty of 2.2 arcseconds (radius, 90% containment). This
+location is 78 arcseconds from the BAT onboard position, within the BAT
+error circle. This position may be improved as more data are received;
+the latest position is available at http://www.swift.ac.uk/sper. 
+
+A power-law fit to a spectrum formed from promptly downlinked event
+data gives a column density in excess of the Galactic value (9.84 x
+10^20 cm^-2, Willingale et al. 2013), with an excess column of 3
+(+3.00/-2.59) x 10^21 cm^-2 (90% confidence). 
+
+UVOT took a finding chart exposure of 150 seconds with the White filter
+starting 301 seconds after the BAT trigger. No credible afterglow candidate has
+been found in the initial data products. The 2.7'x2.7' sub-image covers 100% of
+the XRT error circle. The typical 3-sigma upper limit has been about 19.6 mag. 
+The 8'x8' region for the list of sources generated on-board covers 100% of the
+XRT error circle. The list of sources is typically complete to about 18 mag. No
+correction has been made for the expected extinction corresponding to E(B-V) of
+0.11. 
+
+Burst Advocate for this burst is B. Sbarufatti (bxs60 AT psu.edu). 
+Please contact the BA by email if you require additional information
+regarding Swift followup of this burst. In extremely urgent cases, after
+trying the Burst Advocate, you can contact the Swift PI by phone (see
+Swift TOO web site for information: http://www.swift.psu.edu/)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  26022
+SUBJECT: GRB 191017B: Enhanced Swift-XRT position
+DATE:    19/10/17 20:12:56 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+M.R. Goad, J.P. Osborne, A.P. Beardmore and P.A. Evans (U. Leicester) 
+report on behalf of the Swift-XRT team.
+
+Using 759 s of XRT Photon Counting mode data and 2 UVOT
+images for GRB 191017B, we find an astrometrically corrected X-ray
+position (using the XRT-UVOT alignment and matching UVOT field sources
+to the USNO-B1 catalogue): RA, Dec = 245.12493, -73.54074 which is equivalent
+to:
+
+RA (J2000): 16h 20m 29.98s
+Dec (J2000): -73d 32' 26.7"
+
+with an uncertainty of 1.8 arcsec (radius, 90% confidence).
+
+This position may be improved as more data are received. The latest
+position can be viewed at http://www.swift.ac.uk/xrt_positions. Position
+enhancement is described by Goad et al. (2007, A&A, 476, 1401) and Evans
+et al. (2009, MNRAS, 397, 1177).
+
+This circular was automatically generated, and is an official product of the
+Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  26023
+SUBJECT: GRB 191017C: Fermi GBM Final Real-time Localization
+DATE:    19/10/17 23:08:45 GMT
+FROM:    Fermi GBM Team at MSFC/Fermi-GBM  <do_not_reply@GIOC.nsstc.nasa.gov>
+
+The Fermi GBM team reports the detection of a likely SHORT GRB
+
+At 22:58:20 UT on 17 Oct 2019, the Fermi Gamma-ray Burst Monitor (GBM) triggered and located GRB 191017C (trigger 593045905.586428 / 191017957).
+
+The on-ground calculated location, using the Fermi GBM trigger data, is RA = 134.6, Dec = 15.3 (J2000 degrees, equivalent to J2000 08h 58m, 15d 18'), with a statistical uncertainty of 12.4 degrees.
+
+The angle from the Fermi LAT boresight is 69.0 degrees.
+
+The skymap can be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn191017957/quicklook/glg_skymap_all_bn191017957.png
+
+The HEALPix FITS file, including the estimated localization systematic, can be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn191017957/quicklook/glg_healpix_all_bn191017957.fit
+
+The GBM light curve can be found here:
+http://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2019/bn191017957/quicklook/glg_lc_medres34_bn191017957.gif
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  26027
+SUBJECT: GRB 191017B: Swift-XRT refined Analysis
+DATE:    19/10/18 05:32:16 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+A.P. Beardmore (U. Leicester), V. D'Elia (ASDC), A. D'Ai (INAF-IASFPA),
+A. Melandri (INAF-OAB), D.N. Burrows (PSU), J. D. Gropp (PSU), A.
+Tohuvavohu (U. Toronto), P.A. Evans (U. Leicester), J.P. Osborne (U.
+Leicester) and B. Sbarufatti report on behalf of the Swift-XRT team:
+
+We have analysed 6.1 ks of XRT data for GRB 191017B (Sbarufatti et al.
+GCN Circ. 26021), from 256 s to 29.2 ks after the  BAT trigger. The
+data are entirely in Photon Counting (PC) mode. The enhanced XRT
+position for this burst was given by Goad et al. (GCN Circ. 26022).
+
+The light curve can be modelled with a power-law decay with a decay
+index of alpha=0.64 (+/-0.05).
+
+A spectrum formed from the PC mode data can be fitted with an absorbed
+power-law with a photon spectral index of 1.54 (+0.20, -0.12). The
+best-fitting absorption column is  consistent with the Galactic value
+of 9.8 x 10^20 cm^-2 (Willingale et al. 2013). The counts to observed
+(unabsorbed) 0.3-10 keV flux conversion factor deduced from this
+spectrum  is 4.4 x 10^-11 (4.9 x 10^-11) erg cm^-2 count^-1. 
+
+A summary of the PC-mode spectrum is thus:
+Total column:	     9.8 (+/-6.9) x 10^20 cm^-2
+Galactic foreground: 9.8 x 10^20 cm^-2
+Excess significance: <1.6 sigma
+Photon index:	     1.54 (+0.20, -0.12)
+
+If the light curve continues to decay with a power-law decay index of
+0.64, the count rate at T+24 hours will be 0.018 count s^-1,
+corresponding to an observed (unabsorbed) 0.3-10 keV flux of 7.8 x
+10^-13 (8.6 x 10^-13) erg cm^-2 s^-1.
+
+The results of the XRT-team automatic analysis are available at
+http://www.swift.ac.uk/xrt_products/00929981.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  26029
+SUBJECT: GRB 191017B: Swift/UVOT Upper Limits
+DATE:    19/10/18 14:37:28 GMT
+FROM:    Sam LaPorte at PSU  <sjl5346@psu.edu>
+
+GRB 191017B: Swift/UVOT Upper Limits
+
+J. D. Gropp (PSU) and B. Sbarufatti (PSU)
+report on behalf of the Swift/UVOT team:
+
+The Swift/UVOT began settled observations of the field of GRB 191017B
+302 s after the BAT trigger (Sbarufatti et al., GCN Circ. 26021).
+No optical afterglow consistent with the XRT position
+(Goad et al. GCN Circ. 26022)
+is detected in the initial UVOT exposures.
+Preliminary 3-sigma upper limits using the UVOT photometric system
+(Breeveld et al. 2011, AIP Conf. Proc. 1358, 373) for the first
+finding chart (FC) exposure and subsequent exposures are:
+
+Filter         T_start(s)   T_stop(s)      Exp(s)         Mag
+
+white_FC           302          452          147         >18.9
+white              302         1010          334         >19.1
+v                  460         4806          255         >18.1
+b                  558          752           39         >18.3
+u                  533          727           39         >18.9
+w1                 509          702           39         >18.2
+m2                 484          852           39         >18.6
+w2                 609         4601          235         >20.0
+
+The magnitudes in the table are not corrected for the Galactic extinction
+due to the reddening of E(B-V) = 0.11 in the direction of the burst
+(Schlegel et al. 1998).
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  26030
+SUBJECT: GRB 191017B: Swift-BAT refined analysis
+DATE:    19/10/18 23:37:15 GMT
+FROM:    Sibasish Laha at GSFC  <sibasish.laha@nasa.gov>
+
+J. R. Cummings (CPI), H. A. Krimm (NSF),
+S. Laha (GSFC/UMBC), A. Y. Lien (GSFC/UMBC),
+C. B. Markwardt (GSFC), D. M. Palmer (LANL),
+T. Sakamoto (AGU), B. Sbarufatti (PSU),
+M. Stamatikos (OSU), T. N. Ukwatta (LANL),
+S. D. Barthelmy (GSFC), (i.e. the Swift-BAT team):
+
+Using the data set from T-82 to T+962 sec from the recent telemetry downlink,
+we report further analysis of BAT GRB 191017B (trigger #929981)
+(Sbarufatti et al., GCN Circ. 26021).  The BAT ground-calculated position is
+RA, Dec = 245.131, -73.583 deg which is
+   RA(J2000)  =  16h 20m 31.3s
+   Dec(J2000) = -73d 34' 57.7"
+with an uncertainty of 1.8 arcmin, (radius, sys+stat, 90% containment).
+The partial coding was 44%.
+
+The mask weighted light curve shows a single peak structure with a duration of ~8 sec.
+The overall structure starts at ~ T-2 sec and lasts till ~ T+6 sec.
+T90 (15-350 keV) is 5.95 +- 1.28 sec (estimated error including systematics).
+
+The time-averaged spectrum from T-1.34 to T+5.59 sec is best fit by a simple
+power-law model.  The power law index of the time-averaged spectrum is
+1.82 +- 0.20.  The fluence in the 15-150 keV band is 5.6 +- 0.7 x 10^-7 erg/cm2.
+The 1-sec peak photon flux measured from T+0.36 sec in the 15-150 keV band
+is 1.9 +- 0.3 ph/cm2/sec.  All the quoted errors are at the 90% confidence
+level.
+
+The results of the batgrbproduct analysis are available at
+http://gcn.gsfc.nasa.gov/notices_s/929981/BA/
+
+

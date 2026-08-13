@@ -1,0 +1,27 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: int64}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn090809978}
+# - {src_start: -0.3}
+# - {src_stop: 15.5}
+# - {manifest: 'tte=4 cspec_pha=4 rsp2=4 rsp=0 poshist=1 trigdat=1 lle=0 lat=0'}
+# - {trigtime_met: 271553296.61125}
+# - {catalog_t90: '11.008 +- 0.32 s from t90_start=1.088 s (HEASARC fermigbrst, 50-300 keV); T95~12.10 s inside stamped window -0.3..15.5 (D4
+#     check: single pulse, no pre-trigger episode — GCN 9760 "consists of a single pulse"; trigger is not the burst start but t90_start>0 confirms
+#     no pre-trigger emission)'}
+# - {detector_note: 'approved set n3,n4,n5,b0 == catalog scat_detector_mask 00011100000010 exactly; all responses are multi-matrix GBM .rsp2
+#     (D2: correct naming class glg_cspec_<det>_bn090809978_v00.rsp2); coverage test = min(TSTART)<=SRC_START & max(TSTOP)>=SRC_STOP rel TRIGTIME'}
+# - {lle_note: 'no gll_* files present and none expected — LAT boresight angle 81 deg at trigger (GCN 9760); D1 off-axis check N/A'}
+# - {qc_date: '2026-08-12'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n3 -7.168 107.522 2 PASS
+n4 -7.168 107.522 2 PASS
+n5 -7.168 107.522 2 PASS
+b0 -7.168 107.522 2 PASS

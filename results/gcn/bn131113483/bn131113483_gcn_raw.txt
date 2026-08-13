@@ -1,0 +1,95 @@
+GCN CIRCULAR SWEEP — bn131113483  (Step 0, dev/ai_guides/GCNIntelligence.md)
+Generated 2026-08-12 by the 106-burst doc-layer worker. NEW FILE (no prior results/gcn/bn131113483/
+existed; nothing was overwritten).
+
+RESULT: n_circulars = 0.  ZERO GCN circulars exist for this burst.
+This is a RESULT, not an error (GCNIntelligence.md "Honest absence").
+
+--------------------------------------------------------------------------------------
+1. CLASSIC PER-GRB ARCHIVE  (https://gcn.gsfc.nasa.gov/other/<name>.gcn3)
+--------------------------------------------------------------------------------------
+   131113.gcn3    -> HTTP 404 (215 bytes, error page)
+   131113A.gcn3   -> HTTP 404 (216 bytes, error page)
+   131113B.gcn3   -> HTTP 404 (216 bytes, error page)
+   CONTROL (proves the archive and its Nov-2013 coverage are live):
+   131108A.gcn3   -> HTTP 200   (GRB 131108A, five days earlier, has a full circular set)
+
+--------------------------------------------------------------------------------------
+2. gcn.nasa.gov ARCHIVE SEARCH API
+   (https://gcn.nasa.gov/circulars?_data=routes/circulars._archive._index&query=<q>)
+--------------------------------------------------------------------------------------
+   query="131113A"          -> totalItems 0
+   query="131113B"          -> totalItems 0
+   query="131113483"        -> totalItems 0
+   query="%22GRB 131113A%22"-> totalItems 0
+   query="%22GRB131113A%22" -> totalItems 0
+   query="%22131113A%22"    -> totalItems 0
+   query="%22GRB 131113%22" -> totalItems 0
+   query="131113"           -> totalItems 1, and it is IRRELEVANT:
+                               GCN 5987 "Retractions of previous Swift-BAT triggers" (2006) —
+                               a numeric coincidence, not this burst.
+   CONTROLS (prove the endpoint returns Nov-2013 GRB circulars):
+   query="110721A"          -> totalItems 9   (the classic control from earlier bursts)
+   query="131108A"          -> totalItems 21  (GRB 131108A)
+   query="131117A"          -> totalItems 9   (GRB 131117A)
+   query="131127A"          -> totalItems 15  (GRB 131127A)
+   ADJACENT-DAY probes (no GRB circulars either — the sky was quiet, not the archive):
+   query="131112A" -> 0 ;  query="131114A" -> 0
+
+CONCLUSION: two independent endpoints, each with a positive control from the SAME MONTH,
+return nothing. No circular was ever issued for this burst — therefore there is no
+GCN-sourced position refinement, no redshift, no afterglow report, and no follow-up record.
+
+--------------------------------------------------------------------------------------
+3. WHY THERE IS NO LETTER-SUFFIXED NAME (identity, trap T1 run in reverse)
+--------------------------------------------------------------------------------------
+   - HEASARC `fermigbrst` row: name = "GRB131113483", trigger_name = "bn131113483".
+     The GBM catalogue carries the GBM-style name only.
+   - glg_tcat_all_bn131113483_v02.fit primary header: OBJECT = 'GRB131113483', CLASS = 'GRB',
+     RELIABLT = 1.0.
+   - HEASARC `fermigtrig`, all GBM triggers on 2013-11-13 (4 rows):
+        bn131113055  SFLARE13111305  SFLARE
+        bn131113238  LOCLPAR1311132  LOCLPAR
+        bn131113381  SFL131113381    SFLARE
+        bn131113483  GRB131113483    GRB        <-- ours, the ONLY GRB of the day
+   - J. Greiner's GRB table (https://www.mpe.mpg.de/~jcg/grbgen.html, the community
+     letter-suffix registry) lists for November 2013: 131103A, 131105A, 131108A, 131117A,
+     131118A, 131120A, 131122A, 131127A, 131128A — and NO 131113 entry at all.
+   - ADS full text: full:"GRB 131113A" -> 0 hits; full:"131113A" -> 0 hits.
+   => "GRB 131113A" is a name NOBODY has ever used. The only designations that exist are
+      the GBM one (GRB131113483 / bn131113483 / trigger 406035340) and Konus-Wind's
+      unsuffixed "GRB 131113" (§4). Use the trigger designation; do NOT invent a suffix.
+
+--------------------------------------------------------------------------------------
+4. THE BURST WAS *NOT* GBM-ONLY — the IPN saw it, silently  (found outside GCN)
+--------------------------------------------------------------------------------------
+Konus-Wind trigger list, year index http://www.ioffe.ru/LEA/kw/triggers/2013/index.html,
+event page http://www.ioffe.ru/LEA/kw/triggers/2013/kw20131113_41768.html (fetched 2026-08-12):
+
+   row (verbatim fields):  2013-11-13 11:36:08 (41768) | [no name] | [no GCN] | GRB | S1 |
+        FER:Trig  MO:RI  INT:Trig  MES:Trig  SUZ:Trig
+   event page:  "GRB 131113, 41768.195 s UT (11:36:08.195)"   Detector: S1   Type: GRB
+                T50 = 20.608 (+4.190 / -4.163) s
+                T90 = 38.492 (+0.736 / -3.027) s
+
+   Legend from that table: FER = Fermi-GBM (Trig = triggered), MO = Mars-Odyssey/HEND
+   (RI = recorded in raw data), INT = INTEGRAL (SPI-ACS), MES = MESSENGER, SUZ = Suzaku.
+
+   So FIVE instruments recorded this burst — Fermi-GBM, Konus-Wind, INTEGRAL, MESSENGER,
+   Suzaku (+ Mars Odyssey raw data) — and not one circular was issued, no IPN annulus was
+   published, and no letter designation was assigned.
+
+   TIMING NOTE (important, and a T9 component-coverage item): the Konus trigger is
+   41768.195 - 41737.157 = +31.04 s AFTER the GBM trigger (GBM T0 = 11:35:37.157 UT =
+   41737.157 s UT). Konus triggered on the burst's MAIN PEAK — GBM's own peak-flux interval
+   is 32.768-33.792 s after T0. The Konus T90 = 38.5 s is therefore measured from a T0 that
+   is 31 s into the GBM T90 (3.392 -> 63.937 s): the two T90s describe DIFFERENT time spans
+   AND different energy bands (Konus S1 ~20 keV-15 MeV vs GBM 50-300 keV). They are not in
+   conflict and must never be diffed as if they were.
+
+--------------------------------------------------------------------------------------
+5. ADS PUBLISHED-WORK SWEEP (summary; full record in notes/reconciliation/bn131113483_harvest.json)
+--------------------------------------------------------------------------------------
+   Four required query forms + 11 extra forms. Total distinct refereed hits: 1
+   (2026ApJ..1003...58B, Bordoloi, Mittal & Iyyani 2026 — sample membership only).
+   No dedicated analysis of this burst has ever been published.

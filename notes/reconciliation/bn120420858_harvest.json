@@ -1,0 +1,98 @@
+{
+ "burst": "bn120420858",
+ "grb_name": "GRB 120420B",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1 four-form query; Phase 1b Scholar-note; Phase 3b latest-first; Phase 3c prompt-scope; Phase 4 frame-align + multi-instrument consensus; traps T1-T9)",
+ "pre_existing_material_extended": {
+  "notes/literature_tier1/bn120420858.md": "EXISTED (earlier era). Had the name resolution (VizieR von Kienlin+2020 table4), the five GBM catalog papers, and the 'shallow beta ~ -1.64' hook. CORROBORATED independently this pass; EXTENDED with the one refereed paper it missed (Ajello+2019 2FLGC) and with live HEASARC rows. Not overwritten.",
+  "notes/READING_LIST_106.md line 135": "says 'no refereed papers (our fits will be first literature)' - PARTIALLY WRONG, correction queued below: Ajello+2019 carries four per-burst table rows. The 'first time-resolved spectroscopy' half of the claim survives.",
+  "notes/literature_ledger.md line 18": "'catalogs only', n=5 - now 6 with 2FLGC.",
+  "results/gcn/bn120420858/": "did NOT exist; created this pass (dossier + gcn_raw)."
+ },
+ "identity": {
+  "trigger": "bn120420858 / MET 356646915.07046",
+  "trigger_utc": "2012-04-20 20:35:13.07",
+  "name_source": "NO GCN circular exists, so the designation is CATALOG-ASSIGNED and was verified from three independent sources keyed on the TRIGGER, not the name: (1) VizieR J/ApJ/893/46/table4 recno 908 'bn120420858 | 120420B'; (2) Ajello+2019 2FLGC Table 2 p.56 '120420B ... 356646915.070' (MET matches our TTE TRIGTIME to 3 dp); (3) HEASARC fermilgrb name=GRB120420858, gcn_name=GRB120420B.",
+  "same_day_contamination_guard": "T1 SATISFIED. The full GCN listing for 2012-04-18..26 (24 circulars) contains NOTHING from 2012-04-20 - there is no GRB 120420A circular either. ADS full:\"GRB 120420A\" = 0 hits; ADS full:\"120420A\" = 2 hits, both unrelated SPIE soft-robotics papers (2024SPIE12945E..0YD, 2022SPIE12042E..0AC) - identified and discarded. Same for full:\"120420B\" -> 1 hit 2022SPIE12042E..0BC, also SPIE soft robotics, discarded."
+ },
+ "gcn_circulars": {
+  "n_circulars": 0,
+  "evidence_file": "results/gcn/bn120420858/bn120420858_gcn_raw.txt",
+  "probes": "gcn.gsfc.nasa.gov/other/{120420,120420A,120420B,120420858,GRB120420A}.gcn3 all HTTP 404 (control 100122A.gcn3 = HTTP 200 same session); gcn.nasa.gov search index totalItems=0 for 120420/120420A/120420B/GRB120420A/120420858 (control 100122A = 2); date-bracketed listing 2012-04-18..2012-04-26 shows zero circulars from 2012-04-20.",
+  "consequence": "no circular-sourced position/T90/Ep/fluence/z/afterglow; there is no 'GCN preliminary' era to diff against for this burst."
+ },
+ "ads_queries": [
+  {"form": "full:\"GRB 120420A\"", "numFound": 0, "refereed_hits": 0, "note": "wrong-suffix probe, run before the name was resolved"},
+  {"form": "full:\"GRB 120420B\"", "numFound": 0, "refereed_hits": 0, "note": "the CORRECT name - still zero"},
+  {"form": "full:\"GRB120420B\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"GRB 120420\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"bn120420858\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"120420858\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"356646915\"", "numFound": 0, "refereed_hits": 0, "note": "the trigger NUMBER"},
+  {"form": "full:\"120420B\"", "numFound": 1, "refereed_hits": 0, "note": "2022SPIE12042E..0BC - unrelated dielectric-elastomer paper, discarded"},
+  {"form": "full:\"120420A\"", "numFound": 2, "refereed_hits": 0, "note": "both unrelated SPIE papers, discarded"}
+ ],
+ "ads_query_verdict": "ALL SEVEN legitimate query forms return ZERO. Token verified live in the same session (control full:\"100122616\" -> 5 hits). ADS full-text search finds NOTHING for this burst.",
+ "local_corpus_scan": {
+  "method": "PyMuPDF text scan of all 131 PDFs in Skills_training/ for the tokens '120420' and '356646915'",
+  "hits": ["Skills_training/Ajello_2019_2019ApJ87852A.pdf (pages 56, 61, 68, 81)"],
+  "lesson": "G2 PAYOFF AND A METHOD FINDING: the ONLY refereed paper carrying this burst is invisible to every ADS full-text form, because its content is four long machine tables that ADS does not index. For catalog-only bursts the local corpus scan is not a supplement to the four-form query - it is the ONLY channel that works. Recommend adding it as a mandatory step, not an optional one, in LiteratureHarvest Phase 1."
+ },
+ "google_scholar_channel": {
+  "trigger_condition_met": true,
+  "reason": "Phase 1b condition 1 - the ADS four-form query came back EMPTY",
+  "what_was_actually_run": "NOT Google Scholar. This worker has no browser; I ran one general WebSearch, query 'GRB 120420B Fermi LAT gamma-ray burst'. It returned nothing about this burst (only 130427A / 160625B / 120624B material). Recorded honestly: the Scholar channel proper is UNRUN for this burst and remains open for a human or browsing agent.",
+  "note": "the Scholar channel is unlikely to add anything here - the gap is not vocabulary, it is that only machine tables mention the burst"
+ },
+ "n_refereed_papers": 1,
+ "papers": [
+  {
+   "bibcode": "2019ApJ...878...52A",
+   "first_author": "Ajello, M.",
+   "year": 2019,
+   "title": "A Decade of Gamma-Ray Bursts Observed by Fermi-LAT: The Second GRB Catalog (2FLGC)",
+   "classification": "sample-member / catalog row. FOUR per-burst rows: Table 2 p.56 (identity, position, theta, TS); Table 3 p.61 (durations); Table 4 p.68 (three LAT likelihood fits); Table 6 p.81 (highest-energy photons). Verbatim Table 3 row: '120420B (L) 0.003 254.92 254.91 - - - 3501.7 3908.0 410 +/- 10'. Verbatim Table 4 rows: 'LTF (0.0-4000.0) 51 12.2 32 -2.2+/-0.3 0.3+/-0.1 1.0+/-0.7', 'EXT (254.9-3908.0) 45 10.0 27 -2.1+/-0.4', 'LAT (3501.7-3908.0) 28 9.0 28 -2.1+/-0.4'. Table 6: 4 events, max 1.90 GeV at 3800.54 s, P=1.00, and NO photon at all in the GBM time window.",
+   "in_corpus_already": true,
+   "pdf": "Skills_training/Ajello_2019_2019ApJ87852A.pdf; corpus_index row 37; read=N; cited_by_bursts currently 'bn120624933' only -> append this trigger (queued below). NOT re-downloaded (G2 rule).",
+   "prompt_sections": "IN SCOPE, but as a NEGATIVE constraint only: Table 2 (theta = 109.7 deg -> source outside the LAT FoV at trigger) and Table 3/4 (LAT emission confined to 3502-3908 s; like_gbm_ts = 0) together establish that NOTHING the LAT saw lies in our -2..48 s prompt window. That is the D4 statement this burst needs. Sections 2-3 (event selection, likelihood setup) are the only methods text worth reading. Skip the population sections.",
+   "module_future_tags": "module-future;afterglow (the 3502-3908 s LAT emission, TS~28, 1.9 GeV photon at 3800 s, belongs to an afterglow module - with the caveat that its onset is an EXPOSURE boundary, Fermi's rocking bringing the position into the FoV, not a physical onset)",
+   "verification": "T4 GUARD APPLIED - every number read from the PDF was independently re-verified against HEASARC's machine-readable fermilgrb table (theta 109.7107, zenith 76.765, tl0 3501.66992, tl1 3908.01001, tl100 406.34+/-13.955, like_best_ts 31.8215, like_lat_ts 28.3742, like_ext_ts 26.9632, like_gbm_ts 0.0, ext_emission_max_ene 1900.0 MeV at 3800.54 s, lle_bbbd_sig 0.0). Agreement exact modulo the paper's rounding (410+/-10 vs 406.34+/-13.96)."
+  }
+ ],
+ "catalog_frames_not_papers": [
+  {
+   "source": "HEASARC fermigbrst (live TAP row, = the von Kienlin+2020 / Poolakkil+2021 team values)",
+   "why_not_a_paper_row": "the burst is a table entry in the GBM catalogs; no catalog paper's TEXT mentions it, so it can never appear in a full-text query. Treated as a catalog FRAME, filed in the dossier's PUBLISHED VALUES with full T9 labels.",
+   "key_values": "T90=254.913+/-4.222 s (T90START 0.003, 50-300 keV, TOTAL coverage); T50=124.866+/-3.238 s starting 21.504 s; fluence(10-1000)=4.32524e-5 erg/cm2; flnc BEST=Band over -3.84..247.04 s with Ep=289.73+/-68.21 keV, alpha=-0.9532+/-0.0824, beta=-1.6440+/-0.0429, chi2r 1.198/238; flnc_comp Ep=363.35+/-40.76, index=-0.9428; flnc_plaw index=-1.4561; flnc_sbpl Ebreak=10682+/-7649 keV RAILED; pflx BEST=Comptonized over 1.280..2.304 s with Ep=7993+/-2513 keV, index=-1.1257+/-0.0684; pflx_band Ep=254.5+/-94.8, alpha=-0.551+/-0.636, beta=-1.4762+/-0.0692. DETECTOR SET for both catalog spectral fits = n8 + b1 ONLY (scat mask 00000000100001); statistic Castor C-STAT."
+  },
+  {
+   "source": "VizieR J/ApJ/893/46 (von Kienlin+2020, 4th GBM catalog) tables 4 and 5",
+   "key_values": "table4 recno 908: bn120420858 = 120420B, RA 109.3 Dec +10.8 err 1.1 deg, Loc=Fermi-GBM, algorithm 11 (512 ms), trigger band 47-291 keV, Other = 'K, IA, W'. ReadMe Note(3) expands these to Konus-Wind, INTEGRAL SPI-ACS, Suzaku. table5: Det = '4+8' (n4+n8), T90 254.913+/-4.222 (start 0.003), T50 124.866+/-3.238 (start 21.504).",
+   "cross_catalog_inconsistency": "von Kienlin+2020 does NOT carry the 'L = Fermi LAT' flag for this burst although 2FLGC includes it with LTF TS=32. Recorded, not resolved (T5 discipline)."
+  }
+ ],
+ "multi_instrument_consensus_note": "Phase 4 consensus rule is NOT APPLICABLE in its usual form: von Kienlin+2020 flags Konus-Wind, INTEGRAL SPI-ACS and Suzaku detections, but none of the three published a per-burst Ep or fluence that I could reach (the Ioffe Konus pages returned HTTP 404/403 this session; no IPN/Konus catalog PDF in the local corpus contains the token '120420'). So there is exactly ONE instrument frame (GBM) and no inter-instrument spread to fold in. This is an OPEN GAP, not an absence - three independent Ep/fluence estimates plausibly exist in unindexed catalogs.",
+ "latest_first_ordering": "Phase 3b: (1) HEASARC fermigbrst live row = the newest team fits (Poolakkil+2021-era values, refreshed catalog) -> DEFAULT comparison frame for spectra; (2) von Kienlin+2020 (4th GBM catalog) -> durations/identity; (3) Ajello+2019 2FLGC -> LAT, and the ONLY refereed per-burst analysis; (4) Gruber+2014 / Bhat+2016 / von Kienlin+2014 -> superseded by (1) and kept only for lineage. No GCN circular exists, so the usual 'GCN is preliminary by its own statement' bottom rung is absent.",
+ "finding": "A CATALOG-ONLY BURST THAT THE STANDARD HARVEST CANNOT SEE. Zero GCN circulars, zero ADS full-text hits across seven query forms - yet the burst is NOT unstudied: it has a full GBM catalog spectral record and four Fermi-LAT catalog rows, all reachable only through machine tables (local corpus PDF scan + HEASARC TAP + VizieR). Physically it is (a) a LONG burst, T90 = 254.9 s with T50 starting at 21.5 s, of which our stamped window covers only the first 50 s; (b) exceptionally HARD - catalog peak-flux CPL Ep = 7993 +/- 2513 keV and time-integrated Band beta = -1.644 +/- 0.043, i.e. no high-energy break constrained inside the GBM band - which is exactly why the archival production run railed Band Ep at its old 5 MeV cap in every block; (c) strongly hard-to-soft, the softening happening mostly AFTER our window (catalog CPL Ep 7993 keV at the peak vs 363 keV integrated over 255 s, same model family); and (d) LAT-flagged but LAT-blind in our window (theta = 109.7 deg, zero events in the downloaded file, like_gbm_ts = 0, detection confined to 3502-3908 s). No redshift, no afterglow, no time-resolved spectroscopy anywhere - our block-resolved fits will be the first.",
+ "fetch_failures": [
+  "Konus-Wind per-burst page: http://www.ioffe.ru/LEA/GRBs/GRB120420_T74113/ -> HTTP 404; http://www.ioffe.ru/LEA/GRBs/ -> HTTP 403. The KW detection flagged by von Kienlin+2020 could not be resolved to a value.",
+  "INTEGRAL SPI-ACS and Suzaku detections: no accessible per-burst record found.",
+  "Google Scholar proper: not run (no browser in this worker). One general WebSearch run instead, returned nothing burst-specific.",
+  "VizieR TAP does not carry J/ApJ/893/46 under that table_name; the ASU-TSV endpoint was used instead (worked)."
+ ],
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   {"action": "append_cited_by", "bibcode": "2019ApJ...878...52A", "filename": "Ajello_2019_2019ApJ87852A.pdf", "add": "bn120420858", "current_value": "bn120624933", "new_value": "bn120624933;bn120420858", "n_bursts": "1 -> 2", "note": "already in corpus (row 37, read=N); NOT re-downloaded per G2"}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "add_row", "trigger": "bn120420858", "gcn_page": "results/gcn/bn120420858/", "n_circulars": 0, "z_mention": "-", "ads_hits": 0, "ads_refereed": 1, "note": "ads_hits=0 is literal (all seven full-text forms empty); ads_refereed=1 counts Ajello+2019, found ONLY by the local corpus scan"}
+  ],
+  "notes/READING_LIST_106.md": [
+   {"action": "correct_line", "line": 135, "current": "## bn120420858 (t)\\n  - no refereed papers (our fits will be first literature)", "proposed": "## bn120420858 (GRB 120420B)\\n  - 2019ApJ...878...52A [corpus] 2FLGC - LAT catalog rows ONLY (theta=109.7 deg, LAT emission 3502-3908 s, nothing in our window). Invisible to ADS full-text; found by local corpus scan.\\n  - no dedicated analysis; no time-resolved spectroscopy anywhere -> our fits will be the first"}
+  ],
+  "notes/literature_ledger.md": [
+   {"action": "update_row", "line": 18, "field": "n_papers", "current": 5, "proposed": 6, "note": "add 2FLGC"}
+  ]
+ },
+ "vikas_reading_list": "Prompt-curated (Phase 3c). This burst needs ~10 minutes of reading, not an hour. (1) Ajello+2019 2FLGC - read ONLY the four table rows for 120420B (pp. 56, 61, 68, 81) plus SS2-3 methods if you want the likelihood setup; the point is a NEGATIVE one (theta = 109.7 deg, LAT emission at 3502-3908 s, like_gbm_ts = 0), i.e. the LAT tells us nothing about our window. (2) The GBM catalog frame in the dossier SS4b - specifically the pflx-vs-flnc Ep contrast (7993 keV over 1.28-2.30 s vs 363 keV over 255 s, SAME model family): that single pair is the whole physics story of this burst and the frame for the P3 diff. (3) The dossier SS6 WARN-1/WARN-2 - our 50 s window holds ~40% of the counts and all four post-background windows sit on the burst tail; this is a Stage-1 decision to look at again, and it is yours to make. Deferred (module-future;afterglow): the late LAT emission."
+}

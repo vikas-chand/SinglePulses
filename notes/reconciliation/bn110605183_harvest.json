@@ -1,0 +1,162 @@
+{
+ "burst": "bn110605183",
+ "grb_name": "GRB 110605A",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1 four-form query + 6 supplementary forms; Phase 1b Scholar-note web bridge; Phase 2 version-of-record; Phase 3b latest-first; Phase 3c prompt-scope; Phase 4 frame-align + multi-instrument consensus; traps T1/T3/T6/T9 all exercised) + GCNIntelligence.md (G1 naming, G2 dedup)",
+ "identity": {
+  "trigger": "bn110605183 / MET TRIGTIME 328940614.30354",
+  "trigger_utc": "2011-06-05 04:23:32.3035",
+  "name_source": "VERIFIED, not assumed - von Kienlin+2014 (2014ApJS..211...13V) Table 6, p.55 of the local PDF, verbatim: 'bn110605183 GRB 110605A 04:23:32.3035 14.9 52.5 1.0 Fermi-GBM 10 512 47-291 Mo, K, IA, W'. Independently corroborated by Lu+2018 p.42 which writes the pair explicitly: 'GRB 110605A (bn110605183)'. tcat v01 OBJECT=GRB110605183; the UT matches our grb_sample TRIGGER_TIME (MJD 55717.183012772 -> 04:23:32.30) to the millisecond.",
+  "position": "RA=14.95, Dec=+52.46, ERR_RAD=1.0 deg (statistical), LOC_SRC='Fermi, GBM' (tcat v01)",
+  "redshift": "NONE - no afterglow, no follow-up, no circular ever written. Honest 'none', not an omission.",
+  "same_day_contamination_guard": "GRB 110605B = bn110605780 is a DIFFERENT GBM burst the same day: 18:42:49.0448 UT (~14 h later), RA/Dec 242.1/-3.1 (~130 deg away), T90 = 1.536 +/- 1.056 s = a SHORT burst (von Kienlin+2014 Tables 6 p.55 and 7 p.84). Nothing from it may enter this record. Our winning ADS forms are trigger-unique ('110605183'), so the harvest is uncontaminated by construction; a name-only search would not have been."
+ },
+ "gcn_circulars": {
+  "n_circulars": 0,
+  "evidence": "gcn.gsfc.nasa.gov/other/110605.gcn3 -> HTTP 404; 110605A.gcn3 -> 404; 110605B.gcn3 -> 404; POSITIVE CONTROLS same minute: 110604A.gcn3 -> 200 (7967 B), 110721A.gcn3 -> 200 (16519 B). Greiner GRB table (mpe.mpg.de/~jcg/grbgen.html, 1.47 MB fetched 2026-08-12) has 110604 and 110610 but no 110605 of any suffix.",
+  "tcat_gcn_flag": "GCN_FLAG = Yes in glg_tcat_all_bn110605183_v01.fit records an automated GCN NOTICE, NOT a circular. No team wrote prose about this burst.",
+  "tool_trap_recorded": "the modern gcn.nasa.gov Remix endpoint /circulars?...&_data=routes%2Fcirculars._archive._index IGNORES q=/query= and returns the unfiltered newest-first list (proved with the positive control q=110721A, which also returned the 2026 front page). It is not a usable search API from curl; use the classic per-GRB .gcn3 archive.",
+  "raw_file": "results/gcn/bn110605183/bn110605183_gcn_raw.txt"
+ },
+ "ads_queries": [
+  {"form": "full:\"bn110605183\"", "numFound": 1, "hits": ["2018ApJ...865..153L"]},
+  {"form": "full:\"110605183\"", "numFound": 1, "hits": ["2017ApJ...844..126S"]},
+  {"form": "full:(\"GRB 110605A\" OR \"GRB110605A\")", "numFound": 0, "hits": []},
+  {"form": "full:\"328940614\" (trigger MET)", "numFound": 0, "hits": []},
+  {"form": "full:\"GRB110605183\" [supplementary]", "numFound": 1, "hits": ["2017ApJS..229...31H"]},
+  {"form": "full:\"GRB 110605183\" [supplementary]", "numFound": 1, "hits": ["2017ApJ...844..126S"]},
+  {"form": "full:\"110605.183\" [supplementary]", "numFound": 1, "hits": ["2017ApJ...844..126S"]},
+  {"form": "full:\"328940615\" / full:\"328940616\" [supplementary MET roundings]", "numFound": 0, "hits": []},
+  {"form": "full:(\"GRB 110605\" OR \"GRB110605\") [supplementary]", "numFound": 0, "hits": []}
+ ],
+ "four_form_rule_vindicated": "Each of the three papers was found by a DIFFERENT token form and by no other: Lu+2018 only by 'bn110605183', Shao+2017 only by '110605183'/'GRB 110605183'/'110605.183', Hurley+2017 only by 'GRB110605183'. One query form would have returned one third of the footprint. The name form ('GRB 110605A') returned ZERO - for a GBM-only burst the name is not the search surface, the trigger id is.",
+ "scholar_note_bridge": {
+  "channel": "WebSearch (Phase 1b: ADS returned only 3 refereed papers = thin; ran the web bridge to catch cross-vocabulary literature ADS full-text would miss)",
+  "queries": [
+   "\"GRB 110605A\" OR \"GRB110605183\" Fermi GBM spectral analysis",
+   "Konus-Wind \"GRB 110605\" trigger June 5 2011 gamma-ray burst"
+  ],
+  "result": "NO new paper. Query 1 returned only the GBM catalog series (4th burst catalog arXiv 2002.11460, 10-yr spectral catalog arXiv 2103.13528, 4-yr spectral catalog arXiv 1401.5069) plus Lu+2018, all already known; query 2 returned nothing about this burst, confirming that the Konus-Wind detection recorded by von Kienlin+2014 was never published as a spectrum. Recorded as a NEGATIVE bridge result: the channel was run and found nothing, which is data (skill rule: record the query string).",
+  "resolved_via_ads": "n/a - no new bibcode entered through this channel"
+ },
+ "local_corpus_check": {
+  "method": "PyMuPDF text scan of the candidate corpus PDFs for the token '110605'",
+  "hits": "Shao_2017_2017ApJ844126S.pdf (pp. 9, 20 - OUR burst, verified by T90=82.69+/-3.08 matching our bcat); Lu_2018_2018ApJ865153L.pdf (pp. 13, 35, 42, 51, 54 - OUR burst, name written out as 'GRB 110605A (bn110605183)'); vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf (pp. 55, 84, 114, 144 - OUR burst AND the same-day sibling bn110605780, both rows present); Gruber_2014_2014ApJS21112G_bn110721200.pdf (0 hits - the spectral-catalog per-burst tables are machine-readable only)",
+  "g2_outcome": "Shao_2017 and Lu_2018 were ALREADY in Skills_training/corpus_index.csv (rows 30 and 75) -> NOT re-downloaded, NOT re-surfaced for reading (Lu_2018 read=Y). Zero new PDF bytes fetched for this burst. This is the G2 dedup dividend working exactly as designed."
+ },
+ "n_refereed_papers": 3,
+ "papers": [
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "first_author": "Lu, Rui-Jing",
+   "year": 2018,
+   "title": "A Comprehensive Analysis of Fermi Gamma-Ray Burst Data. IV. Spectral Lag and its Relation to Ep Evolution",
+   "doctype": "article (REFEREED)",
+   "citation_count": 26,
+   "classification": "sample-member with FULL time-resolved spectroscopy - the strongest external frame for this burst and the NEWEST (Phase 3b: read and diff this one first)",
+   "already_in_corpus": true,
+   "pdf": "Skills_training/Lu_2018_2018ApJ865153L.pdf (corpus row 75, read=Y, read_date 2026-08-10)",
+   "frame": "brightest-NaI TTE (smallest source angle); gtBurst + HEASOFT 6.20; RMFIT 4.3.2; BAND function; bins at SNR>40; chi2_r reported. Component coverage = the single pulse, [-0.83,+16.30] s (~18% of the T90 span).",
+   "verbatim_anchors": [
+    "Table 2 p.42: 'GRB 110605A (bn110605183) -0.83 -3.68 0.02 +/- 0.00 326.72 +/- 54.68 -0.55 +/- 0.12 -1.93 +/- 0.12 1.24E-06 +/- 4.28E-08 0.97 | 3.68 -5.68 0.07 +/- 0.02 186.22 +/- 25.03 -0.28 +/- 0.16 -2.11 +/- 0.15 1.53E-06 +/- 6.18E-08 0.95 | 5.68 -9.11 0.06 +/- 0.02 151.78 +/- 18.31 -0.32 +/- 0.16 -2.31 +/- 0.21 9.32E-07 +/- 4.82E-08 0.95 | 9.11 -16.30 0.05 +/- 0.02 103.45 +/- 14.62 -0.29 +/- 0.23 -2.15 +/- 0.14 5.11E-07 +/- 3.02E-08 1.06'",
+    "Table 1 p.35: 'bn110605183 NaI 51.97 +/- 2.02 3.77 +/- 0.19 1.96 +/- 0.22 1.38 +/- 0.15 1.95 1.14' (Im, tm, r, d, t0, chi2_r for the Kocevski+2003 pulse, their Eq. 1)",
+    "Table 3 p.51 (layout-verified by word coordinates, two-column table): 'bn110605183 (-0.5-25.0)' with band (2) 0.85 +/- 0.49, band (3) 1.73 +/- 0.41, band (5) 2.48 +/- 0.41",
+    "Table 4 p.54: 'bn110605183 H 1.48 +/- 0.42 21.95 2.03 +/- 0.79 -0.77 +/- 0.14'"
+   ],
+   "definitions_copied_with_the_numbers_T3": {
+    "Ep": "nu-F-nu peak of the Band function; alpha/beta are photon indices, negative sign convention",
+    "lag_tau_hat": "CCF lag measured WITH RESPECT TO the 8-25 keV band, MC-Gaussian errors; bands (1) 25-50, (2) 50-100, (3) 100-300, (4) 300-1000 keV NaI, (5) 300-1000 keV BGO, (6) 1000-5000 keV BGO. tau_hat RISES with energy here => POSITIVE lag = soft photons arrive later",
+    "tau_hat_31": "lag between 100-300 and 25-50 keV (the older literature's convention)",
+    "W": "FWHM of the pulse observed in 8 keV - 1 MeV (their Sect. 3.2). WARNING: the SAME symbol W is defined in their Sect. 3.1 as W = T_d + T_r at the 10% level - one paper, one symbol, two definitions (trap T3, the Lu+2018 specimen already recorded in the skill)",
+    "kE": "slope of log Ep = kE*log(t+t0) + b; class H requires kE < -0.2; our burst kE = -0.77 +/- 0.14, near the sample centre (-0.8)",
+    "k_tau_hat": "slope of tau_hat = k_tau_hat * log E + b",
+    "Evolution H": "hard-to-soft (H2S), and their Sect. 3.1 states the classification is made BY EYE - a judgement, not a fit",
+    "pulse_t0": "NOT a free parameter: fixed at the time of 0.1*Im on the RISE, then r and d fitted; r and d are DEGENERATE with t0 and are only comparable to a fit adopting the same rule"
+   },
+   "prompt_sections": "READ: Sect. 2 (sample + data reduction: brightest-NaI rule, RMFIT/Band, SNR>40 binning, Eq. 1 Kocevski pulse, lag bands and the 8-25 keV reference) and Sect. 3.1-3.2 (H2S vs tracking classification, kE, k_tau_hat, W); plus our four rows in Tables 1-4. ALL PROMPT - this paper has no afterglow content. DEFER: Sect. 4 (phenomenological curvature-effect simulation) unless the HLE thread reopens.",
+   "module_future_tags": "none (pure prompt-emission timing + spectroscopy)"
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "first_author": "Shao, Lang",
+   "year": 2017,
+   "title": "A New Measurement of the Spectral Lag of Gamma-Ray Bursts and its Implications for Spectral Evolution Behaviors",
+   "doctype": "article (REFEREED)",
+   "citation_count": 41,
+   "classification": "sample-member (1 of 50 bright single-pulse GBM bursts); independent lag/pulse-width measurement in a DIFFERENT formalism from Lu+2018",
+   "already_in_corpus": true,
+   "pdf": "Skills_training/Shao_2017_2017ApJ844126S.pdf (corpus row 30, read=N)",
+   "frame": "TTE rebinned into NINE log-spaced energy channels; per-channel polynomial background + GAUSSIAN pulse (IDL GAUSSFIT); PyMultiNest on t_peak(E) = t0 + tau*(E/1keV)^-beta and delta(E) = omega*(E/1keV)^-gamma. NaI used = n2 (our brightest detector). Binsize 1.00 s.",
+   "verbatim_anchors": [
+    "Table 1 p.9: '110605183 82.69 +/- 3.08 1.00 -7.452 +9.839/-0.140 25.367 +19.457/-1.900 0.149 +0.452/-0.003 16.274 +5.620/-2.665 0.310 +0.066/-0.039 n2 2.459 +/- 0.237'"
+   ],
+   "definitions_copied_with_the_numbers_T3": {
+    "T90": "ADOPTED from the GBM catalog, 50-300 keV - not an independent measurement (T6 chain: their Sect. 2 names Gruber+2014 and von Kienlin+2014 as the source; the value is byte-identical to our bcat)",
+    "binsize": "nominally 5% of T90 (= 4.13 s here) but 'modified manually to keep them close to 5% of the genuine pulse width' -> they used 1.00 s, i.e. they judged the genuine pulse ~20 s wide, not 83 s. Independent corroboration of the T50-based core.",
+    "t0": "t_peak(E -> infinity), the limiting arrival time of the most energetic photons",
+    "tau": "the LIMITING SPECTRAL LAG AT 1 keV = t_peak(1 keV) - t_peak(infinity). NOT a CCF lag and NOT comparable to Lu's tau_hat_31. Sample median 12.6 s; our burst 25.4 s = a long-lag object.",
+    "omega": "limiting RMS Gaussian HALF-width at 1 keV (sample median 5.2 s; ours 16.3 s)",
+    "gamma": "index of delta(E) = omega*E^-gamma (sample median 0.21; ours 0.310). They read gamma~0.5 as synchrotron cooling and gamma~0.25 as SSC/curvature/Doppler - ours sits between.",
+    "delta_t_HR": "CCF delay between the HARDNESS-RATIO curve and the TOTAL light curve (their Sect. 5) - a hardness-INTENSITY delay, a different physical quantity from any photon lag; never diff it against tau_hat"
+   },
+   "prompt_sections": "READ: Sect. 2 (nine-channel construction, Gaussian-pulse selection - note the burst had to be pinpointable in ALL nine channels, so its single-pulse status is externally corroborated), Sect. 3 (Eqs. 2 and 5, the t0/tau/beta/omega/gamma meanings), Sect. 5 (delta_t_HR and the HIT-vs-HTS hardness discussion), and our Table 1 row. ALL PROMPT. DEFER: Sects. 6-7 (pulsar/dispersion analogies, population correlations).",
+   "module_future_tags": "none (pure prompt-emission timing)"
+  },
+  {
+   "bibcode": "2017ApJS..229...31H",
+   "first_author": "Hurley, K.",
+   "year": 2017,
+   "title": "The InterPlanetary Network Supplement to the Second Fermi GBM Catalog of Cosmic Gamma-Ray Bursts",
+   "doctype": "article (REFEREED)",
+   "citation_count": 9,
+   "classification": "catalog-member (IPN detection row). MEMBERSHIP CERTAIN - the ADS full-text form full:\"GRB110605183\" returns this paper and only this paper. ROW CONTENT NOT EXTRACTED (see failure note).",
+   "already_in_corpus": false,
+   "pdf": "NOT OBTAINED. No arXiv eprint exists (ADS identifier list is empty of arXiv ids; property list has PUB_OPENACCESS but not EPRINT_OPENACCESS). Both https://iopscience.iop.org/article/10.3847/1538-4365/229/2/31/pdf and https://ui.adsabs.harvard.edu/link_gateway/2017ApJS..229...31H/PUB_PDF return a 14371-byte Radware Bot Manager CAPTCHA HTML page, not a PDF. The tables are not in VizieR (TAP tap_schema query for 'J/ApJS/229/31%' -> 0 rows) and ssl.berkeley.edu/ipn3/masterli.txt now 404s.",
+   "why_no_numbers_are_lost": "What the IPN row would give us is the detecting-spacecraft list, and von Kienlin+2014 Table 6 already prints it for this burst: 'Mo, K, IA, W' = Mars Odyssey, Konus-Wind, INTEGRAL SPI-ACS, Suzaku-WAM (legend verbatim from p.63). Nothing numeric is claimed from Hurley+2017 anywhere in this dossier.",
+   "prompt_sections": "the single table row - an independent multi-mission confirmation of the prompt emission; nothing to diff",
+   "module_future_tags": "module-future;mm (IPN / cross-mission context)"
+  }
+ ],
+ "catalog_frame_not_a_paper": {
+  "note": "The GBM catalog values below are quoted from FITS files downloaded 2026-08-12 from https://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/triggers/2011/bn110605183/current/ into results/gcn/bn110605183/heasarc/. They are the P3 diff baseline.",
+  "bcat_v02": "BCATALOG=2, reprocessed 2014-02-19. T90 = 82.689 +/- 3.083 s from T90START = +1.536 s; T50 = 24.064 +/- 0.572 s from +4.864 s (50-300 keV, dets NAI_01+NAI_02+NAI_05). Fluence(10-1000) = 1.92515e-05 +/- 5.59306e-08; fluence(50-300) = 1.15633e-05 +/- 3.16975e-08. PFLX(1.024 s, 10-1000) = 8.21684 +/- 0.367554 ph/cm2/s beginning at +3.520 s. These rows are BYTE-IDENTICAL to von Kienlin+2014 Tables 7/8/9 (pp. 84/114/144) - verified line by line.",
+  "scat_v02": "FILE version v02 but header SCATALOG = 3, DATE = 2018-11-19, CREATOR = rmfit 4.4.2BA, STATISTC = Castor C-STAT. DO NOT conflate file version with catalog generation. Dets = BGO_00 + NAI_02 + NAI_05 (= our approved set exactly). Fit ranges: NaI2 8.229-902.57 keV (ch 4:124), NaI5 8.698-909.58 keV (ch 5:124), BGO0 250.77-40108 keV (ch 2:124). flnc interval [-2.048, +60.416] s; pflx interval [3.072, 4.096] s.",
+  "scat_values": {
+   "flnc_band": "Ep = 151.01 (+9.22/-9.83) keV, alpha = -0.610 (+0.062/-0.067), beta = -2.220 (+0.107/-0.086), A = 0.02241; NRGFLNC(10-1000) = 2.1013e-05 +/- 5.99e-07 erg/cm2; REDCHSQ 1.0825 / dof 360",
+   "flnc_comp": "Ep = 185.62 (+8.28/-9.07) keV, index = -0.750 (+0.045/-0.046), pivot 100 keV fixed; NRGFLNC = 1.848e-05; REDCHSQ 1.1141 / 361",
+   "flnc_sbpl": "Ebreak = 96.81 (+10.25/-11.88) keV [BREAK energy, NOT Ep], low index -0.834, high index -2.290, break scale 0.3 FIXED; NRGFLNC = 2.101e-05; REDCHSQ 1.0828 / 360",
+   "flnc_plaw": "index -1.530 +/- 0.008; REDCHSQ 2.0483 / 362 - decisively rejected",
+   "pflx_band": "Ep = 216.31 (+17.98/-32.68) keV, alpha = -0.320 (+0.154/-0.137), beta = -2.831 (+49.12/-0.31 = UNCONSTRAINED, do not diff beta here); REDCHSQ 0.9864 / 360",
+   "pflx_comp": "Ep = 230.70 (+19.36/-23.26) keV, index = -0.374 (+0.122/-0.131); REDCHSQ 0.9911 / 361",
+   "reading": "Band and SBPL are statistically TIED (1.0825 vs 1.0828, same dof); Comp slightly worse; PL out. A curved spectrum with a genuine BGO-measured high-energy power law beta ~ -2.2."
+  },
+  "membership_in_printed_catalogs": "von Kienlin+2014 (2014ApJS..211...13V, 2nd GBM burst catalog): rows VERIFIED in the local PDF at pp. 55/84/114/144. Gruber+2014 (2014ApJS..211...12G, GBM spectral catalog): the local PDF contains NO occurrence of '110605' - the per-burst spectral tables are machine-readable only, so membership is inferred (date inside coverage) and the numbers are taken from the scat FITS instead. Shao+2017 Sect. 2 names 'the official GBM online burst catalog (Gruber et al. 2014; von Kienlin et al. 2014)' as their source and quotes our T90 exactly - a T6 chain, recorded as a chain, not as an independent measurement."
+ },
+ "frame_alignment_for_P3": {
+  "component_coverage_T9": "ONE emission complex, no precursor, no separate episode; T90START = +1.536 s so there is NO pre-trigger emission (this burst is NOT a D4 case). But the frames cover different FRACTIONS of it: our stamped window [-1.548,+30.618] s ~ 36% of the T90 span (and contains ALL of T50 [4.86,28.93]); catalog flnc [-2.048,+60.416] ~ 75%; bcat T90 [1.54,84.23] = 100%; Lu+2018 [-0.83,+16.30] ~ 18%; Shao+2017 effective (-0.5,25.0) ~ 29%.",
+  "consequence": "Ep evolves monotonically hard-to-soft (327 -> 186 -> 152 -> 103 keV, Lu+2018), so a LONGER interval is necessarily SOFTER. Any Ep the catalog reports over [-2.048,+60.416] s MUST come out below ours over [-1.548,+30.618] s. That is a frame difference, never a discrepancy. Ordered ladder: Lu bin1 327 keV > pflx 216/231 > Lu bin2 186 > flnc Band/Comp 151/186 > Lu bin4 103.",
+  "detector_sets": "OUR approved set = n2, n5, b0 (Vikas Chand, human_gui, 2026-07-19T22:18:36Z). GBM SPECTRAL catalog set = BGO_00, NAI_02, NAI_05 = IDENTICAL. GBM DURATION catalog set = n1+n2+n5 (adds n1). Shao+2017 = n2 only. Lu+2018 = brightest NaI only. n1 is on disk but NOT approved: I independently computed its viewing angle = 63.85 deg, outside the <=50 deg NaI rule (n2 = 21.49, n5 = 47.85, b0 = 50.78 - my values reproduce the stamped angles to 0.01 deg).",
+  "multi_instrument_consensus_Rossi2026": "NOT APPLICABLE in the usual sense: Konus-Wind, INTEGRAL SPI-ACS, Suzaku-WAM and Mars Odyssey all DETECTED this burst (von Kienlin+2014 'Mo, K, IA, W') but NONE published a spectrum for it (checked by ADS four-form + 6 supplementary forms + a targeted Konus web query). There is no inter-instrument spread to fold into the error. The only spread available is between analyses of the SAME GBM data over DIFFERENT intervals, which is a frame effect and must not be inflated into a systematic.",
+  "Ep_conventions": "Band Ep and Comp Ep are both nu-F-nu peak energies (rmfit parametrisation); Ep(Comp) > Ep(Band) is curvature, not units. SBPL Ebreak = 96.81 keV is a BREAK energy and is NOT an Ep - never diff it against one (L21)."
+ },
+ "finding": "GRB 110605A has NO dedicated-analysis paper and NO circulars. Its entire refereed footprint is three papers, and NONE of them fits a physical model to it: Lu+2018 (time-resolved Band + Kocevski pulse + CCF lags, the newest and strongest frame), Shao+2017 (nine-channel Gaussian lag formalism), Hurley+2017 (an IPN detection row we could not extract because the publisher blocks bots and no eprint exists). No redshift, no afterglow, no host, no SN, no photospheric or synchrotron claim, no BB claim, no two-break claim - by anyone, ever. Two independent teams did nevertheless certify what our Stage 1 assumed: the burst is a clean SINGLE PULSE (Shao required a Gaussian to pinpoint it in all nine energy channels; Lu fit one Kocevski pulse at chi2_r = 1.14), its Ep evolution is HARD-TO-SOFT (Lu class 'H', kE = -0.77 +/- 0.14, Ep 327 -> 103 keV), and its brightest detector is n2 - the detector our human-approved Stage 1 also chose, alongside n5 and b0, which is EXACTLY the GBM spectral catalog's own set. Because nobody has ever proposed a spectral component beyond Band/CPL/SBPL for this burst, whatever our union rule and DSBPL do here is an UNPUBLISHED DECISION to be scored against the expert band, not a literature reconciliation. That makes this burst unusually clean evidence in the AI-Scientist program: there is no published answer to memorize.",
+ "pending_shared_csv_rows": {
+  "_rule": "NO shared CSV was written by this worker (hard rule). Every row below is a QUEUED edit for whoever owns the merge.",
+  "Skills_training/corpus_index.csv": [
+   {"action": "update", "row": 30, "filename": "Shao_2017_2017ApJ844126S.pdf", "bibcode": "2017ApJ...844..126S", "change": "cited_by_bursts += bn110605183, n_bursts += 1 (G2 dedup - file already present, NOT re-downloaded, NOT re-surfaced for reading)", "caution": "rows 116 and 122 already carry free-text 'cited_by +=' amendments for bn090719063 and bn090809978 that were never folded into row 30 - fold all of them together, do not just append another line"},
+   {"action": "update", "row": 75, "filename": "Lu_2018_2018ApJ865153L.pdf", "bibcode": "2018ApJ...865..153L", "change": "cited_by_bursts += bn110605183, n_bursts += 1 (G2 dedup; read=Y already, so NOT re-surfaced for reading)", "caution": "same as above - rows 117 and 125 carry unfolded amendments"},
+   {"action": "append_or_update", "filename": "vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf", "bibcode": "2014ApJS..211...13V", "arxiv": "1401.5080", "theme": "gbm-burst-catalog-2nd;identity;durations;fluence", "cited_by_bursts": "bn110920546;bn110605183", "n_bursts": 2, "read": "N", "note": "the PDF EXISTS in Skills_training/ (downloaded 2026-08-12 17:53 by the concurrent bn110920546 worker) but has NO row in corpus_index.csv. It is the identity+duration PRIMARY for this burst (rows verified at pp. 55/84/114/144). arxiv id is my best identification and should be confirmed by the owning worker before it is written."},
+   {"action": "append_or_update", "filename": "Gruber_2014_2014ApJS21112G_bn110721200.pdf", "bibcode": "2014ApJS..211...12G", "arxiv": "1401.5069", "theme": "gbm-spectral-catalog;Band-SBPL-Comp-conventions", "cited_by_bursts": "bn110721200;bn110605183", "n_bursts": 2, "read": "N", "note": "PDF exists (downloaded 2026-08-12 17:52 by the concurrent bn110721200 worker), no index row. Contains NO '110605' token - per-burst tables are machine-readable only; cited here for the conventions behind our scat FITS, not for a printed row."},
+   {"action": "flag_broken_file", "filename": "Skills_training/Hurley_2017_2017ApJS22931H_bn101126198.pdf", "bibcode": "2017ApJS..229...31H", "problem": "NOT A PDF - it is a 14371-byte 'Radware Bot Manager Captcha' HTML page (file(1) says 'HTML document text'; PyMuPDF refuses to open it). Written 2026-08-12 17:51 by the concurrent bn101126198 worker, presumably unnoticed. It also has no corpus_index row.", "recommendation": "delete or re-fetch; there is no arXiv eprint for this bibcode and IOP blocks curl from this host, so a manual browser download is the only route. I did NOT touch the file (another worker's in-flight artifact) and did NOT write a duplicate under my own trigger suffix, because a second copy of the same bibcode would break G2 dedup.", "generalizes": "every corpus download should be gated on `head -c4 file | grep -q '%PDF'` - the Phase-2 check the skill already prescribes but that nothing enforces."}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "append", "row_csv": "bn110605183,NO_GCN_PAGE_404,0,N,3,3", "note": "columns trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed. gcn_page = the classic archive returns 404 for every suffix form; n_circulars=0 (positive controls passed); z_mention=N (no redshift exists); ads_hits/refereed = 3/3 across all query forms, deduplicated."}
+  ]
+ },
+ "vikas_reading_list": {
+  "new_and_unread": "NOTHING NEW TO DOWNLOAD - both analysis papers are already in the corpus and Lu+2018 is already read=Y. This burst cost zero new reading, which is the G2 dedup dividend.",
+  "20_minute_item": "Shao+2017 (corpus row 30, read=N) - Sect. 2 + Sect. 3 (Eqs. 2 and 5) + our Table 1 row + Sect. 5 on delta_t_HR. Worth the time not for this burst's numbers but because his tau (limiting lag at 1 keV, ours = 25.4 s vs sample median 12.6 s) and omega (16.3 s vs 5.2 s) are a formalism we do not currently compute, and they put this burst at the long-lag end of a 50-burst sample.",
+  "no_reading_needed": "Lu+2018 - already read 2026-08-10; the four rows for this burst are transcribed verbatim into results/gcn/bn110605183/bn110605183_dossier.md, including the T3 warning that W means FWHM in Sect. 3.2 but T_d + T_r in Sect. 3.1.",
+  "deferred": "nothing - this burst has NO afterglow/SN/cosmology literature at all, so the module-future shelf gains only Hurley+2017 (module-future;mm), which we could not even open."
+ }
+}

@@ -1,0 +1,450 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22882
+SUBJECT: GRB 180703A: Tiled Swift observations
+DATE:    18/07/04 01:51:48 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+P. A. Evans (U. Leicester) reports on behalf of the Swift team:
+
+Swift has initiated a series of observations, tiled on the sky, of the
+Fermi/LAT GRB 180703A. Automated analysis of the XRT data will
+be presented online at http://www.swift.ac.uk/xrt_products/TILED_GRB00070
+
+Any uncatalogued X-ray sources detected in this analysis will be
+reported on this website and via GCN COUNTERPART notices. The probability of finding
+serendipitous sources, unrelated to the Fermi/LAT event is high: any X-ray source
+considered to be a probable afterglow candidate will be reported via a GCN Circular
+after manual consideration.
+
+Details of the XRT automated analysis methods are detailed in Evans et
+al. (2007, A&A, 469, 379; 2009, MNRAS, 397, 1177 and 2014, ApJS, 210, 8).
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22883
+SUBJECT: GRB 180703A: Fermi-LAT detection
+DATE:    18/07/04 01:57:55 GMT
+FROM:    Judith Racusin at GSFC  <judith.racusin@nasa.gov>
+
+J. L. Racusin (NASA/GSFC), M. Crnogorčević (UMD), M. Axelsson (KTH and Stockholm Univ.), 
+A. Barker (George Washington), G. Vianello (Stanford), and M. Arimoto (Kanazawa University), 
+report on behalf of the Fermi-LAT team:
+
+At 21:01:40.50 on July, 03, 2018 Fermi-LAT detected high-energy emission from GRB 180703A, 
+which was also detected by Fermi-GBM (trigger 552344505 / 180703876).
+
+The best LAT on-ground location is found to be
+RA, Dec = 6.54, -67.1 (J2000)
+with an error radius of 0.3 deg (90% containment, statistical error only).
+
+This was 48 deg from the LAT boresight at the time of the trigger.
+
+The data from the Fermi-LAT show a significant increase in the event rate that is spatially and temporally 
+correlated with the trigger with high significance.
+
+The highest-energy photon is a ~930 MeV event which is observed at 40 seconds after the GBM trigger.
+
+A Swift ToO has been approved for this burst.
+
+The Fermi-LAT point of contact for this burst is Judith Racusin (judith.racusin@nasa.gov).
+
+The Fermi-LAT is a pair conversion telescope designed to cover the energy band from 20 MeV to greater 
+than 300 GeV. It is the product of an international collaboration between NASA and DOE in the U.S. and 
+many scientific institutions across France, Italy, Japan and Sweden.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22891
+SUBJECT: GRB 180703A: Swift-XRT observations
+DATE:    18/07/04 12:02:52 GMT
+FROM:    Antonino D'Ai at IASF-PA  <antonino.dai@ifc.inaf.it>
+
+S.L. Gibson (U. Leicester), Z. Liu (NAOC / U. Leicester), P. D'Avanzo
+(INAF-OAB), V. D'Elia (ASDC), A. D'Ai (INAF-IASFPA), S. J. LaPorte
+(PSU), J.A. Kennea (PSU), B. Sbarufatti (INAF-OAB/PSU), J.P. Osborne
+(U. Leicester) and P.A. Evans (U. Leicester) report on behalf of the
+Swift-XRT team:
+
+Swift-XRT has performed follow-up observations of the
+Fermi/LAT-detected burst GRB 180703A (Racusin et al. GCN Circ. 22883)
+in a series of observations tiled on the sky. The total exposure time
+is 2.0 ks, distributed over 4 tiles; the maximum exposure at a single
+sky location was 863 s. The data were collected between T0+16.9 ks and
+T0+29.0 ks, and are entirely in Photon Counting (PC) mode. 
+
+One uncatalogued X-ray source has been detected, it is below the RASS
+limit and shows no definitive signs of fading. Therefore, at the
+present time we cannot confirm this as the afterglow. Details of this
+source are given below:
+
+Source 1:
+  RA (J2000.0):  6.4693  =  00:25:52.63
+  Dec (J2000.0): -67.1802  =  -67:10:48.7
+  Error: 5.5 arcsec (radius, 90% conf.)
+  Count-rate: 0.0207 [+0.0067, -0.0055] ct s^-1   
+  Distance: 339 arcsec from Fermi/LAT position.
+  Flux: (1.22 [+0.39, -0.32])e-12 erg cm^-2 s^-1 (observed, 0.3-10 keV)
+
+A catalogued source was also detected.
+
+The results of the XRT-team automatic analysis of the tiled XRT
+observations, including a position-specific upper limit calculator, are
+available at http://www.swift.ac.uk/xrt_products/TILED_GRB00070.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22892
+SUBJECT: GRB 180703A: LCO Sutherland possible optical candidate
+DATE:    18/07/04 13:26:02 GMT
+FROM:    Renato Martone at Universita' di Ferrara  <mrtrnt@unife.it>
+
+C. Guidorzi, R. Martone (U. Ferrara), S. Kobayashi (LJMU), C.G. Mundell (U. Bath), A. Gomboc (U. Nova Gorica), I.A. Steele (LJMU), A. Cucchiara, D. Morris (U. of Virgin Islands) on behalf of a large collaboration report:
+
+One of the LCO 1-m units at Sutherland Observatory (South Africa) began observing Fermi-LAT GRB 180703A (Racusin et al. GCN 22883) on July 04, 02:34 UT (5.5 hours after the GRB trigger time) with the SDSS i' filter. On the border of the Swift-XRT error circle of source S1 (Gibson et al. GCN 22891) we marginally detect an object at the following position:
+
+RA(J2000)=  00:25:52.35
+DEC(J2000)= -67:10:43.4
+
+with an error radius of ~1" and a magnitude of i'=20.6 +- 0.3 at a mid time of 5.65 hours post GRB, as calibrated against nearby USNOB-UCAC4 stars.
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22896
+SUBJECT: GRB 180703A: Fermi GBM detection
+DATE:    18/07/04 16:59:58 GMT
+FROM:    Suraj Poolakkil at UAH  <sp0076@uah.edu>
+
+S.Poolakkil and C. Meegan (both UAH) report on
+behalf of the Fermi GBM Team:
+
+"At 21:01:40.50 UT on 03 July 2018, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 180703A (trigger 552344505 / 180703876),
+which was also detected by the Fermi LAT (Racusin et al. 2018, GCN 22883).
+The GBM on-ground location is consistent with the LAT position.
+
+The angle from the Fermi LAT boresight
+at the GBM trigger time is 44 degrees.
+
+The GBM light curve shows a single peak
+with a duration (T90) of about 20.2 s (50-300 keV).
+The time-averaged spectrum from T0-3.1 s to T0+25.6 s is
+best fit by a Band function with Epeak = 360 +/- 33 keV,
+alpha = -0.80 +/- 0.04 and beta = -1.95 +/- 0.08.
+
+The event fluence (10-1000 keV) in this time interval is
+(2.001 +/- 0.043)E-05 erg/cm^2. The 1-sec peak photon flux measured
+starting from T0+3.52 s in the 10-1000 keV band
+is 11.1 +/- 0.25 ph/s/cm^2.
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22898
+SUBJECT: GRB 180703A: Swift/UVOT Upper Limits
+DATE:    18/07/04 17:04:13 GMT
+FROM:    Sam Emery at MSSL-UCL  <samuel.emery.15@ucl.ac.uk>
+
+S.W.K. Emery (UCL-MSSL) and E. Sonbas (Adiyaman Univ.)
+report on behalf of the Swift/UVOT team:
+
+The Swift/UVOT began settled observations of the field of GRB 180703A
+17269 s after the Fermi/LAT trigger (Racusin et al. GCN Circ. 22883).
+No optical afterglow consistent with the XRT position of the
+uncatalogued X-ray source, source 1 (Gibson et al. GCN Circ. 22891)
+or the position from LCO Sutherland (Guidorzi et al. GCN Circ. 22892)
+is detected in the initial UVOT exposures.
+Preliminary 3-sigma upper limits using the UVOT photometric system
+(Breeveld et al. 2011, AIP Conf. Proc. 1358, 373) for the first
+exposures at the position of source 1 are:
+
+Filter      T_start(s)   T_stop(s)      Exp(s)         Mag
+
+b             17353         28862           47         >19.2
+u             17323         28834          116         >19.5
+uvw1          17269         28807          234         >19.8
+uvw2          17384         28917           97         >19.2
+
+The magnitudes in the table are not corrected for the Galactic extinction
+due to the reddening of E(B-V) = 0.02 in the direction of the burst
+(Schlegel et al. 1998).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22900
+SUBJECT: GRB 180703A: AstroSat CZTI detection
+DATE:    18/07/05 13:40:47 GMT
+FROM:    Vidushi Sharma at IUCAA  <vidushi@iucaa.in>
+
+V. Sharma, A. Vibhute and D. Bhattacharya (IUCAA), V. Bhalerao (IIT-B), A. R. Rao (TIFR) and S. Vadawale (PRL) report on behalf of the Astrosat CZTI collaboration:
+
+Analysis of Astrosat CZTI data showed the detection of a long GRB 180703A, which was also detected by Swift (Evans P. A. et al., GCN 22882), Fermi-LAT (Racusin J. L. et al., GCN 22883), Swift-XRT (Gibson S. L. et al., GCN 22891) and Fermi-GBM (Poolakkil S. et al., GCN 22896).
+
+The source was clearly detected in the 40-200 keV energy range. The light curve shows a single peak of emission with peak at 21:01:44.5 UT, ~4 s after the GBM trigger. The measured peak count rate is 277.3 cts/s above the background in combined data of four quadrants, with a total of 2182 cts. The local mean background count rate was 519.6 cts/s. Using cumulative rates, we measure a T90 of 20.9 s.
+
+It was also clearly detected in the CsI anticoincidence (Veto) detector in the 100-500 keV energy range.
+
+CZTI GRB detections are reported regularly on the payload site at http://astrosat.iucaa.in/czti/?q=grb. CZTI is built by a TIFR-led consortium of institutes across India, including VSSC, ISAC, IUCAA, SAC and PRL. The Indian Space Research Organisation funded, managed and facilitated the project.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22925
+SUBJECT: IPN Triangulation of GRB 180703A
+DATE:    18/07/07 08:32:45 GMT
+FROM:    Anna Kozlova at Ioffe Institute  <ann_kozlova@mail.ioffe.ru>
+
+K. Hurley, on behalf of the IPN,
+
+I. G. Mitrofanov, D. Golovin, M. L. Litvak, and A. B. Sanin,
+on behalf of the HEND-Odyssey GRB team,
+
+A. Kozlova, S. Golenetskii, R. Aptekar, D. Frederiks, D. Svinkin,
+and T. Cline on behalf of the Konus-Wind team,
+
+A. Goldstein, M. S. Briggs, and C. Wilson-Hodge
+on behalf of the Fermi GBM team,
+
+A. von Kienlin, X. Zhang, A. Rau, V. Savchenko, E. Bozzo,
+and C. Ferrigno, on behalf of the INTEGRAL SPI-ACS GRB team,
+
+S. Barthelmy, J. Cummings, H. Krimm, and D. Palmer,
+on behalf of the Swift-BAT team,
+
+and
+
+W. Boynton, C. Fellows, K. Harshman, H. Enos, and R. Starr,
+on behalf of the GRS-Odyssey GRB team, report:
+
+The long duration GRB 180703A
+(Fermi-LAT detection: Racusin et al., GCN Circ. 22883;
+Fermi-GBM detection: Poolakkil and Meegan, GCN Circ. 22896;
+AstroSat CZTI detection: Sharma et al., GCN Circ. 22900)
+was detected by Fermi (GBM trigger 552344505), Konus-Wind,
+INTEGRAL (SPI-ACS), Mars-Odyssey (HEND), and Swift (BAT),
+at about 75700 s UT (21:01:40). The burst was outside the
+coded field of view of the BAT.
+
+We have triangulated it to a Konus-HEND annulus centered at
+RA(2000)=312.437 deg (20h 49m 45s)  Dec(2000)=-22.995 deg (-22d 59' 40"),
+whose radius is 54.738 +/- 1.217 deg (3 sigma).
+
+The annulus is consistent with, but does not reduce the area of, the LAT
+position reported by Racusin et al. (GCN Circ. 22883).
+
+A triangulation map is posted at
+http://www.ioffe.ru/LEA/GRBs/GRB180703_T75705/IPN
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22926
+SUBJECT: GRB 180703A: MASTER optical observation 
+DATE:    18/07/07 15:21:34 GMT
+FROM:    Vladimir Lipunov at Moscow State U/Krylov Obs  <lipunov@xray.sai.msu.ru>
+
+V. Lipunov, E. Gorbovskoy, V.Kornilov,  N.Tiurina, A.Kuznetsov, V.Chazov,
+I. Gorbunov, D. Vlasenko, D.Zimnukhov, D.Kuvshinov, P.Balanutsa, V.Vladimirov
+Lomonosov Moscow State University,SAI
+
+D. Buckley,
+South African Astronomical Observatory (SAAO)
+
+R. Rebolo, M. Serra, N. Lodieu, G. Israelian, L. Suarez-Andres
+The Instituto de Astrofisica de Canarias (IAC)
+
+A. Tlatov, V.Senik, D. Dormidontov
+Kislovodsk Solar Station of the Pulkovo Observatory
+
+R. Podesta, F. Podesta, C. Lopez, C.Francile
+Observatorio Astronomico Felix Aguilar (OAFA)
+
+H.Levato,
+Instituto de Ciencias Astronomicas, de la Tierra y del Espacio (ICATE)
+
+O. Gres, N.M.Budnev , Yu.Ishmuhametova
+Irkutsk State University (ISU)
+
+A. Gabovich, V. Yurkov, Yu. Sergienko
+Blagoveschensk Educational State University (BSPU)
+MASTER-SAAO robotic telescope (MASTER-Net: http://observ.pereplet.ru, 
+Lipunov et al., 2010, Advances in Astronomy, vol. 2010, 30L) located in 
+South Africa (South African Astronomical Observatory) was pointed to the 
+GRB180703A (Poolakkil et al., GCN Circ #22896) 17 sec after notice time 
+and 576 sec after trigger time at 
+2018-07-03 21:11:17 UT. On our first (120s exposure)  set we not  found
+optical transient within FERMI error-box (ra=349.946 dec=-65.5794 r=1.62) 
+brighter then 18.0.
+
+MASTER-SAAO robotic telescope (MASTER-Net: http://observ.pereplet.ru, 
+Lipunov et al., 2010, Advances in Astronomy, vol. 2010, 30L) located in 
+South Africa (South African Astronomical Observatory) was pointed to the 
+GRB180703A (Racusin et al., GCN Circ #22883) 14961 sec after trigger time 
+at  2018-07-04 01:11:02 UT . On our first (180s exposure)  set we  do not 
+found  optical transients within LAT error-box (ra=6.54 dec=-67.09 
+r=0.3)  brighter then 18.3.
+
+The observations made on zenit distance = 44 degrees, galaxy latitude b = 
+-50 degree.
+The moon (72 % bright part) is 55 degrees above the horizon. The distance 
+between  moon and  object is 60
+The sun  altitude  is -55.4 degree.
+The object can be observed till sunrise at 2018-07-04 05:38:26
+
+MASTER-OAFA robotic telescope (MASTER-Net: http://observ.pereplet.ru, 
+Lipunov et al., 2010, Advances in Astronomy, vol. 2010, 30L) located in 
+Argentina (OAFA observatory of San Juan National University) was pointed 
+to the  GRB180703A 14975 sec after trigger 
+time at 2018-07-04 01:11:15 UT. On our first (180s exposure)  set we 
+found 6 optical transient within LAT error-box (ra=6.5375 dec=-67.0894 
+r=0.3039) brighter then 14.7.
+
+
+The observations made on zenit distance = 76 degrees, galaxy latitude b = 
+-50 degree.
+The moon (72 % bright part) below the horizon (The altitude of the Moon is 
+-18 degree ).
+The sun  altitude  is -43.1 degree.
+The object can be observed till sunrise at 2018-07-04 11:36:37
+
+
+The visibility GRB error box (coord: 349.9500 -65.5800 error_box: 0.3) 
+at trigger time at different MASTER sites:
+
+
+obj: -42.33 sun: -21.55 - Tavrida (Crimea, Russia) 
+obj: -41.44 sun: -11.38 - IAC, Teide, (Tenerife, Spain)
+obj:  28.43 sun: -66.35 - SAAO (Sutherland, SA) 
+obj: -31.89 sun: -23.27 - Kislovodsk (Russia)
+obj: -38.98 sun: -9.15 -  Ural(Kourovka, Russia)
+obj: -27.62 sun:  0.11 -  Tunka (near Baykal Lake, Russia) 
+obj: -26.46 sun: 12.65 -  Amur(Blagoveschensk)
+obj:  7.39 sun:  7.00 -   OAFA (Argentina)
+
+The message may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22927
+SUBJECT: Konus-Wind observation of GRB 180703A
+DATE:    18/07/08 12:38:41 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+D. Frederiks, S. Golenetskii, R.Aptekar, A. Kozlova,
+A.Lysenko,  D. Svinkin, A. Tsvetkova,  M. Ulanov, and T. Cline,
+on behalf of the Konus-Wind team, report:
+
+The long GRB 180703A (IPN Triangulation: Hurley et al., GCN 22925;
+Fermi-LAT detection: Racusin et al., GCN 22883;
+Fermi-GBM detection: Poolakkil & Meegan, GCN 22896)
+triggered Konus-Wind at T0=75705.256 s UT (21:01:45.256)/
+
+The burst light curve shows a single, FRED-like pulse
+with a total duration of ~50 s. Also, there is a weak
+count rate increase in the softest KW light curve around T0 + 170 s.
+The emission in the main peak is seen up to ~10 MeV.
+
+As observed by Konus-Wind, the burst had a fluence of
+(4.1 ± 1.0)x10^-5 erg/cm2 and a 64-ms peak energy flux,
+measured from T0+1.728, of (8.9 ± 1.3)x10^-6 erg/cm2
+(both in the 20 keV - 10 MeV energy range).
+
+The time-integrated spectrum (measured from T0 to T0+49.408 s)
+is best fit in the 20 keV - 15 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -0.85 (-0.21,+0.33),
+the high energy photon index beta = -1.89 (-0.37,+0.19),
+the peak energy Ep = 367 (-136,+196) keV,
+chi2 = 89/97 dof.
+
+The spectrum near the peak count rate (measured from T0
+to T0+8.448 s) is best fit in the 20 keV - 15 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -0.73 (-0.17,+0.20),
+the high energy photon index beta = -1.90 (-0.22,+0.13),
+the peak energy Ep = 407 (-97,+147) keV,
+chi2 = 88/97 dof.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB180703_T75705/
+
+All the quoted errors are estimated at the 90% confidence level.
+All the presented results are preliminary.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22931
+SUBJECT: GRB 180703A: Swift-XRT afterglow detection
+DATE:    18/07/09 13:33:20 GMT
+FROM:    Antonino D'Ai at IASF-PA  <antonino.dai@ifc.inaf.it>
+
+S.L. Gibson (U. Leicester), Z. Liu (NAOC / U. Leicester), P. D'Avanzo
+(INAF-OAB), V. D'Elia (ASDC), A. D'Ai (INAF-IASFPA), S. J. LaPorte
+(PSU), J.A. Kennea (PSU), B. Sbarufatti (INAF-OAB/PSU), J.P. Osborne
+(U. Leicester) and P.A. Evans (U. Leicester) report on behalf of the
+Swift-XRT team:
+
+Swift-XRT has conducted further observations of the field of the
+Fermi/LAT-detected burst GRB 180703A (Racusin et al. GCN Circ. 22883).
+The observations now extend from T0+17.3 ks to T0+263.7 ks. The source
+previously reported by Gibson et al. (GCN Circ. 22891), "Source 1", is 
+believed to be the afterglow.  The position of this source is RA,
+Dec=6.4699, -67.1802 which is equivalent to:
+
+RA (J2000): 00:25:52.79
+Dec(J2000): -67:10:48.7
+
+with an uncertainty of 4.8 arcsec (radius, 90% confidence).  This
+position is 5.7 arcmin from the Fermi/LAT position.  The source is
+fading with alpha >0.8.
+
+The results of the XRT-team automatic analysis are available at
+http://www.swift.ac.uk/xrt_products/00020797.
+The results of the full analysis of the tiled XRT observations are
+available at http://www.swift.ac.uk/xrt_products/TILED_GRB00070.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22944
+SUBJECT: GRB 180703A: optical afterglow confirmation
+DATE:    18/07/13 11:55:46 GMT
+FROM:    Cristiano Guidorzi at Ferrara U,Italy  <guidorzi@fe.infn.it>
+
+C. Guidorzi, R. Martone (U. Ferrara), S. Kobayashi (LJMU), C.G. Mundell 
+(U. Bath), A. Gomboc (U. Nova Gorica), I.A. Steele (LJMU), A. Cucchiara, 
+D. Morris (U. of Virgin Islands) on behalf of a large collaboration report:
+
+We observed Fermi-LAT GRB 180703A (Racusin et al. GCN 22883) with the 
+LCO 2-m unit in Hawaii (former FTN) on July 12, 17:46 UT (8.9 days after 
+the GRB trigger time) with the SDSS i' filter. We do not detect the 
+optical candidate (Guidorzi et al. GCN 22892) found on the border of the 
+Swift-XRT error circle of the confirmed X-ray afterglow (Gibson et al. 
+GCN 22931) down to a limit magnitude of i'> 22.0 with a 5x120s exposure. 
+We therefore confirm the nature of optical afterglow of the candidate. A 
+comparison between the images taken at both epochs is available at the 
+link below.
+
+http://www.fe.infn.it/u/guidorzi/new_guidorzi_files/180703A_OT.png
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  23889
+SUBJECT: GRB 180703A: VLT/MUSE host galaxy redshift measurement
+DATE:    19/02/12 08:58:39 GMT
+FROM:    Luca Izzo at IAA-CSIC  <luca.izzo@gmail.com>
+
+L. Izzo (HETH/IAA-CSIC), A. de Ugarte Postigo (HETH/IAA-CSIC and DARK/NBI), P. Schady (U. Bath), D. B. Malesani (DAWN/NBI and DARK/NBI), D. A. Kann (HETH/IAA-CSIC), C. Kouveliotou (GWU), V. D’Elia (SSDC) and N. R. Tanvir (U. Leicester) report on behalf of the Stargate collaboration:
+
+We have analysed the data obtained using the MUSE instrument, mounted on the ESO VLT UT4 (Yepun) telescope in Paranal, of the Fermi GRB 180703A (Racusin et al., GCN #22883; Poolakkil &  Meegan, GCN #22896). MUSE is an integral-field-unit spectrograph which covers a field of view of up to ~1 arcmin**2. Our observations started on 2018 July 04 at 07:53:56 UT, 10.92 hr after the GRB detection, and consisted of four exposures of 250 s each.
+
+When we integrate the data cube along the full MUSE wavelength range, we detect a source within the uncertainty of the Swift/XRT afterglow position (Gibson et al., GCN #22891), and consistent with the position of the reported optical counterpart (Guidorzi et al., GCN #22892, #22944). We extracted a spectrum of this source within the wavelength range 4750-9350 AA. The spectrum is noisy, and we cannot confirm continuum afterglow emission. However, we identify three strong emission lines which can be consistently interpreted as [O III] 4960,5008 AA and [O II] 3727/29 AA at a common redshift of z = 0.6678. Given the spatial coincidence with the optical counterpart, we propose that these features come from the GRB host galaxy and we conclude that this is the redshift of GRB 180703A.
+
+We acknowledge support from the ESO observing staff in Paranal, in particular Andrea Mehner.
+

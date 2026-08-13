@@ -1,0 +1,120 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12077
+SUBJECT: IPN triangulation of GRB110618A (long duration, extremely intense)
+DATE:    11/06/22 21:51:10 GMT
+FROM:    Kevin Hurley at UCBerkeley/SSL  <khurley@ssl.berkeley.edu>
+
+K. Hurley, on behalf of the Mars Odyssey and MESSENGER GRB teams,
+
+S. Golenetskii, R. Aptekar, E. Mazets, V. Pal'shin, D. Frederiks, 
+D. Svinkin, and T. Cline on behalf of the Konus-Wind team,
+
+J. Goldsten, on behalf of the MESSENGER NS GRB team, 
+
+I. G. Mitrofanov, D. Golovin, M. L. Litvak, and A. B. Sanin,
+on behalf of the HEND-Odyssey GRB team,
+
+W. Boynton, C. Fellows, K. Harshman, H. Enos, and R. Starr, on
+behalf of the GRS-Odyssey GRB team,
+
+A. von Kienlin, X. Zhang, and A. Rau, on behalf of the
+INTEGRAL SPI-ACS GRB team, 
+
+V. Connaughton, M. Briggs, and C. Meegan, on behalf of the Fermi
+GBM team, and
+
+S. Barthelmy, J. Cummings, N. Gehrels, H. Krimm, and D. Palmer, on behalf of
+the Swift-BAT team, report:
+
+On 2011 June 18 at 08:47:25 UT, an extremely intense, long duration GRB
+was observed by Fermi (GBM), INTEGRAL (SPI-ACS), Konus-Wind, MESSENGER,
+Mars Odyssey, and Swift (outside the coded field of view).  We have
+triangulated it to the following 3 sigma error box, whose area is 1.41
+square degrees:
+
+-----------------------------------------------
+    RA(2000), deg              Dec(2000), deg
+-----------------------------------------------
+Center:
+  176.808 (11h 47m 14s)   -71.688 (-71d 41' 16")
+Corners:
+  176.474 (11h 45m 54s)   -70.272 (-70d 16' 19")
+  175.222 (11h 40m 53s)   -71.703 (-71d 42' 12")
+  177.247 (11h 48m 59s)   -73.095 (-73d 05' 42")
+  178.392 (11h 53m 34s)   -71.659 (-71d 39' 33")
+-----------------------------------------------
+
+Some improvement in this localization is possible.  The spectral and
+temporal properties of this burst will appear in a forthcoming GCN.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12078
+SUBJECT: Konus-Wind observation of GRB 110618A
+DATE:    11/06/23 10:21:30 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The long hard GRB 110618A (localized by IPN: Hurley et al., GCN 12077)
+triggered Konus-Wind at T0=31673.867 s UT (08:47:53.867)
+
+The burst light curve consists of a single long hard pulse
+with unusually gentle onset and a total duration of ~250 s.
+The emission is seen up to ~5 MeV, a hard-to-soft spectral
+evolution is noticeable in the course of the event.
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB110618_T31673/
+
+As observed by Konus-Wind the burst
+had a fluence of (1.1 ± 0.1)x10-4 erg/cm2,
+and a 256-ms peak flux, measured from T0+1.280 s,
+of (2.0 ± 0.2)x10-6 erg/cm2/s
+(both in the 20 keV - 5 MeV energy range).
+
+The time-integrated spectrum of the burst
+(measured from T0 to T0+229.632 s) is best fitted
+in the 20 keV - 5 MeV range by a power law
+with exponential cutoff model, for which
+alpha = -1.40 (-0.08, +0.10),
+and Ep = 569(-160, +304) keV,
+chi2 = 78.1/73 dof.
+
+The spectrum at the maximum count rate
+(measured from T0 to T0+8.448 s) can be fitted
+in the 20 keV - 5 MeV range by a power law
+with exponential cutoff model, for which
+alpha = -1.12 (-0.06, +0.06),
+and Ep = 524(-96, +138) keV,
+chi2 = 88.7/73 dof.
+
+All the quoted results are preliminary.
+All the quoted errors are at the 90% confidence level.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12081
+SUBJECT: GRB 110618A: SMARTS optical observations
+DATE:    11/06/23 16:54:30 GMT
+FROM:    Bethany Cobb at GWU  <bcobb@gwu.edu>
+
+B. E. Cobb (GWU), reports:
+
+Using the ANDICAM instrument on the SMARTS 1.3m telescope at CTIO,
+we obtained optical imaging of part of the error region of GRB 110618A
+(GCN 12077, Hurley et al.) approximately 113 hours (4.7 days)
+post-burst. Nine individual 5-minute I-band exposures were
+obtained, tiled around the center of the IPN error region
+(RA/Dec: 11h47m14s -71d41'16").  Each image is 6'x6', so these
+images cover approximately 0.09 square degrees, e.g. the central 6% of
+the IPN error region.
+
+Preliminary visual comparison to the DSS reveals no new optical
+sources in the SMARTS images (limited by the slightly shallower depth
+of the DSS imaging).  This does not rule out the possibility of
+an afterglow candidate contained in a relatively bright host
+galaxy (additional SMARTS imaging is being obtained for further
+analysis).

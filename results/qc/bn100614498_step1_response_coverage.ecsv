@@ -1,0 +1,40 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn100614498}
+# - {grb_name: GRB 100614B}
+# - {run_type: 'campaign doc-layer Step 1 per dev/ai_guides/DataInventory.md (2026-08-12)'}
+# - {src_start: -13.0}
+# - {src_stop: 16.0}
+# - {trigtime_met: 298209445.306156}
+# - {window_stamp: 'APPROVED_BY=Vikas Chand 2026-07-19T22:18:36Z human_gui accepted_suggestion (results/background_intervals.ecsv lines 71-75)'}
+# - {qc_flag: 'results/human_review_qc_flags.txt line 2: source[-13,16]_overruns_bkg_gap n6[gap -13.4023,11.5977], b1[gap -11.4024,22.5976] - human-ACCEPTED adjudication; a DECISION, not a defect (Stage-1 flags ARE decisions)'}
+# - {manifest_tte: 6}
+# - {manifest_cspec_pha: 6}
+# - {manifest_rsp2: 6}
+# - {manifest_rsp: 0}
+# - {manifest_poshist: 1}
+# - {manifest_trigdat: 0}
+# - {manifest_lle: 0}
+# - {manifest_lat_ft1: 0}
+# - {manifest_lat_ft2: 0}
+# - {note_detectors_on_disk: 'n6,n7,n9,na,nb,b1 (cspec pha+rsp2+tte each); approved set = n6,n7,n9,nb,b1; na present but NOT approved - inventory note only. GBM catalog frames differ: duration set n6,n7,n9,na,nb (Paciesas+2012 p.59); spectral-catalog set b1,n6,n9 (scat v03)'}
+# - {note_trigdat: 'no trigdat on disk - a note, not a blocker: poshist glg_poshist_all_100614_v00.fit covers geometry (DataInventory Phase 1 rule). trigdat exists upstream (glg_trigdat_all_bn100614498_v01.fit on HEASARC) if ever needed'}
+# - {note_rsp_test: 'All five approved responses are multi-matrix .rsp2 (DRM_NUM=4) -> interval-coverage test vs stamped source window applies (bn100130729 rule): min(TSTART)<=SRC_START=-13.0 and max(TSTOP)>=SRC_STOP=16.0, times rel. TRIGTIME. All five cover [-126.978,+49.153] s. No single-matrix .rsp in the data dir and no LLE responses -> D1 off-axis test not applicable'}
+# - {note_lle_lat: 'No LLE triplet (gll_lle_*/gll_pt_*/gll_cspec_*) and no LAT/ directory in data/bn100614498/ - consistent with a weak soft GBM-only burst (scat flnc Band Ep~41 keV); no LAT/LLE detection is claimed anywhere (zero GCNs; Hurley+2013 IPN lists only INTEGRAL SPI-ACS + Suzaku-WAM)'}
+# - {note_d4: 'bcat v02 T90=172.291+/-12.447 s with T90START=-149.763 s: catalog emission span [-149.8,+22.5] s vastly exceeds our stamped [-13,+16] s window, and the pre-burst bkg intervals (~[-22,-13] s) sit INSIDE the catalog T90 span (weak pre-trigger emission; 4096-ms trigger fired late, peak-flux interval itself pre-trigger [-4.096,0] s). Recorded as a frame caveat for T90/fluence diffs; the stamped human selection stands'}
+# - {verdict: 'PASS - all 5 approved detectors resolve to a multi-matrix response bracketing the stamped source window'}
+# schema: astropy-2.0
+DET RSP_FILE COV_START COV_STOP N_MAT VERDICT
+n6 glg_cspec_n6_bn100614498_v00.rsp2 -126.978 49.153 4 PASS
+n7 glg_cspec_n7_bn100614498_v00.rsp2 -126.978 49.153 4 PASS
+n9 glg_cspec_n9_bn100614498_v00.rsp2 -126.978 49.153 4 PASS
+nb glg_cspec_nb_bn100614498_v00.rsp2 -126.978 49.153 4 PASS
+b1 glg_cspec_b1_bn100614498_v00.rsp2 -126.978 49.153 4 PASS

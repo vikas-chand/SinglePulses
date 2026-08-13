@@ -73,3 +73,35 @@ Write `results/approval/<trigger>_qc.json`:
 
 ## How this is scored vs humans
 From dev/BENCHMARK_PLAN.md task #6: **agreement on flagged-bad bins/bursts via precision/recall vs the human flag set.** Treat the human's flagged-bad set as ground truth; compute, per benchmark burst: precision = (AI-flagged ∩ human-flagged) / AI-flagged, recall = (AI-flagged ∩ human-flagged) / human-flagged, at both bin and burst granularity, with F1 reported. Inter-human scatter (if multiple experts) is the denominator: the AI is "good" if its precision/recall against humans matches how well humans agree with each other. The decisive secondary check is downstream — does excluding the AI-flagged-bad bins change the population Ep/kT/α/classification the same way excluding the human-flagged-bad bins does (BENCHMARK_PLAN downstream-impact metric)?
+
+## Step-9 addition — Amati & Yonetoku plane placement for z-known bursts (Vikas, 2026-08-11)
+*Gated in by Vikas: "putting a burst into Amati and Yonetoku correlation plane gives us good
+plot in any case as it maybe that some burst some day violate the correlation." A standing
+per-burst PRODUCT (not just a pass/fail line), and a discovery-plane hook.*
+
+**Applies to:** every burst with a redshift in its dossier (z with its circular/paper as
+source — never assumed). Expected yield: the handful of z-known bursts in the 106 (~4–8,
+mostly low-z SN-associated — which is precisely the historical neighborhood of Amati-plane
+violators; 980425/031203-class, bibcodes to be ADS-verified before any writeup).
+
+**Procedure (native to what the pipeline already emits):**
+1. From the T_INT row of the AIC-winning model: Ep,obs and the model-integrated fluence;
+   Ep,i = Ep,obs·(1+z); Eγ,iso in the 1–10⁴ keV REST frame via k-correction integrating the
+   best-fit model (record the model used — the k-correction is model-dependent, say so).
+2. For Yonetoku: peak flux over the catalog peak interval → Liso = 4π d_L² F_peak,bolo
+   (same k-correction discipline; record the peak-interval definition).
+3. Place the burst on BOTH planes against the published relations with their ±2σ bands
+   (Amati; Yonetoku; exact reference samples ADS-verified at implementation).
+4. **Frame discipline before any verdict** (this is where violations go to die):
+   - T9 component coverage — OUR fluence covers our stamped window; a precursor or missed
+     tail changes Eiso (the 180728A lesson: BAT T90 covers the main pulse only);
+   - multi-instrument consensus (Phase 4 rule): if published Ep values disagree across
+     instruments, the spread is a systematic on the placement, drawn as an error inflation;
+   - the L27/L28 stamps: an EDGE_CONSTRAINED or BOUND_CAPPED Ep never anchors a violation.
+5. Verdicts: `CONSISTENT` (inside 2σ) → one QC line + the plot filed with the burst record;
+   `OUTLIER_CANDIDATE` → discovery-plane flag, NEVER a claimed violation in a record — the
+   claim path runs through the frame checklist above, the with/without-precursor pair, and
+   Vikas's gate (scorecard-after-the-game rule applies).
+**Output:** `results/walkthrough_b<i>/<trig>_amati_yonetoku.png` + a one-line verdict in the
+burst record. Implementation: small product script in the next products batch (rides with the
+hardening items; no engine change).

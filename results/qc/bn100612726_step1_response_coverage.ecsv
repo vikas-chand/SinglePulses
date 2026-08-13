@@ -1,0 +1,33 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP2, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# meta:
+#   trigger: bn100612726
+#   grb_name: GRB 100612A (literature designation; see dossier naming caveat)
+#   trigtime_met: 298056368.127044
+#   src_window: [-1.5, 15.0]
+#   src_window_source: results/background_intervals.ecsv (Vikas Chand, 2026-07-19T22:18:36Z, human_gui)
+#   approved_detectors: n3,n4,n7,n8,b0,b1
+#   lle_present: false
+#   lat_present: false
+#   trigdat: MISSING (note, not blocker - poshist glg_poshist_all_100612_v00.fit present)
+#   tte_files: 6
+#   cspec_pha_files: 6
+#   d1_theta_check: N/A (no gll_* files; no single-matrix responses - all six detectors ship multi-matrix .rsp2)
+#   d4_note: T90_START=+0.704 s (GBM catalog) - no pre-trigger episode; stamped window -1.5/15.0 brackets T90 span 0.70-9.28 s
+#   verdict: PASS (all 6 approved detectors resolve to .rsp2 whose matrix span -10.50/+112.39 s brackets the stamped source window)
+#   checked_by: Claude (doc-layer worker), 2026-08-12
+# schema: astropy-2.0
+DETECTOR RSP2 N_MATRICES RSP_T0 RSP_T1 COVERS_SRC
+n3 glg_cspec_n3_bn100612726_v00.rsp2 2 -10.50 112.39 True
+n4 glg_cspec_n4_bn100612726_v00.rsp2 2 -10.50 112.39 True
+n7 glg_cspec_n7_bn100612726_v00.rsp2 2 -10.50 112.39 True
+n8 glg_cspec_n8_bn100612726_v00.rsp2 2 -10.50 112.39 True
+b0 glg_cspec_b0_bn100612726_v00.rsp2 2 -10.50 112.39 True
+b1 glg_cspec_b1_bn100612726_v00.rsp2 2 -10.50 112.39 True

@@ -1,0 +1,51 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn120905657}
+# - {grb_name: GRB 120905657 (no letter-suffix designation exists; GBM catalogs print the GRB-name column blank)}
+# - {src_start: -2.0}
+# - {src_stop: 110.0}
+# - {window_source: 'results/background_intervals.ecsv; APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z human_gui'}
+# - {n_dets_approved: 6}
+# - {rsp_class: 'GBM multi-matrix .rsp2 for all 6 detectors (b1 is v01, the five NaIs v00 - different version, identical time span)'}
+# - {rsp_verdict: PASS 6/6 - min(TSTART)=-40.961 <= SRC_START=-2.0 and max(TSTOP)=196.611 >= SRC_STOP=110.0 for every detector (bn100130729
+#     rule)}
+# - {rsp_headroom: 'DRM span also brackets the full catalog T90 [-7.168, 188.419] s, so a widened source window would still be covered'}
+# - {lle_present: false}
+# - {lat_present: false}
+# - {d1_check: NOT APPLICABLE - no gll_lle_*/gll_pt_*/gll_cspec_*.rsp on disk and HAS_LAT=False in results/grb_sample.ecsv; HEASARC fermilgrb
+#     returns 0 rows for %120905%}
+# - {trigdat_present: false}
+# - {trigdat_note: 'missing trigdat is a note, not a blocker - glg_poshist_all_120905_v01.fit is present so geometry is covered (DataInventory
+#     Phase 1)'}
+# - {file_manifest: '6 cspec .pha, 6 cspec .rsp2, 6 tte .fit.gz, 1 poshist, 0 trigdat, 0 LLE, 0 LAT (19 files total)'}
+# - {det_angles_deg: 'n9 19.23, b1 40.58, nb 42.91, na 45.42, n6 51.53, n7 53.13'}
+# - {catalog_bcat_dets: n6+n7+n9+na+nb (bcat mask 00000011011100) - IDENTICAL to our approved NaI set}
+# - {catalog_scat_dets: 'n9+na+nb+b1 (scat mask 00000000011101) - the catalog SPECTRAL fits drop n6 and n7, which we keep'}
+# - {warn_1_window_coverage: 'SRC [-2,110] covers only 112 s of the catalog T90 [-7.168,188.419] s. Quick-look CSPEC 50-300 keV (degree-2
+#     poly background on the CATALOG background windows; indicative, NOT the production estimator): our window holds 81.4% (n9) / 87.3%
+#     (na) of net counts; 14.6%/9.0% lies in 110-200 s; 4.0%/3.7% in -10..-2 s. Partial-coverage label required on any T90/fluence we
+#     quote (T9).'}
+# - {warn_2_background_tail: 'Every approved post-burst background window opens before T95=188.4 s; n7 [47.5,205.5] and na [88.5,281.5]
+#     additionally overlap the SOURCE window (62.5 s and 21.5 s). ALREADY AN ACCEPTED HUMAN DECISION: results/human_review_qc_flags.txt
+#     line 7, human_gui, 2026-07-19T22:18:36Z. Recorded, not re-litigated. For scale, quick-look mean NET rate in n7''s post-window ~21
+#     c/s vs ~149 c/s at the burst peak. The GBM catalog uses +230..+492.5 s, clear of T95.'}
+# - {d5_blockage: not testable at inventory time (needs per-NaI residual coherence from a fit); flagged for Step 6 - n6 (51.5 deg) and
+#     n7 (53.1 deg) are the two the catalog dropped and both sit just above the 50 deg NaI preference}
+# - {verdict: 'PASS - all 6 responses valid over the stamped source window; 2 WARNs (window coverage, background tail) that are science-scope
+#     notes, not data blockers'}
+# - {checked: '2026-08-12 per dev/ai_guides/DataInventory.md (D2 naming, GBM rsp2 coverage rule; D1 N/A; D4 applied as warn_1)'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n6 -40.961 196.611 8 PASS
+n7 -40.961 196.611 8 PASS
+n9 -40.961 196.611 8 PASS
+na -40.961 196.611 8 PASS
+nb -40.961 196.611 8 PASS
+b1 -40.961 196.611 8 PASS

@@ -1,0 +1,150 @@
+{
+  "burst": "bn090620400",
+  "grb_name": "GRB 090620",
+  "harvest_utc": "2026-08-12",
+  "harvested_by": "doc-layer worker (Claude, Fable 5), Steps 0/0b/1 pass",
+  "ads_token_source": "~/Desktop/Projects/FXTs/.env (ADS_DEV_KEY)",
+  "query_forms": {
+    "full:\"GRB 090620\"": 2,
+    "full:\"bn090620400\"": 1,
+    "full:\"090620400\"": 5,
+    "full:\"267183385\"": 0
+  },
+  "identity_check_T1": "clean — trigger 267183385 / 090620.400 = 09:36:23.47 UT (GCN 9554); no same-day sibling; name-form hit (Yu+2019) verified by its Table 1 trigger id 090620400",
+  "scholar_channel": "not used — ADS four-form yield adequate (6 papers); no cross-community vocabulary gap identified for this burst",
+  "beyond_prompt": "NONE — zero afterglow/SN/cosmology/multimessenger literature for this burst; all papers are prompt-phase (recorded finding, no module-future shelf entries)",
+  "papers": [
+    {
+      "bibcode": "2026ApJ..1003...58B",
+      "authors": "Bordoloi, Mittal, Iyyani",
+      "year": 2026,
+      "title": "From Empirical to Physical Model: Direct Fits of Optically Thin Inverse Compton Scattering to Prompt GRB Spectra",
+      "refereed": true,
+      "role": "sample-member (41-GRB Band-criteria sample); bn090620400 = the REPRESENTATIVE EXCERPT of their supplementary time-resolved Band table (App. B Table 2, 10 intervals -0.998..19.0 s); NOT one of the four IC-fitted GRBs",
+      "pdf": [
+        "Skills_training/Bordoloi_2026_2026ApJ100358B_bn090620400.pdf (arXiv:2511.20310)",
+        "Skills_training/Bordoloi_2026_2026ApJ100358B_bn090620400_PUB.pdf (IOP version of record, PUB_OPENACCESS)"
+      ],
+      "in_corpus_already": false,
+      "prompt_sections": "SS2 sample selection frame (fluence>1e-5, alpha>-0.52, -1.7>beta>-3.3, T70/Bayesian-block method) + Appendix B Table 2 p22 (the full 10-interval Band fit table for THIS burst) — read these; SS3-5 (Naima IC model, four-burst physics) = context only, this burst not in the four",
+      "module_future_tags": [],
+      "key_values_note": "int.10 alpha=-1.50 +0.006/-0.001 railed at bound — flag in P3 diff; component coverage total/single-pulse",
+      "component_coverage": "total/single-pulse (-0.998..19.0 s, T0-rel)"
+    },
+    {
+      "bibcode": "2026arXiv260417835L",
+      "authors": "Li, Liang",
+      "year": 2026,
+      "title": "Three Subclasses of the Intensity-tracking Pattern in Gamma-Ray Burst Spectral Evolution",
+      "refereed": false,
+      "role": "dedicated sample-member analysis (Type II class member; one of the named modest-offset exemplars)",
+      "pdf": [
+        "Skills_training/Li_2026_2026arXiv260417835L_bn090620400.pdf (arXiv:2604.17835)"
+      ],
+      "in_corpus_already": false,
+      "prompt_sections": "Tab.1 p5 (burst-level row: T90=13.57+/-0.72, CPL, Nbin=7, tp(F)=4.44+/-0.36, tp(Ep)=3.58+/-0.49, lag=-0.85+/-0.61, Class II) + SS3.3 p5 text (modest-offset exemplar) + Tab.2 p16 (FWHM_F=2.66, t_r=1.46, t_d=1.20, kappa=0.82, rho_EpF=0.86) + Fig p8/p13/p25 (Ep(t), Ep-F rising/decaying branches) — all prompt, read all",
+      "module_future_tags": [],
+      "component_coverage": "total/single-pulse (7 S/N bins over approx -10..30 s axis)"
+    },
+    {
+      "bibcode": "2024AN....34530179M",
+      "authors": "Ma, Xie, Wang, Dong, Zhi",
+      "year": 2024,
+      "title": "The statistical characteristics of the prompt emission lightcurves of gamma-ray bursts",
+      "refereed": true,
+      "role": "sample-member (prompt LC statistics), matched on full:\"090620400\"",
+      "pdf": [],
+      "in_corpus_already": false,
+      "prompt_sections": "UNKNOWN — PAYWALLED (AN, doi:10.1002/asna.20230179), no arXiv version, no OA flags; values NOT harvested (honest gap; metadata-only)",
+      "module_future_tags": [],
+      "component_coverage": "unknown (no PDF)"
+    },
+    {
+      "bibcode": "2021ApJS..253...43L",
+      "authors": "Li & Zhang",
+      "year": 2021,
+      "title": "Testing the High-latitude Curvature Effect of Gamma-Ray Bursts with Fermi Data",
+      "refereed": true,
+      "role": "dedicated HLE analysis — one of 8/24 bursts whose ENTIRE decay satisfies alpha_hat=2+beta_hat (pure curvature); already mined into dossier 2026-08-10",
+      "pdf": [
+        "Skills_training/Li_2021_2021ApJS25343L.pdf (already in corpus)"
+      ],
+      "in_corpus_already": true,
+      "corpus_note": "cited_by_bursts already includes bn090620400; read=Y (Vikas 2026-08-10) — do NOT re-surface",
+      "prompt_sections": "already mined (Ntot=11 BB blocks, det n6(n7)na,b1, src -1..30, FRED tp=3.19+/-0.20)",
+      "module_future_tags": [],
+      "component_coverage": "total/single-pulse (-1..30 s)"
+    },
+    {
+      "bibcode": "2019ApJ...886...20Y",
+      "authors": "Yu, Dereli-Begue, Ryde",
+      "year": 2019,
+      "title": "Bayesian Time-resolved Spectroscopy of GRB Pulses",
+      "refereed": true,
+      "role": "sample-member (Bayesian-block CPL time-resolved sample); NEW extraction this pass -> dossier",
+      "pdf": [
+        "Skills_training/Yu_2019_ApJ_886_20.pdf (already in corpus)"
+      ],
+      "in_corpus_already": true,
+      "corpus_note": "cited_by_bursts already includes bn090620400; read=Y — do NOT re-surface",
+      "prompt_sections": "Tab.1 p4 row (det (n6)n7,nb,b1; src -1..25; bkg -25..-10 & 30..45; N=11 BB bins, N_S>=20=5; alpha-Ep type 2 r=-0.02; Ep-F type 2 r=0.17; F-alpha type 1 r=0.48; evolution i.t.) + SS3.5.1 p9 (monotonic alpha-Ep group, 'weaker correlation' verbatim)",
+      "module_future_tags": [],
+      "component_coverage": "total/single-pulse (-1..25 s)"
+    },
+    {
+      "bibcode": "2018ApJ...865..153L",
+      "authors": "Lu et al.",
+      "year": 2018,
+      "title": "A Comprehensive Analysis of Fermi GRB Data. IV. Spectral Lag and its Relation to Ep Evolution",
+      "refereed": true,
+      "role": "sample-member (pulse classification T = intensity-tracking); already mined into dossier 2026-08-10",
+      "pdf": [
+        "Skills_training/Lu_2018_2018ApJ865153L.pdf (already in corpus)"
+      ],
+      "in_corpus_already": true,
+      "corpus_note": "corpus row EXISTS but cited_by_bursts lacks bn090620400 -> queued below",
+      "prompt_sections": "Tab.4 row (class T; tau31=0.87+/-0.13 s; W=5.73; k_E=-1.23+/-0.16) — already mined; NOTE T3 trap: W defined twice in this paper (10%-level vs FWHM)",
+      "module_future_tags": [],
+      "component_coverage": "total/single-pulse (pulse-wise)"
+    }
+  ],
+  "excluded": [
+    {"bibcode": "2009GCN..9554....1R", "reason": "GCN circular — Step 0a product (already in dossier + gcn_raw)"},
+    {"bibcode": "2017ifs..confE..74B", "reason": "inproceedings (Burgess 2017 Fermi Symposium, spectral-width sample) — excluded by doctype in {article, eprint} rule; noted in dossier"}
+  ],
+  "pending_shared_csv_rows": {
+    "Skills_training/corpus_index.csv": [
+      {
+        "action": "append_row",
+        "row": "Bordoloi_2026_2026ApJ100358B_bn090620400.pdf,2026ApJ..1003...58B,2511.20310,prompt-IC-physical-model;Band-sample-41;time-resolved-Band-table-published,bn090620400,1,N,"
+      },
+      {
+        "action": "append_row",
+        "row": "Li_2026_2026arXiv260417835L_bn090620400.pdf,2026arXiv260417835L,2604.17835,intensity-tracking-subclasses;Ep-flux-lag;prompt-timeresolved,bn090620400,1,N,"
+      },
+      {
+        "action": "update_row",
+        "match_bibcode": "2018ApJ...865..153L",
+        "change": "cited_by_bursts += bn090620400 (-> bn090530760;proj37;proj38;bn090620400); n_bursts += 1"
+      },
+      {
+        "action": "append_row_optional_metadata_only",
+        "row": "NO_PDF_PAYWALLED,2024AN....34530179M,,prompt-LC-statistics;PAYWALLED-no-OA,bn090620400,1,N,",
+        "note": "Ma+2024 has no OA route; row queued so the sample-membership is not lost — maintainer may prefer to skip PDF-less rows"
+      }
+    ]
+  },
+  "existing_products_found": {
+    "dossier": "results/gcn/bn090620400/bn090620400_dossier.md (2026-08-10 era) — EXTENDED this pass (harvest-extension section: Yu+2019 row, Bordoloi+2026 table, Ma+2024 gap, T9 labels, frame notes, Step-1 QC)",
+    "gcn_raw": "results/gcn/bn090620400/bn090620400_gcn_raw.txt (1 unique circular, GCN 9554) — untouched",
+    "ads_hits": "results/gcn/bn090620400/bn090620400_ads_hits.json (2026-07-29 citation-sorted sweep) — untouched; this pass re-ran four-form date-sorted",
+    "P0_frozen": "notes/reconciliation/bn090620400_P0_frozen.json (2026-08-10, P-A..P-E, engine L18/L19/L20/L26/L27) — EXISTS, NOT TOUCHED per idempotency rule",
+    "gcn_index_row": "results/gcn/gcn_index.csv row exists — untouched"
+  },
+  "issues": [
+    "Ma+2024 (2024AN....34530179M) is paywalled with no arXiv version — sample-membership recorded, values not harvested",
+    "P0_frozen.json predates this pass and carries engine string 'L18/L19/L20/L26/L27 active' (not the newer 'L18/L19/L20/L26/L27/L28 + per-bin-coverage' wording); left untouched per the do-not-touch-existing-freeze rule",
+    "Bordoloi+2026 App.B Table 2 interval 10 has alpha railed at -1.50 (+0.006/-0.001) — exclude or flag that row in the P3 diff",
+    "corpus_index.csv row for Lu_2018 lacks bn090620400 in cited_by_bursts — update queued (no shared-CSV writes from this worker)"
+  ]
+}

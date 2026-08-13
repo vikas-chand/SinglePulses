@@ -1,0 +1,26 @@
+{
+ "burst": "bn190726642",
+ "grb_name": "GRB 190726A",
+ "tally": 24,
+ "harvest_utc": "2026-08-11T16:45:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5; Phase 3c scope rules applied)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "queries": [
+  {"form": "GRB name", "q": "full:\"GRB 190726A\"", "numFound": 3, "refereed_articles": 0, "note": "3 GCN circulars only (2019GCN.25154, 25155, 25305; doctype=newsletter)"},
+  {"form": "GBM trigger name", "q": "full:\"bn190726642\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "day-fraction", "q": "full:\"190726642\"", "numFound": 2, "refereed_articles": 0, "note": "GCN 25154 + 25155 only"},
+  {"form": "trigger number", "q": "full:\"585847498\"", "numFound": 3, "refereed_articles": 0, "note": "surfaced GCN 25160 (MASTER-Net) which the name-based classic archive missed -> added to dossier"},
+  {"form": "robustness: no-space name", "q": "full:\"GRB190726A\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "robustness: HXMT trigger ID", "q": "full:\"HEB190726642\"", "numFound": 1, "refereed_articles": 0, "note": "GCN 25305 only"}
+ ],
+ "n_refereed_papers": 0,
+ "papers": [],
+ "finding": "PAPERLESS BURST. Zero refereed papers (doctype article/eprint) mention GRB 190726A under any of six query forms as of 2026-08-11. All ADS hits are GCN circulars (handled in Step 0a dossier). The burst post-dates the 10-yr GBM catalogs' coverage (2008-2018) and had no afterglow/redshift to attract follow-up papers. Consequence for P3: the diff frame is the archival census prior plus circular-level facts only; no external spectral frame exists.",
+ "same_day_contamination_check": "T1 applied: sibling GRB 190726B = bn190726843 (20:14:30 UT) exists; its circulars (25157, 25158, 25161, 25247 incl. CZTI T90=209 s) were identified and EXCLUDED from this burst's record. Identity verified by trigger number 585847498.610468 (GCN 25154 == local rsp2 TRIGTIME).",
+ "pdfs_fetched": [],
+ "corpus_index_updates": "NONE required (no papers). Shared Skills_training/corpus_index.csv deliberately not touched (worker hard rule).",
+ "module_future_catalog": [
+  {"item": "MASTER-Net optical upper limits (GCN 25160, C>=16.6/16.1 at T0+19165 s, twilight)", "tags": "module-future;afterglow", "type": "circular (no paper exists)", "summary": "Only afterglow-phase observation of this burst; non-detection; no counterpart, no redshift, no host."}
+ ],
+ "vikas_reading_list": "Nothing to read for this burst — no papers exist. Prompt-relevant external material is confined to GCN 25305 (Insight-HXMT hard-band T90/peak-rate; quoted and frame-aligned in the dossier)."
+}

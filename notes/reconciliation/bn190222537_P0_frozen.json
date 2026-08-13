@@ -1,0 +1,46 @@
+{
+ "burst": "bn190222537",
+ "tally": 26,
+ "frozen_utc": "2026-08-11T16:42:30Z (frozen BEFORE any walkthrough_b2* fit output was opened; census prior = clean_per_burst_human_final only)",
+ "engine": "L18/L19/L20/L26/L27/L28 active",
+ "predictions": [
+  "P-A (census class = NULL-BB): the fresh time-resolved fits will find ZERO blocks with LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 (census prior: 0/5). If any BB does appear it will be low-kT edge-constrained (<~5 keV) and must survive the L28 per-NaI residual-coherence check before being called physical.",
+  "P-A2 (two-break sub-threshold): the census integrated block [-0.283,11.686] AIC-prefers DSBPL (xb = 14.4 keV) but LRT_DSBPL_SBPL = 6.25 < 9.2 and BIC prefers Band; prediction: the new integrated fit (with the L8 default-seed DSBPL restart) will again show a LOW-ENERGY BREAK CANDIDATE at xb ~ 10-20 keV that does NOT cross the two-break confidence bar (delta-AIC >= 10). If it DOES cross, that is an engine-fix effect (L8/L9), not new data.",
+  "P-B (GBM catalog frame): time-integrated winner stays in the CPL/Band family with Ep ~ 200-330 keV. GBM catalog (HEASARC fermigbrst, bn190222537): flnc_best_fitting_model = flnc_comp, pflx_best_fitting_model = pflx_comp, flnc_band_epeak = 231.8 keV, alpha = -0.78, beta = -2.73. Falsified if the new integrated winner is BB-bearing or if Ep lands outside ~150-400 keV.",
+  "P-B2 (Yi+2025 single-FRED class): hard-to-soft evolution — new time-resolved Ep declines monotonically after the first sub-block (census track: 326 -> 248 -> 152 -> 125 keV; alpha +0.35 -> -0.66). Yi+2025 (arXiv:2510.18207) put this burst in their 'general single FRED' catalogue with cross-energy-similar indices slope(tp) = -0.46+0.04-0.04, slope(tw) = -0.45+0.03-0.03 (tp = sqrt(tr*td), tw = tr+td, Norris+2005 FRED, 4 TTE bands 8-900 keV). Falsified by non-monotonic Ep or hardening tail.",
+  "P-C (paperless-spectroscopy baseline): NO published time-resolved spectroscopy exists for this burst (0 GCN circulars; 2 literature mentions are a localization-methods figure and a temporal-catalogue row) — every time-resolved number the new run produces is unpublished territory; the only external anchors are the GBM catalog integrated values in P-B."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn190222537/spectral_fits.ecsv (previous production run; allowed prior)",
+  "n_blocks": 5,
+  "blocks_note": "blk -1 = time-integrated [-0.283,11.686] s; blks 0-3 time-resolved; dets n8,nb,b1 all blocks",
+  "n_sig_bb_blocks": 0,
+  "sig_bb_criterion": "LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05",
+  "sig_bb_kt_values": [],
+  "sig_bb_median_kt": null,
+  "aic_winners": {"DSBPL": 1, "Band": 2, "CPL": 2},
+  "bic_winners": {"Band": 2, "CPL": 3},
+  "integrated_block": {"aic_winner": "DSBPL", "bic_winner": "Band", "dsbpl_xb_keV": 14.4, "lrt_dsbpl_sbpl": 6.25, "band_alpha": -0.61, "band_ep_keV": 213.5, "band_beta": -2.55},
+  "ep_track_keV": [326.5, 247.9, 151.6, 124.5],
+  "max_lrt_bandbb_band": 2.86,
+  "class": "null-BB, hard-to-soft, sub-threshold low-energy-break candidate in the integrated spectrum only"
+ },
+ "harvest_snippets": {
+  "GCN_circulars": [
+   "ZERO circulars. gcn.gsfc.nasa.gov/other/190222.gcn3 (and A/B forms) = 404; gcn.nasa.gov exact-token searches '190222537', 'bn190222537', '190222A', '190222B' all return totalItems=0, queryFallback=false (checked 2026-08-11). Paperless at the circular level."
+  ],
+  "GBM_catalog_HEASARC_fermigbrst": [
+   "bn190222537 | GRB190222537 | 2019-02-22 12:53:27.151 | t90=13.312 (t90_start=0.320) | flnc_band_epeak=2.318e+02 | flnc_band_alpha=-7.77e-01 | flnc_band_beta=-2.73e+00 | fluence=1.5106e-05 | flnc_comp | pflx_comp | RA 09 49 16.8 | Dec +60 56 24"
+  ],
+  "Yi2025_arXiv251018207": [
+   "Table 1. Sample of general single FRED GRBs ... GRB 190222A 2019-02-22T12:53:27.151 -0.46+0.04-0.04 -0.45+0.03-0.03 (columns: Slope of tp, Slope of tw) — trigger time MATCHES bn190222537 exactly; their '190222A' label conflicts with Cai+2021's usage",
+   "'we define the peaking time delay as tp = sqrt(tr td), and the pulse time scale (a simple proxy of the pulse width) as tw = tr + td' (Norris et al. 2005 FRED form; lightcurves in 8-30/30-100/100-300/300-900 keV TTE bands)"
+  ],
+  "Goldstein2020_2020ApJ89540G": [
+   "Figure 1. RoboBA processing of [Left] Fermi GBM long GRB 190222537 and [Right] short GRB 170817A. Shown is the sum of the data from all NaI detectors in the 50-300 keV energy range. — our burst is their worked long-GRB localization example; no spectral/temporal values"
+  ],
+  "Cai2021_2021MNRAS5083910": [
+   "CONTAMINATED HIT (T1): their 'GRB 190222A' table row carries 2019-02-22T07:29:35.526 = bn190222312 (their 'two triggered detectors (NaI 4, NaI 8)' matches bn190222312 mask 00001000100001, not our 00000000100101 = n8,nb,b1). Excluded from this burst's corpus."
+  ]
+ }
+}

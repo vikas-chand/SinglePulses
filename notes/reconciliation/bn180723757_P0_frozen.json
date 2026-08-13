@@ -1,0 +1,24 @@
+{
+ "burst": "bn180723757",
+ "tally": 20,
+ "frozen_utc": "2026-08-11 night shift 2; BEFORE any fit table opened",
+ "engine": "L18/L19/L20/L26/L27 active",
+ "predictions": [
+  "in Bordoloi+2026 selection (snippets)",
+  "P-A: hard-alpha regime; one-break sufficiency"
+ ],
+ "harvest_snippets": {
+  "Li&Zhang2021": [
+   "absent"
+  ],
+  "Lu2018": [
+   "absent"
+  ],
+  "Li2026": [
+   "absent"
+  ],
+  "Bordoloi2026": [
+   "absent"
+  ]
+ }
+}

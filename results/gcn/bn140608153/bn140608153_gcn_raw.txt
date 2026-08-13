@@ -1,0 +1,115 @@
+# bn140608153 — RAW GCN EVIDENCE FILE
+# Written 2026-08-12 by the 106-burst campaign doc-layer worker (Step 0, GCNIntelligence.md).
+# RESULT: n_circulars = 0.  This file records the NEGATIVE evidence in full, with
+# positive controls, so the "zero" is auditable and never has to be re-derived.
+
+TRIGGER      bn140608153
+GBM NAME     GRB140608153      (glg_tcat_all_bn140608153_v01.fit, keyword OBJECT)
+TRIGGER TIME 2014-06-08T03:41:00.977 UTC = MET 423891663.976584 = MJD 56816.153483525
+POSITION     RA 151.220  Dec -50.260  (ERR_RAD 1.26 deg, statistical only; LOC_SRC 'Fermi, GBM')
+
+================================================================================
+1) CLASSIC PER-GRB ARCHIVE  (gcn.gsfc.nasa.gov/other/<name>.gcn3)
+================================================================================
+  https://gcn.gsfc.nasa.gov/other/140608A.gcn3   -> HTTP 404  (216 bytes error page)
+  https://gcn.gsfc.nasa.gov/other/140608.gcn3    -> HTTP 404  (215 bytes)
+  https://gcn.gsfc.nasa.gov/other/140608B.gcn3   -> HTTP 404  (216 bytes)
+  POSITIVE CONTROL:
+  https://gcn.gsfc.nasa.gov/other/110721A.gcn3   -> HTTP 200, 16519 bytes
+  => the endpoint works; the burst has no per-GRB page because it has no GRB name.
+
+================================================================================
+2) MODERN CIRCULAR ARCHIVE SEARCH API
+   GET https://gcn.nasa.gov/circulars?_data=routes/circulars._archive._index&query=<q>
+================================================================================
+  query=140608A     -> totalItems 0   queryFallback false
+  query=140608      -> totalItems 0   queryFallback false
+  query=140608153   -> totalItems 0   queryFallback false
+  query=bn140608153 -> totalItems 0   queryFallback false
+  query=GRB140608A  -> totalItems 0   queryFallback false
+  query="GRB 140608A" (quoted phrase) -> totalItems 0
+
+  POSITIVE CONTROLS on the SAME endpoint, same session:
+  query=110721A -> totalItems 9
+  query=140606A -> totalItems 8   ('GRB 140606A: Swift detection of a short hard burst', ...)
+  query=140610A -> totalItems 10  ('GRB 140610A: Fermi GBM Detection', ...)
+  query=140611A -> totalItems 4   ('Konus-Wind observation of GRB 140611A', ...)
+  => neighbouring days in the SAME week return circulars normally. The zero for
+     2014-06-08 is a property of the burst, not of the query.
+
+================================================================================
+3) IDENTITY — THERE IS NO IAU-STYLE LETTER DESIGNATION FOR THIS BURST
+================================================================================
+Two GBM triggers occurred on 2014-06-08 (HEASARC fermigbrst, ADQL over the TAP
+service https://heasarc.gsfc.nasa.gov/xamin/vo/tap/sync):
+   bn140608153   MJD 56816.1534835   T90 = 71.681 s   <- OURS
+   bn140608713   MJD 56816.7133161   T90 =  6.400 s
+The THIRD Fermi/GBM catalog (Bhat+2016, ApJS 223, 28; VizieR J/ApJS/223/28/GBM)
+carries a 'GRB' column holding the "YYMMDDA" name. For BOTH 2014-06-08 triggers
+that column is BLANK, while e.g. 140606133 -> 'GRB 140606B', 140610689 ->
+'GRB 140610A', 140619475 -> 'GRB 140619B' in the same month:
+   140603476  (blank)
+   140605377  (blank)
+   140606133  GRB 140606B
+   140608153  (blank)      <- OURS
+   140608713  (blank)
+   140610487  (blank)
+   140610548  (blank)
+   140610689  GRB 140610A
+=> The name "GRB 140608A" DOES NOT EXIST and must never be written into any
+   product for this burst. The only correct designations are the GBM trigger
+   bn140608153 and the GBM catalog object name GRB140608153.
+
+The tcat carries GCN_FLAG = 'Yes', i.e. an AUTOMATED GCN *notice* was distributed
+in real time; no human ever wrote a *circular*.
+
+================================================================================
+4) WHAT THE REAL-TIME TRIGGER RECORD SAYS  (glg_tcat_all_bn140608153_v01.fit,
+   header, verbatim keyword = value)
+================================================================================
+  OBJECT   = 'GRB140608153'   / Burst name in standard format, yymmddfff
+  TRIGTIME =  423891663.976584
+  DATE-OBS = '2014-06-08T03:38:52'   DATE-END = '2014-06-08T03:48:59'
+  RA_OBJ   =  151.220   DEC_OBJ = -50.2600   ERR_RAD = 1.26000
+  THETA    =  57.6919   / [deg] Angle from spacecraft zenith
+  PHI      =  99.5611   / [deg] Angle from spacecraft +X axis toward +Y
+  CLASS    = 'GRB'      OBJ_CLAS = 'GRB'     RELIABLT = 1.00000
+  TRIGSCAL =  2048      / [ms] Triggered timescale
+  TRIG_ALG =  14        / Triggered algorithm number
+  CHAN_LO  =  3   CHAN_HI = 4   / trigger channels (~47-291 keV)
+  TRIG_SIG =  4.5       / Trigger significance (sigma)
+  DET_MASK = '00000000011000'   / Triggered detectors: (0-13)  -> n9 and na
+  GEO_LONG =  183.8333  GEO_LAT = -0.7000
+  LOC_SRC  = 'Fermi, GBM'   LOC_VER = 'dol v4.15adb3'   LOC_ENRG = '(50, 300)'
+  GCN_FLAG = 'Yes'
+  HISTORY SRCINT1 = (    -6.656,    59.905)
+  HISTORY BKG_POLY_ORDER=2
+  HISTORY BKGINT1 = (  -124.711,   -18.044)
+  HISTORY BKGINT2 = (    91.760,   250.191)
+
+================================================================================
+5) COUNTERPART / MULTIWAVELENGTH RECORD
+================================================================================
+NONE. No circular exists, therefore no XRT/optical/radio follow-up, no host, no
+redshift, no IPN triangulation, no Konus-Wind joint spectrum. The Bhat+2016
+'Other' column (other instruments that detected the burst) is EMPTY for this
+trigger. Redshift = NONE, and this is a hard absence, not an unsearched one.
+
+================================================================================
+6) LAT / LLE
+================================================================================
+  https://heasarc.gsfc.nasa.gov/FTP/fermi/data/lat/triggers/2014/bn140608153/current/
+    -> HTTP 404 (the LAT trigger directory does not exist)
+  results/grb_sample.ecsv HAS_LAT = False
+  data/bn140608153/ contains no gll_* file.
+=> No LLE and no LAT products were ever produced for this trigger. The
+   DataInventory D1 off-axis-angle check is therefore not applicable.
+
+================================================================================
+7) LITERATURE (handed to Step 0b; recorded here for completeness)
+================================================================================
+ADS full-text, seven query forms, all zero:
+  full:"GRB 140608A" 0 | full:"bn140608153" 0 | full:"140608153" 0 |
+  full:"423891664" 0 | full:"GRB140608A" 0 | full:"GRB 140608" 0 | full:"140608A" 0
+Positive controls in the same session: full:"GRB 110721A" -> 160,
+full:"110920546" -> 5, full:"bn110920546" -> 1, full:"140606A" -> 17.

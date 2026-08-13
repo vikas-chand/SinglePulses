@@ -1,0 +1,51 @@
+{
+ "burst": "bn180724807",
+ "tally": 28,
+ "frozen_utc": "2026-08-11T16:38:34Z (BEFORE any new fit output opened; walkthrough_b2* untouched)",
+ "engine": "L18/L19/L20/L26/L27/L28 active",
+ "predictions": [
+  "P-A (census, null-BB class): the new fits will find ZERO blocks with LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 keV. Prior run max LRT_BANDBB_BAND = 5.85 (total block), 4.42 (sub-blocks). Falsified if any block crosses the gate.",
+  "P-A2 (census, one-break sufficiency): LRT_DSBPL_SBPL < 9.2 in every block (prior max 4.32); time-integrated AIC winner stays in the one-break family (prior: SBPL; Band frame alpha=-0.98, Ep=439 keV, beta=-1.99). Falsified by a two-break (DSBPL) win or a total-spectrum winner outside {SBPL, Band, CPL}.",
+  "P-A3 (census, curvature quirk): CPL+BB will again beat bare CPL strongly in the mid-rise blocks (~5-12 s; prior LRT_CPLBB_CPL = 36.5 and 27.6 there) while Band+BB does NOT beat Band in the same blocks -- i.e. the 'BB' there is absorbing Band-like curvature, not a photosphere. Falsified if Band+BB also crosses 9.2 in those blocks.",
+  "P-B (literature, morphology): single-pulse, FRED-like -- 'a bright pulse followed by a tail' (GCN 23038), 'a single peak' at T0+6.5 s in 40-200 keV (GCN 23100, peak 19:22:37.5 UT minus T0 19:22:31). New block structure should show one rise/decay, no second emission episode inside -2..48 s.",
+  "P-B2 (literature, hard-to-soft): hard-band peaks lead soft-band peaks externally (HXMT CsI 200-3000 keV peak at T0+3.7 s vs HXMT NaI 100-800 keV at T0+7.8 s, GCN 23038) -- predict per-block Ep decreasing after the first ~2 blocks (hard-to-soft), hardest block within t < ~5 s.",
+  "P-B3 (frame note, duration): GBM catalog T90 = 58.113 +/- 0.81 s from T0+1.024 s (50-300 keV; grb_sample.ecsv row from fermigbrst) puts T95 ~ 59.1 s, BEYOND the stamped SRC_STOP = 48 s; harder instruments give 23.2-31.1 s (GCN 23038/23100). Predict the new fits' last significant block still ends <= ~48 s (prior: 41.64 s) -- the >48 s catalog tail is below our block significance floor, a window-coverage caveat to disclose in P3, not a fit target."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn180724807/spectral_fits.ecsv (previous production run; allowed prior)",
+  "n_rows": 9,
+  "n_sub_blocks": 8,
+  "block_span_s": [-0.23, 41.64],
+  "bb_criterion": "LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05",
+  "n_bb_significant_blocks": 0,
+  "bb_significant_kT_keV": [],
+  "median_bb_significant_kT_keV": null,
+  "class": "null-BB (neither low-kT nor high-kT; no block passes the gate)",
+  "max_LRT_BANDBB_BAND": {"total_block": 5.85, "sub_blocks": 4.42},
+  "aic_winners_sub_blocks": {"SBPL": 3, "CPL": 3, "Band+BB": 1, "Band": 1},
+  "aic_winner_total_block": "SBPL",
+  "bic_winner_total_block": "SBPL",
+  "note_block3": "block 3 (8.70-12.23 s) BEST_AIC = Band+BB but LRT_BANDBB_BAND = 4.35 < 9.2 gate (AIC-vs-LRT disagreement recorded, not resolved)",
+  "LRT_CPLBB_CPL_by_row": [-0.0, 0.3, 7.3, 36.53, 27.62, 2.15, 1.23, 0.99, 1.97],
+  "LRT_DSBPL_SBPL_max": 4.32,
+  "total_block_band_frame": {"alpha": -0.975, "Ep_keV": 438.8, "beta": -1.992}
+ },
+ "harvest_snippets": {
+  "GCN23038_InsightHXMT": [
+   "At 2018-07-24T19:22:31.000 (T0), the Insight-HXMT/HE detected GRB 180724A in a routine search of the galactic plane survey data, which was also observed by Fermi/GBM (trigger number 554152956).",
+   "The Insight-HXMT/HE light curve mainly consists of a bright pulse followed by a tail with a duration (T90) of 23.2 s measured from T0+1.6 s. The 1-second peak rate, measured from T0+3.7 s, is 1312.4 cnts/sec.",
+   "The NaI detectors also detected this pulse with a duration (T90) of 31.1 s from T0+1.6 s. The 1-second peak rate, measured from T0+7.8 s, is 239.3 cnts/sec. [NaI ~100-800 keV; CsI record energy ~200-3000 keV]"
+  ],
+  "GCN23100_AstroSatCZTI": [
+   "The source was clearly detected in the 40-200 keV energy range. The light curve shows a single peak of emission with peak at 19:22:37.5 UT.",
+   "Using cumulative rates, we measure a T90 of 30.3 s. In preliminary analysis, we find that 786 compton events are associated with this event."
+  ],
+  "Li&Zhang2021": ["absent (PyMuPDF search '180724' over Skills_training/Li_2021_2021ApJS253_43L_PUB.pdf: 0 pages)"],
+  "Lu2018": ["absent (Skills_training/Lu_2018_2018ApJ865153L_PUB.pdf: 0 pages)"],
+  "Li2026": ["absent (Skills_training/Li_2026_2026ApJS28318L.pdf: 0 pages)"],
+  "Bordoloi2026": ["absent (Skills_training/Bordoloi_2026_2026ApJ1003_58B_PUB.pdf: 0 pages)"],
+  "Li2019": ["absent (Skills_training/Li_2019_2019ApJS2457L.pdf: 0 pages)"],
+  "Gowri2025": ["absent (Skills_training/Gowri_2025_2025ApJ991230G.pdf: 0 pages)"],
+  "ADS_four_form": ["numFound: name=2 (both GCN newsletters), bn-trigger=0, day-fraction=0, trigger-number=0, GRB180724807=0, GRB180724A(nospace)=0 -- PAPERLESS BURST"]
+ }
+}

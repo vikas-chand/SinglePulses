@@ -1,0 +1,69 @@
+{
+ "burst": "bn081125496",
+ "grb_name": "GRB 081125",
+ "tally": 1,
+ "tally_note": "walkthrough burst #1 (2026-07-29 era); this freeze written 2026-08-12 by the doc-layer worker for the sweep106 blind refit era",
+ "frozen_utc": "2026-08-12",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "frozen_before_any_new_fit_output": true,
+ "sweep_note": "results/sweep106/ NEVER read by this worker (hard rule; blind fits in progress). Prior sources: archival census results/clean_per_burst_human_final/bn081125496/spectral_fits.ecsv + the completed walkthrough-era reconciliation record notes/reconciliation/bn081125496.md (2026-07-30/31, PRE-L18 engine, 8-block grid) + literature harvest bn081125496_harvest.json.",
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn081125496/spectral_fits.ecsv",
+  "n_blocks": 10,
+  "layout": "blk-1 = time-integrated [-1.70, 10.65] s + blk0..blk8 time-resolved",
+  "plugin_dets": "na,nb,b1",
+  "criterion": "UNION rule (both nested pairs): (LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05)",
+  "significant_bb_blocks": 0,
+  "significant_bb_kt_values": [],
+  "significant_bb_median_kt": null,
+  "max_LRT_BANDBB_BAND": {"block": -1, "value": 3.7, "kt": 1.8, "resolved_max": {"block": 5, "value": 3.4, "kt": 38.88}},
+  "max_LRT_CPLBB_CPL": {"block": -1, "value": 7.46, "kt": 27.58, "resolved_max": {"block": 2, "value": 7.11, "kt": 46.69}},
+  "LRT_BANDBB_BAND_all": {"blk-1": 3.7, "blk0": 1.78, "blk1": 2.15, "blk2": 3.35, "blk3": 0.86, "blk4": 2.27, "blk5": 3.4, "blk6": 1.58, "blk7": 0.94, "blk8": 0.83},
+  "LRT_CPLBB_CPL_all": {"blk-1": 7.46, "blk0": 1.82, "blk1": 2.51, "blk2": 7.11, "blk3": 1.13, "blk4": 0.16, "blk5": 1.07, "blk6": 0.97, "blk7": 0.89, "blk8": 0.16},
+  "cplbb_kt_keV_blk0_to_blk8": [17.7, 30.1, 46.69, 91.15, 52.97, 29.72, 3.32, 15.53, 1.0],
+  "bandbb_kt_keV_blk0_to_blk8": [19.31, 29.74, 45.42, 23.67, 1.75, 38.88, 3.52, 15.61, 10.27],
+  "kt_rail_notes": "blk8 CPLBB kT = 1.000 keV = railed at the floor (err 0.001, +127.7); blk-1 BANDBB kT = 1.80 and blk4 BANDBB kT = 1.75 sit near the 1.05 floor region - the L8 default-seed artifact family; none of these accompany a significant LRT anyway",
+  "aic_winners": {"integrated": "SBPL", "resolved": {"CPL": 5, "Band": 2, "CPL+BB": 1, "SBPL": 1}, "resolved_detail": "blk0 CPL, blk1 CPL, blk2 CPL+BB (margin <1 AIC unit; LRT_CPLBB_CPL=7.11 sub-threshold), blk3 CPL, blk4 CPL, blk5 Band, blk6 CPL, blk7 SBPL, blk8 Band"},
+  "bic_winners": {"integrated": "SBPL", "resolved": {"CPL": 7, "SBPL": 1, "Band": 1}},
+  "time_integrated_band": {"alpha": -0.488, "alpha_err": 0.057, "ep_keV": 177.7, "ep_err": 9.9, "beta": -2.652, "beta_err": 0.218, "window_s": [-1.7, 10.65]},
+  "LRT_DSBPL_SBPL_max": {"block": 2, "value": 2.73},
+  "dsbpl_valid_blocks": "1/10 (blk2 only)"
+ },
+ "predictions": [
+  "P-A (census null-BB class): NO block in the new sweep fits will pass the UNION rule - neither (LRT_BANDBB_BAND >= 9.2 & kT > 1.05) nor (LRT_CPLBB_CPL >= 9.2 & kT > 1.05) in any of the ~9-10 blocks. Census prior: 0/10 pass; the closest approach is LRT_CPLBB_CPL = 7.46 (integrated) / 7.11 (blk2). Class = null (no significant BB on either continuum). FALSIFIER: any single block passing either nested test with physical kT.",
+  "P-A2 (the blk2 CPL+BB edge stays sub-threshold): blk2's archival CPL+BB AIC win (margin <1 unit, kT ~ 47 keV, LRT 7.11) will NOT harden to LRT >= 9.2 under the L18+ engine; equivalently, the walkthrough-era 'early thermal bump' (its blk1 CPL+BB win had RAILED kT=1.4 - the L8 seed artifact, retracted 2026-07-31) will NOT resurrect as a physical-kT significant BB.",
+  "P-A3 (no two-break burst): no block reaches LRT_DSBPL_SBPL >= 9.2 (census max 2.73 at blk2; DSBPL_VALID in only 1/10 blocks). bn081125496 will NOT enter the two-break census.",
+  "P-B (catalog/census anchor, falsifiable numbers): the time-integrated Band fit over the stamped window (-1.7..11.9 s) will give alpha = -0.49 +/- 0.10, Ep = 178 +/- 20 keV, beta in [-3.1, -2.2]. Sources: census blk-1 (-0.488 +/- 0.057 / 177.7 +/- 9.9 / -2.652 +/- 0.218). NOTE the GCN 8553 values (Band alpha=+0.14, Ep=221 in T0..T0+3.2 s; CPL index -0.27, Ep=257 in T0+3.2..14.464 s) are SUB-INTERVAL numbers (T9) and must not be diffed against the total-window fit.",
+  "P-B2 (winner family + evolution shape): the integrated AIC winner will be the smoothly-curved single-peak family (SBPL/CPL/Band), NOT a +BB model; time-resolved Ep evolution will be hard-to-soft (Lu+2012 'clear h.t.s. throughout' verbatim p5, Yu+2019 Table 1 h.t.s., Lu+2012 bins 332->95 keV); the alpha(t)-Ep(t) track will be NONMONOTONIC with its break at alpha_max (Yu+2019 SS3.5.1 NAMED example - independently reproduced once already by the walkthrough-era fit, break at the blk with alpha ~ +0.08), and every well-constrained bin will sit above the -2/3 synchrotron line.",
+  "P-B3 (temporal): T90(50-300 keV) = 9.28 +/- 0.61 s (GBM catalog; GCN preliminary ~15 s in 8-1000 keV - band + preliminary difference, Qin+2013 T90 ~ E^-0.20 direction); single pulse; POSITIVE (hard-leads-soft) lag consistent with the h.t.s. class: Lu+2018 tau_hat31 = 1.37 +/- 0.10 s (Evolution=H, W=5.25 s), Shao+2017 Delta-tHR = 2.521 +/- 0.126 s (det na, 0.46 s bins)."
+ ],
+ "harvest_snippets": {
+  "GCN8553_FermiGBM": [
+   "At 11:53:39.00 UT on 25 November 2008, the Fermi Gamma-Ray Burst Monitor triggered and located GRB 081125 (trigger 249306820 / 081125496).",
+   "This GRB consists of a single peak with T90 (8-1000 keV) of about 15 s and T50 (8-1000 KeV) of about 4.4 s.",
+   "T0 to T0+3.200 s ... Band function with Epeak = 221 +/- 16 keV, alpha = 0.14 +/- 0.09, and beta = -2.34 +/- 0.22",
+   "T0+3.200 s to T0+14.464 s ... power law function with an exponential high energy cutoff. The power law index is -0.27 +/- 0.06 and the cutoff energy, parameterized as Epeak, is 257 +/- 12 keV",
+   "The event fluence (8-1000 keV) from T0+0.003 s to T0+14.464 s is (4.91 +/- 0.16)E-05 erg/cm^2."
+  ],
+  "GBM_catalog_grb_sample_row": [
+   "T90 = 9.28 +/- 0.607 s (T90START = 0.512 s, 50-300 keV); FLUENCE(10-1000 keV) = 1.8544e-05 +/- 1.3285e-07 erg/cm^2; FLUX_1024 = 23.2499 +/- 0.435 ph/s/cm^2; RA/Dec = 42.7, -18.9"
+  ],
+  "Lu2012_p5": [
+   "Clear hard-to-soft evolution throughout the burst (3/43 GRBs): 081125, 090719, 100701B"
+  ],
+  "Yu2019_Table1_and_3.5.1": [
+   "(na)nb,b1; src -5..20 s; N=12 Bayesian-block bins (6 with S>=20); Ep evolution h.t.s.; alpha-Ep Type 1 (r=-0.69)",
+   "The break either occurs at the maximal alpha-value (e.g., GRB 081125), or at the minimum Ep (e.g., GRB 150314)."
+  ],
+  "Lu2018_p39_p54": [
+   "GRB 081125A (bn081125496): -1.66..2.14 s Ep=327.61+/-40.31 alpha=-0.45+/-0.11 beta=-2.32+/-0.26; 2.14..2.87 s Ep=250.51+/-15.71 alpha=-0.16+/-0.09; 2.87..3.85 s Ep=142.74+/-12.7...",
+   "bn081125496 | H | 1.37 +/- 0.10 | 5.25 | 1.74 +/- 0.25 | -0.71 +/- 0.07 (Evolution, tau_hat31, W, k_tau, kE)"
+  ],
+  "Shao2017_Table1": [
+   "081125496 | T90 9.28+/-0.61 | bin 0.46 | ... | na | Delta-tHR 2.521+/-0.126 s"
+  ],
+  "Meng2019": [
+   "SS3.4.1: neither of the three empirical models (Band/COMP/PL) fits 4.3-5.3 and 5.3-6.3 s well -> PL+COMP with FIXED cutoff (their footnote 5); multi-pulse label is model-driven - NOT verified at Lu+2012 (T6 check, 2026-08-12)"
+  ]
+ }
+}

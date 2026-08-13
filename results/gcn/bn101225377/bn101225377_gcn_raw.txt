@@ -1,0 +1,905 @@
+================================================================================
+bn101225377 -- RAW GCN MATERIAL   (fetched 2026-08-12, doc-layer worker)
+================================================================================
+OUR BURST: GBM trigger bn101225377 = GRB101225377
+           TRIGTIME MET 314960575.49784 = 2010-12-25T09:02:53.498 UTC
+           catalog position RA=60.68 Dec=+32.77 (err 1.81 deg stat)
+n_circulars for OUR burst = 0   (honest absence -- recorded as a result)
+
+*** T1 CONTAMINATION WARNING ***
+Everything below this line belongs to a DIFFERENT burst: GRB 101225A, the
+'Christmas burst', Swift-BAT trigger 441015, 2010-12-25 18:37:45 UT (9h35m
+AFTER our trigger), RA=0.234 Dec=+44.602 -- 47.52 deg away from our position.
+It is retained here ONLY as the negative control: the classic per-GRB archive
+page https://gcn.gsfc.nasa.gov/other/101225.gcn3 (identical bytes to
+101225A.gcn3; 101225B.gcn3 -> HTTP 404) carries 27 circulars, EVERY one of them
+about the Christmas burst, and NOT ONE mentions Fermi, GBM, 09:02, or 101225377
+(grep -i 'fermi|gbm|09:02|101225377' -> zero matches).
+NO number below may enter the bn101225377 record.
+
+Independent confirmation of the zero-circular result:
+ - https://gcn.nasa.gov/circulars?startDate=2010-12-24&endDate=2011-01-05 ->
+   36 circulars total (11484-11519): GRB 101224A, GRB 101225A, GRB 101219A/B,
+   GRB 110102A only. None ours.
+ - circular search query '101225377' and 'GRB101225377' -> totalItems 0.
+================================================================================
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11493
+SUBJECT: Trigger 441015: Swift detection of a possible burst or transient
+DATE:    10/12/25 19:19:33 GMT
+FROM:    Judith Racusin at GSFC  <judith.racusin@nasa.gov>
+
+J. L. Racusin (NASA/GSFC), A. P. Beardmore (U Leicester),
+S. Campana (INAF-OAB), M. M. Chester (PSU),
+J. R. Cummings (NASA/UMBC), N. Gehrels (NASA/GSFC),
+J. M. Gelbord (PSU), S. T. Holland (CRESST/USRA/GSFC),
+J. A. Kennea (PSU), H. A. Krimm (CRESST/GSFC/USRA),
+O. M. Littlejohns (U Leicester), K. L. Page (U Leicester),
+B. Sbarufatti (INAF-OAB/IASFPA) and M. H. Siegel (PSU) report on
+behalf of the Swift Team:
+
+At 18:37:45 UT, the Swift Burst Alert Telescope (BAT) triggered and
+located GRB 101225A (trigger=441015).  Swift slewed immediately to the burst. 
+However, given that this was a 1088-second image trigger, the time from the
+trigger time (at the start of the image interval) to the XRT observation is 
+over 23 minutes.  The BAT on-board calculated location is 
+RA, Dec 0.234, +44.602 which is 
+   RA(J2000) = 00h 00m 56s
+   Dec(J2000) = +44d 36' 06"
+with an uncertainty of 3 arcmin (radius, 90% containment, including 
+systematic uncertainty).  Since this was an image trigger, the 
+currently available BAT light curve does not show significant structure. 
+
+The XRT began observing the field at 19:00:48.5 UT, 1383.0 seconds
+after the BAT trigger. XRT found a bright, uncatalogued X-ray source
+located at RA, Dec 0.1992, +44.6017 which is equivalent to:
+   RA(J2000)  = 00h 00m 47.80s
+   Dec(J2000) = +44d 36' 06.1"
+with an uncertainty of 5.1 arcseconds (radius, 90% containment). This
+location is 89 arcseconds from the BAT onboard position, within the BAT
+error circle. No event data are yet available to determine the column
+density using X-ray spectroscopy. 
+
+UVOT data products have not been received at this time. 
+
+The BAT trigger was an unusually long image trigger.  Due to the 
+relative proximity to the Galactic plane (l=113.55,b=-17.35), and lack
+of fading  information from XRT at this time, we are unsure if this
+trigger is a  GRB or transient.  We will report as more information is
+available. 
+
+Burst Advocate for this burst is J. L. Racusin (judith.racusin AT nasa.gov). 
+Please contact the BA by email if you require additional information
+regarding Swift followup of this burst. In extremely urgent cases, after
+trying the Burst Advocate, you can contact the Swift PI by phone (see
+Swift TOO web site for information: http://www.swift.psu.edu/too.html.)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11495
+SUBJECT: Trigger 441015 / GRB 101225A: NOT optical afterglow candidate
+DATE:    10/12/25 22:12:53 GMT
+FROM:    Dong Xu at Weizmann Inst  <dong@astro.ku.dk>
+
+D. Xu (Weizmann Inst.), I. Ilyin (AIP), J.P.U. Fynbo (DARK/NBI) report
+on behalf of a larger collaboration:
+
+We observed the field of GRB 101225A (Racusin et al., GCN 11493) at
+the Nordic Optical Telescope (NOT) equipped with StanCam. We obtained
+3x300 s exposures in each of the V, R, and I filters, starting at
+20:10:33.5 UT, 25/12/2010 (i.e., 1.54681 hrs after the BAT trigger).
+
+Within the XRT error circle only one optical source is detected in our
+images in each filter at coordinates
+
+(RA,Dec)(J2000.0) = (00:00:47.5, +44:36:02.4)
+(error-radius:  0.7 arcsec)
+
+This source lies on the southwestern border of the Swift/XRT error
+circle and not apparently extended. We found R=22.1+/-0.1 mag
+(calibrated with nearby USNO B1 stars) at 20:13:3.5 UT (i.e., 1.58847
+hrs after the BAT trigger).
+
+Further NOT observation is undergoing in order to check the brightness
+variation of this source.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11496
+SUBJECT: Trigger 441015 / GRB 101225A: Further NOT optical observation
+DATE:    10/12/26 01:24:57 GMT
+FROM:    Dong Xu at Weizmann Inst  <dong@astro.ku.dk>
+
+D. Xu (Weizmann Inst.), I. Ilyin (AIP), J.P.U. Fynbo (DARK/NBI) report
+on behalf of a larger collaboration:
+
+We continued to observe the field of GRB 101225A (Racusin et al., GCN
+11493) at the Nordic Optical Telescope (NOT) equipped with StanCam. We
+obtained 2x300 s exposures in each of the R and I filters, starting at
+23:57:30.9 UT, 25/12/2010 (i.e., 5.32942 hrs after the BAT trigger).
+
+The optical source detected in our previous images (Xu et al., GCN
+11495) is still present in the new stacked images for both R and I
+filters. We found m(R)=22.6+/-0.2 mag at 00:06:03 UT, 26/12/2010
+(i.e., 5.47167 hrs after the BAT trigger), which shows that this
+object has decreased 0.5 mag in the R filter between the two epochs
+with a mean power-law decay index \alpha~0.4. The magnitude in the I
+filter, m(I)=21.6+/-0.2, largely remains unchanged.
+
+We thus conclude that this optical source is likely the afterglow of
+GRB 101225A. And further observation is encouraged.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11497
+SUBJECT: GRB 101225A: Enhanced Swift-XRT position
+DATE:    10/12/26 04:03:25 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@star.le.ac.uk>
+
+P.A. Evans, M.R. Goad, J.P. Osborne and A.P. Beardmore (U. Leicester) 
+report on behalf of the Swift-XRT team.
+
+Using 6262 s of XRT Photon Counting mode data and 15 UVOT
+images for GRB 101225A, we find an astrometrically corrected X-ray
+position (using the XRT-UVOT alignment and matching UVOT field sources
+to the USNO-B1 catalogue): RA, Dec = 0.19778, +44.60027 which is equivalent
+to:
+
+RA (J2000): 00h 00m 47.47s
+Dec (J2000): +44d 36' 01.0"
+
+with an uncertainty of 1.4 arcsec (radius, 90% confidence).
+
+This position may be improved as more data are received. The latest
+position can be viewed at http://www.swift.ac.uk/xrt_positions. Position
+enhancement is described by Goad et al. (2007, A&A, 476, 1401) and Evans
+et al. (2009, MNRAS, 397, 1177).
+
+This circular was automatically generated, and is an official product of the
+Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11498
+SUBJECT: GRB 101225A: Swift-XRT refined Analysis
+DATE:    10/12/26 08:03:55 GMT
+FROM:    Kim Page at U.of Leicester  <kpa@star.le.ac.uk>
+
+K.L. Page (U. Leicester) and J. L. Racusin (NASA/GSFC) report on behalf
+of the Swift-XRT team:
+
+We have analysed 13 ks of XRT data for possible GRB 101225A (Racusin et
+al., GCN Circ. 11493), from 1.4 ks to 35.6 ks after the  BAT trigger.
+The data comprise 2.7 ks in Windowed Timing (WT) mode with the
+remainder in Photon Counting (PC) mode. The enhanced XRT position for
+this burst was given by Evans et al. (GCN. Circ 11497).
+
+The light curve shows substantial structure, but the underlying
+continuum can be modelled with a broken power-law decay. The initial
+decay index is alpha= 1.108 (+/-0.011). At T+21682 s the decay steepens
+to an alpha of 5.93 (+/-0.30). 
+
+A spectrum formed from the WT mode data can be fitted with an absorbed
+power-law with a photon spectral index	of 1.71 (+/-0.04). The
+best-fitting absorption column is  1.78 (+/-0.11) x 10^21 cm^-2, in
+excess of the Galactic value of 7.9 x 10^20 cm^-2 (Kalberla et al.
+2005). The PC mode spectrum has a photon index of 1.96 (+/-0.06) and a
+best-fitting absorption column of 1.58 (+0.16, -0.15) x 10^21 cm^-2.
+The counts to observed (unabsorbed) 0.3-10 keV flux conversion factor
+deduced from this spectrum  is 4.1 x 10^-11 (5.6 x 10^-11) erg cm^-2
+count^-1. 
+
+A summary of the PC-mode spectrum is thus:
+Total column:	     1.58 (+0.16, -0.15) x 10^21 cm^-2
+Galactic foreground: 7.9 x 10^20 cm^-2
+Excess significance: 17.1 sigma
+Photon index:	     1.96 (+/-0.06)
+
+If the light curve continues to decay with a power-law decay index of
+5.59, the count rate at T+24 hours will be 0.0007 count s^-1,
+corresponding to an observed (unabsorbed) 0.3-10 keV flux of 2.7 x
+10^-14 (3.7 x 10^-14) erg cm^-2 s^-1. 
+
+We note that this is the brightest afterglow that the XRT has ever
+observed at a few thousand seconds after the trigger.
+
+The results of the XRT-team automatic analysis are available at
+http://www.swift.ac.uk/xrt_products/00441015.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11499
+SUBJECT: GRB 101225A: Swift/UVOT Detection
+DATE:    10/12/26 16:20:36 GMT
+FROM:    Mike Siegel at PSU/Swift MOC  <siegel@astro.psu.edu>
+
+M. H. Siegel (PSU) and J. L. Racusin (NASA/GSFC)
+report on behalf of the Swift/UVOT team:
+
+The Swift/UVOT began settled observations of the field of GRB 101225A
+1387 s after the BAT trigger (Racusion et al., GCN Circ. 11493).  We  
+find
+a marginal detection in the later data consistent with the enhanced
+XRT position (Evans et al., GCN Circ. 11497).  Preliminary 3-sigma upper
+limits and magnitudes using the UVOT photometric system
+(Poole et al. 2008, MNRAS, 383, 627) for the  exposures are:
+
+Filter    T_start(s) T_stop(s)  Exp(s)   Mag
+
+V          1387        1705       58    >19.11
+V          5572       29944     2601    >21.40
+B          1485        1655       38    >19.84
+B          5161       28991     3933     21.73+-0.29
+U          1460        1630       38    >19.35
+U          4955        7534      507    >20.68
+UVW1       1435        1754       58    >19.25
+UVW1       5982        7413      393     20.58+-0.37
+UVM2       1410        1729       58    >18.74
+UVM2       5777        7208      393     20.12+-0.34
+UVW2       1512        1680       38    >18.82
+UVW2       5367        6798      393     19.67+-0.22
+UVW2      11650       12550      885     20.35+-0.22
+UVW2      17470       18370      885     19.62+-0.15
+UVW2      23218       29897     1771     20.10+-0.14
+
+The values quoted above are not corrected for the Galactic extinction
+due to the reddening of E(B-V) = 0.10 in the direction of the burst
+(Schlegel et al. 1998).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11500
+SUBJECT: GRB 101225A, Swift-BAT refined analysis 
+DATE:    10/12/26 17:20:01 GMT
+FROM:    Hans Krimm at NASA-GSFC  <hans.a.krimm@nasa.gov>
+
+D. M. Palmer (LANL), S. D. Barthelmy (GSFC), W. H. Baumgartner (GSFC/UMBC),
+J. R. Cummings (GSFC/UMBC), E. E. Fenimore (LANL), N. Gehrels (GSFC),
+H. A. Krimm (GSFC/USRA), C. B. Markwardt (GSFC), J. L. Racusin (NASA/GSFC),
+T. Sakamoto (GSFC/UMBC), G. Sato (ISAS), M. Stamatikos (OSU),
+J. Tueller (GSFC), T. N. Ukwatta (GWU) (i.e. the Swift-BAT team):
+
+Using the data set from T-131 to T+1366 sec from the recent telemetry downlink,
+we report further analysis of Swift/BAT GRB 101225A (trigger #441015)
+(Racusin, et al., GCN Circ. 11493).  The BAT ground-calculated position is
+RA, Dec = 0.2037, +44.5739 deg which is
+   RA(J2000)  =  00h 00m 48.9s     Dec(J2000) = +44d 34' 26.0"
+with an uncertainty of 3.6 arcmin, (radius, sys+stat, 90% containment).
+The partial coding was 85%.
+
+The mask-tagged light curve shows that the GRB entered the BAT field of view at
+~T-80 sec during a pre-planned slew.  The flux slowly declined after this point
+and then increased at about T+600 seconds.  There were less significant
+fluctuations until the end of the event data at about T+1300.  T90 (15-350 keV)
+is  1088.0 +- 20.0 sec (estimated error including systematics).
+
+The time-averaged spectrum from T+0 to T+963 sec is best fit by a simple
+power-law model.  The power law index of the time-averaged spectrum is
+1.82 +- 0.32.  The fluence in the 15-150 keV band is 1.9 +- 0.4 x 10-6 erg/cm2.
+The 1-sec peak photon flux measured from T+0.00 sec in the 15-150 keV band
+is 0.0 +- 0.0 ph/cm2/sec.  All the quoted errors are at the 90% confidence
+level.
+
+The results of the batgrbproduct analysis are available at
+http://gcn.gsfc.nasa.gov/notices_s/441015/BA/
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11501
+SUBJECT: Tentative redshift of GRB101225A (Christmas's burst) from Swift-XRT data
+DATE:    10/12/27 16:29:52 GMT
+FROM:    Sergio Campana at INAF-OAB  <sergio.campana@brera.inaf.it>
+
+S. Campana (INAF-OAB), S. Covino (INAF-OAB),
+J.L. Racusin (NASA/GSFC) and K. L. Page (U Leicester)
+report on behalf of the Swift Team:
+
+GRB 101225A was detected by Swift BAT as an image trigger (Racusin
+al. 2010, GCN 11493). Swift XRT started observing 1383 s after the
+trigger observing the main event. The afterglow is very bright and
+the XRT remained in the Windowed Timing (WT) mode for two consecutive
+orbits. Within each orbit the spectrum remain constant as judged from
+the hardness ratio and from the power law photon index.
+We extract the XRT spectra for each of the first two orbits, separately.
+We then fit the two spectra within XSPEC using the model
+tbabs * ztbabs * (cutoff), keeping the same absorption pattern and leaving
+free the cutoff power-law model for the two spectra (the cutoff power-law
+model provides much better results in terms of column density evaluation
+with respect to a simple power-law model when small spectral variations
+are present).
+We assume a Galactic column density of 7.9x10^20 cm-2 (Kalberla et al.
+2005, A&A 440 775) and we allow for a 30% uncertainty in the fit. We
+binned the spectra to 50 counts per energy bin and used the latest (v12)
+response matrix. The detection in the UVW2 filter by UVOT (Siegel &
+Racusin 2010, GCN 11499) constrains the redshift to be <1.4.
+The fit with the cutoff power-law is relatively good with a reduced
+chi^2 of 1.13 (508 dof).
+Motivated by the similarities with GRB 060218 (extremely long duration,
+soft prompt-emission spectrum, bright smoothly decaying X-ray afterglow
+light curve, UV detection with optical non-detection), we fit the X-ray
+spectrum including a blackbody component.
+The fit improves considerably (and the cutoff energy goes well above the
+XRT energy band, becoming unimportant for both spectra).
+The new fit provides a reduced chi^2 of 1.07 (504 dof), based on an F-test
+the addition of the blackbody component improves the fit by 4.2 sigma.
+In the intrinsic column density vs. redshift plane there is just one
+deep minimum hinting for a redshift z=0.07^+0.13_-0.04 (90% confidence
+level) and an intrinsic column density N_H(z)=(1.5^+0.5_-0.2)x10^21 cm^-2.
+The power law component shows a small softening from the first to the
+second orbit, with a photon index around 2.2-2.4.
+The blackbody component is hot with a temperature of ~1 keV, consistent
+among the two observations. The blackbody radius decreases from the first
+observation to the second from ~2x10^10 cm to ~0.6x10^10 cm.
+
+Ground-based optical follow-up observations are strongly encouraged in order
+to get spectroscopic confirmation for the redshift estimate and, eventually,
+to monitor the coming out of a supernova.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11502
+SUBJECT: GRB 101225A: WHT observations
+DATE:    10/12/27 19:18:03 GMT
+FROM:    Klaas Wiersema at U of Leicester  <kw113@star.le.ac.uk>
+
+K. Wiersema, N. Tanvir (Leicester) and A. Levan (Warwick) report:
+
+We observed the afterglow of GRB 101225A (Racusin et al. GCN 11493; Xu et al. 
+GCN 11496) with the 4.2m William Herschel Telescope.
+We used the ACAM instrument to obtain imaging in r and i filters, and low 
+resolution spectroscopy.
+
+The afterglow is clearly detected in individual images of 300 second 
+exposure, at R=22.8 +/- 0.2 mag (uncertainties are dominated by scatter in 
+USNO-B star magnitudes), at 28.2 hrs after burst. The source appears 
+pointlike, in the 1.1 arcsecond seeing conditions. We note that this 
+magnitude compared with the Xu et al value (GCN 11496) implies a very 
+shallow decay.
+
+We obtained two low resolution spectra immediately following the imaging, 
+each with 1200 second exposure time. Continuum emission is detected 
+in the 5000 - 9300 A range, but no significant emission or absorption 
+lines are detected. Detection of continuum up to 5000 A gives a formal 
+constraint on the redshift of z<3.1.
+
+At the redshift estimated by Campana et al. (GCN 11501) we would expect to 
+detect emission lines in the ACAM spectra (e.g. Balmer lines, [O III]), 
+implying that the spectrum is either strongly dominated by the afterglow 
+(the host is faint) or that the emission lines are redshifted into 
+wavelength areas dominated by strong skylines.
+
+We thank Ovidiu Vaduvescu for excellent support.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11503
+SUBJECT: GRB 101225: Optical follow-up of the Christmas burst
+DATE:    10/12/28 13:07:20 GMT
+FROM:    Antonio Deugarte at IAA-CSIC  <deugarte@iaa.es>
+
+C. C. Thoene, J. Gorosabel, S. Guziy, P. Kubánek, A. J. Castro-Tirado
+(IAA-CSIC), A. de Ugarte Postigo (DARK-NBI) and D. Xu (Weizmann Institute)
+report:
+
+"We observed the afterglow of the "Christmas burst" GRB 101225A (GCN
+11493, Racusin et al.) on Dec. 26, starting 18:49 UT (1.008 days after the
+burst onset) with the 1.23m telescope at the Spanish-German Calar Alto
+Observatory in Southern Spain. Observations were obtained in V, R and I
+with total exposure times of 21x180s, 19x180s and 17x180s respectively.
+
+From the stacked images we obtain the following preliminary magnitudes for
+the optical afterglow (GCN 11495, Xu et al.) based on calibrations with
+Landolt standard stars taken immediately after the observations:
+
+V = 23.1
+R = 22.2
+I = 21.3
+with errors of about 0.2 mag.
+
+This would imply that the afterglow has rebrightened after the first day
+(GCNs 11495 and 11496, Xu et al.) and, considering the possible low
+redshift of the GRB from the bright X-ray afterglow (GCN 11501, Campana et
+al.), this could be due to the onset of the accompanying SN, similar to
+the case of GRB 060218 (Campana et al. 2006). It is more significant if we
+consider the fast decay that is observed in X-rays (GCN 11498 Page et
+al.).
+
+We note that the magnitude reported by Wiersema et al. (GCN 11502) shows a
+shallow decay at a similar epoch, implying that there could be a problem
+of cross calibration of the different photometries or a non smooth
+behavior. In any case the evolution of the optical light curve would be
+rather flat, compared to other GRB light curves.
+
+Further follow up observations are planned."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11504
+SUBJECT: GRB 101225A Late-time emission observed by Swift-BAT
+DATE:    10/12/29 01:38:52 GMT
+FROM:    Jay R. Cummings at NASA/GSFC/Swift  <james.r.cummings@nasa.gov>
+
+J. R. Cummings (GSFC/UMBC) and T. Sakamoto (GSFC/UMBC)
+on behalf of the Swift-BAT team:
+
+We report further results of BAT observations of GRB 101225A (Racusin, et al.,
+GCN Circ. 11493).
+
+The most intense emission observed by BAT from GRB 101225A in the 14-50 keV range
+occurred from T+1372 to T+1672 seconds, later than previously reported (Palmer,
+et al. GCN circ #11500).  The source was not in the BAT field of view from T-4500
+to T-100 sec, from T+1088 to T+1372 sec, and from T+1758 to T+4936 sec.  There was
+no detectable emission prior to T-4500 sec, and the burst appears to have started
+sometime before the source entered the BAT field of view at T-100 sec.
+
+The spectrum from T+1372 to T+1672 seconds is similar to the earlier report, with
+a single power law photon index of 1.87 +- 0.21.  The total fluence was greater,
+possibly much greater, than 3 x 10^-6 ergs/cm^2 or about 1.6 times the fluence
+reported earlier.
+
+BAT detection of extremely long emission is similar to that of GRB 060218 and
+GRB 100316D (both spectroscopically confirmed SN-GRBs).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11505
+SUBJECT: GRB 101225A: MAXI/GSC observations
+DATE:    10/12/29 05:38:26 GMT
+FROM:    Nobuyuki Kawai at Tokyo Tech  <nkawai@hp.phys.titech.ac.jp>
+
+M. Serino, T. Mihara, Y.E. Nakagawa, M. Sugizaki, 
+T. Yamamoto, T. Sootome, M. Matsuoka (RIKEN), 
+N. Kawai, M. Morii, K. Sugimori, R. Usui (Tokyo Tech),
+K. Kawasaki, S. Ueno, H. Tomida, M. Kohama, M. Ishikawa (JAXA),
+A. Yoshida, K. Yamaoka,  S. Nakahira (AGU),
+H. Tsunemi, M. Kimura (Osaka U.), H. Negoro, M. Nakajima
+H. Ozawa, F. Suwa (Nihon U.), Y. Ueda, N. Isobe, 
+S. Eguchi, K. Hiroi (Kyoto U.), A. Daikyuji (Miyazaki U.), 
+K. Yamazaki, A. Uzawa, T. Matsumura (Chuo U.),
+report on behalf of the MAXI team:
+
+MAXI/GSC observed the field of the Swift trigger 441015 = GRB 101225A
+(Racusin et al, GCN 11493) before and after the trigger time.
+The transit times (UT) and the observed fluxes in 2-10 keV energy band are
+
+ 15:51  (T-9988s)     -19 +- 11 mCrab
+ 17:23  (T-4483s)      20 +- 13 mCrab
+ 18:54  (T+1002s)      20 +- 15 mCrab
+ 20:05  (T+5218s)      11 +-  9 mCrab
+ 23:08  (T+16209s)      2 +-  7 mCrab
+
+All the quoted uncertainties are 1-sigma statistical errors.
+
+Note that the third transit occurred within the 1088-second Swift image trigger interval.  While it is not statistically significant, there appears be a weak X-ray enhancement at the location of the Swift trigger position during or near the BAT detection times (Cummings and Sakamoto, GCN 11504).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11506
+SUBJECT: GRB 101225A: P60 Observations
+DATE:    10/12/29 18:32:50 GMT
+FROM:    S. Bradley Cenko at Caltech  <cenko@srl.caltech.edu>
+
+S. B. Cenko (UC Berkeley) reports on behalf of a larger collaboration:
+
+We have imaged the field of GRB101225A (Racusin et al., GCN 11493) with
+the automated Palomar 60 inch telescope.  Images were obtained in the
+Sloan r' and i' filters on 2010 December 28 beginning at 01:49 UT (~ 55.2
+hours after the BAT trigger time).
+
+We detect a faint source at the location of the optical afterglow (Xu et
+al., GCN 11495) in both filters.  Using a set of nearby sources from the
+USNO-B1 catalog for reference, we measure the following magnitudes for the
+source at this time: R = 22.8 +/- 0.2; I = 22.3 +/- 0.2.
+
+Our R-band measurement is consistent with that found by Wiersema et al
+(GCN 11502) at t ~ 28 hours, but fainter (in both R and I) than the values
+reported by Thoene at al (GCN 11503) at a similar time.  In either case,
+we find no evidence for a re-brightening as of yet, as would be expected
+for the emergence of supernova emission from a nearby event like
+GRB060218/SN2006aj.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11507
+SUBJECT: GRB 101225A: MMT spectroscopy
+DATE:    10/12/29 23:09:32 GMT
+FROM:    Ryan Chornock at Harvard  <rchornock@cfa.harvard.edu>
+
+R. Chornock, G. H. Marion, G. Narayan, E. Berger, and A. M. Soderberg 
+(Harvard/CfA) report:
+
+We obtained spectroscopy of the optical source (Xu et al., GCN 11495; Xu 
+et al., GCN 11496; Siegel et al., GCN 11499; Wiersema et al., 11502; 
+Thoene et al., 11503; Cenko et al., 11506) associated with GRB 101225A 
+(Racusin et al., GCN 11493) using the Blue Channel Spectrograph on the 
+6.5-m MMT.  Two 2400 s observations starting on December 29.1 UT covered 
+the spectral range 3175-8385 Angstroms.  The source has a smooth blue 
+continuum and no clear emission or absorption features associated with a 
+host galaxy are detected in our spectra, similar to the findings of 
+Wiersema et al. (GCN 11502).  In addition, the continuum has no obvious 
+broad undulations or evidence for line blanketing shortward of 4000 
+Angstroms, such as would be expected if the spectral features of a 
+supernova were emerging.  The spectrum is well fit by a power law of the 
+form F_nu ~ constant * nu^(0.4), which is bluer than typical afterglow 
+spectra, which typically scale as F_nu ~ nu^(-0.6).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11508
+SUBJECT: GRB 101225A: optical break from NOT observation
+DATE:    10/12/31 01:43:13 GMT
+FROM:    Dong Xu at Weizmann Inst  <dong@astro.ku.dk>
+
+D. Xu (Weizmann Inst.), P. Hakala (Turku U.), J.P.U. Fynbo (DARK/NBI)
+report on behalf of a larger collaboration:
+
+We imaged the filed of GRB(or XRF) 101225A (Racusin et al., GCN 11493)
+at the Nordic Optical Telescope (NOT) equipped with either StanCam or
+ALFOSC in B, V, R, and I filters. The R-band optical afterglow  (Xu et
+al., GCN 11495) light curve was found decaying very slowly from
+m(R)=22.6 +/- 0.2 at 5.47167 hrs after the BAT trigger to m(R)=22.8
++/- 0.2 at 55.2 hrs after the BAT trigger (Xu et al., GCN 11496;
+Wiersema et al., GCN 11502; Thoene et al., GCN 11503; Cenko, GCN
+11506).
+
+Two 450 s R-band images were obtained with NOT/ALFOSC, starting at
+21:50:46.9 UT, 30/12/2010 (i.e., 123.217 hrs after the BAT trigger)
+under the conditions of seeing ~1". The afterglow was clearly detected
+in the stacked image, largely pointlike, and had m(R)=23.3+/-0.2. This
+indicates that R-band afterglow is now decaying faster compared with
+its behavior during the past days, and that the host hasn't dominated
+the brightness, being consistent with the featureless spectroscopy
+(Wiersema et al., GCN 11502; Chornock et al., 11507).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11519
+SUBJECT: GRB 101225A: Host galaxy
+DATE:    11/01/05 13:44:53 GMT
+FROM:    Dong Xu at Weizmann Inst  <dong@astro.ku.dk>
+
+D. Xu (Weizmann Inst.), D. Malesani, J.P.U. Fynbo, J. Hjorth
+(DARK/NBI), P. Jakobsson (U. Iceland), T. Augusteijn (NOT), report on
+behalf of a larger collaboration:
+
+We imaged the field of GRB 101225A (Racusin et al., GCN 11493) at the
+Nordic Optical Telescope (NOT) equipped with ALFOSC. We obtained 6x600
+s R-band images with a good seeing ~0.7" and little cloud cover.
+Observations started at 20:55:25 UT on 2011 Jan 4 (i.e., 10.1 days
+after the BAT trigger).
+
+The optical counterpart of the burst (Xu et al., GCN 11495) has faded
+further and it is detected in the stacked image with R = 24.1+/-0.1,
+calibrated against the USNO-B1 star #1345-0000324. The object is now
+significantly extended along the northwest-southeast direction,
+indicating a significant contribution from the underlying host galaxy.
+
+Further observations are encouraged, especially in the NIR.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11522
+SUBJECT: GRB 101225A: Keck redshift
+DATE:    11/01/06 20:13:40 GMT
+FROM:    Dong Xu at Weizmann Inst  <dong@astro.ku.dk>
+
+D. Xu, A. Gal-Yam (WIS), J. P. U. Fynbo (DARK/NBI), report on behalf
+of a large collaboration:
+
+Spectroscopy of the host galaxy of GRB 101225A (Racusin et al., GCN
+11493; Xu et al. GCN 11519) was carried out at the 10m Keck-I
+telescope equipped with the Low Resolution Imaging Spectrometer (LRIS)
+around 10 UT, 6th Jan. 2011, with a good seeing ~0.7". A 900s spectrum
+was obtained and it consists of a red and a blue channels, covering
+~3200-5500 A and ~5000-8200 A, respectively. The spectrum has a low
+signal-to-noise ration and the trace is best detected in the red
+channel. Three weak emission lines are found at a common redshift of
+z=0.40, considered as Hbeta (4861 AA), and the O III (4960 AA, 5007
+AA).
+
+Isotropic energy: >~ 7.8+/-1.6 x10^50 erg, using the BAT fluence
+(Palmer et al., GCN 11500)
+
+The absence of evidence for an emerging SN at the above redshift
+suggests that GRB 101225A is a SN-less or SN-weak long GRB event.
+
+Further deep spectroscopic observations are encouraged.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11550
+SUBJECT: GRB 101225a
+DATE:    11/01/10 08:29:09 GMT
+FROM:    Dale A. Frail at NRAO  <dfrail@nrao.edu>
+
+Dale A. Frail (NRAO) reports on behalf of a larger collaboration:
+
+"We observed GRB 101225A (GCN#s 11494, 11497, 11498, 11499, 11500)
+with the Expanded Very Large Array (EVLA) on 2011 January 6.99 UT using
+the C-band wide receiver (frequency range 4-8 GHz).
+
+No significant radio signal is detected at the enhanced Swift-XRT
+position (GCN 11497) at frequencies of 4.5 and 7.9 GHz and at 3-sigma
+levels of 42 uJy and 30 uJy, respectively.
+
+No further observations are planned.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11563
+SUBJECT: GRB 101225A: Redshift retraction and results of additional photometric follow-up at the NOT
+DATE:    11/01/13 11:12:38 GMT
+FROM:    Dong Xu at Weizmann Inst  <dong.xu@weizmann.ac.il>
+
+J. P. U. Fynbo (DARK/NBI), D. Xu (WIS) report on behalf of a larger
+collaboration:
+
+We re-analyzed the 900s low signal-to-noise spectrum reported in our
+previous GCN #11522. We found that the brightest of the three weak
+emission features is due to bad removal of a cosmic ray hit. The two
+other features are close to sky emission lines. We thus conclude that
+the reported redshift of z=0.4 in GCN #11522 for this event is not
+secure and may be wrong. Deep spectroscopic observations from 8-10 m
+telescopes are strongly encouraged. We apologize for the confusing
+this report may have caused.
+
+We also continued photometric follow-ups of the optical counterpart of
+GRB 101225A at NOT, and obtained 6x600 s R-band images on Jan. 9 with
+a good seeing ~0.65". The object decayed to m(R)=24.5+/-0.2 compared
+to m(R)=24.1+/-0.1 on Jan. 5 in GCN #11519. However, this time it was
+largely pointlike, which is at odds with being found
+significantly extended along the northwest-southeast direction on Jan.
+5. The decay in brightness and the variation in morphology indicates
+that the underlying host galaxy, if any, still hasn't dominated the
+optical counterpart.
+
+Further photometric and spectroscopic observations are underway.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11564
+SUBJECT: GRB 101225A: HST observations - no host detected
+DATE:    11/01/13 12:46:08 GMT
+FROM:    Nial Tanvir at U.Leicester  <nrt3@star.le.ac.uk>
+
+N.R. Tanvir (U. Leicester), A.J. Levan (U. Warwick), J.P.U. Fynbo,
+D. Malesani, J. Hjorth (DARK/NBI), D. Xu, A. Gal-Yam (Weizmann Inst.)
+K. Wiersema, P.A. Evans (U. Leicester) & D.F. Bersier (Liverpool JMU)
+report:
+
+We observed the location of GRB 101225A (Racusin et al. GCN 11493; Xu
+et al.  GCN 11495) using HST/ACS on 2011 Jan 13 beginning at 00:25 UT,
+approximately 18 days post-burst.  Images were obtained in the F606W
+and F435W filters.  Contrary to the claim in Xu et al. (GCN 11519), we
+find no evidence for extension in either image, and thus no indication
+of a host galaxy.  We do, however, find the colour of the optical
+transient is now quite red with an (AB) colour of F435W-F606W=1.6,
+confirming the reddening trend from the initially very blue colour
+(Chornock et al. GCN 11507).  The magnitude (F606W(AB)=24.6) is
+consistent with a continuing post-break power-law decline in the
+R-band with a slope t^-1.
+
+We note that if this event is at a redshift as low as z=0.07, as
+suggested by an analysis of the X-ray data (Campana et al.  GCN
+11501), then any host galaxy beneath the transient would have to be
+both very faint (less than about M_R=-12) and compact not to be seen
+in the HST images.
+
+We thank the STScI staff for rapidly implementing these observations.
+
+[GCN OPS NOTE(13jan11): Per author's request, DX was added to the autor list.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11568
+SUBJECT: The Christmas burst GRB 101225A - optical spectroscopy with GTC
+DATE:    11/01/14 17:35:27 GMT
+FROM:    Antonio Deugarte at IAA-CSIC  <deugarte@iaa.es>
+
+C. C. Thoene, S. Guizy, A. Castro-Tirado, J. Gorosabel (IAA-CSIC) and A.
+de Ugarte Postigo (DARK/NBI) report:
+
+We observed the optical counterpart of GRB 101225A (the Christmas burst,
+GCN 11493, Racusin et al.) with OSIRIS at the 10.4m GTC on Dec. 27,
+starting at 21:20 UT (51h after the trigger). We obtained 2 exposures of
+1800s using grism R300B.  We acknowledge the excellent support from the
+GTC staff.
+
+The combined and flux-calibrated spectrum shows a smooth, very blue
+continuum without any absorption of emission features, consistent with the
+spectral observations from WHT (GCN 11502, Wiersema et al.), MMT (GCN
+11507, Chornock et al.) and Keck/LRIS (GCN 11563, Fynbo et al.) at
+different times after the trigger. The continuum is well fitted using a
+power law with F(nu) = nu^(0.9+/-0.5).
+
+Considering the very flat optical light curve, the apparent color changes
+in the optical SED, the shape of the X-ray spectrum (GCN 11501, Campana et
+al.) and the lack of a host galaxy (GCN 11564, Tanvir et al.), we think
+that this object might not be a GRB but rather a compact object from the
+MW or the local group. Further follow-up is encouraged to determine the
+nature of this peculiar object.
+
+[GCN OPS NOTE(14jan11): Per author's request, the last sentence in the first
+paragraph was added.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11570
+SUBJECT: GRB101225A - timing analysis
+DATE:    11/01/15 11:46:51 GMT
+FROM:    Nial Tanvir at U.Leicester  <nrt3@star.le.ac.uk>
+
+N.R. Tanvir, P.A. Evans, O.M. Littlejohns (U. Leicester), A.J. Levan (U. Warwick)
+report:
+
+In light of the continuing uncertainty about the nature of GRB 101225A,
+we performed a search for any periodic signal in the BAT and XRT light curves
+for this event.Â  In neither case do we find any significant periods in the data: from
+~0.01 Hz (100 s periods) to ~100 Hz (0.01 s periods) in the case of BAT (data from
+50-900 s post-trigger), and from ~0.004 Hz (250 s periods) to ~1 Hz in XRT (2nd orbit
+data).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11594
+SUBJECT: GRB 101225A: CQUEAN optical observation
+DATE:    11/01/22 15:52:20 GMT
+FROM:    Won-Kee Park at Seoul Nat U/Dept.Physics and Astronomy/CEOU  <wkpark@astro.snu.ac.kr>
+
+Won-Kee Park, Myungshin Im, Changsu Choi (Seoul National Univ.),
+Hyeonju Jeong, Juhee Lim, and Soojong Pak (Kyung Hee Univ.)
+
+
+The field of GRB 101225A was observed with CQUEAN, an optical
+CCD camera attached at the 2.1m telescope at McDonald Observatory,
+USA. The observation was carried out from 01:16:23 UT, Dec. 26, 2010,
+with i, r, z, and Y filters, with exposures of 3 * 300 secs for each
+band.
+
+The afterglow was clearly visible on i and r-band images at
+the same position reported by Xu et al.(GCN 11495). We obtained
+the preliminary magnitude of the afterglow on the stacked i-band
+image calibrated with the neighboring USNO B-1.0 stars:
+R = 22.60 +- 0.19 at 01:42:47 UT. Further analysis of the data is
+ongoing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11642
+SUBJECT: GRB 101225A is likely at z~0
+DATE:    11/02/05 10:52:36 GMT
+FROM:    Andrew Levan at U.of Leicester  <A.J.Levan@warwick.ac.uk>
+
+A.J. Levan (U. Warwick), N.R. Tanvir (U. Leicester) report for a
+larger collaboration:
+
+We obtained imaging of GRB 101225A (Racusin et al. GCN 11493)  with
+GMOS on Gemini North on 5 Feb 2011. At this epoch we obtained a
+total of 2400s in a narrow band H-alpha filter (centered a z~0) and
+900s in the r-band.
+
+The afterglow is weakly detected in the H-alpha image, but not in the
+contemporaneous r-band imaging. This suggests substantial spectral
+evolution from the early-time spectroscopy (Chornock et al. GCN
+11507), and that line emission is now contributing significantly
+to the emission between 6000-7000A.
+
+Given the absence of any host galaxy, and the extremely unusual
+characteristics of this event, the most natural explanation is that
+we are detecting Ha at z~0 from some class of high-energy
+transient. If that is the case, three possible locations seem most
+likely:
+
+(a) it could be a source within the Milky Way, sufficiently far
+away that the progenitor was undetected in prior imaging,
+
+(b) it could be in the far halo of M31 at a distance of at least
+~115 kpc
+
+(c) it could be associated with the distant Local Group dwarf
+spheroidal galaxy Andromeda XVIII, which itself is located ~1.4 Mpc
+from us, but is only ~12 kpc from the line of sight to 101225A.
+
+We note that the early optical and X-ray emission (in particular
+the ratio of the two) remain extremely unusual for known Galactic 
+transients.
+
+We thank the staff of Gemini North for the rapid and effective
+execution of these observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11751
+SUBJECT: GRB 101225A, the review of the sky area in plate archives
+DATE:    11/02/20 13:39:08 GMT
+FROM:    Valentyna Golovnya at Main Astro Obs,Kyiv  <golov_v@ukr.ne>
+
+GRB 101225A, the review of the sky area in plate archives 
+V.V. Golovnya, L.M. Kizyun, L.K. Pakuliak (Main Astro Obs, Kyiv) 
+report: 
+
+We have undertaken the review of the sky area of GRB 101225A  
+(P.A. Evans et al., GCN 11497) on astronegatives, collected  
+in Ukrainian NAS Main astronomical observatory plate archive  
+(1976-1996). All the plates with the possible object appearance 
+are digitized using Microtek ScanMaker 9800XL TMA flatbed scanner 
+and have been placed into Golosiiv Plate Archive database DBGPA  
+with open access to them. No any object has been found in the 
+point with the mentioned coordinates of GRB.
+
+The list of plates is given in the table:
+ 
+YYYYMMDD UT Plates                	 Exp.	LimMag 
+19850815 00:26:01 GUA040C000702A	16.0	16.15 
+19841212 16:51:23 GUA040C000587 	16.0	15.35
+19840827 23:46:55 GUA040C000468A	16.0	15.35
+19930923 21:33:33 GUA040C002237	        18.0	15.35
+19840827 23:12:28 GUA040C000467A	16.0	16.10
+19840905 22:33:06 GUA040C000491 	18.0	16.35
+19850815 00:02:05 GUA040C000701 	16.0	16.15
+19871024 19:40:17 GUA040C001153A	18.0	15.35
+19840809 01:08:44 GUA040C000441 	16.0	14.10
+19840905 22:58:22 GUA040C000492A	18.0	16.55
+
+Plates: the plate's identifier in GUA040C archive of DWA 
+           (D/F=400/2000, M=103"/mm)
+           of the Ukrainian NAS Main Astro obs in Kyiv
+          (Marsden's number - 83)[1].
+Exp.   - Duration of the maximum exposure (minutes). 
+LimMag - Limited V mag, derived in the 15 minutes area around the  
+        location given in P.A. Evans et al., GCN 11497: 
+        RA (J2000): 00h 00m 47.47s, Dec (J2000): +44d 36' 01.0". 
+
+The preview images of 10 areas together with  
+the 15 min.of arc area from SkyMap can be found in  
+http://gua.db.ukr-vo.org/img/grb/101225A/index.html
+The images with full resolution are available via e-mail on demand. 
+
+References: 
+1.L.Pakuliak DATABASE of GOLOSIIV PLATE ARCHIVE (DBGPA V2.0), 
+http://gua.db.ukr-vo.org 
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11770
+SUBJECT: GRB101225A:  early EVLA Observations of Christmas Burst
+DATE:    11/03/03 05:05:26 GMT
+FROM:    Ashley Zauderer at CfA  <bevinashley@gmail.com>
+
+A. Zauderer, E. Berger, and W. Fong (Harvard) report:
+
+We observed the position of the Christmas GRB 101225A for 32 minutes 
+with the EVLA at a frequency of 5 GHz on 2010 December 30.03, less than 
+five days after the burst (GCN 11493).  We find no significant radio 
+source at the XRT position (GCN 11497) to a 3-sigma upper limit of 60 
+microJy.
+
+We thank the EVLA staff for their support of these observations over the 
+holidays.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  11819
+SUBJECT: GRB 101225A: revised analysis of narrow band imaging
+DATE:    11/03/22 19:16:23 GMT
+FROM:    Nial Tanvir at U.Leicester  <nrt3@star.le.ac.uk>
+
+N. R. Tanvir (U. Leicester) and A. J. Levan (U. Warwick) report:
+
+We have re-reduced and re-analysed more thoroughly the imaging reported
+in GCN 11642. While it remains the case that the optical transient is
+detected in the H-alpha narrow-band filter, and at best marginally present
+in the r-band, the significance of the excess H-alpha detection is reduced.Â 
+Within the associated errors the revised photometry is broadly consistent
+with the red colour of the transient at this time (the narrow-band filter being
+somewhat redward of the central wavelength of the r-band filter), and hence,
+the data do not require significant line emission. This argument for a z~0
+origin is therefore weakened.
+
+
+
+

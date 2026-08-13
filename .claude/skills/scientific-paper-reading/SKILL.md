@@ -22,6 +22,10 @@ Also binding here:
   against; verify chained citations at the PRIMARY source (Li 2019 -> Iyyani 2016 was wrong).
 - **L23**: agreement can be a shared bad minimum — name the deepest primitive two paths
   share before counting agreement as verification.
+- **Stamp at merge (added 2026-08-10 after missing Lu+2018):** when Vikas delivers a
+  reading package for a paper, that IS the read — stamp `read=Y` + date in the corpus
+  ledger AS PART OF the merge, never as a separate later step. A merged package with an
+  unstamped ledger is a bookkeeping bug.
 - **Corpus ledger**: `Skills_training/corpus_index.csv` (`read`, `read_date`). Fetch the
   PUBLISHED version when ADS reports `PUB_OPENACCESS`; keep the arXiv copy for extraction.
 - **Idea bank stays LOCAL** (`notes/PROJECTS_registry.md`, and the gitignored

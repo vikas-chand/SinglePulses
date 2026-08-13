@@ -1,0 +1,278 @@
+{
+ "burst": "bn110920546",
+ "grb_name": "GRB 110920A  (= GBM trigger bn110920546 / 338216745; 'GRB 110920B' in Lu+2018; 'GRB 110920' in Shenoy+2013 and McGlynn 2012; the name GRB 110920A is SHARED with a different GBM trigger, bn110920338)",
+ "tally": null,
+ "tally_note": "106-burst campaign doc-layer worker (parallel sweep), not a numbered gated-walkthrough burst; no tally assigned.",
+ "frozen_utc": "2026-08-12 (doc-layer pass). Frozen BEFORE any sweep106 fit table was opened - this worker is HARD-BARRED from results/sweep106/ and never listed or read that tree. The only fit tables read are the ARCHIVAL census runs named below, which the task explicitly allows as prior.",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "archival_prior_source_note": "results/clean_per_burst_human_final/bn110920546/spectral_fits.ecsv DOES NOT EXIST - that directory holds only 88 bursts and this is not one of them. SUBSTITUTE USED: results/clean_per_burst_final/bn110920546/spectral_fits.ecsv (2026-07-17, the most recent archival clean run for this burst). Two other archival runs exist and were inspected for contrast: clean_per_burst (2026-06-08) and clean_per_burst_consensus (2026-07-13). ** THE SUBSTITUTE PREDATES THE HUMAN SELECTION IT WOULD BE COMPARED AGAINST: it fit SEVEN detectors (n0,n1,n3,n6,n7,b0,b1 - refit.log line 'approved dets = [b0, b1, n0, n1, n3, n6, n7]'), while the stamped selection (results/background_intervals.ecsv, APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z, human_gui) approves only FOUR (n0,n1,n3,b0). The new sweep will therefore differ from this prior by a DETECTOR-SET change as well as by engine hardening. Read every prior number below with that caveat. **",
+ "predictions": [
+  "P-A (BB union rule): the new 4-detector fits will pass the union rule (LRT_BANDBB_BAND>=9.2 & kT>1.05 OR LRT_CPLBB_CPL>=9.2 & kT>1.05) in the TIME-INTEGRATED spectrum and in >=7 resolved blocks, AND the preferred Band+BB kT population will STAY LOW - median kT in 2-6 keV, no block above 20 keV except possibly the last. Archival (7-det): union in 10/11 resolved blocks + integrated; Band+BB kT median 3.24 keV, range 1.93-6.21 keV; integrated LRT_BANDBB_BAND = 140.19, LRT_CPLBB_CPL = 92.10. FALSIFIED IF the union count collapses to <=3 resolved blocks, OR the median Band+BB kT comes out >20 keV. *** THIS IS THE SHARPEST DIFF IN THE WHOLE BURST: the literature's thermal component sits at TENS of keV - McGlynn 2012 measures kT = 61.3 (+0.7/-0.6) keV integrated over 0-52.7 s and kT decaying ~100 -> ~40 keV across ~25 bins; Iyyani+2015's Band+BB kT also falls smoothly over the pulse. Our archival kT ~ 3 keV is ~20x lower. Either (a) our BB is the L28 edge-constrained low-kT class pinned at the 8.1 keV NaI floor and is a DIFFERENT feature from the literature's thermal peak, or (b) our BB multistart is landing in a low-kT local minimum (the known BB seed-poisoning failure mode). Both are testable: if the new fits reproduce kT ~ 3 keV with the SAME detector set the literature used (n0,n1,n3,b0 - identical), then (b) is a live suspicion and the Band+BB start grid must be probed at kT = 40-100 keV explicitly. ***",
+  "P-A2 (two-break): LRT_DSBPL_SBPL >= 9.2 will persist in the TIME-INTEGRATED spectrum and in >=6 resolved blocks. Archival: integrated 70.07; >=9.2 in 9 of 10 testable resolved blocks (blk2 14.79, blk3 70.38, blk4 38.30, blk5 44.90, blk6 29.55, blk7 29.86, blk8 37.34, blk9 18.27, blk10 11.53; only blk1 = 5.10 fails, blk0 untestable). This makes bn110920546 one of the STRONGEST two-break bursts in the archival census. FALSIFIED IF integrated LRT_DSBPL_SBPL < 9.2. Independent literature corroboration, from a completely different model family: Iyyani+2015's best model is 2 blackbodies + power law, i.e. an explicitly TWO-BREAK spectrum, with the low break E_i = 200 -> 8 keV (break at 12.9 +/- 1.7 s) and the high break E_C = ~500 -> 40 keV (break at 13.2 +/- 2.4 s); Sharma V.+2020 restates it as 'multiple spectral breaks'. PREDICTION P-A2b: the DSBPL break RATIO xp/xb will DECREASE with time, tracking Iyyani's E_C/E_i which is <=3 and declining. Archival ratios: integrated 255.19/37.07 = 6.9; blk7 180.68/10.08 = 17.9; blk8 145.93/10.00 = 14.6; blk9 120.58/79.99 = 1.5; blk10 103.93/24.36 = 4.3 - NOISY, several xb values railed at the 10 keV floor or at ~900 keV, so this sub-prediction is weak and is flagged as such in advance.",
+  "P-A3 (BB vs DSBPL are RIVALS, not two components): per L25 (xb ~ 3.92*kT, r=0.87), an archival kT ~ 3.2 keV implies xb ~ 12.6 keV, and the archival DSBPL xb rails at 10.0-10.1 keV in exactly the blocks (7,8) where Band+BB is the AIC winner. PREDICT an L12-style degeneracy: the low DSBPL break and the low-kT BB describe the SAME low-energy feature. FALSIFIED IF the new fits give a well-constrained xb far from ~4*kT in the majority of union blocks.",
+  "P-B (literature frame, integrated - WITH A COVERAGE CAVEAT THAT DOMINATES): our new time-integrated Band fit over the stamped window -3.240 -> +111.304 s will give Ep = 220-290 keV, alpha = -0.30..+0.05, beta = -2.0..-2.5, all well-constrained. FALSIFIED IF integrated Ep < 150 keV or > 400 keV, or if beta is unconstrained/railed. Frames to diff against, each with its component coverage (T9): (i) GBM catalog flnc_band over -3.584 -> +245.252 s, dets b0/n0/n1/n3: Ep = 247.81 (+4.24/-4.06) keV, alpha = -0.537 +/- 0.015, beta = -3.133 (+0.268/-0.193), chi2r = 1.1187/481 - FULL pulse plus 80 s of tail; (ii) McGlynn 2012 over +0.003 -> +52.737 s, same detectors: Ep = 334 +/- 5 keV, alpha = -0.20 +/- 0.02, beta = -2.65 (+0.07/-0.09), C-stat 3206.5/485 - FIRST THIRD of the pulse; (iii) archival 7-det run over -2.103 -> +120.240 s: Ep = 254.75, alpha = -0.111, beta = -2.168. *** COVERAGE PREDICTION: because our window stops at 111.3 s and T90 runs 5.12 -> 165.89 s, we omit the softest ~55 s of the pulse; our integrated alpha must therefore come out HARDER than the catalog's -0.537 and our beta HARDER (less negative) than the catalog's -3.13. If instead we reproduce alpha = -0.54 on a window that excludes the soft tail, something is wrong with our background or response, not with the catalog. ***",
+  "P-B2 (evolution class - MONOTONIC HARD-TO-SOFT, and this one is unanimous): block-resolved Band Ep will DECAY MONOTONICALLY across the window with NO mid-burst rise and NO intensity tracking, falling from ~250-500 keV in the first blocks to ~100-140 keV in the last. Every era agrees: Yu+2016 'GRB 100707032, GRB 110721200, and GRB 110920546 are single pulsed, FRED bursts. All of them show pure hard-to-soft behaviour'; Yu+2019 Table 1 class 'h.t.s.'; Wang+2024 RAA class 'h.t.s.'; Iyyani+2015 Ep 700 -> 50 keV as a broken power law with break at 28 +/- 3 s (indices -0.35 +/- 0.07 then -0.95 +/- 0.02); Yu+2016's own table falls 492 -> 150 keV over bins 1-17; archival falls 585 -> 109 keV over blocks 2-10. FALSIFIED IF Ep peaks in a middle block (intensity tracking) or rises anywhere by more than its errors. SUB-PREDICTION P-B2b: the Ep(t) decay will be BROKEN, not a single power law, with the break near 12-30 s - Iyyani places it at 28 +/- 3 s for Band-only and at 12.9-13.2 s for the 2BB peaks; Tak+2023 independently finds the only clear Ep-F_nu,Ep break in their sample for this burst (delta = 0.7 +/- 0.1 before, 2.1 +/- 1.0 after).",
+  "P-B3 (the LINE OF DEATH - the burst's defining feature): the new block-resolved Band alpha will exceed the slow-cooling synchrotron limit alpha = -2/3 in EVERY block, and will exceed alpha = 0 in at least 3 late blocks. Literature: Iyyani+2015 'alpha is found to lie above -0.4 through out the burst, which is inconsistent with both slow cooling (alpha <= -0.67) and fast cooling (alpha <= -1.5)' and 'after 70 s, alpha lies above 0 ... among the hardest GRB spectra ever observed'; Ryde+2019 alpha_b = +0.23 (+0.11/-0.13); Lu+2018 tabulates alpha = +0.10, +0.08, +0.02 over 0-15 s; Yu+2016 bin 17 (58.9-67.1 s) alpha = +0.025 +/- 0.080; archival alpha runs -0.11 (integrated) and crosses zero at block 5 (t ~ 24 s), reaching +0.33 by block 9. FALSIFIED IF any block returns a well-constrained alpha < -0.67. NOTE THE OPEN INCONSISTENCY WE MUST NOT SILENTLY RESOLVE (T5/L26): our archival alpha crosses zero at ~24 s, Iyyani says ~70 s, and Wang+2024 RAA classifies the alpha evolution as 'FLAT' while Iyyani says it rises linearly from -0.4 to +0.8. Also Lu+2018 (alpha ~ +0.1) and Yu+2016 (alpha ~ -0.4) disagree on the SAME early intervals.",
+  "P-B4 (high-energy index / BGO dropout): beta will DEGRADE after ~60 s and the last blocks will prefer a curved-but-unbroken or power-law-like shape. Iyyani+2015 verbatim: 'After 60 s there was no significant BGO emission'; Yu+2016's catalog best models go COMP -> PL at 67 s and 'none' (unfittable) after 102.9 s - i.e. the published record says the data stop constraining a peak inside our window. Archival: blocks 9 and 10 (70.9-120.2 s) switch AIC winner to SBPLfree, and beta steepens to -3.08 / -3.52. PREDICT the same handover. FALSIFIED IF beta stays well-constrained near -2.3 in the last block.",
+  "P-C (identity and data provenance - NOT a fit target): ZERO GCN circulars (verified by two endpoints with a positive control). NO redshift, NO afterglow (Iyyani+2015 verbatim). NO LAT and NO LLE detection (Iyyani+2015 verbatim; no gll_* files locally or in the FSSC current/ directory; grb_sample HAS_LAT = False). GBM-only, four detectors n0/n1/n3/b0 at 26.96 / 48.41 / 28.85 / 79.09 deg - IDENTICAL to the set used by the GBM catalogue, McGlynn 2012 and Iyyani+2015, so a detector-set explanation for any disagreement is CLOSED IN ADVANCE. The P3 diff frame = GBM catalog scat v01 (flnc + pflx, 4 models) + Yu+2016's 22-row published block table + the Iyyani/McGlynn/Shenoy/Burgess dedicated chain.",
+  "P-D (data-quality prediction, falsifiable at the background stage): the pre-burst background is contaminated by SAA activation decay. Fermi exited the SAA at t - T0 = -120.1 s (verified locally from data/bn110920546/glg_poshist_all_110920_v01.fit FLAGS bit1 transitioning 1 -> 0, NOT merely quoted), and Biltzinger+2020 \u00a74.1 uses THIS BURST as their showcase that 'the classical approach of using polynomial fits can give ambiguous answers' here. Our stamped pre-burst windows (n0 [-16.54,-5.54], n1/n3 [-19.53,-9.00], b0 [-16.54,-6.54] s) lie entirely inside that decaying tail. PREDICT: the pre-burst polynomial residuals will show systematic curvature, and the fitted background level in the first block will be the largest single systematic on the low-energy shoulder (i.e. on exactly the low-kT BB / low DSBPL break that P-A and P-A3 are about). FALSIFIED IF the pre-burst residuals are flat and structureless. SEPARATE, ALREADY-ACCEPTED ITEM (not a new flag): results/human_review_qc_flags.txt line 5 records 'bn110920546 source[-3.24012,111.304]_overruns_bkg_gap b0[gap -6.54055,79.4595] 2026-07-19T22:18:36Z' - the b0 post-burst background starts at 79.46 s, INSIDE our source window. That is a human-accepted Stage-1 decision and is treated as a decision, not re-flagged."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_final/bn110920546/spectral_fits.ecsv (2026-07-17 archival clean run - allowed as prior; SEE archival_prior_source_note: 7 detectors, not the 4 now approved)",
+  "n_blocks": 12,
+  "block_layout": "1 time-integrated (-2.103 to 120.240 s, BLOCK=-1) + 11 time-resolved, edges [-2.103, 0.779, 2.017, 6.078, 18.111, 23.782, 34.975, 45.469, 55.534, 70.862, 93.043, 120.240] s. Note the archival span (-2.103 to 120.240 s) is NOT the stamped window (-3.240 to 111.304 s): it starts 1.1 s later and runs 8.9 s longer.",
+  "dets_per_block": "n0,n1,n3,n6,n7,b0,b1 (7) - STALE vs the 4 now approved",
+  "union_rule_blocks": [
+   -1,
+   0,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "n_union_resolved": 10,
+  "only_non_union_block": "blk1 [0.779-2.017 s]: LRT_BANDBB_BAND = 8.91, LRT_CPLBB_CPL = 8.57 - both just under 9.2",
+  "bandbb_and_cplbb_agree_in_every_union_block": true,
+  "bandbb_kt_values_keV": {
+   "-1": 3.259,
+   "0": 3.298,
+   "1": 2.888,
+   "2": 2.425,
+   "3": 3.52,
+   "4": 3.29,
+   "5": 3.229,
+   "6": 1.929,
+   "7": 2.492,
+   "8": 4.758,
+   "9": 2.001,
+   "10": 6.213
+  },
+  "bandbb_kt_median_all_blocks_keV": 3.244,
+  "cplbb_kt_values_keV": {
+   "-1": 2.127,
+   "0": 3.305,
+   "1": 2.572,
+   "2": 2.297,
+   "3": 2.832,
+   "4": 2.029,
+   "5": 2.48,
+   "6": 1.713,
+   "7": 2.047,
+   "8": 3.929,
+   "9": 1.662,
+   "10": 25.333
+  },
+  "aic_winner_distribution": {
+   "Band+BB": 8,
+   "CPL+BB": 2,
+   "SBPLfree": 2
+  },
+  "lrt_dsbpl_sbpl": {
+   "-1": 70.07,
+   "1": 5.1,
+   "2": 14.79,
+   "3": 70.38,
+   "4": 38.3,
+   "5": 44.9,
+   "6": 29.55,
+   "7": 29.86,
+   "8": 37.34,
+   "9": 18.27,
+   "10": 11.53,
+   "0": null
+  },
+  "band_ep_track_keV": {
+   "-1": 254.75,
+   "0": 3039.75,
+   "1": 1974.75,
+   "2": 584.99,
+   "3": 403.45,
+   "4": 324.84,
+   "5": 268.49,
+   "6": 232.87,
+   "7": 210.04,
+   "8": 164.05,
+   "9": 133.55,
+   "10": 108.71
+  },
+  "band_alpha_track": {
+   "-1": -0.111,
+   "0": -0.731,
+   "1": -0.655,
+   "2": -0.297,
+   "3": -0.047,
+   "4": -0.03,
+   "5": 0.064,
+   "6": -0.01,
+   "7": 0.024,
+   "8": 0.217,
+   "9": 0.325,
+   "10": 0.224
+  },
+  "dsbpl_breaks_keV": {
+   "-1": [
+    37.07,
+    255.19
+   ],
+   "2": [
+    897.38,
+    478.72
+   ],
+   "3": [
+    893.67,
+    344.95
+   ],
+   "4": [
+    893.92,
+    293.88
+   ],
+   "5": [
+    899.42,
+    239.15
+   ],
+   "6": [
+    331.38,
+    206.68
+   ],
+   "7": [
+    10.08,
+    180.68
+   ],
+   "8": [
+    10.0,
+    145.93
+   ],
+   "9": [
+    79.99,
+    120.58
+   ],
+   "10": [
+    24.36,
+    103.93
+   ]
+  },
+  "integrated_key_numbers": {
+   "BAND": "Ep=254.75, alpha=-0.111, beta=-2.168",
+   "BANDBB": "Ep=209.61, alpha=+0.400, kT=3.259+/-0.401",
+   "LRT_BANDBB_BAND": 140.19,
+   "LRT_CPLBB_CPL": 92.1,
+   "LRT_DSBPL_SBPL": 70.07,
+   "AIC_winner": "Band+BB",
+   "BIC_winner": "Band+BB",
+   "DSBPL": "xb=37.07, xp=255.19"
+  },
+  "class": "hard-alpha (alpha ~ 0, above the synchrotron line of death), monotonic hard-to-soft, LOW-kT (~3 keV, edge-constrained per L28) BB-leader with VERY strong two-break support (integrated LRT_DSBPL_SBPL = 70.07 and >=9.2 in 9/10 testable blocks). CAVEATS: (a) 7-detector run, superseded selection; (b) predates the L8/L9 engine hardening, so two-break support is a LOWER LIMIT; (c) several DSBPL xb values rail at the 10 keV floor or ~900 keV.",
+  "other_archival_runs_for_contrast": {
+   "results/clean_per_burst/bn110920546 (2026-06-08)": "11+1 blocks over 1.012-106.356 s; integrated Band+BB, LRT_BANDBB_BAND=91.54, LRT_DSBPL_SBPL=19.18, kT=?; Band Ep=251.56, alpha=+0.460, beta=-2.771. Same qualitative class.",
+   "results/clean_per_burst_consensus/bn110920546 (2026-07-13)": "10+1 blocks; VISIBLY PATHOLOGICAL - integrated Band Ep=4062.8 keV railed, LRT_BANDBB_BAND=940.7, CPLBB kT values 15-102 keV, beta railing at -1.60 and DSBPL xp railing at 5000. Recorded ONLY as a warning that this burst's likelihood surface has multiple deep minima including HIGH-kT ones. Do NOT use its numbers."
+  }
+ },
+ "harvest_snippets": {
+  "GCN": [
+   "n_circulars = 0 (no circular was ever issued; verified via gcn.gsfc.nasa.gov/other 404 + gcn.nasa.gov archive API returning totalItems 0 for 110920A / 110920 / 110920546 / GRB110920A, with 110721A -> 9 as the positive control)"
+  ],
+  "GBM_catalog_bcat_v02_tcat_v01": [
+   "T90 = 160.771 +/- 5.221 s (50-300 keV), T90START = 5.12005 s; T50 = 58.369 +/- 2.290 s, T50START = 18.4323 s",
+   "RA_OBJ = 209.82, DEC_OBJ = -27.56, ERR_RAD = 1.0 deg; TRIGTIME = 338216745.81222 (2011-09-20T13:05:43.812 UTC); THETA = 16.44 deg off LAT boresight"
+  ],
+  "GBM_catalog_scat_v01": [
+   "flnc_band (-3.584..245.252 s, dets b0 n0 n1 n3): Ep = 247.81 +4.24/-4.06 keV, alpha = -0.537 +/- 0.015, beta = -3.133 +0.268/-0.193, chi2r = 1.1187/481; NRGFLNC(10-1000 keV) = 1.5677e-4 +/- 1.55e-6 erg/cm2",
+   "flnc_sbpl: Ebreak = 180.82 +6.21/-6.69 keV, lam1 = -0.764 +/- 0.012, lam2 = -2.747, brkscale 0.3 fixed, chi2r = 1.0990/481 -> SBPL is the BEST of the four catalog models",
+   "flnc_comp: Ep = 255.16 +/- 3.45 keV, index = -0.554 +/- 0.013, chi2r = 1.1257/482; flnc_plaw: index = -1.447, chi2r = 10.638/483 (rejected)",
+   "pflx_band (11.776..12.800 s): Ep = 393.4 +38.5/-41.9 keV, alpha = -0.129 +0.101/-0.118, beta = -2.488, chi2r = 1.1515/481, energy flux 4.09e-6 erg/cm2/s"
+  ],
+  "McGlynn2012_PoS_PRIMARY": [
+   "'The best fit Band parameters for the time interval [T0+0.003, T0+52.737] were alpha = -0.20 +/- 0.02, beta = -2.65 +0.07/-0.09, Epeak = 334 +/- 5 keV with C-stat = 3206.5 (485 d.o.f.)'",
+   "'when a blackbody component was included in the fit, the C-stat is reduced to 2848.3 (483 d.o.f.) which is a difference of 358.2. The peak energy of the Band component is shifted up to Epeak = 978 +154/-121 keV and the temperature of the blackbody is kT = 61.3 +0.7/-0.6 keV ... alpha becomes shallower (alpha = -1.05 +/- 0.04)'",
+   "'split into approximately 25 time bins from T0+0.003 - T0+52.737 s ... minimum signal-to-noise ratio of 30 counts per bin. There was a marked improvement in the C-stat parameter (dC-stat > 10) when a blackbody component is added to the Band fit in 19 of the 25 bins. The blackbody flux is between 20%-40% of the total flux throughout the burst in the 10-10000 keV energy range. The blackbody temperature decreases as a power-law from ~100 keV to ~40 keV'",
+   "'as seen by NaI detectors 0, 1 and 3 and BGO detector 0' ; 'off-axis angle from the LAT zenith of 16 deg' ; 'T90 duration of 170 +/- 17 seconds' ; 'The bulk of the emission occurs in the 20-250 keV energy range'",
+   "z assumed 2 -> Gamma decreases 588 -> 280, r_phb ~ 6e11 cm constant; averages r_phb = 5.9e11 Y0^1/4 cm, eta = 442 Y0^1/4, r0 = 2e8 Y0^-3/2 cm, rs = 8.6e10 Y0^-5/4 cm",
+   "'GRB 110920 displays the clearest signature of two separate emission components in the sample' (sample: 64 bright hard long GRBs to Sept 2011; 38 with enough bins; 19 fit Band+BB)"
+  ],
+  "Iyyani2015_DEDICATED": [
+   "'the redshift, z, is unknown' ; 'There is no detection of Large Area Telescope (LAT, 100 MeV - 300 GeV) and LAT Low Energy (LLE, 30 - 130 MeV) emission for this burst' ; T90 = 161 s ; fluence 1.74 +/- 1.24 x 10^-4 erg/cm2 (10 keV - 40 MeV; the +/- is almost certainly a typo)",
+   "'using PHA data from NaI 0,1,3 and the BGO 0 detectors in the energy range 10 keV - 40 MeV ... analysed for its duration of 0 to 200 s. After 60 s there was no significant BGO emission ... S/N ratio = 60'",
+   "Band-only: 'alpha is found to lie above -0.4 through out the burst, which is inconsistent with both slow cooling synchrotron (alpha <= -0.67) as well as fast cooling synchrotron (alpha <= -1.5)'; 'alpha increases linearly with time from -0.4 to +0.8'; 'after 70 s, alpha lies above 0 ... among the hardest GRB spectra ever observed'; 'Epeak and alpha have a negative correlation'",
+   "Band-only Ep: 'decreases from nearly 700 keV to 50 keV, following a broken power law with a break at ~28 +/- 3 s ... this break does not coincide with the flux break at ~12 s. The temporal power-law index before (after) the break is -0.35 +/- 0.07 (-0.95 +/- 0.02)'",
+   "Band+BB: 'significantly improve the pgstat by > 25 in certain time bins'; 'Epeak is observed to decrease from nearly 2 MeV down to approximately 20 keV'; 'The blackbody temperature, kT, decreases smoothly with time with no significant break ... in contrast to what is typically observed'; 'FBB/Ftot evolves from ~30% to nearly 90%'; alpha '-1 to values larger than 1', alpha > 0 after 100 s",
+   "BEST MODEL 2BB+PL: better than Band+BB 'by > 35 in certain time bins' until 100 s; after 100 s the PL is not needed. 'The peak of the low-energy blackbody (BB1), Ei, decreases from nearly 200 keV to 8 keV with a break at 12.9 +/- 1.7 s. The break coincides with the peak in the light-curve. The power-law indices are before (after) the break -0.1 +/- 0.08 (-0.69 +/- 0.06).' 'The spectral peak of the high energy blackbody (BB2), EC, also decreases as a broken power-law from nearly 500 keV to 40 keV, again with a break at 13.2 +/- 2.4 s ... indices -0.06 +/- 0.19 (-0.93 +/- 0.03)'. Ei = 2.7 kTi, EC = 2.7 kTe.",
+   "'The ratio of the spectral break energies in GRB110920A is, however, much lower Ec/Ei ~ 3' (vs ~20 for the double-peaked bursts 100724B / 110721A)",
+   "Spectral width: Band-only SW falls 7 -> 4; best model SW falls 7 -> 3.6 (blackbody 3.5, non-dissipative photosphere 7, mono-energetic synchrotron 8.6, slow-cooled synchrotron 145, fast-cooled 370)",
+   "Physical (z = 2, Y = 5), 10-s bin: Gamma = 660 +/- 25, r_ph = 1.8 +/- 0.2 e12 cm, r_s = 4.8 +/- 1.1 e11 cm, r0 = 7.3 +/- 1.9 e7 cm; tau_min ~ 20, (gamma*beta)_min ~ 0.17, r_d,max ~ 8e10 cm ~ r_s; t_dyn ~ 0.2 ms",
+   "Cites 'Yu et al. (2014) A&A, submitted, found that a spectral model including two breaks fit the data equally well as the Band function in many cases. The ratio between the breaks was found to be typically around 10.' (= Yu+2015 A&A 583 A129)"
+  ],
+  "Shenoy2013_DEDICATED_HLE": [
+   "'The peak-flux - peak-frequency test for GRB 110920 yields an exponent of 1.64 +/- 0.012 compared to the theoretical one of 2.57 +/- 0.01 (with Comptonized-Epk as the rest-frame spectrum). We consider this discrepancy to be significant and the result to be in disagreement with the prediction based purely on effects of curvature.'",
+   "'the pulse-width decreases with energy approximately as a power law ... The exponent of the power law (-0.31 +/- 0.03)'; energy bands 8-25, 25-50, 50-100, 100-150, 150-200, 200-250, 250-350, 350-985 keV",
+   "'the full light curve for the GRB in the energy range 100 - 985 keV along with the best-fit KRL pulse function. The energy range was so chosen to avoid contamination from the soft component (below 100 keV)'",
+   "'a best-fit value of tvar = 44 seconds ... yielded a radius, r0 of 1.5e17 cm, a shell thickness dr' of 8.8e12 cm and a co-moving frame pulse-duration dt' of 2.0e3 seconds'; assumed Gamma = 440, z = 2 (from McGlynn)",
+   "'The role of the reported soft component of the light curve for GRB 110920 has not been fully investigated in this study'"
+  ],
+  "Yu2016_time_resolved_catalog": [
+   "22 spectra, S/N=30. Bin 1 [-3.584:6.656] SBPL alpha=-0.536+/-0.041 beta=-3.584+/-0.760 Ep=492.19+/-118.14 Eb=496.50+/-91.70 CSTAT 529.63/477; bin 11 [29.184:33.281] COMP alpha=-0.006+/-0.063 Ep=258.40+/-10.20; bin 17 [58.881:67.073] COMP alpha=+0.025+/-0.080 Ep=149.90+/-5.09; bins 18-20 (67.073-102.914 s) best model = PL (alpha -1.408, -1.463, -1.529); bins 21-22 (102.914-235.012 s) best model = 'none'",
+   "Table 3: '110920546  N=6  dCSTAT_crit = 148.37' and 'We find that the spectra of the bursts listed in Table 3 have dCSTAT > dCSTATcrit, except for GRB 110920546' -> the PLBB thermal component is NOT significant against a POWER-LAW continuum (continuum-relative, T7)",
+   "'GRB 100707032 (Fig. 7), GRB 110721200, and GRB 110920546 (both Fig. 8) are single pulsed, fast-rise-exponential-decay (FRED) bursts. All of them show pure hard-to-soft behavior.'"
+  ],
+  "Tak2023_HLE": [
+   "'There are two pulses showing a break in their Ep - F_nu,Ep curve: GRB 110920A (clear; Figure 15) and GRB 171210A (weak; Figure 36) ... GRB 110920A has delta_before = 0.7 +/- 0.1 and delta_after = 2.1 +/- 1.0. We emphasize that Shenoy et al. (2013) also analyzed GRB 110920A and found that the slope eta in (nuFnu),Ep ~ Ep^eta is 1.64 +/- 0.01, which is consistent with delta_before (eta ~ delta + 1).'"
+  ],
+  "LiZhang2021_HLE": [
+   "Table row: '110920546  160.771+/-5.221  (1.72+/-0.01)e-4  (n0)n1n3b0  -1~160  [-20~-10, 180~190]  11  8'",
+   "FRED fit row: '110920546 1.024-s 0~150 54.53 3172+/-16 0 9.95+/-0.32 0.28+/-0.02 0.28+/-0.01 80/141 -2242 -2230'",
+   "HLE decay fits: '110920546(1) 9.966~122.091 59.68 0 (2.75+/-0.12)e-6 1.03+/-0.08 -241/-241 8.71+/-0.20 0.42+0.00/-0.00 12386/2.00' and '110920546(2) 55.534~122.091 34.09 0 (3.39+/-0.04)e-7 1.83+/-0.04 -113/-115 8.00+/-0.37 0.53+/-0.01 9532/1.99'  [COLUMN HEADERS NOT DECODED - UNVERIFIED mapping]",
+   "'the peak time determined by the FRED model for a good fraction of our sample can exactly match the true peaks of pulses (e.g., GRB 110920546)'; 'GRBs 090620400, 090804940, 110920546, 130614997, 150510139, and 170114917, are consistent with having the same peak times in different bands. The HLE may come into play right after the peak time.'"
+  ],
+  "Lu2018_lag_and_width": [
+   "'GRB 110920B (bn110920546)' time-resolved Band: -1.54-7.04 s Ep=575.68+/-41.18 alpha=+0.10+/-0.09 beta=-2.45+/-0.19 F=2.34e-6 chi2r=1.30 ; 7.04-9.61 Ep=443.60+/-28.49 alpha=+0.08+/-0.08 beta=-2.32+/-0.12 ; 9.61-12.14 Ep=450.67+/-26.45 alpha=+0.02+/-0.07 beta=-2.68+/-0.26 ; 12.14-14.78 Ep=362.15+/-21.29",
+   "lag table: 'bn110920546  (2) 1.22 +/- 1.27' s",
+   "per-detector pulse-fit row: 'bn110920546 NaI 96.62+/-1.58 | 11.74+/-0.24 | 2.33+/-0.11 | 0.84+/-0.03 | 6.00 | 1.05'"
+  ],
+  "Yu2019_bayesian": [
+   "'110920546 (n0)n1n3b0 -1. to 160. -15. to -5. 175. to 200. K 14 10 2(-0.86) 1(0.88) 1(-0.71) h.t.s.'",
+   "'32 pulses show a positive and 2 pulses show a negative relations (e.g., GRB 110920)' [the F-alpha relation]"
+  ],
+  "Wang2024_RAA": [
+   "'110920546 (n0),n1,n3,b0 160.771 -1.0 to 170.0 -25.0 to -10.0 175.0 to 190.0 11(9) 1'",
+   "'110920546 yes h.t.s flat 2n(-0.7) 2p(0.98) 3(-0.62) 1'  and  'one flat evolution pattern (GRB 110920)'  [alpha evolution FLAT - conflicts with Iyyani's -0.4 -> +0.8]"
+  ],
+  "Ryde2019_alpha_intensity": [
+   "'110920546  k = -10 +4.0/-2.7 ; F_b = 4.2 +1.1/-0.9 e-6 ; alpha_b = +0.23 +0.11/-0.13'  and  'There are two clear outliers which have large, negative k-values. We note that one of these two bursts (GRB110920 ...) has been suggested to have a significant, additional power-law component (Iyyani et al. 2015)'"
+  ],
+  "Burgess2014_synchrotron_and_EpkT": [
+   "Table 1: 'GRB 110920A  peak flux 8.08 ph/s/cm2  duration analysed 238.29 s  blackbody YES  LLE NO'",
+   "Table 9: 'GRB 110920A  F_BB/F_syn = 0.8  1st decay index -0.3 +/- 0.03  2nd decay index -0.9 +/- 0.04  chi2r 2.0'",
+   "ApJ 784 L43 Table 1: 'GRB 110920A  alpha(Ep ~ T^alpha) = 1.97 +/- 0.11  jet MAGNETIC  mu = 0.4 +/- 0.01  F_BB/F_tot = 0.39'"
+  ],
+  "WangK2020_variability": [
+   "'for GRB 110920A, (I) 8-20 keV, (II) 50-300 keV and (III) 800-2000 keV' ; Table 1: 'GRB 110920A  sigma_I 0.07  sigma_II 0.05  sigma_III 0.08  R 0.66  f_ph 0.56'"
+  ],
+  "Li2019_thermal_census": [
+   "'110920546 160.77+/-5.22 17.23+/-0.02 (n0)n1n3b0 0.-15. [-18-10,180-190] 8/10 PL+2BB Iyyani et al. (2015)'",
+   "'The best spectral fitting in GRB 110920A is a power-law plus two BBs fitting (Iyyani et al. 2015), see also McGlynn & Fermi GBM Collaboration (2012); Shenoy et al. (2013).'"
+  ],
+  "Iyyani2016_and_2018_degeneracy": [
+   "Iyyani 2016: 'One exception is, however, GRB110920A for which the r0-break occurs after 100 seconds' ; F_BB/F_kin 'lies between 10 and 40%'",
+   "Iyyani 2018 review, Fig 7b: 'the models of Comptonisation (pink) and blackbody + synchrotron (green), fitted to the same data for GRB110920A ... One can clearly see that both models find two different shapes for the spectrum.'"
+  ],
+  "vonKienlin2014_NAME_COLLISION": [
+   "'bn110920338 GRB 110920A 08:07:16.4098 87.6 38.8 5.0 Fermi-GBM' AND 'bn110920546 GRB 110920A 13:05:43.8122 209.8 -27.6 1.0 Fermi-GBM' -- TWO triggers, ONE name",
+   "'There were in addition two positive ARRs for GBM trigger 100701.490 and 110920.546 with no slew, which was disabled at spacecraft level at that time.' -> no slew, stable attitude"
+  ],
+  "WangF2020_collision_record": [
+   "'We excluded Fermi GRBs 120222A, 110920A, 110517A and 101214A, because they have the same GRB names while two different trigger numbers (Narayana Bhat et al. 2016). This might be a mistake for GRB names.'"
+  ],
+  "Biltzinger2020_SAA": [
+   "'GRB 110920A was a bright, single pulse GRB that occurred only about 100 seconds after an SAA exit of GBM. This causes the background to have a significant component from the exponential decay of the activated material.' ; '...for which the classical approach of using polynomial fits can give ambiguous answers.'  [VERIFIED LOCALLY: poshist FLAGS bit1 1->0 at t-T0 = -120.1 s]"
+  ],
+  "NOT_OBTAINED": [
+   "Liao+2025 (2025ApJ...983..130L, newest sample paper) - IOP bot-block, no arXiv",
+   "Ma+2024 (2024AN....34530179M) - no OA route",
+   "Hurley+2017 IPN supplement (2017ApJS..229...31H) - IOP bot-block"
+  ]
+ }
+}

@@ -1,0 +1,850 @@
+{
+ "burst": "bn160625945",
+ "grb_name": "GRB 160625B",
+ "harvest_utc": "2026-08-12",
+ "worker": "doc-layer worker, 106-burst campaign parallel sweep",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1 four-form query; Phase 1b Scholar/web bridge; Phase 2 version-of-record; Phase 3b latest-first; Phase 3c prompt-scope with module-future tags; Phase 4 frame-align + multi-instrument consensus; traps T1/T3/T5/T6/T7/T9 all exercised) + GCNIntelligence.md (G1 trigger-in-filename, G2 corpus dedup) + DataInventory.md (D1/D2/D3/D4)",
+ "idempotency": {
+  "pre_existing_and_untouched": [
+   "notes/reconciliation/bn160625945.md (2026-07-22/24 P0-P6 reconciliation record vs Ravasio+2018; origin of lessons L7 and L8) - READ, not modified",
+   "results/clean_per_burst_human_final/bn160625945/spectral_fits.ecsv (2026-07-19) - READ for the P0 freeze, not modified",
+   "results/approval/bn160625945_{claude,codex,decision,pending}.json - READ, not modified",
+   "Skills_training/corpus_index.csv - READ ONLY (rows queued below, never written)"
+  ],
+  "created_by_this_pass": [
+   "results/gcn/bn160625945/ (directory did not exist)",
+   "results/gcn/bn160625945/bn160625945_gcn_raw.txt (50522 B, 29 circulars)",
+   "results/gcn/bn160625945/bn160625945_gcn_raw_SAMEDAY_160625A_CONTAMINANT.txt (13668 B, 8 circulars, T1 quarantine copy)",
+   "results/gcn/bn160625945/bn160625945_dossier.md",
+   "notes/reconciliation/bn160625945_harvest.json (this file)",
+   "notes/reconciliation/bn160625945_P0_frozen.json",
+   "results/qc/bn160625945_step1_response_coverage.ecsv",
+   "14 PDFs in Skills_training/ (listed under pending_shared_csv_rows)"
+  ],
+  "sweep106": "results/sweep106/ was NEVER opened by this worker."
+ },
+ "identity": {
+  "trigger": "bn160625945 / 488587220, TRIGTIME MET 488587220.275348 (from the response headers)",
+  "trigger_utc": "2016-06-25 22:40:16.28",
+  "name_source": "VERIFIED from GCN 19581 verbatim: 'At 22:40:16.28 UT on 25 June 2016, the Fermi Gamma-Ray Burst Monitor triggered and located GRB 160625B for the first time (trigger 488587220 / 160625945).'",
+  "position": "Fermi-LAT on-ground RA=308.56, Dec=+6.93, r=0.06 deg (90%, statistical only) - GCN 19586; onboard LAT 308.3/+6.9 r=0.5 deg - GCN 19580",
+  "redshift": "z = 1.406 SECURE. VLT/X-shooter absorption (Mg I, Mg II, Fe II, C IV, Si IV, O I, Si II, Zn II, Al II, Al III at a common z) - GCN 19600; independently confirmed z = 1.41 +/- 0.01 by TNG/DOLORES - GCN 19601; refereed in Tsvetkova+2017 Table 1 (type 's'). Intervening Mg II system at z=1.319 must NOT be propagated.",
+  "component_structure": "THREE components, all in one trigger's data: precursor ~T0+0-2 s (soft, ~1 s); MAIN episode ~T0+183-233 s (hard, ~25-40 s, the LAT trigger); extended emission to ~T0+700 s. OUR stamped window [182.644, 225.884] s covers the MAIN EPISODE ONLY.",
+  "same_day_contamination_guard": "T1 IS LIVE ON THIS BURST. Three unrelated designations share 2016-06-25/26: (a) GRB 160625A = Swift/BAT trigger 701503 at 22:40:31 UT, RA/Dec 176.937/-65.114, >100 deg away on the sky and Earth-occulted to Fermi - its 8 circulars are quarantined in bn160625945_gcn_raw_SAMEDAY_160625A_CONTAMINANT.txt and NOTHING from them enters this record; (b) GRB 160625B second GBM trigger 488587880 / 160625952 = the SAME burst but a DIFFERENT trigger id (do not mix its T0); (c) GCN 19661 in the same archive is 'GRB 160623A: Astrosat CZTI detection', a third burst. The LAT circular 19580 states the 160625A separation verbatim."
+ },
+ "gcn_circulars": {
+  "n_circulars": 29,
+  "source": "https://gcn.gsfc.nasa.gov/other/160625B.gcn3 -> HTTP 200, 50522 B",
+  "also_fetched": "160625A.gcn3 -> HTTP 200, 13668 B (8 circulars, the CONTAMINANT set, quarantined); 160625.gcn3 -> HTTP 200, 64191 B (the union of both, not used)",
+  "key_circulars": {
+   "19580": "Fermi-LAT detection",
+   "19581": "GBM initial (episode structure + ARR slew)",
+   "19586": "LAT refined (position, >300 photons >100 MeV, onset ~T0+181 s, 15 GeV photon at ~T0+345 s)",
+   "19587": "GBM refined (precursor and main-episode spectra)",
+   "19600": "VLT/X-shooter z=1.406",
+   "19601": "TNG z=1.41+/-0.01",
+   "19604": "Konus-Wind (episode-resolved Band fits, Eiso)",
+   "19617": "CALET/CGBM (component-resolved T90s)"
+  },
+  "raw_file": "results/gcn/bn160625945/bn160625945_gcn_raw.txt"
+ },
+ "ads_queries": [
+  {
+   "form": "full:\"GRB 160625B\"",
+   "numFound": 286,
+   "note": "the productive form; 209 refereed articles, 214 articles total, plus 29 newsletters, 22 eprints, 14 inproceedings, 4 inbook, 2 abstracts, 1 dataset"
+  },
+  {
+   "form": "full:\"bn160625945\"",
+   "numFound": 0,
+   "note": "ZERO - nobody writes the bn-prefixed trigger for this burst"
+  },
+  {
+   "form": "full:\"160625945\"",
+   "numFound": 6,
+   "hits": [
+    "2025ApJ...983..130L",
+    "2024arXiv240508231R",
+    "2023ApJS..266...31L",
+    "2021MNRAS.505.1413P",
+    "2019ApJS..242...16L",
+    "2016heas.confE...4D"
+   ],
+   "note": "the bare-fraction form found Li+2019 (ApJS 242,16), Li+2023 (ApJS 266,31) and Liao+2025 - three sample papers the NAME form ranks far down or that would be lost in 286 hits"
+  },
+  {
+   "form": "full:\"488587220\" (trigger number)",
+   "numFound": 4,
+   "hits": [
+    "2023ApJ...943..181L",
+    "2017SPIE10445E..4CO",
+    "2017CoSka..47..116K",
+    "2016heas.confE...4D"
+   ],
+   "note": "the trigger-NUMBER form surfaced Lipunov+2023 and the two optical-instrument papers"
+  }
+ ],
+ "four_form_rule_outcome": "INVERTED relative to the paperless bursts: here the NAME form is the rich one (286) and the bn-form is EMPTY (0). The two numeric forms still earned their keep - '160625945' uniquely surfaced Li+2019/Li+2023/Liao+2025 and '488587220' uniquely surfaced Lipunov+2023 and the Pi-of-the-Sky / Mini-MegaTORTORA instrument papers. Running only the name form would have buried them among 286 hits; running only the trigger forms would have found 8 of 209. Both halves were necessary.",
+ "scholar_note_bridge": {
+  "channel": "WebSearch (Phase 1b). NOTE: the skill's primary trigger (ADS thin or empty) was NOT met - 286 hits is the opposite of thin. Run under trigger (2), cross-community concept bridging: the prompt-optical polarimetry community and the gamma-ray spectroscopy community describe this burst in different vocabularies.",
+  "queries": [
+   "GRB 160625B prompt optical polarization magnetization gamma-ray spectral shape connection"
+  ],
+  "result": "NO new bibcode. The bridge returned Troja+2017 (2017Natur.547..425T) and Lipunov+2023 (2023ApJ...943..181L), both already in the ADS name-form set, plus generic polarization theory. It DID return the quantitative content our paywalled-PDF gap left open: P = 8.3 +/- 0.8% variable linear polarization in the prompt optical flash, fast-cooling synchrotron in a large-scale advected magnetic field, and a magnetisation sigma ~ 0.4. That number is recorded as SECOND-HAND and must be PDF-verified before citation (T6).",
+  "resolved_via_ads": "2017Natur.547..425T (already held); no new corpus row created from this channel"
+ },
+ "local_corpus_check": {
+  "method": "read Skills_training/corpus_index.csv (159 rows) and matched every candidate bibcode against it",
+  "already_present_and_tagged_with_this_burst": [
+   "2018A&A...613A..16R (Ravasio_2018_2018AA613A16R.pdf)",
+   "2019A&A...625A..60R (Ravasio_2019_2019AA625A60R.pdf)"
+  ],
+  "already_present_but_NOT_tagged": [
+   "2024A&A...685A.166R",
+   "2021A&A...652A.123T",
+   "2025A&A...700A..88M",
+   "2019ApJ...878...52A",
+   "2019ApJ...887...13F",
+   "2017ApJ...837..119A"
+  ],
+  "g2_outcome": "6 papers were NOT re-downloaded because they were already in the corpus (2 of them already carried this burst's tag). 14 genuinely new PDFs were fetched. Zero duplicate bytes."
+ },
+ "n_refereed_ads_hits": 209,
+ "n_papers_curated": 29,
+ "n_pdfs_new_this_pass": 14,
+ "papers": [
+  {
+   "bibcode": "2026MNRAS.546ag060A",
+   "first_author": "Aldowma, T. K. M.",
+   "year": 2026,
+   "title": "Implications of joint spectral analysis of gamma-ray bursts detected by Fermi Large Area Telescope and Gamma-ray Burst Monitor",
+   "pdf": "Skills_training/Aldowma_2026_2026MNRAS546ag060A_bn160625945.pdf",
+   "arxiv": "2510.16475",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued (Aldowma 2024 sibling already row-present; 2026 paper is new)",
+   "role": "dedicated-sample-member; NEWEST analysis of this burst -> Phase 3b default reference frame",
+   "prompt_sections": "Sec.2 (models: Band/CPL/ISSM/SBPL/DSBPL/+BB/+PL) + Sec.3 method (BIC selection) + Table 1 row 'GRB 160625B' p.20 (T90-interval joint + GBM-only) + Table 4 row 'GRB 160625B' p.23 (peak-flux interval) + Appendix A5-A7 (ISSM/SBPL/DSBPL functional forms) + Fig. B23 p.37 and C20 p.54 (count and nuFnu spectra)",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "T90 interval 188.451-214 s: GBM+LAT+LLE = ISSM+PL, a1=-0.68+/-0.01, beta=-3.154+/-0.03, Ep=755+/-8 keV, PL index=-1.6+/-0.02, fluence 5.22+/-0.26e-5 erg/cm2, BIC 7338 (dBIC 4); GBM-only = ISSM, a1=-0.67+/-0.08, beta=-3.12+/-0.04, Ep=740+/-8 keV, fluence 1.12+/-0.02e-4, BIC 7409 (dBIC 0). PEAK interval 188.45-189.47 s: GBM+LLE = DSBPL+BB, a1=-1.57+/-0.03, a2=-0.66+/-0.02, beta=-2.66+/-0.07, Ep=2000+/-140 keV, kT=20+/-1.1 keV, peak flux 8.57+/-0.14e-5 erg/cm2/s, BIC 5375 (dBIC 72); GBM-only same model, Ep=1680+/-140 keV, kT=20+/-1.1 keV, BIC 5329 (dBIC 76).",
+   "traps": "T3+T9: their alpha2 COLUMN is overloaded (PL index for ISSM+PL rows; 2nd spectral index for DSBPL rows). T3/L21: DSBPL index ordering unverifiable from the table - App. A7 puts a1 below E_break, yet the 160625B peak row has a1=-1.57 SOFTER than a2=-0.66, i.e. the reverse of Ravasio's a1=-0.62 -> a2=-1.50. OPEN convention question, not resolved. T5: paper cites DSBPL as 'Ravasio et al. 2019' (p.3) and 'Ravasio et al. 2018' (App. A7) - self-contradiction recorded. T8-adjacent: they report BIC, not AIC; our engine reports AIC - do not cross-compare margins without recomputing."
+  },
+  {
+   "bibcode": "2018A&A...613A..16R",
+   "first_author": "Ravasio, M. E.",
+   "year": 2018,
+   "title": "Consistency with synchrotron emission in the bright GRB 160625B observed by Fermi",
+   "pdf": "Skills_training/Ravasio_2018_2018AA613A16R.pdf",
+   "arxiv": "1711.03106",
+   "in_corpus_before": true,
+   "corpus_action": "ALREADY in corpus_index.csv (row already tagged cited_by_bursts=...;bn160625945) -> NOT re-downloaded (G2)",
+   "role": "THE dedicated two-break paper for this burst; already PDF-verified in notes/reconciliation/bn160625945.md",
+   "prompt_sections": "Sec.2 data+intervals (186.40-207.91 s, S/N>20 in BGO1, 21x1.024 s bins); Sec.3 2SBPL fits (n1=5.38, n2=2.69 fixed); Sec.4 time-resolved (19/21 bins >4.8 sigma); Sec.5 LLE high-energy cutoff",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "Time-integrated 2SBPL: E_break=107.8+/-1.9 keV, Ep=673.5+/-10.8 keV, a1=-0.62, a2=-1.50; >8 sigma over SBPL; 2SBPL favoured over SBPL+BB. With LLE: E_cut=50.3(+7.4/-13.2) MeV or a 4th PL segment breaking at 27.3 MeV; Gamma~200-250 if gamma-gamma.",
+   "traps": "T9: their interval STOPS at 207.91 s - our archival blocks past that are INCOMPARABLE (this is the blk15 lesson already in the reconciliation record)."
+  },
+  {
+   "bibcode": "2019A&A...625A..60R",
+   "first_author": "Ravasio, M. E.",
+   "year": 2019,
+   "title": "Evidence of two spectral breaks in the prompt emission of gamma-ray bursts",
+   "pdf": "Skills_training/Ravasio_2019_2019AA625A60R.pdf",
+   "arxiv": "1903.02555",
+   "in_corpus_before": true,
+   "corpus_action": "ALREADY in corpus_index.csv, already tagged bn160625945 -> NOT re-downloaded (G2)",
+   "role": "foundational 2SBPL/DSBPL paper; the model our engine's DSBPL implements",
+   "prompt_sections": "Sec.2 the 2SBPL function and its smoothness parameters; Sec.3 sample fits",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(already read into the project as the DSBPL definition; no new per-burst row mined this pass)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2024A&A...685A.166R",
+   "first_author": "Ravasio, M. E.",
+   "year": 2024,
+   "title": "Insights into the physics of gamma-ray bursts from the high-energy extension of their prompt emission spectra",
+   "pdf": "Skills_training/Ravasio_2024_2024AA685A166R.pdf",
+   "arxiv": null,
+   "in_corpus_before": true,
+   "corpus_action": "ALREADY in corpus_index.csv but NOT tagged with this burst -> queue cited_by_bursts += bn160625945, n_bursts += 1",
+   "role": "high-energy-extension frame; relevant to the LLE/LAT cutoff tension",
+   "prompt_sections": "high-energy extension / beta and cutoff sections",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(not re-mined this pass - G2 dedup; flagged for the cutoff arm of the P3 diff)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2018NatAs...2...69Z",
+   "first_author": "Zhang, B.-B.",
+   "year": 2018,
+   "title": "Transition from fireball to Poynting-flux-dominated outflow in the three-episode GRB 160625B",
+   "pdf": "Skills_training/Zhang_2018_2018NatAs2_69Z_bn160625945.pdf",
+   "arxiv": "1612.03089",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "dedicated paper; the 'no thermal in the main episode' camp",
+   "prompt_sections": "Main text pp.1-3 (three sub-bursts, ~0.8/35/212 s; sub-burst 1 = 6 slices, thermal/mBB; sub-burst 2 = 71 slices, Band + physical synchrotron, thermal NOT required; sub-burst 3 = PL) + Table 1 (per-sub-burst Ep, Eiso, Lp,iso) + Supplementary Figs 1 and 5",
+   "module_future_tags": [
+    "prompt-optical"
+   ],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "Sub-burst durations ~0.8 s, 35 s, 212 s; sub-burst 2 T90 ~35.1 s; z=1.406+/-0.001; Lp,iso ~4e53 erg/s. VERBATIM on the main episode: 'Adding an additional thermal component neither improves the goodness of the fit, nor leads to constraints' and 'The non-detection of a thermal [component]'. Sub-burst 1 alpha exceeds the synchrotron line of death (-2/3). ~3 s lag between optical and GBM-band emission.",
+   "traps": "T7: the 'no thermal' verdict is CONTINUUM-RELATIVE (measured against Band and a physical synchrotron model), not an absolute statement - and Aldowma+2026 find DSBPL+BB with kT=20 keV against a DIFFERENT continuum in the same seconds."
+  },
+  {
+   "bibcode": "2017ApJ...849...71L",
+   "first_author": "Lu, Hou-Jun",
+   "year": 2017,
+   "title": "Extremely Bright GRB 160625B with Multiple Emission Episodes: Evidence for Long-term Ejecta Evolution",
+   "pdf": "Skills_training/Lu_2017_2017ApJ84971L_bn160625945.pdf",
+   "arxiv": "1702.01382",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "dedicated paper; the 'thermal REQUIRED in the main episode' camp - direct contradiction of Zhang+2018",
+   "prompt_sections": "Abstract + Sec.3 time-resolved spectra of Episode II (mBB + CPL) + Episode I (mBB) + Episode III (CPL + PL, no mBB)",
+   "module_future_tags": [
+    "afterglow"
+   ],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "Episode I (precursor) = multi-colour blackbody, photospheric fireball. Episode II (main, GBM+LAT after ~180 s quiescence) = mBB + CPL, i.e. a thermal component IS required. Episode III (extended, after ~300 s quiescence) = CPL + PL, no mBB required. Physical reading: I = cocoon, II = photosphere + internal shock, III = internal + external shocks.",
+   "traps": "T7 again: 'mBB required' is relative to their CPL continuum. Their Episode II interval is NOT stated in the abstract - must be read from Sec.3 before any diff."
+  },
+  {
+   "bibcode": "2017ApJ...836...81W",
+   "first_author": "Wang, Yuan-Zhu",
+   "year": 2017,
+   "title": "Evaluating the Bulk Lorentz Factors of Outflow Material: Lessons Learned from the Extremely Energetic Outburst GRB 160625B",
+   "pdf": "Skills_training/Wang_2017_2017ApJ83681W_bn160625945.pdf",
+   "arxiv": "1611.04879",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "dedicated paper; the tens-of-MeV CUTOFF camp (the L3/L4 tension in our reconciliation record)",
+   "prompt_sections": "Abstract + time-resolved prompt spectral section (thermal components in some intervals; significant high-energy cutoff) + the Lorentz-factor section",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "Geometry-corrected energy ~5.2e52 erg or ~8e52 erg - 'the most energetic GRB prompt emission recorded so far'. Thermal-radiation components in SOME time-resolved intervals; high-energy emission shows a significant cutoff. WARNING they themselves raise: cutoff-derived Lorentz factors are much lower than and 'in tension with' the pair-Compton constraints, so the ~tens-of-MeV cutoffs are 'more likely related to the particle acceleration process' - i.e. do NOT read Gamma off a low-energy cutoff.",
+   "traps": "Directly relevant to our engine's EC-vs-max-LAT-photon validity gate: a published cutoff at tens of MeV that the authors themselves decline to interpret as gamma-gamma."
+  },
+  {
+   "bibcode": "2019ApJS..242...16L",
+   "first_author": "Li, Liang",
+   "year": 2019,
+   "title": "Multipulse Fermi Gamma-Ray Bursts. I. Evidence of the Transition from Fireball to Poynting-flux-dominated Outflow",
+   "pdf": "Skills_training/Li_2019_2019ApJS24216L_bn160625945.pdf",
+   "arxiv": "1810.03129",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued (distinct from 2019ApJS..245....7L already in the index)",
+   "role": "sample-member; found ONLY by the '160625945' bare-fraction query form",
+   "prompt_sections": "sample table (per-burst pulse/interval definitions) + the thermal-vs-Poynting classification section",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(sample membership confirmed by the trigger-fraction token; per-burst row not yet mined)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2021A&A...652A.123T",
+   "first_author": "Toffano, M.",
+   "year": 2021,
+   "title": "The slope of the low-energy spectrum of prompt gamma-ray burst emission",
+   "pdf": "Skills_training/Toffano_2021_2021AA652A123T.pdf",
+   "arxiv": null,
+   "in_corpus_before": true,
+   "corpus_action": "ALREADY in corpus_index.csv (read=Y) -> not re-surfaced (G2)",
+   "role": "two-break lineage; alpha1 statistics",
+   "prompt_sections": "low-energy slope / 2SBPL alpha1 sections",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(not re-mined - already read)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2025A&A...700A..88M",
+   "first_author": "Macera, Samanta",
+   "year": 2025,
+   "title": "Gamma-ray burst prompt emission spectra at high energies",
+   "pdf": "Skills_training/Macera_2025_2025AA700A88M_bn180703876.pdf",
+   "arxiv": null,
+   "in_corpus_before": true,
+   "corpus_action": "ALREADY in corpus_index.csv (filed under bn180703876) -> queue cited_by_bursts += bn160625945",
+   "role": "high-energy prompt spectra; beta/cutoff frame",
+   "prompt_sections": "high-energy spectral-shape sections",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(not re-mined - G2)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2020ApJ...893...46V",
+   "first_author": "von Kienlin, A.",
+   "year": 2020,
+   "title": "The Fourth Fermi-GBM Gamma-Ray Burst Catalog: A Decade of Data",
+   "pdf": "Skills_training/vonKienlin_2020_2020ApJ89346V_bn160625945.pdf",
+   "arxiv": "2002.11460",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued (the 2014 2nd catalog, 2014ApJS..211...13V, is already in the index - this is the 4th catalog, a different paper)",
+   "role": "catalog; the authoritative T90/fluence/peak-flux frame for our burst",
+   "prompt_sections": "Table 6 p.140 (durations, row bn160625945) + Table 7 p.202 (10-1000 keV fluence and peak fluxes) + Table 8 p.261 (50-300 keV) + the duration-analysis footnote for GRB 160625B p.154",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "Table 6: detectors 6+7+9; T90 = 453.385 +/- 0.572 s with T90 start = T0+188.451 s; T50 = 12.032 +/- 0.362 s with T50 start = T0+192.291 s. Table 7 (10-1000 keV): fluence 6.43e-04 +/- 1.85e-07 erg/cm2; PF64 228.16+/-4.09, PF256 224.79+/-2.01, PF1024 216.85+/-0.99 ph/cm2/s. Table 8 (50-300 keV): fluence 2.76e-04 +/- 9.78e-08; PF64 116.14+/-2.57, PF256 112.46+/-1.27, PF1024 107.02+/-0.62. Footnote (verbatim, p.154): 'GRB 160625B triggered GBM twice (trigger IDs: bn160625945 and bn160625952). The CTIME data of the first trigger includes the GRB emission of the second trigger.'",
+   "traps": "T9 CRITICAL: T90 start = T0+188.451 s means the ~1 s PRECURSOR sits below the 5% fluence point and is therefore OUTSIDE the catalog T90, even though it is the event that produced this trigger id. The catalog T90 covers main + extended emission only."
+  },
+  {
+   "bibcode": "2017ApJ...850..161T",
+   "first_author": "Tsvetkova, A.",
+   "year": 2017,
+   "title": "The Konus-Wind Catalog of Gamma-Ray Bursts with Known Redshifts. I.",
+   "pdf": "Skills_training/Tsvetkova_2017_2017ApJ850161T_bn160625945.pdf",
+   "arxiv": "1710.08746",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "catalog; the refereed Konus-Wind frame and an independent z record",
+   "prompt_sections": "Sec.2 sample/selection (p.7-8) + Table 1 row 'GRB 160625B' p.57 (trigger time, localisation, z)",
+   "module_future_tags": [
+    "cosmo"
+   ],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "Table 1: GRB 160625B, KW trigger 22:40:19.875 UT, geocentre time 22:40:18.938, Fermi-LAT localisation, z = 1.406 type 's' (spectroscopic). VERBATIM T9 statement (p.8): 'KW triggered on weak precursors of GRB 120716A and GRB 160625B. To maintain a reasonable signal-to-noise ratio, only the main episodes of these bursts contributed to the spectral analysis presented in this paper.'",
+   "traps": "T9: their catalogued spectral parameters are MAIN-EPISODE-ONLY by explicit statement. The arXiv copy carries Table 1 in full; the spectral tables are machine-readable-only, so per-burst Ep/Eiso were NOT mined from the PDF this pass."
+  },
+  {
+   "bibcode": "2019ApJ...878...52A",
+   "first_author": "Ajello, M.",
+   "year": 2019,
+   "title": "A Decade of Gamma-Ray Bursts Observed by Fermi-LAT: The Second GRB Catalog",
+   "pdf": "Skills_training/Ajello_2019_2019ApJ87852A.pdf",
+   "arxiv": null,
+   "in_corpus_before": true,
+   "corpus_action": "ALREADY in corpus_index.csv -> queue cited_by_bursts += bn160625945",
+   "role": "catalog; LAT detection interval (the D4 check)",
+   "prompt_sections": "tab_durations (T_LAT,0 / T_LAT,1 for GRB 160625B) + the LAT spectral table",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(not re-mined this pass - the LAT onset is already pinned by GCN 19586 at ~T0+181 s, inside our window)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2019ApJ...887...13F",
+   "first_author": "Fana Dirirsa, F.",
+   "year": 2019,
+   "title": "Spectral Analysis of Fermi-LAT Gamma-Ray Bursts with Known Redshift and their Potential Use as Cosmological Standard Candles",
+   "pdf": "Skills_training/FanaDirirsa_2019_2019ApJ88713F.pdf",
+   "arxiv": null,
+   "in_corpus_before": true,
+   "corpus_action": "ALREADY in corpus_index.csv -> queue cited_by_bursts += bn160625945",
+   "role": "LAT spectral analysis by the burst's own GCN author (Dirirsa wrote GCN 19580/19586)",
+   "prompt_sections": "the per-burst LAT+GBM spectral table",
+   "module_future_tags": [
+    "cosmo"
+   ],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(not re-mined - G2)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2023ApJS..266...31L",
+   "first_author": "Li, Liang",
+   "year": 2023,
+   "title": "Revisiting the Spectral Energy Correlations of GRBs with Fermi Data. I. Model-wise Properties",
+   "pdf": "Skills_training/Li_2023_2023ApJS26631L_bn160625945.pdf",
+   "arxiv": "2211.12187",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "sample-member; found by the '160625945' fraction form",
+   "prompt_sections": "the model-wise per-burst spectral table (Band/CPL/SBPL fits) + the Ep-Eiso section",
+   "module_future_tags": [
+    "cosmo"
+   ],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(sample membership confirmed; per-burst row not yet mined)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2025ApJ...983..130L",
+   "first_author": "Liao, Tong-Lei",
+   "year": 2025,
+   "title": "Spectral Line Search in Bright Gamma-Ray Bursts Observed by Fermi/GBM",
+   "pdf": null,
+   "arxiv": null,
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued, NO PDF (IOP OA only, no arXiv listed by ADS; not fetched this pass)",
+   "role": "sample-member; found by the '160625945' fraction form; directly relevant to the Ravasio+2024 MeV-line question on a bright burst",
+   "prompt_sections": "the line-search method section + the per-burst results table",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE",
+   "harvested": "(NOT fetched - honest gap)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2017ApJ...834L..13W",
+   "first_author": "Wei, Jun-Jie",
+   "year": 2017,
+   "title": "A New Test of Lorentz Invariance Violation: The Spectral Lag Transition of GRB 160625B",
+   "pdf": "Skills_training/Wei_2017_2017ApJ834L13W_bn160625945.pdf",
+   "arxiv": "1612.09425",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "the paper that made this burst the canonical lag-transition case",
+   "prompt_sections": "the spectral-lag measurement section (energy bands, CCF method, SIGN CONVENTION) - Step 7 must copy the convention with the number (T3)",
+   "module_future_tags": [
+    "liv"
+   ],
+   "scope": "PROMPT-IN-SCOPE (lag) / module-future (LIV inference)",
+   "harvested": "(lag values not mined this pass)",
+   "traps": "T3: lag sign conventions differ between papers; copy the definition with the number."
+  },
+  {
+   "bibcode": "2017APh....94...17G",
+   "first_author": "Ganguly, Shalini",
+   "year": 2017,
+   "title": "Statistical significance of spectral lag transition in GRB 160625B",
+   "pdf": "Skills_training/Ganguly_2017_2017APh9417G_bn160625945.pdf",
+   "arxiv": "1706.01202",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "the adversarial check on Wei+2017 - exactly the kind of significance re-audit our programme values",
+   "prompt_sections": "the significance-assessment section",
+   "module_future_tags": [
+    "liv"
+   ],
+   "scope": "PROMPT-IN-SCOPE (lag)",
+   "harvested": "(not mined this pass)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2022ApJ...935...79L",
+   "first_author": "Liu, Zi-Ke",
+   "year": 2022,
+   "title": "Spectral Lag Transition of 32 Fermi Gamma-Ray Bursts and Their Application on Constraining Lorentz Invariance Violation",
+   "pdf": "Skills_training/Liu_2022_2022ApJ93579L_bn160625945.pdf",
+   "arxiv": "2202.09999",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "sample-member (lag)",
+   "prompt_sections": "the lag-fitting section + the per-burst table",
+   "module_future_tags": [
+    "liv"
+   ],
+   "scope": "PROMPT-IN-SCOPE (lag)",
+   "harvested": "(not mined this pass)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2025EPJC...85..290D",
+   "first_author": "Desai, Shantanu",
+   "year": 2025,
+   "title": "Constraint on Lorentz invariance violation for spectral lag transition in GRB 160625B using profile likelihood",
+   "pdf": "Skills_training/Desai_2025_2025EPJC85290D_bn160625945.pdf",
+   "arxiv": "2411.09248",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued",
+   "role": "dedicated; NEWEST lag-transition treatment of this burst",
+   "prompt_sections": "the lag-transition re-analysis section (profile likelihood)",
+   "module_future_tags": [
+    "liv"
+   ],
+   "scope": "PROMPT-IN-SCOPE (lag)",
+   "harvested": "(not mined this pass)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2026A&A...711A.234M",
+   "first_author": "Maraventano, C.",
+   "year": 2026,
+   "title": "Time lags as a proxy of the spectral evolution in gamma-ray bursts",
+   "pdf": "Skills_training/Maraventano_2026_2026AA711A234M_bn160625945.pdf",
+   "arxiv": "2606.10926",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued (Maraventano 2025, 2025A&A...697A.161M, is already in the index)",
+   "role": "NEWEST lag<->spectral-evolution framing; the conceptual bridge between our Step 6 and Step 7",
+   "prompt_sections": "the lag-as-spectral-evolution derivation + the sample table",
+   "module_future_tags": [],
+   "scope": "PROMPT-IN-SCOPE (lag)",
+   "harvested": "(not mined this pass)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2017Natur.547..425T",
+   "first_author": "Troja, E.",
+   "year": 2017,
+   "title": "Significant and variable linear polarization during the prompt optical flash of GRB 160625B",
+   "pdf": null,
+   "arxiv": null,
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued, NO PDF (Nature paywalled; ADS lists no arXiv eprint for this bibcode; NOT fetched)",
+   "role": "dedicated; the prompt-optical polarimetry that stakes the Poynting-flux reading",
+   "prompt_sections": "the polarimetry measurement + the magnetic-field-structure discussion (read alongside Zhang+2018's 3 s optical-gamma lag)",
+   "module_future_tags": [
+    "prompt-optical"
+   ],
+   "scope": "BORDERLINE - prompt phase, different band",
+   "harvested": "Via the Phase-1b web bridge (NOT from the PDF - flagged as second-hand): P = 8.3 +/- 0.8% variable linear polarization in the prompt optical flash; fast-cooling synchrotron in a large-scale advected magnetic field; a magnetisation sigma ~ 0.4 is quoted in the follow-up literature. MUST be verified at the primary source before it is cited.",
+   "traps": "Second-hand number - not PDF-verified. This is exactly the T6 chained-citation risk; do not cite until the PDF is read."
+  },
+  {
+   "bibcode": "2020ApJ...904..166C",
+   "first_author": "Cunningham, Virginia",
+   "year": 2020,
+   "title": "GRB 160625B: Evidence for a Gaussian-shaped Jet",
+   "pdf": null,
+   "arxiv": null,
+   "in_corpus_before": false,
+   "corpus_action": "catalogued only, PDF not fetched (out of analysis scope)",
+   "role": "dedicated afterglow paper",
+   "prompt_sections": "none (afterglow)",
+   "module_future_tags": [
+    "afterglow"
+   ],
+   "scope": "MODULE-FUTURE",
+   "harvested": "",
+   "traps": ""
+  },
+  {
+   "bibcode": "2017ApJ...848...69A",
+   "first_author": "Alexander, K. D.",
+   "year": 2017,
+   "title": "A Reverse Shock and Unusual Radio Properties in GRB 160625B",
+   "pdf": null,
+   "arxiv": null,
+   "in_corpus_before": false,
+   "corpus_action": "catalogued only, PDF not fetched",
+   "role": "dedicated afterglow/radio paper",
+   "prompt_sections": "none",
+   "module_future_tags": [
+    "afterglow"
+   ],
+   "scope": "MODULE-FUTURE",
+   "harvested": "",
+   "traps": ""
+  },
+  {
+   "bibcode": "2017ApJ...848...15F",
+   "first_author": "Fraija, N.",
+   "year": 2017,
+   "title": "Theoretical Description of GRB 160625B with Wind-to-ISM Transition and Implications for a Magnetized Outflow",
+   "pdf": null,
+   "arxiv": null,
+   "in_corpus_before": false,
+   "corpus_action": "catalogued only, PDF not fetched",
+   "role": "dedicated afterglow-theory paper",
+   "prompt_sections": "none",
+   "module_future_tags": [
+    "afterglow"
+   ],
+   "scope": "MODULE-FUTURE",
+   "harvested": "",
+   "traps": ""
+  },
+  {
+   "bibcode": "2020ApJ...894...43K",
+   "first_author": "Kangas, Tuomas",
+   "year": 2020,
+   "title": "The Late-time Afterglow Evolution of Long Gamma-Ray Bursts GRB 160625B and GRB 160509A",
+   "pdf": null,
+   "arxiv": null,
+   "in_corpus_before": false,
+   "corpus_action": "catalogued only, PDF not fetched",
+   "role": "dedicated afterglow paper",
+   "prompt_sections": "none",
+   "module_future_tags": [
+    "afterglow"
+   ],
+   "scope": "MODULE-FUTURE",
+   "harvested": "",
+   "traps": ""
+  },
+  {
+   "bibcode": "2019ApJ...873L...6S",
+   "first_author": "Strausbaugh, Robert",
+   "year": 2019,
+   "title": "Evidence for a Bright-edged Jet in the Optical/Near-infrared Afterglow of GRB 160625B",
+   "pdf": null,
+   "arxiv": null,
+   "in_corpus_before": false,
+   "corpus_action": "catalogued only, PDF not fetched",
+   "role": "dedicated afterglow paper",
+   "prompt_sections": "none",
+   "module_future_tags": [
+    "afterglow"
+   ],
+   "scope": "MODULE-FUTURE",
+   "harvested": "",
+   "traps": ""
+  },
+  {
+   "bibcode": "2023ApJ...943..181L",
+   "first_author": "Lipunov, V. M.",
+   "year": 2023,
+   "title": "Three-stage Collapse of the Long Gamma-Ray Burst from GRB 160625B Prompt Multiwavelength Observations",
+   "pdf": "Skills_training/Lipunov_2023_2023ApJ943181L_bn160625945.pdf",
+   "arxiv": "2302.05920",
+   "in_corpus_before": false,
+   "corpus_action": "NEW row queued (PDF fetched)",
+   "role": "dedicated; multiwavelength prompt interpretation, found by BOTH the trigger-number and name forms",
+   "prompt_sections": "the prompt multiwavelength light-curve section (MASTER optical + GBM)",
+   "module_future_tags": [
+    "engine",
+    "prompt-optical"
+   ],
+   "scope": "BORDERLINE",
+   "harvested": "(not mined this pass)",
+   "traps": ""
+  },
+  {
+   "bibcode": "2017ApJ...837..119A",
+   "first_author": "Atteia, J.-L.",
+   "year": 2017,
+   "title": "The Maximum Isotropic Energy of Gamma-ray Bursts",
+   "pdf": "Skills_training/Atteia_2017_2017ApJ837119A.pdf",
+   "arxiv": null,
+   "in_corpus_before": true,
+   "corpus_action": "ALREADY in corpus_index.csv -> queue cited_by_bursts += bn160625945",
+   "role": "population; this burst sits at the Eiso ceiling",
+   "prompt_sections": "the Eiso-ceiling section",
+   "module_future_tags": [
+    "cosmo"
+   ],
+   "scope": "MODULE-FUTURE",
+   "harvested": "",
+   "traps": ""
+  }
+ ],
+ "camps_on_the_main_episode": {
+  "why_this_matters": "The main episode of GRB 160625B is the single most contested spectral-shape target in the campaign so far. Five published readings of the SAME seconds:",
+  "A_two_break_synchrotron": "Ravasio+2018 - 2SBPL, E_break=107.8 keV, Ep=673.5 keV, >8 sigma over SBPL, and 2SBPL FAVOURED OVER SBPL+BB (i.e. an explicit rejection of the thermal alternative)",
+  "B_nonthermal_no_BB": "Zhang+2018 - Band / physical synchrotron over 71 slices, thermal component explicitly NOT required",
+  "C_thermal_required": "Lu+2017 - mBB + CPL: a thermal component IS required in Episode II",
+  "D_thermal_plus_cutoff": "Wang+2017 - thermal components in some intervals AND a significant tens-of-MeV cutoff, which they warn is acceleration-related rather than gamma-gamma",
+  "E_two_break_AND_BB_newest": "Aldowma+2026 - DSBPL+BB, Ep=2000 keV, kT=20 keV, dBIC=72 in the peak second 188.45-189.47 s (inside our window), and ISSM+PL over 188.451-214 s",
+  "consequence": "B and C are flatly contradictory. A rejects the BB against a 2SBPL continuum; E accepts a BB against a DSBPL continuum in a much shorter interval. T7 governs: every one of these verdicts is CONTINUUM- and INTERVAL-relative. Our blind fit must be diffed against each camp separately, with its own continuum and interval named."
+ },
+ "reading_list_for_vikas": {
+  "note": "Phase 3c: curated to PROMPT sections; deferred sections stay catalogued under module_future_tags.",
+  "tier1_read_first": [
+   "Aldowma+2026 (NEWEST; Table 1 p.20 + Table 4 p.23 + App. A5-A7) - and adjudicate the DSBPL alpha-ordering question before anything is diffed",
+   "Zhang+2018 (main text pp.1-3; sub-burst 2 is our window) vs Lu+2017 (Sec.3 Episode II) - read as a PAIR, they contradict each other",
+   "Wang+2017 (the cutoff section) - bears directly on our EC-vs-max-LAT-photon validity gate"
+  ],
+  "tier2": [
+   "von Kienlin+2020 Table 6/7/8 rows (the T90 frame, and the precursor-outside-T90 fact)",
+   "Tsvetkova+2017 Sec.2 p.8 (the main-episodes-only statement)",
+   "Li+2019 ApJS 242,16 and Li+2023 ApJS 266,31 (sample rows)"
+  ],
+  "already_read_or_held": [
+   "Ravasio+2018 (verified 2026-07-22, in the reconciliation record)",
+   "Ravasio+2019 (DSBPL definition)",
+   "Toffano+2021 (read=Y)"
+  ],
+  "deferred_shelf": [
+   "afterglow: Cunningham+2020, Alexander+2017, Fraija+2017, Kangas+2020, Strausbaugh+2019",
+   "prompt-optical: Troja+2017 (PDF still needed), Lipunov+2023",
+   "liv: Wei+2017 x2, Ganguly+2017, Liu+2022, Desai+2025, Maraventano+2026",
+   "cosmo: Atteia+2017, Tsvetkova+2017, Li+2023, Fana Dirirsa+2019"
+  ]
+ },
+ "honest_gaps": [
+  "Troja+2017 (Nature 547, 425) PDF NOT obtained - paywalled, ADS lists no arXiv eprint for that bibcode. Its polarization numbers in this manifest are WEB-SOURCED and must be PDF-verified before citation.",
+  "Liao+2025 (ApJ 983, 130) PDF NOT obtained - IOP open access, no arXiv listing found via ADS identifiers; not fetched this pass.",
+  "Tsvetkova+2017 per-burst Ep,i / Eiso NOT mined - the arXiv PDF carries Table 1 (identity, z) but the spectral tables are machine-readable-only. The Konus numbers in the dossier are therefore the GCN 19604 PRELIMINARY values, labelled as such.",
+  "Only 30 of the 209 refereed hits were classified individually. The remaining ~179 are overwhelmingly single-mention citations (LIV constraints, afterglow theory, population studies, GRB 221009A comparison papers); they were NOT triaged one by one and no claim in this manifest depends on them.",
+  "Ravasio+2019, Ravasio+2024, Toffano+2021, Macera+2025, Ajello+2019, Fana Dirirsa+2019, Atteia+2017 were NOT re-mined this pass (G2 dedup) - their per-burst rows for bn160625945 remain unharvested.",
+  "Li+2019 (ApJS 242,16), Li+2023 (ApJS 266,31), Lipunov+2023, and the four lag papers were DOWNLOADED but their per-burst rows were NOT mined this pass."
+ ],
+ "pending_shared_csv_rows": {
+  "target_file_1": "Skills_training/corpus_index.csv (NOT written by this worker)",
+  "new_rows": [
+   {
+    "filename": "Aldowma_2026_2026MNRAS546ag060A_bn160625945.pdf",
+    "bibcode": "2026MNRAS.546ag060A",
+    "arxiv": "2510.16475",
+    "theme": "joint-GBM-LAT-LLE;DSBPL+BB;ISSM;BIC-selection;NEWEST-frame",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Zhang_2018_2018NatAs2_69Z_bn160625945.pdf",
+    "bibcode": "2018NatAs...2...69Z",
+    "arxiv": "1612.03089",
+    "theme": "three-episode;fireball-to-Poynting;NO-BB-in-main",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Lu_2017_2017ApJ84971L_bn160625945.pdf",
+    "bibcode": "2017ApJ...849...71L",
+    "arxiv": "1702.01382",
+    "theme": "multi-episode;mBB+CPL;BB-REQUIRED-in-main",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Wang_2017_2017ApJ83681W_bn160625945.pdf",
+    "bibcode": "2017ApJ...836...81W",
+    "arxiv": "1611.04879",
+    "theme": "bulk-Lorentz-factor;tens-of-MeV-cutoff;cutoff-not-gammagamma",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "vonKienlin_2020_2020ApJ89346V_bn160625945.pdf",
+    "bibcode": "2020ApJ...893...46V",
+    "arxiv": "2002.11460",
+    "theme": "GBM-4th-catalog;T90;fluence;peak-flux",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Tsvetkova_2017_2017ApJ850161T_bn160625945.pdf",
+    "bibcode": "2017ApJ...850..161T",
+    "arxiv": "1710.08746",
+    "theme": "Konus-Wind-catalog-with-z;main-episode-only",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Li_2019_2019ApJS24216L_bn160625945.pdf",
+    "bibcode": "2019ApJS..242...16L",
+    "arxiv": "1810.03129",
+    "theme": "multipulse;fireball-to-Poynting;sample",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Li_2023_2023ApJS26631L_bn160625945.pdf",
+    "bibcode": "2023ApJS..266...31L",
+    "arxiv": "2211.12187",
+    "theme": "Ep-Eiso-correlations;model-wise;sample",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Desai_2025_2025EPJC85290D_bn160625945.pdf",
+    "bibcode": "2025EPJC...85..290D",
+    "arxiv": "2411.09248",
+    "theme": "lag-transition;LIV;profile-likelihood",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Maraventano_2026_2026AA711A234M_bn160625945.pdf",
+    "bibcode": "2026A&A...711A.234M",
+    "arxiv": "2606.10926",
+    "theme": "lag-as-spectral-evolution;NEWEST",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Wei_2017_2017ApJ834L13W_bn160625945.pdf",
+    "bibcode": "2017ApJ...834L..13W",
+    "arxiv": "1612.09425",
+    "theme": "lag-transition;LIV;canonical-case",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Ganguly_2017_2017APh9417G_bn160625945.pdf",
+    "bibcode": "2017APh....94...17G",
+    "arxiv": "1706.01202",
+    "theme": "lag-transition-significance;adversarial-recheck",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Liu_2022_2022ApJ93579L_bn160625945.pdf",
+    "bibcode": "2022ApJ...935...79L",
+    "arxiv": "2202.09999",
+    "theme": "lag-transition;32-GRB-sample;LIV",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "Lipunov_2023_2023ApJ943181L_bn160625945.pdf",
+    "bibcode": "2023ApJ...943..181L",
+    "arxiv": "2302.05920",
+    "theme": "prompt-multiwavelength;three-stage-collapse;MASTER-optical",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "NO_PDF_paywalled_Nature",
+    "bibcode": "2017Natur.547..425T",
+    "arxiv": "",
+    "theme": "prompt-optical-polarimetry;module-future;PDF-STILL-NEEDED",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   },
+   {
+    "filename": "NO_PDF_not_fetched",
+    "bibcode": "2025ApJ...983..130L",
+    "arxiv": "",
+    "theme": "spectral-line-search;GBM-bright;PDF-STILL-NEEDED",
+    "cited_by_bursts": "bn160625945",
+    "n_bursts": 1,
+    "read": "N",
+    "read_date": ""
+   }
+  ],
+  "row_updates": [
+   {
+    "bibcode": "2024A&A...685A.166R",
+    "action": "cited_by_bursts += bn160625945; n_bursts += 1"
+   },
+   {
+    "bibcode": "2021A&A...652A.123T",
+    "action": "cited_by_bursts += bn160625945; n_bursts += 1"
+   },
+   {
+    "bibcode": "2025A&A...700A..88M",
+    "action": "cited_by_bursts += bn160625945; n_bursts += 1"
+   },
+   {
+    "bibcode": "2019ApJ...878...52A",
+    "action": "cited_by_bursts += bn160625945; n_bursts += 1"
+   },
+   {
+    "bibcode": "2019ApJ...887...13F",
+    "action": "cited_by_bursts += bn160625945; n_bursts += 1"
+   },
+   {
+    "bibcode": "2017ApJ...837..119A",
+    "action": "cited_by_bursts += bn160625945; n_bursts += 1"
+   }
+  ],
+  "target_file_2": "results/gcn/gcn_index.csv (NOT written by this worker)",
+  "gcn_index_row": "bn160625945,160625B,29,Y,286,209"
+ }
+}

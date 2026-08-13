@@ -1,0 +1,48 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: N_MAT, datatype: int64}
+# - {name: COV_START, datatype: float64}
+# - {name: COV_STOP, datatype: float64}
+# - {name: THETA_TRIG, datatype: float64}
+# - {name: THETA_SRC_START, datatype: float64}
+# - {name: THETA_SRC_STOP, datatype: float64}
+# - {name: DTHETA_SRC_WINDOW, datatype: float64}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn111009282}
+# - {grb_name: GRB 111009A}
+# - {run_type: 'campaign doc-layer Step 1 per dev/ai_guides/DataInventory.md (2026-08-12); first era for this trigger - no prior results/qc/bn111009282_* existed'}
+# - {src_start: -1.6}
+# - {src_stop: 20.5}
+# - {trigtime_met: 339835542.17305}
+# - {window_stamp: 'APPROVED_BY="Vikas Chand" APPROVED_UTC=2026-07-19T22:18:36Z WINDOW_SOURCE=human_gui (results/background_intervals.ecsv lines 108-110; n0/b0 accepted_suggestion, n1 adjusted)'}
+# - {approved_dets: 'n0,n1,b0'}
+# - {qc_flag: 'NONE - bn111009282 does not appear in results/human_review_qc_flags.txt. Gap check reproduced: n1 bkg gap (-2.881, 27.119) and n0/b0 bkg gap (-7.00, 38.00) both contain the source window (-1.6, 20.5) s'}
+# - {manifest_cspec_pha: 3}
+# - {manifest_rsp: 3}
+# - {manifest_rsp2: 0}
+# - {manifest_tte: 3}
+# - {manifest_poshist: 1}
+# - {manifest_trigdat: 0}
+# - {manifest_lle: 0}
+# - {manifest_lat_ft1: 0}
+# - {manifest_lat_ft2: 0}
+# - {note_manifest: 'data/bn111009282/ holds exactly the approved set: glg_cspec_{n0,n1,b0}_*_v00.pha + .rsp, glg_tte_{n0,n1,b0}_*_v00.fit.gz, glg_poshist_all_111009_v01.fit. All 14 detectors ship cspec/ctime upstream (HEASARC 2011/bn111009282/current/) but were not downloaded - a scope choice, not a gap. No trigdat: a NOTE, not a blocker, because poshist is present and carries the geometry (DataInventory Phase 1); glg_trigdat is not offered for this trigger in the HEASARC current/ listing either'}
+# - {note_rsp_class: 'D2 - these are single-matrix .rsp (DRM_NUM=1), NOT .rsp2. That is legitimate naming for this burst (bn130310840 precedent); a glob for *.rsp2 alone would have produced 3 false alarms. Confirmed against scripts/10::find_rsp semantics before reporting'}
+# - {note_rsp_test: 'D1 - for a single-matrix DRM the interval-overlap test is the WRONG test; the OFF-AXIS ANGLE test governs. Both are reported here for completeness. Interval: every .rsp SPECRESP MATRIX spans MET 339835404.4428-339836018.8533 = T0-137.730 to T0+476.680 s, which brackets the stamped window trivially. Angle: theta(t) computed from glg_poshist_all_111009_v01.fit quaternions (QSJ_1..4, s/c -> J2000) against RA/Dec = 183.04/-56.82'}
+# - {note_angle_validation: 'the quaternion chain was validated against two independent stamps before being trusted: (a) it reproduces tcat THETA/PHI = 35.8231/38.3524 as 35.81/38.37 at trigger, and (b) it reproduces the detector angles already stored in results/background_intervals.ecsv (n0 15.6162, n1 10.4469, b0 62.6907) as 15.62/10.45/62.69. Agreement to 0.01 deg'}
+# - {note_dtheta: 'Delta-theta across the stamped source window is <= 0.77 deg for all three detectors - an order of magnitude inside the D1 PASS threshold (<~4 deg). Fermi did NOT slew during this burst (HAS_LAT=False, no autonomous repoint). Over the FULL .rsp header interval (-137.7 to +476.7 s) theta drifts by up to 19.8 deg (b0) / 16.3 deg (n0), which is why the naive interval test is meaningless here and the angle test is the one that decides'}
+# - {note_detector_set_vs_catalog: 'DELIBERATE, RULE-BASED divergence. GBM spectral catalog scat v01 fits used BGO_00 + NAI_00 + NAI_01 + NAI_03; von Kienlin+2014 durations used n0+n1 only. Our approved set is n0,n1,b0 because n3 sits at 51.83 deg, outside the project <=50 deg NaI rule. Full angle ranking at trigger: n1 10.45, n0 15.62, n3 51.83, n6 56.15, n2 56.86, n9 58.78, n5 61.17, b0 62.69, n7 81.85, na 87.63, n4 93.27, b1 117.31, nb 119.08, n8 123.73 deg. b0 (62.69) is correctly the near BGO vs b1 (117.31)'}
+# - {note_position_sensitivity: 'Hurley+2017 IPN 3-sigma error box centre (RA 180.255, Dec -62.152) lies 5.52 deg from the GBM position used for detector selection. Recomputing at that position gives n0 11.91, n1 12.84, b0 68.18 deg - both NaI still well inside 50 deg and still the two closest NaI detectors. The Stage-1 detector choice is ROBUST to the localization uncertainty. The responses themselves are built for the GBM position (catalog standard) and are not regenerated'}
+# - {note_d4: 'D4 CLEAR. bcat v02 T90 = 20.7364 +/- 4.22133 s with T90START = -0.256046 s, i.e. catalog emission span (-0.256, +20.480) s, FULLY CONTAINED in our stamped window (-1.6, +20.5) s. No pre-trigger episode is claimed anywhere (zero circulars). The trigger time IS essentially the burst start for this burst - the exception, not the rule'}
+# - {note_d5: 'Blockage screening is DEFERRED to the fit stage, where the residual/cross-norm evidence lives; nothing here can test it. Advance warning for that stage: with only two NaI detectors (10.45 and 15.62 deg) there is no third NaI to arbitrate a coherent one-sided residual run, so a D5 diagnosis on this burst will rest on the n0-vs-n1 pair plus b0 alone and should be graded weak either way'}
+# - {note_bgo_expectation: 'von Kienlin+2014 does not flag this burst as having significant BGO emission (footnote-a italics convention; our row is roman while six other rows on the same catalog page are italic). b0 is nonetheless approved and must NOT be dropped - the data-dropping hierarchy allows quality exclusion only, never significance-based exclusion (L17). Expect a weakly constrained beta in short blocks'}
+# - {verdict: 'PASS - all 3 approved detectors resolve to an existing single-matrix response whose off-axis angle is stable to <= 0.77 deg across the stamped source window (D1 threshold ~4 deg); the DRM interval additionally brackets the window; no LLE/LAT data exists for this burst so the LLE arm of D1 is not applicable'}
+# schema: astropy-2.0
+DET RSP_FILE N_MAT COV_START COV_STOP THETA_TRIG THETA_SRC_START THETA_SRC_STOP DTHETA_SRC_WINDOW VERDICT
+n0 glg_cspec_n0_bn111009282_v00.rsp 1 -137.730 476.680 15.62 15.56 16.16 0.60 PASS
+n1 glg_cspec_n1_bn111009282_v00.rsp 1 -137.730 476.680 10.45 10.46 10.31 0.15 PASS
+b0 glg_cspec_b0_bn111009282_v00.rsp 1 -137.730 476.680 62.69 62.76 61.99 0.77 PASS

@@ -1,0 +1,42 @@
+{
+ "burst": "bn100130729",
+ "grb_name": "GRB 100130A",
+ "tally": null,
+ "tally_note": "doc-layer batch worker 2026-08-12; sequential tally assignment deferred to the orchestrator (max existing P0 tally = 30 at run time; parallel workers active)",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5; 1b Scholar-note applied via web-search channel; 3b latest-first; 3c prompt-scope; Phase 4 frame+consensus rules)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "queries": [
+  {"form": "GRB name", "q": "full:\"GRB 100130A\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "GBM trigger name", "q": "full:\"bn100130729\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "day-fraction", "q": "full:\"100130729\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "trigger number", "q": "full:\"286565366\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "robustness: no-space name", "q": "full:\"GRB100130A\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "robustness: TYPO channel (GCN 10372 subject misnames the burst)", "q": "full:\"GRB 100113A\"", "numFound": 1, "refereed_articles": 0, "note": "only 2010GCN.10372....1G itself — the misfiled detection circular"},
+  {"form": "bare 100130A (noise control)", "q": "full:\"100130A\"", "numFound": 9, "refereed_articles": 0, "note": "all 9 hits are non-astronomy noise (materials science, tokamak spectroscopy, power electronics); zero GRB hits"},
+  {"form": "positive control (sibling)", "q": "full:\"GRB 100130B\"", "numFound": 2, "refereed_articles": 1, "note": "control that the index works: sibling bn100130777 hits GCN 10373 + Szecsi+2013 (2013A&A...557A...8S). NOT our burst (T1)."}
+ ],
+ "scholar_channel": {
+  "phase_1b_rule": "ADS four-form came back EMPTY -> Scholar-style channel required",
+  "method": "WebSearch (no Scholar API; finding channel only, ADS verifies)",
+  "query": "\"GRB 100130A\" gamma-ray burst",
+  "result": "Only GCN 10372 (https://gcn.nasa.gov/circulars/10372) and the 4th Fermi-GBM catalog (arXiv:2002.11460) surfaced; no bridging paper found. Confirms paperless status.",
+  "date": "2026-08-12"
+ },
+ "n_refereed_papers": 0,
+ "papers": [],
+ "finding": "PAPERLESS BURST (by named mention). Zero refereed papers mention GRB 100130A / bn100130729 / 100130729 / 286565366 in ADS full text as of 2026-08-12. The only ADS record is the misfiled detection circular GCN 10372 (subject-line typo 'GRB 100113A'). The burst IS inside the GBM catalog coverage windows (BCAT/SCAT lineage, von Kienlin+2020 2020ApJ...893...46V, Poolakkil+2021 2021ApJ...913...60P), so its published values exist ONLY as catalog rows: harvested via HEASARC TAP fermigbrst (T90=99.586+/-2.415 s 50-300 keV; fluence 1.01475e-5 erg/cm2 10-1000 keV; flnc best model Comptonized Ep=211.62+/-23.67 keV, index -1.081+/-0.073, scat detectors n4+b0). Full-text search cannot surface machine-readable table membership -- catalog-row membership is NOT a named mention (this is why numFound=0 despite catalog coverage). Consequence for P3: diff frame = archival census prior + GCN 10372 (preliminary, self-declared) + fermigbrst catalog row.",
+ "same_day_contamination_check": "T1 applied: sibling GRB 100130B = bn100130777 (18:38:35.46 UT, trigger 286569517, GCN 10373) owns the 100130.gcn3/100130B.gcn3 archive pages; its numbers were identified and EXCLUDED. Identity verified by trigger number+MET: local TRIGTIME 286565366.144684 = 2010-01-30 17:29:24.14 UTC = GCN 10372's quoted time (the circular's '10 January' is a date typo, as is its subject 'GRB 100113A').",
+ "pdfs_fetched": [],
+ "corpus_index_updates": "NONE required (no papers found by named mention). The GBM catalog papers (von Kienlin+2020, Poolakkil+2021) are not currently in Skills_training/corpus_index.csv, but they surfaced only as catalog-row provenance, not as ADS hits for this burst; no download performed, no row queued. Shared corpus_index.csv deliberately not touched (worker hard rule).",
+ "module_future_catalog": [],
+ "module_future_note": "Empty shelf — no afterglow/SN/cosmology/multimessenger observation of this burst exists anywhere (GBM-only, 6-day-late misnamed circular, no follow-up).",
+ "vikas_reading_list": "Nothing to read for this burst — no papers exist. Prompt-relevant external material is confined to GCN 10372 (quoted + frame-aligned in the dossier) and the fermigbrst catalog row.",
+ "pending_shared_csv_rows": {
+  "results/gcn/gcn_index.csv": [
+   "bn100130729,MISFILED_under_100113A(404_at_100130A),1,N,1_typo_channel_only,0"
+  ],
+  "Skills_training/corpus_index.csv": []
+ },
+ "step1_qc_headline": "Step-1 QC verdict FAIL (response coverage): every rsp2 on disk (v01, all 6 detectors) carries matrices spanning +139.27..+475.14 s relative to TRIGTIME — the stamped source window 58–97 s is entirely OUTSIDE. Archival fits were 'recovered' by the now-deleted _collapse_rsp2_to_single (biased; Codex 3ML audit 2026-07-24; stale_refit_worklist line 9). See results/qc/bn100130729_step1_response_coverage.ecsv."
+}

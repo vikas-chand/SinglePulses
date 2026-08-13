@@ -84,7 +84,13 @@ DEFAULT_PARAMS = dict(
 
 def find_tte(trigger, det):
     # newest version, deterministic (audit #19: was unsorted glob()[0])
-    m = sorted(glob.glob(os.path.join(DATA_DIR, trigger, f'glg_tte_{det}_*.fit.gz')))
+    # F-1 (Khushboo, GRB 200524A walkthrough, 2026-08-12): '*.fit.gz' alone made an
+    # uncompressed .fit TTE invisible — the detector silently vanished from the joint
+    # fit (her 5-burst run: bursts fitted on LLE-alone / single-NaI, exit 0). A
+    # filename convention must never be an undeclared inclusion gate (L17 class):
+    # match .fit AND .fit.gz, and the caller now screams when an APPROVED detector
+    # resolves to nothing.
+    m = sorted(glob.glob(os.path.join(DATA_DIR, trigger, f'glg_tte_{det}_*.fit*')))
     return m[-1] if m else None
 
 def find_rsp(trigger, det):
@@ -207,6 +213,12 @@ def build_spectrumlike_per_block(trigger, det, pre, post, bin_starts, bin_stops)
         tte = find_tte(trigger, det)
         rsp = find_rsp(trigger, det)
         if tte is None or rsp is None:
+            # F-1 loudness: this detector was APPROVED — its absence is a data/
+            # naming problem, never a quiet skip. PLUGIN_DETS records the final
+            # set, but the operator must see this line at run time.
+            print(f'    !! {det}: APPROVED DETECTOR HAS NO '
+                  f'{"TTE" if tte is None else "RSP"} FILE — excluded from the '
+                  f'joint fit (F-1 guard; check data/{trigger}/ naming)')
             return None
         tsb = TimeSeriesBuilder.from_gbm_tte(det, tte, rsp_file=rsp,
                                               verbose=False)
@@ -233,11 +245,25 @@ def build_spectrumlike_per_block(trigger, det, pre, post, bin_starts, bin_stops)
     try:
         speclikes_raw = tsb.to_spectrumlike(from_bins=True)
     except Exception as exc:
-        # NATIVE-ONLY (doctrine 2026-07-26): no RSP2-collapse retry — if the
-        # native half-shifted count-weighted response cannot cover the source
-        # bins, skip the detector honestly (PLUGIN_DETS records the absence).
-        print(f'    {det}: to_spectrumlike failed — skipping detector ({exc})')
-        return [None] * len(bin_starts)
+        # b12/bn150721242 (Codex audit 2026-08-11): the batched call is
+        # all-or-nothing — ONE bin outside the RSP2's covered span (approved
+        # source edge −1.2 s vs first DRM at +0.064 s → threeML
+        # IntervalOfInterestNotCovered) silently discarded the seven covered
+        # bins with it. Retry PER BIN so coverage is judged bin-by-bin;
+        # an uncovered bin is recorded as absent (documented quality
+        # exclusion, DataInventory hierarchy case 3) — NEVER extrapolated
+        # (the RSP2-collapse fallback stays dead, doctrine 2026-07-26).
+        print(f'    {det}: batched to_spectrumlike failed ({exc}) — retrying per bin')
+        speclikes_raw = []
+        for k in range(len(bin_starts)):
+            try:
+                tsb.create_time_bins(start=[bin_starts[k]],
+                                     stop=[bin_stops[k]], method='custom')
+                one = tsb.to_spectrumlike(from_bins=True)
+                speclikes_raw.extend(one if isinstance(one, list) else [one])
+            except Exception as exc1:
+                print(f'    {det} bin {k} [{bin_starts[k]:.3f},'
+                      f'{bin_stops[k]:.3f}]: RESPONSE_UNCOVERED — {exc1}')
     if not isinstance(speclikes_raw, list):
         speclikes_raw = [speclikes_raw]
 
@@ -921,6 +947,49 @@ NESTED_PARENTS = [
 ]
 
 
+# L28 (2026-08-11; Tierney+2013 2013A&A...550A.102T, Ravasio+2019
+# 2019A&A...625A..60R App. B): a component/break is constrained by its in-band
+# nuFnu turnover — 3.92*kT for a blackbody, xb for a low break — not by data at
+# its nominal energy. Ravasio's App. B shows GBM fits with the feature below
+# ~20 keV produce railed, unphysically hard alpha1 (their Fig. B.1 bimodality)
+# and they quarantine those from population statistics. We stamp instead of
+# drop: EDGE_CONSTRAINED (<20 keV) / EDGE_MARGINAL (20-30 keV, up to the
+# Tierney LET / K-edge region; 30 = PROJECT heuristic) / IN_BAND (>=30 keV).
+# Stamped values are RETAINED in burst records but EXCLUDED from population
+# statistics / claim promotion until the L28 checks pass (LET-extrapolation,
+# per-NaI coherence, L25 identity pair).
+EDGE_TRUST_KEV = 20.0      # Ravasio+2019 App. B empirical boundary
+EDGE_CLEAR_KEV = 30.0      # above this the turnover is comfortably in-band
+BB_PEAK_FACTOR = 3.92      # nuFnu peak of a Planck spectrum = 3.92 kT
+
+
+def edge_feature_class(kt=None, xb=None):
+    """Classify an edge-proximal feature by its nuFnu turnover energy (keV).
+
+    Pass EITHER kt (blackbody temperature) OR xb (low-break energy); per L25
+    they are one feature in two costumes and must classify identically.
+    Returns (class_str, feature_kev).
+    """
+    kt_ok = kt is not None and np.isfinite(kt)
+    xb_ok = xb is not None and np.isfinite(xb)
+    if kt_ok and xb_ok:
+        # Codex audit 2026-08-11: "EITHER" must be enforced, not silently
+        # resolved in kT's favor — the two costumes are the caller's L25
+        # decision, not this classifier's.
+        raise ValueError('edge_feature_class: pass kt OR xb, not both')
+    if kt_ok:
+        feat = BB_PEAK_FACTOR * float(kt)
+    elif xb_ok:
+        feat = float(xb)
+    else:
+        return 'NO_FEATURE', float('nan')
+    if feat < EDGE_TRUST_KEV:
+        return 'EDGE_CONSTRAINED', feat
+    if feat < EDGE_CLEAR_KEV:
+        return 'EDGE_MARGINAL', feat
+    return 'IN_BAND', feat
+
+
 def _fit_is_physical(spec, result, frac=0.001):
     """A fit may WIN model selection only if it is OK, has no key shape
     parameter railed within `frac` of a bound, and (for DSBPL) the low break
@@ -948,7 +1017,9 @@ def _fit_is_physical(spec, result, frac=0.001):
         # simple models on soft bursts and biasing selection toward
         # extra-component winners. For bounds spanning >2 decades with lo>0,
         # test in LOG space (margin = 1% of the log-span, e.g. 30 -> 32.3 keV);
-        # keep the linear rule for narrow/linear bounds (indices, kT).
+        # the linear rule remains only for genuinely narrow/linear bounds
+        # (indices). NOTE (Codex audit 2026-08-11): kT (1,200) spans 200x, so
+        # it IS log-ruled — rail zone kT < 1.0544 keV, not 1 + 0.001*199.
         if lo > 0 and hi / lo > 100.0:
             lg_lo, lg_hi, lg_v = np.log10(lo), np.log10(hi), np.log10(v)
             lg_m = 0.01 * (lg_hi - lg_lo)

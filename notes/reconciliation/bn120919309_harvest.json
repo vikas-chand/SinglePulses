@@ -1,0 +1,346 @@
+{
+ "burst": "bn120919309",
+ "grb_name": "GRB 120919A",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1 four-form query, Phase 1b Scholar note, Phase 2 fetch, Phase 3 mine, Phase 3b latest-first, Phase 3c prompt-scope, Phase 4 frame-align + multi-instrument consensus, Phase 5 file; traps T1-T9)",
+ "status": "NEW - no notes/reconciliation/bn120919309_* existed before this pass; nothing was overwritten.",
+ "blind_first_compliance": "This worker never listed, globbed or read anything under results/sweep106/. The only fit table opened is results/clean_per_burst_human_final/bn120919309/spectral_fits.ecsv, which the task explicitly allows as archival prior.",
+
+ "phase1_ads_four_form_query": {
+  "token": "ADS_DEV_KEY from /Users/salim/Desktop/Projects/FXTs/.env (loaded with `set -a; source ...; set +a`) - worked, HTTP 200 on every call",
+  "endpoint": "https://api.adsabs.harvard.edu/v1/search/query",
+  "forms_run": [
+   {"q": "full:\"GRB 120919A\"", "numFound": 6, "result": "SIX GCN circulars only (13785, 13786, 13787, 13790, 13791, 13821) - doctype newsletter. ZERO refereed articles use the NAME."},
+   {"q": "full:\"bn120919309\"", "numFound": 1, "result": "2018ApJ...865..153L (Lu+2018, Comprehensive Analysis IV)"},
+   {"q": "full:\"120919309\"", "numFound": 2, "result": "2026arXiv260417835L (Li+2026, eprint) and 2017ApJ...844..126S (Shao+2017)"},
+   {"q": "full:\"369732284\"", "numFound": 0, "result": "the trigger NUMBER appears in no indexed full text"}
+  ],
+  "extra_forms_run": [
+   {"q": "full:\"GRB120919A\"", "numFound": 0},
+   {"q": "full:\"GRB 120919309\"", "numFound": 2, "result": "same two as form 3"},
+   {"q": "full:\"120919.309\"", "numFound": 2, "result": "same two"},
+   {"q": "full:\"bn120919\"", "numFound": 0},
+   {"q": "full:\"GRB 120919\"", "numFound": 1, "result": "2019ApJ...886...20Y (Yu+2019) - found ONLY by this loose form"},
+   {"q": "citations(bibcode:2012GCN.13785....1R)", "numFound": 0},
+   {"q": "citations(bibcode:2012GCN.13786....1H)", "numFound": 0},
+   {"q": "citations(bibcode:2012GCN.13787....1G)", "numFound": 1, "result": "2020ApJ...893...77W (Wang F.+2020) - see not_members"},
+   {"q": "full:\"120919_T26678\"", "numFound": 0, "result": "the Konus light-curve URL form is not indexed"}
+  ],
+  "series_check_T2": "Lu+2018 is part IV of 'A Comprehensive Analysis of Fermi Gamma-Ray Burst Data'. The whole series was enumerated: I = 2011ApJ...730..141Z (spectral components), II = 2012ApJ...756..112L (Ep evolution), III = 2013ApJ...763...15Q (energy-dependent T90), IV = 2018ApJ...865..153L (spectral lag). Parts I and II PREDATE this 2012-09-19 burst and cannot contain it; part III (2013) was checked locally in the corpus (Qin_2013_2013ApJ76315Q.pdf) and returns ZERO hits for '120919'. Only part IV covers this burst.",
+  "verdict": "The ADS full-text channel returned 3 of the 7 refereed papers that actually analyse this burst - see phase1b_finding."
+ },
+
+ "phase1b_google_scholar_channel": {
+  "was_scholar_queried": false,
+  "honest_statement": "Google Scholar itself (scholar.google.com) has no API and was NOT queried by a human browser in this pass. As a partial proxy I ran one general web search, `\"GRB 120919A\" Fermi GBM prompt emission spectral analysis`, which returned NOTHING burst-specific (all ten hits were other GRBs: 221009A, 230812B, 190829A, 160709A). Recorded as a null result of a proxy channel, NOT as a Scholar result.",
+  "why_it_was_considered": "Phase 1b trigger condition (1) applies in a mild form: the four-form ADS query came back thin (3 hits) for a burst that turns out to have 7 refereed analyses.",
+  "phase1b_finding_THE_IMPORTANT_ONE": "The gap was closed not by Scholar but by a LOCAL CORPUS GREP: `fitz search_for('120919')` across all 219 PDFs in Skills_training/. That found FOUR additional refereed papers analysing bn120919309 that ADS full-text search MISSED entirely - Acuner+2020 (2020ApJ...893..128A), Ryde+2019 (2019MNRAS.484.1912R), Wang+2024 RAA (2024RAA....24b5006W), and the two GBM catalogs (2016ApJS..223...28N, 2020ApJ...893...46V) - plus Greiner+2024 for the afterglow. In every case the burst appears ONLY as a table row keyed on the bare trigger digits, which ADS's full-text index evidently does not surface. PROPOSED SKILL PATCH (for Vikas to accept or reject): add a Phase 1c 'search the corpus you already have' step - once the corpus is large it is a better recall channel than ADS full text for table-row membership, it is free, and it costs one grep. The larger the corpus grows, the stronger this gets, which is the same compounding logic as the G2 dedup rule.",
+  "corpus_grep_command": "/Users/salim/anaconda3/bin/python3 - <<'EOF' ... fitz.open(f); d[p].search_for('120919') over glob('Skills_training/*.pdf') ... EOF"
+ },
+
+ "n_papers": 9,
+ "n_papers_note": "9 = refereed/eprint items that carry a value or a classification for THIS burst (the 6 GCN circulars are Step-0a's job and are counted separately in the dossier). Of the 9: 7 refereed articles, 1 eprint (Li+2026), and 1 (Greiner+2024) is beyond-prompt only.",
+
+ "papers": [
+  {
+   "bibcode": "2026arXiv260417835L",
+   "first_author": "Li, Liang",
+   "year": 2026,
+   "title": "Three Subclasses of the Intensity-tracking Pattern in Gamma-Ray Burst Spectral Evolution",
+   "doctype": "eprint",
+   "refereed": false,
+   "found_by": "ADS full:\"120919309\"",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/Li_2026_intensity_tracking_arXiv260417835.pdf (plus three per-burst copies: _bn090620400, _bn090719063, _bn090804940)",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - already in corpus_index.csv (rows 109 and 118); trigger appended to cited_by_bursts via pending_shared_csv_rows, NOT re-downloaded",
+   "role": "sample-member, classification",
+   "prompt_sections": "Table 1 (burst-level flux-based classification) and Table 2 (flux-pulse morphology) - the only two places this burst appears with numbers; Section 3 for the Type I/II/III definition and the meaning of tF_lag, that_lag and f-2/3; Figure 4 and Figure 8 panels for GRB 120919309.",
+   "defer_sections": "none - the paper is entirely prompt-phase",
+   "module_future_tags": [],
+   "themes": ["intensity-tracking-subclasses", "Ep-flux-lag", "TypeII", "pulse-morphology"],
+   "values_for_this_burst": {
+    "class": "II (Ep peaks BEFORE the flux peak) - but P_II = 0.64 with P_I = 0.35, a WEAK assignment",
+    "model": "CPL", "N_bin": 6,
+    "tp_F_s": "3.43 +/- 0.76", "tp_Ep_s": "2.27 +/- 0.41", "tF_lag_s": "-1.16 +/- 0.86",
+    "f_alpha_above_minus_two_thirds": 0.0,
+    "alphabar_w": -0.78, "alpha_Fpeak": -0.72,
+    "FWHM_F_s": 3.37, "t_rise_s": 2.06, "t_decay_s": 1.31,
+    "asymmetry_A": -0.22, "rho_Ep_F": 0.89,
+    "z": "blank - NO REDSHIFT"
+   },
+   "frame": "CPL Ep = nuFnu peak; 6 time-resolved bins; band and detector set NOT stated in the tables; coverage = MAIN pulse",
+   "steps_served": ["7 temporal (lag, pulse width, asymmetry)", "6 fitting (evolution class)"]
+  },
+  {
+   "bibcode": "2024RAA....24b5006W",
+   "first_author": "Wang, W.-K.",
+   "year": 2024,
+   "title": "(RAA) time-resolved spectral evolution patterns of GRB pulses",
+   "doctype": "article",
+   "refereed": true,
+   "found_by": "LOCAL CORPUS GREP - MISSED by all ADS query forms",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/Wang_2024_2024RAA24b5006W_bn110721200.pdf",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - already indexed (corpus_index.csv last row); trigger appended via pending_shared_csv_rows",
+   "role": "sample-member; **THE LATEST REFEREED ANALYSIS -> the Phase 3b default comparison frame**",
+   "prompt_sections": "Table 1 (detectors, source and background windows, spectrum counts) and Table 3 (Ep and alpha evolution classes, alpha-Ep / F-Ep / F-alpha correlation types) - both carry a 120919309 row; Section 2 for the binning and NS>=20 criterion; Section 3 for the evolution-class taxonomy.",
+   "defer_sections": "none",
+   "module_future_tags": [],
+   "themes": ["prompt-timeresolved", "evolution-patterns", "line-of-death"],
+   "values_for_this_burst": {
+    "detectors": "(n1),n2,n5,b0", "T90_s": 21.248,
+    "src_window_s": "-2.0 to 35.0", "bkg1_s": "-25.0 to -10.0", "bkg2_s": "45.0 to 60.0",
+    "n_spectra_NS_ge_20": "9(5)", "n_pulses": 1,
+    "alpha_above_minus_two_thirds": "not all",
+    "Ep_evolution": "i.t. (intensity tracking)",
+    "alpha_evolution": "h.t.s to i.t",
+    "alpha_Ep_type_r": "2n(0.67)", "F_Ep_type_r": "2p(0.9)", "F_alpha_type_r": "2p(0.5)"
+   },
+   "frame": "coverage = TOTAL (-2 to 35 s); brightest detector n1 (parenthesised)",
+   "steps_served": ["6 fitting (evolution class, line-of-death fraction)", "5 binning (9 spectra, 5 above NS 20)"],
+   "conflict_flag": "Its 'not all' for alpha > -2/3 CONTRADICTS Li+2026's f = 0.00 for the same burst. Logged in the dossier section 9 and the P0 freeze; NOT resolved."
+  },
+  {
+   "bibcode": "2020ApJ...893..128A",
+   "first_author": "Acuner, Zeynep",
+   "year": 2020,
+   "title": "Optimal GRB spectral model comparison / physical models fitted to the brightest bins",
+   "doctype": "article",
+   "refereed": true,
+   "found_by": "LOCAL CORPUS GREP - MISSED by all ADS query forms",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/Acuner_2020_2020ApJ893128A_bn100707032.pdf",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - already in corpus; trigger appended via pending_shared_csv_rows",
+   "role": "sample-member; **the ONLY physical-model verdict this burst has ever received**",
+   "prompt_sections": "Section 2 (the SCS slow-cooled-synchrotron and NDP non-dissipative-photosphere model definitions, Figure 1) and Sections 4-5 with Tables 2-3 (p.8 evidence table and p.19 AIC/BIC/DIC table) - the 120919309 rows.",
+   "defer_sections": "none",
+   "module_future_tags": [],
+   "themes": ["physical-models", "SCS-vs-NDP", "bayesian-evidence", "brightest-bin"],
+   "values_for_this_burst": {
+    "S": 56.61, "interval_s": "2.68 - 3.53",
+    "alpha": "-0.65 +/- 0.06",
+    "lnZ_CPL": -913.47, "lnZ_SCS": -925.93, "lnZ_NDP": -966.25,
+    "lnZ_NDP_minus_lnZ_CPL": -52.79, "ln_ratio_NDP_over_SCS": -40.32, "P": 0.98,
+    "AIC_NDP": 1938.67, "BIC_NDP": 1946.95, "DIC_NDP": 1921.16,
+    "AIC_SCS": 1860.43, "BIC_SCS": 1868.71, "DIC_SCS": 1842.12
+   },
+   "frame": "Bayesian evidence; their bin is IDENTICAL to Yu+2019's brightest bin (2.68-3.53 s). Ranking: CPL > SCS > NDP. Photosphere disfavoured by Delta lnZ = 40.3 vs synchrotron.",
+   "T8_check": "PERFORMED AND PASSED: -913.47 + (-52.79) = -966.26 reproduces the independently printed -966.25, so the two tables use a consistent sign convention.",
+   "steps_served": ["6 fitting (a strong external prior AGAINST a photospheric/BB component in the brightest block)"]
+  },
+  {
+   "bibcode": "2019ApJ...886...20Y",
+   "first_author": "Yu, Hoi-Fung",
+   "year": 2019,
+   "title": "Bayesian Time-resolved Spectroscopy of GRB Pulses",
+   "doctype": "article",
+   "refereed": true,
+   "found_by": "ADS full:\"GRB 120919\" (the loose form only)",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/Yu_2019_ApJ_886_20.pdf + Yu_2019_ApJ_886_20_arxiv.pdf (the arXiv version carries the full Table 22; the journal version truncates it)",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - corpus_index.csv row 2, read=Y (Vikas has read it); trigger appended via pending_shared_csv_rows, NOT re-surfaced for reading",
+   "role": "sample-member; **the block-resolved published table = free external validation of our binning and our Ep track**",
+   "prompt_sections": "Table 1 row 120919309 (detectors, windows, bin counts, evolution class) and **Table 22 (arXiv p.61) - the 15-bin time-resolved CPL and Band fits**; Section 3.1 for the CPL-vs-Band Delta-DIC convention.",
+   "defer_sections": "none",
+   "module_future_tags": [],
+   "themes": ["prompt-timeresolved", "BAYESIAN-DIC", "CPL-vs-Band", "beta-degeneracy"],
+   "values_for_this_burst": {
+    "detectors": "(n1)n2n5b0", "src_window_s": "-2 to 35", "bkg_s": "-25 to -5 and 60 to 100",
+    "n_spectra": 15, "n_constrained": 6, "evolution_class": "i.t.",
+    "CPL_Ep_track_keV": {"0.31-1.87": 213.27, "1.87-2.68": 375.54, "2.68-3.53": 309.38, "3.53-4.19": 202.74, "4.19-5.36": 185.74, "5.36-6.81": 111.2, "6.81-9.30": 59.81},
+    "CPL_alpha_track": {"0.31-1.87": -0.76, "1.87-2.68": -0.79, "2.68-3.53": -0.66, "3.53-4.19": -0.71, "4.19-5.36": -0.85, "5.36-6.81": -1.01, "6.81-9.30": -1.36},
+    "Band_beta_track": {"0.31-1.87": -3.52, "1.87-2.68": -3.22, "2.68-3.53": -2.72, "3.53-4.19": -3.95, "4.19-5.36": -3.97, "5.36-6.81": -3.1, "6.81-9.30": -3.86},
+    "DeltaDIC_Band_minus_CPL": {"0.31-1.87": -1.35, "1.87-2.68": -3.35, "2.68-3.53": -8.87, "3.53-4.19": -0.62, "4.19-5.36": -1.51, "5.36-6.81": -7.79, "6.81-9.30": -1.3}
+   },
+   "frame": "Ep = nuFnu peak, Ec = e-folding energy, Delta-DIC = DIC_BAND - DIC_CPL (negative = Band preferred). Bins outside 0.31-9.30 s are UNCONSTRAINED and must not be used.",
+   "steps_served": ["5 binning", "6 fitting"]
+  },
+  {
+   "bibcode": "2019MNRAS.484.1912R",
+   "first_author": "Ryde, Felix",
+   "year": 2019,
+   "title": "On the alpha-Intensity Correlation in GRBs",
+   "doctype": "article",
+   "refereed": true,
+   "found_by": "LOCAL CORPUS GREP - MISSED by all ADS query forms",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/Ryde_2019_2019MNRAS4841912R_bn110920546.pdf",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - already in corpus; trigger appended via pending_shared_csv_rows",
+   "role": "sample-member",
+   "prompt_sections": "Table 1 row 120919309 (k, F_max, alpha_max) and Section 3 for the definition of the alpha-intensity power-law index k.",
+   "defer_sections": "none",
+   "module_future_tags": [],
+   "themes": ["alpha-intensity", "line-of-death"],
+   "values_for_this_burst": {"k": "5.1 +2.1/-2.3", "F_max_erg_cm2_s": "4.8 +1.4/-1.2 e-6", "alpha_max": "-0.66 +0.04/-0.04"},
+   "frame": "alpha_max = the low-energy index at maximum flux; independent cross-check on Acuner+2020's -0.65 +/- 0.06 (agrees to 0.01)",
+   "steps_served": ["6 fitting"]
+  },
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "first_author": "Lu, Rui-Jing",
+   "year": 2018,
+   "title": "A Comprehensive Analysis of Fermi GRB Data. IV. Spectral Lag and its Relation to Ep Evolution",
+   "doctype": "article",
+   "refereed": true,
+   "found_by": "ADS full:\"bn120919309\"",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/Lu_2018_2018ApJ865153L.pdf (arXiv, 58 pp - carries the full tables) + Lu_2018_2018ApJ865153L_PUB.pdf (journal, 14 pp)",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - corpus_index.csv row 75, read=Y (2026-08-10, deep-reading notes already delivered); trigger appended via pending_shared_csv_rows, NOT re-surfaced for reading",
+   "role": "sample-member; time-resolved Band table + pulse fit + energy-resolved lag",
+   "prompt_sections": "Table 2 block 'GRB 120919A (bn120919309)' (7 Band fits), Table 4 row (evolution class T, tau31, W, k_tau, k_E), Table 1 row (KRL pulse fit), Table 3 timebin (0.0-10.0) s (energy-resolved lags). Section 3 AND Section 4 must BOTH be read for the W definition - see the T3 trap.",
+   "defer_sections": "none",
+   "module_future_tags": [],
+   "themes": ["comprehensive-IV", "lag-Ep", "pulse-classification"],
+   "values_for_this_burst": {
+    "evolution_class": "T (Tracking)",
+    "tau31_s": "0.55 +/- 0.09", "W_s": 3.34, "k_tau": "0.76 +/- 0.18", "k_E": "-0.76 +/- 0.11",
+    "KRL_I_m": "53.49 +/- 1.41", "KRL_t_m_s": "3.21 +/- 0.06", "KRL_r": "1.35 +/- 0.09", "KRL_d": "25.86 +/- 22.45 (87 percent error - unconstrained)", "KRL_t0": -0.08, "KRL_chi2r": 1.5,
+    "Band_Ep_track_keV": {"-0.45-0.94": 157.08, "0.94-2.34": 187.91, "2.34-3.09": 258.47, "3.09-3.72": 250.12, "3.72-4.76": 135.83, "4.76-7.26": 103.28, "7.26-10.56": 27.85},
+    "Band_alpha_track": {"-0.45-0.94": -0.51, "0.94-2.34": -0.51, "2.34-3.09": -0.53, "3.09-3.72": -0.67, "3.72-4.76": -0.5, "4.76-7.26": -0.96, "7.26-10.56": "-0.53 +/- 0.00 (RAILED ERROR)"},
+    "energy_resolved_lags_s_timebin_0_to_10": {"band1": "0.35 +/- 0.16", "band2": "0.57 +/- 0.13", "band3": "0.87 +/- 0.14", "band4": "1.25 +/- 0.17"}
+   },
+   "frame": "Band Ep = nuFnu peak; detectors given only as 'NaI'; coverage = MAIN pulse + first 2.5 s of tail (-0.45 to 10.56 s)",
+   "traps_hit": ["T3 - W is defined twice (T_d + T_r at 10 percent in section 3; FWHM in section 4). Both definitions recorded with the number 3.34 s.", "T4 - Table 3 is two-column and the PDF text layer interleaves it with bn120625119. Assignment verified arithmetically (band3 - band1 = 0.52 s vs Table 4's tau31 = 0.55 +/- 0.09 s; the alternative reading gives 0.38 s). Band edge definitions NOT extracted - UNVERIFIED."],
+   "steps_served": ["6 fitting", "7 temporal (lag, pulse width, evolution class)"]
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "first_author": "Shao, Lang",
+   "year": 2017,
+   "title": "A New Measurement of the Spectral Lag of Gamma-Ray Bursts and its Implications",
+   "doctype": "article",
+   "refereed": true,
+   "found_by": "ADS full:\"120919309\"",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/Shao_2017_2017ApJ844126S.pdf",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - corpus_index.csv row 30; trigger appended via pending_shared_csv_rows",
+   "role": "sample-member; energy-resolved lag and pulse width",
+   "prompt_sections": "Section 2 (Equations 1-5: the Gaussian per-channel fit and the power-law energy dependence of arrival time and width) and Table 1 row 120919309; Section 4 for the dt_HR hardness-intensity delay. Figure Set 2 panel for 120919309.",
+   "defer_sections": "none",
+   "module_future_tags": [],
+   "themes": ["spectral-lag", "pulse-width-energy"],
+   "values_for_this_burst": {"T90_s": "21.25 +/- 1.81", "bin_s": 0.6, "t0_s": "2.818 +0.228/-0.125", "tau_s": "11.280 +16.023/-2.432", "beta": "0.708 +0.360/-0.104", "omega_s": "6.275 +0.836/-0.605", "gamma": "0.293 +0.029/-0.023", "NaI": "n1", "dt_HR_s": "0.830 +/- 0.095"},
+   "frame": "Their Eq. 2: t_peak(E) = t_0 + tau x (E/1 keV)^(-beta); width ~ omega x E^(-gamma). SYMMETRIC Gaussian pulse profile, 9 log-spaced channels, first-order polynomial background. **dt_HR's sign convention is inherited from Zhang et al. 2012b and is NOT restated - UNVERIFIED here.** tau's upper error is +142 percent, so it is effectively one-sided.",
+   "steps_served": ["7 temporal"]
+  },
+  {
+   "bibcode": "2016ApJS..223...28N",
+   "also": "2020ApJ...893...46V",
+   "first_author": "Narayana Bhat, P. (2016) / von Kienlin, A. (2020)",
+   "year": 2016,
+   "title": "The Third / Fourth Fermi GBM Gamma-Ray Burst Catalog",
+   "doctype": "article",
+   "refereed": true,
+   "found_by": "LOCAL CORPUS GREP",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/NarayanaBhat_2016_2016ApJS22328N_bn110928180.pdf, Skills_training/vonKienlin_2020_2020ApJ89346V_bn160625945.pdf (also _bn150202999)",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - already in corpus; trigger appended via pending_shared_csv_rows",
+   "role": "catalog-mention (identity + durations)",
+   "prompt_sections": "the trigger table row and the durations table row for bn120919309 (identical text in both catalogs)",
+   "defer_sections": "everything else",
+   "module_future_tags": [],
+   "themes": ["GBM-catalog", "identity", "durations"],
+   "values_for_this_burst": {
+    "identity_row": "bn120919309  GRB 120919A  07:24:41.9792  214.8  -45.6  0.4  IPN  6  128  47-291  K, IP, ARR",
+    "durations_row": "bn120919309  0+1+2+3+5  21.248 +/- 1.810  0.512  2.816 +/- 0.572  2.304"
+   },
+   "frame": "T90/T50 in 50-300 keV; localisation source = IPN, not GBM; flags K = Konus, IP = IPN, ARR = autonomous re-point request",
+   "steps_served": ["0 identity", "7 temporal (T90 with its band)", "1 inventory (duration detector set n0,n1,n2,n3,n5)"]
+  },
+  {
+   "bibcode": "2024A&A...691A.158G",
+   "first_author": "Greiner, J.",
+   "year": 2024,
+   "title": "The GROND GRB sample: I. Overview and Statistics",
+   "doctype": "article",
+   "refereed": true,
+   "found_by": "LOCAL CORPUS GREP",
+   "in_corpus_already": true,
+   "corpus_file": "Skills_training/Greiner_2024_2024A&A691A158G_bn100707032.pdf",
+   "downloaded_this_pass": false,
+   "dedup_rule_applied": "G2 - already in corpus; trigger appended via pending_shared_csv_rows",
+   "role": "sample-member, BEYOND-PROMPT ONLY",
+   "prompt_sections": "NONE - this paper carries nothing about the prompt phase of this burst",
+   "defer_sections": "Table 5 row '120919A L 0921-23:35:14 231032 n' - a GROND non-detection at 2.67 d. Read when the afterglow module opens.",
+   "module_future_tags": ["module-future; afterglow"],
+   "themes": ["afterglow", "GROND", "non-detection"],
+   "values_for_this_burst": {"GROND_start_UT": "2012-09-21 23:35:14", "delta_t_s": 231032, "detection": "n (no)"},
+   "steps_served": ["0 dossier: beyond-prompt context"]
+  }
+ ],
+
+ "not_members_verified": [
+  {"bibcode": "2020ApJ...893...77W", "first_author": "Wang, Feifei", "reason": "Cites GCN 13787 (the Konus circular for THIS burst) in its bibliography, but the string '120919' appears NOWHERE in its 210 pages. Verified twice: PyMuPDF text extraction over every page AND page.search_for over every page - both zero. NOT claimed as a sample member; the citation link is bibliographic and remains UNRESOLVED."},
+  {"bibcode": "2019ApJ...878...52A", "first_author": "Ajello, M.", "reason": "T1 CONTAMINATION - contains '120919B' (a different, LAT-detected burst, bn120919052) with a 12.7 GeV photon at 605.3 s. Excluded."},
+  {"bibcode": "2022A&A...657A.111H", "first_author": "He, ...", "reason": "T1 CONTAMINATION - '120919B' only. Excluded."},
+  {"bibcode": "2013ApJ...763...15Q", "first_author": "Qin, Ying", "reason": "Comprehensive Analysis III, checked for the T2 series rule: zero hits for '120919' in the local PDF. Does not cover this burst."},
+  {"note": "NO refereed paper has EVER fitted a blackbody, a two-break model, or any additive component to this burst. Our BB and DSBPL results have no external check."}
+ ],
+
+ "phase3c_scope": {
+  "analysis_scope_hard": "prompt-phase only - prompt spectroscopy, prompt temporal properties, prompt-relevant detector/response decisions. No afterglow, SN, or cosmology quantity is a reconciliation target.",
+  "reading_scope_unrestricted": "the whole multiwavelength record was harvested and is cataloged below with module-future tags.",
+  "beyond_prompt_summary": "The counterpart search failed at every wavelength. Swift-XRT found two uncatalogued sources in the 236 sq arcmin IPN box (GCN 13790) and then showed NEITHER fades over 134-573 ks (GCN 13821, verbatim: 'implying we have not detected any X-ray counterpart to this GRB'; 3 sigma limit ~1.0e-13 erg cm-2 s-1). Swift-UVOT: m2 > 21.4 at 134 ks, with a catalogued USNO-B1 source (m2 = 20.52 +/- 0.17) within 4.5 arcsec of XRT source 1 - a coincidence to exclude, not a host. GROND: non-detection at 2.67 d. Galactic reddening E(B-V) = 0.10. IMPLICATION FOR IDENTITY: follow-up began only 1.55 d after the trigger because the IPN box took 8 h to publish and is far larger than XRT can tile promptly, so the non-detections are consistent with an ordinary afterglow that simply decayed - they carry NO information about the prompt outflow, and NOTHING in the afterglow record biases the prompt spectrum in either direction. No redshift anywhere => all distance-dependent analysis (including the #43 photospheric-diagnostics Tier B) is CLOSED for this burst."
+ },
+
+ "phase4_frame_and_consensus": {
+  "component_coverage_T9": "The event is MAIN PULSE (~T0 to T0+8 s) + SOFT TAIL (~8 to 30 s), per GCN 13787 verbatim: 'a single pulse with a duration of ~8 s followed by a weaker and softer emission till ~T0+30 s'. Every published number in the dossier carries a main/tail/total label. OUR stamped window (-2 to +14 s) covers the main pulse plus only the first ~6 s of the tail = roughly 64 percent of T90 (which runs 0.512 -> 21.76 s).",
+  "T0_offsets": "Konus-Wind T0 = 26678.597 s UT = 07:24:38.597 = GBM T0 - 3.382 s. All KW intervals were converted before use.",
+  "multi_instrument_consensus_Ep": {
+   "inputs_keV": [151.96, 221.24, 162, 225],
+   "value_keV": 190, "uncertainty_keV": 40,
+   "method": "Rossi+2026 section 4.1 conservative procedure - all instruments, no favourite, inter-instrument spread dominates the error. mean 190, half-range 37 -> 190 +/- 40 keV. Single-fit statistical error is ~9 keV, so the systematic spread is 4x larger.",
+   "status": "DERIVED IN THIS PASS, not quoted from any paper."
+  }
+ },
+
+ "pending_shared_csv_rows": {
+  "note": "NOTHING was written to any shared CSV. These rows are QUEUED for whoever owns the shared files.",
+  "Skills_training/corpus_index.csv": [
+   "2026arXiv260417835L (Li_2026_intensity_tracking_arXiv260417835.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2024RAA....24b5006W (Wang_2024_2024RAA24b5006W_bn110721200.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2020ApJ...893..128A (Acuner_2020_2020ApJ893128A_bn100707032.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2019ApJ...886...20Y (Yu_2019_ApJ_886_20.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2019MNRAS.484.1912R (Ryde_2019_2019MNRAS4841912R_bn110920546.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2018ApJ...865..153L (Lu_2018_2018ApJ865153L.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2017ApJ...844..126S (Shao_2017_2017ApJ844126S.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2016ApJS..223...28N (NarayanaBhat_2016_2016ApJS22328N_bn110928180.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2020ApJ...893...46V (vonKienlin_2020_2020ApJ89346V_bn160625945.pdf): cited_by_bursts += bn120919309, n_bursts += 1",
+   "2024A&A...691A.158G (Greiner_2024_2024A&A691A158G_bn100707032.pdf): cited_by_bursts += bn120919309, n_bursts += 1; theme += module-future;afterglow"
+  ],
+  "results/gcn/gcn_index.csv": [
+   "bn120919309,base,6,-,9,7   [columns trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed; z_mention = '-' because NO circular reports a redshift; ads_hits/ads_refereed count the 9 papers carrying a value for this burst, 7 of them refereed]"
+  ],
+  "no_new_pdfs_downloaded": "TRUE - every paper was already in Skills_training/ per the G2 dedup rule. Zero downloads, zero corpus writes."
+ },
+
+ "reading_list_for_vikas": {
+  "ordering": "Phase 3b - latest first",
+  "items": [
+   {"paper": "Wang+2024 RAA (2024RAA....24b5006W)", "read": "Section 2 (binning, NS>=20) + Section 3 (evolution taxonomy) + Table 1 and Table 3 rows for 120919309", "why": "the LATEST refereed analysis and therefore our default comparison frame; it is also one half of the live alpha > -2/3 contradiction", "defer": "nothing"},
+   {"paper": "Acuner+2020 (2020ApJ...893..128A)", "read": "Section 2 + Figure 1 (SCS and NDP model definitions) + Tables on p.8 and p.19, rows 120919309", "why": "the ONLY physical-model verdict this burst has - it says the photosphere is disfavoured by Delta lnZ = 40. If our engine finds a strong BB in the 2.68-3.53 s block, this is what we are contradicting", "defer": "nothing"},
+   {"paper": "Yu+2019 (2019ApJ...886...20Y) - arXiv version", "read": "Table 22 (p.61) only, plus Section 3.1 for the Delta-DIC sign", "why": "already read=Y in the corpus, but Table 22 is the 15-bin block-resolved table we will diff our binning and Ep track against; the journal version truncates it", "defer": "the rest of the paper - already read"},
+   {"paper": "Li+2026 (2026arXiv260417835L)", "read": "Section 3 (Type I/II/III definitions) + Table 1 and Table 2 rows", "why": "the other half of the alpha > -2/3 contradiction, and the source of the anti-FRED asymmetry A = -0.22", "defer": "nothing - but note it is an EPRINT, not refereed"},
+   {"paper": "Lu+2018 (2018ApJ...865..153L)", "read": "nothing new - already read 2026-08-10. Only re-check Section 3 vs Section 4 for the W definition if the T3 trap ever matters", "why": "recorded for completeness", "defer": "all"},
+   {"paper": "Greiner+2024, Shao+2017, Ryde+2019, GBM catalogs", "read": "table rows only, already extracted into the dossier", "why": "single-row contributions; no reading needed", "defer": "Greiner+2024 entirely -> module-future; afterglow"}
+  ]
+ },
+
+ "issues": [
+  "ADS full-text search found only 3 of the 7 refereed papers analysing this burst. The other 4 (Acuner+2020, Ryde+2019, Wang+2024 RAA, and both GBM catalogs) were found by grepping the local Skills_training corpus. If this pattern holds on other bursts, the four-form ADS query is systematically under-recalling table-row memberships and the skill needs a Phase 1c corpus-grep step.",
+  "Google Scholar proper was NOT queried (no API, no browser used). A general web search was run as a partial proxy and returned nothing burst-specific. Recorded honestly rather than presented as a Scholar result.",
+  "Lu+2018's Table 3 is a two-column table whose PDF text layer interleaves with a neighbouring burst. The assignment was verified arithmetically, not parsed cleanly, and the energy-band edge definitions were NOT extracted.",
+  "Shao+2017's dt_HR sign convention is inherited from Zhang et al. 2012b and never restated. UNVERIFIED.",
+  "Wang F.+2020 cites the Konus circular for this burst but contains no reference to it anywhere in 210 pages. Unresolved.",
+  "No redshift exists, so every distance-dependent quantity is permanently closed for this burst.",
+  "No paper has ever fitted a BB or a two-break to this burst - our results here are unchecked by anyone."
+ ]
+}

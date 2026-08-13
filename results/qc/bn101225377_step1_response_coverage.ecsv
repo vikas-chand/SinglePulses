@@ -1,0 +1,46 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP2, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# - {name: DET_ANGLE_TRIG, datatype: float64}
+# - {name: DET_ANGLE_SRCSTOP, datatype: float64}
+# - {name: DTHETA, datatype: float64}
+# - {name: SNR_SRC_WINDOW, datatype: float64}
+# meta:
+#   trigger: bn101225377
+#   grb_name: GRB101225377 (GBM designation, no IAU letter; 'GRB 101225A' is a DIFFERENT burst - see dossier T1 block)
+#   trigtime_met: 314960575.49784
+#   trigger_utc: '2010-12-25T09:02:53.498'
+#   src_window: [75.6292923076924, 108.91502097902108]
+#   src_window_source: results/background_intervals.ecsv (Vikas Chand, 2026-07-19T22:18:36Z, human_gui, accepted_suggestion)
+#   bkg_windows: [[-27.0, 70.0], [112.0, 240.0]]
+#   approved_detectors: n7,n8,nb,b1
+#   catalog_scat_detectors: n7,n8,nb,b1 (scat mask 00000001100101) - IDENTICAL to the approved set
+#   catalog_bcat_detectors: n7,n8,nb (bcat mask 00000001100100)
+#   file_manifest: 'cspec .pha 4 (n7,n8,nb,b1); .rsp2 4; tte 4; poshist 1 (glg_poshist_all_101225_v01.fit); trigdat 1 (v01); LLE triplet 0; LAT/ absent'
+#   lle_present: false
+#   lat_present: false
+#   has_lat_flag: false
+#   d1_theta_check: 'N/A for response validity (all four responses are multi-matrix .rsp2, so the interval test applies, not the off-axis test). Off-axis angles computed anyway with the production estimator (gtburst angularDistance port, scripts/00_prototype_one_burst.py): Dtheta over the source window <= 0.35 deg for every detector - no slew, stamped DET_ANGLE values reproduce exactly at t=0.'
+#   d2_naming_check: 'PASS - all four approved detectors resolve to glg_cspec_<det>_bn101225377_v00.rsp2 (the naming scripts/10::find_rsp uses); no single-matrix .rsp, no LLE naming class present. No false alarm raised.'
+#   d4_note: 'INVERTED D4 - the trigger time is 76 s BEFORE the burst, not the burst start. No excess is visible at t=0 in any of the 14 trigdat detectors, nor in n7/n8/nb TTE at 0.064-0.5 s resolution in 8-30, 30-100 or 100-900 keV. Emission rises at ~T0+76 s, peaks T0+80-95 s, ends ~T0+108 s. GBM catalog T90 = 81.2175 +- 35.3774 s with start T0+20.5444 s is NOT supported by the counts; T50 = 12.3522 +- 0.4525 s from T0+81.7935 s and the catalog fluence interval 76.80-108.54 s ARE. TTE begins at -27.8 s, so a pre-trigger episode earlier than that cannot be excluded from TTE alone.'
+#   d5_blockage_check: 'Not applicable at inventory stage (needs per-NaI fit residuals). Geometry+counts are consistent: per-detector S/N over the stamped window from TTE is nb 63.8, n8 59.1, n7 40.6 (8-900 keV) and b1 10.8 (200-40000 keV) - the same ordering as the viewing angles, with no NaI running low against its neighbours. Re-check at Step 6 with residuals and EAC cross-norms.'
+#   rejected_check: 'A per-detector excess ranking built from trigdat channel-summed RATE was computed and DISCARDED: it put n6 (79.3 deg) above nb (26.6 deg) and b0 (149.7 deg) far above b1 (30.3 deg), i.e. geometrically inverted, which means the detector-axis mapping of that array is unverified. It is NOT the production estimator and no claim rests on it.'
+#   earth_occultation: 'None at any time from -95 s to +205 s (source-geocentre angle 126.5-131.3 deg vs Earth angular radius 66.7 deg; altitude 564-567 km).'
+#   lat_geometry: 'Source zenith angle from the Fermi +z axis = 99.5 deg at trigger, 98.8 deg at src_stop -> far outside the LAT FoV; consistent with HAS_LAT=False and the absence of gll_* / LAT products.'
+#   position_used: 'RA=60.68, Dec=+32.77 (fermigbrst ground localization). NB the on-board trigdat position (127.2167,+57.55, ERR_RAD 25.28 deg) is 50.48 deg away and must not be used. The IPN (Hurley+2017) places the true source ~0.4 deg off the catalog point, on a 12.6 deg2 strip - negligible for 26-55 deg viewing angles.'
+#   src_window_straddles_matrix_boundary: 'yes - the window 75.63-108.92 s crosses the mat6/mat7 boundary at +98.31 s; both matrices exist and are contiguous, so a proper .rsp2 handler is fine. Flagged only so a future single-matrix collapse (the deleted _collapse_rsp2_to_single path) is never applied here.'
+#   verdict: PASS
+#   verdict_detail: 'All 4 approved detectors resolve to a 15-matrix .rsp2 spanning -122.88 / +475.14 s relative to TRIGTIME, which brackets the stamped source window 75.63-108.92 s with 198 s of margin at the start and 366 s at the end. Signal is present in every approved detector. No LLE/LAT to check.'
+#   checked_by: Claude (doc-layer worker), 2026-08-12
+# schema: astropy-2.0
+DETECTOR RSP2 N_MATRICES RSP_T0 RSP_T1 COVERS_SRC DET_ANGLE_TRIG DET_ANGLE_SRCSTOP DTHETA SNR_SRC_WINDOW
+n7 glg_cspec_n7_bn101225377_v00.rsp2 15 -122.882 475.145 True 55.33 54.51 0.82 40.6
+n8 glg_cspec_n8_bn101225377_v00.rsp2 15 -122.882 475.145 True 29.60 28.78 0.82 59.1
+nb glg_cspec_nb_bn101225377_v00.rsp2 15 -122.882 475.145 True 26.27 26.68 0.41 63.8
+b1 glg_cspec_b1_bn101225377_v00.rsp2 15 -122.882 475.145 True 29.89 30.32 0.43 10.8

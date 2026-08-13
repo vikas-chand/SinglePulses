@@ -1,0 +1,42 @@
+{
+ "burst": "bn100614498",
+ "grb_name": "GRB 100614B",
+ "tally": null,
+ "tally_note": "campaign doc-layer worker, not a numbered walkthrough burst; no tally assigned",
+ "frozen_utc": "2026-08-12; frozen BEFORE any of our fit tables was opened (no results/sweep106/ read; results/clean_per_burst_human_final/bn100614498/ does not exist; 0 rows for this trigger in results/clean_sample_all_models_human.ecsv - checked by count only, no values seen)",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "archival_prior": {
+  "spectral_fits_ecsv": "ABSENT - results/clean_per_burst_human_final/bn100614498/spectral_fits.ecsv does not exist",
+  "union_rule_counts": "N/A (no archival fit table to count LRT_BANDBB_BAND>=9.2 & kT>1.05 AND LRT_CPLBB_CPL blocks from)",
+  "kt_values": "N/A",
+  "aic_winners": "N/A",
+  "note": "this burst never entered the human-final per-burst fit archive; P0 rests entirely on the external catalog frame (harvest of 2026-08-12)"
+ },
+ "external_frame": "GBM catalog only (no dedicated paper, no circulars): scat v03 flnc Band Ep=41.39+5.07/-5.60 keV, alpha=-0.800, beta=-2.185, dets b1/n6/n9, interval [-90.114,+17.408] s; SBPL Ebreak=20.88 keV tied with Band; pflx [-4.096,0] s Comp Ep=78.2+12.6/-21.6; bcat T90=172.291+/-12.447 s from -149.763 s (D4: our stamped window -13..+16 s covers the trigger pulse only)",
+ "predictions": [
+  "P-A (spectral shape, falsifiable): over our stamped window [-13,+16] s the AIC winner is a CURVED one-break family (Band/CPL/SBPL), with Ep between the diluted flnc frame and the peak-slice frame: 30 <= Ep <= 120 keV. FALSIFIED if the winner's Ep > 150 keV or < 20 keV, or if a straight PL wins by dAIC>=10 (catalog PL is the worst of four there).",
+  "P-A2 (high-energy tail, falsifiable): catalog beta=-2.185+/-0.09 is well constrained with b1 -> models carrying a high-energy power law (Band/SBPL/DSBPL) beat CPL in the window-integrated frame. FALSIFIED if CPL beats Band by dAIC>=10 window-integrated.",
+  "P-B (null-streak baseline, falsifiable): NO published BB/photosphere claim exists for this burst; predict the union rule (LRT_BANDBB_BAND>=9.2 & kT>1.05 AND LRT_CPLBB_CPL>=9.2) fires in ZERO blocks. Any significant-BB block is an unpublished-decision finding to be scored against the expert band, not a literature reconciliation.",
+  "P-C (two-break, falsifiable): catalog Band and SBPL are statistically TIED (REDCHSQ 0.881 vs 0.878) and no published two-break evidence exists; predict DSBPL does NOT win by dAIC>=10 in any block of this weak soft burst (1024-ms peak flux 5.46 ph/cm2/s). A DSBPL win would be a genuine unpublished discovery candidate subject to the L8 seed-artifact check.",
+  "P-D (frame trap, procedural): any Ep diff vs the catalog MUST first re-align interval ([-90.1,+17.4] vs [-13,+16]) and detector set (b1/n6/n9 vs n6/n7/n9/nb/b1) - the ~2x Ep gap between flnc (41 keV) and pflx (78 keV) frames shows the dilution scale on this burst."
+ ],
+ "harvest_snippets": {
+  "Paciesas2012": [
+   "bn100614498 | GRB 100614B | 11:57:23.3062 | 224.8 | 40.9 | 3 | Fermi-GBM | 16 | 4096 | 47-291 | W*",
+   "6+7+9+10+11 | 172.291 +/- 12.447 | -149.763 | 72.193 +/- 5.346 | -74.497",
+   "1.96E-05 +/- 3.26E-07 | 5.93 +/- 0.80 | 6.44 +/- 0.37 | 5.46 +/- 0.16"
+  ],
+  "Heussaff2013_TableA2": [
+   "GRB100614498 -0.91 0.22 -2.21 0.08 41 5 196.3 3.3 (chained from Goldstein+2012)"
+  ],
+  "Hurley2013": [
+   "2010 Jun 14 11:57:23 GRB100614498 INT,Suz"
+  ],
+  "Goldstein2012": [
+   "membership only - row machine-readable, not printed; conventions source for scat files"
+  ],
+  "GCN_circulars": [
+   "absent (tcat GCN_FLAG=No); the 100614.gcn3 archive is entirely the Swift GRB 100614A (T1 contamination guard)"
+  ]
+ }
+}

@@ -1,0 +1,366 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12187
+SUBJECT: GRB 110721A: Fermi GBM detection
+DATE:    11/07/21 11:17:24 GMT
+FROM:    David Tierney at UCD  <david.tierney@ucd.ie>
+
+D. Tierney (UCD) and A. von Kienlin (MPE)
+report on behalf of the Fermi GBM Team: 
+
+"At 04:47:43.75 UT on 21 July 2011, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 110721A (trigger 332916465 / 110721200).
+
+The on-ground calculated location, using the GBM trigger 
+data, is RA = 331.42, DEC = -36.42 (J2000 degrees, 
+equivalent to 22h 05m, -36d 25'), with an uncertainty 
+of 1.00 degree (radius, 1-sigma containment, 
+statistical only; there is additionally a systematic
+error which is currently estimated to be 2 to 3 degrees).
+ 
+The angle from the Fermi LAT boresight is 43.00 degrees.
+
+The GBM light curve consists of a fast rise, exponential decay (FRED)
+with a duration (T90) of  24.45 s (50-300 keV). 
+The time-averaged spectrum from T0-0.32 s to T0+11.97 s is 
+best fit by a Band function with Epeak = 372.50 (+26.50/-23.60) keV, 
+alpha = -0.94 (+/-0.02), and beta = -1.77 (+/-0.02)
+(C-Stat 945.78 for 591 d.o.f.).
+
+The event fluence (10-1000 keV) in this time interval is 
+(3.52 +/- 0.03)E-05 erg/cm^2. The 1-sec peak photon flux measured 
+starting from T0+1.98 s in the 10-1000 keV band 
+is 31.35 +/- 0.38 ph/s/cm^2.
+
+The spectral analysis results presented above are preliminary; 
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12188
+SUBJECT: GRB 110721A: Fermi-LAT detection
+DATE:    11/07/21 15:09:33 GMT
+FROM:    Vlasios Vasileiou at LUPM/Fermi-LAT  <Vlasios.Vasileiou@lupm.in2p3.fr>
+
+V. Vasileiou (CNRS/IN2P3/LUPM), F. Piron (CNRS/IN2P3/LUPM), D. Tierney (UCD), A. 
+von Kienlin (MPE), S. Guiriec (UAH), and J. L. Racusin (NASA/GSFC) report on 
+behalf of the Fermi-LAT team:
+
+At 04:47:45 on July 21, 2011, Fermi-LAT detected high energy
+emission from GRB 110721A, which was also detected by Fermi-GBM (trigger 
+332916465, Tierney et al. (GCN 12187)), and Integral (SPI ACS
+trigger 6326).
+
+The best preliminary LAT on-ground location is found to be (RA, DEC)=
+(333.4,-39.0) (J2000; deg) with an error radius of 0.75 (0.51) deg
+at 90% (68%) containment (statistical error only), which was 40 deg from the LAT 
+boresight at the time of the trigger. We further report that
+the Fermi Observatory executed an autonomous repoint maneuver
+to follow this trigger for the next 2.5 hours, subject to
+Earth-angle constraints.
+
+The data from the Fermi-LAT show a significant increase in the
+event rate that is spatially and temporally correlated with the
+GBM emission with high significance. This detection was independently
+confirmed by the blind on-ground GRB search of the LAT data. More
+than 20 (1) photons above 100 MeV (1 GeV) using a standard event
+selection and about 1000 photons using a non-standard event
+selection sensitive mostly to tens-of-MeV energies are observed
+within 20 sec. The lightcurve at tens-of-MeV energies has a Fast Rise 
+Exponential Decay (FRED) profile with an ~16 sec duration
+similar to the GBM results. The highest energy event has an 1.7 GeV
+energy, was observed about 0.7 sec after the trigger, and was
+associated to the GRB with a high (>0.9) probability.
+
+Preliminary spectral analyses on the LAT data taken during the
+first 20 sec after the trigger resulted in a -2.9+-0.4 spectral index
+and a 3.3+-0.8 x 10^-4 ph/cm^2/sec average flux integrated over E>100 MeV. This
+spectral index is considerably softer than the extrapolation of the GBM spectral 
+index at E>100 MeV energies (Tierney et al. (GCN 12187)), which suggests a 
+spectral cutoff or softening of the spectrum.
+
+A Swift Target of Opportunity observation has been requested and tiling 
+observations are ongoing.
+
+The Fermi LAT point of contact for this burst is Vlasios Vasileiou
+(vlasios.vasileiou@lupm.in2p3.fr).
+
+The Fermi LAT is a pair conversion telescope designed to cover the energy band
+from 20 MeV to greater than 300 GeV. It is the product of an international
+collaboration between NASA and DOE in the U.S. and many scientific institutions
+across France, Italy, Japan and Sweden.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12191
+SUBJECT: Konus-Wind observation of GRB 110721A
+DATE:    11/07/22 09:48:51 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The bright hard long GRB 110721A
+(Fermi-GBM detection: Tierney and von Kienlin, GCN 12187;
+Fermi-LAT detection: Vasileiou et al., GCN 12188)
+triggered Konus-Wind at T0=17266.887s UT (04:47:46.887)
+
+The burst light curve shows a single FRED-like pulse
+with a total duration of ~25 s.
+The emission is seen up to ~10 MeV, a hard-to-soft
+spectral evolution is noticeable in the course of the event.
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB110721_T17266/
+
+As observed by Konus-Wind the burst
+had a fluence of (8.8 ± 0.9)x10-5 erg/cm2,
+and a 64-ms peak flux, measured from T0+1.984 s,
+of (2.3 ± 0.2)x10-5 erg/cm2/s
+(both in the 20 keV - 10 MeV energy range).
+
+The time-integrated spectrum of the burst
+(measured from T0 to T0+26.624 s) can be fitted
+in the 20 keV - 10 MeV range by the GRB (Band)
+model, for which:
+the low-energy photon index alpha = -1.02 (-0.14, +0.16),
+the high energy photon index beta = -1.77 (-0.13, +0.07),
+the peak energy Ep = 393(-104, +199) keV,
+chi2 = 109.8/84 dof.
+
+The spectrum at the maximum count rate
+(measured from T0+0.256 to T0+2.304 s) is best fitted
+in the 20 keV - 10 MeV range by the GRB (Band)
+model, for which:
+the low-energy photon index alpha = -1.0 (-0.2, +0.2),
+the high energy photon index beta = -2.0 (-0.5, +0.2),
+the peak energy Ep = 1130(-490, +550) keV,
+chi2 = 74.1/74 dof.
+
+All the quoted results are preliminary.
+All the quoted errors are at the 90% confidence level.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12192
+SUBJECT: GRB 110721A: potential counterpart candidate
+DATE:    11/07/23 20:37:50 GMT
+FROM:    Jochen Greiner at MPI  <jcg@mpe.mpg.de>
+
+J. Greiner (MPE), A.C. Updike (NASA/GSFC), T. Kruehler (DARK/NBI),
+V. Sudilovsky (MPE) report:
+
+We have analyzed the first 4 tiles of the Swift/XRT observations on the 
+0.75 deg Fermi/LAT radius error box (Vasileiou et al., GCN 12188) of
+the bright Fermi/GBM GRB 110721A (Tierney and von Kienlin, GCN 12187).
+In the pointing with OBS-ID 00020169 we find a single X-ray source 
+at RA(2000.0)=22h14m38.27s, Decl(2000.0)= -38:35:36.3 (+-6.8 arcsec).
+
+We observed this position simultaneously in g'r'i'z'JHK with GROND 
+(Greiner et al. 2008, PASP 120, 405) mounted at the 2.2 m MPI/ESO 
+telescope at La Silla Observatory (Chile). Observations started at 
+06:33 UT on July 22, about 26 hrs after the GRB trigger. They were 
+performed at an average seeing of 1.0" and at an average airmass of 1.
+
+We found a single point source within the 6.8" Swift-XRT error circle,
+at coordinates
+
+    RA(2000.0)   = 22h 14m 38.19s, 
+    Decl(2000.0) = -38d 35' 35.7"
+
+with an uncertainty of +-0.3".
+
+Based on 1840 s of total exposures in g'r'i'z' and 1920 s in JHK, we  
+estimate preliminary magnitudes (all AB system) of
+
+g = 24.3 +/- 0.2 
+r = 22.9 +/- 0.1
+i = 22.3 +/- 0.1
+z = 21.8 +/- 0.1
+J = 21.0 +/- 0.2
+H = 20.5 +/- 0.2
+K > 18.8
+
+These optical and NIR magnitudes are calibrated against GROND zeropoints 
+and 2MASS field stars, respectively, and are not corrected for the 
+expected Galactic foreground extinction corresponding to a reddening of 
+E(B-V)=0.016 mag in the direction of the burst (Schlegel et al. 1998).
+
+The spectral energy distribution (SED) is well fit by a powerlaw, typical 
+for GRB afterglows. The low-level g'-band flux can either be fit with 
+Ly-alpha at a redshift of z~3.2, or host-intrinsic extinction.
+
+We obtained another epoch of observations starting at 6:21 UT on Jul 23,
+at an average seeing of 1.4". Within the errors (+-0.2 mag), the object
+exhibits the same brightness in both observations.
+
+We note that the chance coincidence to find 1 X-ray source in 4 Swift/XRT
+pointings of the given exposure is nearly 100%. Also, the 4 tiles only 
+cover 30% of the area of the Fermi/LAT error circle. However, the powerlaw
+shape of the SED of the optical/NIR source make this a good candidate
+for the counterpart of GRB 110721A. Our second observation is inconclusive,
+unfortunately - the non-fading behaviour could either be due to a plateau 
+of the emission from the afterglow, or indicate a non-GRB nature.
+
+We suggest spectroscopic observations of this object to reveal its nature.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12193
+SUBJECT: GRB 110721A: Gemini-South spectroscopy of the potential optical counterpart
+DATE:    11/07/24 15:11:38 GMT
+FROM:    Edo Berger at Harvard  <eberger@cfa.harvard.edu>
+
+E. Berger (Harvard) reports on behalf of a larger collaboration:
+
+"We obtained spectroscopic observations of the candidate optical counterpart
+(GCN 12192) of the LAT burst GRB110721A (GCN 12188) with GMOS on the
+Gemini-South 8-m telescope starting on 2011 July 24.20 UT.  A total of 3600
+sec was obtained on source with a wavelength coverage of about 4000-8100
+ang.  We find two clear absorption features at 5487 and 5436 ang, with a
+significant decline in flux at shorter wavelengths, but to a non-zero
+level.  The two features match CaII H&K at a redshift of z=0.382, or could
+alternatively represent Ly-alpha absorption with the highest redshift being
+z=3.512.  No other features are detected at wavelengths corresponding to
+other typical lines at either redshift.  Given the detectable flux blueward
+of 5430 ang (down to at least 4600 ang), and the fact that the source
+appears to be extended in our i-band acquisition image (with seeing of about
+0.7"), we consider the possibility that the object is an early-type galaxy
+at z=0.382 to be more likely.
+
+We thank Jochen Greiner for sharing a finding chart of GRB110721A from GROND
+data."
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12194
+SUBJECT: GRB 110721A: Preliminary Swift/UVOT Upper Limits 
+DATE:    11/07/25 15:13:56 GMT
+FROM:    Stephen Holland at USRA/NASA/GSFC/SSC  <Stephen.T.Holland@nasa.gov>
+
+S. T. Holland (CRESST/USRA/GSFC), and
+C. A. Swenson (PSU)
+report on behalf of the Swift/UVOT team:
+
+Swift/UVOT began observations of the field of the weak X-ray source
+that may be associated with GRB 110721A (Greiner et al., 2011, GCNC
+12192) 54,869 s after the Fermi/GBM trigger (Tierney & von Kienlin,
+2011, GCNC 12187).  We do not detect the GROND optical source in the
+UVOT images.  Our preliminary upper limits are consistent with the
+faint nature of the GROND source.  The 3-sigma UVOT upper limits are
+
+Filter   T_start(s)   T_stop(s)      Exp(s)    Upper Limit
+----------------------------------------------------------
+v            56,146      56,853         672          >20.8
+u            54,867      55,509         632          >21.4
+white        55,516      56,158         632          >22.4
+----------------------------------------------------------
+
+These upper limits are on the UVOT photometric system of Poole et al.,
+2008, MNRAS, 383, 627).  The upper limits are not corrected for the
+Galactic extinction due to the reddening of E_{B-V} = 0.02 mag in the
+direction of the burst (Schlegel et al., 1998, ApJS, 500, 525).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12195
+SUBJECT: IPN triangulation of GRB 110721A
+DATE:    11/07/25 23:50:25 GMT
+FROM:    Kevin Hurley at UCBerkeley/SSL  <khurley@ssl.berkeley.edu>
+
+K. Hurley and J. Goldsten, on behalf of the MESSENGER NS GRB team,
+
+S. Golenetskii, R. Aptekar, E. Mazets, V. Pal'shin, D. Frederiks, 
+D. Svinkin, and T. Cline on behalf of the Konus-Wind team,
+
+V. Connaughton, M. Briggs, and C. Meegan, on behalf of the Fermi
+GBM team,
+
+A. von Kienlin, X. Zhang, and A. Rau, on behalf of the
+INTEGRAL SPI-ACS GRB team, and
+
+E. Costa, E. Del Monte, I. Donnarumma, Y. Evangelista, M. Feroci,
+I. Lapshov, F. Lazzarotto, L. Pacciani, M. Rapisarda, P. Soffitta, 
+for the SuperAGILE team, report:
+
+The Fermi GRB 110721A (GCN 12187, 12188) was also observed by
+AGILE MCAL and SuperAGILE (but outside the coded field of view 
+of SuperAGILE), INTEGRAL SPI-ACS, Konus-Wind, and MESSENGER GRNS.
+We have triangulated it to a preliminary 3 sigma error box whose 
+area is 2250 square arcminutes, and whose coordinates are:
+
+Center: RA=332.456 o = 22 h 09 m 49 s  DEC=-38.628 o = -38 o 37 ' 40 "
+Corners:  333.674=22 h 14 m 42 s    -38.570=-38 o 34 '  13 "     
+          331.191=22 h 04 m 46 s    -38.964=-38 o 57 '  49 "     
+          333.709=22 h 14 m 50 s    -38.241=-38 o 14 '  26 "     
+          331.240=22 h 04 m 58 s    -38.641=-38 o 38 '  28 "
+
+This error box intersects the LAT error circle to form a joint
+error box whose area is approximately 1200 square arcminutes.
+A map is posted at ssl.berkeley.edu/ipn3/110721.
+
+The counterpart candidate reported by Greiner et al. (GCN 12192)
+lies just outside the IPN error box, making it unlikely that it is
+related to the GRB.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12212
+SUBJECT: GRB 110721A: Swift observations of afterglow candidate
+DATE:    11/07/30 03:01:49 GMT
+FROM:    Dirk Grupe at PSU/Swift-XRT  <grupe@astro.psu.edu>
+
+D. Grupe (PSU), C.A. Swenson (PSU), J.L. Racusin (NASA/GSFC),
+& C. Wolf (PSU) report on behalf of the Swift team.
+
+
+We report on the Swift follow-up observations of the field of the
+afterglow candidate reported by Greiner et al. (GCN Circ. 12192) of
+the FERMI GBM/LAT detected burst GRB 110721A (Tierney & v. Kienlin,
+GCN Circ. 12187; Vasileiou et al., GCN Circ. 12188). Greiner et al.
+found a faint X-ray source in one of the tiling Swift observations
+(Obs ID 20169, 1.8 ks) which was also detected by GROND.  This
+field was observed by Swift again approximately 150 hours after
+the FERMI trigger for 4.9  ks with the XRT in photon counting mode
+(Obs ID 20174). We did not detect any  source in the 0.3-10 keV
+band at the position reported by Greiner  et al. (GCN Circ. 12192).
+We determined a 3 sigma upper limit of  2.5 e-3 counts/s. The
+comparison of this new observation to the X-ray afterglow
+candidate with a count  rate of (3.8+6.14-3.16)e-3 counts/s (in the
+1.8 ks observation 20169) is inconclusive as it could be
+consistent with either a constant source or fading.
+
+Based on the source detection in Obs ID 20169, if we assume a
+standard X-ray spectrum with Galactic foreground absorption and
+the standard cosmology for a source at a redshift of z=0.382 as
+reported by  Berger (GCN Circ. 12193) the luminosity in the
+0.3-10 keV band is 2e43 ergs/s. This luminosity is consistent
+with that of a low luminosity AGN.
+
+
+Note that some of the Swift observations of the fields around
+GRB 110721A were unusable because this region was difficult for
+the star trackers to achieve lock. Therefore, no further
+observations are planned.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12245
+SUBJECT: EVLA observation for Fermi burst GRB 110721A
+DATE:    11/08/04 02:22:23 GMT
+FROM:    Poonam Chandra at Royal Mil. College Canada  <Poonam.Chandra@rmc.ca>
+
+Poonam Chandra (RMC), S. Bradley Cenko (UC Berkeley),
+ and Dale A. Frail (NRAO)report on behalf of a larger collaboration:
+
+We observed the field of the potential X-ray afterglow (GCN 12192,
+12212) of the Fermi GBM (GCN 12187) and LAT (12188) GRB 110721A
+with the EVLA on 2011 July 26.29 UT at 4.5 and 7.9 GHz.  The field of view
+is dominated by the radio bright AGN PKS 2211-388, located 9" from the
+XRT localization.  PKS 2211-388 has 7.9 GHz flux of 0.35 Jy and
+ 4.5 GHz flux of 0.75 Jy in our EVLA observations. We suggest that
+the proposed X-ray counterpart is instead associated with PKS 2211-388.
+
+The potential optical counterpart (GCN 12192), likely to be an
+early-type galaxy at z=0.382 (GCN 12193), is located ~ 10" from
+PKS 2211-388.  Given the large offset and the spectral type,
+we consider it unlikely to be related to either PKS 2211-388 or GRB 110721A.

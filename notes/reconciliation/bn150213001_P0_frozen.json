@@ -1,0 +1,26 @@
+{
+ "burst": "bn150213001",
+ "tally": 15,
+ "frozen_utc": "2026-08-11 (night shift; BEFORE any fit table opened)",
+ "engine": "L18/L19/L20/L26/L27 active",
+ "predictions": [
+  "Li&Zhang 2021 VIOLATOR list (fails constant-Gamma predictions); negative-lag spectral-evolution paper 2018JHEAp; archival BB-leader (3/19, kT~4.7)",
+  "P-A: decay should NOT satisfy alpha=2+beta (they say violated) -> our blocks test it",
+  "P-B: low-kT class candidate again"
+ ],
+ "harvest_snippets": {
+  "Li&Zhang2021": [
+   "\u2026n4b0 0.064 \u223c60 [\u221250 \u223c\u221210, 80 \u223c100] 31 17 141028455 31.489 \u00b1 2.429 (3.48 \u00b1 0.01) \u00d7 10\u22125 (n6)n7n9b1 \u22121 \u223c40 [\u221230 \u223c\u221210, 50 \u223c100] 15 8 150213001 4.096 \u00b1 0.091 (2.88 \u00b1 0.01) \u00d7 10\u22125 n6n7(n8)b1 \u22121 \u223c10 [\u221225 \u223c\u221210, 20\u201340] 23 11 150314205 10.688 \u00b1 0.143 (8.16 \u00b1 0.01) \u00d7 10\u22125 n1(n9)\u2026",
+   "\u202617 \u00b1 0.50 1875/112 \u22121878 \u22121867 141028455 0.256-s 0 \u223c50 68.31 2085 \u00b1 45 0 11.57 \u00b1 0.57 0.77 \u00b1 0.09 1.46 \u00b1 0.30 784/190 \u22122613 \u22122600 150213001 0.064-s 0 \u223c6 295.19 17545 \u00b1 570 0 2.08 \u00b1 0.05 1.93 \u00b1 0.19 10.00 \u00b1 3.76 1692/89 \u22121805 \u22121795 150314205 0.128-s 0 \u223c20 177.73 7426 \u00b1\u2026",
+   "\u2026.38 \u00b1 0.07 \u2212114/\u2212116 4.17- + 0.38 0.37 0.54- + 0.02 0.02 5685/1.96 (0.68 \u00b1 0.08) \u00d7 10\u22122 22.335 1.08 \u00b1 0.08 269.6 \u00b1 60.7 5620/1.80 150213001(1) 2.227 \u223c6.661 198.47 0 (2.56 \u00b1 0.05) \u00d7 10\u22126 3.86 \u00b1 0.05 \u2212342/\u2212341 (4.17- + 0.08 0.08) \u00d7 102 0.93- + 0.01 0.01 6143/2.04 (17.50\u2026"
+  ],
+  "Lu2018": [
+   "not in sample"
+  ],
+  "Li2026_tracking": [
+   "\u202605 -0.79 0.00 II 141028455 2.330 31.49\u00b12.43 CPL 11 10.79\u00b10.12 7.06\u00b11.11 -3.73\u00b11.11 -3.35 -0.63 0.01 0.99 0.00 -0.88 -0.53 0.18 II 150213001 \u00b7 \u00b7 \u00b7 4.10\u00b10.09 CPL 16 2.38\u00b10.15 2.38\u00b10.15 0.00\u00b10.21 0.00 0.00 0.68 0.16 0.16 -1.27 -0.96 0.00 I 150902733 \u00b7 \u00b7 \u00b7 13.57\u00b10.36 CPL 1\u2026",
+   "\u202610 6 10 5 10 4 F (erg cm 2 s 1) F 5.0 2.5 0.0 2.5 5.0 7.5 10.0 12.5 15.0 Time since trigger (s) 10 1 10 2 10 3 10 4 Ep (keV) GRB 150213001 Ep 10 7 10 6 10 5 10 4 F (erg cm 2 s 1) F Figure 3. All Type I bursts in the sample. In each panel, the red points show Ep(t) and\u2026",
+   "\u2026(keV) 10 7 10 6 10 5 F (erg cm 2s 1) GRB 130614997 Rising Decaying 10 1 10 2 10 3 10 4 Ep(keV) 10 7 10 6 10 5 F (erg cm 2s 1) GRB 150213001 Rising Decaying Figure 7. Representative Ep-F relations for selected Type I bursts. In each panel, the time-resolved spectral bin\u2026"
+  ]
+ }
+}

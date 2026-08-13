@@ -1,0 +1,295 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19577
+SUBJECT: GRB 160625A: Swift detection of a burst
+DATE:    16/06/25 22:56:43 GMT
+FROM:    Scott Barthelmy at NASA/GSFC  <scott@milkyway.gsfc.nasa.gov>
+
+A. Maselli (INAF-IASFPA), S. D. Barthelmy (GSFC),
+A. D'Ai (INAF-IASFPA), N. Gehrels (NASA/GSFC), C. Gronwall (PSU),
+A. Y. Lien (GSFC/UMBC), D. M. Palmer (LANL), J. L. Racusin (NASA/GSFC)
+and T. N. Ukwatta (LANL) report on behalf of the Swift Team:
+
+At 22:40:31 UT, the Swift Burst Alert Telescope (BAT) triggered and
+located GRB 160625A (trigger=701503).  Swift did not slew to the burst due to
+an observing constraint.  The BAT on-board calculated location is 
+RA, Dec 176.937, -65.114, which is 
+   RA(J2000)  =  11h 47m 45s
+   Dec(J2000) = -65d 06' 49"
+with an uncertainty of 3 arcmin (radius, 90% containment, including 
+systematic uncertainty).  The BAT light curve shows several peaks in the first 
+40 sec and then a large peak at T+170 sec
+structure with a duration of at least 180 sec.  The peak count rate
+was ~14000 counts/sec (15-350 keV), at ~175 sec after the trigger. 
+
+Due to an observing constraint, Swift will not slew until T0+20.3
+minutes. There will be no XRT or UVOT data until this time. 
+
+Burst Advocate for this burst is A. Maselli (maselli AT ifc.inaf.it). 
+Please contact the BA by email if you require additional information
+regarding Swift followup of this burst. In extremely urgent cases, after
+trying the Burst Advocate, you can contact the Swift PI by phone (see
+Swift TOO web site for information: http://www.swift.psu.edu/too.html.)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19578
+SUBJECT: GRB 160625A: Swift-XRT observations
+DATE:    16/06/25 23:51:03 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+D.N. Burrows (PSU), J.A. Kennea (PSU), S. Campana (INAF-OAB), G.
+Cusumano (INAF-IASF PA), P.A. Evans (U. Leicester) and J.P. Osborne (U.
+Leicester) report on behalf of the Swift-XRT team:
+
+The XRT began observing the field of GRB 160625A at 23:02:36.8 UT,
+1325.3 seconds after the BAT trigger. Using promptly downlinked data we
+find an uncatalogued X-ray source located at RA, Dec 176.91418,
+-65.14362 which is equivalent to:
+   RA(J2000)  = 11h 47m 39.40s
+   Dec(J2000) = -65d 08' 37.0"
+with an uncertainty of 5.8 arcseconds (radius, 90% containment). This
+location is 112 arcseconds from the BAT onboard position, within the
+BAT error circle. This position may be improved as more data are
+received; the latest position is available at
+http://www.swift.ac.uk/sper.  We cannot determine whether the source is
+fading at the present time. No spectrum from the promptly downlinked
+event data is yet available to determine the column density.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19579
+SUBJECT: GRB 160625A - two different events?
+DATE:    16/06/26 00:01:31 GMT
+FROM:    Alexander Kann at TLS Tautenburg  <kann@tls-tautenburg.de>
+
+D. A. Kann (TLS Tautenburg) speculates:
+
+Swift just triggered on GRB 160625A (Swift Trigger 701503, Maselli et al.,
+GCN #19577). They reported several rather small peaks followed by very
+strong emission ca. three minutes later.
+
+This burst is seen to be extremely powerful in INTEGRAL SPI ACS and CALET
+GBM. It seems to have begun with a short spike at about the same time as
+the Swift BAT trigger (Fermi GBM trigger 488587220).
+
+Three minutes later, Fermi LAT sent out a flight position at:
+
+RA = 308.267
+Dec. = +6.900
+
+with an error of 0.5 degrees.
+
+This position differs very strongly from the Swift BAT position. (Dec. of
+-65!)
+
+Additionally, Swift BAT has recently slewed to the BAT position and found
+a faint X-ray afterglow (Burrows et al., GCN 19578), which is in contrast
+to the very bright one one would expect from the extreme burst seen by
+INTEGRAL and CALET.
+
+I suggest that these are two different events, with the bright GRB seen
+through side of the Swift spacecraft.
+
+The Fermi LAT position is affected by a relatively low amount of
+extinction (E_(B-V)=0.1), in contrast to the Swift position (E_(B-V)=1.3).
+
+I strongly urge observations of the LAT position by Swift to determine an
+XRT position, and by optical observatories as well. Judging from the
+INTEGRAL SPI ACS light curve, this GRB is of similar intensity to GRB
+160623A.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19583
+SUBJECT: GRB 160625A: Enhanced Swift-XRT position
+DATE:    16/06/26 04:35:51 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+P.A. Evans, M.R. Goad, J.P. Osborne and A.P. Beardmore (U. Leicester) 
+report on behalf of the Swift-XRT team.
+
+Using 830 s of XRT Photon Counting mode data and 3 UVOT
+images for GRB 160625A, we find an astrometrically corrected X-ray
+position (using the XRT-UVOT alignment and matching UVOT field sources
+to the USNO-B1 catalogue): RA, Dec = 176.91548, -65.14460 which is equivalent
+to:
+
+RA (J2000): 11h 47m 39.72s
+Dec (J2000): -65d 08' 40.6"
+
+with an uncertainty of 2.5 arcsec (radius, 90% confidence).
+
+This position may be improved as more data are received. The latest
+position can be viewed at http://www.swift.ac.uk/xrt_positions. Position
+enhancement is described by Goad et al. (2007, A&A, 476, 1401) and Evans
+et al. (2009, MNRAS, 397, 1177).
+
+This circular was automatically generated, and is an official product of the
+Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19591
+SUBJECT: GRB 160625A: Swift-XRT refined Analysis
+DATE:    16/06/26 17:22:41 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+P. D'Avanzo (INAF-OAB), V. D'Elia (ASDC), A. D'Ai (INAF-IASFPA), T.G.R.
+Roegiers (PSU), L.M. McCauley (PSU), J.A. Kennea (PSU), S.L. Gibson (U.
+Leicester), J.P. Osborne (U. Leicester), K.L. Page (U. Leicester) and
+A. Maselli report on behalf of the Swift-XRT team:
+
+We have analysed 6.4 ks of XRT data for GRB 160625A (Maselli et al. GCN
+Circ. 19577), from 1.3 ks to 48.7 ks after the	BAT trigger. The data
+comprise 1.7 ks in Windowed Timing (WT) mode with the remainder in
+Photon Counting (PC) mode. The enhanced XRT position for this burst was
+given by Evans et al. (GCN Circ. 19583).
+
+The late-time light curve (from T0+7.4 ks) can be modelled with a
+power-law decay with a decay index of alpha=0.71 (+0.31, -0.28).
+
+A spectrum formed from the PC mode data can be fitted with an absorbed
+power-law with a photon spectral index of 2.2 (+/-0.5). The
+best-fitting absorption column is  2.2 (+0.9, -0.7) x 10^22 cm^-2, in
+excess of the Galactic value of 1.0 x 10^22 cm^-2 (Willingale et al.
+2013). The counts to observed (unabsorbed) 0.3-10 keV flux conversion
+factor deduced from this spectrum  is 5.8 x 10^-11 (1.6 x 10^-10) erg
+cm^-2 count^-1. 
+
+A summary of the PC-mode spectrum is thus:
+Total column:	     2.2 (+0.9, -0.7) x 10^22 cm^-2
+Galactic foreground: 1.0 x 10^22 cm^-2
+Excess significance: 2.8 sigma
+Photon index:	     2.2 (+/-0.5)
+
+If the light curve continues to decay with a power-law decay index of
+0.71, the count rate at T+24 hours will be 9.8 x 10^-3 count s^-1,
+corresponding to an observed (unabsorbed) 0.3-10 keV flux of 5.7 x
+10^-13 (1.6 x 10^-12) erg cm^-2 s^-1.
+
+The results of the XRT-team automatic analysis are available at
+http://www.swift.ac.uk/xrt_products/00701503.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19592
+SUBJECT: GRB 160625A: Swift-BAT refined analysis
+DATE:    16/06/26 17:23:45 GMT
+FROM:    Scott Barthelmy at NASA/GSFC  <scott@lheamail.gsfc.nasa.gov>
+
+S. D. Barthelmy (GSFC), J. R. Cummings (GSFC/UMBC), N. Gehrels (GSFC),
+H. A. Krimm (GSFC/USRA), A. Y. Lien (GSFC/UMBC), C. B. Markwardt (GSFC),
+A. Maselli (INAF-IASFPA), D. M. Palmer (LANL), T. Sakamoto (AGU),
+M. Stamatikos (OSU), T. N. Ukwatta (LANL)
+(i.e. the Swift-BAT team):
+ 
+Using the data set from T-240 to T+962 sec from the recent telemetry downlinks,
+we report further analysis of BAT GRB 160625A (trigger #701503)
+(Maselli, et al., GCN Circ. 19577).  The BAT ground-calculated position is
+RA, Dec = 176.939, -65.142 deg, which is 
+   RA(J2000)  =  11h 47m 45.3s 
+   Dec(J2000) = -65d 08' 30.9" 
+with an uncertainty of 1.0 arcmin, (radius, sys+stat, 90% containment).
+The partial coding was 57%.
+ 
+The mask-weighted light curve shows at least 7 peaks, the first starting
+at ~T-35 sec, the brightest peak at ~T+36 sec, and the last peak ending at ~T+70 sec.
+The peak mentioned in GCN Circ 19577 at T+170 sec is due to GRB 160625B (as suggested
+by Kann, Circ 19579) and confirmed by our analysis.
+T90 (15-350 keV) is 53.9 +- 3.1 sec (estimated error including systematics).
+ 
+The time-averaged spectrum from T-15.04 to T+47.41 sec is best fit by a simple
+power-law model.  The power law index of the time-averaged spectrum is
+2.08 +- 0.07.  The fluence in the 15-150 keV band is 3.3 +- 0.1 x 10^-6 erg/cm2.
+The 1-sec peak photon flux measured from T+35.07 sec in the 15-150 keV band
+is 3.0 +- 0.2 ph/cm2/sec.  All the quoted errors are at the 90% confidence
+level. 
+ 
+The results of the batgrbproduct analysis are available at
+http://gcn.gsfc.nasa.gov/notices_s/701503/BA/
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19593
+SUBJECT: GRB 160625A: Swift/UVOT Upper Limits
+DATE:    16/06/26 20:48:32 GMT
+FROM:    Massimiliano de Pasquale at IASF-Palermo  <m.depasquale@ucl.ac.uk>
+
+M. De Pasquale (UCL-MSSL) and A. Maselli (INAF-IASFPA)
+report on behalf of the Swift/UVOT team:
+
+The Swift/UVOT began settled observations of the field of GRB 160625A
+7183 s after the BAT trigger (Maselli et al., GCN Circ. 19577).
+No optical afterglow consistent with the XRT position
+(Burrows et al. GCN Circ. 19578) is detected in the UVOT exposures.
+We note the presence of a source approximately 3'' from the
+XRT position. This source is present in the USNO catalogue.
+Preliminary 3-sigma upper limits using the UVOT photometric system
+(Breeveld et al. 2011, AIP Conf. Proc. 1358, 373) for the
+exposures are:
+
+Filter         T_start(s)   T_stop(s)      Exp(s)         Mag
+
+white             7183         7952          344         >20.8
+v                 8163         8363          197         >19.0
+b                 7548         7747          197         >19.9
+u                 7342         7542          197         >19.4
+m2                8368         8483          113         >18.9
+w2                7958         8158          197         >19.6
+
+The magnitudes in the table are not corrected for the substantial Galactic
+extinction due to the reddening of E(B-V) = 1.51 in the direction of the
+burst (Schlegel et al. 1998).
+
+-- 
+
+Dr. Massimiliano De Pasquale
+Research associate - Swift UVOT scientist
+Mullard Space Science Laboratory, University College London
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19629
+SUBJECT: GRB 160625A: GROND upper limits
+DATE:    16/06/30 11:29:31 GMT
+FROM:    Ting-Wan Chen at MPE  <jchen@mpe.mpg.de>
+
+T. Schweyer, T.-W. Chen, and J. Greiner (all MPE Garching) report on behalf of the GROND team:
+
+We observed the field of GRB 160625A (Swift trigger 701503; Maselli et al., GCN #19577) simultaneously in g'r'i'z'JHK with GROND (Greiner et al. 2008, PASP 120, 405) mounted at the 2.2 m MPG telescope at ESO La Silla Observatory (Chile).
+
+Observations started at 22:55 UT on 2016-06-26, 24.24 hrs after the GRB trigger.
+They were performed through cirrus at an average seeing of 1.4" and at an average airmass of 1.2.
+
+We do not detect any source within the Swift-XRT error circle reported by Burrows et al. (GCN #19578) down to
+
+g > 22.6 mag,
+r > 23.9 mag,
+i > 22.5 mag,
+z > 22.6 mag,
+J > 19.9 mag,
+H > 19.4 mag,
+K > 19.5 mag.
+
+Given magnitudes are calibrated against USNO as well as 2MASS field stars and are not corrected for the expected Galactic foreground extinction corresponding to a reddening of E_(B-V)=1.2 mag in the direction of the burst (Schlafly and Finkbeiner 2011).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  19661
+SUBJECT: GRB 160623A: Astrosat CZTI detection
+DATE:    16/07/06 06:58:47 GMT
+FROM:    Varun Bhalerao at IUCAA  <varunb@iucaa.in>
+
+V. Bhalerao (IUCAA), V. Kumar (IUCAA), D. Bhattacharya (IUCAA), A. R. Rao (TIFR), S. Vadawale (PRL)  report on behalf of the Astrosat CZTI collaboration:
+
+ Analysis of Astrosat data showed the detection of very bright GRB 160623A (Fermi-LAT detection: Vianello et al., GCN 19553, Mailyan et al., GCN 19555; Mingo et al. GCN 19558; Frederiks et al. GCN 19554)
+
+The source was clearly detected in the 40-200 keV energy range. The light curve shows a single peak at UT 04:59:45.0, 49.23 seconds before the fermi trigger At 05:00:34.23 (trigger 488350837 / 160623209). The peak count rate was 2940 counts/sec above the background (four quadrants summed together), with a total of 20385 counts.  The local mean background count rate of 193.2 is counts/sec.  Using cumulative rates, we measure a T90 of 14.2 sec.
+
+CZTI GRB detections are reported regularly on the payload site at http://astrosat.iucaa.in/czti/?q=node/9 . CZTI is built by a TIFR-led consortium of institutes across India, including VSSC, ISAC, IUCAA, SAC and PRL. The Indian Space Research Organisation funded, managed and facilitated the project.
+
+[GCN OPS NOTE(07jul16): Per operator, the GRB name as corrected from 1600625 to 160625.]
+

@@ -1,0 +1,47 @@
+GCN CIRCULAR HARVEST — bn111009282 (GRB 111009A)
+Run: 2026-08-12, campaign doc-layer worker, per dev/ai_guides/GCNIntelligence.md
+RESULT: ZERO CIRCULARS. This is a recorded finding, not a fetch failure.
+
+Queries executed and their verbatim outcomes
+--------------------------------------------
+1) Classic per-GRB archive (cheapest first):
+   GET https://gcn.gsfc.nasa.gov/other/111009.gcn3    -> HTTP 404 (215 bytes)
+   GET https://gcn.gsfc.nasa.gov/other/111009A.gcn3   -> HTTP 404 (216 bytes)
+
+2) GCN circulars archive search API (gcn.nasa.gov, Remix _data endpoint):
+   GET https://gcn.nasa.gov/circulars?_data=routes%2Fcirculars._archive._index&query=111009A
+       -> {"totalItems": 0}
+   GET .../query=111009282   -> {"totalItems": 0}
+   GET .../query=111009      -> {"totalItems": 0}
+   GET .../query=%22GRB+111009A%22 -> {"totalItems": 0}
+   (control: an unquoted multi-word query returns the full 35680-circular archive,
+    i.e. the endpoint was live and the zero-counts are real zeros, not a dead API.)
+
+3) Independent corroboration from the GBM trigger catalog itself:
+   glg_tcat_all_bn111009282_v02.fit primary header carries
+       GCN_FLAG = 'No'
+   i.e. the GBM Instrument Operations Center itself records that no GCN was issued
+   for this trigger.
+
+Consequences
+------------
+- No circular-sourced position, T90, Epeak, fluence, redshift or afterglow statement
+  exists for this burst. Every number in the dossier therefore comes from a catalog
+  (GBM tcat/bcat/scat, von Kienlin+2014, Hurley+2017) or a refereed paper.
+- REDSHIFT: none. No spectroscopy was ever taken because no rapid localization was
+  distributed. Honest 'none', not 'unknown-but-maybe'.
+- The burst was nevertheless detected by four other instruments (INTEGRAL SPI-ACS,
+  Konus-Wind, MESSENGER, Swift) and carries an IPN error box — see the dossier's
+  INSTRUMENT STORY. Absence of circulars is not absence of multi-instrument data.
+
+Identity guard (LiteratureHarvest T1 — same-day contamination)
+-------------------------------------------------------------
+von Kienlin+2014 (VizieR J/ApJS/211/13/GBM) triggers in the window 111008000-111011000:
+   111008992  GRB 111008B  23:49:01.2916
+   111009282  GRB 111009A  06:45:40.1731   <-- OURS
+   111010237  GRB 111010A  05:40:34.5636
+   111010660  GRB 111010B  15:50:21.7971
+   111010709  GRB 111010C  17:00:35.2884
+   111010899  GRB 111010D  21:34:13.6769
+bn111009282 is the ONLY GRB catalogued on 2011 Oct 09 — the letter 'A' is unambiguous
+and there is no same-day sibling to contaminate the literature search.

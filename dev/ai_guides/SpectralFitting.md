@@ -681,7 +681,73 @@ census would systematically prefer extra components in soft bursts — a selecti
 masquerading as physics. No previous burst felt it (all had Ep ≳ 250 keV): **the defect was
 invisible until serial ordering delivered a soft burst.**
 **RULE:** bounds spanning > 2 decades (lo > 0) are tested in **log space** — margin = 1% of the
-log-span (30 → 32.3 keV; 5×10⁴ → 4.6×10⁴). Narrow/linear bounds (indices, kT) keep the linear
-rule. More generally: any threshold applied to a parameter must live in the parameter's natural
-geometry.
+log-span (30 → 32.3 keV; 5×10⁴ → 4.6×10⁴). Only genuinely narrow/linear bounds (indices) keep
+the linear rule. ⚠ CORRECTED (Codex audit 2026-08-11): kT's bounds (1, 200) span 200× > 2
+decades, so **kT is log-ruled too** — its rail zone is kT < 1.0544 keV (an earlier version of
+this text wrongly listed kT with the linear-rule parameters; the code always applied the
+hi/lo > 100 test). More generally: any threshold applied to a parameter must live in the
+parameter's natural geometry.
 **TEST:** `test_L27_rail_margin_respects_log_geometry` (unit-level, imports the gate directly).
+
+### L28 — a feature below ~20 keV is EDGE-CONSTRAINED: stamp it and earn it, never quote it bare  *(the low-kT night class, 2026-08-11; anchors: Tierney+2013 `2013A&A...550A.102T` [local copy = arXiv v1 PREPRINT, not VoR — A&A site blocks fetch], Ravasio+2019 `2019A&A...625A..60R` [VoR on disk]; audit-corrected same day, Codex gpt-5.6-sol)*
+A component is constrained by its **in-band νFν turnover** (3.92·kT for a blackbody — an
+ANALYTIC result, max of E²·N(E) for a Planck spectrum, x = 3.9207, not a value from either
+paper — xb for a low break), not by data at its nominal energy — so kT ≈ 4–6 keV from NaI data
+starting at 8 keV is legitimate *in principle* (Tierney's Table 4 publishes Band+BB with
+kT = 4.99 +0.53/−0.52 keV for GRB 090323). But the literature brackets the edge from both sides:
+- **Ravasio+2019 App. B (the trust boundary):** GBM fits with Ebreak < 20 keV produce
+  unphysically hard, ill-constrained α₁ (their 171010: Ebreak = 12.39 ± 0.13 keV,
+  α₁ = **+1.16 ± 0.13**), splitting the Ebreak–α₁ plane at ~20 keV with *almost* no overlap
+  between the two populations — "strongly suggests an instrumental effect"; their population
+  statistics retain only the > 20 keV subset. ⚠ The boundary is an empirical **2SBPL**
+  result; transferring it to BB peaks via 3.92·kT is OUR inference (project policy, to be
+  calibrated by model-specific simulations).
+- **Tierney+2013 (how to earn an edge feature):** full-band C-stat *smears* deviations through
+  the model; their extrapolated-fit method fits a Band function above a Low-Energy Threshold
+  scanned over **LET ∈ {15, 20, 25, 30, 50, 100} keV**, extrapolates down to 8 keV, and tests
+  the **summed residuals below the LET, averaged across detectors**, against ~1000
+  response-folded simulations per parameter set. Both excesses AND deficits occur (a component
+  between LET and Ep flattens α → deficit). Reading the *coherent residual run* (rather than
+  the summed statistic) is OUR project extension of their method, not their procedure.
+- **The unresolved two-costume tension (OUR observation, neither paper makes the
+  cross-identification):** Ravasio's "instrumental" α₁ ≈ +1.16 at a ~12 keV break is
+  numerically the Rayleigh–Jeans photon index (+1) — what one lineage quarantines as artifact
+  is what the other would call a photosphere. Tierney's 090424 is fit both as Band+BB
+  (kT = 9.20 +0.55/−0.44) and as a double-broken PL (Ebreak1 = 32.74 keV). The identity
+  question is OPEN in the literature; we must not close it by labeling.
+- **Artifacts come in two classes** (Vikas, 2026-08-11): *detector-level* (blockage, bad
+  response — lives in ONE NaI; killed by per-NaI coherence, D5 pointed in reverse) and
+  *shared-primitive* (common DRM generator, background family, fit statistic — coherent across
+  ALL NaIs, like the Ravasio pathology; killed only by simulations or a different instrument).
+  Per-NaI coherence ACQUITS the first class only.
+
+**RULE — any significant component/break with turnover (3.92·kT or xb) below 30 keV:**
+1. stamp via `edge_feature_class`: **EDGE_CONSTRAINED** (< 20 keV) / **EDGE_MARGINAL**
+   (20–30 keV); stamped values never enter population statistics unstamped — we *report*
+   (data-dropping hierarchy), Ravasio-style quarantine is for the stats, not the record;
+2. rail check on the paired low index (α₁ > −0.2 = the Fig. B.1 signature);
+3. **LET-extrapolation localization** (Tierney): continuum fit above ~30 keV only, extrapolate
+   down, coherent residual run 8→LET; simulation-calibrated before any promoted claim;
+4. **per-NaI coherence, amplitude-weighted**: the excess in EVERY NaI at the amplitude its own
+   DRM predicts; per-detector kT consistency where counts allow; a low-S/N detector's silence
+   is NOT incoherence;
+5. background-fit sanity specifically in 8–30 keV over the source window;
+6. **L25 identity pair**: report BB margin AND DSBPL-low-break margin side by side; if both
+   adequate the record says "a low-energy spectral feature at ~E keV" — never "a blackbody";
+7. cross-instrument (BAT/XRT overlap) where it exists — the strongest available test of the
+   shared-response class (Tierney-style response-folded simulations probe it too, within the
+   fidelity of the DRM model).
+**RECORD POLICY (standardized per Codex audit 2026-08-11):** stamped values are RETAINED and
+reported in burst records (data-dropping hierarchy — we never hide a measurement); they are
+EXCLUDED from population statistics and from claim promotion until checks 2–7 pass. Neither
+"suppressed everywhere" nor "quoted bare" — stamped-and-quarantined.
+Cuts BOTH ways: a census DSBPL with **xb < 20 keV** carries the same stamp — this lesson
+protects the two-break count itself, not just the BB class. Mirrored HET version for the
+above-peak project lives in the #34 registry entry.
+**ENGINE:** `edge_feature_class(kt=, xb=)` in scripts/10 (EDGE_TRUST_KEV = 20 from Ravasio
+App. B; EDGE_CLEAR_KEV = 30 is PROJECT POLICY — a heuristic sitting just below the 33–40 keV
+K-edge exclusion, to be simulation-calibrated; BB_PEAK_FACTOR = 3.9207 analytic) — pure
+classifier; wiring into scorecards/population products is the enforcement point (open engine
+item: serialize the class into fit tables).
+**TEST:** `test_L28_edge_feature_class` (unit-level; includes the L25 consistency property —
+kt and xb = 3.92·kt must classify identically).

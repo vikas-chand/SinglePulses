@@ -113,6 +113,13 @@ NaI 30–40% below another, 20–300 keV, coherent −1…−3.5σ residual run;
 labelled it "cross-calibration". The cause is a blocked detector. The affected band, 20–300 keV,
 is exactly where the contested low-energy shoulder lives.
 
+*The same primitive runs in REVERSE as a physics check: L28 (SpectralFitting.md) uses per-NaI
+residual COHERENCE — amplitude-weighted, every NaI showing an edge feature at the level its own
+DRM predicts — to acquit a low-energy component of the detector-artifact class. Incoherence
+convicts a detector (this rule); coherence acquits the physics of that class ONLY (shared
+systematics — common DRM generator, background family, statistic — stay coherent across all
+NaIs and need L28's other checks).*
+
 **RULE — inventory must test blockage, not just angle:**
 1. compare each NaI's residual trend against the OTHER NaIs at similar angles — a *coherent*
    one-sided run (not scatter) is the blockage signature;

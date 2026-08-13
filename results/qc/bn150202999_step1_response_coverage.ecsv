@@ -1,0 +1,34 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: int64}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn150202999}
+# - {src_start: -3.0}
+# - {src_stop: 22.0}
+# - {trigtime_met: 444614351.273414}
+# - {lle_delta_theta_deg: 0.13}
+# - {lle_theta_drm_deg: 16.97-17.07 (mean 17.02)}
+# - {lle_theta_src_deg: 16.88-17.13}
+# - {lle_rsp_interval_s: '5.947 to 15.947 (single matrix; D1 angle test used, NOT interval overlap)'}
+# - {rsp_naming: 'GBM glg_cspec_<det>_bn150202999_v00.rsp2 (7 matrices each); LLE gll_cspec_bn150202999_v01.rsp (single matrix, no detector
+#     token) - D2 checked'}
+# - {files_present: '6 cspec+6 rsp2 (n0,n1,n3,n6,b0,b1), 6 tte, poshist glg_poshist_all_150202_v01.fit, LLE triplet (gll_lle/gll_pt/gll_cspec
+#     .rsp), LAT/ FT1 L260717010543F357373F46_EV00.fits + FT2 SC00.fits'}
+# - {trigdat: 'ABSENT - note only, poshist present (geometry covered)'}
+# - {in_saa: False over -95..+131 s (poshist IN_SAA)}
+# - {verdict: 'PASS - all 4 approved GBM detectors bracket the stamped window; LLE single-matrix DRM valid by D1 (dtheta=0.13 deg, no
+#     slew: GCN 17388 states the ARR was NOT accepted by the spacecraft)'}
+# - {generated_utc: '2026-08-12'}
+# - {generated_by: '106-burst doc-layer worker, dev/ai_guides/DataInventory.md Step 1'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n0 -37.889 199.683 7 PASS
+n1 -37.889 199.683 7 PASS
+n3 -37.889 199.683 7 PASS
+b0 -37.889 199.683 7 PASS
+lle 5.947 15.947 1 PASS

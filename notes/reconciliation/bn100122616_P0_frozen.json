@@ -1,0 +1,59 @@
+{
+ "burst": "bn100122616",
+ "tally": null,
+ "tally_note": "106-burst campaign doc-layer worker (parallel sweep), not a numbered gated-walkthrough burst; no tally assigned",
+ "frozen_utc": "2026-08-12 (doc-layer pass; BEFORE any sweep106 fit table opened - worker is hard-barred from results/sweep106/; the only fit table read is the ARCHIVAL census run below, allowed as prior)",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "predictions": [
+  "P-A (BB union rule): the new fits will pass the union rule (LRT_BANDBB_BAND>=9.2 & kT>1.05 OR LRT_CPLBB_CPL>=9.2 & kT>1.05) in >=3 blocks including the time-integrated block, with the Band+BB kT population in 3.5-7 keV and median kT 4.3-5.0 keV - the L28 edge-constrained low-kT class (NaI fit floor 8 keV; implied xb ~ 3.92*kT ~ 17-20 keV per L25). Archival: union blocks {-1, 2, 3, 4, 7} = 4/10 resolved + integrated; integrated LRT_CPLBB_CPL = 61.2. FALSIFIED IF: union count collapses to <=1 resolved block, or the preferred kT population sits >20 keV.",
+  "P-A2 (two-break): LRT_DSBPL_SBPL >= 9.2 persists in the INTEGRATED spectrum (archival 13.14) and in at least one bright block near the flux peak 20.5-22 s (archival blk3 [20.56-21.97 s] = 11.94). DSBPL xb sits at 10-13 keV, hugging the NaI floor, so per L25 (xb ~ 3.92 kT, r=0.87) the low DSBPL break and the ~4.5 keV BB are RIVAL descriptions of the same low-energy feature - expect L12-style degeneracy, not two independent components. FALSIFIED IF: integrated LRT_DSBPL_SBPL < 9.2.",
+  "P-B (literature frame, integrated): our new integrated fits will give Band Ep = 40-50 keV, alpha = -0.85..-1.05, beta = -2.2..-2.45 WELL-CONSTRAINED (not railed), and the Band family will beat plain CPL decisively (catalog flnc: Band chi2r 1.328/357 vs Comp 1.432/358, Ep 41.7 vs 62.1 keV - the Comp fit inflates Ep because it lacks the high-E power law; GCN prelim 45.6/-0.98/-2.31; archival integrated 42.7/-0.93/-2.30 with LRT_CPLBB_CPL=61.2). Component-coverage caveat (T9): all literature integrated frames include the weak trigger pulse (scat interval -2.048..32.768 s); our window 16.56-33.80 s is main-pulse-only - the weak pulse carries little fluence so the diff should stay within errors. FALSIFIED IF: integrated Ep > 100 keV, or beta unconstrained/railed, or CPL beats Band by dAIC >= 10.",
+  "P-B2 (evolution class): INTENSITY-TRACKING, not monotonic hard-to-soft - Ep peaks WITH the flux peak at ~21.3 s. Every literature era agrees: Lu+2012 late-pulse tracking (7/43); Lu+2018 tracking with positive kE=+0.72+/-0.11 (soft-to-hard-dominated rise); Yu+2019 'i.t. to ?'; Li 2026 (eprint) Type I aligned peaks, tp(Ep)=tp(F)=21.26+/-0.71 s, rho(Ep,F)=0.90. Archival blocks reproduce it: Ep(Band) rises 30 -> 44 -> 69 keV into blk3 (20.6-22.0 s) then decays 55 -> 50 -> 41 -> 30 keV. PREDICT: block-resolved Ep rises across 18.7-22 s, peaks in the block covering ~21-22 s, then decays; catalog peak-slice (20.48-21.50 s) Ep(Band)=68.6+/-5.9 keV > integrated 41.7 keV. FALSIFIED IF: Ep decays monotonically from the first block (pure hard-to-soft).",
+  "P-C (identity, not a fit target): NO redshift, NO afterglow (MASTER wide-field response only, GCN 10354, no counterpart); 2-circular GCN record; IPN 5-spacecraft detection (INTEGRAL, Konus-Wind, MESSENGER, Mars Odyssey, RHESSI; Hurley+2013). GBM-only data (no LLE/LAT products despite 45-deg boresight angle). The P3 diff frame = GBM catalog scat v03 + five sample-paper table rows (no dedicated analysis paper exists)."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn100122616/spectral_fits.ecsv (previous production run - allowed as prior)",
+  "n_blocks": 11,
+  "block_layout": "1 time-integrated (18.66 to 32.80 s, BLOCK=-1) + 10 time-resolved (18.66 to 32.80 s edges); note the archival span starts 2.1 s inside the stamped window 16.56-33.80 s",
+  "dets_per_block": "n6,n9,na,b1 (4)",
+  "union_rule_blocks": [-1, 2, 3, 4, 7],
+  "n_union_resolved": 4,
+  "bandbb_only_blocks": [-1, 2, 3],
+  "cplbb_only_extra_blocks": [4, 7],
+  "bandbb_kt_values_keV_union_blocks": {"-1": 4.35, "2": 4.71, "3": 4.96, "4": "11.3+/-56 (unconstrained; CPLBB kT 10.47+/-2.12)", "7": "4.32 (BANDBB LRT only 2.3; CPLBB kT 80.7+/-31.6 dubious)"},
+  "bandbb_kt_median_all_blocks_keV": 4.54,
+  "aic_winner_distribution": {"Band+BB": 3, "CPL+BB": 2, "SBPL": 2, "CPL": 1, "DSBPL": 1, "Band": 1, "INCONCLUSIVE": 1},
+  "lrt_dsbpl_sbpl_ge_9p2_blocks": {"-1": 13.14, "3": 11.94},
+  "integrated_key_numbers": {"BAND": "Ep=42.7, alpha=-0.93, beta=-2.30", "LRT_BANDBB_BAND": 29.2, "LRT_CPLBB_CPL": 61.21, "LRT_DSBPL_SBPL": 13.14, "AIC_winner": "Band+BB", "BANDBB_KT": "4.352+/-0.171"},
+  "class": "low-kT (~4.5 keV, edge-constrained per L28) BB-leader with two-break support integrated; caveat: archival run predates L8/L9 hardening (two-break support is a lower limit)"
+ },
+ "harvest_snippets": {
+  "GCN_10355_Fermi_GBM_detection": [
+   "At 14:47:37.31 UT on 22 January 2010 ... triggered and located GRB 100122A (trigger 285864459 / 100122616)",
+   "The GBM light curve consists of 2 pulses (a weak pulse at trigger followed by a much larger pulse about 21 s later) with a duration (T90) of about 6.6 s (8-1000 keV)",
+   "Band function with Epeak = 45.6 +/- 1.5 keV, alpha = -0.98 +/- 0.05, and beta = -2.31 +/- 0.03 (CSTAT 1673 for 478 d.o.f.); fluence (8-1000 keV) = (1.00 +/- 0.01)E-05 erg/cm^2"
+  ],
+  "GBM_catalog_scat_v03": [
+   "flnc_band (-2.048..32.768 s, dets b1 n6 na): Ep=41.71 +2.54/-2.39 keV, alpha=-0.93+/-0.13, beta=-2.309+/-0.05, chi2r=1.328/357dof; flnc_sbpl Ebreak=29.53 keV idx2=-2.360",
+   "pflx_band (20.480..21.504 s): Ep=68.55+/-5.9 keV, alpha=-1.298, beta=-2.578; bcat v01: T90=22.53+/-2.77 s (T90START=5.12), fluence(10-1000)=1.200e-5 erg/cm2"
+  ],
+  "Lu2018": [
+   "GRBs 100122616, 131214705, and 120308588, have a positive kE, indicating that those pulses are dominated by a soft-to-hard spectral evolution pattern (Table 4: T, that31=-0.03+/-0.07, W=3.00, thatk=-0.21+/-0.08, kE=0.72+/-0.11)"
+  ],
+  "Yu2019": [
+   "Table 1: 100122616 (n6)nab1, src -5..40 s, N=14, N(S>=20)=5; p.9: GRB 100122616 i.t. to unclassified"
+  ],
+  "Lu2012": [
+   "late pulses show intensity tracking (7/43 GRBs): 090328, 090524, 091003, 091120, 100116A, 100122A, 101014A"
+  ],
+  "Li2026_eprint": [
+   "Table 1: Type I (aligned Ep and flux peaks, 5/20), Model=Band, Nbin=6, tp(F)=tp(Ep)=21.26+/-0.71 s; Table 2: FWHM=3.79 s, kappa=2.06, rho(Ep,F)=0.90"
+  ],
+  "Qin2013": [
+   "Table 1: T90(8-1000)=7.94+/-0.33 s; per-band 8.13/9.15/7.65/6.30/5.34 s (8-15/15-25/25-50/50-100/100-350 keV)"
+  ],
+  "Li&Zhang2021": [
+   "absent (not in that sample - no hit in the four-form queries or the local corpus scan)"
+  ]
+ }
+}

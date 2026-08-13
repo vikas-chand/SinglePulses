@@ -1,0 +1,150 @@
+{
+ "burst": "bn090809978",
+ "grb_name": "GRB 090809B (GCN 9760; day's second GRB — Swift's GRB 090809 at 17:31 UT was first; ours triggered GBM at 23:28:14.61 UT)",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form query; Phase 1b/3b/3c/4 applied; traps T1-T9 consulted)",
+ "ads_queries": {
+  "full:\"GRB 090809B\"": 6,
+  "full:\"bn090809978\"": 1,
+  "full:\"090809978\"": 3,
+  "full:\"271553296\"": 0,
+  "full:\"GRB090809B\"": 0,
+  "note": "identity of every hit verified by trigger time / trigger-style token / detector set in the PDF, never by name (T1). ADS tokenization gotcha recorded: full:\"090809\" does NOT match token \"090809B\" — series-membership checks must use the suffixed token or the local PDF (Lu+2012 was a false negative until scanned locally)."
+ },
+ "scholar_note": "Phase 1b Scholar channel NOT invoked: the four-form ADS query was not thin (8 refereed papers analyzing this burst, incl. two Comprehensive-Analysis series parts) and no cross-community concept gap is in play for this GBM-only prompt-emission burst.",
+ "latest_first_order": "Phase 3b reading/diff order: Jiang 2021 (wrong-z caution only) > Meng 2019 > Lu 2018 > Shao 2017 > Burgess 2014 > Basak&Rao 2014 > Lu 2012 > Bianchin 2011; GCN 9760 is PRELIMINARY by its own statement.",
+ "n_papers_this_burst": 8,
+ "papers": [
+  {
+   "bibcode": "2021MNRAS.505L..26J",
+   "title": "Interpreting the spectral lags of single-pulsed gamma-ray bursts via the photosphere in the jet model",
+   "first_author": "Jiang, Y.-G.",
+   "year": 2021,
+   "doctype": "article (REFEREED)",
+   "identity_check": "Table 1 uses GBM trigger name '090809978' explicitly (PDF p3)",
+   "corpus_status": "already in corpus (Jiang_2021_2021MNRAS505L26J.pdf, cited_by bn130518580;proj37) — cited_by extension queued",
+   "prompt_sections": "Table 1 row + section 3 (photosphere-frame lag quantities for our burst). WARNING: they attach z=2.7371 to 090809978 — that redshift is GRB 090809's (Swift, X-shooter GCN 9761, a different burst ~130 deg away); ALL rest-frame quantities for this burst are invalid as published (recorded literature fault, T1/T6). Their observed inputs trace to GCN 9760 (Ep) and Shao+2017 (lag).",
+   "module_future_tags": "none (prompt-interpretation paper; the wrong-z fault is prompt-relevant)"
+  },
+  {
+   "bibcode": "2019ApJ...882...26M",
+   "title": "The Time-resolved Spectra of Photospheric Emission from a Structured Jet for Gamma-Ray Bursts",
+   "first_author": "Meng, Y.-Z.",
+   "year": 2019,
+   "doctype": "article (REFEREED)",
+   "identity_check": "'GRB 090809B' named as one of 3 single-pulse GRBs (PDF p10-11); time slices 3.140-3.803 s and 8.5-11.3 s quoted",
+   "corpus_status": "already in corpus (Meng_2019_ApJ_882_26.pdf, cited_by bn081125496) — cited_by extension queued",
+   "prompt_sections": "S3.4 + Fig 14 (photospheric structured-jet fit to OUR burst's time-resolved spectra; 'similar to GRB 081224, thus the case of thetac*Gamma0 = 10 and p = 4'). Discloses a photospheric-interpretation prior on this burst (P3 bias disclosure).",
+   "module_future_tags": "none"
+  },
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "title": "A Comprehensive Analysis of Fermi Gamma-Ray Burst Data. IV. Spectral Lag and its Relation to Ep Evolution",
+   "first_author": "Lu, R.-J.",
+   "year": 2018,
+   "doctype": "article (REFEREED)",
+   "identity_check": "'GRB 090809B (bn090809978)' verbatim in the time-resolved Band table (PDF p41); also pp12, 27, 34, 51",
+   "corpus_status": "already in corpus (Lu_2018_2018ApJ865153L.pdf, read=Y 2026-08-10) — cited_by extension queued",
+   "prompt_sections": "p41 time-resolved Band table rows for our burst (feeds Step 6 diff); p34 pulse-fit rows + p51 per-band lag rows (feed Step 7). T3 trap: copy each symbol's definition with the number.",
+   "module_future_tags": "none (series part IV is all prompt)"
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "title": "A New Measurement of the Spectral Lag of Gamma-Ray Bursts and its Implications for Spectral Evolution Behaviors",
+   "first_author": "Shao, L.",
+   "year": 2017,
+   "doctype": "article (REFEREED)",
+   "identity_check": "'090809978' trigger-style name throughout (PDF p5, p9, p11, p18)",
+   "corpus_status": "already in corpus (Shao_2017_2017ApJ844126S.pdf, cited_by bn081224887) — cited_by extension queued",
+   "prompt_sections": "S3 p5 (their re-examination of the Lu+2012 HTS label for exactly our burst) + p11 time-resolved Ep track (RMFIT re-analysis: 382.6+-206.4 / 255.8+-50.3 / 209.9+-15.8 / 131.4+-13.2 ...) feeds Step 6; p9 lag row (detector n4) feeds Step 7.",
+   "module_future_tags": "none"
+  },
+  {
+   "bibcode": "2014ApJ...784...17B",
+   "title": "Time-resolved Analysis of Fermi Gamma-Ray Bursts with Fast- and Slow-cooled Synchrotron Photon Models",
+   "first_author": "Burgess, J. M.",
+   "year": 2014,
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "identity_check": "'GRB 090809B' in the 8-GRB single-pulse sample list (PDF p5) and Table 1 (p23)",
+   "oa_fetched": true,
+   "file": "Skills_training/Burgess_2014_2014ApJ78417B_bn090809978.pdf (arXiv:1304.4628; NEW corpus row queued)",
+   "classification": "dedicated-sample-member (physical synchrotron +- BB, time-resolved)",
+   "prompt_sections": "Sample section p5 + Table 1 p23: for OUR burst, Blackbody Component = NO, LLE = NO, peak flux 18.36 ph/s/cm2, duration analyzed 14.64 s. T7: the no-BB verdict is relative to their synchrotron continuum. Feeds Step 6 (the BB question) directly.",
+   "module_future_tags": "none"
+  },
+  {
+   "bibcode": "2014MNRAS.442..419B",
+   "title": "Time-resolved spectral study of Fermi gamma-ray bursts having single pulses",
+   "first_author": "Basak, R.",
+   "year": 2014,
+   "doctype": "article (REFEREED)",
+   "identity_check": "'090809B' Table 1 row includes detector set 'n3, n4, n5, b0' == our approved set exactly; interval -4.0->19.3 s, 15 bins (PDF p3)",
+   "corpus_status": "already in corpus (Basak_2014_2014MNRAS442419B.pdf, cited_by bn081224887) — cited_by extension queued",
+   "prompt_sections": "Table 1 row (pulse fit + lag), Table 2 classification row ('HTS, Mild delay and lingering', PDF p5), Fig 3 (kT/Ep + alpha evolution of OUR burst). Feeds Steps 6+7. Column headers must be labeled at the PDF before any diff (row quoted verbatim in dossier).",
+   "module_future_tags": "none"
+  },
+  {
+   "bibcode": "2012ApJ...756..112L",
+   "title": "A Comprehensive Analysis of Fermi Gamma-Ray Burst Data. II. Ep Evolution Patterns and Implications for the Observed Spectrum-Luminosity Relations",
+   "first_author": "Lu, R.-J.",
+   "year": 2012,
+   "doctype": "article (REFEREED)",
+   "identity_check": "'090809B' one of 5 clean HTS bursts (PDF p5) + time-resolved Band table rows (p37) + Ep-track figure (p20)",
+   "corpus_status": "already in corpus (Lu_2012_2012ApJ756112L.pdf, cited_by bn081224887;bn090530760;proj34, read=MAYBE) — cited_by extension queued",
+   "prompt_sections": "p5 HTS classification (one of 5 founding HTS bursts), p37 time-resolved Band rows (bin1 0.003-2.048 s Ep=300.5+-62.4 alpha=-0.43 beta=-1.90; bin2 286.4+-39.4; bin3 197.9+-28.1 ...), p20 Ep(t) figure. Feeds Step 6 diff + Step 7 evolution class.",
+   "module_future_tags": "none"
+  },
+  {
+   "bibcode": "2011A&A...536A..46B",
+   "title": "The first GRB survey of the IBIS/PICsIT archive",
+   "first_author": "Bianchin, V.",
+   "year": 2011,
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "identity_check": "table row time 23:28:17 UT matches our TRIGTIME 23:28:14.61 (+ light-travel/binning); '090809B' naming (PDF p5, p7, Fig 48 p20)",
+   "oa_fetched": true,
+   "file": "Skills_training/Bianchin_2011_2011AA536A46B_bn090809978.pdf (arXiv:1110.4758; NEW corpus row queued)",
+   "classification": "catalog-detection (independent hard-band instrument)",
+   "prompt_sections": "Table rows: T90 = 9+-1 s (260-1196 keV), 3399+-257 counts, off-axis 53.7 deg, fluence 1.63+-0.02e-6 erg/cm2 (260-2600 keV, extrapolated from GCN 9760 parameters); flags F, K, IA = also seen by Fermi, Konus-Wind, SPI-ACS. Fig 48 = PICsIT LC + hardness. Feeds Step 7 (hard-band duration) + multi-instrument consensus rule (Phase 4).",
+   "module_future_tags": "none"
+  }
+ ],
+ "non_refereed_recorded_not_fetched": [
+  {"bibcode": "2014arXiv1409.5626B", "why": "Basak PhD thesis; superset/duplicate of 2014MNRAS.442..419B (mentions 090809B, ADS-verified); primary refereed source already harvested"},
+  {"bibcode": "2017ifs..confE..74B", "why": "Burgess conference proceeding (spectral width); mentions 090809978; not refereed, no unique numbers expected"},
+  {"bibcode": "2009GCN..9760....1V", "why": "Step 0a territory — quoted verbatim in the dossier"}
+ ],
+ "series_check_T2": "Comprehensive Analysis series I-IV located: our burst IS in II (2012ApJ...756..112L) and IV (2018ApJ...865..153L); NOT in I (2011ApJ...730..141Z, local PDF scan: 0 mentions) and NOT in III (2013ApJ...763...15Q, ADS full:\"090809B\" = 0).",
+ "contaminated_hits": [
+  {
+   "note": "the pre-existing results/gcn/bn090809978/bn090809978_ads_hits.json (2026-07-29 era, query full:\"GRB 090809\") is dominated by GRB 090809 (Swift, 17:31 UT, RA 328.68, z=2.737) literature — a different burst. None of these entered this harvest as ours:",
+   "bibcodes_presumed_090809A": ["2011MNRAS.410.1064M (X-ray flares)", "2018MNRAS.479.3456H", "2019A&A...623A..92S (XS-GRB)", "2019A&A...623A..43B", "2023A&A...679A..91H", "2015arXiv150304580D (Dereli thesis)", "2019ApJ...884...59L (X-ray flares)", "2014ApJ...794...82B (ARGO-YBJ; not matched by any of our four identity-bearing query forms)"],
+   "verification_level": "classified by subject matter (afterglow/X-ray-flare/host papers require the Swift localization+redshift our burst lacks); individually PDF-verified only where a paper also surfaced in the identity-bearing queries (none did)"
+  },
+  {
+   "bibcode": "2021MNRAS.505L..26J",
+   "note": "SPECIAL CASE — the paper genuinely analyzes OUR burst but imports the OTHER burst's redshift (z=2.7371). Kept in papers[] with the fault recorded; rest-frame quantities quarantined."
+  }
+ ],
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   "Burgess_2014_2014ApJ78417B_bn090809978.pdf,2014ApJ...784...17B,1304.4628,prompt-physical-synchrotron;single-pulse;BB-verdicts,bn090809978,1,N,",
+   "Bianchin_2011_2011AA536A46B_bn090809978.pdf,2011A&A...536A..46B,1110.4758,prompt-detection;IBIS-PICsIT;hard-band-T90,bn090809978,1,N,",
+   "UPDATE Basak_2014_2014MNRAS442419B.pdf: cited_by_bursts += bn090809978, n_bursts += 1",
+   "UPDATE Shao_2017_2017ApJ844126S.pdf: cited_by_bursts += bn090809978, n_bursts += 1",
+   "UPDATE Meng_2019_ApJ_882_26.pdf: cited_by_bursts += bn090809978, n_bursts += 1",
+   "UPDATE Jiang_2021_2021MNRAS505L26J.pdf: cited_by_bursts += bn090809978, n_bursts += 1",
+   "UPDATE Lu_2018_2018ApJ865153L.pdf: cited_by_bursts += bn090809978, n_bursts += 1",
+   "UPDATE Lu_2012_2012ApJ756112L.pdf: cited_by_bursts += bn090809978, n_bursts += 1"
+  ],
+  "results/gcn/gcn_index.csv": [
+   "bn090809978,GRB 090809B,1 circular ours (GCN 9760) of 12 in raw file (rest = GRB 090809/Swift, T1 contamination),no redshift,dossier 2026-08-12"
+  ]
+ },
+ "outputs": {
+  "dossier": "results/gcn/bn090809978/bn090809978_dossier.md (NEW; extends pre-existing gcn_raw.txt + ads_hits.json from 2026-07-29 era)",
+  "pdfs_new": [
+   "Skills_training/Burgess_2014_2014ApJ78417B_bn090809978.pdf",
+   "Skills_training/Bianchin_2011_2011AA536A46B_bn090809978.pdf"
+  ]
+ }
+}

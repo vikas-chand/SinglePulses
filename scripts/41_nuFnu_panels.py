@@ -131,7 +131,7 @@ def model_error_band(jl, comp, E, n_samples=400, cl=0.68):
         cov = 0.5 * (cov + cov.T) + 1e-12 * np.eye(len(names))
         rng = np.random.default_rng(42)
         samples = rng.multivariate_normal(mean, cov, size=n_samples, method="svd")
-        curves = []
+        curves, n_skipped = [], 0
         for s in samples:
             ok = True
             for n, v in zip(names, s):
@@ -139,12 +139,20 @@ def model_error_band(jl, comp, E, n_samples=400, cl=0.68):
                 p = fp[n]
                 if (p.min_value is not None and v < p.min_value) or (p.max_value is not None and v > p.max_value):
                     ok = False; break
-            if not ok: continue
+            if not ok:
+                n_skipped += 1; continue
             for n, v in zip(names, s):
                 if 'cons' in n.lower(): continue
                 fp[n].value = v
             curves.append(E**2 * _ev(comp, E))
         for n, v in zip(names, mean): fp[n].value = v
+        # Shipping Gate 2026-08-12 (bn200524211 montage incident): skipping
+        # out-of-bounds samples TRUNCATES the distribution — the surviving band
+        # is biased off the best-fit curve (astromodels' own ">1% lost" advice).
+        # A band we cannot draw honestly is not drawn at all.
+        if n_skipped > 0.01 * n_samples:
+            print("   [band SUPPRESSED: %d/%d samples railed at bounds]" % (n_skipped, n_samples))
+            return None
         if len(curves) < 10: return None
         C = np.array(curves); qlo, qhi = 50*(1-cl), 50*(1+cl)
         return np.nanpercentile(C, qlo, axis=0), np.nanpercentile(C, qhi, axis=0)
@@ -156,7 +164,11 @@ def load_ctx(trig):
     gs = Table.read(os.path.join(ROOT, "results", "grb_sample.ecsv"), format="ascii.ecsv")
     row = gs[[str(x["TRIGGER_NAME"]).strip() == trig for x in gs]][0]
     eng.SRC_RA, eng.SRC_DEC = float(row["RA"]), float(row["DEC"])
-    bk = Table.read(os.path.join(ROOT, "results", "background_intervals.ecsv"), format="ascii.ecsv")
+    # BKG_FILE override (Khushboo, PR khushboo-walkthrough-200524A): panels must
+    # use the SAME background windows as the fits they display.
+    bk = Table.read(os.environ.get("BKG_FILE",
+                                   os.path.join(ROOT, "results", "background_intervals.ecsv")),
+                    format="ascii.ecsv")
     bk = bk[bk["TRIGGER_NAME"] == trig]
     appr = {str(r["DETECTOR"]).strip(): ((float(r["BKG_NEG_START"]), float(r["BKG_NEG_STOP"])),
             (float(r["BKG_POS_START"]), float(r["BKG_POS_STOP"]))) for r in bk}
@@ -188,8 +200,66 @@ def build_plugins(trig, dets, ref, t1, t2, appr):
             plugins.append(pl); names.append(det)
     return plugins, names
 
-def fit_spec(spec, plugins, seed=None):
+def load_engine_rows(trig, out):
+    """The engine's stored fit table, keyed by (t1,t2) rounded — the AUTHORITY.
+    Shipping Gate 2026-08-12: panels DISPLAY the engine's result; they never
+    re-decide a winner. FITS_TABLE env overrides the default location."""
+    cands = [os.environ.get("FITS_TABLE") or "",
+             os.path.join(out, trig, "spectral_fits.ecsv"),
+             os.path.join(ROOT, "results", "clean_per_burst_human_final", trig, "spectral_fits.ecsv")]
+    for c in cands:
+        if c and os.path.exists(c):
+            t = Table.read(c, format="ascii.ecsv")
+            rows = {}
+            for r in t:
+                try:
+                    rows[(round(float(r["T_START"]), 2), round(float(r["T_STOP"]), 2))] = r
+                except Exception:
+                    continue
+            print("   engine table: %s (%d rows)" % (c, len(rows)))
+            return rows
+    print("   [WARN] no engine fit table found — panel falls back to cold refits (STAMP: UNVERIFIED DISPLAY)")
+    return {}
+
+
+def _row_seed(spec, row):
+    """Warm-start values from the engine row for this spec's parameters, applied
+    by short-name match. The table does not store normalizations (engine gap,
+    hardening batch) — K stays free, so a (fast) minimize is still required;
+    the warm start pins it to the engine's minimum basin."""
+    if row is None: return None
+    vals = {}
+    for col, short in (spec.get('pmap') or {}).items():
+        c = "%s_%s" % (spec['prefix'], col)
+        try:
+            v = float(row[c])
+            if np.isfinite(v): vals[short] = v
+        except Exception:
+            continue
+    return vals or None
+
+
+def _apply_short_names(comp, vals):
+    if not vals: return 0
+    n = 0
+    params = getattr(comp, 'parameters', {})
+    for path, p in params.items():
+        short = str(path).split('.')[-1]
+        if short in vals:
+            try:
+                lo, hi = p.min_value, p.max_value
+                v = vals[short]
+                if lo is not None: v = max(v, lo + 1e-6 * abs(lo if lo else 1))
+                if hi is not None: v = min(v, hi - 1e-6 * abs(hi if hi else 1))
+                p.value = v; n += 1
+            except Exception:
+                continue
+    return n
+
+
+def fit_spec(spec, plugins, seed=None, row=None):
     comp = spec['build'](seed or {})
+    _apply_short_names(comp, _row_seed(spec, row))
     ps = PointSource("grb", eng.SRC_RA, eng.SRC_DEC, spectral_shape=comp)
     jl = JointLikelihood(Model(ps), DataList(*plugins)); jl.set_minimizer("minuit")
     try:
@@ -198,6 +268,22 @@ def fit_spec(spec, plugins, seed=None):
         return jl, comp, n2ll + 2*k, True
     except Exception as ex:
         print("   fit failed for %s: %s" % (spec['name'], ex)); return None, comp, float('inf'), False
+
+
+def engine_aic(row, spec):
+    try:
+        v = float(row["%s_AIC" % spec['prefix']])
+        return v if np.isfinite(v) else None
+    except Exception:
+        return None
+
+
+def aic_stamp(panel_aic, eng_val):
+    """The bin7 guard: a panel whose refit disagrees with the engine says so ON
+    ITS FACE (Khushboo's F-10, made mandatory)."""
+    if eng_val is None: return "  [no engine AIC]"
+    d = panel_aic - eng_val
+    return ("  [! PANEL!=ENGINE dAIC=%+.0f]" % d) if abs(d) > 2.0 else ""
 
 # ---------------- one diagnostic panel -----------------------------------------
 def draw_panel(fig, gs_cell, plugins, names, jl, comp, title, ok, rebin, show_comp=True):
@@ -223,6 +309,8 @@ def draw_panel(fig, gs_cell, plugins, names, jl, comp, title, ok, rebin, show_co
     band = model_error_band(jl, comp, E)
     if band is not None:
         ax.fill_between(E, band[0], band[1], color="0.55", alpha=0.32, lw=0, zorder=2, label="68% band")
+    else:
+        ax.text(0.02, 0.02, "no 68% band (railed/unavailable)", transform=ax.transAxes, fontsize=6, color="0.4")
     med = E**2 * _ev(comp, E)
     ax.loglog(E, med, color="0.15", lw=1.8, zorder=5, label="Model")
     data_max = 0.0                        # y-limits are set by the DATA, not the model:
@@ -268,7 +356,12 @@ def run(trig, dets, ref, mode, which, out, rebin):
     dets = [d for d in dets if d in appr]; os.makedirs(out, exist_ok=True)
 
     if mode == "bin":
-        b = int(which); t1, t2 = starts[b], stops[b]
+        # --bin tint (Khushboo, same PR): T_INT = the block union — the row most
+        # quoted against literature must be plottable.
+        if str(which).strip().lower() in ("tint", "t_int", "-1"):
+            b, t1, t2 = -1, float(min(starts)), float(max(stops))
+        else:
+            b = int(which); t1, t2 = starts[b], stops[b]
         plugins, names = build_plugins(trig, dets, ref, t1, t2, appr)
         specs = ALL_SPECS; nrow, ncol = _grid_shape(len(specs))
         fig = plt.figure(figsize=(4.2*ncol, 3.6*nrow))
@@ -295,22 +388,122 @@ def run(trig, dets, ref, mode, which, out, rebin):
         fname = os.path.join(out, "%s_nuFnu_%s_allbins.png" % (trig, spec['prefix']))
 
     elif mode == "best":
+        # Shipping Gate 2026-08-12: the montage DISPLAYS the engine's stored
+        # winner per bin (warm-seeded from the table row) — it never re-decides.
+        # A cold panel refit changed bin7's label (SBPL) against the engine's
+        # winner (Band+BB) on bn200524211; that class dies here.
+        erows = load_engine_rows(trig, out)
         nrow, ncol = _grid_shape(len(starts))
         fig = plt.figure(figsize=(4.2*ncol, 3.6*nrow))
         gs = fig.add_gridspec(nrow, ncol, hspace=0.42, wspace=0.26, top=0.93, bottom=0.06, left=0.06, right=0.99)
         for i, (t1, t2) in enumerate(zip(starts, stops)):
             plugins, names = build_plugins(trig, dets, ref, t1, t2, appr)
-            best = best_jl = best_comp = None; best_aic = np.inf
-            for spec in eng.MODEL_SPECS:
-                jl, comp, aic, ok = fit_spec(spec, plugins)
-                if ok and aic < best_aic: best_aic, best, best_jl, best_comp = aic, spec, jl, comp
-            draw_panel(fig, gs[i // ncol, i % ncol], plugins, names, best_jl, best_comp,
-                       "bin%d [%.2f,%.2f] S=%.0f  %s" % (i, t1, t2, sigs[i], best['name'] if best else "?"),
-                       best is not None, rebin)
-        fig.suptitle("%s  -- best-AIC model per bin" % trig, fontsize=13)
+            row = erows.get((round(t1, 2), round(t2, 2)))
+            if row is not None and 'BEST_AIC_MODEL' in row.colnames:
+                wname = str(row['BEST_AIC_MODEL'])
+                spec = SPEC_BY_NAME.get(wname)
+                if spec is None:
+                    print("   [WARN] bin%d: table winner '%s' not in menu" % (i, wname))
+                jl, comp, aic, ok = (fit_spec(spec, plugins, row=row) if spec else (None, None, np.inf, False))
+                stamp = aic_stamp(aic, engine_aic(row, spec)) if spec else "  [no spec]"
+                title = "bin%d [%.2f,%.2f] S=%.0f  %s%s" % (i, t1, t2, sigs[i], wname, stamp)
+            else:
+                jl = comp = None; ok = False
+                title = "bin%d [%.2f,%.2f] S=%.0f  [NO ENGINE ROW]" % (i, t1, t2, sigs[i])
+            draw_panel(fig, gs[i // ncol, i % ncol], plugins, names, jl, comp, title, ok, rebin)
+        fig.suptitle("%s  -- engine winner per bin (display of stored fits)" % trig, fontsize=13)
         fname = os.path.join(out, "%s_nuFnu_best_montage.png" % trig)
+
+    elif mode == "binall":
+        # Vikas 2026-08-12 ("all models must be shown for the fit together in a
+        # time bin and best fit be once marked — we did that in LATBright"):
+        # ONE axes, every table-VALID model overplotted, the ENGINE's winner
+        # marked. Data unfolded under the winner (stated). Max 8 curves, the
+        # rest listed — no silent caps.
+        erows = load_engine_rows(trig, out)
+        is_tint = str(which).strip().lower() in ("tint", "t_int", "-1")
+        if is_tint:
+            b, t1, t2 = -1, float(min(starts)), float(max(stops))
+        else:
+            b = int(which); t1, t2 = starts[b], stops[b]
+        row = erows.get((round(t1, 2), round(t2, 2)))
+        if row is None:
+            raise SystemExit("binall: no engine row for [%.2f,%.2f] — refuse to display unverified" % (t1, t2))
+        plugins, names = build_plugins(trig, dets, ref, t1, t2, appr)
+        wname = str(row['BEST_AIC_MODEL'])
+        ranked = []
+        for spec in eng.MODEL_SPECS:
+            ea = engine_aic(row, spec)
+            valid = bool(row["%s_VALID" % spec['prefix']]) if "%s_VALID" % spec['prefix'] in row.colnames else False
+            if ea is not None and (valid or spec['name'] == wname):
+                ranked.append((ea, spec))
+        ranked.sort(key=lambda x: x[0])
+        MAXC = 8
+        shown, dropped = ranked[:MAXC], [s['name'] for _, s in ranked[MAXC:]]
+        if dropped:
+            print("   binall: showing best %d of %d VALID models; dropped (by engine AIC): %s"
+                  % (MAXC, len(ranked), ", ".join(dropped)))
+        fig = plt.figure(figsize=(8.6, 7.2))
+        gsr = fig.add_gridspec(2, 1, height_ratios=[3, 1], hspace=0.0, top=0.92, bottom=0.09, left=0.10, right=0.98)
+        ax = fig.add_subplot(gsr[0]); axr = fig.add_subplot(gsr[1], sharex=ax)
+        dlo, dhi = data_range(plugins)
+        if not (np.isfinite(dlo) and np.isfinite(dhi)) or dhi <= dlo: dlo, dhi = 8.0, 4.0e4
+        E = np.logspace(np.log10(dlo), np.log10(dhi), 200)
+        cyc = plt.cm.viridis(np.linspace(0.15, 0.85, max(1, len(shown) - 1)))
+        # winner fitted LAST: plugins share model state, and the data unfold /
+        # residuals below must read the WINNER's predicted counts.
+        others = [(ea, s) for ea, s in shown if s['name'] != wname]
+        w_pair = [(ea, s) for ea, s in shown if s['name'] == wname]
+        wjl = wcomp = None; ci = 0
+        for ea, spec in others + w_pair:
+            jl, comp, aic, ok = fit_spec(spec, plugins, row=row)
+            if not ok: continue
+            lab = "%s (AIC %.0f)%s" % (spec['name'], ea, aic_stamp(aic, ea))
+            if spec['name'] == wname:
+                ax.loglog(E, E**2 * _ev(comp, E), color="k", lw=2.6, zorder=6, label="[BEST] " + lab)
+                wjl, wcomp = jl, comp
+            else:
+                ax.loglog(E, E**2 * _ev(comp, E), color=cyc[ci % len(cyc)], lw=1.1, alpha=0.85, zorder=3, label=lab)
+                ci += 1
+        if wcomp is not None:
+            band = model_error_band(wjl, wcomp, E)
+            if band is not None:
+                ax.fill_between(E, band[0], band[1], color="0.55", alpha=0.28, lw=0, zorder=2)
+            else:
+                ax.text(0.02, 0.02, "68% band suppressed (railed/unavailable)", transform=ax.transAxes,
+                        fontsize=7, color="0.4")
+            nufnu_fn = lambda ee: np.asarray(ee, float)**2 * _ev(wcomp, np.asarray(ee, float))
+            data_max = 0.0
+            for pl, det in zip(plugins, names):
+                ud = unfold_detector(pl, nufnu_fn, rebin[0], int(rebin[1]))
+                if ud is None: continue
+                c = COLORS.get(det, "gray")
+                det_ok = (~ud["is_ul"]) & np.isfinite(ud["nufnu"]) & np.isfinite(ud["nufnu_err"]) & (ud["nufnu"] > 0)
+                if np.any(det_ok):
+                    ax.errorbar(ud["emid"][det_ok], ud["nufnu"][det_ok], yerr=ud["nufnu_err"][det_ok],
+                                xerr=ud["xerr"][:, det_ok], fmt="o", ms=3.4, color=c, alpha=0.9,
+                                elinewidth=0.8, capsize=0, lw=0, label=detlabel(det), zorder=4)
+                    v = (ud["nufnu"][det_ok] + ud["nufnu_err"][det_ok]); v = v[np.isfinite(v)]
+                    if len(v): data_max = max(data_max, float(v.max()))
+                ul = ud["is_ul"] & np.isfinite(ud["nufnu"]) & (ud["nufnu"] > 0)
+                if np.any(ul):
+                    ax.errorbar(ud["emid"][ul], ud["nufnu"][ul], yerr=0.35 * ud["nufnu"][ul],
+                                uplims=True, fmt="none", color=c, alpha=0.55, elinewidth=0.8, zorder=3)
+                rd = np.isfinite(ud["resid"]) & (~ud["is_ul"])
+                if np.any(rd):
+                    axr.errorbar(ud["emid"][rd], ud["resid"][rd], yerr=1.0, xerr=ud["xerr"][:, rd],
+                                 fmt="o", ms=2.6, color=c, alpha=0.9, elinewidth=0.7)
+            if data_max > 0: ax.set_ylim(bottom=data_max / 3.0e4, top=3.0 * data_max)
+        axr.axhline(0, color="k", lw=0.8)
+        axr.set_ylim(-4, 4); axr.set_ylabel("resid (σ)"); axr.set_xlabel("Energy (keV)")
+        ax.set_ylabel(r"$\nu F_\nu$ (keV$^2$ s$^{-1}$ cm$^{-2}$ keV$^{-1}$)")
+        ax.legend(fontsize=7.5, loc="lower center", ncol=2, framealpha=0.9, edgecolor="0.6")
+        _lab = "T_INT (block union)" if is_tint else "bin %d" % b
+        fig.suptitle("%s  %s  [%.2f,%.2f] s  -- top %d of %d VALID models by engine AIC, winner marked (data unfolded under winner; full set in table)"
+                     % (trig, _lab, t1, t2, len(shown), len(ranked)), fontsize=10)
+        fname = os.path.join(out, "%s_nuFnu_%s_allmodels_overlay.png" % (trig, "TINT" if is_tint else "bin%d" % b))
     else:
-        raise SystemExit("mode must be bin|model|best")
+        raise SystemExit("mode must be bin|model|best|binall")
 
     fig.text(0.99, 0.004, "nuFnu data ratio-unfolded (model-dependent); residuals count-space; XSPEC rebin %g,%g; inference is count-space"
              % (rebin[0], rebin[1]), ha="right", fontsize=7, color="0.45")
@@ -323,12 +516,12 @@ if __name__ == "__main__":
     ap.add_argument("--trig", required=True)
     ap.add_argument("--dets", default="na,nb,b1")
     ap.add_argument("--ref", default="na")
-    ap.add_argument("--mode", default="best", choices=["bin", "model", "best"])
+    ap.add_argument("--mode", default="best", choices=["bin", "model", "best", "binall"])
     ap.add_argument("--bin", dest="which", default=None)
     ap.add_argument("--model", dest="model", default=None)
     ap.add_argument("--rebin", nargs=2, type=float, default=[REBIN_SIG, REBIN_MAX],
                     metavar=("SIG", "MAXCH"), help="pyXSPEC 'setplot rebin SIG MAXCH' (default 5 5)")
     ap.add_argument("--out", default=os.path.join(ROOT, "results", "figures"))
     a = ap.parse_args()
-    which = a.which if a.mode == "bin" else (a.model if a.mode == "model" else None)
+    which = a.which if a.mode in ("bin", "binall") else (a.model if a.mode == "model" else None)
     run(a.trig, a.dets.split(","), a.ref, a.mode, which, a.out, (a.rebin[0], int(a.rebin[1])))

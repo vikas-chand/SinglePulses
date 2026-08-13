@@ -1,0 +1,105 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\href{#1}{#1}}
+\providecommand{\dodoi}[1]{doi:~\href{http://doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\doeprint}[1]{\href{http://ascl.net/#1}{\nolinkurl{http://ascl.net/#1}}}
+\providecommand{\doarXiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{https://arxiv.org/abs/#1}}}
+
+\bibitem[{{Anthropic}(2024)}]{anthropic2024agents}
+{Anthropic}. 2024, Building Effective {AI} Agents,
+  \url{https://www.anthropic.com/engineering/building-effective-agents}
+
+\bibitem[{Boden(2004)}]{boden2004}
+Boden, M.~A. 2004, The Creative Mind: Myths and Mechanisms, 2nd edn. (London:
+  Routledge)
+
+\bibitem[{{Busby} \& {Lazzati}(2024)}]{2024ApJ...972...83B}
+{Busby}, I., \& {Lazzati}, D. 2024, \apj, 972, 83,
+  \dodoi{10.3847/1538-4357/ad6564}
+
+\bibitem[{{Fana Dirirsa} {et~al.}(2019){Fana Dirirsa}, {Razzaque}, {Piron},
+  {Arimoto}, {Axelsson}, {Kocevski}, {Longo}, {Ohno}, \&
+  {Zhu}}]{2019ApJ...887...13F}
+{Fana Dirirsa}, F., {Razzaque}, S., {Piron}, F., {et~al.} 2019, \apj, 887, 13,
+  \dodoi{10.3847/1538-4357/ab4e11}
+
+\bibitem[{{Foster} {et~al.}(2013){Foster}, {Rzhetsky}, \&
+  {Evans}}]{2013arXiv1302.6906F}
+{Foster}, J.~G., {Rzhetsky}, A., \& {Evans}, J.~A. 2013, arXiv e-prints,
+  arXiv:1302.6906, \dodoi{10.48550/arXiv.1302.6906}
+
+\bibitem[{{Guo} {et~al.}(2025){Guo}, {Yang}, {Zhang}, {Song}, {Wang}, {Zhu},
+  {Xu}, {Zhang}, {Ma}, {Bi}, {Zhang}, {Yu}, {Wu}, {Wu}, {Gou}, {Shao}, {Li},
+  {Gao}, {Liu}, {Xue}, {Wang}, {Wu}, {Feng}, {Lu}, {Zhao}, {Deng}, {Ruan},
+  {Dai}, {Chen}, {Ji}, {Li}, {Lin}, {Dai}, {Luo}, {Hao}, {Chen}, {Li}, {Zhang},
+  {Xu}, {Ding}, {Gao}, {Qu}, {Li}, {Guo}, {Li}, {Chen}, {Yuan}, {Tu}, {Qiu},
+  {Li}, {Cai}, {Ni}, {Liang}, {Chen}, {Dong}, {Hu}, {You}, {Gao}, {Guan},
+  {Huang}, {Yu}, {Wang}, {Zhang}, {Zhao}, {Wang}, {Zhang}, {Xu}, {Xia},
+  {Zhang}, {Zhang}, {Tang}, {Zhou}, {Li}, {Wang}, {Li}, {Tian}, {Huang},
+  {Zhang}, {Wang}, {Chen}, {Du}, {Ge}, {Zhang}, {Pan}, {Wang}, {Chen}, {Jin},
+  {Chen}, {Lu}, {Zhou}, {Chen}, {Ye}, {Wang}, {Yu}, {Zhou}, {Pan}, {Li},
+  {Zhou}, {Wu}, {Yun}, {Pei}, {Sun}, {Wang}, {Zeng}, {Liu}, {Liang}, {Gao},
+  {Yu}, {Zhang}, {Xiao}, {An}, {Liu}, {Wang}, {Chen}, {Nie}, {Cheng}, {Liu},
+  {Xie}, {Liu}, {Yang}, {Li}, {Su}, {Lin}, {Li}, {Jin}, {Shen}, {Chen}, {Sun},
+  {Wang}, {Song}, {Zhou}, {Wang}, {Shan}, {Li}, {Wang}, {Wei}, {Zhang}, {Xu},
+  {Li}, {Zhao}, {Sun}, {Wang}, {Yu}, {Zhang}, {Shi}, {Xiong}, {He}, {Piao},
+  {Wang}, {Tan}, {Ma}, {Liu}, {Guo}, {Ou}, {Wang}, {Gong}, {Zou}, {He},
+  {Xiong}, {Luo}, {You}, {Liu}, {Zhou}, {Zhu}, {Huang}, {Li}, {Zheng}, {Zhu},
+  {Ma}, {Tang}, {Zha}, {Yan}, {Ren}, {Ren}, {Sha}, {Fu}, {Xu}, {Xie}, {Zhang},
+  {Hao}, {Ma}, {Yan}, {Wu}, {Gu}, {Zhu}, {Liu}, {Li}, {Xie}, {Song}, {Pan},
+  {Huang}, {Xu}, {Zhang}, \& {Zhang}}]{2025Natur.645..633G}
+{Guo}, D., {Yang}, D., {Zhang}, H., {et~al.} 2025, \nat, 645, 633,
+  \dodoi{10.1038/s41586-025-09422-z}
+
+\bibitem[{{Li} \& {Zhang}(2021)}]{2021ApJS..253...43L}
+{Li}, L., \& {Zhang}, B. 2021, \apjs, 253, 43, \dodoi{10.3847/1538-4365/abded1}
+
+\bibitem[{{Lu} {et~al.}(2018){Lu}, {Liang}, {Lin}, {L{\"u}}, {Wang}, {L{\"u}},
+  {Liu}, {Liang}, \& {Zhang}}]{2018ApJ...865..153L}
+{Lu}, R.-J., {Liang}, Y.-F., {Lin}, D.-B., {et~al.} 2018, \apj, 865, 153,
+  \dodoi{10.3847/1538-4357/aada16}
+
+\bibitem[{{Shinn} {et~al.}(2023){Shinn}, {Cassano}, {Berman}, {Gopinath},
+  {Narasimhan}, \& {Yao}}]{2023arXiv230311366S}
+{Shinn}, N., {Cassano}, F., {Berman}, E., {et~al.} 2023, arXiv e-prints,
+  arXiv:2303.11366, \dodoi{10.48550/arXiv.2303.11366}
+
+\bibitem[{{Siddique} {et~al.}(2022){Siddique}, {Sajjad}, \&
+  {Motiwala}}]{2022ApJ...938..159S}
+{Siddique}, I., {Sajjad}, S., \& {Motiwala}, K. 2022, \apj, 938, 159,
+  \dodoi{10.3847/1538-4357/ac8d05}
+
+\bibitem[{Swanson(1986)}]{swanson1986}
+Swanson, D.~R. 1986, Perspectives in Biology and Medicine, 30, 7,
+  \dodoi{10.1353/pbm.1986.0087}
+
+\bibitem[{{Uzzi} {et~al.}(2013){Uzzi}, {Mukherjee}, {Stringer}, \&
+  {Jones}}]{2013Sci...342..468U}
+{Uzzi}, B., {Mukherjee}, S., {Stringer}, M., \& {Jones}, B. 2013, Science, 342,
+  468, \dodoi{10.1126/science.1240474}
+
+\bibitem[{{Villaescusa-Navarro} {et~al.}(2025){Villaescusa-Navarro}, {Bolliet},
+  {Villanueva-Domingo}, {Bayer}, {Acquah}, {Amancharla}, {Barzilay-Siegal},
+  {Bermejo}, {Bilodeau}, {C{\'a}rdenas Ram{\'\i}rez}, {Cranmer},
+  {Fran{\c{c}}a}, {Hahn}, {Jiang}, {Jimenez}, {Lee}, {Lerario}, {Mamun},
+  {Meier}, {Ojha}, {Protopapas}, {Roy}, {Spergel}, {Taranc{\'o}n-{\'A}lvarez},
+  {Tiwari}, {Viel}, {Wadekar}, {Wang}, {Wang}, {Xu}, {Yovel}, {Yue}, {Zhou},
+  {Zhu}, {Zou}, \& {Zubeldia}}]{2025arXiv251026887V}
+{Villaescusa-Navarro}, F., {Bolliet}, B., {Villanueva-Domingo}, P., {et~al.}
+  2025, arXiv e-prints, arXiv:2510.26887, \dodoi{10.48550/arXiv.2510.26887}
+
+\bibitem[{{Wang} {et~al.}(2023){Wang}, {Xie}, {Jiang}, {Mandlekar}, {Xiao},
+  {Zhu}, {Fan}, \& {Anandkumar}}]{2023arXiv230516291W}
+{Wang}, G., {Xie}, Y., {Jiang}, Y., {et~al.} 2023, arXiv e-prints,
+  arXiv:2305.16291, \dodoi{10.48550/arXiv.2305.16291}
+
+\bibitem[{Wiggins(2006)}]{wiggins2006}
+Wiggins, G.~A. 2006, Knowledge-Based Systems, 19, 449,
+  \dodoi{10.1016/j.knosys.2006.04.009}
+
+\bibitem[{{Yamada} {et~al.}(2025){Yamada}, {Tjarko Lange}, {Lu}, {Hu}, {Lu},
+  {Foerster}, {Clune}, \& {Ha}}]{2025arXiv250408066Y}
+{Yamada}, Y., {Tjarko Lange}, R., {Lu}, C., {et~al.} 2025, arXiv e-prints,
+  arXiv:2504.08066, \dodoi{10.48550/arXiv.2504.08066}
+
+\end{thebibliography}

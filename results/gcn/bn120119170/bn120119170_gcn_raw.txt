@@ -1,0 +1,773 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12859
+SUBJECT: GRB 120119A: Swift detection of a burst with an optical counterpart
+DATE:    12/01/19 04:22:23 GMT
+FROM:    Scott Barthelmy at NASA/GSFC  <scott@milkyway.gsfc.nasa.gov>
+
+A. P. Beardmore (U Leicester), S. D. Barthelmy (GSFC),
+M. M. Chester (PSU), N. Gehrels (NASA/GSFC), J. A. Kennea (PSU),
+H. A. Krimm (CRESST/GSFC/USRA), N. P. M. Kuin (UCL-MSSL),
+O. M. Littlejohns (U Leicester), F. E. Marshall (NASA/GSFC),
+K. L. Page (U Leicester), M. H. Siegel (PSU), C. A. Swenson (PSU) and
+T. N. Ukwatta (MSU) report on behalf of the Swift Team:
+
+At 04:04:30.21 UT, the Swift Burst Alert Telescope (BAT) triggered and
+located GRB 120119A (trigger=512035).  Swift slewed immediately to the burst. 
+The BAT on-board calculated location is 
+RA, Dec 120.027, -9.074, which is 
+   RA(J2000)  =  08h 00m 07s
+   Dec(J2000) = -09d 04' 25"
+with an uncertainty of 3 arcmin (radius, 90% containment, including 
+systematic uncertainty).  The BAT light curve shows at least three peaks
+with a total duration of at least 50 sec.  The peak count rate
+was ~16,000 counts/sec (15-350 keV), at ~10 sec after the trigger. 
+
+The XRT began observing the field at 04:05:23.4 UT, 53.3 seconds after
+the BAT trigger. XRT found a bright, uncatalogued X-ray source located
+at RA, Dec 120.0293, -9.0803 which is equivalent to:
+   RA(J2000)  = +08h 00m 7.03s
+   Dec(J2000) = -09d 04' 49.1"
+with an uncertainty of 4.7 arcseconds (radius, 90% containment). This
+location is 24 arcseconds from the BAT onboard position, within the BAT
+error circle. No event data are yet available to determine the column
+density using X-ray spectroscopy. 
+
+The initial flux in the 2.5 s image was 1.06e-08 erg cm^-2 s^-1 (0.2-10
+keV). 
+
+UVOT took a finding chart exposure of 150 seconds with the White filter
+starting 61 seconds after the BAT trigger. There is a candidate afterglow in
+the rapidly available 2.7'x2.7' sub-image at
+  RA(J2000)  =	08:00:06.94 = 120.02890
+  DEC(J2000) = -09:04:53.7  =  -9.08157
+with a 90%-confidence error radius of about 0.66 arc sec. This position is 4.8
+arc sec. from the center of the XRT error circle. The estimated magnitude is
+19.67 with a 1-sigma error of about  0.16. No correction has been made for the
+expected extinction corresponding to E(B-V) of 0.11. 
+
+Burst Advocate for this burst is A. P. Beardmore (apb AT star.le.ac.uk). 
+Please contact the BA by email if you require additional information
+regarding Swift followup of this burst. In extremely urgent cases, after
+trying the Burst Advocate, you can contact the Swift PI by phone (see
+Swift TOO web site for information: http://www.swift.psu.edu/too.html.)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12860
+SUBJECT: GRB 120119A: PAIRITEL NIR Detection
+DATE:    12/01/19 04:42:48 GMT
+FROM:    Adam Morgan at U.C. Berkeley  <qmorgan@gmail.com>
+
+A. N. Morgan,  and J. S. Bloom (UC Berkeley) report:
+
+We observed the field of GRB 120119A (Beardmore et al., GCN 12859) with the
+1.3m PAIRITEL located at Mt. Hopkins, Arizona. Observations began at
+2012-Jan-19 04h05m23s UT, ~53 seconds after the Swift trigger.  In
+ mosaics (effective exposure time of 560 seconds) taken simultaneously in
+the J, H, and Ks filters, we detect a source at the position of the optical
+afterglow.
+
+The preliminary photometry yields:
+
+post burst
+t_mid (m)  exp.(s)  filt  mag    m_err
+10.3       560      J     14.35  0.02
+10.3       560      H     13.10  0.02
+10.3       560      Ks    11.95  0.02
+
+All magnitudes are given in the Vega system, calibrated to 2MASS. No
+correction for Galactic extinction has been made to the above reported
+values.  Observations are continuing.
+
+[GCN OPS NOTE(19jan11): Per author's request, the start time in the 3rd line
+was changed from "04h07m15s UT, ~2.7 minutes" to "04h05m23s UT, ~53 seconds".]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12861
+SUBJECT: GRB 120119A: Liverpool Telescope afterglow detection
+DATE:    12/01/19 04:51:56 GMT
+FROM:    Andreja Gomboc at LT,ARI,Liverpool JMU  <ag@astro.livjm.ac.uk>
+
+A. Gomboc (University of Ljubljana, CE Space.si) reports on behalf of a large collaboration:
+The 2-m Liverpool Telescope responded automatically to Swift trigger 512035. Following observations with RINGO-2 polarimeter, observations in r' i' and z' filter started at 14.5 min after the BAT trigger time. We clearly detect the afterglow in all three filters consistent with the UVOT position (Beardmore et al. GCN Circ. 12859).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12863
+SUBJECT: GRB 120119A: GROND Detection of the Optical/NIR Afterglow
+DATE:    12/01/19 05:27:34 GMT
+FROM:    Patricia Schady at MPE/Swift  <pschady@mpe.mpg.de>
+
+P. Schady, V. Sudilovsky, J. Greiner (all MPE Garching) and T.Kruehler  
+(DARK/NBI) report on behalf of the GROND team:
+
+We observed the field of GRB 120119A (Swift trigger 512035; Beardmore  
+et al., GCN #12859) simultaneously in g'r'i'z'JHK with GROND (Greiner  
+et al. 2008, PASP 120, 405) mounted at the 2.2 m MPI/ESO telescope at  
+La Silla Observatory (Chile).
+
+Observations started at 04:08 UT, 3.5 min after the GRB trigger, and  
+are continuing. They were performed at an average seeing of 0.9" and  
+at an average airmass of 1.0.
+
+We found a single point source consistent with the UVOT afterglow  
+position.
+
+Based on the first 2.4 min of total exposures in g'r'i'z' and 4 min in  
+JHK, we estimate preliminary magnitudes (all in AB) of
+
+g' = 18.8 +- 0.1 mag,
+r' = 17.7 +- 0.1 mag,
+i' = 16.8 +- 0.1 mag,
+z' = 16.2 +- 0.1 mag,
+J = 15.2 +- 0.1 mag,
+H = 14.6 +- 0.1 mag and
+K = 14.0 +- 0.1mag
+
+Given magnitudes are calibrated against SDSS zeropoints as well as  
+2MASS field stars and are not corrected for the expected Galactic  
+foreground extinction corresponding to a reddening of E_(B-V)=0.11 mag  
+in the direction of the burst (Schlegel et al. 1998).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12864
+SUBJECT: GRB 120119A: PROMPT optical observation of early afterglow
+DATE:    12/01/19 05:29:06 GMT
+FROM:    Aaron LaCluyze at U.North Carolina  <lacluyze@email.unc.edu>
+
+A. LaCluyze, J. Haislip, K. Ivarsen, D. Reichart, J. Moore, M. Nysewander, 
+A. Trotter, R. Egger, A. Foster, A. Oza, T. Cromartie, E. Speckhard, and J. 
+A. Crain report:
+
+Skynet observed the field of GRB 120119A with the PROMPT telescopes located 
+at CTIO in Chile. Observations in B, R, and I began at 04:05:08 UT, 38 
+seconds after the burst. We detect an optical source consistent with the 
+UVOT position reported by Beardmore et. al. (GCN 12859) in all three 
+filters.  The optical afterglow faded for the first ~2.3 minutes, then 
+brightened until approximately minute 14, after which it resumed fading. 
+The afterglow is red, with (I - R) ~ 1 mag and (R - B) ~ 2 mag.  
+
+A preliminary light curve can be found at:
+http://skynet.unc.edu/grb/grb120119a.png
+
+Further observations are ongoing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12865
+SUBJECT: GRB 120119A: Gemini-S redshift
+DATE:    12/01/19 06:01:56 GMT
+FROM:    Antonino Cucchiara at UCSC/UCO Lick  <acucchia@ucolick.org>
+
+A. Cucchiara, J. X. Prochaska (UCSC/UCO Lick) 
+report on behalf of a larger collaboration:
+
+On January 19.20 UT (53 minutes after the BAT trigger) 
+we observed the optical counterpart of GRB 120119A 
+(Beardmore et al., GCN 12859) using GMOS-South on the 
+Gemini-South 8-m telescope.  
+
+Spectroscopic observation covering 4000-8000 Angstrom wavelength 
+range reveals several absorption features, including AlIII1854, 
+1862, FeII2586,2600, MnII2606, MgII2796,2803 at a common 
+redshift of 1.728.
+Also at least an intervening system is present at z=1.212
+based on strong MgII2796 absorption features.
+
+We therefore suggest this to be the redshift of GRB 120119A.
+
+We thank the Gemini staff for performing this observation.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12866
+SUBJECT: GRB 120119A: Lick 3m Spectroscopy
+DATE:    12/01/19 06:23:08 GMT
+FROM:    Antonino Cucchiara at UCSC/UCO Lick  <acucchia@ucolick.org>
+
+Anna Pancoast (UCSB), Rebecca Rosen (Cal Poly), Vardha Bennert 
+(Cal Poly), A. Cucchiara (UCO) and J. Xavier Prochaska (UCO) 
+on behalf of GRAASP report:
+
+"We observed the afterglow of GRB 120119 with the Kast
+dual spectrometer for 1800s total starting at UT 05:30
+under fine conditions.  Analysis of the red side exposure
+shows strong absorption from ZnII and FeII transitions
+at a common redshift of z=1.73 confirming the reported
+redshift of Cucciara & Prochaska (GCN 12865).  
+
+Further analysis is in progress.
+
+This GCN may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12867
+SUBJECT: GRB 120119A: MMT redshift confirmation
+DATE:    12/01/19 06:24:14 GMT
+FROM:    Edo Berger at Harvard  <eberger@cfa.harvard.edu>
+
+D. Milisavljevic, M. Drout, and E. Berger (Harvard) report:
+
+"We obtained an optical spectrum of GRB 120119A (GCN 12859) with the
+Blue Channel spectrograph mounted on the MMT 6.5-m telescope.  In a
+single 1800 sec exposure covering 3500-8500 Ang we find a wide range
+of absorption features (from CII1335 to MgI2853) at a common redshift
+of z=1.728, confirming the results of Cucchiara & Prochaska (GCN
+12865)."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12871
+SUBJECT: GRB 120119A: optical observations
+DATE:    12/01/19 12:57:41 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+L. Elenin (KIAM),  A. Volnova (SAI MSU),  A. Pozanenko (IKI)  report on 
+behalf of  larger GRB follow-up collaboration:
+
+We observed the field of the Swift GRB 120119A  (Beardmore  et al.,  GCN 
+12859) with 0.45-m telescope  ISON-NM observatory on Jan. 19. We took 
+several unfiltered images of  60 s exposure on Jan.19, starting (UT) 
+05:19:52. We clearly detect the OT source (Beardmore  et al.,  GCN  12859). 
+Coordinates of the source are (J2000) 08 00 06.96 -09 04 54.4 which is 
+consistent with UVOT position (GCN  12859). Photometry of the source is 
+based on SDSS star J080000.59-090624.3 (08:00:00.60 -09:06:24.4) assuming 
+R=16.42:
+
+t-t0             filter      Exp.        OT
+(mid, days)             (s)
+
+0.05234    none     600   18.97  +/-    0.09
+0.06039    none     600   18.84  +/-    0.08
+0.06837    none     600   19.13  +/-    0.11
+0.08321    none    1500  19.51  +/-    0.07
+0.10178    none    1500  19.70  +/-    0.08
+0.12128    none    1500  19.99  +/-    0.08
+0.13989    none    1500  19.86  +/-    0.08
+
+Looking for the photometry result one can suggest either plateau phase or 
+the start of a re-brightening episode at ~ 0.14d.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12872
+SUBJECT: Konus-Wind observation of GRB 120119A
+DATE:    12/01/19 13:18:14 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The long GRB 120119A (Swift-BAT trigger #512035:
+Beardmore et al., GCN 12859)
+triggered Konus-Wind at T0=14674.872s UT (04:01:34.872)
+
+The burst light curve shows a multi-peaked pulse
+with a total duration of ~61 s.
+The emission is seen up to ~7 MeV.
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB120119_T14674/
+
+As observed by Konus-Wind the burst
+had a fluence of (4.7 ± 0.6)x10-5 erg/cm2,
+and a 256-ms peak flux, measured from T0+16.384 s,
+of (3.9 ± 0.5)x10-6 erg/cm2/s
+(both in the 20 keV - 10 MeV energy range).
+
+The time-integrated spectrum of the burst
+(measured from T0 to T0+49.152 s)
+is best fitted in the 20 keV - 10 MeV range
+with the GRB (Band) model, for which:
+the low-energy photon index alpha = -0.85 (-0.16, +0.20),
+the high energy photon index beta = -2.34 (-0.22, +0.15),
+the peak energy Ep = 153(-19, +21) keV,
+chi2 = 73.5/84 dof.
+
+The spectrum of the initial pulse
+(measured from T0 to T0+16.384 s) is best fitted
+is best fitted in the 20 keV - 10 MeV range
+with the GRB (Band) model, for which:
+the low-energy photon index alpha = -0.92 (-0.13, +0.14),
+the high energy photon index beta = -2.41 (-0.35, +0.16),
+the peak energy Ep = 192(-21, +29) keV,
+chi2 = 72.4/84 dof.
+
+Assuming the redshift z=1.73 (Cucchiara & Prochaska, GCN 12865;
+Pancoast et al., GCN 12866; Milisavljevic et al., GCN 12867)
+and a standard cosmology model
+with H_0 = 71 km/s/Mpc, Omega_M = 0.27, Omega_Lambda = 0.73,
+the isotropic energy release E_iso is (3.6 ± 0.5)x10^53 erg,
+the isotropic peak luminosity L_iso_max is (5.1 ± 0.7)x10^52 erg/s,
+and Ep_rest is (265 ± 35) keV.
+
+All the quoted results are preliminary.
+All the quoted errors are at the 90% confidence level.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12874
+SUBJECT: GRB 120119A: Fermi GBM observation
+DATE:    12/01/19 15:24:03 GMT
+FROM:    David Gruber at MPE  <dgruber@mpe.mpg.de>
+
+David Gruber (MPE) reports on behalf of the Fermi GBM Team:
+
+"At 04:04:25.06 UT on 19 January 2012, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 120119A (trigger 348638667 / 120119170).
+which was also detected by the Swift/BAT and Swift/XRT
+(Beardmore et al. 2012, GCN 12859)
+The GBM on-ground location is consistent with the Swift position.
+
+The angle from the Fermi LAT boresight is 31.4 degrees.
+
+This burst was also independently detected by INTEGRAL SPI-ACS.
+
+The GBM light curve shows several overlapping pulses
+with a duration (T90) of about 55 s (50-300 keV).
+The time-averaged spectrum from T0-1.5 s to T0+53.8 s is
+best fit by a Band function with Epeak = 189.2 +/- 8.3 keV,
+alpha = -0.98 +/- 0.03, and beta = -2.36 +/- 0.09.
+
+The event fluence (10-1000 keV) in this time interval is
+(3.87 +/- 0.01)E-05 erg/cm^2. The 1-sec peak photon flux measured
+starting from T0+14.5 s in the 10-1000 keV band
+is 16.86 +/- 0.39 ph/s/cm^2.
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12876
+SUBJECT: GRB 120119A: Enhanced Swift-XRT position
+DATE:    12/01/19 17:52:23 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@star.le.ac.uk>
+
+A.P. Beardmore, P.A. Evans, M.R. Goad and J.P. Osborne (U. Leicester) 
+report on behalf of the Swift-XRT team.
+
+Using 6070 s of XRT Photon Counting mode data and 12 UVOT
+images for GRB 120119A, we find an astrometrically corrected X-ray
+position (using the XRT-UVOT alignment and matching UVOT field sources
+to the USNO-B1 catalogue): RA, Dec = 120.02875, -9.08177 which is equivalent
+to:
+
+RA (J2000): 08h 00m 6.90s
+Dec (J2000): -09d 04' 54.4"
+
+with an uncertainty of 1.4 arcsec (radius, 90% confidence).
+
+This position may be improved as more data are received. The latest
+position can be viewed at http://www.swift.ac.uk/xrt_positions. Position
+enhancement is described by Goad et al. (2007, A&A, 476, 1401) and Evans
+et al. (2009, MNRAS, 397, 1177).
+
+This circular was automatically generated, and is an official product of the
+Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12877
+SUBJECT: GRB 120119A: Swift-XRT refined Analysis
+DATE:    12/01/19 18:22:07 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@star.le.ac.uk>
+
+V. D'Elia (ASDC), V. Mangano (INAF-IASFPA), M.C. Stroh (PSU), D.N.
+Burrows (PSU), J.A. Kennea (PSU), K.L. Page (U. Leicester), C. Pagani
+(U. Leicester), A. Melandri (INAF-OAB) and A.P. Beardmore report on
+behalf of the Swift-XRT team:
+
+We have analysed 9.1 ks of XRT data for GRB 120119A (Beardmore	et al.
+GCN Circ. 12859), from 59 s to 30.4 ks after the  BAT trigger. The data
+comprise 332 s in Windowed Timing (WT) mode with the remainder in
+Photon Counting (PC) mode. The enhanced XRT position for this burst was
+given by Beardmore et al. (GCN. Circ 12876).
+
+The light curve can be modelled with an initial power-law decay with an
+index of alpha=2.58 (+/-0.08), followed by a break at T+167 s to an
+alpha of 1.008 (+0.017, -0.018).
+
+A spectrum formed from the WT mode data can be fitted with an absorbed
+power-law with a photon spectral index	of 1.93 (+/-0.07). The
+best-fitting absorption column is  2.18 (+0.22, -0.21) x 10^21 cm^-2,
+in excess of the Galactic value of 7.9 x 10^20 cm^-2 (Kalberla et al.
+2005). The PC mode spectrum has a photon index of 1.68 (+0.13, -0.12)
+and a best-fitting absorption column of 2.1 (+0.5, -0.4) x 10^21 cm^-2.
+The counts to observed (unabsorbed) 0.3-10 keV flux conversion factor
+deduced from this spectrum  is 4.7 x 10^-11 (6.0 x 10^-11) erg cm^-2
+count^-1. 
+
+A summary of the PC-mode spectrum is thus:
+Total column:	     2.1 (+0.5, -0.4) x 10^21 cm^-2
+Galactic foreground: 7.9 x 10^20 cm^-2
+Excess significance: 4.9 sigma
+Photon index:	     1.68 (+0.13, -0.12)
+
+The results of the XRT-team automatic analysis are available at
+http://www.swift.ac.uk/xrt_products/00512035.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12878
+SUBJECT: GRB 120119A: SMARTS optical/IR afterglow observations
+DATE:    12/01/19 19:46:55 GMT
+FROM:    Bethany Cobb at GWU  <bcobb@gwu.edu>
+
+B. E. Cobb (GWU), reports:
+
+Using the ANDICAM instrument on the 1.3m telescope at CTIO, we obtained
+optical/IR imaging of the error region of GRB 120119A (GCN 12859,
+Beardmore et al.) over several epochs, starting ~0.6 hours post-burst.
+For the first epoch, several dithered images were obtained in each filter,
+with total summed exposure times of 180s in each of BRIJK and 120s in each
+of H and V.  For later epochs, total summed exposure times amounted to 15
+minutes in I and V and 12 minutes in J and K.
+
+At a mid-exposure time of 2012-01-19 04:43 UT (0.64 hrs post-burst), the
+GRB afterglow (e.g. GCN 12859, Beardmore et al., GCN 12860, Morgan et
+al., GCN 12863, Schady et al.) is detected with the following magnitudes:
+
+B = 20.07 +/- 0.06
+V = 18.91 +/- 0.05
+R = 18.02 +/- 0.03
+I = 16.96 +/- 0.03
+J = 15.14 +/- 0.05
+H = 14.02 +/- 0.06
+K = 12.89 +/- 0.10
+
+Between about 0.6 hrs and 3 hrs post-burst, the GRB afterglow fades with a
+decay rate of approximately alpha = 1.6 (where afterglow flux is
+proportional to t^-alpha).
+
+time
+post-burst      I-band magnitude
+0.64 hrs        16.96 +/- 0.03
+1.71 hrs        18.52 +/- 0.03
+2.97 hrs        19.39 +/- 0.05
+
+(Optical photometry is calibrated against Landolt standard stars
+and IR photometry is calibrated against 2MASS stars in the field.)
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12880
+SUBJECT: GRB 120119A:  Swift/UVOT Observations
+DATE:    12/01/19 20:29:33 GMT
+FROM:    Margaret Chester at PSU  <chester@astro.psu.edu>
+
+M. M. Chester (PSU) and A. P. Beardmore (U Leicester)
+report on behalf of the Swift/UVOT team:
+
+The Swift/UVOT began settled observations of the field of GRB 120119A
+62 s after the BAT trigger (Beardmore et al., GCN Circ. 12859).
+A source consistent with the XRT position (Beardmore et al., GCN Circ.
+12876) is detected in the initial UVOT exposures.
+
+The preliminary UVOT position is:
+     RA  (J2000) =  08:00:06.93 = 120.02889 (deg.)
+     Dec (J2000) = -09:04:53.7  =  -9.08159 (deg.)
+with an estimated uncertainty of 0.59 arc sec. (radius, 90% confidence).
+
+Preliminary detections and 3-sigma upper limits using the UVOT
+photometric system (Breeveld et al. 2011, AIP Conf. Proc. 1358, 373)  
+are:
+
+Filter         T_start(s)   T_stop(s)      Exp(s)           Mag
+
+white_FC            62          211          147         19.5 +/- 0.1
+white               62         1997          205         19.5 +/- 0.1
+white             6130        30955         1112         21.9 +/- 0.4
+v                 1682         2048           58        >19.1
+v                 7810        12009          926        >20.8
+b                 1608         1973           58         19.4 +/- 0.3
+b                 5926        30829         1967        >22.0
+u_FC               273          302           28        >18.7
+u                  273         1948           66        >19.3
+u                 5720        29917         1967        >21.7
+w1                1731         1923           39        >19.1
+w1               12921        25179         1511        >21.5
+m2                1706         2073           58        >19.3
+m2               12014        12914          885        >21.2
+w2                1658         2022           58        >19.5
+w2                6336         7804          242        >20.6
+
+The magnitudes in the table are not corrected for the Galactic  
+extinction
+due to the reddening of E(B-V) = 0.11 in the direction of the burst
+(Schlegel et al. 1998).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12881
+SUBJECT: GRB 120119A: optical observations
+DATE:    12/01/20 09:20:57 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+L. Elenin (KIAM),  A. Volnova (SAI MSU),  A. Pozanenko (IKI)  report on 
+behalf of  larger GRB follow-up collaboration:
+
+We observed the field of the Swift GRB 120119A  (Beardmore  et al.,  GCN 
+12859) with 0.45-m telescope  ISON-NM observatory on Jan. 20  between (UT) 
+05:59:24 - 06:53:16. We do not detect the OT at the UVOT position reported 
+in GCN 12880 (Chester et al.).
+
+However we detect the source with coordiantes (J2000) 08 00 06.97 -09 04 
+56.6 with uncertainties of 0.1" (in both coordinates) which is differ from 
+OT coordinates calculated in the first epoch of our observations (Elenin et 
+al, GCN  12871). This source coincide with SDSS source 
+SDSSJ080006.97-090456.8 (r=21.05) and is also visible at DSS2 image (R).
+
+Photometry of this source at 1.0987 days after burst (mean time) is 21.1 +/- 
+0.2 and based on SDSS star J080005.86-090434.9   (J2000) 08 00 05.868 -09 04 
+34.91 assuming R=18.05.We suggest that the source could be a host galaxy of 
+GRB 120119A. All results are preliminary.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12882
+SUBJECT: GRB120119A: REM NIR observations
+DATE:    12/01/20 09:36:12 GMT
+FROM:    Dino Fugazza at INAF-OAB  <dino.fugazza@brera.inaf.it>
+
+D. Fugazza, P. D'Avanzo, A. Melandri (INAF-OAB), L. A. Antonelli (INAF-OAR/ASI-ASDC) report on behalf of the CIBO collaboration:
+
+We observed the field of GRB 120119A (Beardmore et al., GCN 12859) with the REMIR infrared camera, mounted on the 60-cm robotic REM telescope at
+La Silla, starting 2.5 min after the burst.
+
+The optical/NIR afterglow (Beardmore et al. GCN 12859; Morgan & Bloom GCN 12860; Gomboc GCN 12861; Schady et al. GCN 12863; Elenin et al. GCN 12871; Cobb GCN 12878) is clearly detected in the H-band. 
+The light curve shows a plateau from about 4.5 min to 10 min after the burst with an observed magnitude of H~13.4, peaks at about T-T0=15 min with H~13.0 and then displays a significant decay. 
+The last detection is at T-T0=3.8 hr with a magnitude of H~16.0.
+
+
+The magnitudes are calibrated against the 2MASS catalogue.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12883
+SUBJECT: GRB 120119A: TAROT La Silla observatory optical observations
+DATE:    12/01/20 09:47:40 GMT
+FROM:    Alain Klotz at CESR-CNRS  <Alain.Klotz@free.fr>
+
+Klotz A. (IRAP-CNRS-OMP), Gendre B. (ASDC/INAF-OAR),
+Boer M. (UNS-CNRS-OCA), Atteia J.L. (IRAP-CNRS-OMP) report:
+
+We imaged the field of GRB 120119A detected by SWIFT
+(trigger 512035) with the TAROT robotic telescope (D=25cm)
+located at the European Southern Observatory,
+La Silla observatory, Chile.
+
+The observations started 33.0s after the GRB trigger
+(9.2s after the notice) using the trigger time origin
+at 04:04:30.21 UT (Beardmore et al. GCNC 12859).
+The elevation of the field increased from
+67 degrees above horizon and weather conditions
+were good. We observed during 4.35h until the
+dawn allowing a continuous follow up of the afterglow
+discovered by Beardmore et al. (GCNC 12859).
+
+The first image is trailed with a duration of 60.0s
+(see the description in Klotz et al., 2006, A&A 451, L39).
+This image was obtained during the fading of the
+gamma emission. We extracted three measurements from
+the trail.
+
+A first magnitude extraction is reported in the following
+table. As noticed by LaCluyze et al. (GCNC 12864), the
+optical emission decreased slowly in the range 33s to 200s,
+then it increased to reach a maximum R=16.8 at 850 +/- 50s.
+A decay phase alpha=1.3 occured between 10^3 and 10^4 seconds.
+As noticed by Elenin et al. (GCNC 12871) the begining of a
+plateau is suspected after 10^4 seconds. The end of the
+night over Chile does not allow to conclude definitively.
+
+Note that the GRB was also observed at TAROT Calern (France)
+but data are poor due to the low elevation of the field.
+However, the afterglow is also detected in the TAROT Calern
+images.
+
+------------------------------------------
+  t1(min)    t2(min)     mag    dmag
+------------------------------------------
+     0.55       0.85    16.96    0.30
+     0.85       1.15    17.15    0.30
+     1.15       1.55    17.05    0.30
+     1.67       2.17    17.32    0.16
+     2.34       2.84    17.37    0.12
+     3.01       3.51    17.58    0.22
+     3.67       4.17    17.53    0.17
+     4.34       4.84    17.27    0.17
+    10.36      11.86    17.02    0.26
+    12.03      13.53    16.87    0.20
+    13.70      15.20    17.03    0.15
+    15.37      16.87    16.94    0.18
+    17.03      18.53    17.19    0.29
+    18.70      20.20    17.19    0.11
+    21.31      22.81    17.27    0.24
+    22.97      24.47    17.37    0.16
+    24.64      26.14    17.35    0.09
+    26.31      27.81    17.32    0.19
+    27.98      29.48    17.40    0.06
+    29.64      31.14    17.59    0.05
+    35.98      38.98    17.65    0.05
+    39.15      42.15    18.00    0.21
+    45.48      48.48    18.09    0.06
+    48.65      51.65    18.31    0.25
+    55.66      58.66    18.39    0.15
+    58.83      61.83    18.58    0.26
+    42.32      84.94    18.51    0.12
+    65.16      91.28    19.10    0.15
+    95.40     126.40    19.51    0.09
+   129.73     195.34    19.78    0.12
+   199.45     261.71    19.90    0.08
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12884
+SUBJECT: GRB 120119A, Swift-BAT refined analysis
+DATE:    12/01/20 22:42:20 GMT
+FROM:    Hans Krimm at NASA-GSFC  <hans.a.krimm@nasa.gov>
+
+M. Stamatikos (OSU), S. D. Barthelmy (GSFC), W. H. Baumgartner (GSFC/UMBC),
+A. P. Beardmore (U Leicester), J. R. Cummings (GSFC/UMBC),
+E. E. Fenimore (LANL), N. Gehrels (GSFC), H. A. Krimm (GSFC/USRA),
+C. B. Markwardt (GSFC), D. M. Palmer (LANL), T. Sakamoto (GSFC/UMBC),
+J. Tueller (GSFC), T. N. Ukwatta (GWU) (i.e. the Swift-BAT team):
+
+Using the data set from T-239 to T+395 sec from the recent telemetry downlink,
+we report further analysis of BAT GRB 120119A (trigger #512035)
+(Beardmore, et al., GCN Circ. 12859).  The BAT ground-calculated position is
+RA, Dec = 120.029, -9.076 deg which is
+    RA(J2000)  =  08h 00m 06.9s
+    Dec(J2000) = -09d 04' 35.3"
+with an uncertainty of 1.0 arcmin, (radius, sys+stat, 90% containment).
+The partial coding was 100%.
+
+The mask-weighted light curve shows a series of three overlapping peaks running
+from T-10 sec to T+220 sec, with the bulk of emission before T+60 sec.
+T90 (15-350 keV) is 253.8 +- 24.5 sec (estimated error including systematics).
+Swift started to enter the South Atlantic Anomaly at T+ ~200 sec and collection of
+event data was terminated at T+395 sec.
+
+The time-averaged spectrum from T-13.2 to T+361.9 sec is best fit by a simple
+power-law model.  The power law index of the time-averaged spectrum is
+1.38 +- 0.04.  The fluence in the 15-150 keV band is 1.7 +- 0.0 x 10^-5 erg/cm2.
+The 1-sec peak photon flux measured from T+9.21 sec in the 15-150 keV band
+is 10.3 +- 0.3 ph/cm2/sec.  All the quoted errors are at the 90% confidence
+level.
+
+The results of the batgrbproduct analysis are available at
+http://gcn.gsfc.nasa.gov/notices_s/512035/BA/
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12892
+SUBJECT: GRB 120119A: optical upper limit
+DATE:    12/01/21 22:00:47 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+V. Rumyantsev, K. Grankin (CrAO),  A. Pozanenko (IKI) on behalf of  larger 
+GRB follow up collaboration report:
+
+We observed the field of the Swift GRB 120119A  (Beardmore  et al.,  GCN 
+12859) with AZT-11 telescope  of CrAO observatory on Jan. 19. We took 
+several  images in R-filter under poor seeing (FWHM ~ 4.4") on Jan.19, 
+between (UT) 18:35 - 19:59. We do not detect the OT  (Beardmore et al. GCN 
+12859).  Photometry  is  based on USNO-B1.0 star  0809-0167535  (08 00 
+04.98 -09 03 55.5) assuming R=16.22:
+
+t-t0             filter      Exp.       UpperLimit
+(mid, days)             (s)
+
+0.6347        R       28x180     21.1 
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12894
+SUBJECT: GRB 120119A: GRT detection of early afterglow
+DATE:    12/01/22 02:16:11 GMT
+FROM:    Takanori Sakamoto at NASA/GSFC  <takanori.sakamoto-1@nasa.gov>
+
+T. Sakamoto (UMBC/GSFC), D. Donato (ORAU/GSFC), N. Gehrels (GSFC),
+T. Okajima (GSFC), Y. Urata (NCU)
+
+We observed the field of GRB 120119A detected by Swift
+(trigger #512035; Beardmore et al., GCN Circ. 12859) with the 14-inch
+Goddard Robotic Telescope (GRT) located at the Goddard Geophysical
+and Astronomical Observatory (http://cddisa.gsfc.nasa.gov/ggao/).
+
+A total 294 images of 5 sec (200 images), 30 sec (60 images) and 
+60 sec (34 images) exposures were taken in the R filter starting 
+from January 19 04:06:42 (UT), about 132 seconds after the trigger 
+(114 seconds after the BAT position notice), and stopped on 
+January 19 06:07:50 (UT).  
+
+We detect the optical afterglow inside the XRT error circle (Beardmore 
+et al., GCN Circ. 12876) in the stacked image of good quality 5 sec 
+exposure images (total exposure of 985 sec).  The estimated magnitude is 
+R = 17.24 +- 0.19 mag (start time: 04:06:42, stop time: 04:44:37).   We do 
+not detected the afterglow in the stacked images of 30 sec exposure images 
+(total exposure of 1560 sec) and 60 sec exposure images (total exposure of 
+2040 sec).  The estimated five sigma upper limits of those stacked images 
+are ~17.9 mag (start time: 04:44:55, stop time: 05:30:01) and ~18.0 mag 
+(start time: 05:30:17, stop time: 06:07:50).  All the reported magnitudes 
+are estimated using the USNO-B1 catalog.  
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12895
+SUBJECT: GRB 120119A:  EVLA observations
+DATE:    12/01/22 23:17:26 GMT
+FROM:    Ashley Zauderer at CfA  <bevinashley@gmail.com>
+
+A. Zauderer and E. Berger (Harvard) report on behalf of a larger
+collaboration:
+
+"We observed the position of GRB 120119A (GCN 12859) with the EVLA
+beginning 2012 Jan 21.2 UT (2.0 days after the burst) at a mean
+frequency of 5.8 GHz.  No significant radio emission is detected at the
+enhanced Swift-XRT position (GCN 12876), the UVOT position (GCN 12859)
+or optical position (e.g. GCN 12881), to a three-sigma upper limit of
+34 uJy."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12897
+SUBJECT: GRB 120119A : SMA submm follow-up observation
+DATE:    12/01/24 02:54:46 GMT
+FROM:    Yuji Urata at Nat. Central U.  <urata@astro.ncu.edu.tw>
+
+Y. Urata (NCU), S. Takahashi, K.Y. Huang (ASIAA)
+and G. Petitpas (SMA)
+
+We observed the field of GRB120119A (Siegel et al., GCN 12720) with
+the Sub-Millimeter Array (SMA). The observation in the 225 GHz band
+was started at January 19 11.1 UT (7.1 hours after the trigger).
+Our preliminary analysis show no counterpart brighter than 8.1 mJy (3-sigma).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  12898
+SUBJECT: GRB 120119A : LOAO Optical Observations
+DATE:    12/01/24 09:13:48 GMT
+FROM:    Minsung Jang at Seoul National U  <rigel103@snu.ac.kr>
+
+M. Jang, M. Im (SNU), and Y. Urata (NCU) on behalf of EAFON
+
+We observed GRB 120119A (GCN 12859, Beardmore et al.) in B,V,R- bands
+with a 1 m telescope at Mt. Lemmon, Arizona, US.
+The observation began at 06:03:31 UT, ~ 2 hours after burst alert.
+We took 3 frames for each filter with the exposure time, 300 secs
+
+The afterglow candidate was detected in stacked images of all three filters
+with a preliminary magnitude R ~ 20.3 +/- 0.2 mag.
+The photometry calibration is based on two USNO B1.0 stars,
+USNO-B1.0 0809-0167573 and 0808-0168858
+
+We thank the LOAO operator, J. Yoon for his help with the observation. 

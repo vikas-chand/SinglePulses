@@ -1,0 +1,80 @@
+{
+ "burst": "bn090530760",
+ "grb_name": "GRB 090530B",
+ "harvest_utc": "2026-08-12T22:29:39Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5; 1b Scholar-note; 3b latest-first; 3c prompt-scope; Phase 4 frame+consensus; traps T1-T9)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "context": "This burst is the LiteratureHarvest prototype (skill written 2026-08-10 from three hand runs on it). Dossier + P0 freeze + full reconciliation (P0-P6, notes/reconciliation/bn090530760.md) predate this manifest; this run formalizes the harvest record, resolves the one unfetched candidate, and adds the T9 component-coverage labels. Idempotent: existing products EXTENDED, none overwritten.",
+ "query_forms": [
+  {"form": "full:\"GRB 090530B\"", "numFound": 3, "note": "Guetta&Pian eprint + GCN 9472 + GCN 9489"},
+  {"form": "full:\"bn090530760\"", "numFound": 1, "note": "Lu+2018 only"},
+  {"form": "full:\"090530760\"", "numFound": 0, "note": "bare fraction-of-day form: ZERO (template expects this to catch catalogs; it does not here)"},
+  {"form": "full:\"265400066\"", "numFound": 0, "note": "trigger number: ZERO"},
+  {"form": "full:\"GRB090530B\"", "numFound": 0, "note": "defensive no-space form"},
+  {"form": "full:\"090530B\"", "numFound": 4, "note": "THE productive form: adds Lu+2012 (writes '090530B' without 'GRB ' prefix)"},
+  {"form": "full:\"090530.760\" / full:\"GRB 090530.760\"", "numFound": 0, "note": "day-fraction forms: ZERO"}
+ ],
+ "query_finding": "Qin+2013 (2013ApJ...763...15Q) carries the burst in Table 1 p.18 (PDF-grep verified: '090530760' and '090530B' both present) yet is INVISIBLE to every ADS full-text form -- its long table pages are evidently not full-text indexed. It was recovered only via the Phase-1 series check (Comprehensive Analysis I-IV) + corpus_index.csv. Lesson: for series papers, the series check is load-bearing, not decorative.",
+ "series_check": "Fermi Comprehensive Analysis series: I = Zhang+2011 (2011ApJ...730..141Z, on disk) -- PDF-grep NEGATIVE for 090530, burst NOT in part I; II = Lu+2012 (in sample, 1/43 unique class); III = Qin+2013 (Table 1 row); IV = Lu+2018 (Tables 2+4). Burst appears in II, III, IV.",
+ "same_day_contamination_check": "T1 (the trap named for THIS burst): GRB 090530A (Swift 353567, 03:18 UT) owns 18 of the 20 raw circulars incl. the z=1.266 X-shooter redshift. All queries this run used B-specific forms; zero A-contamination in the four carriers. Identity verified by trigger number 265400066 + day-fraction .760 + GCN 9472 verbatim.",
+ "n_refereed_papers": 3,
+ "n_papers_total": 4,
+ "papers_latest_first": [
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "cite": "Lu et al. 2018, ApJ 865, 153 (Comprehensive IV)",
+   "refereed": true,
+   "in_corpus": "YES (Lu_2018_2018ApJ865153L.pdf, read=Y 2026-08-10) -- not re-fetched (G2)",
+   "prompt_sections": "Table 2 (16 time-resolved Band fits, -1.54..156.86 s -> Step 6 diff anchor; alpha POSITIVE first 8 intervals); Table 4 (tau31=7.08+/-0.45 s, W=55.63, k_tau, k_E -> Step 7; T3 trap: W defined twice, Table 4 = FWHM reading; T9: ENVELOPE-level entry for the double FRED); section 3-4 definitions",
+   "module_future_tags": [],
+   "component_coverage": "Table 2 = total burst time-resolved; Table 4 = envelope (one pulse-entry for the double-FRED)"
+  },
+  {
+   "bibcode": "2013ApJ...763...15Q",
+   "cite": "Qin et al. 2013, ApJ 763, 15 (Comprehensive III)",
+   "refereed": true,
+   "in_corpus": "YES (Qin_2013_2013ApJ76315Q.pdf, read=N) -- not re-fetched (G2)",
+   "prompt_sections": "Table 1 p.18 row: energy-resolved T90 (147.42/143.97/131.36/114.34/89.76/175.68/135.68 s across 8-15/15-25/25-50/50-100/100-350/350-1000/8-1000 keV) -> Step 7; the T90~E^-0.20 band rule that reconciled the 194/157.7/113 s T90 family. FLAG recorded: 350-1000 keV = 175.68 s breaks the monotonic decline (not resolved, T5 discipline).",
+   "module_future_tags": [],
+   "component_coverage": "total burst, energy-resolved"
+  },
+  {
+   "bibcode": "2012ApJ...756..112L",
+   "cite": "Lu et al. 2012, ApJ 756, 112 (Comprehensive II)",
+   "refereed": true,
+   "in_corpus": "YES (Lu_2012_2012ApJ756112L.pdf, read=MAYBE) -- not re-fetched (G2)",
+   "prompt_sections": "Ep-evolution classification lists: BOTH pulses hard-to-soft, the UNIQUE such case in their 43-GRB sample -> Step 6/7 evolution-class diff",
+   "module_future_tags": [],
+   "component_coverage": "per pulse -- both pulses classified individually"
+  },
+  {
+   "bibcode": "2009arXiv0910.2134G",
+   "cite": "Guetta & Pian 2009, arXiv:0910.2134 (7th AGILE Workshop proceedings)",
+   "refereed": false,
+   "in_corpus": "NEW -- fetched this run: Skills_training/Guetta_2009_2009arXiv09102134G_bn090530760.pdf (195580 bytes, %PDF verified); corpus row QUEUED below (shared-CSV write forbidden)",
+   "prompt_sections": "GBM sample table pp.14-17, row '090530B | 194.0 | 5.90e+01 | 1.08e+01 | Band | 67.0 | -0.71 | -2.42 | 84 | 0' = GCN 9472 values recycled verbatim (T6 chained citation -- NOT an independent analysis). Prompt-relevant use: burst enters the LAT high-energy-suppression statistics as soft (Ep=67 keV), far-off-axis (theta=84 deg), LAT=0.",
+   "module_future_tags": [],
+   "component_coverage": "= GCN 9472 coverage (chained): spectrum T0-3.1..+110.6 s both peaks; T90 total"
+  }
+ ],
+ "scholar_note_phase1b": "Not exercised this run: the ADS forms recovered all four known carriers, the burst has zero counterpart/afterglow literature to bridge to, and no cross-community concept gap is live. Scholar remains a finding-only channel (no API; every hit must resolve back to an ADS bibcode). Candidate bridge query if ever needed: 'gamma-ray burst positive alpha photosphere 090530B' -- the burst's discriminating identity is its positive-alpha early phase.",
+ "module_future": [],
+ "module_future_note": "Honestly empty (Phase 3c): no afterglow detection, no counterpart, no redshift, no SN, no multimessenger record exists for THIS burst -- all follow-up circulars in the raw fetch belong to GRB 090530A (T1). Nothing to shelve for the afterglow/sn/cosmo/mm modules.",
+ "published_value_sources": [
+  {"source": "GCN 9472 (van der Horst, GBM; PRELIMINARY)", "values": "Band alpha=-0.71+/-0.06, beta=-2.42+/-0.05, Ep=67+/-3 keV over T0-3.1..+110.6 s; T90=194 s (8-1000 keV); fluence(8-1000)=5.9+/-0.4e-5; pk1s=10.8+/-2.0 ph/s/cm2", "component_coverage": "spectrum: both peaks, tail excluded; T90: total"},
+  {"source": "GCN 9489 (Suzaku WAM)", "values": "single PL index -3.30 +0.14/-0.13 (50 keV-5 MeV, T0-1..+219 s); T90~113 s; fluence(100-1000)=2.41e-5", "component_coverage": "total; band entirely above Ep"},
+  {"source": "Lu+2018 Tables 2+4", "values": "see paper entry", "component_coverage": "Table 2 total time-resolved; Table 4 envelope"},
+  {"source": "Qin+2013 Table 1", "values": "energy-resolved T90, incl. full-band 135.68+/-0.91 s -- a FOURTH T90 value (GCN 194 / catalog 157.699 / WAM 113 / Qin 135.68); diff under the E^-0.20 band rule + method frame", "component_coverage": "total, energy-resolved"},
+  {"source": "GBM catalog (sample card)", "values": "T90=157.699 s (50-300 keV), fluence 6.1037e-5, ref det n1, Busby-Lazzati class 'single' (score 0.9987) vs GCN 'double peaked FRED' -- flag carried since Step 0", "component_coverage": "total"}
+ ],
+ "frame_consensus_note": "Phase 4 applied at the original reconciliation (2026-08-10): Qin band rule turned the three T90s into one power law (predicted WAM/GBM ratio 0.72, observed 0.72); GCN integrated alpha=-0.71 vs Lu positive per-interval alpha = time-integration frame (L24), not a tension; WAM -3.30 vs GBM beta -2.42 = band + single-PL-vs-Band frame. Multi-instrument consensus rule (Rossi+2026): only GBM+WAM publish spectra; the WAM PL is frame-incompatible with a Band beta without folding, so no combined Ep/fluence consensus is computable beyond the GBM value -- recorded rather than manufactured.",
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   "Guetta_2009_2009arXiv09102134G_bn090530760.pdf,2009arXiv0910.2134G,0910.2134,lat-suppression;luminosity-function;gcn-chained-values;proceedings-not-refereed,bn090530760,1,N,"
+  ],
+  "note": "Lu_2012 / Qin_2013 / Lu_2018 rows already carry bn090530760 in cited_by_bursts -- no updates needed. Only the NEW Guetta&Pian row is pending; header = filename,bibcode,arxiv,theme,cited_by_bursts,n_bursts,read,read_date."
+ },
+ "redshift": "none (no afterglow, no counterpart; the z=1.266 in the raw GCN fetch belongs to GRB 090530A -- T1)",
+ "p0_status": "notes/reconciliation/bn090530760_P0_frozen.json EXISTS (frozen 2026-08-10 before the fit) -- NOT touched this run per idempotency rule",
+ "step1_qc_status": "results/qc/bn090530760_step1_response_coverage.ecsv EXISTS (2026-08-09) -- not regenerated. Its content, read honestly: all 4 approved detectors (n1,n2,n5,b0) have 5-matrix rsp2 spanning [-39.9,+148.5] s while the stamped window is [-2.43,+169.24] s -> COVERS_SRC=False is REAL (max TSTOP 148.5 < SRC_STOP 169.24), not a D2 naming false alarm. The reconciled fit used the tightened [0.69,111.86] s window, which IS inside rsp2 coverage. No gll_* files in data/bn090530760/ (no LLE/LAT; boresight 84 deg -- consistent). Stage-1 flag on record (results/human_review_qc_flags.txt): source-overruns-bkg-gap accepted by Vikas 2026-07-19 for n1,b0 -- a decision, not a defect."
+}

@@ -1,0 +1,216 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10944
+SUBJECT: GRB 100707A: Fermi GBM detection
+DATE:    10/07/07 18:44:31 GMT
+FROM:    Colleen A. Wilson at NASA/MSFC/NSSTC  <colleen.wilson@nasa.gov>
+
+Colleen A. Wilson-Hodge (NASA/MSFC) and Suzanne Foley (MPE) 
+report on behalf of the Fermi GBM Team: 
+
+"At 00:46:38.99 UT on 07 July 2010, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 100707 (trigger 300156400 / 100707.032).
+
+The on-ground calculated location, using the GBM trigger 
+data, is RA = 351.07, DEC = -6.57 (J2000 degrees, 
+equivalent to 23 h 24 m, -6 d 34 '), with an uncertainty 
+of 1 degree (radius, 1-sigma containment, 
+statistical only; there is additionally a systematic
+error which is currently estimated to be 2 to 3 degrees).
+ 
+The angle from the Fermi LAT boresight is 90 degrees.
+
+The GBM light curve show a fast rise and exponential decay
+with a duration (T90) of 82+/-1 s (50-300 keV). 
+The time-averaged spectrum from T0-0.064 s to T0+83.009 s is 
+well fit by a power law function with an exponential
+high energy cutoff.  The power law index is -0.91 +/- 0.02 and
+the cutoff energy, parameterized as Epeak, is 283 +/- 7 keV
+
+(C-Statistic 529.4 for 358 d.o.f.).
+
+The event fluence (10-1000 keV) in this time interval is 
+(8.77 +/- 0.02)E-05 erg/cm^2. The 1-sec peak photon flux measured 
+starting from T0+1.152 s in the 10-1000 keV band 
+is 48.3 +/- 0.4 ph/s/cm^2.
+
+The spectral analysis results presented above are preliminary; 
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10945
+SUBJECT: GRB 100707A: Fermi LAT detection 
+DATE:    10/07/07 22:03:09 GMT
+FROM:    James Chiang at SLAC  <jchiang@slac.stanford.edu>
+
+Veronique Pelassa (LPTA), Melissa Pesce-Rollins (INFN-Pisa) report on
+behalf of the Fermi LAT collaboration:
+
+The Fermi Large Area Telescope (LAT) detected emission from GRB
+100707A (C. Wilson-Hodge et al, GCN 10944).
+
+This burst was at an angle of 90 degrees to the LAT boresight, which
+means that neither directional nor energy information can be obtained
+with the standard analysis procedures.
+
+Using a non-standard data selection, the LAT light curve shows a
+single, sharply rising pulse that has a somewhat more gradual decay,
+similar to the initial peak in the GBM light curve. The LAT T90
+duration is <30 s. This is shorter than the GBM T90 (82+/-1 s), but
+the LAT may be missing a long tail at later times owing to noisier
+data. Over 300 counts above background were detected within a 5 s
+interval in coincidence with the main GBM peak. The significance of
+this excess was greater than 14 sigma. A preliminary study of the
+instrument performance at such a large inclination suggests that these
+events are likely to be low energy gamma-rays, with energies less than
+200 MeV.
+
+Further analysis is ongoing.
+
+The Fermi LAT point of contact for this burst is Veronique Pelassa
+(pelassa@lpta.in2p3.fr).
+
+The Fermi LAT is a pair conversion telescope designed to cover the
+energy band from 20 MeV to greater than 300 GeV. It is the product of
+an international collaboration between NASA and DOE in the U.S. and
+many scientific institutions across France, Italy, Japan and Sweden.
+This message can be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10947
+SUBJECT: IPN triangulation of GRB 100707A
+DATE:    10/07/08 21:49:15 GMT
+FROM:    Valentin Pal'shin at Ioffe Inst  <val@mail.ioffe.ru>
+
+K. Hurley and J. Goldsten, on behalf of the MESSENGER GRNS GRB
+team,
+
+S. Golenetskii, R. Aptekar, E. Mazets, V. Pal'shin, D. Frederiks, P.
+Oleynik, M. Ulanov, D. Svinkin and T. Cline on behalf of the Konus-Wind
+team,
+
+V. Connaughton, M.S. Briggs, and C.A. Meegan on behalf of the Fermi
+GBM team, and
+
+K. Yamaoka, M. Ohno, Y. Fukazawa, T. Takahashi, M. Tashiro, Y. Terada,
+T. Murakami, K. Makishima, and Y. Hanabata on behalf of the Suzaku-WAM
+team, report:
+
+The long bright GRB 100707A, observed by Fermi/GBM at 00:46:38.99 UT 
+(Wilson-Hodge & Foley, GCN 10944) and Fermi/LAT (Pelassa & 
+Pesce-Rollins, GCN 10945), has also  been detected by Suzaku (WAM), 
+Konus-Wind, and MESSENGER (GRNS) so far.
+
+We have triangulated it to a preliminary 3 sigma error box whose 
+coordinates are:
+-----------------------------------------------
+    RA(2000), deg              Dec(2000), deg
+-----------------------------------------------
+Center:
+  358.019 (23h 52m 05s)    -8.658 (-08d 39' 29")
+Corners:
+  358.562 (23h 54m 15s)   -11.226 (-11d 13' 32")
+  358.773 (23h 55m 05s)   -11.654 (-11d 39' 14")
+  357.369 (23h 49m 29s)    -5.832 (-05d 49' 56")
+  357.116 (23h 48m 28s)    -5.295 (-05d 17' 42")
+-----------------------------------------------
+
+The error box area is 0.660 sq. deg
+This error box may be improved.
+
+The GBM position (Wilson-Hodge & Foley, GCN 10944) is 7.2 deg from the 
+center of the box.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10948
+SUBJECT: Konus-Wind observation of GRB 100707A
+DATE:    10/07/09 10:09:17 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The very bright long GRB 100707A
+(Fermi/GBM trigger 300156400: Wilson-Hodge and Foley, GCN 10944;
+localized by IPN: Hurley et al., GCN 10947)
+triggered Konus-Wind at T0=2798.855s UT (00:46:38.855)
+
+The burst light curve consists of a single FRED pulse
+with a duration of ~100 s.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB100707_T02798/
+The periodic dips seen in the 64-ms lc are caused
+by the occultation of the Konus detector
+by other instrument on board the rotating Wind s/c.
+
+As observed by Konus-Wind the burst
+had a fluence of 8.8(+/-0.6)x10-5 erg/cm2,
+and a 64-ms peak flux measured from T0+1.344s
+of 2.4(+/- 0.2)x10-5 erg/cm2/s
+(both in the 20 keV - 2 MeV energy range).
+
+The time-integrated spectrum of the burst
+(from T0 to T0+102.144 s) is best fit
+in the 20 keV - 2 MeV range by the GRB (Band)
+model, for which:
+the low-energy photon index alpha = -0.95 (+/-0.15),
+the high energy photon index beta = -2.2 (-0.3, +0.2),
+the peak energy Ep = 264(-40, +49)keV (chi2 = 43.5/57 dof).
+
+The spectrum at the maximum count rate
+(measured from T0+1.280 to T0+1.792 s) is best fit
+in the 20 keV - 2 MeV range by the GRB (Band)
+model, for which:
+the low-energy photon index alpha = +0.3 (-0.3, +0.5),
+the high energy photon index beta = -2.4 (-0.5, +0.3),
+the peak energy Ep = 383(-82, +80)keV (chi2 = 53.2/57 dof).
+
+All the quoted results are preliminary.
+All the quoted errors are at the 90% confidence level.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  10950
+SUBJECT: GRB 100707A: Suzaku WAM observation of the prompt emission
+DATE:    10/07/10 07:02:25 GMT
+FROM:    Yoshitaka Hanabata at Hiroshima U  <hanabata@hep01.hepl.hiroshima-u.ac.jp>
+
+Y. Hanabata, T. Uehara, T. Takahashi, Y. Fukazawa (Hiroshima U.)
+K. Yamaoka (Aoyama Gakuin U.), S. Sugita (Nagoya U.),
+Y. Terada, M. Tashiro, W. Iwakiri, K. Takahara, T. Yasuda (Saitama U.),
+M. Ohno, M. Suzuki, M. Kokubun, T. Takahashi (ISAS/JAXA),
+Y. E. Nakagawa, T. Tamagawa (RIKEN), N. Ohmori, A. Daikyuji, Y. Nishioka,
+M. Yamauchi (Univ. of Miyazaki), N. Vasquez (Tokyo Tech.), Y. Urata,
+H. M. Lin (NCU), T. Enoto, K. Nakazawa, K. Makishima (Univ. of Tokyo),
+S. Hong (Nihon U.), on behalf of the Suzaku WAM team, report:
+
+The long GRB 100707A (Fermi/GBM trigger #300156400; C. Wilson-Hodge et al.,
+GCN 10944; Fermi-LAT detection; V. Pelassa et al., GCN 10945)
+triggered the Suzaku Wide-band All-sky Monitor (WAM) which covers an
+energy of 50 keV - 5 MeV at 2010-07-07 00:46:38.91 UT (T=0).
+
+The observed light curve shows a FRED-like peak structure lasting from
+T0-0.5s to T0+18.5s with T90 of about 12 seconds. The fluence in 100 -
+1000 keV was 5.26 (+/-0.27) x 10^-5 erg/cm^2. The 1-s peak flux
+measured from T0+1.5s was 32.24 (-1.28, +1.22) photons/cm^2/s in the
+same energy range.
+
+Preliminary result shows that the time-averaged spectrum from T0-0.5s
+to T0+18.5s is well fitted by a single power-law with a photon index
+of 2.15 (-0.05, +0.06) (chi^2/d.o.f = 39.4/25).
+
+Due to the brightness of this burst, a 3% systematic error was added
+for low energy channels.  In addition, there might be some calibration
+uncertainties in these spectral parameters because GRB photons came to
+the WAM detector by passing through the large Ne dewar of the X-ray
+micro-calorimeter (XRS).
+All the errors are quoted at 90% confidence level.
+
+The light curves for this burst wiil be available at:
+http://www.astro.isas.jaxa.jp/suzaku/HXD-WAM/WAM-GRB/grb/trig/grb_table.html
+

@@ -1,0 +1,352 @@
+{
+  "burst": "bn120624933",
+  "grb_name": "GRB 120624B",
+  "trigger_number": 362269436,
+  "T0_utc": "2012-06-24T22:23:54.92",
+  "z": 2.1974,
+  "z_err": 0.0002,
+  "z_source": "2013A&A...557L..18D (X-shooter/VLT emission lines [O II],[O III],H-alpha; 17.1-19.1 d post-burst) - NO circular reports the real redshift",
+  "harvested_utc": "2026-08-12",
+  "harvested_by": "campaign doc-layer worker; dev/ai_guides/LiteratureHarvest.md Phases 1,1b,3b,3c,4; traps T1-T9",
+  "idempotency_note": "results/gcn/bn120624933/bn120624933_dossier.md EXISTED (2026-08-03) and was EXTENDED, never overwritten. notes/reconciliation/bn120624933.md EXISTED (2026-08-08, VERIFIED verdict) and was NOT touched. results/qc/bn120624933_step1_response_coverage.ecsv EXISTED (2026-08-04) and was NOT touched. bn120624933_gcn_raw.txt was MISSING and was ADDED. This harvest.json and the P0 freeze are NEW.",
+
+  "phase1_query_forms": {
+    "F1_name": {"query": "full:\"GRB 120624B\"", "numFound": 27},
+    "F1b_name_nospace": {"query": "full:\"GRB120624B\"", "numFound": 4},
+    "F2_gbm_trigger_name": {"query": "full:\"bn120624933\"", "numFound": 0},
+    "F3_fraction_of_day": {"query": "full:\"120624933\"", "numFound": 0},
+    "F4_trigger_number": {"query": "full:\"362269436\"", "numFound": 0},
+    "F5_bare_suffix": {"query": "full:\"120624B\"", "numFound": 34},
+    "union_article_or_eprint": 19,
+    "finding": "The skill's forms F2/F3/F4 (all three GBM trigger identifiers) return ZERO. No paper in the ADS full-text corpus cites this burst by any GBM trigger id. The UNLISTED bare-suffix form F5 found 7 papers the name forms missed, including the single best frame-matched anchor that exists for this burst (Duan & Wang 2020). RECOMMEND: add full:\"YYMMDD[A/B]\" as a standing fifth form in LiteratureHarvest.md Phase 1.",
+    "endpoint": "https://api.adsabs.harvard.edu/v1/search/query, ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env (worked; the Astrograph token remains stale)"
+  },
+
+  "phase1b_scholar_note": {
+    "channel_used": false,
+    "trigger_conditions_checked": [
+      "(1) ADS four-form thin/empty -> NO: the union returned 19 article/eprint hits, 14 refereed. Not a paperless burst.",
+      "(2) cross-community concept query -> NOT RUN this pass. Candidate bridge queries recorded below for a future browsing-agent pass.",
+      "(3) discovery-plane bridging sweep -> NOT RUN (out of scope for a doc-layer pass)."
+    ],
+    "candidate_scholar_queries_for_later": [
+      "'obscured gamma ray burst' + 'dusty compact host' z~2.2 (the dUP+2013 'obscured' framing has a submm-galaxy literature that shares no GRB vocabulary)",
+      "'geomagnetic latitude' 'trigger disabled' gamma-ray burst monitor (the mechanism that truncated this burst's trigger to episode 3; an instrument-operations literature ADS full-text search does not index by burst name)",
+      "'high geomagnetic latitude particle background' Fermi GBM false trigger"
+    ],
+    "rule_honoured": "Scholar is a FINDING channel only; every hit would be resolved back to an ADS bibcode before entering a dossier. No Scholar hit entered this harvest."
+  },
+
+  "phase3b_weighting": "Latest-first. Reading order applied: Chang+2026 (2026) -> Wang&Liang 2024 -> Tak+2023 -> Sharma+2021 -> Duan&Wang 2020 -> Ajello+2019 -> dUP 2013. NOTE the exception that matters: the strongest frame-match here is NOT the newest paper. Duan&Wang 2020 (0-30.016 s, n1n2b0) beats Chang+2026 (0-20 s) on window match and lands 1.0 sigma from our archival Ep, whereas Chang lands ~3.5 sigma away. Recency is the DEFAULT tie-break, not a substitute for checking the window.",
+
+  "n_papers": 19,
+  "n_refereed": 14,
+  "n_identity_confirmed": 18,
+  "n_identity_mismatch": 1,
+
+  "papers": [
+    {
+      "bibcode": "2020ApJ...890...90D",
+      "first_author": "Duan, Ming-Ya",
+      "year": 2020,
+      "title": "A Spectral Analysis of Fermi-LLE Gamma-Ray Bursts",
+      "arxiv": "1912.10587",
+      "doctype": "article", "refereed": true, "citation_count": 4,
+      "found_by": ["F5_bare_suffix"],
+      "status_in_corpus": "PRESENT as Skills_training/Duan_2020_2020ApJ89090D.pdf but NOT tagged to this burst (cited_by_bursts = project-core;bn130427324;bn110721200). NOT re-downloaded (G2 rule). Trigger append QUEUED.",
+      "prompt_sections": ["Table 1 - time-resolved Band fit at peak flux (row 120624B)", "Table 2 - time-integrated Band fit (row 120624B)", "Table 3 - detectors, N bins, Ep-F / alpha-F / Ep-alpha correlations, spectral-evolution class (row 120624B)", "Sect. 2 - sample + data selection", "Sect. 5 (discussion) - spectral-lag sign prediction from the Ep evolution class"],
+      "module_future_tags": [],
+      "why_it_matters": "THE new frame-matched anchor. Time-integrated 0-30.016 s with detectors n1,n2,b0 (a subset of our n0,n1,n2,b0) - the closest published counterpart to our window that exists. Its Ep sits 1.0 sigma from our archival value, against the ~3.5 sigma offset the 2026-08-08 reconciliation recorded using Chang+2026 as 'the only frame-matched value'.",
+      "harvested_values": {
+        "time_integrated_T2": {"interval_s": "0 ~ 30.016 (GBM T0 frame)", "coverage": "EPISODE 3", "detectors": "n1,n2,b0", "alpha": -0.9902, "alpha_err": 0.0328, "beta": -2.505, "beta_err": 0.383, "Ep_keV": 685.4, "Ep_err_keV": 78.3, "red_chi2": 1.13, "Ep_convention": "nuFnu peak, observer frame"},
+        "peak_flux_bin_T1": {"interval_s": "11.963 ~ 14.037", "coverage": "EPISODE 3 peak-flux bin, INSIDE our window", "alpha": -0.9411, "alpha_err": 0.0443, "beta": -2.174, "beta_err": 0.172, "Ep_keV": 611.3, "Ep_err_keV": 85.0, "red_chi2": 0.88},
+        "evolution_T3": {"detectors": "n1,n2,b0", "N_bins": 5, "r_Ep_F": 0.52, "r_alpha_F": 0.61, "r_Ep_alpha": 0.94, "spectral_evolution_Ep_over_alpha": "h.t.s./h.t.s.", "alpha_gt_minus_two_thirds": "no", "rS_alpha_F": -0.40, "rS_Ep_alpha": -0.80},
+        "lag_prediction": "positive spectral lag (one of six h.t.s. bursts named in Sect. 5)"
+      },
+      "snippets": [
+        "Table 2 row: '120624B | 2.20 | 271 | 0~30.016 | -0.9902+/-0.0328 | -2.505+/-0.383 | 685.4+/-78.3 | 1.13' (cols: GRB | z | T90 (s) | t1~t2 (s) | alpha | beta | Ep (keV) | Red.chi2)",
+        "Table 1 row: '120624B | 11.963~14.037 | -0.9411+/-0.0443 | -2.174+/-0.172 | 611.3+/-85.0 | 0.88' (Table 1 caption: 'Results of the Time-resolved Spectral Fits at Peak Flux for All Samples')",
+        "Table 3 row: '120624B | n1,n2,b0 | 5 | 0.52 | 0.61 | 0.94 | h.t.s./h.t.s. | no | -0.40 | -0.80'",
+        "Sect. 5: 'the positive type of spectral lags will occur at the six bursts which exhibit a hard-to-soft behavior of Ep (GRBs 080825C, 090328A, 110721A, 120624B, 160910A, 171210A)'"
+      ],
+      "traps_noted": ["T3: Table 3 gives BOTH r and r(S) for alpha-F with OPPOSITE signs (+0.61 vs -0.40). The two statistics are defined in their Sect. 4; copy the definition with any number used. Not resolved in this pass.", "T9: their T90 = 271 s is the TOTAL burst, while their fit interval 0-30.016 s is EPISODE 3 - the two columns in the same row have different component coverage."]
+    },
+    {
+      "bibcode": "2026MNRAS.546ag047C",
+      "first_author": "Chang, Xue-Zhao", "year": 2026,
+      "title": "Identifying the poynting-flux-dominated outflow of Fermi GRBs with non-thermal spectra",
+      "arxiv": "2601.04468", "doctype": "article", "refereed": true, "citation_count": 0,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Chang_2026_2026MNRAS546ag047C.pdf), tagged bn120624933;bn200524211. No action.",
+      "prompt_sections": ["Table 1 - BIC model comparison across CPL/Band/CPL+BB/Band+BB/BB/NDP (row 120624B)", "Table 2 - best-model parameters + magnetization sigma + kT_max (row 120624B)"],
+      "module_future_tags": [],
+      "why_it_matters": "The ONLY paper that runs our thermal menu (CPL+BB and Band+BB) on this burst. Both return unconstrained posteriors; pure Band wins on BIC; the burst is classed purely non-thermal with sigma > 14.38 and a maximum allowed photospheric kT_max = 30.10 keV. That ceiling is a direct, falsifiable constraint on any BB our fresh run reports.",
+      "harvested_values": {"interval_s": "0 ~ 20", "coverage": "EPISODE 3", "instrument": "Fermi/GBM", "SNR": 67.4, "BIC": {"CPL": 6483, "Band": 6468, "CPL+BB": "Non-Con.", "Band+BB": "Non-Con.", "BB": 8458, "NDP": 7048}, "best_model": "Band", "alpha": -0.88, "alpha_err": [-0.08, 0.07], "Ep_keV": 558.8, "Ep_err_keV": [-45.5, 44.9], "beta": -2.19, "beta_err": 0.12, "sigma_lower_limit": 14.38, "kT_max_keV": 30.10},
+      "snippets": ["Table 1 row: '120624B & 2.1974 & 0 $\\sim$ 20 & 67.4 & 6483 & 6468 & Non-Con. & Non-Con. & 8458 & 7048 & Band'", "Table caption: \"'Non-Con.' means that the posterior parameters of fits are not constrained.\"", "Table 2 row: '120624B & 0 $\\sim$ 20 & 67.4 & Band & $-0.88_{-0.08}^{+0.07}$ & $558.8_{-45.5}^{+44.9}$ & $-2.19_{-0.12}^{+0.12}$ & 14.38 & 30.10'"],
+      "traps_noted": ["T8: their model comparison is BIC-based, not AIC. A dBIC of 15 (Band over CPL) is not the same margin as our dAIC. Recompute before diffing.", "T7: their 'purely non-thermal' verdict is relative to THEIR continuum menu, which has no SBPL."]
+    },
+    {
+      "bibcode": "2013A&A...557L..18D",
+      "first_author": "de Ugarte Postigo, A.", "year": 2013,
+      "title": "The obscured hyper-energetic GRB 120624B hosted by a luminous compact galaxy at z=2.20",
+      "arxiv": "1309.1167", "doctype": "article", "refereed": true, "citation_count": 10,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (deUgartePostigo_2013_2013AA557L18D.pdf), tagged bn120624933. No action.",
+      "prompt_sections": ["Sect. 3.1 - prompt spectroscopy, per-episode Band fits, joint GBM+LLE statement", "Table 1 - per-episode and whole-burst alpha/beta/Ep/fluence/Eiso/Ep,rest"],
+      "module_future_tags": ["module-future; afterglow", "module-future; host", "module-future; cosmo"],
+      "why_it_matters": "The dedicated burst paper: source of the secure redshift, the episode structure that defines our component coverage, the hyper-energetic Eiso, and the explicit joint GBM+LLE null on a high-energy extra component.",
+      "harvested_values": {"episode3": {"interval_s": "(-8.19, +28.67)", "coverage": "EPISODE 3", "alpha": -1.04, "alpha_err": 0.06, "beta": -2.07, "beta_err": 0.22, "Ep_obs_keV": 498, "Ep_obs_err_keV": 100, "fluence": 5.46e-05, "Eiso_erg": 8.5e53, "Ep_rest_keV": 1650, "Ep_rest_err_keV": 233}, "episode1": {"alpha": -1.1, "alpha_err": 0.04, "beta": -2.35, "beta_err": 0.30, "Ep_keV": 516, "Ep_err_keV": 73}, "episode2": {"alpha": -0.93, "beta": -2.51, "beta_err": 0.31, "Ep_keV": 603, "Ep_err_keV": 50}, "whole_burst": {"interval_s": "(-270.34, +28.67)", "coverage": "TOTAL", "Eiso_erg": 3.0e54, "Eiso_err_erg": 0.2e54, "Ep_rest_keV": 1809, "Ep_rest_err_keV": 64}, "z": 2.1974},
+      "snippets": ["Table 1 row (episode 3): '(-8.19, +28.67) & -1.04$\\pm$0.06 & -2.07$\\pm$0.22 & 498$\\pm$100 & $(5.46\\pm0.02)\\times10^{-5}$ & $(8.5\\pm0.3)\\times10^{53}$ & $1650\\pm233$'", "Sect. 3.1: 'In the non-standard analysis of the LAT data (LAT low energy events, LLE, roughly from 10 to 200 MeV), we also find the three peaks. In order to describe the high energy spectrum, the GBM and LAT measurements were combined. This shows that the spectrum in the LAT energy range is still well described by a Band function and no emerging high-energy extra component is evident.'", "'we detect emission lines of [O II], [O III] and H-alpha at a common redshift of z = 2.1974 +/- 0.0002'"],
+      "traps_noted": ["T9: Table 1 mixes per-episode rows with a whole-burst row; only the (-8.19,+28.67) row is comparable to us."]
+    },
+    {
+      "bibcode": "2019ApJ...878...52A",
+      "first_author": "Ajello, M.", "year": 2019,
+      "title": "A Decade of Gamma-Ray Bursts Observed by Fermi-LAT: The Second GRB Catalog",
+      "arxiv": "1906.11403", "doctype": "article", "refereed": true, "citation_count": 232,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Ajello_2019_2019ApJ87852A.pdf), tagged bn120624933. No action.",
+      "prompt_sections": ["tab_durations - T_GBM,05/95/90, T_LLE,05/95/90, T_LAT,0/1/100 (row 120624B)", "tab_energymax_gbm - highest-energy LAT events inside the GBM window (row 120624B)"],
+      "module_future_tags": ["module-future; high-energy (tab_likelihoods + tab_extended describe the 1030-s extended component, post-prompt)"],
+      "why_it_matters": "Supplies the interval arithmetic that dissolves the apparent 10-sigma-LAT-vs-our-NULL tension (D4). T_LAT,0 = 73.7 s is 47 s after our window closes; T_LLE,90 = 3.36 s over 5.76-9.12 s is the only high-energy statement inside it.",
+      "harvested_values": {"T_GBM_05_s": -260, "T_GBM_95_s": 14.34, "T_GBM_90_s": 271.36, "T_LLE_05_s": 5.76, "T_LLE_95_s": 9.12, "T_LLE_90_s": 3.36, "T_LAT_0_s": 73.7, "T_LAT_1_s": 1103.9, "T_LAT_100_s": 1030, "T_LAT_100_err_s": 30, "LAT_theta_deg": 68.2, "extended_peak_flux_time_s": 380, "extended_peak_flux_time_err_s": 20, "extended_decay_index": 1.2, "TS": 750, "LAT_index": -2.5, "Eiso_100MeV_10GeV_erg": 7.7e53, "events_P_gt_0.9_in_GBM_window": 4, "max_energy_in_GBM_window_GeV": 0.36, "max_energy_time_s": -201.87},
+      "snippets": ["tab_durations row: '120624B & (L) & $-$260 & 14.34 & 271.36 & 5.76 & 9.12 & 3.36 & 73.7 & 1103.9 & 1030 $\\pm$ 30'", "tab_energymax_gbm row: '120624B & 4 & 0.36 & $-$201.87 & 0.91 & 110 & 1.90 & 557.66 & 1.00'"],
+      "traps_noted": ["Literature-internal: T_GBM,95 - T_GBM,05 = 274.34 s but T_GBM,90 is listed as the catalog 271.36 s. Also their T_LLE window (5.76-9.12 s) appears to disagree with dUP+2013's statement that all three peaks show in LLE. Both are between them; neither touches our comparison."]
+    },
+    {
+      "bibcode": "2021ApJ...908L...2S",
+      "first_author": "Sharma, Vidushi", "year": 2021,
+      "title": "Identifying Black Hole Central Engines in Gamma-Ray Bursts",
+      "arxiv": "2008.07544", "doctype": "article", "refereed": true, "citation_count": 24,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Sharma_2021_2021ApJ908L2S.pdf), tagged bn120624933. No action.",
+      "prompt_sections": ["Sect. 2 - joint time-integrated GBM+LLE spectral analysis; model menu Band / Band+PL / Band+CPL", "Table row 83 (120624B) - T90, z, LLE/LAT flag, bolometric fluence, log Eiso, theta_j"],
+      "module_future_tags": ["module-future; central-engine"],
+      "why_it_matters": "Second independent joint GBM+LLE test for an extra high-energy component; reports none. Also the only published statement that this burst's spectrum is constrained only up to LLE ~100 MeV.",
+      "harvested_values": {"T90_s": 271.364, "coverage": "TOTAL", "z": 2.1974, "LLE_LAT": "YES", "bolometric_fluence_1keV_1GeV": 3.11e-04, "log_Eiso": 54.57, "theta_j_deg": ">5.9", "log_E_gamma_beam": 52.28},
+      "snippets": ["'The joint time-integrated spectral analyses using the GBM and LAT data are performed using various models such as Band, Band + Power-law and Band + Cutoff-powerlaw.'", "'among the final 8 LAT detected long GRBs excepting GRB 120624B (till LLE, $100\\; MeV$) and GRB 090102A (GBM only), the spectrum is well constrained until $\\ge 1$ GeV'", "Table row: '83 & 120624B & 271.36 & 2.1974 & YES & 3.11E-04 & 54.57 & $>5.9$ & This work & 52.28'"],
+      "traps_noted": ["Per-burst Band parameters are NOT published - only bolometric fluence and Eiso. INCOMPARABLE on alpha/beta/Ep."]
+    },
+    {
+      "bibcode": "2023ApJ...949..110T",
+      "first_author": "Tak, Donggeun", "year": 2023,
+      "title": "Temporal and Spectral Evolution of Gamma-Ray Burst Broad Pulses: Identification of High-latitude Emission",
+      "arxiv": "2212.07095", "doctype": "article", "refereed": true, "citation_count": 6,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Tak_2023_2023ApJ949110T.pdf), tagged bn120624933;bn081224887, read=READING. No action.",
+      "prompt_sections": ["Sect. 2-3 - pulse selection and decomposition", "results table row GRB 120624B - pulse start, analysis window, N bins, HLE evidence", "GRBsample table row bn120624933 - fluence, peak flux, t_rise, t_decay, t_bumps"],
+      "module_future_tags": [],
+      "why_it_matters": "Independent single-pulse decomposition of episode 3 (t_bumps = 0.0 confirms a clean single pulse) and an independent HLE verdict ('Weak'). Their post-pulse source extent (37.75 s) overlaps our post-burst background start (35.0 s) - the one candidate WE-wrong item on the record.",
+      "harvested_values": {"pulse_start_s": 1.950, "analysis_start_s": 10.750, "analysis_end_s": 37.750, "n_bins": 14, "HLE_evidence": "Weak", "power_law_index": null, "fluence_1e-5": 19.6, "peak_flux_erg_cm2_s": 5.2e-06, "t_rise_s": 9.6, "t_decay_s": 7.0, "t_bumps_s": 0.0, "t_rise_over_t_decay": 1.371, "coverage": "EPISODE 3"},
+      "snippets": ["results row: 'GRB\\,120624B & 1.950 & 10.750 & 37.750 & 14 & Weak & - & -'", "GRBsample row: 'bn120624933 & 19.6 & 5.2 & 100 & 9.6 & 7.0 & 0.0 & & - & $\\bigtriangleup$ & - & - & O'", "'we assume that each time-resolved energy spectrum is dominated by a single spectral component, which can be PL, CPL, or the Band function'"],
+      "traps_noted": ["T3: t_rise/t_decay definitions must be copied with the numbers before diffing against our phi. The 2026-08-08 record's 3% agreement is CONDITIONAL on our phi being t_rise/t_decay.", "T7/silence: their menu is PL/CPL/Band only and explicitly single-component - they never tested a blackbody, so they are INCOMPARABLE on our thermal axis, not corroboration."]
+    },
+    {
+      "bibcode": "2024MNRAS.533..743W",
+      "first_author": "Wang, Huifeng", "year": 2024,
+      "title": "Constraints from Fermi observations of long gamma-ray bursts on cosmological parameters",
+      "arxiv": "2405.14357", "doctype": "article", "refereed": true, "citation_count": 21,
+      "found_by": ["F5_bare_suffix"],
+      "status_in_corpus": "NEW. Downloaded to Skills_training/Wang_2024_2024MNRAS533743W_bn120624933.pdf. Corpus row QUEUED.",
+      "prompt_sections": ["Table A1 (GOLD sample, 123 LGRBs) row 120624B - Band alpha, beta, Ep,i and S_bolo with errors"],
+      "module_future_tags": ["module-future; cosmo"],
+      "why_it_matters": "Supplies an independent burst-integrated Band fit with errors. Its Ep,i = 2032 +/- 74 keV is the HIGHEST of the four published rest-frame peak energies and is 2.3 sigma from de Ugarte Postigo's 1809 +/- 64 keV - a literature-internal inconsistency that must be propagated as a systematic (Phase 4 consensus rule), not adjudicated.",
+      "harvested_values": {"z": 2.1974, "T90_s": 271.4, "coverage": "TOTAL", "alpha": -0.9157, "alpha_err": 0.01224, "beta": -2.216, "beta_err": 0.07805, "Ep_i_keV": 2032, "Ep_i_err_keV": 74.02, "Ep_obs_implied_keV": 635.5, "S_bolo_erg_cm2": 2.824e-04, "Ep_convention": "Ep,i = REST FRAME (column header 'Ep,i(keV)'); divide by (1+z)=3.1974 for observer frame"},
+      "snippets": ["Table A1 header: 'GRB | z | T90 | alpha | sigma_alpha | beta | sigma_beta | Ep,i(keV) | sigma_Ep,i (keV) | Sbolo(erg/cm2) | sigma_Sbolo (erg/cm2)'; caption 'Table A1: The GOLD sample (123 LGRBs) table.'", "row: '120624B | 2.1974 | 271.4 | -9.157E-01 | 1.224E-02 | -2.216E+00 | 7.805E-02 | 2.032E+03 | 7.402E+01 | 2.824E-04'"],
+      "traps_noted": ["T9/L21: the column is Ep,i (REST frame). Diffing 2032 keV against our observer-frame Ep would manufacture a factor-3 discrepancy."]
+    },
+    {
+      "bibcode": "2018arXiv180305476R",
+      "first_author": "Ruffini, R.", "year": 2018,
+      "title": "On the role of the Kerr-Newman black hole in the GeV emission of long gamma-ray bursts",
+      "arxiv": "1803.05476", "doctype": "eprint", "refereed": false, "citation_count": 9,
+      "found_by": ["F5_bare_suffix"],
+      "status_in_corpus": "NEW. Downloaded to Skills_training/Ruffini_2018_2018arXiv180305476R_bn120624933.pdf. Corpus row QUEUED.",
+      "prompt_sections": ["Table 4 row GRB 120624B - z, Ep,i, Eiso, E_LAT, LAT boresight theta, TS"],
+      "module_future_tags": ["module-future; high-energy", "module-future; central-engine"],
+      "why_it_matters": "Independent Eiso and an independent LAT boresight angle (70.8 deg) that corroborates GCN 13379's ~70 deg. Classes the burst a BdHN and includes it in a 17-source rest-frame 0.1-100 GeV luminosity sample with a common decay slope - all of which is EXTENDED emission, outside our window.",
+      "harvested_values": {"z": 2.197, "coverage": "TOTAL (prompt) + EXTENDED (GeV)", "Ep_i_MeV": 1.39, "Ep_i_err_MeV": 0.35, "Eiso_1e52_erg": 347, "Eiso_err_1e52_erg": 16, "E_LAT_1e52_erg": ">=28 +/- 2", "theta_deg": 70.8, "TS": 312, "GeV_lightcurve_fit": "BdHN 120624B: 0.6429 (-0.0167,+0.0154), 2.5966 (-0.0307,+0.0320), 0.5930 (-0.0170,+0.0160), 3.1362 (-0.0232,+0.0236)", "common_GeV_decay_slope": "alpha = 1.20 +/- 0.04 over 17 BdHNe"},
+      "snippets": ["Table 4 header: 'Source | z | Ep,i (MeV) | Eiso (10^52 erg) | Fermi GCN | ELAT (10^52 erg) | theta (deg) | TS | Comments'", "row: 'GRB 120624B | 2.197 | 1.39 +/- 0.35 | 347 +/- 16 | GCN 13377 | >=28 +/- 2 | 70.8 | 312'", "Fig. 6 caption: 'The rest-frame 0.1-100 GeV isotropic luminosity light-curves of 17 selected BdHNe with LAT emission. The solid red line marks the common power-law behavior of the GeV emission for BdHNe with slope alpha = 1.20 +/- 0.04'"],
+      "traps_noted": ["Ep,i is in MeV and REST frame. Their Eiso = 3.47e54 vs dUP's 3.0 +/- 0.2 e54 - a ~2 sigma difference, recorded, not adjudicated.", "eprint only; no refereed version located in this pass."]
+    },
+    {
+      "bibcode": "2017ApJ...837..119A",
+      "first_author": "Atteia, J.-L.", "year": 2017,
+      "title": "The Maximum Isotropic Energy of Gamma-ray Bursts",
+      "arxiv": "1702.02961", "doctype": "article", "refereed": true, "citation_count": 59,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Atteia_2017_2017ApJ837119A.pdf) but tagged ONLY bn081222204 - this burst is in its sample and the 2026-08-03 dossier said so without updating the index. Trigger append QUEUED. NOT re-downloaded.",
+      "prompt_sections": ["sample table - Eiso for 120624B", "Sect. on the 1-3e54 erg maximum-Eiso cutoff"],
+      "module_future_tags": ["module-future; cosmo (luminosity function / bright-end, registry #40)"],
+      "why_it_matters": "This burst's Eiso = 3.0e54 erg sits AT/ABOVE the paper's own maximum-Eiso cutoff, i.e. 120624B is one of the energetic-tail bursts that DEFINE that cutoff. Direct tie to registry project #40.",
+      "harvested_values": {"note": "Sample-membership only; per-burst values not re-extracted in this pass (PDF present, unread)."},
+      "snippets": [],
+      "traps_noted": []
+    },
+    {
+      "bibcode": "2026ApJS..283...18L",
+      "first_author": "Li, Liang", "year": 2026,
+      "title": "A Novel Method of Estimating Gamma-Ray Burst Peak Energies beyond the Swift/BAT band",
+      "arxiv": "2412.08226", "doctype": "article", "refereed": true, "citation_count": 2,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Li_2026_2026ApJS28318L.pdf), tagged bn120624933. No action.",
+      "prompt_sections": ["Ep-estimation method sections; calibration sample table (burst appears as a sample member)"],
+      "module_future_tags": [],
+      "why_it_matters": "Ep methodology - relevant to how a BAT-band-only Ep would be inferred, and a cross-check on the Ep convention. Not re-extracted this pass.",
+      "harvested_values": {"note": "sample membership; per-burst row not extracted in this pass"},
+      "snippets": [], "traps_noted": []
+    },
+    {
+      "bibcode": "2013ApJ...764..190A",
+      "first_author": "Akerlof, Carl W.", "year": 2013,
+      "title": "Limits to the Fraction of High-energy Photon Emitting Gamma-Ray Bursts",
+      "arxiv": "1205.3066", "doctype": "article", "refereed": true, "citation_count": 0,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Akerlof_2013_2013ApJ764190A.pdf), tagged bn120624933. No action.",
+      "prompt_sections": ["LAT-population statistics; burst appears in the high-energy-emitter census"],
+      "module_future_tags": ["module-future; high-energy"],
+      "why_it_matters": "Population context for the LAT detection fraction; no per-burst spectral values for our diff.",
+      "harvested_values": {}, "snippets": [], "traps_noted": []
+    },
+    {
+      "bibcode": "2018IJMPD..2742003N",
+      "first_author": "Nava, Lara", "year": 2018,
+      "title": "High-energy emission from gamma-ray bursts",
+      "arxiv": "1804.01524", "doctype": "article", "refereed": true, "citation_count": 42,
+      "found_by": ["F5_bare_suffix"],
+      "status_in_corpus": "PDF PRESENT ON DISK as Skills_training/Nava_2018_2018IJMPD2742003N_bn130518580.pdf but has NO row in corpus_index.csv (corpus-hygiene gap, found this pass). NOT re-downloaded. Index row QUEUED with both triggers.",
+      "prompt_sections": ["review sections on LLE/LAT prompt-phase high-energy spectra and extra components"],
+      "module_future_tags": ["module-future; high-energy"],
+      "why_it_matters": "Review-level context only; a single passing mention of 120624B (p.12). No per-burst values.",
+      "harvested_values": {"mentions": 1, "page": 12},
+      "snippets": [], "traps_noted": []
+    },
+    {
+      "bibcode": "2026A&A...706A.142M",
+      "first_author": "Meng, Yan-Zhi", "year": 2026,
+      "title": "Clues to the photosphere emission origin of gamma-ray burst polarization",
+      "arxiv": "2503.01558", "doctype": "article", "refereed": true, "citation_count": 0,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Meng_2026_2026AA706A142M.pdf), tagged bn120624933. No action.",
+      "prompt_sections": ["photosphere-model sections bearing on any BB our fit reports"],
+      "module_future_tags": ["module-future; polarization"],
+      "why_it_matters": "A photospheric-interpretation paper that includes this burst - relevant as a BIAS disclosure (Phase 3c): if our fresh run fires the BB union rule, this is the literature it would be read against. Chang+2026 points the other way.",
+      "harvested_values": {}, "snippets": [], "traps_noted": []
+    },
+    {
+      "bibcode": "2025MNRAS.543.1945F",
+      "first_author": "Fraija, Nissim", "year": 2025,
+      "title": "Closure relations of synchrotron self-Compton from reverse shock and Fermi-LAT GRBs",
+      "arxiv": "2509.23345", "doctype": "article", "refereed": true, "citation_count": 4,
+      "found_by": ["F1_name", "F5_bare_suffix"],
+      "status_in_corpus": "PRESENT (Fraija_2025_2025MNRAS5431945F.pdf), tagged bn120624933. No action.",
+      "prompt_sections": [],
+      "module_future_tags": ["module-future; afterglow", "module-future; high-energy"],
+      "why_it_matters": "Bears on the 1030-s extended >100 MeV component (T_LAT,0 = 73.7 s onward), i.e. entirely outside our window. Cataloged for the afterglow/high-energy sibling module.",
+      "harvested_values": {}, "snippets": [], "traps_noted": []
+    },
+    {
+      "bibcode": "2026JCAP...02..035A",
+      "first_author": "Amelino-Camelia, Giovanni", "year": 2026,
+      "title": "Redshift leverage for the search of GRB neutrinos affected by quantum properties of spacetime",
+      "arxiv": "2501.13840", "doctype": "article", "refereed": true, "citation_count": 2,
+      "found_by": ["F1b_name_nospace"],
+      "status_in_corpus": "PRESENT (Amelino-Camelia_2026_2026JCAP02035A.pdf), tagged bn120624933. No action.",
+      "prompt_sections": [],
+      "module_future_tags": ["module-future; mm", "module-future; liv"],
+      "why_it_matters": "Consumes only z and the trigger time. NOTE: found ONLY by the no-space form F1b - a second argument for running every name spelling.",
+      "harvested_values": {}, "snippets": [], "traps_noted": []
+    },
+    {
+      "bibcode": "2022arXiv220406118K",
+      "first_author": "Khadka, Narayan", "year": 2022,
+      "title": "Using quasar and gamma-ray burst measurements to constrain cosmological dark energy",
+      "arxiv": "2204.06118", "doctype": "eprint", "refereed": false, "citation_count": 0,
+      "found_by": ["F5_bare_suffix"],
+      "status_in_corpus": "NOT RETAINED. The arXiv PDF is 377 pages / 154 MB for a single table-row mention (p.350). Downloaded, mined, then DELETED to avoid a 154 MB repo object. Corpus row QUEUED with pdf_path = '(not retained - 154MB; refetch arXiv:2204.06118 if needed)'.",
+      "prompt_sections": [],
+      "module_future_tags": ["module-future; cosmo"],
+      "why_it_matters": "Supplies a FOURTH, and the lowest, published Ep,i for this burst (1214.47 +/- 26.24 keV) - the low end of the 818-keV inter-analysis spread that the consensus rule folds into the systematic.",
+      "harvested_values": {"z": 2.2, "coverage": "TOTAL", "Ep_i_keV": 1214.47, "Ep_i_err_keV": 26.24, "second_column": "20.49 +/- 0.25 (bolometric-fluence-like; header not captured before deletion - treat as UNVERIFIED)"},
+      "snippets": ["table row: '120624B | 2.2 | 1214.47 +/- 26.24 | 20.49 +/- 0.25'"],
+      "traps_noted": ["The second column's header was NOT captured before the file was deleted - it is recorded as UNVERIFIED and must not be used until re-checked against arXiv:2204.06118."]
+    },
+    {
+      "bibcode": "2015PhPro..74..287A",
+      "first_author": "Arkhangelskaja, I. V.", "year": 2015,
+      "title": "The Properties of the Gamma-ray Bursts with High-energy Spectral Component",
+      "arxiv": null, "doctype": "article", "refereed": true, "citation_count": 2,
+      "found_by": ["F5_bare_suffix"],
+      "status_in_corpus": "NOT FETCHED. ADS reports PUB_OPENACCESS but the Elsevier/Physics Procedia DOI redirect returns HTML, not a PDF. No arXiv version exists. Recorded as an honest fetch failure.",
+      "prompt_sections": ["(unread) high-energy spectral-component census - would bear directly on our extra-component axis"],
+      "module_future_tags": ["module-future; high-energy"],
+      "why_it_matters": "Topically the most relevant of the unfetched items: a census of GRBs with a high-energy spectral component. Worth a manual fetch by Vikas (doi:10.1016/j.phpro.2015.09.211).",
+      "harvested_values": {}, "snippets": [], "traps_noted": ["fetch failure recorded, not hidden"]
+    },
+    {
+      "bibcode": "2025AdSpR..76..286M",
+      "first_author": "Mayorov, A. G.", "year": 2025,
+      "title": "Capabilities of the GAMMA-400 gamma-ray telescope to study the relationship between gamma-ray bursts and other phenomena",
+      "arxiv": null, "doctype": "article", "refereed": true, "citation_count": 0,
+      "found_by": ["F1b_name_nospace"],
+      "status_in_corpus": "NOT FETCHED - no OPENACCESS property on the ADS record and no arXiv version. Recorded, not fabricated.",
+      "prompt_sections": [],
+      "module_future_tags": ["module-future; instrument-future"],
+      "why_it_matters": "A future-instrument capability paper citing this burst as a reference case. No values for our diff.",
+      "harvested_values": {}, "snippets": [], "traps_noted": []
+    },
+    {
+      "bibcode": "2025arXiv250214417H",
+      "first_author": "Hasan, Ali M.", "year": 2025,
+      "title": "Do Short GRBs Exhibit an Anticorrelation between Their Intrinsic Duration and Redshift?",
+      "arxiv": "2502.14417", "doctype": "eprint", "refereed": false, "citation_count": 0,
+      "found_by": ["F5_bare_suffix"],
+      "status_in_corpus": "Downloaded to Skills_training/Hasan_2025_2025arXiv250214417H_bn120624933.pdf and FLAGGED. Corpus row QUEUED with theme 'IDENTITY-MISMATCH'.",
+      "prompt_sections": [],
+      "module_future_tags": [],
+      "why_it_matters": "T1 CONTAMINATION FLAG. Its table row labelled '120624B' carries z = 1.3487 and T = 84.87 s. Our burst is a LONG GRB with a secure z = 2.1974 and T90 = 271 s. Both identity keys disagree, and the paper's subject is SHORT GRBs. NO values harvested.",
+      "harvested_values": {"REJECTED": "z = 1.3487, T = 84.87 s - identity mismatch, not entered anywhere"},
+      "snippets": ["p.10 table: '120624B | 1.3487 | 84.87 | 1, 3'"],
+      "traps_noted": ["T1: verify identity by trigger/redshift/duration, never by name string alone. This one would have injected a wrong redshift."]
+    }
+  ],
+
+  "zero_paper_finding": false,
+
+  "pending_shared_csv_rows": {
+    "note": "This worker is forbidden to write shared CSVs. Apply these by hand or by the campaign merge step.",
+    "Skills_training/corpus_index.csv": {
+      "append_trigger_to_existing_rows": [
+        {"bibcode": "2020ApJ...890...90D", "filename": "Duan_2020_2020ApJ89090D.pdf", "action": "cited_by_bursts += ';bn120624933'; n_bursts 0 -> 1 (the current value 0 disagrees with the 3 entries already listed - fix to 4 when applying); theme += ';prompt-timeresolved;Ep-evolution-class'", "reason": "It analyses this burst in three tables and is the best frame-match we have. It was already on disk and was missed by the 2026-08-03 sweep."},
+        {"bibcode": "2017ApJ...837..119A", "filename": "Atteia_2017_2017ApJ837119A.pdf", "action": "cited_by_bursts 'bn081222204' -> 'bn081222204;bn120624933'; n_bursts 1 -> 2", "reason": "120624B is in its sample and sits at its maximum-Eiso cutoff; the 2026-08-03 dossier stated this but never updated the index."},
+        {"bibcode": "2023ApJ...949..110T", "filename": "Tak_2023_2023ApJ949110T.pdf", "action": "no change needed (already tagged bn120624933;bn081224887, read=READING)", "reason": "verified present and correct"},
+        {"bibcode": "2026MNRAS.546ag047C", "filename": "Chang_2026_2026MNRAS546ag047C.pdf", "action": "no change needed (already tagged bn120624933;bn200524211)", "reason": "verified present and correct"}
+      ],
+      "new_rows": [
+        {"filename": "Wang_2024_2024MNRAS533743W_bn120624933.pdf", "bibcode": "2024MNRAS.533..743W", "arxiv": "2405.14357", "theme": "cosmology-GOLD-sample;Amati;module-future-cosmo", "cited_by_bursts": "bn120624933", "n_bursts": 1, "read": "N", "read_date": ""},
+        {"filename": "Ruffini_2018_2018arXiv180305476R_bn120624933.pdf", "bibcode": "2018arXiv180305476R", "arxiv": "1803.05476", "theme": "BdHN;GeV-afterglow;module-future-high-energy", "cited_by_bursts": "bn120624933", "n_bursts": 1, "read": "N", "read_date": ""},
+        {"filename": "Nava_2018_2018IJMPD2742003N_bn130518580.pdf", "bibcode": "2018IJMPD..2742003N", "arxiv": "1804.01524", "theme": "review;high-energy-emission;module-future-high-energy", "cited_by_bursts": "bn130518580;bn120624933", "n_bursts": 2, "read": "N", "read_date": "", "note": "PDF was already on disk with NO index row - this new row closes a corpus-hygiene gap, it is not a new download."},
+        {"filename": "Hasan_2025_2025arXiv250214417H_bn120624933.pdf", "bibcode": "2025arXiv250214417H", "arxiv": "2502.14417", "theme": "IDENTITY-MISMATCH;short-GRB;DO-NOT-HARVEST", "cited_by_bursts": "bn120624933(REJECTED)", "n_bursts": 0, "read": "N", "read_date": "", "note": "T1 contamination: their '120624B' row has z=1.3487 and T=84.87 s, both inconsistent with our burst."},
+        {"filename": "(not retained - 154MB; refetch arXiv:2204.06118 if needed)", "bibcode": "2022arXiv220406118K", "arxiv": "2204.06118", "theme": "cosmology-quasar-GRB;Amati;module-future-cosmo", "cited_by_bursts": "bn120624933", "n_bursts": 1, "read": "N", "read_date": ""},
+        {"filename": "(NOT FETCHED - Elsevier redirect, no arXiv; doi:10.1016/j.phpro.2015.09.211)", "bibcode": "2015PhPro..74..287A", "arxiv": "", "theme": "high-energy-spectral-component;FETCH-FAILED", "cited_by_bursts": "bn120624933", "n_bursts": 1, "read": "N", "read_date": ""},
+        {"filename": "(NOT FETCHED - no OA, no arXiv)", "bibcode": "2025AdSpR..76..286M", "arxiv": "", "theme": "instrument-future-GAMMA400;FETCH-FAILED", "cited_by_bursts": "bn120624933", "n_bursts": 1, "read": "N", "read_date": ""}
+      ]
+    },
+    "results/gcn/gcn_index.csv": {
+      "new_rows": [
+        {"trigger": "bn120624933", "gcn_page": "https://gcn.gsfc.nasa.gov/other/120624B.gcn3", "n_circulars": 19, "z_mention": "NO - no circular reports the real z; GCN 13389 gives only z > ~0.3 from Amati, GCN 13395 a photometric galaxy z of 0.43-0.57 (both misleading). The secure z=2.1974 came a year later in 2013A&A...557L..18D.", "ads_hits": 34, "ads_refereed": 14}
+      ],
+      "note": "The burst has NO row in results/gcn/gcn_index.csv today, despite a dossier existing since 2026-08-03."
+    }
+  },
+
+  "issues": [
+    "SKILL GAP: LiteratureHarvest.md Phase 1's four forms MISS the best anchor for this burst. F2/F3/F4 (bn120624933 / 120624933 / 362269436) all return ZERO; the unlisted bare-suffix form full:\"120624B\" returns 34 and is the only way to reach Duan & Wang 2020. Recommend adding it as a standing form.",
+    "MISSED ANCHOR: Duan & Wang 2020 (2020ApJ...890...90D) was already in Skills_training/ (fetched for other bursts) but untagged for bn120624933, so the 2026-08-08 reconciliation never saw it. The G2 dedup index only helps if the tagging step actually runs.",
+    "PUBLISHED-VS-PUBLISHED: four rest-frame Ep,i values for the TOTAL burst span 1214 to 2032 keV (Khadka+2022, Ruffini+2018, dUP+2013, Wang&Liang 2024) with quoted errors of 26-350 keV. Recorded as a systematic per the Phase 4 consensus rule; NOT adjudicated.",
+    "T1 CONTAMINATION: Hasan+2025 carries a '120624B' row with z=1.3487 and T=84.87 s - both inconsistent with our burst. Values rejected.",
+    "FETCH FAILURES (honest): 2015PhPro..74..287A (Elsevier redirect returns HTML despite a PUB_OPENACCESS flag) and 2025AdSpR..76..286M (no OA, no arXiv). Neither was fabricated or inferred.",
+    "REPO HYGIENE: the Khadka+2022 arXiv PDF is 377 pages / 154 MB for one table row. Downloaded, mined, deleted. Future harvests should size-check before committing a PDF to Skills_training/.",
+    "CORPUS HYGIENE: Skills_training/Nava_2018_2018IJMPD2742003N_bn130518580.pdf exists on disk with NO row in corpus_index.csv."
+  ]
+}

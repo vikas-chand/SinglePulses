@@ -1,0 +1,101 @@
+{
+  "burst": "bn120130938",
+  "grb_name": "GRB120130938 (GBM catalog name; NO lettered designation exists — see dossier section 2)",
+  "tally": null,
+  "tally_note": "walkthrough serial not assigned by this doc-layer worker",
+  "frozen_utc": "2026-08-12; BEFORE any fresh/sweep106 fit table was opened. results/sweep106/ was NEVER read (hard rule). No P0 freeze existed for this burst before this run — nothing was overwritten.",
+  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+
+  "external_frame": {
+    "n_circulars": 0,
+    "n_refereed_papers": 0,
+    "statement": "Doubly silent burst. The ONLY external numbers are the GBM catalog's own row (HEASARC FERMIGBRST, last_modified 2018-06-02), filed in results/gcn/bn120130938/bn120130938_dossier.md section 5. There is no independent analysis to diff against, so P3 for this burst is a diff against (a) the archival prior below and (b) the catalog row, with its coverage caveats.",
+    "catalog_anchor_values": {
+      "interval": "-7.168 -> +33.792 s (T0 = GBM trigger); detectors n0,n1,n9,b1; Castor C-STAT; 10-1000 keV",
+      "flnc_COMP_best": {"Ep_keV": 161.38, "Ep_err": 9.54, "index": -0.926, "index_err": 0.054, "redchisq": 1.039},
+      "flnc_Band": {"Ep_keV": 159.91, "Ep_err": 10.35, "alpha": -0.922, "beta": -3.543, "beta_err": 384.3, "redchisq": 1.041, "flag": "beta UNCONSTRAINED"},
+      "flnc_SBPL": {"Ebreak_keV": 129.79, "Ebreak_err": 19.98, "lambda1": -1.102, "lambda2": -2.778, "redchisq": 1.040},
+      "pflx_COMP_best": {"interval": "+9.216 -> +10.240 s", "Ep_keV": 155.37, "Ep_err": 16.10, "index": -0.486, "index_err": 0.162},
+      "T90_s": 38.913, "T90_err_s": 7.455, "T90_span_s": [-5.12, 33.79], "T50_s": 9.216, "T50_span_s": [4.10, 13.31],
+      "fluence_10_1000_keV": 1.0413e-05,
+      "coverage_caveat_T9": "single FRED pulse, no precursor -> all catalog rows cover TOTAL = the one pulse. The MISMATCH is interval + detector: catalog integrates -7.168->33.792 s with n0n1n9b1; we use -3.0->26.0 s with n0n1b0. Every catalog-vs-us diff is mismatched by construction and must be labelled, not resolved."
+    }
+  },
+
+  "archival_prior": {
+    "source": "results/clean_per_burst_human_final/bn120130938/spectral_fits.ecsv (pre-L18-era engine; production numbers provisional per AGENTS.md section 6)",
+    "n_blocks": 3,
+    "plus_integrated": true,
+    "block_edges_s": {"integrated_-1": [1.238, 21.436], "0": [1.238, 4.433], "1": [4.433, 15.063], "2": [15.063, 21.436]},
+    "detectors": "n0,n1,b0 (3, all blocks) — stamped window -3.0/26.0 s, Vikas Chand 2026-07-19T22:18:36Z, human_gui",
+    "block_coverage_note": "The blocks span only [1.238, 21.436] s of the stamped [-3.0, 26.0] s window, and the catalog T90 span is [-5.12, +33.79] s. The archival prior therefore describes ~53% of the catalog T90 duration and omits the pre-trigger rise entirely.",
+
+    "union_rule_bb_blocks": {
+      "rule": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05)",
+      "bandbb_pass": [],
+      "cplbb_pass": [],
+      "union": [],
+      "count": 0,
+      "detail": {
+        "blk-1_integrated_[1.24,21.44]s": "LRT_BANDBB_BAND=3.32 (kT=12.86 keV, VALID), LRT_CPLBB_CPL=3.98 (kT=13.28 keV, VALID). Both far below 9.2. AIC winner CPL, BIC winner CPL.",
+        "blk0_[1.24,4.43]s": "NEAR-MISS and the block to watch. AIC winner is CPL+BB (2591.20) but by dAIC=1.01 over SBPL/CPL — noise-level. LRT_CPLBB_CPL=5.04 (kT=11.08 keV, CPLBB_VALID=True); LRT_BANDBB_BAND=5.00 (kT=11.28 keV, BANDBB_VALID=FALSE). Union rule NOT met on either baseline. BIC winner CPL.",
+        "blk1_[4.43,15.06]s": "LRT_BANDBB_BAND=9.1e-05 (kT=3.57 keV — i.e. the BB collapsed onto nothing), LRT_CPLBB_CPL=4.66 (kT=26.45 keV). AIC winner SBPL by dAIC=0.61 over Band; BIC winner CPL.",
+        "blk2_[15.06,21.44]s": "LRT_BANDBB_BAND=0.61 (kT=12.38, BANDBB_VALID=False), LRT_CPLBB_CPL=1.73 (kT=12.33, VALID). AIC and BIC winner CPL."
+      }
+    },
+
+    "aic_winners_by_block": {"-1": "CPL", "0": "CPL+BB", "1": "SBPL", "2": "CPL"},
+    "bic_winners_by_block": {"-1": "CPL", "0": "CPL", "1": "CPL", "2": "CPL"},
+    "aic_margins_2nd_minus_1st": {"-1": 0.02, "0": 1.01, "1": 0.61, "2": 0.83},
+    "aic_margin_verdict": "EVERY block's AIC margin is <= 1.01, i.e. two orders of magnitude below the project's dAIC >= 10 selection doctrine. The archival BEST_AIC_MODEL labels for this burst are NOISE, not decisions. BIC is unanimous (CPL everywhere) and is the only stable archival statement. Treat the 'CPL+BB in blk0' and 'SBPL in blk1' labels as coin-flips, NOT as prior evidence.",
+
+    "kT_keV_bandbb_by_block": {"-1": 12.86, "0": 11.28, "1": 3.57, "2": 12.38},
+    "kT_keV_cplbb_by_block": {"-1": 13.28, "0": 11.08, "1": 26.45, "2": 12.33},
+    "validity_flags": {
+      "BANDBB_VALID": {"-1": true, "0": false, "1": true, "2": false},
+      "CPLBB_VALID": {"-1": true, "0": true, "1": true, "2": true},
+      "DSBPL_VALID": {"-1": true, "0": false, "1": true, "2": false},
+      "SBPL_VALID": {"-1": true, "0": false, "1": true, "2": false}
+    },
+
+    "shape_params_by_block": {
+      "-1": {"BAND_EP": 171.6, "BAND_EP_ERR": 28.2, "BAND_ALPHA": -0.789, "BAND_BETA": -2.457, "CPL_XC": 182.9, "CPL_INDEX": -0.891, "SBPL_EBREAK": 127.4},
+      "0": {"BAND_EP": 181.5, "BAND_EP_ERR": 83.7, "BAND_ALPHA": -1.163, "BAND_BETA": -5.00, "CPL_XC": 216.7, "CPL_INDEX": -1.163, "SBPL_EBREAK": 15.3, "flag": "BAND_BETA railed at -5.0; SBPL_EBREAK 15.3 keV with alpha1=+1.50 -> SBPL_VALID=False. Ep error 46% — this block is poorly constrained."},
+      "1": {"BAND_EP": 168.4, "BAND_EP_ERR": 21.7, "BAND_ALPHA": -0.570, "BAND_BETA": -2.377, "CPL_XC": 161.6, "CPL_INDEX": -0.726, "SBPL_EBREAK": 130.0},
+      "2": {"BAND_EP": 70.2, "BAND_EP_ERR": 27.0, "BAND_ALPHA": -0.614, "BAND_BETA": -2.056, "CPL_XC": 202.0, "CPL_INDEX": -1.259, "SBPL_EBREAK": 13.5, "flag": "Band Ep=70 keV vs CPL_XC=202 keV (CPL_EPK_CURVE=148.5) — the two continua disagree strongly on the peak energy in the decay block."}
+    },
+
+    "break_structure": {
+      "LRT_DSBPL_SBPL_by_block": {"-1": 2.36, "0": 0.14, "1": 0.03, "2": 1.49},
+      "verdict": "NO two-break signal anywhere in the archival prior — max LRT = 2.36, and DSBPL_VALID is False in blocks 0 and 2. The blk1 SBPL AIC 'win' (dAIC 0.61) is a curvature preference at noise level, not a second break."
+    },
+
+    "flagged_anomaly_in_the_archival_table": "CPL_EPK_CURVE = 204.35784817880736 appears IDENTICALLY (to 12 decimals) in block -1 and block 1, and in block 0 CPL_EPK_CURVE == BAND_EPK_CURVE == 181.6976472360073 exactly. Two independent blocks cannot produce a bit-identical curvature peak by chance. This looks like a cap/grid/fallback artifact in the pre-L18 curvature estimator, NOT a physical result. Recorded as an OBSERVATION for the fit-layer worker to check against the current engine; this worker did not diagnose it."
+  },
+
+  "predictions": [
+    "P-A (Ep track, falsifiable): the fresh blind engine returns a MONOTONICALLY SOFTENING Ep across the pulse — first-block (~1.2-4.4 s) Ep >= last-block (~15-21 s) Ep, with the peak-region (~4-15 s) Ep landing in 130-200 keV, straddling the GBM catalog's peak-flux COMP Ep = 155.4 +- 16.1 keV and integrated COMP Ep = 161.4 +- 9.5 keV after frame alignment (catalog Ep is nuFnu-peak, 10-1000 keV, dets n0n1n9b1, interval -7.168->33.792 s — WIDER than ours, so a small downward pull on the catalog value from the soft tail is expected, not a discrepancy). Independent support: the catalog's own peak-bin index (-0.486 +- 0.162) is harder than its integrated index (-0.926 +- 0.054) at ~2.6 sigma. FALSIFIER: last-block Ep exceeds first-block Ep at >2 sigma, or any block's Ep falls outside 40-400 keV.",
+
+    "P-B (BB / union rule, falsifiable): the L18+ engine returns ZERO blocks passing the union rule ((LRT_BANDBB_BAND>=9.2 & kT>1.05) OR (LRT_CPLBB_CPL>=9.2 & kT>1.05)) — i.e. bn120130938 stays OUT of the significant-BB population. The archival maximum is LRT = 5.04 (blk0, CPL+BB baseline, kT = 11.08 keV), only ~55% of threshold. FALSIFIER: >=1 block passes the union rule. If it does, the falsification is INFORMATIVE rather than embarrassing — the pre-L18 engine under-detected BB (BB seed-poisoning + Ep-cap lessons L8/L9), so a fresh pass is EXPECTED to move upward, never downward. A fresh union count of 0 confirms the null; a count of 1 (most likely blk0, kT ~ 10-13 keV) confirms the L8/L9 correction; a count >= 2 would say the archival BB null was a wholesale engine artifact and the census lower-limit is looser than assumed. Note blk0's BANDBB_VALID=False vs CPLBB_VALID=True: this is a live BASELINE-DEPENDENCE instance (T8 twin / union-rule fix) and the fresh run must report the margin against a NAMED baseline, never 'the' dAIC.",
+
+    "P-C (break structure, falsifiable): ZERO blocks show a valid second break — no block reaches LRT_DSBPL_SBPL >= 9.2 with DSBPL_VALID=True. Archival max = 2.36 (integrated). FALSIFIER: any block with LRT_DSBPL_SBPL >= 9.2 and DSBPL_VALID=True; that would make this burst a NEW two-break candidate found only after the L18-L20 hardening, which is exactly the class the campaign exists to find.",
+
+    "P-D (model decisiveness, falsifiable and the most likely to be interesting): the fresh run is again MODEL-INDECISIVE at the ddAIC >= 10 doctrine level in every block. Archival AIC margins are 0.02 / 1.01 / 0.61 / 0.83; the GBM catalog independently shows red-chi2 spread <= 0.002 across COMP/Band/SBPL on the integrated spectrum, with Band beta unconstrained (-3.543 +- 384.3). Two independent pipelines, two decades of method apart, both fail to discriminate. PREDICTION: the fresh integrated fit ALSO fails to constrain beta (relative error > 50%), and the AIC winner in every block wins by dAIC < 10. FALSIFIER: any block where a model wins by dAIC >= 10, or where beta is constrained to better than 30%. If falsified, the gain came from the ENGINE (multistart / cap / coverage fixes), not from the data — and that is a headline result for the agentic paper, because there is no literature for this burst that could have leaked the answer.",
+
+    "P-E (window coverage, methodological): whatever the fits say, the analysis covers -3.0 -> +26.0 s while the catalog T90 spans -5.12 -> +33.79 s. PREDICTION: the emission omitted at both ends is low-flux tail (the n9 light curve is back to baseline by ~+35 s and the T50 interval [4.10, 13.31] s sits comfortably inside our window), so our integrated Ep should sit at or slightly ABOVE the catalog integrated Ep = 161.4 keV, not below. FALSIFIER: our integrated Ep comes out significantly BELOW the catalog value, which would mean the omitted tail is not what we think it is and the window must be revisited before any census use."
+  ],
+
+  "harvest_snippets": {
+    "literature": ["ABSENT — n_papers = 0. No refereed paper mentions this burst under any of ten searched name/trigger forms, and no PDF in the 131-file Skills_training corpus contains the string '120130'. See notes/reconciliation/bn120130938_harvest.json."],
+    "circulars": ["ABSENT — n_circulars = 0. Classic archive 404 on 120130A/120130/120130B.gcn3; JSON-API scan of circulars 12890-12965 (2012-01-21 -> 2012-02-19) returns zero matches on '120130' or '349655436'. See results/gcn/bn120130938/bn120130938_gcn_raw.txt."],
+    "literature_BB_claims": ["ABSENT — no paper fits, claims, or denies a thermal component for this burst. There is no external prior on kT at all."],
+    "GBM_catalog": [
+      "flnc_comp (BEST): Ep = 161.3779 +- 9.5394 keV, index = -0.9262 +- 0.0542, redchisq 1.039, dof 480, interval -7.168 -> 33.792 s",
+      "flnc_band: Ep = 159.9132 +- 10.3533 keV, alpha = -0.9216 +- 0.0531, beta = -3.5434 +- 384.33 (UNCONSTRAINED), redchisq 1.041",
+      "flnc_sbpl: Ebreak = 129.7924 +- 19.9809 keV, indx1 = -1.1023 +- 0.0504, indx2 = -2.7780 +- 0.3668, brksc 0.3 fixed",
+      "pflx_comp (BEST): Ep = 155.3657 +- 16.1048 keV, index = -0.4863 +- 0.1618, interval 9.216 -> 10.240 s",
+      "T90 = 38.913 +- 7.455 s from t = -5.120 s (50-300 keV); T50 = 9.216 +- 2.290 s from t = +4.096 s; fluence(10-1000 keV) = 1.0413e-05 +- 1.6258e-07 erg/cm2; peak flux(1024 ms) = 6.1934 +- 0.3486 ph/cm2/s at t = +9.920 s",
+      "scat_detector_mask = 11000000010001 -> n0,n1,n9,b1 (the catalog used n9 and b1, which our approved set does NOT contain)"
+    ]
+  }
+}

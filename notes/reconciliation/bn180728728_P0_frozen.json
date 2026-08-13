@@ -1,0 +1,24 @@
+{
+ "burst": "bn180728728",
+ "tally": 11,
+ "frozen_utc": "2026-08-11 (night shift; BEFORE any fit table opened)",
+ "engine": "L18/L19/L20/L26/L27 active",
+ "predictions": [
+  "SN-associated GRB 180728A (SN 2018fip); archival BB-leader (6/22 blocks, median kT 4.7 keV -> LOW-kT class)",
+  "P-A: expect the low-kT (~5 keV) feature class; is it REQUIRED (graded bars) or L12-degenerate?",
+  "P-B: literature classification to harvest at open (progenitor-classification paper 2024ApJ...974..120N)"
+ ],
+ "harvest_snippets": {
+  "Li&Zhang2021": [
+   "not in sample"
+  ],
+  "Lu2018": [
+   "not in sample"
+  ],
+  "Li2026_tracking": [
+   "\u2026.39 -0.24 1.00 II 180305393 \u00b7 \u00b7 \u00b7 13.06\u00b10.81 CPL 10 3.92\u00b10.47 2.37\u00b10.41 -1.54\u00b10.62 -2.48 -0.46 0.07 0.93 0.00 -0.28 -0.20 1.00 II 180728728 0.117 6.40\u00b10.36 CPL 18 11.53\u00b10.26 11.91\u00b10.12 0.38\u00b10.29 1.33 0.16 0.36 0.01 0.63 -1.65 -1.61 0.00 III Note\u2014All quantities are deri\u2026",
+   "\u2026zation by FWHMF . At the other extreme, GRB 150902733 represents the most unambiguous Type III burst, with PIII = 0.97, while GRB 180728728 occupies the same positive-lag regime with lower significance. The aligned Type I sub- class is correspondingly well-concentrated\u2026",
+   "\u20260902733 Ep 10 7 10 6 10 5 10 4 F (erg cm 2 s 1) F 10 5 0 5 10 15 20 25 30 Time since trigger (s) 10 1 10 2 10 3 10 4 Ep (keV) GRB 180728728 Ep 10 7 10 6 10 5 10 4 F (erg cm 2 s 1) F Figure 5. Same as Fig. 3 but for all the Type III bursts. Type I Type II Type III 1.50\u2026"
+  ]
+ }
+}

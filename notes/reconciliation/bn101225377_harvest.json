@@ -1,0 +1,135 @@
+{
+  "burst": "bn101225377",
+  "grb_name": "GRB101225377 (GBM designation; NO IAU letter suffix exists. 'GRB 101225A' is a DIFFERENT burst - the Swift Christmas burst, 47.52 deg away, 9h35m later)",
+  "tally": null,
+  "tally_note": "walkthrough serial not assigned by this doc-layer worker; orchestrator assigns",
+  "harvest_utc": "2026-08-12",
+  "worker": "doc-layer worker (Steps 0 / 0b / 1)",
+  "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1, 1b Scholar-note, 2, 3, 3b latest-first, 3c prompt-scope, 4 frame+consensus, 5) + GCNIntelligence.md + DataInventory.md",
+  "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env; token OK, len 40)",
+  "queries": [
+    {"form": "GBM trigger name", "q": "full:\"bn101225377\"", "numFound": 0},
+    {"form": "day-fraction (bare)", "q": "full:\"101225377\"", "numFound": 0, "note": "ADS tokenizer: the bare digit string finds nothing while the GRB-prefixed single token finds 2 - run BOTH forms"},
+    {"form": "trigger number (MET)", "q": "full:\"314960575\"", "numFound": 0},
+    {"form": "GRB+trigger single token", "q": "full:\"GRB101225377\"", "numFound": 2, "refereed_articles": 1, "note": "THE productive form: 2017ApJS..229...31H (refereed) + 2024arXiv240115632C (eprint)"},
+    {"form": "GRB+trigger with space", "q": "full:\"GRB 101225377\"", "numFound": 0},
+    {"form": "letter-name probe B", "q": "full:\"GRB 101225B\" / full:\"GRB101225B\"", "numFound": 0, "note": "no such designation exists in the literature"},
+    {"form": "Konus naming convention", "q": "full:\"101225_T32573\" / full:\"101225_32573\"", "numFound": 0, "note": "Konus-Wind observed the burst (Hurley+2017 table 2) but never published it under its seconds-of-day name"},
+    {"form": "prefix probe", "q": "full:\"bn101225\"", "numFound": 0},
+    {"form": "T1 CONTAMINATION CONTROL", "q": "full:\"GRB 101225A\"", "numFound": 165, "refereed_articles": "many", "note": "ALL 165 belong to the Swift Christmas burst (ultra-long GRB / magnetar / minor-body literature: Thoene+2011, Kann+2024, Ror+2024, Beniamini+2026, ...). ZERO are ours. EXCLUDED wholesale."}
+  ],
+  "local_corpus_sweep": {
+    "method": "fitz text search over all 131 Skills_training/*.pdf for 101225377 / 101225.377 / GRB101225 / GRB 101225 / 101225A / 101225B",
+    "hits": 2,
+    "verdict": "BOTH are T1 contamination, not our burst: Amelino-Camelia_2026_2026JCAP02035A.pdf p.12 ('GRB101225'/'101225A') and Suvorov_2024_2024Univ10441S.pdf p.29 ('GRB 101225'/'101225A') - both cite the Christmas burst. Zero corpus papers touch bn101225377.",
+    "note": "2 corrupt/unreadable PDFs in the corpus produced MuPDF zlib/cmsOpenProfile errors during the sweep (non-fatal, files skipped) - see issues"
+  },
+  "scholar_channel": {
+    "phase_1b_rule_triggered": true,
+    "reason": "ADS four-form came back THIN (2 records, 1 refereed, neither an analysis paper)",
+    "method": "WebSearch (no Scholar API; finding channel only - ADS verifies)",
+    "query": "\"GRB101225377\" OR \"101225377\" Fermi GBM burst 2010-12-25 09:02:53",
+    "result": "No bridging paper. Every returned link is either a generic GBM/LAT catalog page (fermigbrst, 2nd/3rd GBM catalog, 1st LAT catalog) or Christmas-burst material (Wikipedia GRB 101225A, astrobites, MPE page, Thoene+2011). Confirms the paperless status by an independent index.",
+    "date": "2026-08-12"
+  },
+  "n_papers": 2,
+  "n_refereed": 1,
+  "n_papers_analysing_this_burst_spectrally_or_temporally": 0,
+  "papers": [
+    {
+      "bibcode": "2017ApJS..229...31H",
+      "first_author": "Hurley, K.",
+      "year": 2017,
+      "title": "The InterPlanetary Network Supplement to the Second Fermi GBM Catalog of Cosmic Gamma-Ray Bursts",
+      "doctype": "article",
+      "refereed": true,
+      "openaccess": "PUB_OPENACCESS (but see fetch failure)",
+      "doi": "10.3847/1538-4365/229/2/31",
+      "found_via": "ads full:\"GRB101225377\"",
+      "local_pdf": "Skills_training/Hurley_2017_2017ApJS22931H_bn101126198.pdf EXISTS ON DISK BUT IS CORRUPT (14371 B Radware captcha HTML, not a PDF; deposited 2026-08-12 by the parallel bn101126198 worker). NOT overwritten by this worker (idempotency rule). No usable PDF for this bibcode in the corpus.",
+      "in_corpus_index": false,
+      "action": "NO re-download attempted beyond 3 routes, all blocked (IOP link_gateway PUB_PDF -> captcha; direct iopscience .../pdf -> captcha; Unpaywall repository mirror openaccessrepository.it/record/125681 -> HTTP 400). CONTENT HARVESTED INSTEAD from the journal's own machine-readable tables at CDS/VizieR J/ApJS/229/31 (DOI 10.26093/cds/vizier.22290031) - tables 2, 5, 6 + ReadMe notes 3 and 4, saved verbatim to results/gcn/bn101225377/bn101225377_ipn_hurley2017_cds_rows.txt. Queued NEW corpus_index row.",
+      "prompt_sections": "NONE are prompt-spectroscopy. Table 2 row (instruments that detected the burst) = instrument-story / Section-2 narrative material; Tables 5-6 (IPN annuli + 3-sigma error box) = localization. Vikas reading time: SKIP for the prompt module; the one line worth knowing is quoted in the dossier.",
+      "module_future_tags": ["module-future; localization"],
+      "burst_content": "table2: '2010 Dec 25 09:02:53  GRB101225377  INT,Kon,MO,RHE,Suz,Swi  d' -> detected by INTEGRAL, Konus-Wind, Mars Odyssey, RHESSI, Suzaku, Swift; flag d = 'Burst was outside the coded field of view of the BAT, and not localized by it'. table5 annuli: (104.4910,+23.7495) R=38.9563+-0.0931 deg; (67.0176,+23.6916) R=15.7952+-15.8136 deg. table6 3-sigma box: centre (62.725,+26.528), corners (78.432,-5.889)(72.805,+55.007)(78.634,-5.814)(73.173,+54.967), area_GBM=8210 deg2, area_IPN=12.600 deg2, ratio 652.",
+      "cautions": [
+        "T4: dRIPN2 (15.8136 deg) EXCEEDS RIPN2 (15.7952 deg) in the published byte record (bytes 65-71 / 73-79 of table5.dat) - the 2nd annulus degenerates to a <=31.6 deg cone. Transcribed verbatim, flagged, NOT edited.",
+        "Derived here (not published): the GBM catalog position (60.68,+32.77) is 39.341 deg from the annulus-1 centre = +0.385 deg OUTSIDE the 38.9563+-0.0931 deg annulus (~4 half-widths). Consequence is a ~0.4 deg position shift => negligible for 26-55 deg detector viewing angles."
+      ]
+    },
+    {
+      "bibcode": "2024arXiv240115632C",
+      "first_author": "Crupi, Riccardo",
+      "year": 2024,
+      "title": "Deep Learning for Gamma-Ray Bursts: A data driven event framework for X/Gamma-Ray analysis in space telescopes",
+      "doctype": "eprint",
+      "refereed": false,
+      "note_on_type": "PhD thesis (Univ. degli Studi di Udine, 36 ciclo), 228 pp. ADS author sweep 2023-2026 found no refereed article carrying this table.",
+      "found_via": "ads full:\"GRB101225377\"",
+      "local_pdf": "Skills_training/Crupi_2024_2024arXiv240115632C_bn101126198.pdf (26.4 MB, valid, deposited 2026-08-12 by the parallel bn101126198 worker; READ by this worker - no duplicate written under a bn101225377 name)",
+      "in_corpus_index": false,
+      "action": "no re-download (file present and valid); queued NEW corpus_index row carrying BOTH triggers",
+      "prompt_sections": "Appendix A Table A.1, PDF p.190, row #30 / ID 2010_31 - the ONE burst-specific line (detection time, T, triggered detectors, per-range significances, confidence class). Method context if wanted: Ch.4 background estimator (r0/r1/r2 definitions live here - MUST be read before using S_r0/S_r1/S_r2) and Ch.5 event framework/table 5.3. Prompt-relevant only as an independent DETECTION statement, not as spectroscopy.",
+      "module_future_tags": ["module-future; triggering-and-detection", "module-future; ml-methods"],
+      "burst_content": "Table A.1 row 30: 2010-12-25 09:04:12 | T=106.50 s | n1 n2 n3 n4 n5 n6 n7 n8 n9 na nb (11 NaI) | GRB101225377 | S_r0 > 10 | S_r1 > 10 | S_r2 = 0 | CE = R (Robust: >1 detector AND >1 energy range). Their detection time = T0+78.5 s, coinciding with the pulse rise we measure at +76 s.",
+      "cautions": [
+        "The trigger-time column's exact definition (event start vs peak vs bin centre) is UNVERIFIED - it reads as the start because T0+78.5 s matches the observed rise.",
+        "r0/r1/r2 band definitions unverified: the thesis states only 'r0 = 27-50 keV' and '102-295 keV, similar to r1' in the Fig. 4.10 caption (quoting Biltzinger+2020). Do not quote S_r2 = 0 as a hard >X keV non-detection until Ch.4 is read.",
+        "Table A.1's caption calls it a 'Catalog of the unknown events' while its rows carry known catalog trigger names - an internal inconsistency in the thesis (T5 class). Recorded, not resolved."
+      ]
+    }
+  ],
+  "phase3b_reading_order_latest_first": ["2024arXiv240115632C", "2017ApJS..229...31H"],
+  "vikas_reading_list": "Effectively NOTHING to read for the prompt module. No paper anywhere fits or times this burst. If 5 minutes are available: Crupi 2024 p.190 row 30 (one line, independent detection) and Hurley 2017 table 2 (one line, six instruments saw it). Both are already quoted verbatim in the dossier; reading the PDFs adds nothing to the prompt reconciliation.",
+  "module_future_catalog": [
+    {"bibcode": "2017ApJS..229...31H", "tag": "module-future; localization", "why": "the only localization of record (12.6 deg2 IPN strip) for a burst with no counterpart"}
+  ],
+  "module_future_note": "Afterglow / SN / cosmology / multimessenger shelves are EMPTY for this burst - no counterpart, no host, no redshift, never circulated.",
+  "published_values_frame_for_P3": {
+    "source": "HEASARC TAP fermigbrst row (4th-catalog lineage; catalog-row membership is NOT a named mention, which is why ADS full-text returns nothing)",
+    "detectors": "n7,n8,nb,b1 (scat mask 00000001100101) - IDENTICAL to our approved set",
+    "statistic": "Castor C-STAT",
+    "band_keV": "10-1000",
+    "flnc_interval_s": [76.8, 108.54],
+    "flnc_best_model": "Band: Ep=208.68+-15.32 keV, alpha=-0.703+-0.057, beta=-2.163+-0.168, redchisq=1.0904, dof=479",
+    "flnc_comp": "Ep=257.97+-12.02 keV, index=-0.801+-0.035, redchisq=1.1065",
+    "flnc_sbpl": "indx1=-0.894+-0.040, Ebreak=128.04+-13.74 keV, indx2=-2.216+-0.116, brksc=0.3 fixed, redchisq=1.0949",
+    "flnc_pl": "index=-1.475+-0.006, redchisq=2.1816 (rejected)",
+    "fluence_erg_cm2": "2.01645e-5 +- 2.958e-7 (catalog headline); Band-model energy fluence 1.9746e-5",
+    "pflx_interval_s": [93.184, 94.208],
+    "pflx_best_model": "Comptonized: Ep=220.78+-32.35 keV, index=-0.789+-0.130, redchisq=1.0371",
+    "pflx_band": "Ep=147.22+-33.80 keV, alpha=-0.521+-0.230, beta=-2.031+-0.318, redchisq=1.0070",
+    "peak_fluxes": "1.024 s: 7.4408+-0.3332 ph/cm2/s at T0+93.5057 s; 64 ms: 10.6432+-1.4180 at T0+93.5057 s; 256 ms: 7.9742+-0.6629 at T0+93.6977 s",
+    "T90": "81.2175 +- 35.3774 s (50-300 keV), start T0+20.5444 s - INTERNALLY SHAKY, see dossier",
+    "T50": "12.3522 +- 0.4525 s (50-300 keV), start T0+81.7935 s",
+    "component_coverage_T9": "every row above = MAIN (single) PULSE; there is only one emission episode (76-108 s) and no precursor is visible in TTE from -27.8 s onward",
+    "multi_instrument_consensus_note": "Phase-4 consensus rule NOT applicable: six instruments detected the burst (Hurley+2017) but only Fermi/GBM ever published values, so there is no inter-instrument spread to fold in. Single-instrument frame, stated as such."
+  },
+  "same_day_contamination_check": "T1 APPLIED AND IT BITES HARD. GRB 101225A = Swift-BAT trigger 441015, 2010-12-25 18:37:45 UT, RA 0.234 Dec +44.602 (GCN 11493) - 47.52 deg from our position and 9h35m later; an ultra-long (T90 > 1700 s) image-trigger event with 27 circulars and 165 ADS full-text hits, none of which are ours. Our identity is fixed by trigger only: TRIGTIME MET 314960575.49784 = 2010-12-25T09:02:53.498 UTC = MJD 55555.377008077 = day fraction 0.377 = the trigger name; the same UT appears in Hurley+2017 table 2 next to the designation GRB101225377.",
+  "pdfs_fetched": [],
+  "pending_shared_csv_rows": {
+    "Skills_training/corpus_index.csv": {
+      "note": "HARD RULE: this worker does not write shared CSVs. Both files are already on disk under _bn101126198 names but ABSENT from the index; the parallel bn101126198 worker may queue the same rows - DEDUPE on bibcode, keep one row each, union the cited_by_bursts field.",
+      "append_trigger_to_existing_rows": [],
+      "new_rows": [
+        "Hurley_2017_2017ApJS22931H_bn101126198.pdf,2017ApJS..229...31H,,ipn-catalog;localization,bn101126198;bn101225377,2,N,",
+        "Crupi_2024_2024arXiv240115632C_bn101126198.pdf,2024arXiv240115632C,2401.15632,ml-detection;gbm-background;PhD-thesis-not-refereed,bn101126198;bn101225377,2,N,"
+      ],
+      "new_row_caveats": "The Hurley_2017 file on disk is NOT a PDF (14371 B Radware captcha HTML) - either re-fetch it from a network that IOP serves, or mark the row NOPDF and rely on CDS/VizieR J/ApJS/229/31 for its content. arXiv id 2401.15632 for Crupi is taken from the ADS identifier field of that record (verified in this run)."
+    },
+    "results/gcn/gcn_index.csv": {
+      "header": "trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed",
+      "row": "bn101225377,101225.gcn3_IS_GRB101225A_NOT_OURS(101225B->404),0,-,2,1"
+    }
+  },
+  "issues": [
+    "PAPERLESS FOR ANALYSIS: zero papers fit, bin, or time this burst. The entire published spectral frame is one fermigbrst catalog row.",
+    "Hurley+2017 PDF unobtainable: IOP Radware captcha on both link_gateway PUB_PDF and the direct URL; Unpaywall's repository mirror returns HTTP 400. Content taken from CDS/VizieR machine-readable tables instead (equivalent and citable, but the paper's prose was never read).",
+    "Skills_training/Hurley_2017_2017ApJS22931H_bn101126198.pdf on disk is a captcha HTML page misnamed .pdf (sibling worker's failed fetch). Left untouched per the idempotency rule; must be repaired or marked NOPDF by the merge worker.",
+    "Published dRIPN2 (15.8136 deg) > RIPN2 (15.7952 deg) in Hurley+2017 table 5 - the second IPN annulus degenerates to a cone. Recorded verbatim, flagged, not corrected.",
+    "GBM catalog T90 = 81.2 +- 35.4 s with start T0+20.5 s is not supported by the counts (no emission before T0+76 s in any of the 14 detectors); T50 and the fluence interval are. Do not diff against this T90 without the caveat.",
+    "The GBM trigger has NO visible counterpart in the data: the burst begins ~76 s after T0, and the on-board position is 50.5 deg from the ground position. Trigger time is 76 s BEFORE the burst (D4, inverted).",
+    "Crupi 2024 is a thesis, not refereed, and three of its details (trigger-time column definition, r0/r1/r2 bands, Table A.1 caption vs contents) are unverified/inconsistent.",
+    "2 corrupt PDFs in Skills_training/ threw MuPDF errors during the corpus sweep (zlib 'incorrect header check' and 'cmsOpenProfileFromMem failed'); they were skipped, so the sweep is 129/131 complete. Not identified by name (the errors print without a filename)."
+  ]
+}

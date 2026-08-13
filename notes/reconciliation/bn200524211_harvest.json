@@ -1,0 +1,44 @@
+{
+ "burst": "bn200524211",
+ "grb_name": "GRB 200524A",
+ "run_type": "VERIFICATION of Khushboo's walkthrough (not blind, not a tally burst)",
+ "harvest_utc": "2026-08-12T00:00:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1, 1b, 2, 3, 3b, 3c, 4, 5; traps T1-T9 consulted)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "queries": [
+  {"form": "GRB name", "q": "full:\"GRB 200524A\"", "numFound": 34, "refereed_articles": 6, "eprints": 1, "note": "27 GCN/TNS circulars (Step 0a's job) + 6 articles + 1 eprint; identity of every hit checked against trigger/afterglow name (T1) - no same-day sibling exists, zero contamination"},
+  {"form": "GBM trigger name", "q": "full:\"bn200524211\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "day-fraction", "q": "full:\"200524211\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "trigger number (from GCN 27797/27809, == local TTE TRIGTIME 611989445.358208)", "q": "full:\"611989445\"", "numFound": 2, "refereed_articles": 0, "note": "GCN 27797 + 27809 only"}
+ ],
+ "n_refereed_papers": 7,
+ "papers": [
+  {"bibcode": "2026arXiv260809704G", "first_author": "Ghosh, A.", "year": 2026, "doctype": "eprint (submitted to MNRAS per running head)", "arxiv": "2608.09704", "class": "DEDICATED-ANALYSIS of this burst", "title": "Exploring the multi-wavelength properties of the high energetic event ZTF20abbiixp/GRB 200524A: from prompt emission to afterglow", "pdf": "Skills_training/Ghosh_2026_2026arXiv260809704G_bn200524211.pdf", "prompt_sections": "SS2 (GBM/KW/CZTI/SPI-ACS data + T90/T50 + fluence + LC), SS spectral analysis + Table 2 (time-integrated (-1,40)/(-1,15) + 9 time-resolved bins, RMFIT v4.3.2, dets n0,n1,n3,b0 <=60deg), Fig 3-4 (intensity-tracking Ep, flux-Ep r=0.83), spectral-lag section (negligible lag, Minaev+2012 CCF), Ep,i-Eiso section", "module_future_sections": "SS3 afterglow photometry/spectroscopy/host (tag: module-future;afterglow), LAT extended-emission analysis T0+110-900s (module-future;afterglow-HE), FS+RS numerical modeling, Eiso-Ep,i classification plane (module-future;cosmo)", "mined_into_dossier": true, "internal_inconsistencies_recorded": "Eiso 1.80e53 (Table 1) vs 30.4e52 (text); fluence err +-0.05 (Table 1) vs +-0.03 (text); LC detector list n0,n1,n3,n5+b1 (SS2) vs spectral n0,n1,n3,b0; Table 1 'Ep=291+-25' is the (4,5)s peak-bin CPL Ep, not time-integrated (T5/T9)"},
+  {"bibcode": "2026MNRAS.546ag047C", "first_author": "Chang, Xue-Zhao", "year": 2026, "doctype": "article", "arxiv": "2601.04468", "class": "SAMPLE-MEMBER (88 GRBs / 129 pulses; 200524A one of 15 detailed Group-III GRBs)", "title": "Identifying the poynting-flux-dominated outflow of Fermi GRBs with non-thermal spectrum and its energy-resolved light curve fitting", "pdf": "Skills_training/Chang_2026_2026MNRAS546ag047C.pdf (ALREADY IN CORPUS - G2 dedup, NOT re-downloaded)", "prompt_sections": "Table 1 (BIC model comparison, 0-30 s, Band preferred, purely non-thermal), Table 2 (Band alpha=-0.81+0.06/-0.06, Ep=266.6+33.2/-34.2, beta=-2.21+-0.24), Table 3-4 + Fig A12 (FRED width-energy, k=-0.11+0.13/-0.19, no w-E dependence)", "module_future_sections": "magnetization/sigma lower limits, kT_max distribution (photosphere suppression argument) - prompt-physics interpretive, no afterglow content", "mined_into_dossier": true},
+  {"bibcode": "2021ApJ...918...63A", "first_author": "Andreoni, Igor", "year": 2021, "doctype": "article", "arxiv": "2104.06352", "class": "SAMPLE-MEMBER (afterglow; ZTF20abbiixp in the ZTFReST archival afterglow set, fade 3.07 mag/d in r)", "title": "Fast-transient Searches in Real Time with ZTFReST...", "pdf": "Skills_training/Andreoni_2021_2021ApJ91863A_bn200524211.pdf", "prompt_sections": "none", "module_future_sections": "whole paper (tag: module-future;afterglow)", "mined_into_dossier": "fade-rate + membership only"},
+  {"bibcode": "2022ApJ...938...85H", "first_author": "Ho, Anna Y. Q.", "year": 2022, "doctype": "article", "arxiv": "2201.12366", "class": "SAMPLE-MEMBER (afterglow; AT2020kym in the dirty-fireball search, GRB found post facto; carries a KW-frame prompt-property table row)", "title": "Cosmological Fast Optical Transients with the Zwicky Transient Facility: A Search for Dirty Fireballs", "pdf": "Skills_training/Ho_2022_2022ApJ93885H_bn200524211.pdf", "prompt_sections": "prompt-property table row (KW-frame: 6.33 peak flux, Ep 215+28-27 match GCN 27867) - column mapping NOT yet verified against their header, flagged in dossier", "module_future_sections": "rest of paper (tag: module-future;afterglow)", "mined_into_dossier": "row verbatim with mapping caveat"},
+  {"bibcode": "2022AJ....164...90K", "first_author": "Kumar, Harsh", "year": 2022, "doctype": "article", "arxiv": "2206.13535", "class": "CATALOG-MENTION (GROWTH-India instrument paper; 200524A observation record)", "pdf": null, "prompt_sections": "none", "module_future_sections": "mention only (tag: module-future;afterglow)", "mined_into_dossier": false},
+  {"bibcode": "2020ApJ...905...98H", "first_author": "Ho, Anna Y. Q.", "year": 2020, "doctype": "article", "arxiv": "2006.10761", "class": "CATALOG-MENTION (AT2020blt paper; comparison mention)", "pdf": null, "prompt_sections": "none", "module_future_sections": "mention only", "mined_into_dossier": false},
+  {"bibcode": "2020JApA...41...33S", "first_author": "Sagar, Ram", "year": 2020, "doctype": "article", "arxiv": "2010.02515", "class": "CATALOG-MENTION (DOT telescope overview; mention)", "pdf": null, "prompt_sections": "none", "module_future_sections": "mention only", "mined_into_dossier": false}
+ ],
+ "weighting_phase3b": "Newest-first frame order for the P3 diff: Ghosh+2026 (dedicated, RMFIT, same detector set as ours) > Chang+2026 (sample, Bayesian/BIC) > GCN 27867 (KW, preliminary by own statement) ~ GCN 27809 (GBM, preliminary by own statement).",
+ "scholar_channel_phase1b": {"used": false, "reason": "ADS is NOT thin for this burst (dedicated paper + 6 articles found); Scholar remains the listed fallback finding channel only", "suggested_query_strings": ["gamma ray burst ZTF20abbiixp", "GRB 200524A prompt emission spectroscopy"], "rule": "Scholar finds, ADS verifies - any future Scholar hit must resolve to an ADS bibcode before entering this manifest"},
+ "pdfs_fetched": [
+  "Skills_training/Ghosh_2026_2026arXiv260809704G_bn200524211.pdf (arXiv v1, 4.96 MB, %PDF verified)",
+  "Skills_training/Andreoni_2021_2021ApJ91863A_bn200524211.pdf (arXiv, %PDF verified)",
+  "Skills_training/Ho_2022_2022ApJ93885H_bn200524211.pdf (arXiv, %PDF verified)"
+ ],
+ "pending_shared_csv_rows": {
+  "rule": "worker hard rule - no writes to shared CSVs; rows queued here for the coordinator to apply",
+  "Skills_training/corpus_index.csv": [
+   {"action": "UPDATE existing row (G2 dedup)", "filename": "Chang_2026_2026MNRAS546ag047C.pdf", "change": "cited_by_bursts: bn120624933 -> bn120624933;bn200524211 ; n_bursts: 1 -> 2 ; read flag untouched (N)"},
+   {"action": "ADD", "row": "Ghosh_2026_2026arXiv260809704G_bn200524211.pdf,2026arXiv260809704G,2608.09704,dedicated-multiwavelength-prompt-afterglow,bn200524211,1,N,"},
+   {"action": "ADD", "row": "Andreoni_2021_2021ApJ91863A_bn200524211.pdf,2021ApJ...918...63A,2104.06352,module-future;afterglow;ztfrest,bn200524211,1,N,"},
+   {"action": "ADD", "row": "Ho_2022_2022ApJ93885H_bn200524211.pdf,2022ApJ...938...85H,2201.12366,module-future;afterglow;dirty-fireballs,bn200524211,1,N,"}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "ADD", "row": "bn200524211,base,28,Y,34,6"}
+  ]
+ },
+ "vikas_reading_list": "Ghosh+2026 (arXiv:2608.09704): SS2 + spectral-analysis section + Table 2 + Figs 3-4,7 = prompt spectroscopy/temporal (READ NOW); SS3 afterglow + FS/RS modeling - defer to afterglow module. Chang+2026: already on the bn120624933 shelf; for THIS burst read Table 1/2 rows + Fig A12 only. Andreoni/Ho papers: module-future shelf."
+}

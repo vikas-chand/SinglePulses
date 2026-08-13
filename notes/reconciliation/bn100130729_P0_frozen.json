@@ -1,0 +1,61 @@
+{
+ "burst": "bn100130729",
+ "grb_name": "GRB 100130A",
+ "tally": null,
+ "tally_note": "doc-layer batch worker 2026-08-12; sequential tally assignment deferred to the orchestrator (max existing P0 tally = 30 at freeze time; parallel workers active)",
+ "frozen_utc": "2026-08-12; BEFORE any new fit table opened (results/sweep106/ NEVER read — forbidden to this worker)",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn100130729/spectral_fits.ecsv (PREVIOUS production run; allowed as prior)",
+  "response_caveat": "PRIOR IS RESPONSE-SUSPECT: refit.log shows every detector 'recovered via single-matrix .rsp (rsp2 time-weighting failed)' — the v01.rsp2 matrices span +139.27..+475.14 s while the fitted blocks span 62.24..81.15 s. bn100130729 is one of the 4 bursts the deleted _collapse_rsp2_to_single fallback BIASED (scripts/10 lines 188-194, Codex 3ML audit 2026-07-24); it sits on dev/stale_refit_worklist.txt line 9. Quantified attitude drift between source window and first DRM matrix: dTheta = 3.4 (n0), 3.0 (n3), 3.3 (n4), 0.4 (b0) deg — marginal by the D1 <~4 deg tolerance, so the archival PHYSICS numbers are usable as a prior but carry a few-percent effective-area systematic.",
+  "n_blocks_total_rows": 4,
+  "n_blocks_resolved": 3,
+  "integrated_block": {"BLOCK": -1, "t": [62.237, 81.154], "BEST_AIC_MODEL": "CPL", "BEST_BIC_MODEL": "CPL", "LRT_BANDBB_BAND": 1.036, "LRT_CPLBB_CPL": 1.003, "BANDBB_KT_keV": 26.117, "CPL_INDEX": -1.035, "CPL_XC_keV": 198.768, "CPL_EP_derived_keV": 191.8, "BAND_EP_keV": 189.948, "BAND_ALPHA": -1.033},
+  "resolved_span_s": [62.237, 81.154],
+  "bb_significant": {
+   "criterion": "UNION rule: (LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05) — BOTH nested pairs counted",
+   "count": 0,
+   "lrt_bandbb_band_rows_m1_0_1_2": [1.036, 1.428, 0.669, 1.824],
+   "lrt_cplbb_cpl_rows_m1_0_1_2": [1.003, 1.435, 0.544, 1.871],
+   "bandbb_kt_rows_m1_0_1_2_keV": [26.117, 1.0, 1.0, 31.968],
+   "cplbb_kt_rows_m1_0_1_2_keV": [25.808, 1.0, 1.0, 32.721],
+   "kT_values": [],
+   "median_kT": null,
+   "note": "blk0/blk1 kT railed at the 1.0 keV floor with BANDBB_VALID=CPLBB_VALID=0 (invalid +BB fits); blk-1/blk2 kT free at ~26-33 keV (high-kT unconstrained class) with LRT ~1-2 — nowhere near threshold under either nested pair"
+  },
+  "aic_winners_resolved": {"CPL": 2, "Band": 1},
+  "aic_winners_all_rows": {"CPL": 3, "Band": 1},
+  "bic_winners_all_rows": {"CPL": 4},
+  "ep_track_keV_blk0_to_blk2": [160.25, 243.65, 141.75],
+  "alpha_track_blk0_to_blk2": [-1.049, -0.991, -1.013],
+  "lrt_dsbpl_sbpl_rows_m1_0_1_2": [0.004, 0.042, 0.093, 0.679],
+  "stamped_window": {"SRC_START": 58.0, "SRC_STOP": 97.0, "detectors": ["n0", "n3", "n4", "b0"], "approved_by": "Vikas Chand", "approved_utc": "2026-07-19T22:18:36Z", "mode": "human_gui", "window_source": "accepted_suggestion (n0,n3,b0) / adjusted (n4)"}
+ },
+ "predictions": [
+  "P-A1 (null streak, BB): the new fits will find ZERO blocks passing the union rule (LRT>=9.2 & kT>1.05 in EITHER the Band+BB-vs-Band OR the CPL+BB-vs-CPL nested pair). Archival maxima are 1.82/1.87 — a factor ~5 below threshold. FALSIFIED IF any block (resolved or integrated) shows a significant BB.",
+  "P-A2 (kT instability as null signature): archival kT rails at the 1.0 keV floor (invalid) in blk0/blk1 and jumps to ~26-33 keV where free — the unconstrained-component signature, not a photosphere. Prediction: new per-block kT values will NOT form a coherent monotonic cooling track across >=3 consecutive blocks. FALSIFIED IF such a track appears.",
+  "P-A3 (AIC winner distribution): resolved-block AIC winners stay in {CPL, Band}, CPL-dominated (archival: CPL, Band, CPL; all BIC winners CPL); no resolved block prefers a +BB or two-break model by AIC. FALSIFIED IF any resolved block's AIC winner is Band+BB, CPL+BB, or DSBPL.",
+  "P-A4 (two-break null): archival LRT_DSBPL_SBPL max = 0.679 (blk2) — two orders below any interesting margin. Prediction: no CONFIRMED two-break block (DeltaAIC>=10 doctrine). The L8 default-seed caveat (census two-break count = lower limit) is noted, but margins this small leave no plausible L8 rescue. FALSIFIED IF any block reaches the two-break criterion.",
+  "P-B1 (Ep tracks intensity, not hard-to-soft): the max-Ep resolved block will be the one containing T0+72.7 s — the catalog/GCN 1-s peak-flux time (archival blk1 = 70.99-76.06 s, Ep = 243.7 keV, agrees) — and the Ep track across the main complex will be non-monotonic (rise 160->244, fall ->142). FALSIFIED IF the max-Ep block excludes T0+72.7 s or the track is monotonically decreasing.",
+  "P-B2 (paperless burst): zero refereed papers under six ADS query forms + web channel (2026-08-12). The P3 diff frame is census-prior + GCN 10372 (self-declared PRELIMINARY; misfiled under 'GRB 100113A') + the HEASARC fermigbrst row only. Recorded GCN-vs-catalog tension: prelim total-burst Ep 100.5+/-4.8 keV vs final catalog flnc Ep 211.6+/-23.7 keV (factor ~2.1; catalog = default frame per Phase 3b).",
+  "P-B3 (integrated Ep lands near the catalog frame): the new integrated main-complex (~62-81 s) fit will give CPL Ep in 150-250 keV (archival 191.8 keV; catalog TOTAL-burst 211.6 keV; the GCN prelim 100.5 keV includes the soft precursor our window excludes — T9 coverage differs). FALSIFIED IF new integrated Ep < 150 or > 250 keV.",
+  "P-HAZARD (engine, falsifiable by the run log, NOT physics): with _collapse_rsp2_to_single deleted (native-threeML doctrine 2026-07-26) and every rsp2's matrices spanning +139.27..+475.14 s vs stamped window 58-97 s, the current scripts/10 path will fail to_spectrumlike and SKIP ALL FOUR approved detectors -> zero plugins -> burst-level fit failure, UNLESS DRMs are regenerated for the actual source interval first. If the blind sweep nonetheless reports converged fits for this burst, the response provenance MUST be audited before any P3 diff is trusted."
+ ],
+ "harvest_snippets": {
+  "GCN_10372_FermiGBM": [
+   "At 17:29:24.14 UT on 10 January 2010 [DATE TYPO: = 30 January 2010 by MET 286565366.144684], the Fermi Gamma-Ray Burst Monitor triggered and located GRB 100130A (trigger 286565366 / 100130729).",
+   "The GBM triggered on a weak and soft peak followed by a very bright one starting at ~T0+50 s and a weaker one at ~T0+75 s. The duration (T90) is about 106+/-4 s (8-1000 keV).",
+   "The time-averaged spectrum from T0-8 s to T0+96 s is adequately fit by a power law function with an exponential high energy cutoff. The power law index is -0.97 +/- 0.06 and the cutoff energy, parameterized as Epeak, is 100.50 +/- 4.77 keV (Castor C-stat 762 for 488 d.o.f.).",
+   "The event fluence (8-1000 keV) in this time interval is (8.21+/-0.30)E-6 erg/cm^2. The 1-sec peak photon flux measured starting from T0+72.7 s in the 8-1000 keV band is 5.90 +/- 0.23 ph/s/cm^2.",
+   "SUBJECT-LINE TYPO: circular archived as 'GRB 100113A: Fermi GBM detection' (100130A.gcn3 = 404; found on 100113A.gcn3)"
+  ],
+  "fermigbrst_catalog_row": [
+   "T90 = 99.5859 +/- 2.41514 s (50-300 keV), t90_start = -4.09611 s; fluence(10-1000 keV) = 1.01475e-05 +/- 4.02e-08 erg/cm2; flux_1024 = 6.13766 +/- 0.288 ph/cm2/s",
+   "flnc_best_fitting_model = flnc_comp: Ep = 211.62 +/- 23.67 keV, index = -1.081 +/- 0.073; flnc_band (not preferred): Ep=142.47, alpha=-0.905, beta=-2.093; pflx_best = pflx_comp",
+   "scat_detector_mask = 00001000000010 (n4+b0); bcat_detector_mask = 10011000000000 (n0,n3,n4); catalog RA=21.19 Dec=-24.75"
+  ],
+  "refereed_papers": [
+   "absent — 0 refereed hits across six ADS full-text query forms (GRB 100130A / bn100130729 / 100130729 / 286565366 / GRB100130A / typo-channel GRB 100113A) + web channel, 2026-08-12"
+  ]
+ }
+}

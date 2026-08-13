@@ -1,0 +1,69 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: COV_START, datatype: float64}
+# - {name: COV_STOP, datatype: float64}
+# - {name: N_MAT, datatype: int64}
+# - {name: THETA_DEG, datatype: float64}
+# - {name: APPROVED, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn110605183}
+# - {grb_name: GRB 110605A}
+# - {run_type: 'campaign doc-layer Step 1 per dev/ai_guides/DataInventory.md (2026-08-12); new file, no earlier-era product existed'}
+# - {src_start: -1.5481286713286408}
+# - {src_stop: 30.61764475524481}
+# - {trigtime_met: 328940614.30354}
+# - {window_stamp: 'APPROVED_BY=Vikas Chand APPROVED_UTC=2026-07-19T22:18:36Z mode=human_gui WINDOW_SOURCE=accepted_suggestion (results/background_intervals.ecsv lines 88-90; results/approval/bn110605183_decision.json)'}
+# - {manifest_tte: 4}
+# - {manifest_cspec_pha: 4}
+# - {manifest_rsp2: 4}
+# - {manifest_rsp: 0}
+# - {manifest_poshist: 1}
+# - {manifest_trigdat: 0}
+# - {manifest_lle: 0}
+# - {manifest_lat_ft1: 0}
+# - {manifest_lat_ft2: 0}
+# - {note_detectors_on_disk: 'n1,n2,n5,b0 (cspec pha + rsp2 + tte each). APPROVED set = n2,n5,b0. n1 is present but NOT approved,
+#     and that is correct: I computed its viewing angle independently from glg_poshist_all_110605_v01.fit (quaternion -> spacecraft
+#     frame, source RA/Dec 14.95/+52.46) and get n1 = 63.85 deg, outside the <=50 deg NaI rule. My angles reproduce the stamped ones
+#     to 0.01 deg (n2 21.49 vs 21.483, n5 47.85 vs 47.850, b0 50.78 vs 50.778) and my source polar angle 109.10 deg reproduces tcat
+#     THETA = 109.086 deg - an independent check of the whole geometry chain, not just a re-read of the stored numbers'}
+# - {note_catalog_agreement: 'the GBM SPECTRAL catalog independently used exactly BGO_00 + NAI_02 + NAI_05 = our approved n2,n5,b0
+#     (glg_scat_all_bn110605183_flnc_band_v02.fit DETNAM column), and Shao+2017 independently picked n2 as the brightest NaI. The
+#     DURATION catalog used n1+n2+n5 (von Kienlin+2014 Table 7 p.84) - three frames, two of which match us exactly; never diff a T90
+#     across the n1 difference silently'}
+# - {note_rsp_test: 'All four responses on disk are multi-matrix GBM .rsp2 with DRM_NUM = 3 (D2: correct naming class
+#     glg_cspec_<det>_bn110605183_v00.rsp2 - no false NO-RSP2 alarm). Test applied = the bn100130729 rule for multi-matrix .rsp2:
+#     min(TSTART) <= SRC_START and max(TSTOP) >= SRC_STOP, times relative to TRIGTIME. All four span [-39.425, +99.841] s and so
+#     bracket the stamped source window [-1.548, +30.618] s with 38 s of margin before and 69 s after. No single-matrix .rsp anywhere
+#     in the data dir and no LLE response -> the D1 off-axis-angle test is NOT APPLICABLE to this burst'}
+# - {note_lle_lat: 'No LLE triplet (gll_lle_*/gll_pt_*/gll_cspec_*) and no LAT/ directory, and none is expected: HAS_LAT=False in
+#     results/grb_sample.ecsv, tcat THETA = 109.086 deg puts the source 109 deg off the LAT boresight, and von Kienlin+2014 Table 6
+#     lists other detections as "Mo, K, IA, W" (Mars Odyssey, Konus-Wind, INTEGRAL SPI-ACS, Suzaku) with NO "L" for Fermi LAT.
+#     Three independent statements of the same fact - D1 is moot here'}
+# - {note_trigdat: 'no trigdat on disk - a note, not a blocker: glg_poshist_all_110605_v01.fit is present and covers the geometry
+#     (DataInventory Phase 1 rule), and I used it successfully for the angle computation above. glg_trigdat_all_bn110605183_v01.fit
+#     exists upstream on HEASARC if ever needed'}
+# - {note_d4: 'NOT a D4 burst, and the check was actually run rather than assumed: bcat v02 gives T90 = 82.689 +/- 3.083 s with
+#     T90START = +1.536 s, i.e. the catalog emission span is [1.54, 84.23] s and NOTHING is pre-trigger. Our pre-burst backgrounds
+#     (n2 [-26.7,-5.7], n5 [-24.7,-5.7], b0 [-26.7,-6.7]) therefore sit on genuinely burst-free data. What DOES need carrying is the
+#     opposite frame issue: our stamped window [-1.548,+30.618] s covers only ~36 percent of the T90 span (though ALL of T50
+#     [4.86,28.93]), so the long soft tail out to +84 s is outside our analysis. Since Ep softens monotonically (Lu+2018: 327 -> 103
+#     keV), any catalog Ep measured over a longer interval must come out SOFTER than ours by construction'}
+# - {note_qc_flag: 'results/human_review_qc_flags.txt line 4: bn110605183 source[-1.54813,30.6176]_overruns_bkg_gap b0[gap
+#     -6.66508,21.3349]. The b0 POST background starts at +21.33 s, inside the source window, so for b0 the polynomial is
+#     constrained across part of the burst. Human-ACCEPTED: a DECISION, not a defect (Stage-1 flags ARE decisions). Consequence to
+#     carry forward, not to fix here: b0 is the only detector above 250 keV, so this is the band where beta and any high-energy
+#     break live. n2 and n5 post-backgrounds start at +36.3 and +41.3 s and are clean'}
+# - {verdict: 'PASS - all 3 approved detectors resolve to a multi-matrix .rsp2 that brackets the stamped source window; geometry
+#     independently re-derived; no LLE/LAT and none expected; one human-accepted background-gap flag carried forward'}
+# - {qc_date: '2026-08-12'}
+# schema: astropy-2.0
+DET RSP_FILE COV_START COV_STOP N_MAT THETA_DEG APPROVED VERDICT
+n2 glg_cspec_n2_bn110605183_v00.rsp2 -39.425 99.841 3 21.49 yes PASS
+n5 glg_cspec_n5_bn110605183_v00.rsp2 -39.425 99.841 3 47.85 yes PASS
+b0 glg_cspec_b0_bn110605183_v00.rsp2 -39.425 99.841 3 50.78 yes PASS
+n1 glg_cspec_n1_bn110605183_v00.rsp2 -39.425 99.841 3 63.85 no NOT_APPROVED_ANGLE_63.85_GT_50

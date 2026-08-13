@@ -1,0 +1,31 @@
+{
+ "burst": "bn180724807",
+ "grb_name": "GRB 180724A",
+ "tally": 28,
+ "harvested_utc": "2026-08-11T16:38:34Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1 four-form + 2 extra forms; Phase 3c scope rules applied)",
+ "ads_token_source": "ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env",
+ "queries": [
+  {"form": "GRB name", "q": "full:\"GRB 180724A\"", "numFound": 2, "refereed_hits": 0, "note": "both hits are GCN newsletters (2018GCN.23038....1N, 2018GCN.23100....1S) -- Step 0a territory"},
+  {"form": "GBM trigger name", "q": "full:\"bn180724807\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "day-fraction", "q": "full:\"180724807\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "trigger number", "q": "full:\"554152956\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "extra: name no-space", "q": "full:\"GRB180724A\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "extra: GBM-style full name", "q": "full:\"GRB180724807\"", "numFound": 0, "refereed_hits": 0}
+ ],
+ "identity_guard_T1": "no same-day contamination possible: 180724A is the only lettered GRB of 2018-07-24 in the GCN archive (180724B.gcn3 = 404; modern GCN search '180724A' returns exactly 2 circulars); GBM trigger number 554152956 quoted verbatim inside GCN 23038 matches TRIGTIME 554152956.547758 in our TTE header",
+ "n_refereed_papers": 0,
+ "refereed_papers": [],
+ "pdfs_fetched": [],
+ "finding": "PAPERLESS BURST. Zero refereed papers analyze GRB 180724A. Plausible structural reason: the trigger (2018-07-24) falls ~2 weeks AFTER the 10-year GBM catalog boundaries (mid-July 2018), so it missed the 4th burst catalog / 10-yr spectral catalog generation of sample papers; it also had no Swift trigger, no LAT detection (HAS_LAT=False), and no afterglow or redshift to anchor follow-up papers. Verified absent from the local corpus sample papers by PyMuPDF text search for '180724': Li_2021_2021ApJS253_43L_PUB.pdf, Lu_2018_2018ApJ865153L_PUB.pdf, Li_2019_2019ApJS2457L.pdf, Li_2026_2026ApJS28318L.pdf, Bordoloi_2026_2026ApJ1003_58B_PUB.pdf, Gowri_2025_2025ApJ991230G.pdf -- all 0 hits. Our fits will be the first spectral analysis of this burst on record.",
+ "circulars_for_step0a": [
+  {"id": "GCN 23038", "bibcode": "2018GCN.23038....1N", "who": "Insight-HXMT/HE (Nang et al.)", "date": "2018-07-26", "prompt_relevant": "yes: T0, T90 23.2 s (CsI ~200-3000 keV) / 31.1 s (NaI ~100-800 keV), peak times, single-pulse morphology"},
+  {"id": "GCN 23100", "bibcode": "2018GCN.23100....1S", "who": "AstroSat CZTI (Sharma et al.)", "date": "2018-08-08", "prompt_relevant": "yes: T90 30.3 s (40-200 keV), single peak at T0+6.5 s, 786 Compton events"}
+ ],
+ "scope_classification": {
+  "prompt_relevant": "everything that exists (both circulars are prompt gamma-ray detections)",
+  "module_future": "none -- no afterglow/SN/cosmology/multimessenger literature exists for this burst; zero 'module-future;afterglow|sn|cosmo|mm' tags issued"
+ },
+ "corpus_index_note": "corpus_index.csv is a SHARED CSV -- not touched per campaign hard rule; no new PDFs were fetched so no row is owed",
+ "published_values_location": "results/gcn/bn180724807/bn180724807_dossier.md section 'PUBLISHED VALUES (for the P3 diff)'"
+}

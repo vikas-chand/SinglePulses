@@ -1,0 +1,51 @@
+{
+ "burst": "bn081224887",
+ "grb_name": "GRB 081224 (trigger 251846276; 'GRB 081224A' in the Burgess/Iyyani lineage)",
+ "frozen_utc": "2026-08-12; BEFORE any results/sweep106/ table opened (sweep dir untouched, forbidden to this worker). HONESTY NOTE: this burst is NOT analyst-blind - it carries a VERIFIED reconciliation record (notes/reconciliation/bn081224887.md, 2026-08-08, built on the 2026-08-08 blind rerun + literature) and the archival production table below was read to build this freeze. The freeze binds the NEW sweep-106 fits only.",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "predictions": [
+  "P-A1 (BB union count): applying the union rule (LRT_BANDBB_BAND>=9.2 & kT>1.05 OR LRT_CPLBB_CPL>=9.2 & kT>1.05) the new sweep will find AT MOST ONE significant-BB block, and any pass will be the block covering ~1.9-4.4 s via the CPL+BB pair with kT in 25-50 keV. Archival: exactly 1/10 rows pass (blk3 [1.896,4.382] s, LRT_CPLBB_CPL=9.58 marginal over 9.2, kT=45.5 keV; Band+BB pair sub-threshold at 7.95 with BANDBB_VALID=False); the 2026-08-08 blind rerun of the same block got LRT=7.7 (sub-threshold) - so the expectation is 0-with-co-located-hint or 1-marginal. FALSIFIED IF a significant BB appears outside [1.8,5.5] s, or with kT<5 keV (the L28 edge-constrained low-kT class), or in >=2 blocks.",
+  "P-A2 (no two-break): no block reaches the two-break criterion; archival max LRT_DSBPL_SBPL=5.9 (blk8), all others <=5.4. FALSIFIED IF any block shows a CONFIRMED DSBPL win (dAIC>=10). CAVEAT: census two-break count is a lower limit until L8 default-seed DSBPL restart lands.",
+  "P-A3 (negative-LRT engine artifacts vanish): the archival table carries impossible NEGATIVE nested LRTs in 4 rows (LRT_CPLBB_CPL = -39.6 blk4, -64.3 blk5, -11.5 blk7, -2.2 blk8) plus a CPL FAIL in blk2 - pre-L4/L5 cutoff local-minimum artifacts. Prediction: with the unconditional cutoff multistart the new sweep produces LRT_CPLBB_CPL > -1 in every row and no CPL FAIL. FALSIFIED IF any new nested LRT < -1 persists.",
+  "P-A4 (spectral tracks): hard-to-soft throughout - new Ep track decays monotonically from >1000 keV (first ~0.4 s block; archival 2235 keV is UNDER-CONSTRAINED on the rising edge, expect BOUND/ill-constrained flag per L19-class diagnosis, not a measurement) to 130-180 keV in the final block; alpha softens monotonically ~-0.1 -> ~-1.1; beta stays steep (-2.4..-4.6) and free (no -5 rail). FALSIFIED IF the Ep track is non-monotonic beyond errors or any beta rails.",
+  "P-A5 (winners): time-integrated fit is a Band/CPL statistical tie with Ep ~ 380-450 keV, alpha ~ -0.73..-0.83; resolved-block AIC winners stay simple-continuum dominated (archival: CPL x4, Band x2, SBPL x1, +BB x2 both sub-/marginal); BIC winner is CPL nearly everywhere (archival 9/10). FALSIFIED IF a +BB or DSBPL model wins AIC in >=3 resolved blocks.",
+  "P-B1 (binning reproduction, L13): the new Bayesian blocks reproduce ~9 blocks with edges including 1.896, 5.424, 12.502 s to <=0.01 s - Li&Zhang 2021 publish Ntot=9 with exactly those edges, and both our archival run and the 2026-08-08 rerun matched to 3 decimals. FALSIFIED IF the new block count differs by >1 or those edges vanish.",
+  "P-B2 (literature frame): Yu+2019 (closest twin: n6n7(n9)b1, 3ML BB, IC) finds CPL preferred in 8/8 clean bins; Bissaldi 2011 time-integrated winner is Comp (Ep=380+-11, alpha=-0.73+-0.02); WAM CPL Ep=447(+57,-40). Our new integrated numbers should land within the inter-instrument spread (Ep ~ 380-450). The published 'strong blackbody' (Burgess 2014/Iyyani 2016) is measured against a SYNCHROTRON-ONLY continuum (L11/T7) and predicts NOTHING for our empirical menu - do not score it as tension.",
+  "P-B3 (high energy): LAT detection RETRACTED (GCN 8726), burst EXCLUDED from Ackermann+2013, LLE row blank in Maraventano+2025, upper limits in Longo+2012. Prediction: LLE contributes constraints only; a significant high-E component detection in the new sweep is a RED FLAG (engine/response issue, cf. D1 theta=17.9 deg DRM valid), not a discovery. FALSIFIED-AS-RED-FLAG IF the joint fit demands a high-E excess.",
+  "P-B4 (temporal QC carried into the sweep era): T90 from our window is TRUNCATED (window edge 20.165 s, on-disk T90_ERR 47 s > value; L14 - suppress); the spectral lag SIGN must come out positive (three papers: tau12=1.24+-0.12, tau31=1.47+-0.11; our archival products disagreed internally on sign, L15 anchor burst)."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn081224887/spectral_fits.ecsv (archival production run; allowed as prior). Also known to analyst: notes/reconciliation/bn081224887.md (2026-08-08 blind-rerun numbers, slightly different: blk3 LRT 7.7, kT 44.8).",
+  "n_rows_total": 10,
+  "n_blocks_resolved": 9,
+  "integrated_block": {"BLOCK": -1, "t": [-0.161, 20.164], "BEST_AIC_MODEL": "Band", "BEST_BIC_MODEL": "CPL", "BAND_ALPHA": -0.751, "BAND_EP_keV": 402.4, "BAND_BETA": -3.02, "LRT_BANDBB_BAND": 3.99, "LRT_CPLBB_CPL": 4.51, "BANDBB_KT_keV": 40.28, "CPLBB_KT_keV": 40.31},
+  "detectors": ["n6", "n7", "n9", "b1", "lle"],
+  "block_edges_s": [-0.161, 0.25, 0.864, 1.896, 4.382, 5.424, 7.462, 10.783, 12.502, 20.164],
+  "bb_significant_union": {
+   "criterion": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05) - BOTH nested pairs, union rule",
+   "count": 1,
+   "blocks": [{"BLOCK": 3, "t": [1.896, 4.382], "passing_pair": "CPL+BB only", "LRT_CPLBB_CPL": 9.576, "CPLBB_KT_keV": 45.47, "CPLBB_MINOS_OK": false, "LRT_BANDBB_BAND": 7.946, "BANDBB_KT_keV": 45.5, "BANDBB_VALID": false, "note": "marginal (9.58 vs 9.2); the 2026-08-08 blind rerun of this block gave LRT=7.7 => sub-threshold; co-located with Li 2019's strongest thermal bin (3.69-4.65 s, kT=26.9 keV) and Burgess 2014's photosphere (L17)"}],
+   "kT_values_keV": [45.47],
+   "band_bb_pair_count": 0,
+   "cpl_bb_pair_count": 1
+  },
+  "aic_winners_resolved": {"CPL": 4, "Band": 2, "SBPL": 1, "Band+BB": 1, "CPL+BB": 1},
+  "aic_winners_all_rows": {"CPL": 4, "Band": 3, "SBPL": 1, "Band+BB": 1, "CPL+BB": 1},
+  "bic_winners_all_rows": {"CPL": 9, "Band": 1},
+  "ep_track_keV_blk0_to_8": [2235.45, 724.95, 582.05, 372.18, 249.04, 212.71, 163.15, 174.59, 137.17],
+  "alpha_track_blk0_to_8": [-0.795, -0.13, -0.189, -0.423, -0.625, -0.648, -0.77, -0.966, -1.125],
+  "beta_track_blk0_to_8": [-3.195, -3.118, -3.408, -3.234, -4.627, -2.768, -2.794, -2.852, -2.401],
+  "bandbb_kt_track_keV_blk0_to_8": [3.28, 4.62, 3.55, 45.5, 8.97, 10.07, 54.26, 1.54, 1.02],
+  "cplbb_kt_track_keV_blk0_to_8": [2.85, 4.57, 3.56, 45.47, 49.37, 28.02, 74.57, 26.13, 46.35],
+  "lrt_dsbpl_sbpl_rows_m1_0_to_8": [1.61, 1.16, 5.44, 4.03, 5.22, 1.11, 1.5, 0.44, 0.42, 5.9],
+  "archival_engine_artifacts": {"negative_LRT_CPLBB_CPL": {"blk4": -39.56, "blk5": -64.3, "blk7": -11.48, "blk8": -2.22}, "cpl_fail_blocks": [2], "note": "pre-L4/L5 cutoff local minima; basis of P-A3"},
+  "stamped_window": {"SRC_START": -1.280221, "SRC_STOP": 20.164881, "approved_by": "Vikas Chand", "approved_utc": "2026-07-19T22:18:36Z", "mode": "human_gui", "window_source": "accepted_suggestion"}
+ },
+ "harvest_snippets": {
+  "pointer": "full published-value table with T9 component-coverage labels: results/gcn/bn081224887/bn081224887_dossier.md 'PUBLISHED VALUES (for the P3 diff)'; verbatim snippets: notes/reconciliation/bn081224887.md P1; manifest: notes/reconciliation/bn081224887_harvest.json (24 refereed)",
+  "LiZhang2021": ["081224887 | 16.448+-1.159 | (3.76+-0.02)e-5 | (n6)n7n9b1 | -1~20 | [-20~-10,40~60] | 9 | 5 (Ntot=9 blocks; edges 1.896/5.424/12.502 s = P-B1 anchor)"],
+  "Yu2019": ["Table 6: dDIC = +22.64,+5.46,+1.89,+2.13,+0.29,+1.78,+2.38,+1.09 (8 clean bins, ALL positive => CPL); 2 pathological bins pDIC_BAND=-109.20,-240404.34"],
+  "Bissaldi2011": ["081224.887 | Comp | 0.0378+-0.0007 | 380+-11 | -0.73+-0.02 | 0.87 | 442/358 (0.002-16.544 s)"],
+  "GCN8739_WAM": ["CPL alpha 0.83(+0.27,-0.28) [dN/dE~E^-alpha], Epeak 447(+57,-40) keV, chi2/dof=19/22, T0-0.2s..T0+19.8s (PRELIMINARY by own statement)"]
+ }
+}

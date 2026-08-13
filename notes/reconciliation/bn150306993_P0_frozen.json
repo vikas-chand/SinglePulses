@@ -1,0 +1,21 @@
+{
+ "burst": "bn150306993",
+ "tally": 13,
+ "frozen_utc": "2026-08-11 (night shift; BEFORE any fit table opened)",
+ "engine": "L18/L19/L20/L26/L27 active",
+ "predictions": [
+  "Lu+2018 T4: H2S, tau31=2.64+/-0.26, W=9.98, kE=-0.58",
+  "P-A: H2S monotonic Ep decline; P-B: lag sign check vs published +2.64 (L26)"
+ ],
+ "harvest_snippets": {
+  "Li&Zhang2021": [
+   "not in sample"
+  ],
+  "Lu2018": [
+   "\u202629 \u22121.02\uf0a0\u00b1\uf0a00.19 bn141229492 H 0.55\uf0a0\u00b1\uf0a00.16 1.97 0.61\uf0a0\u00b1\uf0a00.32 \u22120.91\uf0a0\u00b1\uf0a00.19 bn150220598 H 0.37\uf0a0\u00b1\uf0a00.10 3.10 0.45\uf0a0\u00b1\uf0a00.17 \u22120.83\uf0a0\u00b1\uf0a00.28 bn150306993 H 2.64\uf0a0\u00b1\uf0a00.26 9.98 5.10\uf0a0\u00b1\uf0a01.64 \u22120.58\uf0a0\u00b1\uf0a00.05 bn150314205 H 0.68\uf0a0\u00b1\uf0a00.05 4.50 0.87\uf0a0\u00b1\uf0a00.08 \u22120.30\uf0a0\u00b1\uf0a00.04 bn150514774 H 0.46\uf0a0\u00b1\uf0a00.08 2.0\u2026"
+  ],
+  "Li2026_tracking": [
+   "not in sample"
+  ]
+ }
+}

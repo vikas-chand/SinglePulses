@@ -1,0 +1,173 @@
+{
+ "burst": "bn131113483",
+ "grb_name": "GRB 131113483 (GBM trigger designation; NO IAU letter suffix has ever been assigned to this burst)",
+ "grb_name_caveats": [
+  "There is NO 'GRB 131113A'. ADS full:\"GRB 131113A\" -> 0 hits; ADS full:\"131113A\" -> 0 hits; zero GCN circulars; J. Greiner's GRB table (mpe.mpg.de/~jcg/grbgen.html) has no 131113 entry for November 2013 (it lists 131103A, 131105A, 131108A, 131117A, 131118A, 131120A, 131122A, 131127A, 131128A). Do NOT write 'GRB 131113A' anywhere - it would be an invented designation.",
+  "HEASARC fermigbrst `name` = GRB131113483; tcat OBJECT = 'GRB131113483'. The GBM-style name is the only catalogue name.",
+  "Konus-Wind's trigger archive calls it 'GRB 131113' (no suffix), with its own T0 = 41768.195 s UT, 31.04 s AFTER the GBM trigger.",
+  "It is the ONLY GRB trigger GBM recorded on 2013-11-13 (fermigtrig returns bn131113055 SFLARE, bn131113238 LOCLPAR, bn131113381 SFLARE, bn131113483 GRB), so there is no same-day contamination risk (trap T1) in either direction."
+ ],
+ "generated_utc": "2026-08-12",
+ "generated_by": "106-burst campaign doc-layer worker (Steps 0, 0b, 1)",
+ "skills_followed": [
+  "dev/ai_guides/GCNIntelligence.md (Step 0, incl. the G2 corpus-dedup rule and G1 filename rule)",
+  "dev/ai_guides/LiteratureHarvest.md (Phases 1, 1b, 2, 3, 3b, 3c, 4, 5; traps T1-T9)",
+  "dev/ai_guides/DataInventory.md (Step 1; D1-D5)"
+ ],
+ "idempotency": "results/gcn/bn131113483/ did NOT exist; notes/reconciliation/bn131113483_* did NOT exist; results/qc/bn131113483_* did NOT exist. ALL FOUR PRODUCTS ARE NEW. Nothing was overwritten. results/clean_per_burst_human_final/bn131113483/ DID exist (archival prior, read-only) and results/clean_blocks/bb_blocks_spectral_bn131113483.ecsv DID exist (read-only).",
+ "blind_barrier": "results/sweep106/ was never listed, opened, globbed or read by this worker.",
+ "ads_queries": {
+  "token": "ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env (40 chars, working; the Astrograph ADS_API_TOKEN was not used)",
+  "four_required_forms": {
+   "full:\"GRB 131113A\"": {
+    "numFound": 0,
+    "note": "the NAME form returns nothing because the name does not exist - see grb_name_caveats"
+   },
+   "full:\"bn131113483\"": {
+    "numFound": 0
+   },
+   "full:\"131113483\"": {
+    "numFound": 1,
+    "hits": [
+     "2026ApJ..1003...58B"
+    ]
+   },
+   "full:\"406035340\"": {
+    "numFound": 0,
+    "note": "the trigger NUMBER, computed locally as Fermi MET from MJD 56609.483068952 and confirmed against tcat TRIGTIME = 406035340.15746. Also tried 406035339 and 406035341 -> 0 each."
+   }
+  },
+  "extra_forms_run": {
+   "full:\"GRB131113A\"": 0,
+   "full:\"131113A\"": 0,
+   "full:\"GRB 131113\"": 0,
+   "full:\"GRB131113\"": 0,
+   "full:\"GRB 131113483\"": 1,
+   "full:\"GRB131113483\"": 0,
+   "full:\"131113B\"": 0,
+   "full:\"406035341\"": 0,
+   "full:\"406035339\"": 0,
+   "full:\"131113_T41\"": 0,
+   "abs:\"GRB 131113A\"": 0,
+   "full:\"bn131113\"": 0,
+   "body:\"131113483\"": 1,
+   "full:\"131113483\" doctype:eprint": 0
+  },
+  "sort": "date desc (Phase 3b: latest analyses first) - moot with a single hit",
+  "doctype_filter": "kept article + eprint only; the single hit is doctype=article, REFEREED, PUB_OPENACCESS",
+  "eprint_vs_pub_note": "full:\"131113483\" matches the PUBLISHED version only (doctype:eprint -> 0). This is itself evidence that the mention lives in the publisher's online-only material, which is what the primary-source check below confirmed."
+ },
+ "scholar_channel_phase1b": {
+  "triggered_because": "the four-form ADS query came back thin (1 paper) - LiteratureHarvest Phase 1b condition 1",
+  "google_scholar_itself": "NOT RUN. Scholar has no API and no browser was driven in this session. Recorded as an open gap, not silently skipped.",
+  "approximation_used": "3 web searches, all zero-yield for this burst: (1) '\"GRB 131113483\" OR \"GRB131113483\" Fermi GBM'; (2) '\"131113483\" gamma-ray burst spectral analysis'; (3) 'Konus-Wind OR IPN gamma-ray burst 2013 November 13 11:35 UT trigger'.",
+  "what_the_channel_DID_find_by_another_route": "the Konus-Wind / IPN detection record (see multi_instrument_record) was found by going directly to the Ioffe LEA Konus trigger archive year index, not by search. Bridge query recorded for the discovery plane: 'Konus-Wind trigger list 2013 index' -> http://www.ioffe.ru/LEA/kw/triggers/2013/index.html"
+ },
+ "identity_verification_T1": "LOW RISK on this burst but verified anyway. (a) Only one GRB trigger exists on 2013-11-13 (fermigtrig TAP query, 4 rows, 3 of them solar flares / local particles). (b) The single paper hit was verified at the PRIMARY SOURCE by string, not by name: the arXiv LaTeX source of 2511.20310 contains `\\includegraphics{Lightcurves/TE_GRB131113483.pdf}` with `\\caption{GRB131113483}`. (c) The paper's stated selection cuts were re-applied to the GBM catalogue row and the burst passes every one exactly (see papers[0].identity_verified_by), so the membership is not a numeric coincidence.",
+ "n_papers": 1,
+ "n_papers_refereed": 1,
+ "n_pdfs_new_this_pass": 0,
+ "n_pdfs_reused_no_redownload": 1,
+ "n_pdfs_not_obtained": 0,
+ "papers": [
+  {
+   "bibcode": "2026ApJ..1003...58B",
+   "first_author": "Bordoloi, Pragyan Pratim",
+   "coauthors": "Mittal, Shubh; Iyyani, Shabnam",
+   "year": 2026,
+   "title": "From Empirical to Physical Model: Direct Fits of Optically Thin Inverse Compton Scattering to Prompt GRB Spectra",
+   "journal": "ApJ 1003, 58 (published 2026 May 14/20)",
+   "doi": "10.3847/1538-4357/ae623d",
+   "arxiv": "2511.20310",
+   "role": "SAMPLE MEMBERSHIP - initial 41-burst selection, then REJECTED at the time-resolved stage. No dedicated analysis. This is the ONLY paper in the world that mentions this burst.",
+   "refereed": true,
+   "doctype": "article",
+   "properties": "REFEREED, PUB_OPENACCESS, EPRINT_OPENACCESS, DATA",
+   "citation_count_at_harvest": 0,
+   "pdf": "Skills_training/Bordoloi_2026_2026ApJ1003_58B_PUB.pdf (published, 20 pp) + Skills_training/Bordoloi_2026_2026ApJ100358B_bn091209001.pdf (arXiv v1, 26 pp; identical file also filed under _bn090620400)",
+   "pdf_source": "ALREADY IN CORPUS - NOT RE-DOWNLOADED (lesson G2). corpus_index.csv row 131 carries bibcode 2026ApJ..1003...58B with cited_by_bursts=bn091209001, n_bursts=1, read=N.",
+   "in_corpus_index_before": true,
+   "corpus_action_required": "append bn131113483 to cited_by_bursts and increment n_bursts (queued in pending_shared_csv_rows; NOT written by this worker)",
+   "identity_verified_by": "PRIMARY SOURCE: arXiv e-print source package (arxiv.org/e-print/2511.20310) -> Main_arXiv_2.tex lines 1716-1717 contain, commented out, `\\includegraphics[width=\\textwidth]{Lightcurves/TE_GRB131113483.pdf}` and `\\caption{GRB131113483}`, inside a figure block captioned 'Lightcurves for the not selected GRBs. Shaded area represents the region that does not satisfy the spectral cuts.' INDEPENDENT CHECK: their SS2 selection cuts re-applied to the GBM catalogue row for bn131113483 - fluence 2.30e-5 > 1e-5 OK; flnc_band alpha = -0.470 > -0.5 OK; flnc_band beta = -2.543 inside (-3.3,-1.7) OK; pflx_band alpha = -0.209 > -0.45 OK; pflx_band beta = -2.633 OK. Every criterion passes exactly.",
+   "prompt_sections": "READ: SS2 'Criteria & Sample selection' (fluence >1e-5 erg/cm2; time-integrated Band +1 >= alpha > -0.5 and -1.7 > beta > -3.3; peak-flux spectrum +1 >= alpha > -0.45 and same beta window; catalogue = HEASARC fermigbrst to 2025-09-30; Bayesian-block time-resolved Band fits inside the T70 interval defined by the 15%-85% levels of the cumulative background-subtracted counts; a burst is kept only if >= ~80% of the T70 bins satisfy the peak-spectrum cuts) and SS2.1 'Motivation for the Criteria' (the Acuner+2019 photospheric-alpha argument). ALSO: the Spectral Analysis section for the method frame (3ML; three brightest NaI with source angle < 60 deg + brightest BGO; NaI 8-900 keV with 30-40 keV EXCLUDED for the iodine K-edge; BGO 250 keV - 30 MeV; polynomial background before/after source). ~3 pages total. DEFER: the IC model itself, its parameter space, the four selected bursts' results, the degeneracy appendix - none of them touch our burst.",
+   "module_future_tags": [],
+   "module_future_note": "no module-future tags: the paper is prompt-emission only, and this burst has no afterglow/SN/cosmology literature at all",
+   "why_it_matters": "Two things. (1) An independent group ran a Bayesian-block, time-resolved Band analysis of THIS burst, and their published-but-online-only figure set + machine-readable table contain the per-bin alpha, beta, Ep, norm. That is a real external validation set for our Steps 5 and 6 - the same role Li & Zhang 2021 played for bn081224887. (2) The REJECTION itself is a datum: the burst passed the time-integrated and peak-flux hardness cuts but FAILED the '>= 80% of T70 bins' test, so more than ~20% of its bright-phase bins have alpha <= -0.45 or beta outside (-3.3,-1.7). Our archival block track (alpha = +0.06, -0.37, -0.29, -0.37, -0.74) reproduces exactly that pattern: hard early, dropping below -0.45 by the last block.",
+   "internal_inconsistency_T5": "The abstract states the low-energy cut as 'alpha > -0.5'; SS2 uses -0.5 for the time-integrated spectrum and -0.45 for the peak spectrum; SS2.1 then describes 'A relatively hard low-energy index (alpha > -0.45)' as the criterion generally. Recorded, NOT resolved - it matters for reproducing their 41-burst list.",
+   "not_obtained": "The supplementary material: the machine-readable time-resolved Band table for all 41 bursts and the per-burst alpha/beta evolution figure set (which includes TE_GRB131113483). IOP bot-blocks iopscience.iop.org (14 kB stub returned); the arXiv PDF, arXiv HTML and arXiv source package all lack the 41-burst tables (verified by grep: '1311' absent from every PDF we hold); ADS links_data lists only SIMBAD + publisher PDF, no CDS/Zenodo mirror. NEEDS A HUMAN WITH JOURNAL ACCESS."
+  }
+ ],
+ "zero_papers_finding": "NOT a zero-paper burst, but effectively one: n_papers = 1 and that paper contains no fitted value for our burst in any text we can read - only membership in a selection list and a rejection verdict. There has never been a dedicated analysis of bn131113483. Consequence for the P3 diff: the comparison frame is the GBM CATALOGUE (bcat/tcat/scat FITS products, read directly) plus Konus-Wind's T50/T90, and nothing else. This burst is therefore an unusually CLEAN test of the pipeline: there is almost no published prior to memorise, so P0 predictions here score the pipeline's decisions rather than its recall.",
+ "zero_circulars_finding": "n_circulars = 0. Verified with two independent endpoints and SAME-MONTH positive controls (classic archive: 131113/131113A/131113B -> 404 while 131108A -> 200; gcn.nasa.gov archive API: every name form -> totalItems 0 while 131108A -> 21, 131117A -> 9, 131127A -> 15, 110721A -> 9). Recorded as a RESULT per GCNIntelligence.md. Consequence: no GCN-sourced position, redshift, afterglow, or follow-up exists; the burst was never even assigned a letter designation.",
+ "multi_instrument_record": {
+  "source": "Konus-Wind trigger archive, Ioffe Institute LEA: year index http://www.ioffe.ru/LEA/kw/triggers/2013/index.html and event page http://www.ioffe.ru/LEA/kw/triggers/2013/kw20131113_41768.html (both fetched 2026-08-12)",
+  "verbatim_row": "2013-11-13 11:36:08 (41768) | [no name] | [no GCN circular] | GRB | S1 | FER:Trig  MO:RI  INT:Trig  MES:Trig  SUZ:Trig",
+  "verbatim_event_page": "GRB 131113, 41768.195 s UT (11:36:08.195); Detector: S1; Type: GRB; T50 = 20.608 (+4.190/-4.163) s; T90 = 38.492 (+0.736/-3.027) s",
+  "instruments": "Fermi-GBM (triggered), Konus-Wind (triggered), INTEGRAL/SPI-ACS (triggered), MESSENGER (triggered), Suzaku (triggered), Mars-Odyssey/HEND (in raw data) = a full IPN detection set",
+  "frame_alignment_T9": "Konus T0 = GBM T0 + 31.04 s (GBM T0 = 41737.157 s UT), i.e. Konus triggered on the MAIN PEAK (GBM's peak-flux interval is +32.768 to +33.792 s). Konus's T90 = 38.5 s therefore covers about +31 -> +70 s in GBM time, in the Konus S1 band (~20 keV - 15 MeV), while GBM's T90 = 60.5 s covers +3.39 -> +63.94 s in 50-300 keV. DIFFERENT T0, DIFFERENT SPAN, DIFFERENT BAND - a '38.5 vs 60.5 s' discrepancy would be manufactured (T9/D4).",
+  "consensus_rule_application": "LiteratureHarvest Phase 4 multi-instrument consensus does NOT apply: Konus published no Ep or fluence for this burst (no circular; ADS full:\"131113_T41\" -> 0). There is no inter-instrument spread to fold in, and the GBM values must NOT be given an inflated error pretending there is one."
+ },
+ "published_values_for_P3_diff": {
+  "_provenance": "read directly from FSSC FITS products downloaded 2026-08-12 into the session scratchpad (glg_bcat_all_bn131113483_v01.fit, glg_tcat_all_bn131113483_v02.fit, glg_scat_all_bn131113483_{flnc,pflx}_{band,comp,sbpl,plaw}_v01.fit) and cross-checked against the HEASARC fermigbrst TAP row. NOT copied from any paper.",
+  "durations": {
+   "GBM_T90_s": "60.5451 +/- 1.41672 (50-300 keV), T90START = +3.39202 s -> spans +3.39 to +63.94 s [coverage T9: WHOLE BURST, single pulse]",
+   "GBM_T50_s": "20.3524 +/- 0.320014, T50START = +16.8323 s",
+   "KW_T90_s": "38.492 (+0.736/-3.027) [coverage T9: PEAK->TAIL ONLY, from a T0 31 s later, Konus S1 band]",
+   "KW_T50_s": "20.608 (+4.190/-4.163)"
+  },
+  "brightness": {
+   "fluence_10_1000keV_erg_cm2": "2.30363e-05 +/- 9.5447e-08 (over T90, bcat)",
+   "peak_flux_1024ms_50_300keV_ph_cm2_s": "7.04815 +/- 0.2915"
+  },
+  "flnc_catalog_fits": {
+   "_interval": "-1.024 to +78.848 s [coverage T9: whole burst + ~15 s of post-T90 tail]",
+   "_detectors": "b0, n1, n2, n5 (all INCLUDED) - IDENTICAL to our approved set",
+   "_statistic": "Castor C-STAT",
+   "band": "Ep = 144.038 (+7.007/-7.292) keV; alpha = -0.4701 (+0.0545/-0.0580); beta = -2.5431 (+0.2089/-0.1484); A = 0.020331 (+0.001751/-0.002049); redstat = 1.15265 (445 dof); NRGFLNC(10-1000 keV) = 2.0508e-5 +/- 6.898e-7 erg/cm2",
+   "comp": "Ep = 160.559 (+5.349/-5.724) keV [Ep = nuFnu PEAK, RMFIT parameterisation - NOT the e-folding energy]; index = -0.5613 (+0.0408/-0.0417); redstat = 1.17252 (446)",
+   "sbpl": "Ebreak = 94.774 (+9.028/-10.651) keV; lambda1 = -0.7025 (+0.0541/-0.0579); lambda2 = -2.4666 (+0.1394/-0.1116); brkscale = 0.30 FIXED; redstat = 1.16545 (445)",
+   "plaw": "index = -1.4613 (+0.00786/-0.00738); redstat = 3.11764 (447) - rejected",
+   "catalog_best_flag": "flnc_best_fitting_model = flnc_comp (HEASARC fermigbrst)",
+   "T8_style_caveat": "RECORD, DO NOT RESOLVE: Band has the LOWER statistic (1.15265*445 = 512.93 vs Comp 1.17252*446 = 522.94, i.e. deltaC ~ 10.0 in Band's favour for one extra parameter), yet the catalogue's own best-model flag names Comp. Quote the flag AND the statistics; re-derive if the choice matters to a claim."
+  },
+  "pflx_catalog_fits": {
+   "_interval": "+32.768 to +33.792 s [coverage T9: 1.024 s PEAK BIN ONLY; also ~the moment Konus-Wind triggered]",
+   "band": "Ep = 148.094 (+14.422/-18.504) keV; alpha = -0.2090 (+0.1648/-0.1762); beta = -2.6331 (+0.6606/-0.2940); redstat = 0.95800 (445); energy flux(10-1000 keV) = 1.0384e-6 +/- 9.078e-8 erg/cm2/s",
+   "comp": "Ep = 168.379 (+14.520/-17.220) keV; index = -0.3549 (+0.1299/-0.1421); redstat = 0.97228 (446)",
+   "sbpl": "Ebreak = 119.536 (+24.236/-32.145) keV; lambda1 = -0.5806 (+0.1245/-0.1515); lambda2 = -2.8617 (+0.5980/-0.3677); redstat = 0.95878 (445)",
+   "plaw": "index = -1.4366 (+0.0215/-0.0234); redstat = 1.26725 (447)",
+   "catalog_best_flag": "pflx_best_fitting_model = pflx_comp"
+  },
+  "frame_labels_L21": {
+   "Ep_convention": "RMFIT band and comp both report Ep = nuFnu peak (keV). Our CPL_XC is the E-FOLDING energy; convert with Ep = (2+index)*xc before comparing. Sanity check: archival integrated CPL xc = 104.87, index = -0.3845 -> Ep = 169.4 keV vs catalogue comp 160.6 keV over a LONGER window - consistent for a hard-to-soft burst.",
+   "SBPL": "PARAM3 is the BREAK energy, not Ep; brkscale = 0.3 fixed.",
+   "index_sign": "photon-index convention, negative for falling spectra (same as ours).",
+   "energy_bands": "NaI fit channels 5-124 (n1, ~4.11-2000 keV) and 4-124 (n2, n5); BGO b0 channels 3-89 (~114.7-50000 keV), from the scat DETECTOR DATA extension. NOTE the GBM catalogue did NOT exclude the 30-40 keV iodine K-edge, whereas Bordoloi+2026 and our pipeline do.",
+   "T0": "all times relative to TRIGTIME = 406035340.15746 = 2013-11-13T11:35:37.157 UTC, EXCEPT the Konus values, which are relative to 41768.195 s UT = T0 + 31.04 s.",
+   "window_mismatch": "our stamped source window is -1.0 -> +62.0 s: it starts where the catalogue's fluence interval starts (-1.024) but ends 16.8 s EARLIER. The archival prior run ended earlier still (+46.2 s). Every integrated-spectrum diff is PARTIAL-vs-FULL and, on a hard-to-soft burst, must expect our alpha/beta HARDER than the catalogue's."
+  }
+ },
+ "step1_qc_summary": {
+  "verdict": "PASS with WARN-EARTHLIMB",
+  "file": "results/qc/bn131113483_step1_response_coverage.ecsv",
+  "one_line": "4/4 approved detectors resolve to 4-matrix .rsp2 files spanning -34.817 -> +96.258 s rel T0, bracketing the stamped window (-1.0 -> +62.0) with margin; no LLE/LAT anywhere (D1 not applicable); the real risk is Earth-limb geometry, not the response."
+ },
+ "pending_shared_csv_rows": {
+  "_rule": "NO shared CSV was written by this worker. These rows are queued for whoever consolidates. corpus_index.csv header = filename,bibcode,arxiv,theme,cited_by_bursts,n_bursts,read,read_date. `read` stays N - only Vikas sets Y.",
+  "corpus_index_new_rows": [],
+  "corpus_index_cited_by_updates": [
+   "2026ApJ..1003...58B (corpus_index.csv row 131, filename Bordoloi_2026_2026ApJ100358B_bn091209001.pdf): append bn131113483 to cited_by_bursts -> 'bn091209001;bn131113483', n_bursts 1 -> 2. NOTE: other doc-layer workers are concurrently appending their own bursts to the SAME row (bn090620400 already has a PDF copy on disk but no index row) - the consolidator must merge, not overwrite. Theme string could also gain ';SAMPLE-MEMBER-REJECTED-bn131113483'."
+  ],
+  "gcn_index_rows": [
+   "results/gcn/gcn_index.csv (header trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed): bn131113483,none-404,0,-,1,1"
+  ],
+  "reading_list_note": "notes/READING_LIST_106.md ALREADY carries the correct entry for this burst ('## bn131113483 (t)' -> 2026ApJ..1003...58B), independently corroborating the n_papers = 1 result. No edit needed."
+ },
+ "open_gaps": [
+  "Bordoloi+2026 SUPPLEMENTARY MATERIAL NOT OBTAINED (IOP bot-block; absent from arXiv PDF/HTML/source). It holds an independent time-resolved Band fit table + alpha/beta figure for THIS burst - the only real external comparison that exists. Needs a human with journal access.",
+  "Google Scholar itself NOT RUN (no API, no browser). Approximated by 3 web searches, zero yield.",
+  "No Konus-Wind spectral parameters are public for this burst (T50/T90 only), so no genuine multi-instrument consensus is possible.",
+  "The Earth-limb atmospheric-attenuation question is OPEN: the geometry is computed exactly (see the QC file and the P0 predictions P-D1/P-D2) but the energy-dependent effective absorbing height was NOT computed. It must be tested empirically, not assumed in either direction.",
+  "Our own archival T90 (results/temporal_catalog_human.ecsv) is 52.23 +/- 70.67 s - the error is pathological and the value must be re-derived in Step 7 before it is used for anything."
+ ]
+}

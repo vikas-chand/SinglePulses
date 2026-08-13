@@ -1,0 +1,31 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: int64}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn190401139}
+# - {src_start: -2.5191384615383754}
+# - {src_stop: 38.38429090909105}
+# - {approved_detectors: 'n6,n7,n8,b1'}
+# - {selection_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand, 2026-07-19T22:18:36Z, human_gui)'}
+# - {manifest_tte: 6}
+# - {manifest_cspec_pha: 6}
+# - {manifest_rsp2: 6}
+# - {manifest_rsp_single: 0}
+# - {manifest_poshist: 1}
+# - {manifest_trigdat: 0}
+# - {manifest_lle: 0}
+# - {manifest_lat_dir: 0}
+# - {notes: 'trigdat absent (note, not blocker: poshist present). No LLE/LAT products (HAS_LAT=False). All approved-det responses are
+#     multi-matrix .rsp2 -> interval-coverage test is the correct one (D1 single-matrix rule n/a).'}
+# - {qc_utc: '2026-08-11T16:41Z'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n6 -123.650 482.568 13 PASS
+n7 -123.650 482.568 13 PASS
+n8 -123.650 482.568 13 PASS
+b1 -123.650 482.568 13 PASS

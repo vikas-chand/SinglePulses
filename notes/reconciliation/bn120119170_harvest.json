@@ -1,0 +1,229 @@
+{
+ "burst": "bn120119170",
+ "grb_name": "GRB 120119A",
+ "harvest_utc": "2026-08-12",
+ "harvested_by": "doc-layer worker (Steps 0/0b/1)",
+ "identity_check": "GBM trigger 348638667 / 120119170, 2012-01-19 04:04:25.06 UT (GCN 12874, which names the trigger GRB 120119A). Swift/BAT trigger 512035 at 04:04:30.21 UT = GBM T0+5.15 s (GCN 12859). Konus-Wind T0 = 14674.872 s UT = 04:04:34.872 = GBM T0+9.81 s (GCN 12872; that circular misprints the parenthetical as 04:01:34.872 - recorded, not resolved). T1 IS LIVE ON THIS DATE: GBM also triggered on 120119229 = GRB 120119B and 120119354 = GRB 120119C the same day (Golkhou+2015 Tab. 2, arXiv p.26), and GRB 120118B sits one day earlier in adjacent sample-table rows. Every accepted hit was matched on 'GRB 120119A' or the trigger digits 120119170, never on a bare '120119'.",
+ "queries": {
+  "endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env; token loaded OK)",
+  "forms": {
+   "full:\"GRB 120119A\"": 63,
+   "full:\"GRB120119A\"": 6,
+   "full:\"bn120119170\"": 0,
+   "full:\"120119170\"": 2,
+   "full:\"348638667\"": 0,
+   "full:\"GRB 120119\" (5th form, added as a loose net)": 2
+  },
+  "sort": "date desc (Phase 3b latest-first)",
+  "union_unique_docs": 72,
+  "union_refereed": 43,
+  "accepted_refereed": 41,
+  "rejected": [
+   {"bibcode": "2025OptLE.18608768W", "reason": "false positive - optics/metrology paper, matched only the loose form full:\"GRB 120119\""},
+   {"bibcode": "2013ApJ...779...66S", "reason": "Stratta+2013 is the ultra-long GRB 111209A paper; 120119A appears as a comparison citation only, matched only via full:\"GRB 120119\". Cataloged as out-of-scope, not counted."}
+  ],
+  "note_on_zero_trigger_forms": "full:\"bn120119170\" and full:\"348638667\" both return 0 - an INDEXING artifact, not absence. The bare fraction-of-day form full:\"120119170\" returned the two most prompt-relevant papers in the whole harvest (Shao+2017, Jiang+2021), neither of which the name-form query found. This burst is a clean specimen for why the four-form rule exists."
+ },
+ "phase1b_scholar_channel": {
+  "used": false,
+  "reason": "Trigger conditions in LiteratureHarvest.md Phase 1b were not met: the ADS four-form query returned 41 accepted refereed papers (the opposite of thin/empty), and no cross-community vocabulary gap was in play. Recorded as a deliberate non-use, not an omission. A future Scholar sweep worth running for this burst: 'GRB 120119A dust destruction prompt flux' - the dust-destruction literature (35 of 41 hits) is the vocabulary-disjoint neighbour community here, and it constrains the prompt UV/X-ray output on second timescales, which is a prompt-relevant quantity our GRB-termed queries would never surface."
+ },
+ "catalog_sources_non_ADS": [
+  {
+   "source": "HEASARC TAP fermigbrst, row name='GRB120119170'",
+   "url": "https://heasarc.gsfc.nasa.gov/xamin/vo/tap/sync",
+   "why": "the authoritative GBM catalog values; the GCN 12874 numbers are explicitly preliminary by their own statement",
+   "key_values": "flnc interval -2.048..57.344 s, dets n9,na,nb,b1 (scat_detector_mask 00000000011101 = EXACTLY our stamped detector set); flnc_best_fitting_model = Band with Ep=182.76+/-10.45 keV, alpha=-0.955+/-0.032, beta=-2.366+/-0.160, redchisq 1.369/478 dof, Castor C-STAT; flnc_comp Ep=214.63+/-6.07, index=-1.023+/-0.019; flnc_sbpl indx1=-1.113+/-0.022, brken=123.68+/-9.11 keV (brksc 0.30 fixed), indx2=-2.360+/-0.079; flnc_plaw index=-1.567 redchisq 3.219 (rejected); pflx 14.336..15.360 s best = Comptonized Ep=328.38+/-25.38 keV index=-0.913+/-0.049; T90=55.297+/-6.229 s (50-300 keV) T90START=3.072; T50=16.384+/-1.448 T50START=11.264; fluence(10-1000)=3.867e-5+/-1.36e-7; flux_1024=16.858+/-0.391 ph/s/cm2 at t=14.464 s; flux_64=22.369+/-1.707 at t=15.040 s",
+   "anomaly": "the row's dec = -9.803 deg with error_radius = 0.0013 deg (4.7 arcsec), but the Swift XRT enhanced position is -9.08177 +/- 1.4 arcsec (GCN 12876). The catalog Dec is 0.72 deg away from its own quoted precision - consistent with -9.0803 (GCN 12859) with a digit dropped. SUSPECTED CATALOG TRANSCRIPTION ERROR, recorded not resolved; it has already propagated into Wei+2022 Tab.1 (120.0, -9.8) while Amelino-Camelia+2026 p.11 carries the correct (120.029, -9.082)."
+  },
+  {
+   "source": "GCN circular archive https://gcn.gsfc.nasa.gov/other/120119A.gcn3",
+   "n_circulars": 24,
+   "saved_to": "results/gcn/bn120119170/bn120119170_gcn_raw.txt"
+  }
+ ],
+ "n_papers": 41,
+ "deep_mined": 7,
+ "cataloged_not_mined": 34,
+ "papers": [
+  {
+   "bibcode": "2022ApJ...927..157M",
+   "first_author": "Moss, Michael",
+   "year": 2022,
+   "title": "Instrumental Tip-of-the-iceberg Effects on the Prompt Emission of Swift/BAT Gamma-ray Bursts",
+   "arxiv": "2111.13392",
+   "matched_by": "full:\"GRB120119A\"",
+   "tier": "PROMPT - deep-mined",
+   "dedupe": "NEW to the corpus",
+   "file": "Skills_training/Moss_2022_2022ApJ927157M_bn120119170.pdf",
+   "oa_fetched": true,
+   "version": "arXiv v (PUB is OPENACCESS; arXiv kept for machine parsing per Phase 2)",
+   "prompt_sections": "Table 2 p.6 (the sample table; ALL values quoted from the online Swift/BAT catalog): GRB120119A z=1.73, T90=68.0 s, fluence=3.17e-5 erg/cm2, alpha=-1.38, PCODE=1.02, theta_inc=5.13 deg, rate S/N=45.46, description 'Symmetric-like'. Table 3 p.8: f(measurable)=0.911, f(consistent,3sigma)=0.182, f(consistent,1sigma)=0.074, T90,true=83.0 s, avg T90,sim=47.41 s, 90% CI [10.014,107.314], 68% CI [11.014,89.214]. Sec 5.2 p.8-9: 120119A has a LONG DIM TAIL (~100 s) producing a high-side arm in the simulated T90 distribution. Figure 16 p.16 = its light curve.",
+   "why_it_matters": "two things. (1) It classifies 120119A as a 'Simple-pulse' / 'Symmetric-like' LGRB from the BAT side - an independent second vote for our single-pulse sample membership, against four circulars that call it multi-peaked. (2) It is the cleanest external evidence for the dim tail that makes BAT T90 (253.8 s, GCN 12884) irreconcilable with GBM T90 (55.3 s) by band scaling alone - a T9 component-coverage fact our source window [-1,+47] s must be labelled against.",
+   "module_future_tags": "none - fully in prompt scope"
+  },
+  {
+   "bibcode": "2021MNRAS.505L..26J",
+   "first_author": "Jiang, Yun-Guo",
+   "year": 2021,
+   "title": "Interpreting the spectral lags of single-pulsed gamma-ray bursts via the photosphere in the jet model",
+   "matched_by": "full:\"120119170\"",
+   "tier": "PROMPT - deep-mined",
+   "dedupe": "ALREADY IN CORPUS (Skills_training/Jiang_2021_2021MNRAS505L26J.pdf, cited_by bn130518580;proj37, read=N) - NOT re-fetched per G2; corpus_index cited_by append PENDING (shared-CSV freeze)",
+   "file": "Skills_training/Jiang_2021_2021MNRAS505L26J.pdf",
+   "prompt_sections": "Sec 3 + Table 1 p.3. 120119170 row: z=1.7282, Ep=189+/-87 keV, Eiso,52=65.3, lag t12=3.32+/-1.79 s at E2=172 keV, 1/kr=0.100+0.438/-0.078, r_ph(E2)=8.47+20.21/-0.77 au, and the derived Rph / log Bph / B'diss columns. Text p.3: their sample is 'a sample of 50 bright SINGLE-PULSE GRBs' with lags measured between nine log-spaced energy channels; five had known z, of which 120119170 is one. Text p.3-4 caveats specific to this burst: 'For GRB 120119170, the large uncertainty of 1/kr means that rph(E2) can be as large as 24.2 au in the extreme case'; and for 120119170 + 130518580 the small median 1/kr with large uncertainty gives B1 in 1e6-1e52 G, of which 'the upper limit has no physical sense'.",
+   "why_it_matters": "the ONLY paper in the whole harvest that puts a physical prompt-emission model on this burst, and it is a photospheric one - so it is the P3 bias to disclose. It is also the second single-pulse classification vote (inherited from Shao+2017's sample). Its Eiso,52=65.3 disagrees with Gompertz+2018 (2.36e53) and Konus (3.6e53) by up to 2.8x - band/k-correction conventions differ and are not stated; recorded as a discrepancy, not resolved.",
+   "module_future_tags": "none - fully in prompt scope"
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "first_author": "Shao, Lang",
+   "year": 2017,
+   "title": "A New Measurement of the Spectral Lag of Gamma-Ray Bursts and its Implications for Spectral Evolution Behaviors",
+   "matched_by": "full:\"120119170\"",
+   "tier": "PROMPT - deep-mined",
+   "dedupe": "ALREADY IN CORPUS (Skills_training/Shao_2017_2017ApJ844126S.pdf, cited_by bn081224887, read=N) - NOT re-fetched per G2; corpus_index cited_by append PENDING",
+   "file": "Skills_training/Shao_2017_2017ApJ844126S.pdf",
+   "prompt_sections": "Table 1 'Our sample of 50 GRBs detected by GBM and results on the spectral lag' (p.9-10). 120119170 row: T90=55.30+/-6.23 s, Bin=2.77 s, t0=1.771+3.838/-3.838 s, tau=22.122+38.296/-5.626 s, beta=0.100+0.438/-0.078, omega=16.617+3.023/-2.092 s, gamma=0.193+0.045/-0.034, NaI=nb, Delta_t_HR=3.775+/-0.439 s. Model definitions in Sec 2-3 (arrival time t = t0 + tau*(E/keV)^-beta, eq. 7-8; pulse width W = omega*(E/keV)^-gamma, eq. 5; discussion of which is primitive, p.7). Footnotes p.10 VERBATIM: 'a Data provided by the official GBM online burst catalogs (Gruber et al. 2014; von Kienlin et al. 2014). b All of the errors in this work indicate a confidence interval of 1 sigma. c Only the data from the brightest NaI detector are used for analysis in this work.' Sec 7 (p.7): HTS vs HIT via hardness ratio rather than Ep.",
+   "why_it_matters": "the source of the 50-burst single-pulse sample that Jiang+2021 inherits, and the origin of every published lag/width number for this burst. Directly feeds our Step 7. Two frame traps recorded: (i) their T90 is the GBM catalog value re-quoted, NOT an independent measurement, so it is not an external check on our T90; (ii) the whole analysis is SINGLE-DETECTOR (nb), while ours is 4-detector (n9,na,nb,b1) - a width or lag diffed across that difference is not a like-for-like comparison. Their pulse-width definition (omega, from a symmetric Gaussian fit) is NOT FWHM and NOT the Norris rise+decay width - T3 applies.",
+   "module_future_tags": "none - fully in prompt scope"
+  },
+  {
+   "bibcode": "2015ApJ...811...93G",
+   "first_author": "Golkhou, V. Zach",
+   "year": 2015,
+   "title": "The Energy Dependence of GRB Minimum Variability Timescales",
+   "arxiv": "1501.05948",
+   "matched_by": "full:\"GRB 120119A\"",
+   "tier": "PROMPT - deep-mined",
+   "dedupe": "NEW to the corpus",
+   "file": "Skills_training/Golkhou_2015_2015ApJ81193G_bn120119170.pdf",
+   "oa_fetched": true,
+   "prompt_sections": "Table 2 (GBM sample), row '120119170 120119A' at arXiv p.26. Header (p.25): Trigger ID | GRB Name | Delta_t_min | Delta_t_S/N | T90 | T_start_100 | T_stop_100 | sigma_X,tmin | sigma_X,tS/N | z. Values: Delta_t_min < 0.463 s (UPPER LIMIT), Delta_t_S/N = 0.078+/-0.007 s, T90 = 55.297+/-6.229 s, T100 = [-15.904, +85.811] s, sigma = 0.33 / 0.09, z = 1.728. Figure 3 + caption p.5: GRB 120119A is one of the three gallery bursts - GBM panel Delta_t_S/N=0.08 s, t_beta=0.18 s, Delta_t_min=0.20 s; BAT panel 0.08 / 0.17 / 0.20; both instruments 15-350 keV for the BAT row, and the text notes 120119A is a case where GBM and BAT S/N are 'closely similar ... the resulting scaleograms are almost identical'.",
+   "why_it_matters": "the external MVT anchor for Step 7 and the source of the T100 = [-15.9, +85.8] s span, which brackets our stamped window [-1, +47] s on BOTH sides - the clearest statement that our window is a sub-interval of the event. TRAP RECORDED (T5): the same paper gives Delta_t_min < 0.463 s in Table 2 and Delta_t_min = 0.20 s in the Figure-3 panels for the same burst. Not resolved; whichever Step 7 quotes must be named.",
+   "module_future_tags": "none - fully in prompt scope"
+  },
+  {
+   "bibcode": "2018ApJ...866..162G",
+   "first_author": "Gompertz, B. P.",
+   "year": 2018,
+   "title": "The Environments of the Most Energetic Gamma-Ray Bursts",
+   "arxiv": "1802.07730",
+   "matched_by": "full:\"GRB 120119A\"",
+   "tier": "PROMPT (energetics) + afterglow - deep-mined",
+   "dedupe": "NEW to the corpus",
+   "file": "Skills_training/Gompertz_2018_2018ApJ866162G_bn120119170.pdf",
+   "oa_fetched": true,
+   "prompt_sections": "Table 1 p.5 (prompt properties; header GRB | z | Fluence | T90 | Ep | a | b | E_gamma,iso). 120119A row: z=1.73(ref 34), fluence=(3.87+/-0.01)e-5 erg/cm2, T90=55.3+/-6.23 s, Ep=183+/-8 keV, a=0.96+/-0.03, b=2.37+/-0.09, Eiso=(2.36+/-0.01)e53 erg. NOTE their a,b are POSITIVE MAGNITUDES of the Band indices - our engine reports negative photon indices. The prompt row is a GBM-catalog re-quote, not an independent fit.",
+   "why_it_matters": "supplies the Eiso value on the GBM band (2.36e53) that sits between Konus's 3.6e53 (20 keV-10 MeV) and Jiang's 6.53e53 - the three-way E_iso spread this dossier records as unresolved.",
+   "beyond_prompt_sections": "Sec 2.2 p.7: 120119A is one of only two bursts where 'the UKSSDC automatic fitting routine gives obviously erroneous results' and they hand-fit the X-ray light curve - a method-quality note. Table p.8: X-ray at t_x,rest=11.58, F_x=(4.75+/-0.94)e-13, alpha_x=1.89+/-0.11, Gamma_x=1.73+0.07/-0.09. Table p.11: optical H=17.14+/-0.24 at 2.29, A_V=0.81+/-0.01. Table p.16: ISM environment, nu_R<nu_x<nu_c, p=2.76, epsilon_e=0.12, epsilon_B=0.01. Sec 5.4 p.25-26: 120119A is in the chi2_nu>10 sub-sample where the five independent p estimators disagree (p=2.28+/-0.08 up to 3.32+/-0.09) and 'no consistent cause for the disagreement' is found.",
+   "module_future_tags": "module-future;afterglow"
+  },
+  {
+   "bibcode": "2020ApJ...897..178A",
+   "first_author": "Ahlgren, Bjorn",
+   "year": 2020,
+   "title": "A Search for Lensed Gamma-Ray Bursts in 11 yr of Observations by Fermi GBM",
+   "matched_by": "full:\"GRB 120119A\"",
+   "tier": "PROMPT (response systematics) - deep-mined",
+   "dedupe": "ALREADY IN CORPUS (Skills_training/Ahlgren_2020_2020ApJ897178A_bn180703876.pdf, cited_by bn180703876, read=N) - NOT re-fetched per G2; corpus_index cited_by append PENDING",
+   "file": "Skills_training/Ahlgren_2020_2020ApJ897178A_bn180703876.pdf",
+   "prompt_sections": "p.5 verbatim: 'There are four GRBs in the sample selected for time-resolved spectral analysis that have reported positions from Swift (GRB 120119A, GRB 161004B, GRB 180703A and GRB 190720A). For these GRBs, we generate new response files for the improved positions using the GBM response generator. We find that the new response files have a small impact on the spectral analysis, with the best-fit parameters being consistent within 1 sigma.' 120119A is in their time-resolved spectral subsample.",
+   "why_it_matters": "a directly usable Step-1/Step-9 datum for THIS burst: regenerating the GBM responses at the Swift position changes the spectral parameters by <1 sigma. That bounds the impact of the fermigbrst Dec anomaly (-9.803 vs -9.082) on our fits. No lensed pair was found.",
+   "module_future_tags": "module-future;cosmo (the lensing inference itself)"
+  },
+  {
+   "bibcode": "2022Univ....8..519W",
+   "first_author": "Wei, Jin-Nan",
+   "year": 2022,
+   "title": "Exploring Anisotropic Lorentz Invariance Violation from the Spectral-Lag Transitions of Gamma-Ray Bursts",
+   "matched_by": "full:\"GRB 120119A\"",
+   "tier": "PROMPT (lag data) - deep-mined",
+   "dedupe": "ALREADY IN CORPUS (Skills_training/Wei_2022_2022Univ8519W_bn180703876.pdf, cited_by bn180703876, read=N) - NOT re-fetched per G2; corpus_index cited_by append PENDING",
+   "file": "Skills_training/Wei_2022_2022Univ8519W_bn180703876.pdf",
+   "prompt_sections": "Table p.5: GRB 120119A at (RA,Dec) = (120.0, -9.8), z=1.728 - i.e. they inherit the fermigbrst Dec, which this dossier flags as a suspected catalog error. Table p.10: their lag-transition fit parameters for GRB 120119A in the 6- and 8-parameter models (a_LIV terms, intrinsic-lag amplitude and index, and the transition energy).",
+   "why_it_matters": "third-party lag-transition data for the burst; and a documented instance of the bad Dec propagating (T6 chained-citation rot in action).",
+   "module_future_tags": "module-future;cosmo|mm"
+  },
+  {"bibcode": "2026JCAP...02..035A", "first_author": "Amelino-Camelia, Giovanni", "year": 2026, "title": "Redshift leverage for the search of GRB neutrinos affected by quantum properties of spacetime", "matched_by": "full:\"GRB120119A\"", "tier": "cataloged - quick-checked", "dedupe": "ALREADY IN CORPUS (Amelino-Camelia_2026_2026JCAP02035A.pdf, cited_by bn120624933, read=N) - not re-fetched; cited_by append PENDING", "prompt_sections": "sample table p.11 only: GRB120119A 120.029 -9.082 MJD 55945.170 z=1.728 (source 'MP'). Carries the CORRECT Dec - useful as the counter-example to Wei+2022's -9.8.", "module_future_tags": "module-future;mm|cosmo"},
+  {"bibcode": "2015ApJ...810...31V", "first_author": "Veres, Peter", "year": 2015, "title": "Early-time VLA Observations and Broadband Afterglow Analysis of the Fermi/LAT Detected GRB 130907A", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - quick-checked", "dedupe": "ALREADY IN CORPUS (Veres_2015_2015ApJ81031V.pdf, cited_by bn130518580, read=N) - not re-fetched; cited_by append PENDING", "prompt_sections": "none. 120119A appears once, p.4, in a radio-reference list (Zauderer & Berger 2012a) for a comparison sample.", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2014ApJ...785...84J", "first_author": "Japelj, J.", "year": 2014, "title": "Phenomenology of Reverse-shock Emission in the Optical Afterglows of Gamma-Ray Bursts", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - quick-checked", "dedupe": "ALREADY IN CORPUS (Japelj_2014_2014ApJ78584J.pdf, cited_by bn081222204, read=N) - not re-fetched; cited_by append PENDING", "prompt_sections": "none. Table p.25 row 120119A: z=1.728, A_V=1.09+/-0.16, extinction law FM, host N_H<21, ref Morgan et al. 2013.", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2014MNRAS.440.1810M", "first_author": "Morgan, Adam N.", "year": 2014, "title": "Evidence for dust destruction from the early-time colour change of GRB 120119A", "arxiv": "1305.1928", "matched_by": "full:\"GRB 120119A\"", "tier": "DEDICATED burst paper - fetched, not deep-mined (out of prompt scope)", "dedupe": "NEW to the corpus", "file": "Skills_training/Morgan_2014_2014MNRAS4401810M_bn120119170.pdf", "oa_fetched": true, "prompt_sections": "to be read for its prompt/optical timing cross-reference only; the paper's subject is early-time NIR/optical colour evolution.", "why_it_matters": "the ONLY paper devoted to this burst alone. It is an afterglow paper, but it is the burst's identity card in the literature and must be read before anything is published about 120119A.", "module_future_tags": "module-future;afterglow (dust destruction / extinction)"},
+  {"bibcode": "2025ApJ...979...38C", "first_author": "Cheng, Yehao", "year": 2025, "title": "Simultaneous Multiband Photometry of the Early Optical Afterglow of GRB 240825A with Mephisto", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "prompt_sections": "none expected (comparison-sample mention)", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2024A&A...684A.164K", "first_author": "Kann, D. A.", "year": 2024, "title": "Highly luminous supernovae associated with gamma-ray bursts. II. The luminous blue bump in the afterglow of GRB 140506A", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;sn|afterglow"},
+  {"bibcode": "2024A&A...685A.163L", "first_author": "Llamas Lanza, M.", "year": 2024, "title": "High-z gamma-ray burst detection by SVOM/ECLAIRs: Impact of instrumental biases on the bursts' measured properties", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined (PROMPT-ADJACENT, flagged for a later pass)", "prompt_sections": "expected to reuse the burst's catalog Band parameters as an input template for ECLAIRs simulations - i.e. an instrumental-bias study of exactly the kind Moss+2022 does for BAT. Worth mining if Step 7/9 needs a second duration-bias reference.", "module_future_tags": "none - prompt-adjacent"},
+  {"bibcode": "2024A&A...686A..56K", "first_author": "Kann, D. A.", "year": 2024, "title": "Fires in the deep: The luminosity distribution of early-time gamma-ray-burst afterglows in light of the Gamow Explorer sensitivity requirements", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2024A&A...690A.373R", "first_author": "Rakotondrainibe, N. A.", "year": 2024, "title": "A simple model of dust extinction in gamma-ray burst host galaxies", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow (dust/extinction)"},
+  {"bibcode": "2024MNRAS.533.4023D", "first_author": "Dainotti, M. G.", "year": 2024, "title": "An optical gamma-ray burst catalogue with measured redshift - I. Data release of 535 gamma-ray bursts and colour evolution", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow|cosmo"},
+  {"bibcode": "2023MNRAS.520.6104K", "first_author": "Komesh, Toktarkhan", "year": 2023, "title": "Evolution of the afterglow optical spectral shape of GRB 201015A in the first hour: evidence for dust destruction", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow (dust destruction; 120119A is the comparison case)"},
+  {"bibcode": "2023MNRAS.525.3262B", "first_author": "Becerra, R. L.", "year": 2023, "title": "Understanding the nature of the optical emission in gamma-ray bursts: analysis from TAROT, COATLI, and RATIR observations", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2022MNRAS.517.6022C", "first_author": "Cappellazzo, Elizabeth", "year": 2022, "title": "GRB 180325A: dust grain-size distribution and interstellar iron nanoparticles contribution", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow (dust)"},
+  {"bibcode": "2021MNRAS.503.4474Y", "first_author": "Yates, Robert M.", "year": 2021, "title": "L-GALAXIES 2020: The evolution of radial metallicity profiles and global metallicities in disc galaxies", "matched_by": "full:\"GRB120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2021MNRAS.504.5992M", "first_author": "Metha, Benjamin", "year": 2021, "title": "A novel approach to investigate chemical inhomogeneities in GRB host galaxies: the Zabs-Zemiss relation", "matched_by": "full:\"GRB120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2020ApJ...895...16H", "first_author": "Hoang, Thiem", "year": 2020, "title": "Gamma-Ray Burst Afterglows: Time-varying Extinction, Polarization, and Colors due to Rotational Disruption of Dust Grains", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow|polarization"},
+  {"bibcode": "2020MNRAS.494.5259Y", "first_author": "Yamazaki, Ryo", "year": 2020, "title": "Less noticeable shallow decay phase in early X-ray afterglows of GeV/TeV-detected gamma-ray bursts", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2020RAA....20..124W", "first_author": "Wang, Jing", "year": 2020, "title": "A pilot study of catching high-z GRBs and exploring circumburst environment in the forthcoming SVOM era", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2019A&A...621A..20H", "first_author": "Heintz, K. E.", "year": 2019, "title": "Cold gas in the early Universe. Survey for neutral atomic-carbon in GRB host galaxies at 1<z<6 from optical afterglow spectroscopy", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2019A&A...623A..92S", "first_author": "Selsing, J.", "year": 2019, "title": "The X-shooter GRB afterglow legacy sample (XS-GRB)", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "prompt_sections": "none, but it is the authoritative modern source for the burst's z (1.7282) alongside Jiang+2021.", "module_future_tags": "module-future;host|afterglow"},
+  {"bibcode": "2019A&A...629A.131H", "first_author": "Heintz, K. E.", "year": 2019, "title": "New constraints on the physical conditions in H2-bearing GRB-host damped Lyman-alpha absorbers", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2019MNRAS.486.2063H", "first_author": "Heintz, K. E.", "year": 2019, "title": "On the dust properties of high-redshift molecular clouds and the connection to the 2175 A extinction bump", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2019MNRAS.488.5029H", "first_author": "Hashimoto, Tetsuya", "year": 2019, "title": "Star-formation rates of two GRB host galaxies at z~2 and a [C II] deficit observed with ALMA", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2018A&A...617A.141C", "first_author": "Corre, D.", "year": 2018, "title": "Investigation of dust attenuation and star formation activity in galaxies hosting GRBs", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2018ApJS..234...26L", "first_author": "Li, Liang", "year": 2018, "title": "A Large Catalog of Multiwavelength GRB Afterglows. I. Color Evolution and Its Physical Implication", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2018JHEAp..18...21W", "first_author": "Wang, Fei-Fei", "year": 2018, "title": "Possible correlations between gamma-ray burst and its host galaxy offset", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2018MNRAS.479.1542Z", "first_author": "Zafar, T.", "year": 2018, "title": "VLT/X-shooter GRBs: Individual extinction curves of star-forming regions", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow (dust)"},
+  {"bibcode": "2018MNRAS.479.3456H", "first_author": "Heintz, K. E.", "year": 2018, "title": "Highly ionized metals as probes of the circumburst gas in the natal regions of gamma-ray bursts", "matched_by": "full:\"GRB 120119A\" + full:\"GRB120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2017A&A...599A..24W", "first_author": "Wiseman, P.", "year": 2017, "title": "Evolution of the dust-to-metals ratio in high-redshift galaxies probed by GRB-DLAs", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;host"},
+  {"bibcode": "2017ApJ...843..143S", "first_author": "Steele, I. A.", "year": 2017, "title": "Polarimetry and Photometry of Gamma-Ray Bursts with RINGO2", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;polarization"},
+  {"bibcode": "2016P&SS..133...14Z", "first_author": "Zafar, Tayyaba", "year": 2016, "title": "GRB afterglows: Dust extinction properties from the low to high redshift universe", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow (dust)"},
+  {"bibcode": "2016PhDT.......107C", "first_author": "Capone, John Isaac", "year": 2016, "title": "Near-infrared instrumentation for rapid-response astronomy", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined (thesis)", "module_future_tags": "module-future;afterglow"},
+  {"bibcode": "2015A&A...579A..74J", "first_author": "Japelj, J.", "year": 2015, "title": "Spectrophotometric analysis of gamma-ray burst afterglow extinction curves with X-Shooter", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined", "module_future_tags": "module-future;afterglow (dust)"},
+  {"bibcode": "2014PhDT.......472M", "first_author": "Morgan, Adam Nolan", "year": 2014, "title": "Classification, Follow-Up, and Analysis of Gamma-Ray Bursts and their Early-Time Near-Infrared/Optical Afterglows", "matched_by": "full:\"GRB 120119A\"", "tier": "cataloged - not mined (thesis version of Morgan+2014)", "module_future_tags": "module-future;afterglow"}
+ ],
+ "vikas_reading_list_prompt_curated": [
+  "Shao+2017 (2017ApJ...844..126S) - Table 1 row 120119170 + Sec 2-3 model definitions + p.10 footnotes. THE lag/width source. Sec 7 (HTS vs HIT) is prompt too. Nothing to defer.",
+  "Jiang+2021 (2021MNRAS.505L..26J) - Sec 3 + Table 1 p.3 (5 pages total, read whole). The photospheric prior we must disclose in P3.",
+  "Moss+2022 (2022ApJ...927..157M) - Sec 5.2 (dim tails, p.8-9) + Tables 2 and 3 + Figure 16. Defer Sec 3-4 (their simulation machinery) unless Step 9 needs it.",
+  "Golkhou+2015 (2015ApJ...811...93G) - Sec 2-3 (Haar method) + Fig 3 (120119A is a gallery burst) + Table 2 row. Defer Sec 5-6 (population correlations) to a later census pass.",
+  "Gompertz+2018 (2018ApJ...866..162G) - Table 1 p.5 ONLY for prompt; Sec 2.2/5.4 and the X-ray/optical tables are module-future;afterglow, deferred.",
+  "Morgan+2014 (2014MNRAS.440.1810M) - the burst's own paper; entirely module-future;afterglow, but read once for identity before publishing anything on 120119A."
+ ],
+ "pending_shared_csv_rows": {
+  "target": "Skills_training/corpus_index.csv",
+  "note": "NO WRITE performed (shared-CSV freeze). Existing corpus read at 113 bibcodes / 131 lines. Four NEW rows to append and five cited_by appends to apply.",
+  "new_rows": [
+   "Moss_2022_2022ApJ927157M_bn120119170.pdf,2022ApJ...927..157M,2111.13392,prompt-duration-bias;BAT-tip-of-iceberg;single-pulse-classification;dim-tail,bn120119170,1,N,",
+   "Golkhou_2015_2015ApJ81193G_bn120119170.pdf,2015ApJ...811...93G,1501.05948,prompt-temporal;MVT-Haar;energy-dependence,bn120119170,1,N,",
+   "Gompertz_2018_2018ApJ866162G_bn120119170.pdf,2018ApJ...866..162G,1802.07730,prompt-energetics;Eiso;afterglow-environment;module-future-afterglow,bn120119170,1,N,",
+   "Morgan_2014_2014MNRAS4401810M_bn120119170.pdf,2014MNRAS.440.1810M,1305.1928,dedicated-burst-paper;dust-destruction;module-future-afterglow,bn120119170,1,N,"
+  ],
+  "cited_by_appends": [
+   "2021MNRAS.505L..26J : cited_by_bursts += bn120119170 (was bn130518580;proj37), n_bursts 2 -> 3",
+   "2017ApJ...844..126S : cited_by_bursts += bn120119170 (was bn081224887), n_bursts -> +1",
+   "2020ApJ...897..178A : cited_by_bursts += bn120119170 (was bn180703876), n_bursts -> +1",
+   "2022Univ....8..519W : cited_by_bursts += bn120119170 (was bn180703876), n_bursts -> +1",
+   "2026JCAP...02..035A : cited_by_bursts += bn120119170 (was bn120624933), n_bursts -> +1",
+   "2015ApJ...810...31V : cited_by_bursts += bn120119170 (was bn130518580), n_bursts -> +1  [mention-only, low value]",
+   "2014ApJ...785...84J : cited_by_bursts += bn120119170 (was bn081222204), n_bursts -> +1  [mention-only, low value]"
+  ]
+ },
+ "pending_shared_csv_rows_other": {
+  "target": "results/gcn/gcn_index.csv",
+  "note": "NO WRITE performed. Proposed row: bn120119170,GRB 120119A,24,z=1.728 (GCN 12865 Gemini-S absorption; confirmed GCN 12866 Lick, GCN 12867 MMT),120.02875/-9.08177 (XRT enhanced GCN 12876, 1.4 arcsec),Swift-BAT+GBM+Konus-Wind+INTEGRAL SPI-ACS,2026-08-12"
+ },
+ "traps_hit_on_this_burst": [
+  "T1 same-day contamination LIVE: GRB 120119B (bn120119229) and 120119C (bn120119354) both exist; all matching was done on 'GRB 120119A' or the digits 120119170.",
+  "T5 self-contradiction: Golkhou+2015 gives Delta_t_min < 0.463 s (Table 2) and 0.20 s (Figure 3) for the same burst. Recorded, unresolved.",
+  "T5 (circular): GCN 12872 converts 14674.872 s UT to '04:01:34.872' instead of 04:04:34.872.",
+  "T6 chained-citation rot: the fermigbrst Dec (-9.803) is inconsistent with its own error radius and has propagated into Wei+2022; Amelino-Camelia+2026 carries the correct value. Verified at the primary source (GCN 12876 XRT enhanced position).",
+  "T3 symbol definition: Shao+2017's pulse width is omega in W = omega*(E/keV)^-gamma from a symmetric-Gaussian fit - NOT FWHM, NOT Norris rise+decay. Copy the definition with the number.",
+  "T9 component coverage: durations for this burst range 55.3 s (GBM 50-300 keV, main complex) to 253.8 s (BAT 15-350 keV, main complex + ~100 s dim tail). The gap is component coverage, not band - Qin+2013 E^-0.20 cannot bridge it. Every value in the dossier's PUBLISHED VALUES table carries a coverage label.",
+  "D4 (DataInventory): our stamped window [-1,+47] s is a strict SUB-INTERVAL of the event. GBM T90 ends at +58.4 s; the catalog fit interval ends at +57.3 s; Golkhou's T100 is [-15.9,+85.8] s; BAT emission runs to T+220 s."
+ ],
+ "zero_paper_finding": false,
+ "issues": [
+  "LLE/LAT data absent although the burst was 31.4 deg off the LAT boresight (GCN 12874) - inclusion is gated on data quality, not significance (L17 / feedback_take_data_every_band), so the LLE+LAT arm should be acquired before calling this burst GBM-only.",
+  "34 of 41 refereed papers were cataloged from ADS metadata only, not opened. All are afterglow/host/dust/cosmology and out of the current module's ANALYSIS scope; each carries a module-future tag. This is a stated limit of this harvest, not a claim of completeness of reading.",
+  "No write to Skills_training/corpus_index.csv or results/gcn/gcn_index.csv was performed (shared-CSV freeze); the rows are queued above."
+ ]
+}

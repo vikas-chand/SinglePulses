@@ -1,0 +1,61 @@
+{
+ "burst": "bn091209001",
+ "tally": null,
+ "tally_note": "campaign order number left unassigned: parallel doc-layer workers active this session (existing tallies 1-30, 24 duplicated) - assign at ledger merge",
+ "frozen_utc": "2026-08-12",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "frozen_before_any_new_fit_output": true,
+ "sweep106_untouched": "nothing under results/sweep106/ was read by this worker (hard rule); prior below is the ARCHIVAL clean_per_burst_human_final era only",
+ "predictions": [
+  "P-A (census null-BB class, union rule): NO block in the new fits will pass EITHER nested BB test at 9.2 - archival: Band-side max LRT_BANDBB_BAND = 2.89 (blk-1, kT 16.1 keV) with 0/5 blocks passing; CPL-side max LRT_CPLBB_CPL = 2.36 (blk0) with 0/4 finite blocks passing (blk3 CPL FAIL -> nan). bn091209001 will NOT enter the BB census (not among the 31/88 BB bursts). All archival BANDBB kT values sit 7.9-19.0 keV (high-kT side, NOT the L28 edge-constrained <~5 keV class), so if a BB DOES emerge it should emerge there, not at the K-edge.",
+  "P-A2 (no two-break burst): no block reaches LRT_DSBPL_SBPL >= 9.2 (archival max 3.21 at blk-1; DSBPL_VALID in only 2/5 blocks); bn091209001 will NOT enter the two-break census.",
+  "P-B (catalog + archival anchor, falsifiable numbers): the time-integrated fit over the stamped -5..27 s window gives a POSITIVE quasi-thermal alpha and low Ep: Band alpha in +0.25..+0.75, Ep = 65 +/- 5 keV, beta unconstrained/railed (<= -3, likely at the -5 bound or BOUND_CAPPED) so the AIC winner is a single-peak curved family (Band collapsing to CPL-like, or CPL). Anchors: GBM catalog FLNC Band alpha=+0.299 +0.205/-0.254, Ep=61.56 +3.72/-3.37 keV, beta=-3.034 (interval -4.096..44.032 s, NAI_04+BGO_00); archival blk-1 Band alpha=+0.536 +0.214/-0.201, Ep=65.20 +2.45/-2.30, beta=-4.82 near rail (interval -1.711..24.556 s, n4+b0). NOTE the frame difference: catalog window includes the 27..44 s soft tail that our stamped window excludes - expect our new time-integrated Ep slightly HARDER than the catalog 61.6 keV, not softer.",
+  "P-B2 (hard-to-soft evolution): time-resolved Ep decays monotonically, first-block Ep exceeding last-block Ep by a factor >= 2. Archival sequence blk0->blk3: 76.0 -> 69.6 -> 48.0 -> 30.5 keV; Bordoloi+2026 independent sequence (-4..44 s, 5 bins): 117.8 -> 78.5 -> 64.7 -> 40.0 -> 32.3 keV.",
+  "P-B3 (external bin-edge echo): the new Stage-2 binning will place a change point within +/-0.5 s of 7.04 s - our archival blk0/blk1 edge is 7.039292 s and Bordoloi+2026's independent Bayesian-blocks bin2/bin3 edge is 7.039 s (agreement to 3 decimals). A miss falsifies the edge's data-driven robustness, not the skill.",
+  "P-B4 (temporal): T90(50-300 keV) = 42.9 +/- 8.0 s starting -5.888 s (bcat v03); peak flux in 12.288..13.312 s (catalog pflx interval, inside our blk1 7.04..13.51 s); single-pulse morphology per the Busby-Lazzati selection.",
+  "P-C (rail forecast, L27-class): in the new fits Band beta will rail (or BOUND_CAP) in most time-resolved blocks - the burst has no constrained high-energy power law (this is exactly why Bordoloi+2026 dropped it from their final IC four despite its alpha > -0.5 quasi-thermal selection). A block with beta constrained in -1.7..-3.3 would be a NEW result contradicting both the archival era and the published record."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn091209001/spectral_fits.ecsv",
+  "n_blocks": 5,
+  "layout": "blk-1 = time-integrated [-1.711, 24.556] s + blk0..blk3 time-resolved (edges -1.711, 7.039, 13.510, 18.765, 24.556)",
+  "plugin_dets": "n4,b0",
+  "criterion": "union rule: (LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05)",
+  "significant_bb_blocks": 0,
+  "significant_bb_kt_values": [],
+  "significant_bb_median_kt": null,
+  "LRT_BANDBB_BAND_per_block": {"blk-1": 2.885, "blk0": -2.1e-05, "blk1": 0.884, "blk2": 0.774, "blk3": 0.547},
+  "BANDBB_KT_per_block": {"blk-1": 16.09, "blk0": 13.98, "blk1": 19.01, "blk2": 13.59, "blk3": 7.88},
+  "LRT_CPLBB_CPL_per_block": {"blk-1": 0.309, "blk0": 2.362, "blk1": 0.779, "blk2": 0.474, "blk3": "nan (CPL_STATUS=FAIL in blk3)"},
+  "CPLBB_KT_per_block": {"blk-1": 19.48, "blk0": 20.64, "blk1": 18.5, "blk2": 13.58, "blk3": 7.84},
+  "max_LRT_BANDBB_BAND": {"block": -1, "value": 2.885, "kt": 16.09},
+  "max_LRT_CPLBB_CPL": {"block": 0, "value": 2.362, "kt": 20.64},
+  "aic_winners": {"Band": 1, "DSBPL": 1, "Band+BB": 1, "INCONCLUSIVE": 2},
+  "bic_winners": {"Band": 1, "CPL+BB": 1, "Band+BB": 1, "INCONCLUSIVE": 2},
+  "aic_winner_caveat": "blk0 AIC winner DSBPL and blk1 AIC winner Band+BB are small-margin picks whose own nested LRTs are non-significant (2.11 and 0.88) - winner-by-AIC-label without LRT support, the L16 graded-evidence situation",
+  "time_integrated_band": {"alpha": 0.536, "alpha_err": "+0.214/-0.201", "ep_keV": 65.2, "ep_err": "+2.45/-2.30", "beta": -4.82, "beta_note": "near the -5 bound; Band collapses toward CPL"},
+  "LRT_DSBPL_SBPL_max": 3.212,
+  "LRT_DSBPL_SBPL_per_block": {"blk-1": 3.212, "blk0": 2.112, "blk1": 2.988, "blk2": 2.491, "blk3": 1.838},
+  "dsbpl_valid_blocks": 2
+ },
+ "harvest_snippets": {
+  "GCN_circulars": [
+   "ZERO circulars exist (per-GRB pages 091209.gcn3 and 091209A.gcn3 both 404; archive 10200-10299 spanning 2009-12-08..15 has no '091209'; tcat v03 GCN_FLAG='No'). Recorded as a result."
+  ],
+  "GBM_catalog_bcat_v03": [
+   "T90 = 42.945 +/- 8.035 s (T90START = -5.888 s); T50 = 11.392 +/- 0.771 s; FLU(10-1000 keV) = 1.0032e-05 +/- 1.92e-07 erg/cm^2; PF64 = 10.32 +/- 2.21 ph/s/cm^2 (glg_bcat_all_bn091209001_v03.fit, HEASARC)"
+  ],
+  "GBM_catalog_scat_flnc_band_v03": [
+   "Band interval -4.096..44.032 s, dets NAI_04/BGO_00: alpha = +0.299 +0.205/-0.254 (POSITIVE), Ep = 61.56 +3.72/-3.37 keV, beta = -3.034 +0.379/-0.257, redchisq 1.048/239dof"
+  ],
+  "GBM_catalog_scat_flnc_comp_v03": [
+   "Comptonized same interval: index = +0.092 +0.145/-0.151, Epeak = 65.81 +2.19/-2.37 keV, redchisq 1.074/240dof"
+  ],
+  "Bordoloi2026_ApJ_1003_58_MRT": [
+   "GRB091209001 in initial-41 quasi-thermal sample, excluded from final IC four (beta rails at -5); 5 time-resolved Band bins (-3.998..44.0 s): Ep = 117.8 -> 78.5 -> 64.7 -> 40.0 -> 32.3 keV with alpha railed at +1 in 4/5 bins; bin2/bin3 edge 7.039 s = our archival blk0/blk1 edge to 3 decimals"
+  ],
+  "refereed_papers": [
+   "exactly 1 refereed paper across six ADS full-text query forms (2026-08-12): Bordoloi, Mittal & Iyyani 2026, ApJ 1003, 58 (2026ApJ..1003...58B) - found ONLY by the bare-digit form '091209001' via its machine-readable Table 2"
+  ]
+ }
+}

@@ -1,0 +1,202 @@
+{
+  "burst": "bn100612726",
+  "grb_name": "GRB 100612A (literature designation; same-day naming caveat recorded in dossier)",
+  "harvest_utc": "2026-08-12",
+  "worker": "doc-layer worker (Steps 0/0b/1)",
+  "queries": {
+    "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY, FXTs/.env)",
+    "four_forms": {
+      "full:\"GRB 100612A\"": 3,
+      "full:\"bn100612726\"": 1,
+      "full:\"100612726\"": 2,
+      "full:\"298056368\"": 0
+    },
+    "letter_check": {"full:\"GRB 100612B\"": 0},
+    "local_corpus_sweep": "fitz search for '100612' across all Skills_training/*.pdf — found 5 papers ADS full-text missed (table-only mentions): Acuner2018, Hurley2013, Preece2016, Yu2015, Yu2019",
+    "scholar_channel": {
+      "used": false,
+      "reason": "ADS four-form + local corpus sweep yielded 9 distinct refereed papers with per-burst content — not a thin/empty result; no cross-community concept gap identified for this burst. Rule 1b reserved for the paperless case."
+    }
+  },
+  "n_papers": 9,
+  "papers": [
+    {
+      "bibcode": "2012ApJ...756..112L",
+      "first_author": "Lu",
+      "year": 2012,
+      "title": "Comprehensive Analysis of Fermi GRB Data. II. Ep Evolution Patterns",
+      "refereed": true,
+      "found_via": "ads full:GRB 100612A",
+      "local_pdf": "Skills_training/Lu_2012_2012ApJ756112L.pdf (+ _PUB.pdf)",
+      "in_corpus_index": true,
+      "action": "no re-download (G2); queued cited_by_bursts append",
+      "prompt_sections": "§4.1 single-pulse HTS class + symmetry-exception sentence (p.5); Table 1 rows 100612 slices 1-11 (arXiv p.40); Fig. p.21 Ep track — ALL prompt; nothing to defer",
+      "module_future_tags": [],
+      "burst_content": "11 time-resolved Band fits -0.512..13.312 s, Ep 173.1->30.0 keV; HTS classification; symmetric-pulse exception",
+      "caution": "T4: adjacent 100625A rows duplicate 100612 rows 1-3 verbatim in the arXiv table extraction — verify vs machine-readable table before neighbor-touching diffs"
+    },
+    {
+      "bibcode": "2014MNRAS.442..419B",
+      "first_author": "Basak",
+      "year": 2014,
+      "title": "Time-resolved spectral study of Fermi GRBs having single pulses",
+      "refereed": true,
+      "found_via": "ads full:GRB 100612A",
+      "local_pdf": "Skills_training/Basak_2014_2014MNRAS442419B.pdf",
+      "in_corpus_index": true,
+      "action": "no re-download (G2); queued cited_by_bursts append; companion thesis eprint 2014arXiv1409.5626B NOT separately harvested (duplicate analysis)",
+      "prompt_sections": "Table 1 Norris pulse fit + n=11/detector spec (p.3); Table 2 HTS/BBPL classification row (p.5); Fig.4 evolution panels (p.6); Ep-flux r=0.98 (p.13) — ALL prompt",
+      "module_future_tags": [],
+      "burst_content": "Norris fit (poor, chi2red 16.8/9): p=3.30+-0.06 s, w=6.5+-1.5 s, kappa=0.14+-0.02; mean Band alpha=-0.58+-0.07; alpha>-2/3 in 7/11 bins; Band/BBPL 0.73(0.15); LAT: No; dets n3,n4,n8,b0",
+      "caution": "MEMORY reference_single_pulse_literature flags citation-mismatch traps around this paper; footnote-b definition of the Band/BBPL 0.73 value must be resolved at read time"
+    },
+    {
+      "bibcode": "2018ApJ...865..153L",
+      "first_author": "Lu",
+      "year": 2018,
+      "title": "Comprehensive Analysis IV. Spectral Lag and its Relation to Ep Evolution",
+      "refereed": true,
+      "found_via": "ads full:bn100612726",
+      "local_pdf": "Skills_training/Lu_2018_2018ApJ865153L.pdf (+ _PUB.pdf)",
+      "in_corpus_index": true,
+      "action": "no re-download (G2); queued cited_by_bursts append; read=Y already (Vikas 2026-08-10)",
+      "prompt_sections": "Table 1 FRED row (arXiv p.34); Table 2 six Band bins (p.42); Table 3 four-band lags (p.51); Table 4 H/tau31/W/k row (p.54); Fig. p.13 panel — ALL prompt",
+      "module_future_tags": [],
+      "burst_content": "FRED Im=128.58 tm=3.86s r=2.15 d=11.80; 6 Band bins -0.77..12.16 s Ep 155.7->46.4; lags 0.49/0.86/1.39/2.84 s; tau31=0.89+-0.08 s, W=4.50 (FWHM per bn090530760 resolution of the T3 double-definition), k_E=-0.64+-0.10"
+    },
+    {
+      "bibcode": "2017ApJ...844..126S",
+      "first_author": "Shao",
+      "year": 2017,
+      "title": "A New Measurement of the Spectral Lag of GRBs and its Implications",
+      "refereed": true,
+      "found_via": "ads full:100612726",
+      "local_pdf": "Skills_training/Shao_2017_2017ApJ844126S.pdf",
+      "in_corpus_index": true,
+      "action": "no re-download (G2); queued cited_by_bursts append",
+      "prompt_sections": "§ semi-HIT challenge to the HTS class (p.5, names 100612726 explicitly); Table 1 pulse/lag row (p.9); Table 2 six-bin Ep+HR track (p.11); Figs. 6c/7 (pp.18-19) — ALL prompt",
+      "module_future_tags": [],
+      "burst_content": "DtHR=2.656+-0.117 s (n4); BB-binned Ep 182->61 keV over -0.063..9.791 s; 'semi-HIT, though not very statistical significant' verbatim tension vs Lu HTS"
+    },
+    {
+      "bibcode": "2019ApJ...886...20Y",
+      "first_author": "Yu",
+      "year": 2019,
+      "title": "Bayesian Time-Resolved Spectra of GRB Pulses",
+      "refereed": true,
+      "found_via": "local-corpus-sweep (ADS full-text missed the table-only mention)",
+      "local_pdf": "Skills_training/Yu_2019_ApJ_886_20.pdf (+ _arxiv.pdf)",
+      "in_corpus_index": true,
+      "action": "no re-download (G2); queued cited_by_bursts append; read=Y already",
+      "prompt_sections": "Table 1 selection row (arXiv p.8: dets n3n4(n8)b0, src -2..20, 12 BB bins, 6 with S>=20, h.t.s.); Table 15 full CPL-vs-Band DIC table (arXiv p.54); evolution figs pp.25/35 — ALL prompt",
+      "module_future_tags": [],
+      "burst_content": "12-bin Bayesian-block time-resolved CPL+Band with per-bin DIC; peak bin 3.30-5.23 s S=67.2 Ep_CPL=125.4 Ep_Band=115.2 beta=-2.98; zero-width artifact bin 2.86-2.86",
+      "caution": "T8: verify their DIC/DeltaDIC sign convention in Table 3 notes before inheriting any CPL-vs-Band verdict"
+    },
+    {
+      "bibcode": "2016ApJ...821...12P",
+      "first_author": "Preece",
+      "year": 2016,
+      "title": "Which Epeak? The Characteristic Energy of GRB Spectra",
+      "refereed": true,
+      "found_via": "local-corpus-sweep",
+      "local_pdf": "Skills_training/Preece_2016_2016ApJ821_12P_PUB.pdf",
+      "in_corpus_index": true,
+      "action": "no re-download (G2); queued cited_by_bursts append",
+      "prompt_sections": "Table 2 row: Ep,p=143+-10 vs Ep,f=111+-4 (2.7 sigma) — prompt; the frame lesson is the point",
+      "module_future_tags": [],
+      "burst_content": "peak-flux vs fluence Epeak comparison row"
+    },
+    {
+      "bibcode": "2018MNRAS.475.1708A",
+      "first_author": "Acuner",
+      "year": 2018,
+      "title": "Clustering of GBM GRB spectra",
+      "refereed": true,
+      "found_via": "local-corpus-sweep (PDF deposited 2026-08-12 by bn081224887 worker; NOT yet in corpus_index)",
+      "local_pdf": "Skills_training/Acuner_2018_2018MNRAS4751708A_bn081224887.pdf",
+      "in_corpus_index": false,
+      "action": "queued NEW corpus_index row",
+      "prompt_sections": "Table B1 Cluster-1 row (p.19: Epk=104.53, alpha=-0.46, beta=-3.17, cluster 1 p=0.97) + their cluster-interpretation section (verify before P3 use) — ALL prompt",
+      "module_future_tags": [],
+      "burst_content": "catalog-frame membership in their cluster 1 with p=0.97"
+    },
+    {
+      "bibcode": "2015A&A...583A.129Y",
+      "first_author": "Yu",
+      "year": 2015,
+      "title": "The sharpness of GRB prompt emission spectra",
+      "refereed": true,
+      "found_via": "local-corpus-sweep (PDF on disk since 2026-08-08; NOT yet in corpus_index)",
+      "local_pdf": "Skills_training/Yu_2015_2015AA583A129Y.pdf",
+      "in_corpus_index": false,
+      "action": "queued NEW corpus_index row",
+      "prompt_sections": "Table B.1 row 100612.726 (N=4 spectra; <theta>=98.33+-7.75(SD), theta_int=120.01+-3.33) — prompt; sharpness defs in their §2",
+      "module_future_tags": [],
+      "burst_content": "spectral sharpness angles, time-resolved average + time-integrated"
+    },
+    {
+      "bibcode": "2013ApJS..207...39H",
+      "first_author": "Hurley",
+      "year": 2013,
+      "title": "The IPN supplement to the Fermi GBM catalog",
+      "refereed": true,
+      "found_via": "local-corpus-sweep",
+      "local_pdf": "Skills_training/Hurley_2013_2013ApJS20739H.pdf",
+      "in_corpus_index": true,
+      "action": "no re-download (G2); queued cited_by_bursts append",
+      "prompt_sections": "Table 2 observed-by row (p.42) + Table 3 annuli row (p.50) — identity/instrument material, feeds §2 narrative not the fit",
+      "module_future_tags": ["module-future; localization"],
+      "burst_content": "seen by INT,AGI,Kon,MES,MO,Suz + Swift outside coded FOV (footnote d verbatim); two IPN annuli; ALSO establishes same-day GRB100612545 (13:04 UT) -> letter-name caveat"
+    },
+    {
+      "bibcode": "2024AN....34530179M",
+      "first_author": "Ma",
+      "year": 2024,
+      "title": "The statistical characteristics of the prompt emission lightcurves of GRBs",
+      "refereed": true,
+      "found_via": "ads full:100612726",
+      "local_pdf": null,
+      "in_corpus_index": false,
+      "action": "NOT FETCHED — paywalled (esources PUB_HTML only; no arXiv, no OA property). Metadata-only queued corpus row; flagged for library fetch",
+      "prompt_sections": "unknown (unread) — expected: one FRED pulse-fit row among 75 pulses/44 GRBs; abstract harvested",
+      "module_future_tags": ["module-future; pulse-stats"],
+      "burst_content": "unread; doi 10.1002/asna.20230179"
+    }
+  ],
+  "phase3b_reading_order_latest_first": [
+    "2019ApJ...886...20Y", "2018ApJ...865..153L", "2018MNRAS.475.1708A",
+    "2017ApJ...844..126S", "2016ApJ...821...12P", "2015A&A...583A.129Y",
+    "2014MNRAS.442..419B", "2013ApJS..207...39H", "2012ApJ...756..112L"
+  ],
+  "pending_shared_csv_rows": {
+    "Skills_training/corpus_index.csv": {
+      "note": "HARD RULE compliance: no shared-CSV writes by this worker. Apply these by hand/merge-worker. For existing rows: append bn100612726 to cited_by_bursts and bump n_bursts.",
+      "append_trigger_to_existing_rows": [
+        "Yu_2019_ApJ_886_20.pdf (2019ApJ...886...20Y)",
+        "Lu_2012_2012ApJ756112L.pdf (2012ApJ...756..112L)",
+        "Basak_2014_2014MNRAS442419B.pdf (2014MNRAS.442..419B)",
+        "Hurley_2013_2013ApJS20739H.pdf (2013ApJS..207...39H)",
+        "Shao_2017_2017ApJ844126S.pdf (2017ApJ...844..126S)",
+        "Lu_2018_2018ApJ865153L.pdf (2018ApJ...865..153L)",
+        "Preece_2016_2016ApJ821_12P_PUB.pdf (2016ApJ...821...12P)"
+      ],
+      "new_rows": [
+        "Acuner_2018_2018MNRAS4751708A_bn081224887.pdf,2018MNRAS.475.1708A,1801.03513,gbm-spectral-clustering;photospheric-candidates,bn081224887;bn100612726,2,N,",
+        "Yu_2015_2015AA583A129Y.pdf,2015A&A...583A.129Y,1507.05589,spectral-sharpness;curvature,bn090829672;bn100612726,2,N,",
+        "NOPDF_Ma_2024_2024AN34530179M,2024AN....34530179M,,fred-pulse-stats;PAYWALLED-no-OA,bn100612726,1,N,"
+      ],
+      "new_row_caveats": "arXiv ids for Acuner/Yu2015 rows taken from ADS identifiers of those papers as commonly listed — VERIFY before committing (this worker did not re-query them); duplicate PDFs Yu_2015_..._bn090829672.pdf and Hurley_2013_..._bn090829672.pdf exist on disk (same bytes) — dedup candidates for the merge worker"
+    },
+    "results/gcn/gcn_index.csv": {
+      "row": "bn100612726,404_ALL_FORMS(scan10815-10885),0,N,6_across_4_forms,9_distinct_refereed_incl_local_sweep",
+      "note": "columns per existing header: trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed"
+    }
+  },
+  "issues": [
+    "Letter-name ambiguity: literature says GRB 100612A for bn100612726 but IPN lists earlier same-day GRB100612545 (13:04 UT); identify by trigger only (dossier caveat)",
+    "Ma+2024 paywalled — the single unharvested per-burst row in the literature",
+    "ADS full-text missed 5 of 9 papers (table-only mentions) — the local corpus sweep is load-bearing and should stay in the Step-0b procedure",
+    "Lu+2012 arXiv Table 1: 100625A rows 1-3 duplicate 100612 rows verbatim (T4 extraction/typo flag)"
+  ]
+}

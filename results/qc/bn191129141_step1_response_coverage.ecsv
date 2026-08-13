@@ -1,0 +1,22 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn191129141}
+# - {src_start: -2.0}
+# - {src_stop: 28.0}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z human_gui)'}
+# - {coverage_rule: 'GBM multi-matrix rsp2: PASS if min(TSTART)<=SRC_START and max(TSTOP)>=SRC_STOP, rel TRIGTIME=596690552.12649'}
+# - manifest: {n_cspec_pha: 3, n_lat: 0, n_lle: 0, n_poshist: 1, n_rsp: 0, n_rsp2: 3, n_trigdat: 0, n_tte: 3}
+# - {manifest_note: 'trigdat absent = note not blocker (poshist present, DataInventory Phase 1); no LLE/LAT arm (LAT boresight 110 deg,
+#     GCN 26301)'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n8 -123.906 482.312 14 PASS
+nb -123.906 482.312 14 PASS
+b1 -123.906 482.312 14 PASS

@@ -1,0 +1,297 @@
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 13:54:46 UT
+NOTICE_TYPE:     Fermi-GBM Alert
+RECORD_NUM:      1
+TRIGGER_NUM:     390578080
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+TRIGGER_SIGNIF:  5.2 [sigma]
+TRIGGER_DUR:     4.096 [sec]
+E_RANGE:         3-4 [chan]   47-291 [keV]
+ALGORITHM:       17
+DETECTORS:       0,0,0, 0,0,0, 0,1,1, 0,0,0, 0,0,
+COMMENTS:        Fermi-GBM Trigger Alert.  
+COMMENTS:        This trigger occurred at longitude,latitude = 14.13,21.32 [deg].  
+ 
+ 
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 13:55:03 UT
+NOTICE_TYPE:     Fermi-GBM Flight Position
+RECORD_NUM:      46
+TRIGGER_NUM:     390578080
+GRB_RA:          324.500d {+21h 38m 00s} (J2000),
+                 324.649d {+21h 38m 36s} (current),
+                 323.944d {+21h 35m 47s} (1950)
+GRB_DEC:         +27.533d {+27d 31' 60"} (J2000),
+                 +27.594d {+27d 35' 38"} (current),
+                 +27.307d {+27d 18' 27"} (1950)
+GRB_ERROR:       24.27 [deg radius, statistical plus systematic]
+GRB_INTEN:       60 [cnts/sec]
+DATA_SIGNIF:     5.20 [sigma]
+INTEG_TIME:      4.096 [sec]
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+GRB_PHI:         263.00 [deg]
+GRB_THETA:        70.00 [deg]
+DATA_TIME_SCALE: 4.0960 [sec]
+HARD_RATIO:      0.00
+LOC_ALGORITHM:   3 (version number of)
+MOST_LIKELY:     100%  Below horizon
+2nd_MOST_LIKELY:   0%  n/a
+DETECTORS:       0,0,0, 0,0,0, 0,1,1, 0,0,0, 0,0,
+SUN_POSTN:        55.52d {+03h 42m 05s}  +19.66d {+19d 39' 53"}
+SUN_DIST:         81.77 [deg]   Sun_angle= 6.1 [hr] (West of Sun)
+MOON_POSTN:      152.31d {+10h 09m 13s}   +5.94d {+05d 56' 33"}
+MOON_DIST:       145.66 [deg]
+MOON_ILLUM:      54 [%]
+GAL_COORDS:       78.67,-18.28 [deg] galactic lon,lat of the burst (or transient)
+ECL_COORDS:      338.21, 38.97 [deg] ecliptic lon,lat of the burst (or transient)
+COMMENTS:        Fermi-GBM Flight-calculated Coordinates.  
+COMMENTS:        This trigger occurred at longitude,latitude = 14.13,21.32 [deg].  
+ 
+ 
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 13:55:16 UT
+NOTICE_TYPE:     Fermi-GBM Flight Position
+RECORD_NUM:      66
+TRIGGER_NUM:     390578080
+GRB_RA:          354.717d {+23h 38m 52s} (J2000),
+                 354.882d {+23h 39m 32s} (current),
+                 354.102d {+23h 36m 24s} (1950)
+GRB_DEC:         +43.683d {+43d 40' 60"} (J2000),
+                 +43.757d {+43d 45' 27"} (current),
+                 +43.406d {+43d 24' 22"} (1950)
+GRB_ERROR:       10.32 [deg radius, statistical plus systematic]
+GRB_INTEN:       137 [cnts/sec]
+DATA_SIGNIF:     11.00 [sigma]
+INTEG_TIME:      4.096 [sec]
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+GRB_PHI:         281.00 [deg]
+GRB_THETA:        45.00 [deg]
+DATA_TIME_SCALE: 4.0960 [sec]
+HARD_RATIO:      0.78
+LOC_ALGORITHM:   3 (version number of)
+MOST_LIKELY:      95%  GRB
+2nd_MOST_LIKELY:   2%  Cyg X-1
+DETECTORS:       0,0,0, 0,0,0, 0,1,1, 0,0,0, 0,0,
+SUN_POSTN:        55.52d {+03h 42m 05s}  +19.66d {+19d 39' 53"}
+SUN_DIST:         55.51 [deg]   Sun_angle= 4.0 [hr] (West of Sun)
+MOON_POSTN:      152.31d {+10h 09m 14s}   +5.94d {+05d 56' 31"}
+MOON_DIST:       126.28 [deg]
+MOON_ILLUM:      54 [%]
+GAL_COORDS:      109.29,-17.26 [deg] galactic lon,lat of the burst (or transient)
+ECL_COORDS:       16.52, 41.31 [deg] ecliptic lon,lat of the burst (or transient)
+COMMENTS:        Fermi-GBM Flight-calculated Coordinates.  
+COMMENTS:        This trigger occurred at longitude,latitude = 14.13,21.32 [deg].  
+ 
+ 
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 13:55:21 UT
+NOTICE_TYPE:     Fermi-GBM Ground Position
+RECORD_NUM:      65
+TRIGGER_NUM:     390578080
+GRB_RA:            6.500d {+00h 26m 00s} (J2000),
+                   6.681d {+00h 26m 43s} (current),
+                   5.827d {+00h 23m 18s} (1950)
+GRB_DEC:         +47.830d {+47d 49' 48"} (J2000),
+                 +47.904d {+47d 54' 14"} (current),
+                 +47.553d {+47d 33' 12"} (1950)
+GRB_ERROR:       13.75 [deg radius, statistical only]
+DATA_SIGNIF:     5.50 [sigma]
+DATA_INTERVAL:   4.096 [sec]
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+GRB_PHI:         288.00 [deg]
+GRB_THETA:        37.00 [deg]
+E_RANGE:         44.032 - 279.965 [keV]
+LOC_ALGORITHM:   4143 (Gnd S/W Version number)
+SUN_POSTN:        55.52d {+03h 42m 05s}  +19.66d {+19d 39' 53"}
+SUN_DIST:         48.30 [deg]   Sun_angle= 3.3 [hr] (West of Sun)
+MOON_POSTN:      152.31d {+10h 09m 14s}   +5.94d {+05d 56' 30"}
+MOON_DIST:       118.26 [deg]
+MOON_ILLUM:      54 [%]
+GAL_COORDS:      118.52,-14.82 [deg] galactic lon,lat of the burst (or transient)
+ECL_COORDS:       28.66, 40.52 [deg] ecliptic lon,lat of the burst (or transient)
+COMMENTS:        Fermi-GBM Ground-calculated Coordinates.  
+COMMENTS:        In the LAT Field-of-view.  
+COMMENTS:        This Notice was ground-generated -- not flight-generated.  
+ 
+ 
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 13:55:26 UT
+NOTICE_TYPE:     Fermi-GBM Flight Position
+RECORD_NUM:      69
+TRIGGER_NUM:     390578080
+GRB_RA:          352.767d {+23h 31m 04s} (J2000),
+                 352.927d {+23h 31m 42s} (current),
+                 352.170d {+23h 28m 41s} (1950)
+GRB_DEC:         +50.567d {+50d 34' 00"} (J2000),
+                 +50.641d {+50d 38' 26"} (current),
+                 +50.291d {+50d 17' 27"} (1950)
+GRB_ERROR:       6.30 [deg radius, statistical plus systematic]
+GRB_INTEN:       477 [cnts/sec]
+DATA_SIGNIF:     30.90 [sigma]
+INTEG_TIME:      2.048 [sec]
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+GRB_PHI:         274.00 [deg]
+GRB_THETA:        40.00 [deg]
+DATA_TIME_SCALE: 2.0480 [sec]
+HARD_RATIO:      0.64
+LOC_ALGORITHM:   3 (version number of)
+MOST_LIKELY:      95%  GRB
+2nd_MOST_LIKELY:   3%  Generic Transient
+DETECTORS:       0,0,0, 0,0,0, 0,1,1, 0,0,0, 0,0,
+SUN_POSTN:        55.52d {+03h 42m 05s}  +19.66d {+19d 39' 53"}
+SUN_DIST:         57.65 [deg]   Sun_angle= 4.2 [hr] (West of Sun)
+MOON_POSTN:      152.31d {+10h 09m 14s}   +5.94d {+05d 56' 29"}
+MOON_DIST:       120.69 [deg]
+MOON_ILLUM:      54 [%]
+GAL_COORDS:      110.12,-10.29 [deg] galactic lon,lat of the burst (or transient)
+ECL_COORDS:       20.36, 47.77 [deg] ecliptic lon,lat of the burst (or transient)
+COMMENTS:        Fermi-GBM Flight-calculated Coordinates.  
+COMMENTS:        This trigger occurred at longitude,latitude = 14.13,21.32 [deg].  
+ 
+ 
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 13:55:31 UT
+NOTICE_TYPE:     Fermi-GBM Ground Position
+RECORD_NUM:      68
+TRIGGER_NUM:     390578080
+GRB_RA:          358.540d {+23h 54m 10s} (J2000),
+                 358.709d {+23h 54m 50s} (current),
+                 357.909d {+23h 51m 38s} (1950)
+GRB_DEC:         +49.250d {+49d 15' 00"} (J2000),
+                 +49.324d {+49d 19' 28"} (current),
+                 +48.972d {+48d 58' 18"} (1950)
+GRB_ERROR:       2.11 [deg radius, statistical only]
+DATA_SIGNIF:     33.70 [sigma]
+DATA_INTERVAL:   2.048 [sec]
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+GRB_PHI:         280.00 [deg]
+GRB_THETA:        39.00 [deg]
+E_RANGE:         44.032 - 279.965 [keV]
+LOC_ALGORITHM:   4143 (Gnd S/W Version number)
+SUN_POSTN:        55.52d {+03h 42m 05s}  +19.66d {+19d 39' 53"}
+SUN_DIST:         53.76 [deg]   Sun_angle= 3.8 [hr] (West of Sun)
+MOON_POSTN:      152.31d {+10h 09m 14s}   +5.94d {+05d 56' 28"}
+MOON_DIST:       120.14 [deg]
+MOON_ILLUM:      54 [%]
+GAL_COORDS:      113.41,-12.56 [deg] galactic lon,lat of the burst (or transient)
+ECL_COORDS:       23.67, 44.56 [deg] ecliptic lon,lat of the burst (or transient)
+COMMENTS:        Fermi-GBM Ground-calculated Coordinates.  
+COMMENTS:        In the LAT Field-of-view.  
+COMMENTS:        This Notice was ground-generated -- not flight-generated.  
+ 
+ 
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 13:55:33 UT
+NOTICE_TYPE:     Fermi-GBM Flight Position
+RECORD_NUM:      90
+TRIGGER_NUM:     390578080
+GRB_RA:          354.467d {+23h 37m 52s} (J2000),
+                 354.631d {+23h 38m 31s} (current),
+                 353.854d {+23h 35m 25s} (1950)
+GRB_DEC:         +44.200d {+44d 12' 00"} (J2000),
+                 +44.274d {+44d 16' 27"} (current),
+                 +43.923d {+43d 55' 23"} (1950)
+GRB_ERROR:       3.75 [deg radius, statistical plus systematic]
+GRB_INTEN:       2117 [cnts/sec]
+DATA_SIGNIF:     186.70 [sigma]
+INTEG_TIME:      4.096 [sec]
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+GRB_PHI:         281.00 [deg]
+GRB_THETA:        45.00 [deg]
+DATA_TIME_SCALE: 4.0960 [sec]
+HARD_RATIO:      0.56
+LOC_ALGORITHM:   3 (version number of)
+MOST_LIKELY:      95%  GRB
+2nd_MOST_LIKELY:   4%  Generic Transient
+DETECTORS:       0,0,0, 0,0,0, 0,1,1, 0,0,0, 0,0,
+SUN_POSTN:        55.52d {+03h 42m 05s}  +19.66d {+19d 39' 53"}
+SUN_DIST:         55.74 [deg]   Sun_angle= 4.1 [hr] (West of Sun)
+MOON_POSTN:      152.31d {+10h 09m 14s}   +5.94d {+05d 56' 28"}
+MOON_DIST:       125.91 [deg]
+MOON_ILLUM:      54 [%]
+GAL_COORDS:      109.27,-16.71 [deg] galactic lon,lat of the burst (or transient)
+ECL_COORDS:       16.69, 41.85 [deg] ecliptic lon,lat of the burst (or transient)
+COMMENTS:        Fermi-GBM Flight-calculated Coordinates.  
+COMMENTS:        This trigger occurred at longitude,latitude = 14.13,21.32 [deg].  
+ 
+ 
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 13:55:41 UT
+NOTICE_TYPE:     Fermi-GBM Ground Position
+RECORD_NUM:      92
+TRIGGER_NUM:     390578080
+GRB_RA:          355.830d {+23h 43m 19s} (J2000),
+                 355.996d {+23h 43m 59s} (current),
+                 355.213d {+23h 40m 51s} (1950)
+GRB_DEC:         +47.220d {+47d 13' 12"} (J2000),
+                 +47.294d {+47d 17' 39"} (current),
+                 +46.942d {+46d 56' 33"} (1950)
+GRB_ERROR:       1.00 [deg radius, statistical only]
+DATA_SIGNIF:     260.70 [sigma]
+DATA_INTERVAL:   4.096 [sec]
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+GRB_PHI:         280.00 [deg]
+GRB_THETA:        42.00 [deg]
+E_RANGE:         44.032 - 279.965 [keV]
+LOC_ALGORITHM:   4143 (Gnd S/W Version number)
+SUN_POSTN:        55.52d {+03h 42m 05s}  +19.66d {+19d 39' 54"}
+SUN_DIST:         55.17 [deg]   Sun_angle= 4.0 [hr] (West of Sun)
+MOON_POSTN:      152.31d {+10h 09m 14s}   +5.94d {+05d 56' 27"}
+MOON_DIST:       122.80 [deg]
+MOON_ILLUM:      54 [%]
+GAL_COORDS:      111.10,-14.08 [deg] galactic lon,lat of the burst (or transient)
+ECL_COORDS:       20.01, 43.87 [deg] ecliptic lon,lat of the burst (or transient)
+COMMENTS:        Fermi-GBM Ground-calculated Coordinates.  
+COMMENTS:        In the LAT Field-of-view.  
+COMMENTS:        Bright hard burst in the GBM.  
+COMMENTS:        This Notice was ground-generated -- not flight-generated.  
+ 
+ 
+//////////////////////////////////////////////////////////////////////
+TITLE:           GCN/FERMI NOTICE
+NOTICE_DATE:     Sat 18 May 13 17:41:27 UT
+NOTICE_TYPE:     Fermi-GBM Final Position
+RECORD_NUM:      0
+TRIGGER_NUM:     390578080
+GRB_RA:          355.880d {+23h 43m 31s} (J2000),
+                 356.046d {+23h 44m 11s} (current),
+                 355.262d {+23h 41m 03s} (1950)
+GRB_DEC:         +46.050d {+46d 02' 60"} (J2000),
+                 +46.124d {+46d 07' 27"} (current),
+                 +45.772d {+45d 46' 21"} (1950)
+GRB_ERROR:       1.00 [deg radius, statistical only]
+GRB_DATE:        16430 TJD;   138 DOY;   13/05/18
+GRB_TIME:        50077.53 SOD {13:54:37.53} UT
+GRB_PHI:         279.48 [deg]
+GRB_THETA:        42.16 [deg]
+E_RANGE:         50.000 - 300.000 [keV]
+LOC_ALGORITHM:   414 (Gnd S/W Version number)
+SUN_POSTN:        55.68d {+03h 42m 43s}  +19.70d {+19d 41' 56"}
+SUN_DIST:         55.05 [deg]   Sun_angle= 4.0 [hr] (West of Sun)
+MOON_POSTN:      154.18d {+10h 16m 44s}   +5.29d {+05d 17' 22"}
+MOON_DIST:       125.03 [deg]
+MOON_ILLUM:      55 [%]
+GAL_COORDS:      110.81,-15.22 [deg] galactic lon,lat of the burst (or transient)
+ECL_COORDS:       19.17, 42.87 [deg] ecliptic lon,lat of the burst (or transient)
+COMMENTS:        Fermi-GBM Final Position.  
+COMMENTS:        This Notice was ground-generated -- not flight-generated.  
+COMMENTS:           
+COMMENTS:        NOTE: This GBM event is temporally(20.0<100sec) coincident with the KONUS event (trignum=-1).  
+ 
+ 

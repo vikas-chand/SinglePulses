@@ -1,0 +1,36 @@
+bn110605183 = GRB 110605A  --  GCN CIRCULAR SWEEP (Step 0, dev/ai_guides/GCNIntelligence.md)
+Run: 2026-08-12, campaign doc-layer worker.  RESULT: n_circulars = 0 (honest absence, recorded as a result).
+
+EVIDENCE (every probe, with its HTTP status):
+  https://gcn.gsfc.nasa.gov/other/110605.gcn3    -> HTTP 404 (215 bytes, error page)
+  https://gcn.gsfc.nasa.gov/other/110605A.gcn3   -> HTTP 404 (216 bytes, error page)
+  https://gcn.gsfc.nasa.gov/other/110605B.gcn3   -> HTTP 404 (216 bytes, error page)   [the same-day sibling, see below]
+POSITIVE CONTROLS on the same endpoint the same minute (proves the archive and my request were healthy):
+  https://gcn.gsfc.nasa.gov/other/110604A.gcn3   -> HTTP 200 (7967 bytes)
+  https://gcn.gsfc.nasa.gov/other/110721A.gcn3   -> HTTP 200 (16519 bytes)
+CORROBORATION: J. Greiner's GRB table (https://www.mpe.mpg.de/~jcg/grbgen.html, fetched 2026-08-12,
+  1.47 MB) contains 110604 and 110610 but NO 110605 entry of any suffix.
+
+TOOL NOTE (do not repeat my wasted calls): the modern gcn.nasa.gov Remix endpoint
+  /circulars?...&_data=routes%2Fcirculars._archive._index  IGNORES the q= / query= parameter and
+  returns the unfiltered newest-first list (verified with the positive control q=110721A, which
+  also returned the 2026 front page). It is NOT a usable search API from curl. The classic
+  per-GRB .gcn3 archive is the reliable channel.
+
+WHY THERE ARE NO CIRCULARS, yet tcat says GCN_FLAG = Yes:
+  GCN_FLAG=Yes in glg_tcat_all_bn110605183_v01.fit records that an automated GCN NOTICE was
+  distributed for the trigger. A notice is not a circular. No team ever wrote prose about this
+  burst: GBM localized it to (14.9, 52.5) with a 1.0 deg statistical error radius, no X-ray or
+  optical follow-up was reported, and there is no redshift.
+
+CONSEQUENCES FOR THE DOSSIER: no redshift, no afterglow, no independent position, no external
+prompt-emission narrative from real time. The entire identity record is catalog + refereed
+literature (see bn110605183_dossier.md).
+
+=== T1 SAME-DAY CONTAMINATION GUARD =========================================================
+GRB 110605B = bn110605780 is a DIFFERENT GBM burst on the SAME DAY.
+  von Kienlin+2014 (2014ApJS..211...13V) Table 6, p.55 verbatim, the two adjacent rows:
+    bn110605183 GRB 110605A 04:23:32.3035 14.9  52.5   1.0 Fermi-GBM 10  512 47-291 Mo, K, IA, W
+    bn110605780 GRB 110605B 18:42:49.0448 242.1 -3.1  10.1 Fermi-GBM  8  256 47-291 IA
+  ~14 h later, ~130 deg away on the sky, T90 = 1.536 s (a SHORT burst) vs our 82.689 s.
+  Nothing from bn110605780 may enter this record.

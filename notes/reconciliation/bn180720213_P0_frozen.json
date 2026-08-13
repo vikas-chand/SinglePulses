@@ -1,0 +1,60 @@
+{
+ "burst": "bn180720213",
+ "tally": 29,
+ "frozen_utc": "2026-08-11T16:40:30Z; BEFORE any new fit table opened (walkthrough_b2* never read)",
+ "engine": "L18/L19/L20/L26/L27/L28 active",
+ "predictions": [
+  "P-A (census prior, null-BB class): NO block will pass the BB gate — census prior has 0/10 time-resolved blocks (and 0/11 rows incl. integrated) with LRT_BANDBB_BAND >= 9.2; max was 6.98 (block 6). FALSIFIABLE: if >=1 new block passes LRT>=9.2 with kT>1.05, P-A is wrong.",
+  "P-A2 (kT regime if a BB does emerge): census kT values split bimodally — edge-low 2.2-4.5 keV in rise/tail blocks (0,1,2,7,8,9: 3.85/2.19/2.26/4.43/4.19/4.45 keV, the L28 edge-constrained class) vs loose 17-30 keV mid-burst (3,4,5,6). PREDICT: any newly significant BB lands in the low-kT (<5 keV) edge class, not the ~25 keV class.",
+  "P-A3 (break count): one-break-or-less spectrum — census AIC winners are CPL x6, SBPL x2, Band x2, CPL+BB x1; DSBPL never won and max LRT_DSBPL_SBPL = 7.31 (block 3) < 9.2. FALSIFIABLE: any new block with a decisive two-break (DSBPL) win breaks this.",
+  "P-B (literature/GCN 22974): time-integrated fit over [-1.7,16.0] s reproduces the GBM circular's Band alpha=-1.08+/-0.02, Epeak=260+/-15 keV, beta=-2.13+/-0.06 (T0 to T0+10 s, 10-1000 keV frame) to within the frame difference — census integrated Band gave alpha=-1.13, consistent. PREDICT: new integrated Ep in 230-290 keV, alpha in [-1.2,-1.0].",
+  "P-B2 (paperless burst): zero refereed papers analyze this burst (all 3 ADS 'GRB 180720A' article hits are misnamings of GRB 180720B); the P3 diff frame is GCN 22974 + the AGILE MCAL circular ONLY. FALSIFIABLE by any genuine refereed row surfacing later.",
+  "P-B3 (temporal, GCN 22974 + GCN 22970): single FRED-like pulse, T90 ~9 s (50-300 keV); AGILE MCAL saw ~3.6 s at 0.4-100 MeV (single smooth peak) — hard emission concentrated near the peak. PREDICT: hard-to-soft evolution, census alpha track ~-0.7 (peak blocks) softening to ~-1.8 (tail block 9)."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn180720213/spectral_fits.ecsv",
+  "n_rows": 11,
+  "n_blocks_time_resolved": 10,
+  "has_integrated_row": "yes (BLOCK=-1)",
+  "bb_significant_blocks": {
+   "criterion": "LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05",
+   "count": 0,
+   "kT_values": [],
+   "median_kT": null,
+   "max_LRT_BANDBB_BAND": 6.98,
+   "max_LRT_block": 6
+  },
+  "aic_winners_all_rows": {"CPL": 6, "SBPL": 2, "Band": 2, "CPL+BB": 1},
+  "aic_winners_time_resolved": {"CPL": 6, "SBPL": 1, "Band": 2, "CPL+BB": 1},
+  "integrated_winner": "SBPL (BLOCK=-1; Band-SBPL AIC gap 1.87)",
+  "bandbb_kT_all_blocks_keV": [3.85, 2.19, 2.26, 29.67, 27.75, 18.22, 28.49, 4.43, 4.19, 4.45],
+  "integrated_band": {"alpha": -1.127, "note": "BAND_AIC 5737.9 vs SBPL 5736.0"},
+  "class": "null-BB / low-kT-edge-when-fit (L28 edge-constrained per rise+tail blocks)"
+ },
+ "harvest_snippets": {
+  "GCN22974_Bissaldi_GBM": [
+   "At 05:06:02.06 UT on 20 July 2018, the Fermi Gamma-Ray Burst Monitor triggered and located GRB 180720A (trigger 553755967 / 180720213)",
+   "The GBM light curve consists of single FRED-like peak with a duration (T90) of about 9 s (50-300 keV). The time-averaged spectrum from T0 to T0+10 s is best fit by a Band function with Epeak = 260 +/- 15 keV, alpha = -1.08 +/- 0.02 and beta = -2.13 +/- 0.06.",
+   "The event fluence (10-1000 keV) in this time interval is (2.563 +/- 0.026)E-05 erg/cm^2. The 1-sec peak photon flux measured starting from T0+1.3 s in the 10-1000 keV band is 36.5 +/- 0.5 ph/s/cm^2."
+  ],
+  "GCN22970_Ursi_AGILE": [
+   "The AGILE Mini-CALorimeter (MCAL) detected a burst at T0 = 2018-07-20 05:06:03.29 +/- 0.01 s (UTC), lasting about ~ 3.6 s in the 0.4-100 MeV energy range. The light curve is composed of a single smooth peak"
+  ],
+  "GCN22975_Lien_naming_correction": [
+   "The GRB name in GCN Circ. #22973 should be GRB 180720B because of an earlier detection of GRB 180720A from AGILE/MCAL (GCN Circ. #22970)."
+  ],
+  "Maistrello2024_2024A&A...684L..10M": [
+   "CONTAMINATED (T1): their sample member is 180720B (table: '180720B 0.654 7.2 +/- 0.7 ...'); pp.5-6 '160625B, 171010A, and 180720A' is an internal typo for 180720B (Ep,i-Liso requires z; only B has one). NOT our burst."
+  ],
+  "Moradi2021_2021PhRvD.104f3043M": [
+   "CONTAMINATED (T1): 'the X-ray afterglow in GRB 130427A, GRB 160509A, GRB 160625B, GRB 180720A and GRB 190114C' — BdHN afterglow list; misnaming of 180720B. NOT our burst."
+  ],
+  "Wang2019_2019ApJ...874...39W": [
+   "CONTAMINATED (T1): 'We also predicted the SN appearance in GRB 140206A (Ruffini et al. 2014a) and GRB 180720A (Ruffini et al. 2018a)' — the Ruffini SN prediction was for 180720B (z=0.654, GCN quote: 'In GRB 180720B, which has redshift z = 0.654 (GCN 22996), being a BdHN, a supernova is expected'). NOT our burst."
+  ],
+  "Li&Zhang2021": ["absent"],
+  "Lu2018": ["absent"],
+  "Li2026": ["absent (all its 180720 hits are 180720B)"],
+  "Bordoloi2026": ["absent"]
+ }
+}

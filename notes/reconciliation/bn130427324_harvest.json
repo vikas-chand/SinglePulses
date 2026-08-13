@@ -1,0 +1,399 @@
+{
+ "burst": "bn130427324",
+ "grb_name": "GRB 130427A",
+ "harvest_utc": "2026-08-12T19:05:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form ADS query; Phase 1b Scholar-note channel - NOT triggered, see scholar_note_bridge; Phase 3b latest-first; Phase 3c prompt-scope + BEYOND-PROMPT catalogue; Phase 4 frame-align + multi-instrument consensus; traps T1/T3/T5/T7/T8/T9 exercised) + GCNIntelligence.md (Step 0) + DataInventory.md (Step 1 verification only)",
+ "scope_declaration": {
+  "why_this_matters": "GRB 130427A is the most-analysed GRB of the Fermi era. ADS full-text 'GRB 130427A' returns 738 documents, 476 of them refereed. A complete harvest is impossible and was NOT attempted. What follows is a SCOPED harvest with the rule stated below; everything outside it is a recorded omission, never an implied absence.",
+  "inclusion_rule": [
+   "(a) all refereed papers whose analysis interval could overlap our stamped window [+119.107, +178.442] s - i.e. anything about the SECOND emission episode / postburst;",
+   "(b) all refereed papers that perform GBM (or GBM+LLE/LAT) prompt spectroscopy of this burst, latest-first per Phase 3b, kept even when their interval is the first pulse, because they set the model-family and pile-up frame;",
+   "(c) all refereed papers that EXCLUDED this burst and said why (the exclusions are the scientifically load-bearing statements for us);",
+   "(d) catalog rows (GBM burst/spectral catalogs, LAT catalog, LLE/BGO temporal samples);",
+   "(e) afterglow / SN / VHE / neutrino papers: CATALOGUED BY NAME ONLY with module-future tags (Phase 3c), not mined."
+  ],
+  "explicitly_not_harvested": "the ~440 refereed papers that mention GRB 130427A as a comparison object, a data point in a population plot, or a citation in an introduction. Also not harvested: the full afterglow/SN modelling literature (>100 papers), catalogued at family level in the dossier BEYOND-PROMPT section."
+ },
+ "identity": {
+  "trigger": "bn130427324 / GBM trigger number 388741629 / MET TRIGTIME 388741629.420158",
+  "trigger_utc": "2013-04-27 07:47:06.42 UT",
+  "position": "RA 173.136, Dec 27.7129, ERR_RAD 0.0013 deg, LOC_SRC='Swift, XRT' (glg_tcat_all_bn130427324_v02.fit). Other positions on record: Swift/XRT 173.1362 +27.7129 (4.7 arcsec, GCN 14448); BAT ground 173.150 +27.706 (1.0 arcmin, GCN 14470); LAT 173.148 +27.709 (0.068 deg 68% stat, GCN 14508); CARMA mm 173.1367 +27.6989 (0.4 arcsec, Ackermann+2014).",
+  "theta_at_T0": "47.31 deg (tcat THETA), PHI 126.67 deg; GCN 14473 says '48 degrees'; Ackermann+2014 says 47.3 deg; Bissaldi+2015 table says 47.1 deg",
+  "redshift": "z = 0.3399 +/- 0.0002 ADOPTED (VLT/X-shooter, GCN 14491: FeII MnII MgII MgI TiII CaII NaI absorption + Halpha Hbeta [OIII] [OII] emission at a common redshift). Consistent earlier values: z=0.34 (Gemini-N/GMOS absorption only, GCN 14455), z=0.338 +/- 0.002 (NOT/ALFOSC, GCN 14478). NO ambiguity to record. Associated SN 2013cq (broad-lined Ic; GCN 14646, Xu+2013 2013ApJ...776...98X).",
+  "name_source": "GBM's own circular GCN 14473 prints 'GRB 130427A (trigger 388741629/130427324)'; LAT GCN 14471 prints the same pair; Narayana Bhat+2016 Table 1 row 'bn130427324 | GRB 130427A | 07:47:06.4201 | 173.1 | 27.7 | 0.0 | Swift | 4 | 64 | 47-291 | L, S, A, IA, K, M, R, ARR'.",
+  "same_day_contamination_guard_T1": "GRB 130427B is a DIFFERENT Swift burst on the same day. The archive https://gcn.gsfc.nasa.gov/other/130427.gcn3 (97 circulars) mixes both; ~10 circulars belong to 130427B: 14460 (Swift detection), 14461 (FTN), 14467 (XRT position), 14469 (BAT refined), 14477 (MITSuME), 14479 (XRT refined), 14493 (tentative X-shooter redshift - NOT ours), 14496 (RATIR), 14499 (MITSuME). Nothing from 130427B entered this record. The saved raw file is the name-scoped 130427A.gcn3 (87 circulars, clean).",
+  "T0_alias_table_FOUR_FRAMES": {
+   "GBM": "07:47:06.42 UT = our T0 = 0",
+   "Swift_BAT": "07:47:57 UT = GBM T0 + 51 s (GCN 14470 verbatim: 'Fermi-GBM triggered on this burst at 07:47:06.42 (T_bat-51 sec)')",
+   "Konus_Wind": "07:47:09.501 UT = GBM T0 + 3.081 s (GCN 14487)",
+   "SPI_ACS": "07:47:06.36 UT = GBM T0 - 0.06 s (GCN 14484)",
+   "AGILE": "t0 = 07:47:15 UT = GBM T0 + 8.58 s (GCN 14515). NB the LAT circular 14471 also originally printed 07:47:15 and was corrected to 07:47:06 by a GCN OPS NOTE - the 07:47:15 value is a known stale alias, do not propagate it."
+  }
+ },
+ "gcn_circulars": {
+  "n_circulars": 87,
+  "archive": "https://gcn.gsfc.nasa.gov/other/130427A.gcn3 -> results/gcn/bn130427324/bn130427324_gcn_raw.txt (133752 bytes)",
+  "id_range": "14448 (2013-04-27 08:24 UT) .. 14686 (2013-05-20)",
+  "superset_read_for_guard_only": "https://gcn.gsfc.nasa.gov/other/130427.gcn3 = 97 circulars, includes GRB 130427B",
+  "prompt_high_energy_ids": [14448, 14455, 14462, 14463, 14470, 14471, 14473, 14476, 14478, 14484, 14487, 14491, 14503, 14508, 14515, 14520, 14549, 14579, 14590, 14646],
+  "gbm_own_circular": "GCN 14473 (von Kienlin). tcat GCN_FLAG='No' because the burst was localized by Swift, but GBM did publish a circular."
+ },
+ "ads_queries": [
+  {"form": "full:\"GRB 130427A\"", "numFound": 738, "note": "unusable as a harvest list"},
+  {"form": "full:\"GRB 130427A\" property:refereed", "numFound": 476, "note": "the honest denominator; scoping rule applied instead"},
+  {"form": "full:\"bn130427324\"", "numFound": 0, "note": "the bn-prefixed trigger string appears nowhere in the refereed literature for this burst"},
+  {"form": "full:\"130427324\"", "numFound": 5, "refereed_hits": 3, "docs": ["2025arXiv251005239T (Tiwari, eprint)", "2025ApJ...983..130L (Liao, spectral-line search)", "2024ApJ...974..120N (Nuessle, progenitor classification)", "2024arXiv240508231R (Ruffini, eprint)", "2015arXiv150204714B (Bissaldi, bright BGO/LLE temporal)"]},
+  {"form": "full:\"388741629\" (trigger number)", "numFound": 1},
+  {"form": "title:\"130427A\" property:refereed", "numFound": 33, "note": "the dedicated-paper set; 5 are prompt-emission papers, the other 28 are afterglow / SN / VHE / interpretation"},
+  {"form": "full:\"GRB 130427A\" AND full:\"LLE\" AND property:refereed", "numFound": 24, "note": "the GBM+LLE/LAT joint-analysis channel - this is where Aldowma+2026, Macera+2025, Maraventano+2025, Toffano+2021, Ajello+2019 came from"},
+  {"form": "full:\"GRB 130427A\" AND (full:\"second burst\" OR full:\"second episode\" OR full:\"second pulse\") AND property:refereed", "numFound": 44, "note": "the SECOND-PULSE channel, run specifically because our window is the second episode. It surfaced Du+2025 -> which cites Du+2022, the only dedicated postburst analysis of this burst."},
+  {"form": "author:\"Du, T.-T.\" (follow-up on the Du+2025 citation)", "note": "ADS author search is polluted by same-surname non-astronomy authors; the paper was resolved instead by bibcode from the Du+2025 reference list -> 2022ApJ...940...48D"}
+ ],
+ "scholar_note_bridge": {
+  "channel": "NOT USED",
+  "why": "Phase 1b's trigger conditions are (1) a thin/empty ADS return, (2) a cross-community vocabulary gap, (3) a discovery-plane bridging sweep. None applies: the ADS four-form query returned 476 refereed hits and the burst's vocabulary is entirely standard GRB terminology. Recording the non-use explicitly so nobody re-runs it.",
+  "one_gap_that_would_justify_it_later": "the RHESSI observation (GCN 14590) of OUR pulse - RHESSI GRB literature uses solar-instrument vocabulary and may not be reachable by GRB-termed ADS full-text search. Flagged as a future Scholar query if the second-episode spectrum ever needs an independent instrument."
+ },
+ "corpus_dedup_G2": {
+  "method": "PyMuPDF full-text scan of all 178 PDFs in Skills_training/ for the token '130427', plus bibcode lookup in Skills_training/corpus_index.csv (READ ONLY - this worker writes no shared CSV)",
+  "already_in_corpus_and_relevant": [
+   "Ravasio_2019_2019AA625A60R.pdf (p.2 - the exclusion statement)",
+   "Toffano_2021_2021AA652A123T.pdf (pp.2-3 - method + the 130427(324) table row)",
+   "Duan_2020_2020ApJ89090D.pdf (p.2 - the exclusion statement)",
+   "Preece_2016_2016ApJ821_12P_PUB.pdf (pp.1-11 - Ep,peak vs Ep,fluence table row)",
+   "Ajello_2019_2019ApJ87852A.pdf (pp.19,24,25,28,35,37,38,39 - LAT catalog)",
+   "Aldowma_2026_2026MNRAS546ag060A_bn110721200.pdf (pp.3,6,8,19,21,23,24,32,50 - joint GBM+LAT+LLE tables)",
+   "Macera_2025_2025AA700A88M_bn180703876.pdf (pp.4,19,23 - Sample-2 rows + Fig A4)",
+   "Maraventano_2025_2025AA697A161M.pdf (p.3 - the saturation exclusion)",
+   "Deng_2024_2024ApJ97067D.pdf (pp.7,8,9,12,14 - precursor/main-burst tables)",
+   "Li_2024_2024ApJ9721L.pdf (pp.6,7,11 - per-bin Band/Band+BB table)",
+   "NarayanaBhat_2016_2016ApJS22328N_bn110928180.pdf (pp.86,127,171,216 - GBM catalog rows)",
+   "Bissaldi_2015_2015arXiv150204714B_bn130310840.pdf (pp.3,4 - bright BGO/LLE table + column definitions)",
+   "Hakkila_2014_2014ApJ78388H.pdf, Burgess_2014/2019, Veres_2015, FanaDirirsa_2019, Atteia_2017, Japelj_2014, Wang_2019 (both versions), Nuessle_2024, Gompertz_2018, Heussaff_2013, Iyyani_2018, Greiner_2024, Maccary_2025, Qu_2025, Chang_2026, Amelino-Camelia_2026, Ghosh_2026, Tanvir_2019, Gupta_2023, Rossi_2026, Pasumarti_2023, Wei_2022, Fraija_2017/2025, Shao_2017, Tak_2023, Sharma_2021, Li_2020, Qin_2021 - all contain the string 130427 as a comparison/citation only; NOT mined"
+  ],
+  "re_downloads_avoided": 12,
+  "new_pdfs_downloaded_this_session": [
+   "Skills_training/Preece_2014_2014Sci34351P_bn130427324.pdf (arXiv 1311.5581, 953251 B)",
+   "Skills_training/Ackermann_2014_2014Sci34342A_bn130427324.pdf (arXiv 1311.5623, 592338 B)",
+   "Skills_training/Li_2023_2023ApJ94510L_bn130427324.pdf (arXiv 1910.12615, 3402368 B)",
+   "Skills_training/Du_2025_2025ApJ987124D_bn130427324.pdf (arXiv 2505.06009, 5425056 B)"
+  ],
+  "corrupt_corpus_files_noted_not_touched": [
+   "Skills_training/Tong_2022_2022RNAAS6115T_bn130310840.pdf - listed by glob but unreadable by PyMuPDF ('no such file'); a dangling entry, flagged for the parent. NOT touched by this worker."
+  ]
+ },
+ "n_refereed_papers": 15,
+ "papers": [
+  {
+   "bibcode": "2026MNRAS.546ag060A",
+   "first_author": "Aldowma, T. K. M.",
+   "year": 2026,
+   "title": "Implications of joint spectral analysis of gamma-ray bursts detected by Fermi Large Area Telescope and Gamma-ray Burst Monitor",
+   "classification": "sample-member, joint GBM+LAT+LLE spectroscopy - the NEWEST prompt analysis of this burst (Phase 3b default reference frame)",
+   "coverage_label_T9": "time-integrated 11.23-142.34 s (T05->T95, i.e. first pulse + decay + the RISE of our second pulse only); peak-flux 8.192-9.216 s (first pulse peak)",
+   "verbatim_anchor": "Table row: 'GRB 130427A GBM+LAT+LLE 11.23-142.34 Band+PL -0.95 +/- 0.01 -3.0 +/- 0.04 886 +/- 11 -1.83 +/- 0.03 - 8.92 +/- 1.3 x 10^-6 12757 201'; 'GRB 130427A GBM ... Band -0.98 +/- 0.03 -3.07 +/- 0.09 884 +/- 11 - - 1.37 +/- 0.06 x 10^-5 7230 0'; peak-flux table: 'GRB 130427A GBM+LAT+LLE 8.192-9.216 Band+BB -0.49 +/- 0.01 -3.88 +/- 0.16 934 +/- 16 - 43 +/- 16 6.4 +/- 2.3 x 10^-4 2588 399'; 'GRB 130427A GBM ... Band+BB -0.49 +/- 0.011 -4.05 +/- 0.15 944 +/- 13 - 43.5 +/- 1.4 6.4 +/- 2.2 x 10^-4 2474 406'; energetics row 'GRB 130427A 0.34 1146 +/- 15 34 +/- 1.0 1185 +/- 15 53 +/- 1.1 Levan et al. (2013)'",
+   "why_it_matters": "It is the only harvested paper whose time-integrated interval reaches INTO our window (to 142.34 s). Its 11.23-142.34 s Band is dominated by the first pulse, so a diff against our 119-178 s fit is a first-pulse-vs-second-pulse comparison, NOT a reproduction target. Its Band+BB peak-flux fit is the newest published kT for this burst (43 keV, first pulse).",
+   "pdf": "Skills_training/Aldowma_2026_2026MNRAS546ag060A_bn110721200.pdf (already on disk from bn110721200 - G2: not re-downloaded, not re-named)",
+   "prompt_sections": "Sect. 2 (data selection + interval definition - needed to know WHY 11.23-142.34), Tables 2 and 5 (the four rows above), Appendix Figs B14/C11 (the 130427A count + nuFnu spectra). DEFER Sects. 4-6 (Amati/Yonetoku correlation work).",
+   "module_future_tags": "prompt-joint-GBM-LAT-LLE (Steps 6); module-future;cosmo (their Amati/Yonetoku arm)"
+  },
+  {
+   "bibcode": "2022ApJ...940...48D",
+   "first_author": "Du, Tan-Tan",
+   "year": 2022,
+   "title": "A Study of the Spectral Properties of Two Gamma-Ray Bursts with the Main Bursts and Postbursts",
+   "classification": "DEDICATED analysis of GRB 130427A's MAIN BURST **and POSTBURST** - the single most relevant paper in the entire literature for our window",
+   "coverage_label_T9": "main burst AND postburst of GRB 130427A (the postburst = the ~T0+120 s FRED pulse = OUR WINDOW). Exact interval boundaries UNKNOWN - see pdf note.",
+   "verbatim_anchor": "ADS abstract, verbatim: 'both bursts have the thermal components, and the thermal components are mainly found in the main bursts, while the postbursts are mainly dominated by the nonthermal components'; 'the low-energy spectral indices of some time bins in the main bursts of these two GRBs exceed the so-called synchronous dead line, and in the postburst, only GRB 160509A has four time bins exceeding the dead line, while none of GRB 130427A exceed the dead line'; 'the correlations of the spectral parameters have different behaviors in the main bursts and postbursts'; method: 'Bayesian time-resolved spectral analysis'.",
+   "pdf": "FETCH FAILED - IOP serves a Radware Bot Manager captcha (14371 B HTML) to curl on BOTH https://iopscience.iop.org/article/10.3847/1538-4357/ac94d2/pdf AND the ADS link_gateway PUB_PDF. ADS esources = ['PUB_HTML','PUB_PDF'] only: THERE IS NO arXiv EPRINT. No PDF written. Everything recorded here comes from the ADS abstract, which is why the per-bin numbers are missing.",
+   "blocker_for_the_parent": "This paper is the published prior for our exact component and we cannot read its tables. Options: institutional access (LSU/ARIES), an emailed request to Peng Zhao-Yang, or a manual browser download. Until then P0's P-B prediction is anchored on an ABSTRACT-level claim, which is recorded as such.",
+   "prompt_sections": "ALL of it - the whole paper is our component. Priority: the postburst time-bin table (alpha, Ep, kT, model preference) and the postburst dead-line figure.",
+   "module_future_tags": "prompt-timeresolved;BB-vs-nonthermal;second-episode (Steps 5/6) - CORE READING for this burst"
+  },
+  {
+   "bibcode": "2025ApJ...987..124D",
+   "first_author": "Du, Ze-Lian",
+   "year": 2025,
+   "title": "A Study of the Spectral Properties of Gamma-Ray Bursts with Main and Second Bursts",
+   "classification": "population paper on the SAME phenomenon as our window (main + second burst), but GRB 130427A is NOT in its 18-GRB sample - it is only cited (because Du+2022 already covered it)",
+   "coverage_label_T9": "n/a for this burst - sample membership is NEGATIVE, verified by full-text scan (only one occurrence of '130427', in the introduction)",
+   "verbatim_anchor": "Sect. 1: 'Du et al. (2022) carried out a statistical study on the spectral characteristics for only two bright bursts that had both main bursts and second bursts (GRB 160509A and GRB 130427A). Their findings indicated that the correlation of spectral parameters displays different behaviors in the main bursts and the second bursts.' Results: 'upon adding a BB component, 100% (18 out of 18) of the main bursts and 88.9% (16 o[ut of 18])' of the second bursts improve.",
+   "why_it_matters": "It supplies the POPULATION PRIOR for our P-B blackbody prediction: in a Bayesian/DIC framework, second bursts of this class almost always improve with a BB (16/18) - which sits in tension with Du+2022's statement that 130427A's own postburst is 'mainly dominated by the nonthermal components'. Recording the tension (T5-style) rather than resolving it.",
+   "pdf": "Skills_training/Du_2025_2025ApJ987124D_bn130427324.pdf (NEW this session, arXiv 2505.06009)",
+   "prompt_sections": "Sects. 1 (the Du+2022 summary), 3 (Bayesian method + background/binning choices), 4.x (BB-improvement statistics). DEFER the photosphere-outflow constraint sections unless #43 revives them.",
+   "module_future_tags": "prompt-timeresolved;BB-population;second-episode; also relevant to registry #43 (photospheric outflow diagnostics)"
+  },
+  {
+   "bibcode": "2025A&A...697A.161M",
+   "first_author": "Maraventano, C.",
+   "year": 2025,
+   "title": "High energy time lags of gamma-ray bursts",
+   "classification": "EXCLUSION (LLE/GBM lag sample) - a data-quality statement about this burst, newer than any other",
+   "coverage_label_T9": "whole burst",
+   "verbatim_anchor": "Sect. 2: 'The bright GRB 130427A, despite having a LLE signal detection significance of 15sigma, was excluded from the analysis as its GBM light curve suffers from saturation effects.'",
+   "why_it_matters": "This is a SECOND, independent, and NEWER reason to distrust GBM data on this burst - saturation, distinct from Ravasio's pile-up. It is stated without an interval, so it does not by itself condemn our window, but our Step-1/Step-5 record must answer it with a count-rate measurement in [119,178] s. Also note the 15sigma LLE significance conflicts with GCN 14471's '~40 sigma' and Bissaldi+2015's 40.3 - different definitions/intervals, recorded not resolved.",
+   "pdf": "Skills_training/Maraventano_2025_2025AA697A161M.pdf (already on disk from bn081224887 - G2)",
+   "prompt_sections": "Sect. 2 (sample selection + the exclusion) ONLY. Their lag methodology is worth reading for Step 7 generally, not for this burst.",
+   "module_future_tags": "prompt-temporal;lag;data-quality-exclusion"
+  },
+  {
+   "bibcode": "2025A&A...700A..88M",
+   "first_author": "Macera, Samanta",
+   "year": 2025,
+   "title": "Gamma-ray burst prompt emission spectra at high energies",
+   "classification": "sample-member, GBM+LLE+LAT synchrotron modelling",
+   "coverage_label_T9": "THREE bins, ALL first pulse: 11.11-14.63, 14.63-17.53, 17.53-22.61 s. Nothing in our window.",
+   "verbatim_anchor": "Table 2 row: 'GRB130427A 0.34 138.2 [LLE] 3 1.41+0.20-0.20 x 10^-6 14.79+1.36-1.36 1.37+0.05-0.04'; Table (Sample-2 detail): 'GRB 130427A 11.11 - 14.63 3.40+0.09-0.08 57+2-1 379+26-29 > 1.2 42.2+0.7-0.2 8.67 | 14.63 - 17.53 2.77+0.07-0.07 22+1-1 136+14-15 > 1.3 15.3+0.8-0.1 9.88 | 17.53 - 22.61 2.61+0.07-0.07 9+1-1 103+10-9 > 0.8 6.8+0.2-0.7 77.10' (columns: pindex, nu_c [keV], nu_m [MeV], flux, ..., E_max [GeV])",
+   "definition_note_T3": "their nu_c and nu_m are SYNCHROTRON break frequencies from a physical fit, NOT the empirical Ebreak/Ep of our DSBPL/Band family. nu_c = 57 -> 22 -> 9 keV across the first pulse is a cooling break, and must NOT be diffed against a DSBPL xb without a model-frame conversion.",
+   "pdf": "Skills_training/Macera_2025_2025AA700A88M_bn180703876.pdf (already on disk from bn180703876 - G2)",
+   "prompt_sections": "Sects. 2-3 (data selection + the synchrotron model), Table 2 + the 130427A appendix figure A4. DEFER the population discussion.",
+   "module_future_tags": "prompt-highenergy;synchrotron-physical-model (Step 6 comparison frame for two-break claims)"
+  },
+  {
+   "bibcode": "2024ApJ...970...67D",
+   "first_author": "Deng, Hui-Ying",
+   "year": 2024,
+   "title": "A Study of the Spectral Properties of Gamma-Ray Bursts with the Precursors and Main Bursts",
+   "classification": "sample-member, Bayesian time-resolved spectroscopy - and it uses OUR EXACT DETECTOR SET",
+   "coverage_label_T9": "precursor -0.1 to 2.5 s + main burst 3 to 12.5 s. BOTH are the first pulse in our nomenclature. Their 'main burst' is NOT our window; their vocabulary and Du+2022's are INCOMPATIBLE (Deng: precursor/main = sub-parts of the first pulse; Du: main/postburst = first pulse / our pulse). A T9 landmine.",
+   "verbatim_anchor": "Table 2: 'GRB 130427A(G) 0.34 n6,n9,na,b1 138.24 -0.1 ~2.5 3 ~12.5 100%(11/11) 100%(43/43)'; Table 3: 'GRB 130427A(G) f.t f.t f.t f.t 0.63 0.80 0.72 0.71 0.91 0.55'; Table 4: 'GRB 130427A(G) 7.24+/-0.95 3.95+/-0.35 1.72+/-0.49 6.54+/-2.07 0.80+/-0.07 8.47+/-0.73 5.77+/-0.29 2.02+/-0.22 10.22+/-1.05 1.29+/-0.09'",
+   "why_it_matters": "(a) their detector set n6,n9,na,b1 is IDENTICAL to our approved GBM set - independent corroboration of the Stage-1 detector decision; (b) they find a thermal component in 100% of 54 time bins across the first 12.5 s, i.e. the first pulse is thermally dominated in this framework - the exact complement of Du+2022's postburst claim; (c) evolution class 'f.t' = flux-tracking for both alpha and Ep in precursor and main burst.",
+   "pdf": "Skills_training/Deng_2024_2024ApJ97067D.pdf (already on disk from bn130310840 - G2)",
+   "prompt_sections": "Sect. 3 (Bayesian method, detector + background choices), Tables 2-4. DEFER Sect. 5 photosphere-parameter derivations (park for #43).",
+   "module_future_tags": "prompt-timeresolved;BB;precursor-vs-main; #43-photosphere"
+  },
+  {
+   "bibcode": "2024ApJ...972....1L",
+   "first_author": "Li, An",
+   "year": 2024,
+   "title": "Magnetization Factors of Gamma-Ray Burst Jets Revealed by a Systematic Analysis of the Fermi Sample",
+   "classification": "sample-member with a per-bin model table for this burst",
+   "coverage_label_T9": "-2.048 s to ~18 s - FIRST PULSE ONLY (their Fig. 3 x-axis stops at 17.5 s)",
+   "verbatim_anchor": "table rows: 'GRB130427A -2.048 2.048 Band+BB 363.389 24.066 0.0945 2.037 9.460 - | 2.048 4.096 Band 97.664 5.000 0.0527 - 2.572 11.948 | 4.096 5.120 Band+BB 459.147 33.025 0.0771 1.897 8.814 - | 5.120 6.144 Band+BB 695.987 39.277 0.1016 1.447 6.722 - | 6.144 7.168 Band+BB 880.279 44.453 0.1132 1.401 6.510 -' (columns include Ep [keV] and kT [keV])",
+   "why_it_matters": "gives an independent published kT SEQUENCE for the first pulse: 24.1 -> (none) -> 33.0 -> 39.3 -> 44.5 keV, rising with Ep. Any kT we find in the second pulse can be placed against that ladder.",
+   "pdf": "Skills_training/Li_2024_2024ApJ9721L.pdf (already on disk from bn130310840 - G2)",
+   "prompt_sections": "Sect. 2 (hybrid-spectrum fitting + the 5-60 keV kT prior they impose - a MODEL CHOICE that shapes every kT in the table), Fig. 3, and the 130427A table rows.",
+   "module_future_tags": "prompt-timeresolved;BB;magnetization"
+  },
+  {
+   "bibcode": "2023ApJ...945...10L",
+   "first_author": "Li, Liang",
+   "year": 2023,
+   "title": "Self-similarities and Power Laws in the Time-resolved Spectra of GRB 190114C, GRB 130427A, GRB 160509A, and GRB 160625B",
+   "classification": "dedicated multi-burst time-resolved analysis (BdHN framework, Bayesian + DIC)",
+   "coverage_label_T9": "SN-rise 0-0.65 s; 'cavity' ~15-25.5 s. The UPE phase (the bright complex) was DELIBERATELY SKIPPED for this burst.",
+   "verbatim_anchor": "Abstract: 'The same procedure has been repeated in the case of GRB 130427A with the exception of the UPE phase, in view of a pile-up problem.' Fig. 11 caption: 'SN-rise spectrum, well fitted by a CPL+BB model, from 0 to 0.65s (t_rf ~ 0.49s); the spectral index alpha is -0.58, cutoff energy Ec is 547.59 keV, and the BB temperature is 42.63 keV in the observer's frame'; 'Featureless spectrum of the cavity emission, from ~15 s (t_rf = 11.19 s) to ~25.5 s (t_rf = 19.03 s) fitted by a CPL, with the photon index alpha is -1.52 and the cutoff energy is at 496.13 keV'.",
+   "why_it_matters": "third independent confirmation that pile-up forced an interval exclusion in the FIRST pulse; and it demonstrates the DIC-based CPL vs CPL+BB comparison we mirror with LRT. Note T7: their 'CPL+BB' verdict is relative to a CPL continuum, so the BB claim is continuum-relative.",
+   "definition_note": "Ec is the e-folding cutoff energy, NOT Ep: Ep = (2+alpha)*Ec. For the SN-rise, Ep = (2-0.58)*547.59 = 777 keV. Frame-align before any diff (L21).",
+   "pdf": "Skills_training/Li_2023_2023ApJ94510L_bn130427324.pdf (NEW this session, arXiv 1910.12615 - note the arXiv version is formatted as an A&A manuscript; the version of record is ApJ 945, 10)",
+   "prompt_sections": "Sect. 3 (method/DIC) and Sect. 5 + Fig. 11 + Table 5 (GRB 130427A). DEFER Sects. 1-2 and 6 (BdHN taxonomy - interpretive, and a declared bias source per Phase 3c).",
+   "module_future_tags": "prompt-timeresolved;CPL+BB;DIC; module-future;sn (BdHN/SN coupling)"
+  },
+  {
+   "bibcode": "2021A&A...652A.123T",
+   "first_author": "Toffano, M.",
+   "year": 2021,
+   "title": "The slope of the low-energy spectrum of prompt gamma-ray burst emission",
+   "classification": "sample-member, 2SBPL (= the DSBPL family) - the direct two-break comparison paper",
+   "coverage_label_T9": "3.0-15 s, 'the brightest portion of the light curve' - FIRST PULSE ONLY, explicitly chosen because the light curve is multi-peaked",
+   "verbatim_anchor": "Sect. 2: 'In the cases of GRB 130427A and GRB 160625B, which have a multi-peaked, long-duration light curve, we consider the brightest portion of the light curve by selecting the time intervals 3.0-15 s and 188-210 s, respectively.' Table row: '130427(324) -0.66+0.01-0.01 852+6.7-6.7 -3.27+0.03-0.03 | -0.63+0.01-0.01 -1.67+0.03-0.03 224+10-10 992+12-12 -3.7+0.04-0.04 | 6.01 2.83 | 942 812' = (Band alpha, Ep, beta | 2SBPL alpha1, alpha2, Ebreak, Epeak, beta | chi2_r Band, chi2_r 2SBPL | AIC Band, AIC 2SBPL)",
+   "why_it_matters": "THE two-break census comparison point - but for the WRONG COMPONENT. Their dAIC(Band - 2SBPL) = 130 is far past our >=10 bar, so 130427A's FIRST pulse is a published two-break detection. Our window is the second pulse, where no published 2SBPL fit exists. A two-break result of ours would be NEW, not a reproduction. Also note chi2_r = 6.01 even for their best model - the same systematics floor as the GBM catalog.",
+   "pdf": "Skills_training/Toffano_2021_2021AA652A123T.pdf (already on disk, corpus theme 'TWO-SPECTRAL-BREAKS', read=Y 2026-08-08)",
+   "prompt_sections": "Sect. 2 (data + the interval choice + the 30-40 keV K-edge exclusion, which our pipeline also applies) and the 130427(324) table row.",
+   "module_future_tags": "prompt-two-break;2SBPL (project-core)"
+  },
+  {
+   "bibcode": "2020ApJ...890...90D",
+   "first_author": "Duan, Ming-Ya",
+   "year": 2020,
+   "title": "The Spectral Evolution and Correlations of the LLE-detected GRBs",
+   "classification": "EXCLUSION (LLE sample)",
+   "coverage_label_T9": "whole burst",
+   "verbatim_anchor": "Sect. 2: 'We remove a pure black body burst GRB 090902B, three extremely bright bursts (GRBs 080916C, 130427A and 160625B) and 2 long bursts that have been studied in Li et al. (2019) ... and Duan & Wang (2019) ... in detail.'",
+   "why_it_matters": "closes the question left open in bn130427324_BLOCKERS.md ('it is also absent from Duan & Wang's 36-burst LLE sample - possibly for the same reasons'): the reason is stated - brightness - and it is a SAMPLE-HOMOGENEITY exclusion, not a data-quality verdict. Note also they abandoned LLE/LAT data even for the bursts they kept ('because of their lower impact for peak energy Ep and low energy spectral index alpha') - a methodological choice we do NOT share (L17: band inclusion is a data-quality decision).",
+   "pdf": "Skills_training/Duan_2020_2020ApJ89090D.pdf (already on corpus; corpus row already lists bn130427324 in cited_by_bursts)",
+   "prompt_sections": "Sect. 2 (sample selection + the exclusion) only.",
+   "module_future_tags": "prompt-LLE-sample;selection-effects"
+  },
+  {
+   "bibcode": "2019A&A...625A..60R",
+   "first_author": "Ravasio, M. E.",
+   "year": 2019,
+   "title": "Evidence of two spectral breaks in the prompt emission of gamma-ray bursts",
+   "classification": "EXCLUSION - and the foundational two-break paper (the DSBPL model IS this line)",
+   "coverage_label_T9": "whole burst",
+   "verbatim_anchor": "Sect. 2: 'From our selection we excluded GRB 090902B and GRB 130427A for the following reasons... GRB 130427A, due to its large fluence, suffered from pile-up effects (Preece et al. 2014) and a standard analysis can be performed only on its precursor, which does not satisfy our selection criterion. We thus excluded this GRB from our sample. We note, however, that a spectral analysis of the precursor is reported by Preece et al. (2014), who find consistency with synchrotron emission.'",
+   "why_it_matters": "the reason our project's own lineage paper does not contain this burst. Verified verbatim today; matches the quote already in bn130427324_BLOCKERS.md.",
+   "pdf": "Skills_training/Ravasio_2019_2019AA625A60R.pdf (already on corpus)",
+   "prompt_sections": "Sect. 2 (the exclusion paragraph) for this burst; the rest is project-core reading independent of the burst.",
+   "module_future_tags": "prompt-two-break (project-core)"
+  },
+  {
+   "bibcode": "2019ApJ...878...52A",
+   "first_author": "Ajello, M.",
+   "year": 2019,
+   "title": "A Decade of Gamma-Ray Bursts Observed by Fermi-LAT: The Second GRB Catalog",
+   "classification": "catalog-member (LAT)",
+   "coverage_label_T9": "LAT emission, 10^-1 to 10^5 s - i.e. spans our window and far beyond it",
+   "verbatim_anchor": "Fig. 9 (left): 'GRB 130427A alpha = 1.24 +/- 0.06, alpha1 = 0.79 +/- 0.16, *alpha2 = 1.42 +/- 0.10'; Sect. 4.4: 'The burst with the highest fluence (and flux) is GRB 130427A'; Sect. 4.3: '4 have durations over 10 ks, namely GRB 160623A (~35 ks), GRB 130427A (~34 ks)'; Sect. 4.8: 'The highest energy GRB photon ever recorded by Fermi thus far is a 94.1 GeV event connected with GRB 130427A'; 'GRB 130427A holds the record with 17 photons'; Sect. 3: 'the very bright GRB 130427A did not result in a LAT onboard trigger, since the GBM had triggered and issued an ARR on the first emission peak (Preece et al. 2014), which was very bright at low energies but not particularly strong above 100 MeV.'",
+   "why_it_matters": "D4 check: the LAT detection is CONTINUOUS across our window (unlike bn120624933, where the LAT signal sat entirely outside). LAT >100 MeV emission is present and decaying as t^-0.79 through +119 to +178 s, so a high-energy component in our window is EXPECTED, not surprising - and the 95 GeV photon lands at T0+244 s, 66 s after our window closes.",
+   "pdf": "Skills_training/Ajello_2019_2019ApJ87852A.pdf (already on corpus from bn120624933 - G2)",
+   "prompt_sections": "Sect. 4.3 + Fig. 9 (temporal decay through our window), Sect. 4.8 + Table 6 (highest-energy photons and their arrival times), Table 4/5 rows.",
+   "module_future_tags": "prompt-LAT-catalog;high-energy-component (Steps 1/6)"
+  },
+  {
+   "bibcode": "2016ApJ...821...12P",
+   "first_author": "Preece, Robert",
+   "year": 2016,
+   "title": "Which E_peak? The Characteristic Energy of Gamma-ray Burst Spectra",
+   "classification": "sample-member (peak-flux vs fluence Ep)",
+   "coverage_label_T9": "peak-flux spectrum vs fluence spectrum, catalog intervals - TOTAL event",
+   "verbatim_anchor": "Table: '130427324 812+/-19 784+/-9 1.3' = (Ep,peakflux, Ep,fluence, deviation in units of the rms of the two errors)",
+   "why_it_matters": "unusually small peak-vs-fluence Ep separation (1.3 sigma) for a burst with a decade of Ep evolution - because the fluence spectrum is utterly dominated by the first pulse's counts. It is a warning that this burst's time-integrated numbers describe ~10 s out of ~300 s of emission.",
+   "pdf": "Skills_training/Preece_2016_2016ApJ821_12P_PUB.pdf (already on corpus; corpus row already lists bn130427324)",
+   "prompt_sections": "Sect. 4 + the table row; Sect. 3.2 (lag and pulse-width evolution, which references the 130427A first pulse) is Step-7 material.",
+   "module_future_tags": "prompt-Ep-definition;time-avg-vs-peakflux (Steps 6/7)"
+  },
+  {
+   "bibcode": "2014Sci...343...51P",
+   "first_author": "Preece, R.",
+   "year": 2014,
+   "title": "The First Pulse of the Extremely Bright GRB 130427A: A Test Lab for Synchrotron Shocks",
+   "classification": "DEDICATED prompt analysis - of the FIRST pulse, and the source everyone cites for pile-up",
+   "coverage_label_T9": "0 to 2.5 s - 'The initial pulse up to 2.5 s' - explicitly the first pulse only",
+   "verbatim_anchor": "Abstract: 'The initial pulse up to 2.5 s is possibly the brightest well-isolated pulse observed to date. A fine time resolution spectral analysis shows power-law decays of the peak energy from the onset of the pulse, consistent with models of internal synchrotron shock pulses. However, a strongly correlated power-law behavior is observed between the luminosity and the spectral peak energy that is inconsistent with curvature effects arising in the relativistic outflow.' Main text: 'The peak flux on the 64 ms timescale is 1300 +/- 100 photons s-1 cm-2 in the 10 - 1000 keV range and the fluence, integrated over the same energy range and a total duration of approximately 350 s, is (2.4 +/- 0.1) x 10-3 erg cm-2'; 'the energy of the spectral peak in the first time bin (T0 -0.1 to 0.0 s), 5400 +/- 1500 keV, is the second highest ever recorded'; detectors: 'the GBM bismuth germanate (BGO) detector #1 (300 keV - 45 MeV) and sodium iodide (NaI) detector #6 (8 - 300 keV)'.",
+   "why_it_matters": "(a) it is the citation behind every pile-up exclusion of this burst; (b) its Ep-L correlation result is explicitly INCONSISTENT with curvature/high-latitude effects - which is directly relevant to the project's HLE line (handoffs_HLE_Li2021.md), for the first pulse; (c) it used NaI 6 + BGO 1, two of our four approved detectors.",
+   "pdf": "Skills_training/Preece_2014_2014Sci34351P_bn130427324.pdf (NEW this session, arXiv 1311.5581 - the submitted-manuscript version, 15 pp)",
+   "prompt_sections": "Main text pp.3-8 (the 0-2.5 s time-resolved analysis, the Ep decay law, the Ep-L correlation) + the SOM pile-up discussion. This is FIRST-PULSE reading: valuable as frame, never as a reproduction target for our window.",
+   "module_future_tags": "prompt-timeresolved;synchrotron;pile-up-source;HLE-tension (Steps 6/7)"
+  },
+  {
+   "bibcode": "2014Sci...343...42A",
+   "first_author": "Ackermann, M.",
+   "year": 2014,
+   "title": "Fermi-LAT Observations of the Gamma-Ray Burst GRB 130427A",
+   "classification": "DEDICATED LAT paper - and the source that BOUNDS the pile-up interval",
+   "coverage_label_T9": "whole event including our pulse; joint GBM+LAT spectra in named intervals, with 4.5-11.5 s excluded",
+   "verbatim_anchor": "Fig. 3 caption: 'The GBM data between 4.5 and 11.5 s are not included because they are substantially affected by pulse pileup (SOM). ... An extra power law is statistically significant when fitting the data from T0 + 11.5 s to T0 + 33.0 s (SOM).'; Temporal section: 'The GBM light curves consist of an initial peak with a few-second duration, a much brighter multipeaked emission episode lasting ~10 s, and a dim, broad peak at T0 + 120 s, which fades to an undetectable level after ~300 s'; 'the record breaking 95 GeV photon at T0 + 244 s'; Interpretation: 'the 10 keV - 20 MeV fluence measured with the GBM in the 400 s following T0 is ~4.2 x 10-3 erg cm-2. The issue with pulse pileup and the uncertainties in the calibration of the GBM detectors contribute to a systematic error which we estimate to be less than 20%'; 'At the time of the GBM trigger, the GRB was 47.3 deg from the LAT boresight ... The Autonomous Repoint Request brought the burst to 20.1 deg from the LAT boresight ... It remained in the LAT field of view for 715 s'.",
+   "why_it_matters": "THE primary source that acquits our window of pile-up (the excluded interval is 4.5-11.5 s, ours is 119-178 s) AND the primary source that corroborates the D1 slew (47.3 deg -> 20.1 deg), independently of our poshist computation. Also the naming source for our component: 'a dim, broad peak at T0 + 120 s'.",
+   "pdf": "Skills_training/Ackermann_2014_2014Sci34342A_bn130427324.pdf (NEW this session, arXiv 1311.5623)",
+   "prompt_sections": "'Temporal characteristics' + Fig. 2/3 + the Interpretation fluence paragraph + the SOM pile-up appendix. DEFER the afterglow-modelling discussion.",
+   "module_future_tags": "prompt-LAT;pile-up-bound;slew-corroboration (Steps 1/6); module-future;afterglow"
+  },
+  {
+   "bibcode": "2015arXiv150204714B",
+   "first_author": "Bissaldi, Elisabetta",
+   "year": 2015,
+   "title": "Temporal properties of bright BGO GRBs detected by Fermi",
+   "classification": "conference eprint (NOT refereed - counted separately, see n_refereed_papers note), bright-BGO/LLE temporal sample",
+   "coverage_label_T9": "whole burst; per-energy-band durations",
+   "verbatim_anchor": "Table II row: '130427A 130427324 388741629.420 47.1 138.2 +/- 3.2 1 9+10+0 472.8 23.1 40.3' with columns defined in the text as 'the GRB name (column 1), the GBM trigger number and trigger time in Mission Elapsed Time (MET, columns 2 and 3), the angle to the LAT boresight theta (column 4), the GBM duration (T90) calculated in the 50-300 keV energy band and reported by [2] (column 5), the BGO and NaI detectors used for the temporal analysis (columns 6 and 7), and the detection significances in two BGO (columns 8 and 9) and in the LLE energy range (column 10).'",
+   "why_it_matters": "gives sigma_LLE = 40.3 (consistent with GCN 14471's ~40 sigma, INCONSISTENT with the 15 sigma Maraventano+2025 attributes to Ajello+2019 Table 2) and sigma_BGO(0.5-1 MeV) = 472.8 - the largest in their whole sample by a factor of 4. Their BGO choice is b1, ours is b1: agreement. Their NaI set 9+10+0 (n9, na, n0) differs from ours (n6, n9, na) - n0 vs n6.",
+   "pdf": "Skills_training/Bissaldi_2015_2015arXiv150204714B_bn130310840.pdf (already on corpus from bn130310840 - G2)",
+   "prompt_sections": "Sect. II + Table II. Their energy-dispersion note (BGO count-rate excess ~30-60%) is a Step-1 caveat worth reading.",
+   "module_future_tags": "prompt-temporal;LLE-significance;detector-selection-crosscheck"
+  }
+ ],
+ "papers_identified_but_deliberately_not_mined": {
+  "note": "surfaced by the queries, classified, and left for future modules or future sessions. Listed so the next worker does not re-discover them.",
+  "prompt_adjacent_worth_a_later_look": [
+   "2025ApJ...983..130L Liao+2025 - spectral-line search in bright Fermi/GBM GRBs; found via the trigger-digit query, so 130427324 IS in its sample. PUB-only (IOP), no arXiv. A null-result line search is low-value for us but it is a per-burst analysis of our trigger.",
+   "2024ApJ...974..120N Nuessle+2024 - progenitor classification from prompt+afterglow; 130427A in the feature table (PDF already in corpus).",
+   "2025arXiv251005239T Tiwari+2025 - eprint, multi-wavelength early-emission study using the trigger digits.",
+   "2013ApJ...771L..13T Tam+2013 - extra hard spectral component in the high-energy AFTERGLOW emission; boundary case between prompt and afterglow modules."
+  ],
+  "afterglow_sn_vhe_neutrino_catalogued_only": "see results/gcn/bn130427324/bn130427324_dossier.md Sect. 7 (BEYOND-PROMPT CONTEXT) - Perley+2014, van der Horst+2014, Laskar+2013, Kouveliotou+2013, De Pasquale+2016, Maselli+2014, Vestrand+2014, Xu+2013, Melandri+2014, Levan+2014, Becerra+2017, Abeysekara+2015, Aliu+2014, Gao+2013, Joshi+2016, and the Ruffini/ICRANet BdHN series."
+ },
+ "non_paper_external_frames": {
+  "GCN_14487_14579_KonusWind": {
+   "status": "PRELIMINARY by its own statement, plus an issued correction (14579). No Konus catalog paper covering this burst was found in the harvest.",
+   "t0_alias": "KW T0 = 07:47:09.501 UT = GBM T0 + 3.081 s. EVERY KW interval must be shifted by +3.081 s to reach GBM time.",
+   "SECOND_EPISODE_OUR_COMPONENT": "'Modelling the 3-channel time-averaged spectrum of the second emission episode (from T0+120 s to T0+250 s) by a power law with exponential cutoff model yields the photon index alpha~-1.6 and the peak energy Ep ~ 240 keV. The 20-1200 keV energy fluence measured at this phase of the event is ~9x10^-5 erg/cm2.' -> in GBM time [+123.08, +253.08] s. NOTE: no uncertainties are quoted (3-channel fit), and the '~' is the authors'.",
+   "band_ambiguity_recorded": "GCN 14579 corrects 'the total K-W energy fluence and the peak flux estimations' from 20-1200 keV to 20-10000 keV. It does NOT explicitly say whether the second-episode fluence (also printed as 20-1200 keV) is covered by the correction. Recorded as ambiguous; do not silently assume either band.",
+   "main_phase": "time-averaged T0->T0+18.688 s = GBM [+3.08,+21.77] s, 20 keV-15 MeV: Band alpha=-0.958+/-0.006, beta=-4.17+/-0.16, Ep=1028+/-8 keV, chi2=124/96. Peak (T0+7.680->7.936 s): CPL alpha=-0.57+/-0.02, Ep=1213+/-31 keV, chi2=63/84.",
+   "energetics": "main-phase fluence (2.68+/-0.01)e-3 erg/cm2, 16-ms peak flux (6.9+/-0.1)e-4 erg/cm2/s (20-10000 keV per the correction); E_iso ~ 8.5e53 erg, L_iso,max ~ 2.7e53 erg/s at z=0.34. Errors 1 sigma.",
+   "light_curve_verbatim": "'a huge multi-peaked emission complex started at ~T0, peaked at ~T0+8 s, and having a duration of ~20 s. The emission is seen up to ~12 MeV. This extremely bright phase of the event passes into a weaker decaying tail out to ~T0+120s, when the second emission episode started. It shows a FRED-like pulse, ~100 times weaker in a peak count rate than the initial complex. The decaying emission is detectable by K-W in the 20-1200 keV band out to ~T0+250s, when the instrument switched into the data readout mode.'"
+  },
+  "GBM_scat_v00": {
+   "source": "HEASARC fermi/data/gbm/triggers/2013/bn130427324/current/ (8 scat + tcat + bcat fetched 2026-08-12 to session scratchpad; NOT added to data/)",
+   "detectors": "b1 + n6 + n9 + na - IDENTICAL to our approved GBM set. b1 fitted 208.53-40511 keV ch 3-124; n6 8.090-908.26 keV ch 3-124; n9 7.983-905.32 keV ch 4-124; na 8.080-907.52 keV ch 5-124. Statistic: Castor C-STAT.",
+   "flnc_interval_s": [0.0, 254.976],
+   "flnc_band": "Ep = 824.99 +/- 5.45 keV, alpha = -1.0177 +/- 0.0018, beta = -2.8286 +/- 0.0324, A = 0.06497; REDCHSQ 7.2528 / dof 481; NRGFLNC = (1.4117 +/- 0.0018)e-3 erg/cm2 (10-1000 keV)",
+   "flnc_comp": "Ep = 867.16 +/- 4.98 keV, index = -1.0266 +/- 0.0017; REDCHSQ 7.7211 / 482",
+   "flnc_sbpl": "Ebreak = 513.68 +/- 5.66 keV (BREAK energy, not Ep), lambda_lo = -1.0955, lambda_hi = -2.5079, brkscale fixed 0.3; REDCHSQ 7.9160 / 481",
+   "flnc_plaw": "index = -1.4031 +/- 0.0006; REDCHSQ 184.91 / 483",
+   "pflx_interval_s": [8.192, 9.216],
+   "pflx_band": "Ep = 717.58 +/- 6.00, alpha = -0.4545 +/- 0.0060, beta = -3.1275 +/- 0.0448; REDCHSQ 4.2163 / 481",
+   "pflx_comp": "Ep = 805.53 +/- 4.99, index = -0.5130 +/- 0.0048; REDCHSQ 5.1816 / 482",
+   "pflx_sbpl": "Ebreak = 446.03 +/- 6.88; REDCHSQ 5.5084 / 481",
+   "T8_DELIBERATE_NON_RECOMPUTATION": "For sibling bursts we recompute AIC from REDCHSQ*dof. NOT DONE HERE: REDCHSQ = 7.25 for the best catalog model means the fit is unacceptable by a factor of 7, i.e. the chi2 is dominated by systematics (pile-up + calibration), not by model shape. Any dAIC from these rows would rank systematics, not physics. GCN 14473 says the same in words: 'systematic effects are very large and no single model gives an adequate fit'."
+  },
+  "GBM_bcat_v01": "T90 = 138.242 +/- 3.238 s from T90START = +4.096 s (50-300 keV) -> T90 interval [4.096, 142.338] s; T50 = 4.096 +/- 1.448 from +6.144 s; FLU(10-1000 keV) = 2.46198e-3 +/- 1.238e-6 erg/cm2; FLUB(50-300 keV) = 8.17183e-4 +/- 6.589e-7; PF64 = 1259.22 +/- 10.51 from +7.808 s; PF256 = 1210.15 +/- 4.85 from +7.744 s; PF1024 = 1051.86 +/- 2.22 from +7.488 s (ph/cm2/s, 10-1000 keV); background intervals (-285.42,-41.67) and (381.25,500.00) s",
+  "GBM_tcat_v02": "OBJECT=GRB130427324, RA_OBJ=173.136, DEC_OBJ=27.7129, ERR_RAD=0.0013, LOC_SRC='Swift, XRT', GCN_FLAG=No, TRIGSCAL=64, THETA=47.3092 deg, PHI=126.673 deg, RELIABLT=1.0, DET_MASK=00000010011100",
+  "GCN_14470_SwiftBAT": "T90(15-350 keV) = 162.83 +/- 1.36 s IN BAT FRAME; time-averaged spectrum T_bat-51.05 -> +223.50 s (= GBM [+0.0, +274.5] s) best fit by a SIMPLE POWER LAW, index 1.21 +/- 0.02; fluence(15-150 keV) = (3.1 +/- 0.03)e-4 erg/cm2; 1-s peak flux 331.0 +/- 4.6 ph/cm2/s from T_bat-44.25 s. Errors 90% CL. Verbatim caveat: 'there is a possibility that there was emission from this burst before it came into the BAT FoV at ~T-52 sec'. Light curve: 'BAT triggered (a 64-sec image trigger) at the beginning a long slow peak starting at ~T+0 sec, peaking at ~T+90 sec, and returning to baseline ~T+2000 sec' - in GBM time that peak is at ~+141 s, INSIDE our window.",
+  "GCN_14508_FermiLAT": ">100 MeV spectrum over the GBM T90 (T0+0 to 138 s): power law index -1.96 +/- 0.07; fluence (1.1 +/- 0.1)e-4 erg/cm2; >100 MeV peak flux (1.4 +/- 0.2)e-3 ph/cm2/s from 11.52-37.33 s; LAT localization RA 173.148 Dec +27.709 (0.068 deg 68% stat); extended emission BPL, early index -0.89 +/- 0.04, late -1.3 to -1.5, break 550-800 s; significant >100 MeV emission throughout the first orbit to ~735 s.",
+  "GCN_14503_Amati": "Ep,i = 1250 +/- 150 keV, E_iso = (1.05 +/- 0.15)e54 erg (1-10000 keV rest frame), derived from the PRELIMINARY GBM (14473) + Konus (14487) numbers at z=0.34. Coverage TOTAL. Superseded in practice by Ackermann+2014's E_gamma,iso = 1.40e54 erg (10 keV-100 GeV).",
+  "GCN_14590_RHESSI": "'RHESSI ... observed the prompt emission of GRB 130427A, with usable data over the approximate range 50 keV to 15 MeV, and a time resolution of 1us on each photon recorded.' It explicitly plots 'the slower, fainter peak of the GRB, about two minutes after the primary outburst' in 50-200 / 200-500 / 500-1000 keV. THE ONLY NON-FERMI INSTRUMENT WITH PUBLIC, USABLE, UNSATURATED DATA ON OUR PULSE besides Konus 3-channel. No refereed RHESSI analysis of it was found.",
+  "GCN_14484_SPIACS": "SPI-ACS (>80 keV) triggered at T0=07:47:06.36; 'The emission in SPI-ACS detector is significantly detectable at least up to 100 s after T0' - i.e. SPI-ACS coverage stops just short of our window.",
+  "GCN_14515_AGILE": "GRID: 'The emission detected by the AGILE-GRID mostly occurred between ~ t0 + 180 sec and t0 + 700 sec where t0 is 27 April 2013 at 07:47:15 UT' = GBM [+188.6, +708.6] s - i.e. STARTS ~10 s AFTER our window closes. Mean flux (8.0+/-2.7)e-6 ph/cm2/s (E>100 MeV), photon index 1.55 +/- 0.30 over a 12-h integration. MCAL: 'the emission lasts for about 20 s divided into three main episodes', off-axis >120 deg, no accurate spectral analysis possible.",
+  "GCN_14473_GBM_preliminary": "Band fit over T0+0.002 to T0+18.432 s: Ep = 830 +/- 5 keV, alpha = -0.789 +/- 0.003, beta = -3.06 +/- 0.02; fluence(10-1000 keV) in that interval = (1.975 +/- 0.003)e-3 erg/cm2; 1.024-s peak photon flux 1052 +/- 2 ph/cm2/s (8-1000 keV) from T0+7.48808 s. PRELIMINARY, and self-flagged: 'systematic effects are very large and no single model gives an adequate fit in this preliminary analysis.'"
+ },
+ "phase4_consensus_DERIVED_HERE": {
+  "rule": "Rossi+2026 Sect. 4.1 conservative procedure - take all instruments, inflate the error to cover the spread; never pick a favourite.",
+  "SECOND_EPISODE_OUR_COMPONENT": "ONE instrument only (Konus-Wind, 3-channel, GCN 14487): Ep ~ 240 keV, alpha ~ -1.6, over GBM [+123.08, +253.08] s. There is NOTHING to average against - no multi-instrument consensus is possible for our component, and the single available number carries no published uncertainty and comes from a 3-channel fit. Any comparison must treat it as an order-of-magnitude anchor, not a measurement.",
+  "FIRST_PULSE_time_integrated_Ep_for_context": "GBM catalog Band 824.99 +/- 5.45 keV over [0,255] s; GBM GCN prelim Band 830 +/- 5 keV over [0.002,18.432] s; Konus Band 1028 +/- 8 keV over [+3.08,+21.77] s (20 keV-15 MeV); Toffano+2021 Band 852 +/- 6.7 keV over [3,15] s; Aldowma+2026 Band 886 +/- 11 keV over [11.23,142.34] s; Preece+2016 Ep,fluence 784 +/- 9 keV. Spread 784-1028 keV with quoted errors of 5-11 keV -> the INTER-INSTRUMENT/INTER-INTERVAL spread (~240 keV) exceeds the statistical errors by a factor of ~25. Consensus for correlation-plane use: Ep(time-integrated, first-pulse-dominated) = 870 +/- 90 keV, error dominated entirely by the spread. THIS IS NOT OUR COMPONENT and must never be diffed against our window's Ep.",
+  "T90_frame_note": "GBM 138.242 +/- 3.238 s (50-300 keV, n6+n9+na) vs BAT 162.83 +/- 1.36 s (15-350 keV, BAT frame, MISSING the first 52 s of emission). The BAT value is LONGER despite missing the burst onset, because BAT's softer band and its slow late peak extend T95. Qin+2013's T90 ~ E^-0.20 does NOT reconcile these - the component coverage differs, which dominates. Do not report a GBM/BAT duration tension."
+ },
+ "coverage_label_T9": {
+  "our_window_s": [119.10713298805479, 178.44166725378912],
+  "label": "SECOND EMISSION EPISODE ONLY (the 'postburst' / 'FRED-like pulse at ~T0+120 s'). Our window contains NONE of the first pulse, none of the UPE/bright complex, and none of the piled-up interval.",
+  "names_this_component_carries_in_the_literature": [
+   "'a FRED-like pulse' at ~T0+120 s (GCN 14473, GBM)",
+   "'the second emission episode' from T0+120 to T0+250 s (GCN 14487, Konus, in KW time = GBM +123.08 to +253.08 s)",
+   "'the slower, fainter peak of the GRB, about two minutes after the primary outburst' (GCN 14590, RHESSI)",
+   "'a dim, broad peak at T0 + 120 s, which fades to an undetectable level after ~300 s' (Ackermann+2014)",
+   "'the postburst' (Du+2022)",
+   "the 'long slow peak ... peaking at ~T+90 sec' in BAT frame = GBM ~+141 s (GCN 14470)"
+  ],
+  "comparators": "GBM T90 [4.096, 142.338] s (50-300 keV); GBM catalog flnc interval [0, 254.976] s; Konus second episode [+123.08, +253.08] s; Aldowma+2026 [11.23, 142.34] s; AGILE-GRID [+188.6, +708.6] s (after us); LAT continuous through our window, 95 GeV photon at +244 s (after us).",
+  "consequence": "our 59.3 s window straddles T95 (142.34 s): 23.2 s inside T90, 36.1 s outside it. The Konus second-episode integration is 130 s long and starts 4 s after our window opens and ends 75 s after it closes - so even the ONE published number for our component integrates 2.2x more time than we do, including a decaying tail we do not see. If the pulse is hard-to-soft, our Ep should sit ABOVE the Konus ~240 keV."
+ },
+ "zero_paper_finding": "NOT APPLICABLE in the usual sense (476 refereed hits) - but the FINDING for our component is nearly the mirror image: despite being the most-studied GRB of the Fermi era, the second emission episode [119, 178] s has exactly ONE dedicated refereed analysis (Du+2022, whose PDF we cannot obtain) and ONE published spectral measurement (Konus 3-channel, no errors, GCN 14487). Three separate refereed papers EXCLUDED the burst entirely (Ravasio+2019 pile-up; Duan+2020 brightness; Maraventano+2025 saturation) and two more analysed only the first pulse (Preece+2014; Toffano+2021). The brightest GRB in the GBM catalogue has an essentially unstudied second pulse.",
+ "pending_shared_csv_rows": {
+  "note": "This worker writes NO shared CSV. The parent should apply these. Columns of corpus_index.csv: filename,bibcode,arxiv,theme,cited_by_bursts,n_bursts,read,read_date",
+  "Skills_training/corpus_index.csv": [
+   {"action": "ADD ROW (new PDF downloaded this session)", "row": "Preece_2014_2014Sci34351P_bn130427324.pdf,2014Sci...343...51P,1311.5581,prompt-timeresolved;synchrotron-shocks;pile-up-source;Ep-L-correlation;HLE-tension,bn130427324,1,N,"},
+   {"action": "ADD ROW (new PDF downloaded this session)", "row": "Ackermann_2014_2014Sci34342A_bn130427324.pdf,2014Sci...343...42A,1311.5623,prompt-LAT;pile-up-interval-bound;slew-corroboration;95GeV-photon,bn130427324,1,N,"},
+   {"action": "ADD ROW (new PDF downloaded this session)", "row": "Li_2023_2023ApJ94510L_bn130427324.pdf,2023ApJ...945...10L,1910.12615,prompt-timeresolved;CPL+BB;DIC;BdHN-framework,bn130427324,1,N,"},
+   {"action": "ADD ROW (new PDF downloaded this session)", "row": "Du_2025_2025ApJ987124D_bn130427324.pdf,2025ApJ...987..124D,2505.06009,main-vs-second-burst;BB-population;bayesian-timeresolved,bn130427324,1,N,"},
+   {"action": "ADD ROW (NO PDF - fetch failed; index it so nobody re-runs the fetch)", "row": "NO_PDF_iop_captcha_no_arxiv,2022ApJ...940...48D,,main-burst-vs-POSTBURST;GRB130427A-second-episode;thermal-vs-nonthermal;CORE-READING,bn130427324,1,N,", "note": "HIGHEST-VALUE missing paper for this burst. IOP Radware captcha on both the DOI-PDF and the ADS PUB_PDF gateway; ADS esources list has no EPRINT. Needs institutional access or an author request."},
+   {"action": "UPDATE cited_by_bursts (bibcode already indexed, trigger missing)", "bibcode": "2026MNRAS.546ag060A", "current_state": "PDF Aldowma_2026_2026MNRAS546ag060A_bn110721200.pdf is on disk but has NO ROW in corpus_index.csv - the index lags the directory", "row_if_added": "Aldowma_2026_2026MNRAS546ag060A_bn110721200.pdf,2026MNRAS.546ag060A,2510.16475,joint-GBM-LAT-LLE;Amati-Yonetoku;Band+BB,bn110721200;bn130427324,2,N,"},
+   {"action": "UPDATE cited_by_bursts += bn130427324, n_bursts+=1", "bibcode": "2025A&A...700A..88M", "existing_row_head": "Macera_2025_2025AA700A88M_bn180703876.pdf"},
+   {"action": "UPDATE cited_by_bursts += bn130427324, n_bursts+=1", "bibcode": "2025A&A...697A.161M", "existing_row_head": "Maraventano_2025_2025AA697A161M.pdf"},
+   {"action": "UPDATE cited_by_bursts += bn130427324, n_bursts+=1", "bibcode": "2024ApJ...970...67D", "existing_row_head": "Deng_2024_2024ApJ97067D.pdf"},
+   {"action": "UPDATE cited_by_bursts += bn130427324, n_bursts+=1", "bibcode": "2024ApJ...972....1L", "existing_row_head": "Li_2024_2024ApJ9721L.pdf"},
+   {"action": "UPDATE cited_by_bursts += bn130427324, n_bursts+=1", "bibcode": "2019ApJ...878...52A", "existing_row_head": "Ajello_2019_2019ApJ87852A.pdf"},
+   {"action": "UPDATE cited_by_bursts += bn130427324, n_bursts+=1", "bibcode": "2019A&A...625A..60R", "existing_row_head": "Ravasio_2019_2019AA625A60R.pdf", "note": "currently cited_by 'project-core;two-break;bn160625945' - this burst belongs there as an EXCLUSION case"},
+   {"action": "UPDATE cited_by_bursts += bn130427324, n_bursts+=1", "bibcode": "2021A&A...652A.123T", "existing_row_head": "Toffano_2021_2021AA652A123T.pdf", "note": "currently cited_by 'project-core;two-break'"},
+   {"action": "NO CHANGE NEEDED (bn130427324 already listed)", "bibcodes": ["2020ApJ...890...90D", "2016ApJ...821...12P"]},
+   {"action": "FLAG (not a corpus edit)", "note": "Skills_training/Tong_2022_2022RNAAS6115T_bn130310840.pdf appears in a glob but PyMuPDF reports 'no such file' - a broken/dangling entry. Not touched by this worker."}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {
+    "row": "bn130427324,130427A,87,z=0.3399+/-0.0002 (VLT/X-shooter GCN 14491; also 0.34 GCN 14455 and 0.338+/-0.002 GCN 14478),738,476",
+    "columns": "trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed",
+    "note": "ads_hits/ads_refereed are the full-text 'GRB 130427A' totals, NOT the number harvested (15 papers mined). Recording the true denominator is the honest choice; the scoping rule lives in the harvest manifest."
+   }
+  ]
+ },
+ "issues": [
+  "Du+2022 (2022ApJ...940...48D) - the ONLY dedicated analysis of our exact component - is UNREADABLE: IOP Radware captcha on both https://iopscience.iop.org/article/10.3847/1538-4357/ac94d2/pdf and the ADS link_gateway PUB_PDF, and ADS lists no arXiv eprint. All statements about it here come from the ADS abstract. This is the single biggest gap in this burst's literature frame.",
+  "Liao+2025 (2025ApJ...983..130L) contains our trigger digits and was NOT fetched (PUB-only, IOP, same captcha risk; judged low-value - a null spectral-line search). Recorded as a deliberate omission.",
+  "476 refereed papers mention this burst; 15 were mined. The scoping rule is stated in scope_declaration. Anyone treating this harvest as exhaustive will be wrong.",
+  "The LLE detection significance is quoted as ~40 sigma (GCN 14471), 40.3 (Bissaldi+2015 Table II) and 15 sigma (Maraventano+2025, attributing it to Ajello+2019 Table 2). Recorded as an unresolved inconsistency (T5); not adjudicated here.",
+  "Konus's second-episode fluence band (20-1200 vs 20-10000 keV) is genuinely ambiguous after the GCN 14579 correction. Recorded, not guessed.",
+  "The GBM spectral catalog's best model has REDCHSQ = 7.25/481. AIC was deliberately NOT recomputed from the catalog for this burst (T8 judgement call, documented) - unlike the sibling-burst procedure.",
+  "Phase 1b (Scholar) was not used; the trigger conditions did not apply. Recorded rather than silently skipped.",
+  "No refereed analysis of the RHESSI data on our pulse was found, although GCN 14590 shows RHESSI resolved it in three bands and states the data are public. A genuine, checkable gap."
+ ]
+}

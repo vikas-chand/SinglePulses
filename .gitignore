@@ -145,3 +145,6 @@ paper/upload_*
 # ---- burst records are repo products: track GCN dossiers + step-1 QC ----
 !results/gcn/
 !results/qc/
+
+# gtburst/tool scratch artifacts dumped at repo root (32-char hex names, xml siblings)
+/[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*

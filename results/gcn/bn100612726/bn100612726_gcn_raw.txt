@@ -1,0 +1,33 @@
+# bn100612726 = GRB 100612A — GCN circular record: HONEST ABSENCE (n_circulars = 0)
+# Fetched 2026-08-12 by the doc-layer worker (Step 0, GCNIntelligence.md).
+#
+# Fetch attempts (classic per-GRB archive):
+#   https://gcn.gsfc.nasa.gov/other/100612.gcn3   -> HTTP 404
+#   https://gcn.gsfc.nasa.gov/other/100612A.gcn3  -> HTTP 404
+#   https://gcn.gsfc.nasa.gov/other/100612B.gcn3  -> HTTP 404
+#   https://gcn.gsfc.nasa.gov/other/100612C.gcn3  -> HTTP 404
+#
+# Fallback JSON-API scan: https://gcn.nasa.gov/circulars/<id>.json for id 10815..10885
+# (2010-06-05 -> 2010-06-25; brackets the 2010-06-12 17:26:06 UT trigger on both sides).
+# Gaps 10857/10858 (JSON fetch failed) were re-checked in the classic archive
+# (gcn.gsfc.nasa.gov/gcn3/1085{7,8}.gcn3): both are GRB 100614A / GRB 100615A
+# Swift/UVOT circulars — no 100612 content.
+#
+# The ONLY circular in the range mentioning "100612" is GCN 10859, and it concerns a
+# DIFFERENT trigger on the same day (bn100612038, 00:55:05 UT), not ours (17:26:06 UT):
+#
+# --- GCN 10859 (verbatim body, fetched from https://gcn.nasa.gov/circulars/10859.json) ---
+# SUBJECT: Fermi GBM trigger 100612038 is not a GRB
+#
+# P. N. Bhat (UAH), reports on behalf of
+# the Fermi Gamma-ray Burst Monitor Team:
+#
+# "The Fermi Gamma-ray Burst Monitor (GBM) trigger 100612038 at 00:55:05.65 UT
+# on 12 June 2010, tentatively classified as a GRB, is in fact not due
+# to a GRB. This trigger is due to M 2.0 class Solar Flare."
+# --- end ---
+#
+# CONCLUSION: zero GCN circulars were ever issued for bn100612726. Recorded as a
+# result, not an error (GCNIntelligence.md "honest absence" rule). The instrument
+# story for this burst therefore comes from the IPN catalog (Hurley et al. 2013,
+# ApJS 207, 39) and the refereed literature — see bn100612726_dossier.md.

@@ -1,0 +1,48 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP2, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# meta: !!omap
+# - {trigger: bn101126198}
+# - {grb_name: GRB 101126A (literature designation; no GCN circular assigned a letter - see dossier)}
+# - {trigtime_met: 312439469.47732}
+# - src_window: [-3.945040559440514, 39.52519160839168]
+# - {src_window_source: 'results/background_intervals.ecsv (Vikas Chand, 2026-07-19T22:18:36Z, human_gui, accepted_suggestion)'}
+# - {approved_detectors: 'n6,n7,n8,nb,b1'}
+# - {det_angles_deg: 'n7 21.86, nb 35.66, n8 38.06, n6 44.20, b1 37.90'}
+# - {lle_present: false}
+# - {lat_present: false}
+# - {trigdat: 'MISSING (note, not blocker - poshist glg_poshist_all_101126_v00.fit present, geometry covered)'}
+# - {tte_files: 5}
+# - {cspec_pha_files: 5}
+# - {rsp2_files: 5}
+# - {d1_theta_check: 'N/A (no gll_* files; HAS_LAT=False; all five approved detectors ship multi-matrix .rsp2, so the D1 single-matrix
+#     off-axis test does not apply)'}
+# - {d2_naming_check: 'globbed glg_cspec_<det>_*.rsp* exactly as scripts/10::find_rsp does - no false NO-RSP2 alarm possible'}
+# - {d4_note: 'T90_START=+0.004 s (GBM catalog, 50-300 keV) - trigger IS the burst start, no pre-trigger episode; zero circulars so no
+#     foreign interval to import. BUT the stamped window closes at +39.525 s while the catalog T90 interval runs to +43.84 s: we truncate
+#     ~4.3 s of faint tail (Lu+2018 has a real Band bin 27.14-40.83 s; Yu+2019 a block 31.63-40.00 s at S=3.5). Recorded as a frame for
+#     the P3 diff, not a defect.'}
+# - {accepted_stage1_flag: 'results/human_review_qc_flags.txt line 3: bn101126198 source[-3.94504,39.5252]_overruns_bkg_gap b1[gap -3.5063,32.4937]
+#     2026-07-19T22:18:36Z -- the b1 POST-burst background starts at +32.49 s, INSIDE the source window. Human-accepted at approval time;
+#     this is a DECISION, not a new QC finding, and is not re-flagged here.'}
+# - {external_corroboration: 'Yu+2019 (ApJ 886, 20) Table 1 independently used detectors (n7)n8nbb1, source -5..40 s, backgrounds -30..-15
+#     and 50..80 s - within ~1 s of our stamped window and inside our background windows. GBM catalog SCAT mask 00000001100101 = n7,n8,nb,b1.'}
+# - {watch_item: 'Crupi+2023 DeepGRB reports a 112.13 s NN excess for this trigger (vs T90=43.8 s). If low-level emission really extends
+#     past ~45 s the post-burst background windows (n6 45.5, n8 46.5, nb 48.5, n7 54.5 s) could absorb signal - one look at the background
+#     residual trend during Step 5 is warranted. Not actionable at Step 1.'}
+# - {verdict: 'PASS (all 5 approved detectors resolve to 12-matrix .rsp2 spanning -122.882/+475.144 s, which brackets both the stamped
+#     source window and every stamped background window; no LLE/LAT so no D1 exposure)'}
+# - {checked_by: 'Claude (doc-layer worker), 2026-08-12'}
+# schema: astropy-2.0
+DETECTOR RSP2 N_MATRICES RSP_T0 RSP_T1 COVERS_SRC
+n6 glg_cspec_n6_bn101126198_v00.rsp2 12 -122.882 475.144 True
+n7 glg_cspec_n7_bn101126198_v00.rsp2 12 -122.882 475.144 True
+n8 glg_cspec_n8_bn101126198_v00.rsp2 12 -122.882 475.144 True
+nb glg_cspec_nb_bn101126198_v00.rsp2 12 -122.882 475.144 True
+b1 glg_cspec_b1_bn101126198_v00.rsp2 12 -122.882 475.144 True

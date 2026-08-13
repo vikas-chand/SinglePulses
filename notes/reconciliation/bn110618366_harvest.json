@@ -1,0 +1,168 @@
+{
+ "burst": "bn110618366",
+ "grb_name": "GRB 110618A",
+ "harvest_utc": "2026-08-12T18:05:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form ADS query; Phase 1b Scholar-note web bridge; 3b latest-first; 3c prompt-scope; Phase 4 frame-align + multi-instrument consensus; traps T1/T3/T4/T8/T9 exercised) + GCNIntelligence.md",
+ "identity": {
+  "trigger": "bn110618366 / MET TRIGTIME 330079658.383098",
+  "trigger_utc": "2011-06-18 08:47:36.3831",
+  "position": "RA 176.808, Dec -71.688, err_rad 0.67 deg, LOC_SRC=IPN (tcat v02) - the GBM position was replaced by the IPN box; Hurley+2017 later refined the box centre to 176.624 / -72.300 (1.530 deg2)",
+  "redshift": "NONE - never measured. Only follow-up on record is GCN 12081 (SMARTS/CTIO I-band, +113 h, 9x5-min tiles covering ~6% of the 1.4 deg2 IPN box, no new source vs DSS). No X-ray/radio/host observation exists.",
+  "name_source": "three independent confirmations: (1) GCN 12077 'GRB110618A' with error-box centre 176.808/-71.688 identical to our tcat/bcat; (2) von Kienlin+2014 Table 6 verbatim 'bn110618366 | GRB 110618A | 08:47:36.3831 | 176.8 | -71.7 | 0.7 | IPN | 14 | 2048 | 47-291 | Mo, K, IA, S, Me, A'; (3) Golkhou+2015 Table 2 verbatim '110618366 | 110618A'",
+  "same_day_contamination_guard": "GRB 110618B = bn110618760 is a DIFFERENT GBM burst the same day at 18:14:16.3073 UT, RA/Dec 147.1/-7.5 (von Kienlin+2014 Table 6, row immediately below ours; also the row below ours in Hurley+2017 Table 2) - 9.5 h later, ~80 deg away. Nothing from bn110618760 may enter this record. Secondary guard: web/Scholar term-space for this string shape is dominated by the ultraluminous GRB 110918A (September) - a different event; nothing from it was used."
+ },
+ "gcn_circulars": {
+  "n_circulars": 3,
+  "archive": "https://gcn.gsfc.nasa.gov/other/110618.gcn3 -> results/gcn/bn110618366/bn110618366_gcn_raw.txt",
+  "ids": [12077, 12078, 12081],
+  "gbm_own_circular": "NONE - tcat v02 GCN_FLAG='No'; the burst entered the public record via the IPN, not via GBM"
+ },
+ "ads_queries": [
+  {"form": "full:\"GRB 110618A\"", "numFound": 2, "refereed_hits": 0, "note": "both are GCN newsletters (2011GCN.12078....1G, 2011GCN.12081....1C)"},
+  {"form": "full:\"GRB110618A\"", "numFound": 1, "refereed_hits": 0, "note": "2011GCN.12077....1H (12077 writes the name unspaced)"},
+  {"form": "full:\"bn110618366\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"110618366\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"GRB110618366\"", "numFound": 1, "refereed_hits": 1, "note": "2017ApJS..229...31H Hurley+2017 - the ONLY refereed full-text hit"},
+  {"form": "full:\"330079658\" (trigger MET)", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"110618A\" / body:\"110618A\" / full:\"GRB 110618\"", "numFound": "2 / 0 / 0", "refereed_hits": 0},
+  {"form": "full:\"GRB110618_T31673\" (Konus-Wind internal designation)", "numFound": 0, "refereed_hits": 0},
+  {"form": "title:\"Konus-Wind\" AND title:catalog AND doctype:article", "numFound": 4, "refereed_hits": 4, "note": "membership check: all four are short-GRB (2016ApJS..224...10S, 2025PASA...42...63L) or known-redshift (2017ApJ...850..161T, 2021ApJ...908...83T) catalogs - ours is long with no z, so it is in NONE of them. The GCN 12078 Konus values are therefore preliminary AND unsuperseded."}
+ ],
+ "scholar_note_bridge": {
+  "channel": "WebSearch used as the Phase-1b Scholar-style finding channel (no Scholar API; no browser agent available in this worker). Recorded honestly: this is a web-index bridge, not scholar.google.com.",
+  "trigger_condition": "Phase 1b rule 1 - the ADS four-form query came back thin (1 refereed hit, catalog-only)",
+  "queries": [
+   "\"GRB 110618A\" spectral analysis Fermi GBM Konus prompt emission"
+  ],
+  "found": "nothing beyond GCN 12078 (the KW circular, returned as gcn.nasa.gov/circulars/12078.txt). Result set was dominated by GRB 110918A / GRB 090618 / GRB 110731A - different bursts.",
+  "resolved_via_ads": "n/a - no new candidate to resolve. The bridge produced a NULL result, recorded as a result."
+ },
+ "corpus_dedup_G2": {
+  "method": "PyMuPDF full-text scan of all 169 PDFs in Skills_training/ for the tokens 110618366 / 110618A / 110618, plus bibcode lookup in Skills_training/corpus_index.csv (READ ONLY - this worker writes no shared CSV)",
+  "hits_in_existing_corpus": ["vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf (pp. 55/84/114/144)", "Golkhou_2015_2015ApJ81193G_bn120119170.pdf (p. 24)"],
+  "re_downloads_avoided": 2,
+  "corrupt_corpus_files_found": [
+   "Skills_training/Hurley_2017_2017ApJS22931H_bn101126198.pdf - NOT a PDF: it is a Radware Bot Manager captcha HTML page (14371 bytes). A sibling worker's failed IOP fetch. NOT touched by this worker (not mine to overwrite) - flagged for the parent.",
+   "Skills_training/Lu_2022_2022ApJ94199L_bn120102095.pdf - same failure mode (Radware captcha HTML)."
+  ]
+ },
+ "n_refereed_papers": 3,
+ "papers": [
+  {
+   "bibcode": "2017ApJS..229...31H",
+   "first_author": "Hurley, K.",
+   "year": 2017,
+   "title": "The InterPlanetary Network Supplement to the Second Fermi GBM Catalog of Cosmic Gamma-Ray Bursts",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "catalog-member / localization only - no spectral or temporal analysis of our burst",
+   "verbatim_anchor": "VizieR J/ApJS/229/31 (the paper's own machine-readable tables): Table 2 '2011-06-18T08:47:36 | GRB | 110618366 | AGI,INT,Kon,MES,MO,Swi | flag d'; Table 5 annuli '235.6579 -19.4376 62.3194 0.3938 | 273.5523 -24.9346 68.3847 0.6058'; Table 6 box '176.624 -72.300 | corners 174.830 -72.015 / 177.508 -73.793 / 175.925 -70.794 / 178.477 -72.566 | aGBM 579 | aIPN 1.530 | ratio 378.0'. Flag d = 'Burst was outside the coded field of view of the BAT, and not localized by it' (ReadMe Note 4).",
+   "pdf": "FETCH FAILED - IOP serves a Radware bot-manager captcha to curl for both https://iopscience.iop.org/article/10.3847/1538-4365/229/2/31/pdf and the ADS PUB_PDF gateway; the paper has NO arXiv eprint (ADS identifier list = DOI + bibcode only). No PDF was written for this burst. Values above taken from the paper's published machine-readable tables at CDS.",
+   "prompt_sections": "none - the paper carries no prompt spectroscopy. Relevant content = the three table rows above (position + which instruments detected the burst). Sect. 4 (localization-accuracy comparison, GBM vs IPN) is the only narrative worth a skim, and only if the position matters.",
+   "module_future_tags": "module-future;afterglow (localization quality is what gated all follow-up on this burst)"
+  },
+  {
+   "bibcode": "2015ApJ...811...93G",
+   "first_author": "Golkhou, V. Z.",
+   "year": 2015,
+   "title": "The Energy-Dependence of GRB Minimum Variability Timescales (title verified from the PDF title page and ADS; NOT 'On the Rapid Variability of GRBs', which is Golkhou & Butler 2014 Paper I)",
+   "doctype": "article (REFEREED)",
+   "classification": "sample-member row (minimum-variability-timescale catalog; 938 Fermi/GBM GRBs prior to 2012 July 11)",
+   "verbatim_anchor": "Table 2 ('GRB Minimum Timescales'), PDF p. 24, word-coordinate verified: '110618366 | 110618A | 12.874 +/- 0.363 | 1.755 +/- 0.152 | 163.843 +/- 11.406 | -59.600 | 241.866 | 0.54 | 0.07 | ...' = dt_min, dt_S/N, T90, T_start_100, T_stop_100, sigma_X(tmin), sigma_X(tS/N), z(none)",
+   "definition_note_T3": "dt_min = the timescale at which the Haar-wavelet scaleogram sigma_X(dt) departs from the linear (uncorrelated-noise) rise, fitted with a broken power law - NOT a pulse width and NOT our MVT estimator; dt_S/N is the Poisson-noise floor, the shortest MEASURABLE timescale. Band: light curves extracted at 200 microsecond binning over the FULL 8 keV - 1 MeV GBM range (they also work in 4 log-spaced channels 8-26 / 26-89 / 89-299 / 299-1000 keV, but Table 2 is the full-band value). Copy the definition AND the band with the number or the diff is meaningless.",
+   "not_independent_note": "their T90 column is INHERITED from von Kienlin+2014 Table 7 (stated in their Sect. 2: T90 estimates used for background windows come from 'Table 7 of von Kienlin et al. (2014)') - which is why 163.843 +/- 11.406 matches to 3 decimals. Do NOT count it as an independent duration measurement.",
+   "internal_flag_T5": "dt_S/N = 1.755 +/- 0.152 is numerically IDENTICAL to the neighbouring row (110613631). Recorded as-is and flagged as a possible quantization/duplication artifact - re-verify at source before using it in any correlation.",
+   "pdf": "Skills_training/Golkhou_2015_2015ApJ81193G_bn120119170.pdf (already in corpus from bn120119170 - G2: not re-downloaded, not re-named)",
+   "prompt_sections": "Sects. 2-3 ONLY (dt_min definition + estimator) - the part we must match to diff. Defer Sects. 5-6 (population trends, z-dependence).",
+   "module_future_tags": "prompt-temporal (Step 7); module-future;cosmo (their z-corrected variability-luminosity arm)"
+  },
+  {
+   "bibcode": "2014ApJS..211...13V",
+   "first_author": "von Kienlin, A.",
+   "year": 2014,
+   "title": "The Second Fermi GBM Gamma-Ray Burst Catalog: The First Four Years",
+   "doctype": "article (REFEREED)",
+   "classification": "catalog-member (4 printed table rows verified in the PDF)",
+   "verbatim_anchor": "Table 6 p.55 'bn110618366 | GRB 110618A | 08:47:36.3831 | 176.8 | -71.7 | 0.7 | IPN | 14 | 2048 | 47-291 | Mo, K, IA, S, Me, A'; Table 7 p.84 (50-300 keV) 'bn110618366 | 2+10 | 163.843 +/- 11.406 | -3.072 | 51.201 +/- 2.290 | 16.384'; Table 8 p.114 (10-1000 keV) '6.24E-05 +/- 1.70E-07 | 15.26 +/- 3.62 | 13.20 +/- 0.81 | 9.61 +/- 0.60'; Table 9 p.144 (50-300 keV) '3.37E-05 +/- 8.90E-08 | 5.21 +/- 1.13 | 4.30 +/- 0.48 | 3.06 +/- 0.21'",
+   "frame_note_T9": "durations + fluences use detector set '2+10' = n2+na (NO BGO); the GBM SPECTRAL catalog (scat v02) uses n2+na+b0; OUR approved set is n2+b0. Three different detector sets for one burst. Coverage of every row = TOTAL catalog emission, vs our MAIN-PULSE-truncated window [-4.876,+60.636] s.",
+   "pdf": "Skills_training/vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf (already in corpus from bn110920546 - G2: not re-downloaded, not re-named)",
+   "prompt_sections": "Sect. 2 (duration + fluence band definitions, detector-selection rule) and the four table rows. Nothing else is per-burst.",
+   "module_future_tags": "prompt-catalog-frame (Steps 6/7 baseline)"
+  }
+ ],
+ "non_paper_external_frames": {
+  "GCN_12078_KonusWind": {
+   "status": "PRELIMINARY by its own statement; unsuperseded (no KW catalog covers this burst)",
+   "t0_alias": "KW T0 = 08:47:53.867 UT = GBM T0 + 17.484 s - EVERY KW interval must be shifted by +17.484 s to reach GBM time",
+   "band": "20 keV - 5 MeV; errors 90% CL (GBM catalog errors are 1 sigma - do not diff error bars without converting)",
+   "values": [
+    "light curve: 'a single long hard pulse with unusually gentle onset and a total duration of ~250 s'; 'emission is seen up to ~5 MeV, a hard-to-soft spectral evolution is noticeable in the course of the event'",
+    "fluence (1.1 +/- 0.1)e-4 erg/cm2 [coverage TOTAL]",
+    "256-ms peak flux (2.0 +/- 0.2)e-6 erg/cm2/s from T0+1.280 s = GBM +18.76 s",
+    "time-integrated CPL: alpha = -1.40 (-0.08,+0.10), Ep = 569 (-160,+304) keV, chi2 = 78.1/73, T0 -> T0+229.632 s = GBM [+17.48,+247.12] s [coverage: peak + full tail, MISSES the rise]",
+    "peak CPL: alpha = -1.12 +/- 0.06, Ep = 524 (-96,+138) keV, chi2 = 88.7/73, T0 -> T0+8.448 s = GBM [+17.48,+25.93] s [coverage: peak only]"
+   ]
+  },
+  "GBM_scat_v02": {
+   "source": "HEASARC fermi/data/gbm/triggers/2011/bn110618366/current/ (8 scat files fetched 2026-08-12 to session scratchpad; NOT added to data/)",
+   "detectors": "b0 + n2 + na; n2 8.229-902.57 keV ch4-124, na 8.080-907.52 keV ch5-124, b0 250.77-42527 keV ch2-125",
+   "flnc_interval_s": [-7.168, 97.28],
+   "pflx_interval_s": [16.384, 17.408],
+   "flnc_band": "Ep = 436.47 (-46.79,+50.79) keV, alpha = -1.0800 (-0.0383,+0.0429), beta = -2.1278 (-0.1050,+0.0802), A = 0.0126548; REDCHSQ 1.19893 / dof 361; NRGFLNC = (6.372 +/- 0.109)e-5 erg/cm2",
+   "flnc_comp": "Ep = 523.85 (-34.20,+40.35) keV (nuFnu peak, pivot fixed 100 keV), index = -1.1197 (-0.0278,+0.0288); REDCHSQ 1.22579 / dof 362",
+   "flnc_sbpl": "Ebreak = 166.37 (-33.56,+53.48) keV (BREAK energy, not Ep), lambda_low = -1.1049, lambda_high = -1.9872, brkscale fixed 0.3; REDCHSQ 1.21273 / dof 361",
+   "flnc_plaw": "index = -1.5781 +/- 0.007; REDCHSQ 2.02833 / dof 363",
+   "pflx_band": "Ep = 287.98 (-81.3,+238.2), alpha = -0.882, beta = -1.865; REDCHSQ 1.01943 / dof 361",
+   "pflx_comp": "Ep = 497.07 (-139.6,+296.1), index = -1.062; REDCHSQ 1.06940 / dof 362",
+   "pflx_sbpl": "Ebreak = 156.71 (-58.3,+102.0), lambda_low = -1.049, lambda_high = -1.915; REDCHSQ 1.01695 / dof 361",
+   "pflx_plaw": "index = -1.5524 +/- 0.035; REDCHSQ 1.04144 / dof 363",
+   "T8_recomputation_DERIVED_HERE": "the catalog stores REDCHSQ+CHSQDOF, not a likelihood. chi2 = REDCHSQ*dof; AIC = chi2 + 2k computed in this harvest (NOT published): flnc Band 440.81 < SBPL 445.80 < Comp 449.74 << PL 740.29 (dAIC Band-SBPL = 4.99, Comp-Band = 8.93 -> Band wins the catalog frame but NOT by our dAIC>=10 bar); pflx SBPL 375.12 < Band 376.02 < PL 382.04 < Comp 393.12 (in a 1.024 s slice even a power law sits within dAIC 7 of the best model)."
+  },
+  "GBM_tcat_v02": "OBJECT=GRB110618366, RA_OBJ=176.808, DEC_OBJ=-71.688, ERR_RAD=0.67, LOC_SRC=IPN, GCN_FLAG=No, TRIGSCAL=2048, THETA=145.234 deg, PHI=75.5235 deg, RELIABLT=1.0, DET_MASK=10100000000000"
+ },
+ "phase4_consensus_DERIVED_HERE": {
+  "rule": "Rossi+2026 Sect. 4.1 conservative procedure - take all instruments, inflate the error to cover the spread; never pick a favourite",
+  "Ep_CPL_time_integrated": "GBM flnc Comp 523.9 (+40/-34) keV over [-7.2,+97.3] s vs Konus 569 (+304/-160) keV over [+17.5,+247.1] s -> AGREE within errors despite disjoint coverage and 40 MeV vs 5 MeV ceilings -> consensus 545 +/- 60 keV",
+  "Ep_Band_GBM_only": "436 +/- 50 keV (single instrument; quoted with its own error, no inflation)",
+  "fluence_is_NOT_a_tension": "KW 1.1e-4 erg/cm2 (20 keV-5 MeV, ~250 s) vs GBM 6.24e-5 (10-1000 keV, catalog interval) / 6.37e-5 (Band, -7.2->+97.3 s). The factor ~1.7 is COVERAGE + BAND, not disagreement. Do not report a GBM/KW fluence tension."
+ },
+ "coverage_label_T9": {
+  "our_window_s": [-4.876, 60.636],
+  "label": "MAIN PULSE - rise + peak + early decay; late decay tail truncated at +60.6 s",
+  "comparators": "GBM T90 = 163.843 +/- 11.406 s from -3.072 s (50-300 keV, n2+na); GBM T50 = 51.201 +/- 2.290 s from +16.384 s; Golkhou T100 = [-59.600, +241.866] s; Konus total ~250 s; GBM scat flnc interval [-7.168, +97.280] s",
+  "consequence": "our window is 65.5 s of a >=164 s (T90) / ~300 s (T100) event. It contains the peak and BOTH catalog peak-flux intervals but excludes the entire soft tail. With the Konus-reported hard-to-soft evolution, catalog time-integrated spectra are expected to be SOFTER than our window integrates to; no published number may be diffed without this re-alignment."
+ },
+ "zero_paper_finding": "NO dedicated analysis paper of GRB 110618A exists. Despite being 'extremely intense' (GCN 12077; KW fluence 1.1e-4 erg/cm2, GBM PF64 = 15.26 ph/cm2/s in 10-1000 keV), it was never analysed individually - the cost of an IPN-only 1.5 deg2 localization with no counterpart and no redshift. All three refereed hits are catalog/sample rows. This is a recorded finding, not a search failure.",
+ "pending_shared_csv_rows": {
+  "note": "This worker writes NO shared CSV. The parent should apply these.",
+  "Skills_training/corpus_index.csv": [
+   {
+    "action": "ADD ROW (bibcode absent from the index today, though the PDF is already on disk from a sibling burst)",
+    "row": "Golkhou_2015_2015ApJ81193G_bn120119170.pdf,2015ApJ...811...93G,1501.05948,prompt-temporal;MVT;variability-catalog,bn120119170;bn110618366,2,N,",
+    "collision_warning": "a parallel bn120119170 worker may propose the same new row - MERGE cited_by_bursts, do not duplicate"
+   },
+   {
+    "action": "ADD ROW (bibcode absent from the index today; PDF already on disk from a sibling burst)",
+    "row": "vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf,2014ApJS..211...13V,1401.5080,gbm-burst-catalog;durations;fluence,bn110920546;bn110618366,2,N,",
+    "collision_warning": "a parallel bn110920546 worker may propose the same new row - MERGE cited_by_bursts, do not duplicate"
+   },
+   {
+    "action": "ADD ROW (no PDF - fetch failed; index the paper anyway so nobody re-runs the fetch)",
+    "row": "NO_PDF_iop_captcha_no_arxiv,2017ApJS..229...31H,,ipn-catalog;localization,bn101126198;bn110618366,2,N,",
+    "collision_warning": "a bn101126198 worker already left a CORRUPT file Skills_training/Hurley_2017_2017ApJS22931H_bn101126198.pdf (Radware captcha HTML, 14371 B, not a PDF). Delete or replace it before indexing; values for this paper come from VizieR J/ApJS/229/31."
+   }
+  ],
+  "results/gcn/gcn_index.csv": [
+   {
+    "row": "bn110618366,base,3,none (no afterglow ever identified; SMARTS non-detection GCN 12081),7,1",
+    "columns": "trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed",
+    "note": "ads_hits = 7 total docs across all query forms (with duplicates removed: 3 GCN newsletters + Hurley+2017 + the 2 corpus-grep papers + 0 others); ads_refereed = 1 (Hurley+2017, the only refereed FULL-TEXT hit; vonKienlin+2014 and Golkhou+2015 were found by corpus text-grep, not by the ADS full-text query - their machine-readable rows are not full-text indexed)"
+   }
+  ]
+ },
+ "issues": [
+  "Hurley+2017 PDF unobtainable (IOP Radware captcha for curl on both DOI-PDF and ADS PUB_PDF; no arXiv eprint exists). Content recovered from the paper's own CDS machine-readable tables instead.",
+  "Two corrupt files already in Skills_training/ (Hurley_2017_...bn101126198.pdf, Lu_2022_...bn120102095.pdf) are Radware captcha HTML, not PDFs. Not touched by this worker.",
+  "Neither vonKienlin+2014 nor Golkhou+2015 has a row in corpus_index.csv even though their PDFs are on disk - the index is lagging the directory.",
+  "Phase 1b used WebSearch, not scholar.google.com (no Scholar API, no browser agent in this worker). Labelled accordingly; result was null either way."
+ ]
+}

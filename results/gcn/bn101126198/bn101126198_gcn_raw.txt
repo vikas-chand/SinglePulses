@@ -1,0 +1,42 @@
+GCN CIRCULAR RECORD — bn101126198 (GRB 101126A) — HONEST ABSENCE (n_circulars = 0)
+=================================================================================
+Compiled 2026-08-12 by the doc-layer worker (Step 0, dev/ai_guides/GCNIntelligence.md).
+This directory had no prior contents; nothing was overwritten.
+
+1. CLASSIC PER-GRB ARCHIVE (cheapest first)
+   https://gcn.gsfc.nasa.gov/other/101126.gcn3   -> HTTP 404 (215 bytes, error page)
+   https://gcn.gsfc.nasa.gov/other/101126A.gcn3  -> HTTP 404
+   https://gcn.gsfc.nasa.gov/other/101126B.gcn3  -> HTTP 404
+   (fetched 2026-08-12; a 404 on the classic archive means no circular was ever
+   filed under that name.)
+
+2. JSON-API BRACKETED SCAN (fallback, GCNIntelligence.md Fetch step 2)
+   Endpoint: https://gcn.nasa.gov/circulars/<id>.json
+   Bracketing probes:  11000 = 2010-07-27 | 11200 = 2010-09-03 | 11400 = 2010-11-13
+                       11500 = 2010-12-26 | 11600 = 2011-01-25
+   Scanned IDs 11395-11499 inclusive (105 circulars; first = 11395, 2010-11-11
+   "GRB 100906A: optical observations"; last = 11499, 2010-12-26 "GRB 101225A:
+   Swift/UVOT Detection").  The burst date 2010-11-26 sits well inside this range.
+   Search keys: substring "101126" in subject OR body; substring "316413871".
+   RESULT: ZERO matches. No circular in that window mentions this burst under any
+   form of its name or trigger digits.
+
+3. WHAT THE SURROUNDING DAYS DID CARRY (context, verbatim subjects)
+   11422  2010-11-23  Optical observation of GRB 101024A
+   11423  2010-11-25  GRB 101123A: Fermi GBM detection
+   11424  2010-11-26  IPN triangulation of bright GRB 101123A
+   11425  2010-11-27  Konus-Wind observation of GRB 101123A
+   11426  2010-11-27  GRB 101123A: MASTER prompt optical observations
+   11427  2010-11-29  GRB 101123A: ROTSE optical observations
+   -> the community's attention on 2010-11-26 was on GRB 101123A (bn101123952,
+   T90 = 103.9 s, also in our parent sample). Our burst — 3.1e-5 erg/cm2, T90 =
+   43.8 s, ~15 deg from the Galactic anticentre — drew no circular at all.
+
+4. CONSEQUENCES (recorded, not inferred)
+   - No GCN-assigned letter suffix exists for 2010-11-26. The designation
+     "GRB 101126A" used below comes from the REFEREED literature (Lu et al. 2018
+     prints "GRB 101126A (bn101126198)" verbatim in its Table 2), not from a circular.
+   - No redshift, no afterglow search, no arcsecond counterpart: z = NONE.
+   - The instrument story comes entirely from the IPN supplement (Hurley et al.
+     2017, ApJS 229, 31 — harvested through VizieR J/ApJS/229/31) and from the
+     refereed papers listed in the dossier.

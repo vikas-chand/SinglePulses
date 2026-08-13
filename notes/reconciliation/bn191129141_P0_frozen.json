@@ -1,0 +1,58 @@
+{
+ "burst": "bn191129141",
+ "tally": 21,
+ "frozen_utc": "2026-08-11T16:41:07Z",
+ "engine": "L18/L19/L20/L26/L27/L28 active",
+ "frozen_before_any_new_fit_output": true,
+ "predictions": [
+  "P-A (census null-BB class): NO block in the new fits will pass LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 keV. Census prior: 0/9 blocks pass; max LRT_BANDBB_BAND = 6.71 (blk3). Class = null (neither low-kT edge-constrained nor high-kT).",
+  "P-A2 (CPL-side BB shoulder recurs): LRT_CPLBB_CPL >= 9.2 will recur in the time-integrated block and in >= 2 resolved blocks (census: 20.90 in blk-1, 15.79 in blk1, 15.24 in blk2), with the CPL+BB kT in the ~8-30 keV band (high-kT side, NOT the L28 edge-constrained <~5 keV class) - i.e. a spectral shoulder that Band's beta absorbs but CPL cannot.",
+  "P-A3 (no two-break burst): no block will reach LRT_DSBPL_SBPL >= 9.2 (census max 5.24 at blk3; DSBPL_VALID in only 1/9 blocks); bn191129141 will NOT enter the two-break census.",
+  "P-B (catalog anchor, falsifiable numbers): the time-integrated Band fit over the full window will give alpha = -0.90 +/- 0.06, Ep = 185 +/- 20 keV, beta in [-2.2, -1.9]. Sources: GBM catalog glg_scat_all_bn191129141_flnc_band_v00.fit (alpha=-0.899+/-0.028, Ep=183.6 -9.1/+9.6 keV, beta=-2.000 with +err ~0 i.e. pegged; interval -4.096..22.528 s, dets NAI_08/NAI_11/BGO_01) and census blk-1 (-0.903 / 186.4 / -2.05).",
+  "P-B2 (winner family): the time-integrated AIC winner will be a single-peak curved/smoothly-broken family (SBPL or CPL), not a +BB model at the 9.2 Band+BB criterion (census blk-1 winner = SBPL by both AIC and BIC).",
+  "P-B3 (temporal): T90(50-300 keV) ~ 20 s (bcat: 19.97 +/- 1.06 s, starting T0+2.048 s); the AstroSat CZTI 40-200 keV T90 = 26.6 s (GCN 26316) is longer, in the direction of the Qin+2013 T90 ~ E^-0.20 band scaling; the pulse is single-peaked with peak flux in T0+7.168..8.192 s (catalog pflx interval)."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn191129141/spectral_fits.ecsv",
+  "n_blocks": 9,
+  "layout": "blk-1 = time-integrated [-2.000, 20.900] s + blk0..blk7 time-resolved",
+  "plugin_dets": "n8,nb,b1",
+  "criterion": "LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05",
+  "significant_bb_blocks": 0,
+  "significant_bb_kt_values": [],
+  "significant_bb_median_kt": null,
+  "max_LRT_BANDBB_BAND": {"block": 3, "value": 6.71, "kt": 7.81},
+  "LRT_CPLBB_CPL_ge_9p2": {"blk-1": 20.9, "blk1": 15.79, "blk2": 15.24},
+  "aic_winners": {"CPL": 3, "SBPL": 2, "Band+BB": 2, "CPL+BB": 1, "Band": 1},
+  "bic_winners": {"SBPL": 4, "CPL": 3, "Band": 2},
+  "time_integrated_band": {"alpha": -0.903, "ep_keV": 186.43, "beta": -2.05},
+  "LRT_DSBPL_SBPL_max": 5.24,
+  "dsbpl_valid_blocks": 1
+ },
+ "harvest_snippets": {
+  "GCN26301_FermiGBM": [
+   "At 03:22:27 UT on 29 Nov 2019, the Fermi Gamma-ray Burst Monitor (GBM) triggered and located GRB 191129A (trigger 596690552.12649 / 191129141).",
+   "the detection of a likely LONG GRB",
+   "RA = 8.9, Dec = 5.4 (J2000 degrees ...), with a statistical uncertainty of 2.5 degrees."
+  ],
+  "GCN26316_AstroSatCZTI": [
+   "The source was clearly detected in the 40-200 keV energy range. The light curve showed single peak of emission peaking at 2019-11-29 03:22:27.0 UT.",
+   "Using cumulative rates, we measure a T90 of 26.6 s."
+  ],
+  "GCN26302_MASTER": [
+   "started inspect of the Fermi GRB191129.14 (trigger No 596690552 ...) errorbox 377 sec after notice time and 582 sec after trigger time at 2019-11-29 03:32:09 UT, with upper limit up to 18.5 mag."
+  ],
+  "GBM_catalog_bcat_v00": [
+   "T90 = 19.9683 +/- 1.05553 s (T90START = 2.048 s); T50 = 5.8881 +/- 0.572 s; FLU(10-1000 keV) = 1.15399e-05 +/- 4.77e-08 erg/cm^2; PF64 = 14.364 ph/s/cm^2 (glg_bcat_all_bn191129141_v00.fit, HEASARC)"
+  ],
+  "GBM_catalog_scat_flnc_band_v00": [
+   "Band interval -4.096..22.528 s, dets NAI_08/NAI_11/BGO_01: Ep = 183.58 -9.12/+9.57 keV, alpha = -0.899 +/- 0.028, beta = -2.0001 (pos err 4.4e-16: pegged), PSTAT, REDCHSQ 0.666/353dof"
+  ],
+  "GBM_catalog_scat_flnc_comp_v02": [
+   "Comptonized same interval: Epeak = 304.84 -18.7/+20.2 keV, index = -1.089 +/- 0.026"
+  ],
+  "refereed_papers": [
+   "absent - 0 refereed papers across six ADS full-text query forms (2026-08-11); paperless burst"
+  ]
+ }
+}

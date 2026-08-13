@@ -1,0 +1,26 @@
+{
+ "burst": "bn171210493",
+ "tally": 17,
+ "frozen_utc": "2026-08-11 night shift 2; BEFORE any fit table opened",
+ "engine": "L18/L19/L20/L26/L27 active",
+ "predictions": [
+  "Li&Zhang 2021 sample member (harvest row in snippets)",
+  "P-A: HLE closure class per their tables",
+  "P-B: null-streak baseline"
+ ],
+ "harvest_snippets": {
+  "Li&Zhang2021": [
+   "\u20260 \u22121 \u223c15 [\u221220 \u223c10, 80 \u223c100] 11 7 170921168 39.361 \u00b1 4.481 (6.56 \u00b1 0.03) \u00d7 10\u22125 (n1)n2n5b0 \u22121 \u223c40 [\u221220 \u223c\u221210, 40 \u223c60] 8 6 171210493 143.107 \u00b1 2.573 (8.08 \u00b1 0.01) \u00d7 10\u22125 n0(n1)n2b0 \u22121 \u223c100 [\u221230 \u223c\u221210, 210 \u223c240] 13 9 180305393 13.056 \u00b1 0.810 (5.80 \u00b1 0.01\u2026",
+   "\u2026ted between two different detectors (GRB 081224887, GRB 110721200, GRB 120426090, GRB 160216801, GRB 170921168, and GRB 171210493), indicating that the peaks of the pulses are Table 2 Results of Lightcurve (Pulses) Fitting of Our Sample with FRED Mo\u2026"
+  ],
+  "Lu2018": [
+   "absent"
+  ],
+  "Li2026": [
+   "absent"
+  ],
+  "Bordoloi2026": [
+   "absent"
+  ]
+ }
+}

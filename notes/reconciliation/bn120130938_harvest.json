@@ -1,0 +1,93 @@
+{
+  "burst": "bn120130938",
+  "grb_name": "GRB120130938 (GBM catalog name). NO lettered designation exists — never assigned by GCN or by Greiner's table; see dossier section 2.",
+  "harvest_utc": "2026-08-12",
+  "worker": "doc-layer worker (Steps 0 / 0b / 1)",
+  "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1, 1b, 2, 3b, 3c, 4, 5; traps T1-T9)",
+  "pre_existing_products": "NONE — results/gcn/bn120130938/ did not exist, no *_harvest.json, no *_P0_frozen.json, no results/qc/bn120130938_* before this run. Nothing was overwritten.",
+
+  "queries": {
+    "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env; Astrograph token still stale)",
+    "token_liveness_control": {
+      "query": "full:\"100612726\"",
+      "numFound": 2,
+      "note": "run in the SAME session immediately after the nulls — proves the zero-hit results are real and not a dead/401 token"
+    },
+    "four_forms": {
+      "full:\"GRB 120130A\"": 0,
+      "full:\"bn120130938\"": 0,
+      "full:\"120130938\"": 0,
+      "full:\"349655436\"": 0
+    },
+    "extra_forms": {
+      "full:\"GRB120130A\"": 0,
+      "full:\"GRB 120130\"": 0,
+      "full:\"120130.938\"": 0,
+      "full:\"GRB 120130B\"": 0,
+      "full:\"bn120130938\" OR full:\"120130938\" OR full:\"GRB120130938\"": 0,
+      "full:\"GRB 120130A\" OR full:\"GRB120130A\"": 0,
+      "object:\"GRB 120130A\"": "HTTP 400 — object: field not enabled on this token tier; not retried"
+    },
+    "local_corpus_sweep": {
+      "method": "PyMuPDF (fitz) full-text search for the literal string '120130' across all 131 Skills_training/*.pdf",
+      "files_with_hit": 0,
+      "note": "This channel was LOAD-BEARING for bn100612726 (found 5 of 9 papers ADS full-text missed). Here it is also empty, which strengthens the null rather than leaving it untested. Two benign MuPDF warnings emitted (zlib header, cmsOpenProfileFromMem) on unrelated files; no file failed to open."
+    },
+    "scholar_channel": {
+      "used": true,
+      "trigger_rule": "LiteratureHarvest.md Phase 1b rule 1 — the ADS four-form query came back EMPTY (the paperless case the rule is reserved for)",
+      "implementation": "NO human browser and no Google Scholar session was available to this worker. Substituted a general web-search channel as a Scholar PROXY. This is a weaker instrument than Scholar (no citation-weighted full-text ranking) and the null below is correspondingly weaker.",
+      "queries_run": [
+        "\"GRB 120130A\" Fermi GBM",
+        "\"120130938\" GRB Fermi GBM trigger",
+        "GRB 120130938 OR \"GRB 120130A\" spectral analysis Fermi single pulse"
+      ],
+      "burst_specific_hits": 0,
+      "returned_instead": "generic GBM-catalog and single-pulse-methodology pages (4th GBM catalog arXiv:2002.11460, Fermi GBM instrument pages, HEASARC FERMIGBRST/FERMIGTRIG table docs) — none mentions this burst",
+      "open_item": "A true Google Scholar pass (human browser or browsing agent) is still owed for this burst. Because the Scholar channel exists precisely to bridge vocabulary gaps, and this burst has NO vocabulary at all in the literature, the expected yield is low but the check is not yet formally done."
+    }
+  },
+
+  "n_papers": 0,
+  "papers": [],
+  "zero_paper_finding": {
+    "statement": "bn120130938 has NO refereed literature and NO GCN circular. It is doubly silent: n_circulars = 0 (verified by classic-archive 404 plus a full JSON-API scan of circulars 12890-12965, 2012-01-21 -> 2012-02-19) and n_papers = 0 (verified by four ADS full-text forms + six extra forms + a 131-PDF local corpus sweep, with a live-token control in the same session).",
+    "why_it_matters": [
+      "P3 has NO external analysis frame: the only external numbers are the GBM catalog's own row (dossier section 5).",
+      "Zero memorization confound — nothing published about this burst's Ep/alpha/kT can leak into a 'blind' fit. This is the clean end of the benchmark sample.",
+      "Phase 4 multi-instrument consensus (Rossi+2026) is INAPPLICABLE: one instrument only, no inter-instrument spread to fold into an error bar. Recorded so the absence is not read as an omission."
+    ],
+    "external_numbers_available_instead": {
+      "source": "HEASARC FERMIGBRST living catalog, bparam_trigger_name=bn120130938, queried 2026-08-12; row last_modified 2018-06-02; bcatalog=2, scatalog=3",
+      "caveat": "The bcatalog/scatalog release integers were NOT resolved to catalog-paper bibcodes by this worker. Do not cite a specific von Kienlin / Gruber / Narayana Bhat paper for these numbers without verifying the release mapping at source.",
+      "values_filed_in": "results/gcn/bn120130938/bn120130938_dossier.md section 5 (full table with L21 frame block + T9 coverage labels)"
+    }
+  },
+
+  "phase3b_reading_order_latest_first": [],
+  "phase3c_module_future_tags": [],
+  "phase3c_note": "Nothing to catalog for future modules: no afterglow, SN, cosmology, multimessenger or localization paper exists for this burst. No module-future tag earned. Vikas's curated reading list for this burst is EMPTY — there is nothing to read.",
+
+  "pending_shared_csv_rows": {
+    "note": "HARD RULE compliance: this worker wrote NO shared CSV. Apply by hand or by the merge worker.",
+    "Skills_training/corpus_index.csv": {
+      "append_trigger_to_existing_rows": [],
+      "new_rows": [],
+      "reason": "n_papers = 0 — no PDF downloaded, no corpus row created or amended. corpus_index.csv was READ (131 rows, header filename,bibcode,arxiv,theme,cited_by_bursts,n_bursts,read,read_date) and grep for '120130' returned 0."
+    },
+    "results/gcn/gcn_index.csv": {
+      "row": "bn120130938,404_ALL_FORMS(json_scan_12890-12965),0,N,0_across_10_forms,0",
+      "header_for_reference": "trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed",
+      "note": "queued only; not written"
+    }
+  },
+
+  "issues": [
+    "ZERO refereed papers and ZERO circulars — the P3 diff has no external analysis frame; only the GBM catalog row.",
+    "No lettered GRB designation exists for this burst (GCN never named it; Greiner's Jan-2012 list has no 120130x). Identify by trigger ONLY. If a future source says 'GRB 120130A', verify it prints 120130938 first (T1).",
+    "Phase 1b Scholar channel was run through a web-search PROXY, not Google Scholar itself — a true Scholar pass is still owed, though expected yield is low.",
+    "ADS 'object:' field returns HTTP 400 on this token tier (as does hl= highlighting per the known token limitation).",
+    "The GBM catalog's integrated 'best-fit = COMP' verdict rests on an UNCONSTRAINED Band beta (-3.543 +- 384.3) and a red-chi2 spread of <=0.002 across COMP/Band/SBPL — it is not evidence against a Band tail (T7-flavoured). Do not inherit it as a model-preference result.",
+    "Catalog spectra use detectors n0,n1,n9,b1 over -7.168 -> +33.792 s; our stamped window is -3.0 -> +26.0 s with detectors n0,n1,b0. Any catalog-vs-us Ep/alpha diff is BOTH interval- and detector-mismatched by construction (T9 sibling) and must be labelled as such."
+  ]
+}

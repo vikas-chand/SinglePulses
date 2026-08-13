@@ -1,0 +1,317 @@
+# bn150202999 / GRB 150202B — raw GCN circulars
+# fetched 2026-08-12 from https://gcn.gsfc.nasa.gov/other/150202B.gcn3 (HTTP 200, 13457 bytes)
+# n_circulars = 7 (17385, 17388, 17396, 17398, 17405, 17422, 17429)
+# same-day sibling GRB 150202A (Swift BAT trigger 629547, 23:10:02 UT, RA 39.236 Dec -33.150) is a DIFFERENT burst — its circulars (17376,17381,17382,17390,17392,17401) are NOT included here.
+########################################################################
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  17385
+SUBJECT: GRB 150202B: Fermi-LAT detection
+DATE:    15/02/03 08:25:40 GMT
+FROM:    Magnus Axelsson at Stockholm U.  <magaxe@kth.se>
+
+M. Axelsson (KTH Royal Institute of Technology, Stockholm) and G. Vianello (Stanford)
+report on behalf of the Fermi-LAT team:
+
+At 23:59:08.27 UT on February 2, 2015, Fermi-LAT detected
+emission from GRB 150202B, which was also detected by Fermi-GBM
+(trigger 444614351/150202999).
+
+The GBM location was initially inside the LAT field of view at an angle of
+~17 degrees to the LAT boresight and triggered an autonomous repoint
+of the spacecraft. Using standard analysis procedures, we detect the GRB
+with a significance barely above our 5-sigma threshold, when looking at
+events >500 MeV in the interval 0s to 1300s relative to the trigger time. The
+corresponding best location is
+
+RA = 86.6 deg (J2000)
+Dec = 59.1 deg (J2000)
+
+with an estimated uncertainty of 0.4 degrees (90% containment). This is
+0.5 deg from the GBM position.
+
+Given the low significance, and the fact that there are only 4 photons compatible
+with the position of the GBM trigger, we cannot firmly establish this excess as
+the high-energy counterpart of GRB 150202B.
+
+Using the LAT Low Energy (LLE) data selection, over 70 counts above
+background were detected within a 20s interval coinciding with the time of
+the GBM emission. This data selection has insufficient spatial resolution to
+provide a reliable LAT localization. Since an excess of events was not firmly
+seen using the standard analysis selection, this detection is likely due to low
+energy gamma-rays (below 100 MeV).
+
+The Fermi LAT point of contact for this burst is
+Magnus Axelsson (magnus.axelsson@astro.su.se<mailto:magnus.axelsson@astro.su.se>).
+
+The Fermi-LAT is a pair conversion telescope designed to cover the energy
+band from 20 MeV to greater than 300 GeV. It is the product of an international
+collaboration between NASA and DOE in the U.S. and many scientific institutions
+across France, Italy, Japan and Sweden.
+
+[GCN OPS NOTE(03feb15):  Per author's request, the "0127A" was changed to "202B"
+in the phrase "counterpart of GRB 150202B".]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  17388
+SUBJECT: GRB 150202B: Fermi GBM detection
+DATE:    15/02/03 11:08:57 GMT
+FROM:    Hoi-Fung Yu at MPE  <sptfung@mpe.mpg.de>
+
+V. Pelassa (UAH) reports on behalf of the Fermi GBM Team:
+
+"At 23:59:08.27 UT on 02 Feb 2015, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 150202B (trigger 444614351 / 150202999).
+
+The on-ground calculated location, using the GBM trigger data, is
+RA = 86.8, Dec = 58.6 (J2000 degrees, equivalent to +05h 47m, +58d 32'),
+with an uncertainty of 1.0 degrees (radius, 1-sigma containment,
+statistical only; there is additionally a systematic error which is
+currently estimated to be 2 to 3 degrees). The angle from the Fermi LAT
+boresight is 17 degrees.  This trigger resulted in an Autonomous Repoint
+Request (ARR) that was not accepted by the spacecraft.  Following
+this observation the Fermi Large Area Telescope also detected
+this burst in the ground-based analysis (Axelsson et al. 2015, GCN 17385).
+
+This GRB was also detected by Integral/SPI-ACS.
+
+The GBM light curve consists of a bright peak lasting about 25 s, 
+followed at T0+ 100 s by a fainter second episode of emission, 
+with a total duration (T90) of about 167 s (50-300 keV). 
+The 1.024-sec peak photon flux measured starting from T0+7.808 s 
+in the 10-1000 keV band is 23.8 +/- 0.4 ph/s/cm^2.
+
+The time-averaged spectrum of the first episode, from T0-5.120 s to
+T0+24.576 s, is best fit by a Band function with Epeak = 253 +/- 12 keV,
+alpha = -0.82 +/- 0.02, and beta = -2.36 +/- 0.13. The event fluence 
+(10-1000 keV) in this time interval is (3.15 +/- 0.05)E-05 erg/cm^2.
+
+The time-averaged spectrum of the second episode, from T0+103.426 s to
+T0+205.827 s, is well fit a power law function with an exponential
+high-energy cutoff. The power law index is -1.23 +/- 0.13 and
+the cutoff energy, parameterized as Epeak, is 154 +/- 36 keV. 
+The event fluence (10-1000 keV) in this time interval 
+is (1.37 +/- 0.15)E-06 erg/cm^2.
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+[GCN OPS NOTE(03feb15): The third sentence in the second paragraph
+was changed to say the ARR was rejected by the spacecraft.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  17396
+SUBJECT: GRB 150202B: Tiled Swift observations
+DATE:    15/02/04 01:47:19 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+P. A. Evans (U. Leicester) reports on behalf of the Swift team:
+
+Swift has initiated a series of observations, tiled on the sky, of the
+Fermi/LAT GRB 150202B. Automated analysis of the XRT data will
+be presented online at http://www.swift.ac.uk/xrt_products/TILED_GRB00039
+
+Any uncatalogued X-ray sources detected in this analysis will be
+reported on this website and via GCN COUNTERPART notices. The probability of finding
+serendipitous sources, unrelated to the Fermi/LAT event is high: any X-ray source
+considered to be a probable afterglow candidate will be reported via a GCN Circular
+after manual consideration.
+
+Details of the XRT automated analysis methods are detailed in Evans et
+al. (2007, A&A, 469, 379; 2009, MNRAS, 397, 1177 and 2014, ApJS, 210, 8).
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  17398
+SUBJECT: IPN Triangulation of GRB 150202B
+DATE:    15/02/04 10:04:20 GMT
+FROM:    Dmitry Svinkin at Ioffe Institute  <svinkin@mail.ioffe.ru>
+
+K. Hurley and J. Goldsten, on behalf of the MESSENGER NS GRB team,
+
+S. Golenetskii, R. Aptekar, V. Pal'shin, D. Frederiks,
+D. Svinkin, and T. Cline on behalf of the Konus-Wind team,
+
+V. Connaughton, M. S. Briggs, C. Meegan, V. Pelassa,
+and A. Goldstein, on behalf of the Fermi GBM team,
+
+A. von Kienlin, X. Zhang, A. Rau, V. Savchenko, E. Bozzo, and C.
+Ferrigno, on behalf of the INTEGRAL SPI-ACS GRB team, and
+
+S. Barthelmy, J. Cummings, N. Gehrels, H. Krimm, and D. Palmer,
+on behalf of the Swift-BAT team, report:
+
+The long-duration GRB 150202B (Axelsson and Vianello., GCN Circ. 17385) 
+has been detected by Fermi (Pelassa., GCN Circ. 17388), Konus-Wind, 
+MESSENGER (GRNS), INTEGRAL (SPI-ACS), and Swift (BAT), so far, at about 
+86348 s UT (23:59:08). The burst was outside the coded field of view of 
+the BAT.
+
+We have triangulated it to a Konus-MESSENGER annulus centered at 
+RA(2000)=126.992 deg (08h 27m 58s)  Dec(2000)=+15.280 deg (+15d 16' 
+50"), whose radius is 52.564 +/- 0.201 deg (3 sigma).
+
+The annulus intersects the LAT (statistical-only) error circle (GCN 
+17385) thereby confirming the association of the high-energy emission 
+with GRB 150202B. The area of the combined IPN/LAT error region is 570 
+sq. arcmin.
+
+A triangulation map is posted at
+http://www.ioffe.ru/LEA/GRBs/GRB150202_T86354/IPN/
+
+The Konus-Wind time history and spectrum will be given in a forthcoming 
+GCN Circular.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  17405
+SUBJECT: GRB 150202B: Swift XRT/UVOT observations
+DATE:    15/02/04 19:37:11 GMT
+FROM:    Boris Sbarufatti at INAF-OAB/IASFPA  <boris.sbarufatti@brera.inaf.it>
+
+B. Sbarufatti (INAF-OAB/PSU), F. E. Marshall (NASA/GSFC), A. Maselli 
+(INAF-IASFPA), A. Melandri (INAF-OAB),	V. Mangano (PSU), M.C. Stroh
+(PSU), D.N. Burrows (PSU), J.P. Osborne (U. Leicester), K.L. Page (U.
+Leicester), C. Pagani (U. Leicester) and P.A. Evans (U. Leicester)
+report on behalf of the Swift-XRT team:
+
+Swift-XRT has performed follow-up observations of the
+Fermi/LAT-detected burst GRB 150202B (Axelsson et al. GCN Circ. 17385)
+in a series of observations tiled on the sky. The total exposure time
+is 4.2 ks, distributed over 2 tiles; the maximum exposure at a single
+sky location was 4.7 ks. The data were collected between T0+95.4 ks and
+T0+107.3 ks, and are entirely in Photon Counting (PC) mode. 
+
+Four uncatalogued X-ray sources have been detected, however none of
+them is above the RASS limit or shows definitive signs of fading.
+Therefore, at the present time we cannot identify which, if any, is the
+afterglow. Details of these sources are given below:
+
+Source 1:
+  RA (J2000.0):  86.9565  =  05:47:49.57
+  Dec (J2000.0): +58.8301  =  +58:49:48.2
+  Error: 4.1 arcsec (radius, 90% conf.)
+  Count-rate: 0.0183 +/- 0.0030 ct s^-1
+  Flux: (6.1 +/- 1.0)e-13 erg cm^-2 s^-1 (observed, 0.3-10 keV)
+
+Source 2:
+  RA (J2000.0):  86.5922  =  05:46:22.14
+  Dec (J2000.0): +58.9223  =  +58:55:20.5
+  Error: 5.7 arcsec (radius, 90% conf.)
+  Count-rate: (5.9 +/- 1.9) -3 ct s^-1
+  Flux: (3.2 +/- 1.0)e-13 erg cm^-2 s^-1 (observed, 0.3-10 keV)
+
+Source 3:
+  RA (J2000.0):  86.7927  =  05:47:10.25
+  Dec (J2000.0): +58.7852  =  +58:47:06.8
+  Error: 6.4 arcsec (radius, 90% conf.)
+  Count-rate: (4.0 +/- 1.7) -3 ct s^-1
+  Flux: (1.60 +/- 0.67)e-13 erg cm^-2 s^-1 (observed, 0.3-10 keV)
+
+Source 4:
+  RA (J2000.0):  86.8219  =  05:47:17.25
+  Dec (J2000.0): +58.9746  =  +58:58:28.7
+  Error: 5.5 arcsec (radius, 90% conf.)
+  Count-rate: (3.03 +/- 0.99) -3 ct s^-1
+  Flux: (6.5 +/- 2.1)e-14 erg cm^-2 s^-1 (observed, 0.3-10 keV)
+
+Sources 3 and 4 are positionally coincident with stars from the USNO B1
+catalogue.
+
+The results of the XRT-team automatic analysis of the tiled XRT
+observations, including a position-specific upper limit calculator, are
+available at http://www.swift.ac.uk/xrt_products/TILED_GRB00039.
+
+The UVOT observation covers sources 1 and 3 in the UVW1 filter. There
+is nothing at the position of source 1; source 3 is bright as expected
+from the catalogued source.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  17422
+SUBJECT: Konus-Wind observation of GRB 150202B
+DATE:    15/02/07 09:29:01 GMT
+FROM:    Anastasia Tsvetkova at Ioffe Institute  <tsvetkova@mail.ioffe.ru>
+
+S. Golenetskii, R. Aptekar, D. Frederiks, V. Pal'shin, P. Oleynik,
+M. Ulanov, D. Svinkin, A. Tsvetkova, A. Lysenko, and T. Cline
+on behalf of the Konus-Wind team, report:
+
+The long-duration GRB 150202B
+(Fermi LAT detection: Axelsson and Vianello, GCN 17385;
+Fermi GBM detection: Pelassa, GCN 17388;
+IPN triangulation: Hurley et al., GCN 17398)
+triggered Konus-Wind at T0=86354.293 s UT (23:59:14.293).
+
+The KW light curve shows a bright main pulse lasting about 15 s,
+which is followed by a fainter second episode which
+started at ~T0+100 s and lasted up to ~T0+210 s.
+The emission in the main pulse is seen up to 10 MeV.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB150202_T86354/
+
+As observed by Konus-Wind, the burst
+had a fluence of 4.56(-0.51,+0.67)x10^-5 erg/cm2,
+and a 64-ms peak flux, measured from T0+3.600 s,
+of 1.07(-0.20,+0.20)x10^-5 erg/cm2/s
+(both in the 20 keV - 10 MeV energy range).
+
+The time-averaged spectrum of the main pulse
+(measured from T0 to T0+12.544 s)
+is best fit in the 20 keV - 10 MeV range
+by the GRB (Band) model with the following parameters:
+the low-energy photon index alpha = -0.75(-0.11,+0.14),
+the high energy photon index beta = -2.39(-0.22,+0.15),
+the peak energy 234(-26,+27) keV
+(chi2 = 88/89 dof)
+
+The spectrum near the maximum count rate
+(measured from T0 to T0+5.888 s)
+is best fit in the 20 keV - 10 MeV range
+by the GRB (Band) model with the following parameters:
+the low-energy photon index alpha = -0.69(-0.17,+0.21),
+the high energy photon index beta = -2.18(-0.19,+0.12),
+the peak energy 240(-38,+49) keV
+(chi2 = 79/79 dof)
+
+The time-averaged spectrum of the second episode
+(measured from T0+94.464 to T0+209.152 s)
+is best fit in the 20 keV - 5 MeV range
+by a power law with spectral index = -1.95(-0.19,+0.21)
+(chi2 = 77/78 dof).
+
+All the quoted errors are at the 90% confidence level.
+All the quoted values are preliminary.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  17429
+SUBJECT: GRB 150202B: Swift/XRT afterglow confirmation
+DATE:    15/02/09 19:09:10 GMT
+FROM:    Boris Sbarufatti at INAF-OAB/IASFPA  <boris.sbarufatti@brera.inaf.it>
+
+B. Sbarufatti (INAF-OAB/PSU), P.A. Evans (U. Leicester) and M. H. Siegel (PSU) report on behalf of the Swift team.
+
+Swift took a second epoch of data for the LAT/IPN GRB 150202B (Axelsson et al. GCN Circ. 17385, Hurley et al. GCN Circ. 17398) between T+515.2 ks and T+516.4 ks, with a 1.2 ks exposure time. 
+Of the two unknown sources reported by Sbarufatti et al. (GCN 17405), Source #2 is still detected at a level of 8.4E-3 counts/s (3.7E-13 erg cm^-2 s^-2), comparable with the previous observation, while Source #1 has faded below detection, to a 3-sigma upper limit of 4.8E-3 counts/s (1.6E-13 erg cm^-2 s^-1).
+We therefore confirm that Source #1 is the X-ray afterglow of GRB 150202B.
+
+The results of the XRT-team automatic analysis of the likely afterglow
+are at http://www.swift.ac.uk/xrt_products/TILED_GRB00039/index_1.php.
+The results of the full analysis of the XRT observations are available
+at http://www.swift.ac.uk/xrt_products/TILED_GRB00039/.
+
+This circular is an official product of the Swift-XRT team.
+
+
+
+
+
+

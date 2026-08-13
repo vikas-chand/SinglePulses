@@ -1,0 +1,30 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn180724807}
+# - {grb_name: GRB 180724A}
+# - {trigtime_met: 554152956.547758}
+# - {src_start: -2.0}
+# - {src_stop: 48.0}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z, human_gui, accepted_suggestion)'}
+# - {approved_detectors: 'na,nb,b1'}
+# - manifest: {has_LAT_dir: false, n_cspec_pha: 3, n_lle: 0, n_poshist: 1, n_rsp: 0, n_rsp2: 3, n_trigdat: 0, n_tte: 3}
+# - {coverage_rule: 'GBM multi-matrix .rsp2: PASS if min(TSTART)<=SRC_START and max(TSTOP)>=SRC_STOP, times rel TRIGTIME (DataInventory.md;
+#     bn100130729 lesson)'}
+# - {notes: 'no trigdat on disk -- note not blocker, poshist present (geometry covered); no LLE/LAT for this burst (HAS_LAT=False in grb_sample.ecsv),
+#     so no single-matrix D1 off-axis test needed; D4: GBM catalog T90=58.113s from T0+1.024s => T95~59.1s exceeds SRC_STOP=48s -- catalog
+#     tail beyond the stamped window, recorded in dossier; prior production blocks end 41.64s; position discrepancy on record: catalog
+#     RA=285.24,Dec=-33.66 (adopted) vs TTE header RA_OBJ=303.6,DEC_OBJ=-68.967 (flight, superseded)'}
+# - {checked_utc: '2026-08-11T16:38:34Z'}
+# schema: astropy-2.0
+DET RSP_FILE COV_START COV_STOP N_MAT VERDICT
+na glg_cspec_na_bn180724807_v01.rsp2 -10.496 145.155 3 PASS
+nb glg_cspec_nb_bn180724807_v01.rsp2 -10.496 145.155 3 PASS
+b1 glg_cspec_b1_bn180724807_v01.rsp2 -10.496 145.155 3 PASS

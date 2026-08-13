@@ -1,0 +1,63 @@
+GCN CIRCULAR HARVEST — bn120420858 (GRB 120420B)
+Generated 2026-08-12 by the doc-layer worker (Step 0, dev/ai_guides/GCNIntelligence.md).
+
+RESULT: n_circulars = 0.  ZERO GCN Circulars exist for this burst.
+This is a RESULT, not an error (GCNIntelligence.md "Honest absence" rule).
+
+EVIDENCE (all four probes run 2026-08-12; commands + raw responses below)
+
+1) Classic per-GRB archive (gcn.gsfc.nasa.gov/other/<name>.gcn3)
+     https://gcn.gsfc.nasa.gov/other/120420.gcn3    -> HTTP 404
+     https://gcn.gsfc.nasa.gov/other/120420A.gcn3   -> HTTP 404
+     https://gcn.gsfc.nasa.gov/other/120420B.gcn3   -> HTTP 404
+     https://gcn.gsfc.nasa.gov/other/120420858.gcn3 -> HTTP 404
+     https://gcn.gsfc.nasa.gov/other/GRB120420A.gcn3-> HTTP 404
+   Control (proves the archive host was up and serving during this session):
+     https://gcn.gsfc.nasa.gov/other/100122A.gcn3   -> HTTP 200, 3366 bytes
+
+2) New GCN circulars search index (gcn.nasa.gov, JSON route)
+     query=120420    -> totalItems 0
+     query=120420A   -> totalItems 0
+     query=120420B   -> totalItems 0
+     query=GRB120420A-> totalItems 0
+     query=120420858 -> totalItems 0
+   Control: query=100122A -> totalItems 2 (circulars 10354, 10355). Index is live.
+
+3) Date-bracketed listing of ALL circulars 2012-04-18 .. 2012-04-26 (24 items):
+     13264 Swift Trigger 520928 is a noise event
+     13263 GRB 120422A: MITSuME Ishigakijima upper limit
+     13262 Swift Trigger 520928 is probably not a burst
+     13261 GRB 120424A: MAXI/GSC detection of a burst
+     13260 GRB 120422A: 272 GHz observations from SMA
+     13259 GRB 120422A: JCMT SCUBA-2 sub-mm observation
+     13258 GRB 120422A: RAPTOR Limits During Gamma-ray Emitting Interval
+     13257 GRB 120422A: VLT/X-shooter spectroscopy of the GRB counterpart
+     13256 GRB 120422A GROND observations
+     13255 GRB 120422A: Super-LOTIS early observations
+     13254 GRB 120422A:  EVLA Detection
+     13253 GRB 120422A: Xinglong TNT optical upper limit
+     13252 GRB 120422A: NOT optical observations
+     13251 GRB 120422A: Gemini redshift of candidate host
+     13250 GRB 120422A: Zadko observatory - Gingin optical observations
+     13249 GRB 120422A: Swift-XRT refined Analysis
+     13248 GRB 120422A: A Swift/UVOT Detection
+     13247 GRB 120422A: Enhanced Swift-XRT position
+     13246 GRB 120422A: Swift-BAT refined analysis
+     13245 GRB 120422A: Gemini observations
+     13244 GRB 120422A: Faulkes Telescope North observations
+     13243 GRB 120422A: Swift detection of a burst
+     13242 GRB 120419A: Swift-XRT and UVOT observations
+     13241 GRB 120419A: A long GRB detected by INTEGRAL
+   -> NOTHING on 2012-04-20 from any instrument. There is no GRB 120420A
+      circular either, so the "B" suffix was NOT assigned by circular order.
+
+CONSEQUENCES
+  * No circular-sourced position, T90, Epeak, fluence, redshift, or afterglow
+    statement exists for this burst.  Redshift = NONE (no circular, and both
+    catalogs that carry the burst list it with no z).
+  * The conventional designation GRB 120420B is CATALOG-ASSIGNED, verified from
+    three independent catalog sources (see the dossier's Identity section) —
+    NOT from a circular, and NOT assumed.
+  * Every published value for this burst therefore comes from catalogs, not
+    from real-time reports; there is no "preliminary GCN value" era to diff
+    against (contrast bn100122616, where GCN 10355 supplied the prelim frame).

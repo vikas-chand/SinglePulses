@@ -1,0 +1,89 @@
+{
+ "burst": "bn120905657",
+ "grb_name": "GRB 120905657 (NO letter-suffix designation exists - both GBM catalogs print the GRB-name column blank; there is no GRB 120905A)",
+ "frozen_utc": "2026-08-12; doc-layer worker, Steps 0/0b/1. Frozen BEFORE any new fit table was opened. results/sweep106/ was NEVER read (hard rule). The only fit numbers below come from the ARCHIVAL prior results/clean_per_burst_final/bn120905657/spectral_fits.ecsv (2026-07-17 era) and from the published GBM catalog.",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "prior_provenance": {
+  "human_final_exists": false,
+  "note": "results/clean_per_burst_human_final/bn120905657/ DOES NOT EXIST - this burst is not among the 88 bursts in that directory. The archival prior used here is results/clean_per_burst_final/bn120905657/spectral_fits.ecsv (2026-07-17), with results/clean_per_burst_consensus/ (2026-07-13) as a near-identical second copy. Labelled as a pre-hardening prior, not as a result."
+ },
+ "predictions": [
+  "P-A1 (census prior, BLACKBODY, union rule): the archival prior gives ZERO blocks passing the union rule (LRT_BANDBB_BAND >= 9.2 AND kT > 1.05 keV) OR (LRT_CPLBB_CPL >= 9.2 AND kT > 1.05 keV). Max LRT_BANDBB_BAND = 3.66 and that block is a zero-width artifact; max over PHYSICAL blocks = 2.43 (blk4). Max LRT_CPLBB_CPL = 2.06 (blk4). PREDICTION: the new fits give AT MOST 1 significant-BB block, most likely 0. FALSIFIED IF: >= 2 blocks pass the union rule.",
+  "P-A2 (census prior, MODEL MENU): AIC winners stay inside the single-curvature family (CPL or Band) in >= 80% of finite-width blocks, and the time-integrated block is won by Band or CPL. FALSIFIED IF: a BB-composite or DSBPL wins the time-integrated block, or if single-curvature models win fewer than 80% of finite-width blocks.",
+  "P-A3 (census prior, TWO-BREAK watch): archival max LRT_DSBPL_SBPL = 4.02 (blk4, 42.8-110.0 s), integrated 2.71 - all far below the DeltaAIC >= 10 gate. PREDICTION: with the hardened engine (L18 default-seed DSBPL restart, L19 widened Ep caps) DSBPL stays SUB-threshold in EVERY block. FALSIFIED IF: DSBPL wins any block at DeltaAIC >= 10. Note the campaign doctrine that archival two-break counts are LOWER limits applies with full force here - this prediction is the one most exposed to the hardening.",
+  "P-A4 (BOUND_CAPPED, L19): the archival Band high-energy index runs -3.58, -3.56, -4.14, -5.00 across blocks and SBPL_BETA sits at the -5.0 floor in EVERY block, while the published catalog measures a well-constrained beta = -2.585 +/- 0.130 over a 798 s interval with 4 detectors. PREDICTION: with widened bounds, at least one block is diagnosed BOUND_CAPPED on the high-energy index, and the time-integrated Band beta comes out steeper than -2.4. FALSIFIED IF: the integrated Band beta is HARDER than -2.2 (which would mean the archival railing was a seed/bound artifact rather than a real absence of a high-energy tail in our 112 s window), or if no block is bound-flagged despite an index within 0.05 of a bound.",
+  "P-A5 (BINNING, per-bin-coverage): the archival binning produced SIX rows of which TWO are zero-width degenerate blocks (blk1 = 20.69634 -> 20.69977 s, width 3.4 ms; blk3 = 42.796193 -> 42.796210 s, width 1.7e-5 s), carrying nonsensical negative AIC and VALID=False everywhere. PREDICTION: the 3ML Bayesian-Blocks + significance-merge binner produces 3-8 FINITE-width blocks over the stamped window and ZERO zero-width blocks. FALSIFIED IF: any block has width < 0.05 s, or if the block count falls outside 3-8.",
+  "P-B1 (LITERATURE, Bordoloi, Mittal & Iyyani 2026, 2026ApJ..1003...58B - the ONLY refereed paper on this burst): GRB 120905657 passes their INITIAL time-integrated + peak-flux cuts (fluence 1.96e-5 > 1e-5 erg/cm2; flnc Band alpha = -0.2516 > -0.5; flnc Band beta = -2.585 in (-1.7,-3.3); pflx Band alpha = -0.0139 > -0.45; pflx Band beta = -2.538 in (-1.7,-3.3)) and was then EXCLUDED at the time-resolved stage. Figure 10 caption, p.17, verbatim: 'A few representative GRBs that were excluded from the initial sample because their time-resolved Band alpha and beta did not meet the selection criteria.' Their gate: >= ~80% of Bayesian-Block bins inside the T70 region (15%-85% of cumulative background-subtracted counts) must satisfy alpha > -0.45 AND -1.7 > beta > -3.3. PREDICTION: in our time-resolved Band fits, FEWER than 80% of blocks satisfy both criteria simultaneously; and the FAILING parameter is beta (too steep, running past -3.3), NOT alpha - because the archival prior has alpha in [-0.19, -0.45] (all at or above their alpha gate) while beta runs -3.56 to -5.00 (all past their beta floor). FALSIFIED IF: >= 80% of our blocks satisfy both criteria (their exclusion would then be irreproducible), OR if the failures are driven by alpha rather than beta (we would then be reproducing their verdict for the wrong reason - the L26 'right answer, wrong mechanism' trap).",
+  "P-B2 (LITERATURE/CATALOG, frame-aligned curvature): the GBM catalog time-integrated Comptonized fit gives Ep = 91.797 +/- 2.776 keV (nuFnu peak, -4.096 to 794.230 s, detectors n9+na+nb+b1, Castor C-STAT). The archival prior's integrated CPL converts, in the SAME convention, to Ep = (2 + index) * xc = (2 - 0.3233) * 54.5865 = 91.5 keV - agreement to 0.3% despite a 7x shorter interval and a different detector set. PREDICTION: our new integrated CPL curvature energy Ep = (2 + index) * xc lands in 80-105 keV. FALSIFIED IF: outside 70-120 keV.",
+  "P-B3 (LITERATURE/CATALOG, SPECTRAL EVOLUTION): the catalog's peak-interval Comptonized Ep = 101.263 +/- 12.908 keV (12.288-13.312 s) versus its time-integrated Comptonized Ep = 91.797 +/- 2.776 keV - a ratio of only 1.10 +/- 0.15 in the SAME model family, i.e. almost no integrated-vs-peak hardness contrast across a 195 s burst. The archival prior agrees: Band Ep = 103.8 (0.5-20.7 s) -> 78.2 (20.7-42.8 s) -> 86.2 (42.8-110.0 s) keV, non-monotonic and spanning only 1.33x. PREDICTION: our block-resolved Ep varies by LESS than a factor 2 across finite-width blocks and is NOT monotonically decreasing; this is a weak-evolution / intensity-tracking-like burst, not a strong hard-to-soft one. FALSIFIED IF: Ep spans more than a factor 3 across blocks, or falls monotonically by more than 2.5x.",
+  "P-C1 (COVERAGE, D4 - a statement about what our window can and cannot see): the stamped window [-2, +110] s covers 112 s of a T90 that runs -7.168 -> +188.419 s (50-300 keV). Quick-look CSPEC 50-300 keV net counts (degree-2 polynomial background on the CATALOG background windows; indicative, NOT the production estimator) put 81.4% (n9) / 87.3% (na) of the burst inside our window, 14.6%/9.0% in 110-200 s, and 4.0%/3.7% in -10..-2 s. PREDICTION: our summed block exposure is 112 s and any T90-like or fluence-like number we derive is a PARTIAL-COVERAGE quantity ~10-20% below the catalog's TOTAL-coverage value; it must never be diffed against the catalog T90/fluence without that label (T9). FALSIFIED IF: our derived window fluence exceeds the catalog 10-1000 keV fluence (1.95674e-5 erg/cm2), which would indicate a background or response error rather than a coverage effect."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_final/bn120905657/spectral_fits.ecsv (2026-07-17 production era; PRE-hardening). NOT clean_per_burst_human_final - no such directory for this burst.",
+  "n_rows": 6,
+  "n_finite_width_blocks": 4,
+  "blocks": "blk-1 integrated 0.492-110.000 s; blk0 0.492-20.696; blk1 20.696-20.700 (ZERO-WIDTH ARTIFACT, 3.4 ms); blk2 20.700-42.796; blk3 42.796-42.796 (ZERO-WIDTH ARTIFACT, 1.7e-5 s); blk4 42.796-110.000",
+  "binning_caveat": "the archival block set starts at 0.492 s, NOT at the stamped SRC_START = -2.0 s, and contains two zero-width blocks with negative AIC and VALID=False - an era pathology, predicted against in P-A5",
+  "plugin_dets": "6 (n6,n7,n9,na,nb,b1) in all rows",
+  "aic_winners": {"Band": 2, "CPL": 4},
+  "aic_winners_detail": "blk-1 Band; blk0 CPL; blk1 CPL (zero-width); blk2 Band; blk3 CPL (zero-width); blk4 CPL",
+  "union_rule_significant_bb_blocks": 0,
+  "union_rule_definition": "(LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 keV) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05 keV) - BOTH nested tests, per the Codex-audit union-rule fix",
+  "lrt_bandbb_band": {"blk-1": 0.94, "blk0": 1.36, "blk1": 1.16, "blk2": 0.50, "blk3": 3.66, "blk4": 2.43},
+  "lrt_cplbb_cpl": {"blk-1": 1.50, "blk0": 0.95, "blk1": 0.68, "blk2": 0.19, "blk3": 1.75, "blk4": 2.06},
+  "lrt_bandbb_band_max": 3.66,
+  "lrt_bandbb_band_max_block": "blk3 - a ZERO-WIDTH artifact; max over physical blocks = 2.43 (blk4)",
+  "lrt_cplbb_cpl_max": 2.06,
+  "bandbb_kt_values_keV": [25.58, 5.05, 89.95, 4.95, 13.82, 6.48],
+  "cplbb_kt_values_keV": [5.89, 23.83, 5.13, 5.08, 13.88, 24.77],
+  "kt_caveat": "NONE of these kT values is significant (no block passes the union rule). They are quoted only to show the fitter wandering: the same block can give BANDBB_KT = 5.0 and CPLBB_KT = 23.8 keV, and blk1 gives 89.9 keV - block-to-block swings of this size ARE the signature of an unconstrained component. Do NOT read a photosphere into them (L25).",
+  "lrt_dsbpl_sbpl": {"blk-1": 2.71, "blk0": 1.27, "blk1": 0.09, "blk2": 0.89, "blk3": 0.72, "blk4": 4.02},
+  "lrt_dsbpl_sbpl_max": 4.02,
+  "lrt_dsbpl_sbpl_max_block": "blk4 (42.796-110.000 s) - sub-threshold; the single most likely two-break upgrade if one occurs",
+  "two_break_count": 0,
+  "integrated_shape": "blk-1 BEST_AIC_MODEL = Band (AIC 12389.42) even though CPL has the LOWER AIC (12387.86). CHECKED, NOT AN INCONSISTENCY: CPL_VALID = False in that row, so the selector correctly skipped it; same pattern in blk2 (CPL 9010.72 < Band 9012.37 but CPL_VALID = False -> Band). The AIC ordering alone would give a different answer from the recorded winner in 2 of 6 rows, so any re-derivation must apply the validity gate before comparing AIC.",
+  "validity_gate_caveat": "blk4 (42.796-110.000 s) has VALID = False for ALL SIX models yet still reports BEST_AIC_MODEL = CPL - the winner there is the least-bad of a set that all failed the gate, and its LRT_DSBPL_SBPL = 4.02 (the burst's maximum) inherits that weakness. Treat blk4's archival numbers as the softest part of the prior.",
+  "bound_capped_signature": "BAND_BETA = -3.58 (blk0), -3.56 (blk2), -4.14 (blk-1), -5.00 (blk4); SBPL_BETA = -4.99999... (the floor) in EVERY row. An L19 BOUND_CAPPED case, not a measurement.",
+  "frame_aligned_agreement": "archival integrated CPL Ep = (2 + index)*xc = (2 - 0.3233)*54.5865 = 91.5 keV vs catalog flnc_comp Ep = 91.797 +/- 2.776 keV (0.3%); archival Band alpha = -0.301 +/- 0.147 vs catalog flnc_band alpha = -0.2516 +/- 0.1088. Archival Band Ep = 90.5 +/- 4.4 vs catalog 76.8 +/- 3.9 keV - a genuine frame difference (110 s vs 798 s integration), in the expected direction.",
+  "caveat": "archival BB and two-break counts are LOWER LIMITS until the L18/L19 hardening lands - project doctrine. For THIS burst the Ep cap is not the binding constraint (Ep ~ 90 keV, nowhere near 5 MeV); the binding constraint is the high-energy index FLOOR at -5.0 (P-A4)."
+ },
+ "published_frame": {
+  "n_refereed_papers": 1,
+  "n_gcn_circulars": 0,
+  "redshift": "NONE - no circular, no follow-up, no host",
+  "gbm_catalog_T90_s": "195.587 +/- 16.795, starting -7.168 (50-300 keV, TOTAL coverage)",
+  "gbm_catalog_T50_s": "83.969 +/- 7.384, starting 10.240 (50-300 keV)",
+  "gbm_catalog_fluence_erg_cm2": "1.95674e-5 +/- 6.316e-7 (10-1000 keV, TOTAL coverage); 1.08608e-5 +/- 3.153e-7 (50-300 keV)",
+  "gbm_catalog_peak_flux": "64 ms: 5.090 +/- 1.032 ph/cm2/s at t=6.080 s; 1024 ms: 3.553 +/- 0.228 at t=12.992 s (10-1000 keV)",
+  "gbm_catalog_flnc_best": "Band over -4.096..794.230 s: Ep = 76.811 +/- 3.950 keV, alpha = -0.2516 +/- 0.1088, beta = -2.5851 +/- 0.1297, redchisq 1.0795/440. Detectors n9+na+nb+b1, Castor C-STAT.",
+  "gbm_catalog_pflx_best": "Comptonized over 12.288..13.312 s: Ep = 101.263 +/- 12.908 keV, index = -0.4391 +/- 0.3040, redchisq 0.9743/441. Same detector set.",
+  "instrument_frames": 1,
+  "multi_instrument_consensus": "NOT APPLICABLE - von Kienlin+2020 table4 'Other' column is blank (no Konus-Wind, no INTEGRAL SPI-ACS, no Suzaku, no Swift) and f_Fermi carries no LAT flag; HEASARC fermilgrb returns 0 rows. Exactly one instrument frame exists, so there is no inter-instrument spread to fold into the uncertainty (Phase 4 rule satisfied by structural absence, not by omission)."
+ },
+ "harvest_snippets": {
+  "Bordoloi_Mittal_Iyyani_2026__2026ApJ..1003...58B": [
+   "SS2, p.2: 'For the initial selection, we required the time-integrated spectrum to have a fluence > 10-5 erg cm-2, a low-energy index +1 >~ alpha > -0.5, and a high-energy index -1.7 > beta > -3.3. For the corresponding peak flux spectrum of each burst, we additionally required +1 >~ alpha > -0.45 and -1.7 > beta > -3.3. These criteria yielded a sample of 41 GRBs.'",
+   "SS2, p.2: 'we restricted the analysis to the brighter portion of each burst. This interval was defined as the T70 region, where T70 is the time during which 70% of the total background-subtracted counts are accumulated. The start and stop times of this interval were determined from the cumulative counts curve of the background-subtracted light curve of the brightest detector, using 15% and 85% levels of the total counts as boundaries.'",
+   "SS2, p.2: 'If at least ~80% of the bins in the T70 region met these conditions, the GRB was deemed suitable for direct physical modeling using the IC scenario.'",
+   "Figure 10 caption, p.17: 'GRB 120905657 / GRB 181227262 / GRB 221206516 ... A few representative GRBs that were excluded from the initial sample because their time-resolved Band alpha and beta did not meet the selection criteria. The complete figure set of 41 GRBs is available.'",
+   "SS2, p.2: 'In some cases, individual time-resolved bins were better described by a cutoff power law than by either the Band or Band + BB models (e.g., GRB 100805845, GRB 231129799, etc.). GRBs showing such behavior were also excluded from the final sample.' <- NOTE: our burst is NOT in that CPL-preference list; it is in the alpha/beta-criteria list. The distinction is load-bearing for P-B1.",
+   "p.3, verbatim: 'Applying this procedure reduced the final sample to four GRBs that satisfy the selection criteria both in their time-integrated spectra and across the time-resolved bins within the T70 region (Figure 1). These bursts are GRB 131014A (GRB 131014215), GRB 200412B (GRB 200412381), GRB 200829A (GRB 200829582), and GRB 230614C (GRB 230614424).' Our burst is NOT among them.",
+   "T5 FLAG: the Figure 10 caption says 'excluded from the initial sample' while the same page says the 41-image figure set covers 'all 41 GRBs in our initial sample' and SS2 says the 41 were reduced to four. Consistent reading = 'excluded from the FINAL sample'. Recorded, not silently resolved."
+  ],
+  "NarayanaBhat_2016__2016ApJS..223...28N": [
+   "trigger table p.81 (three consecutive rows, verbatim): 'bn120831901 ... 21:37:31.8746 ...' / 'bn120905657 ... 15:46:21.1660 356.0 17.0 1.8 Fermi-GBM 14 2048 47-291' / 'bn120907017 GRB 120907A ...' - the GRB-name column is the catalog's own 'no name assigned' filler for our burst while the NEXT row carries a name.",
+   "durations table p.123: 'bn120905657 6+7+9+10+11 195.587 +/- 16.795 -7.168 83.969 +/- 7.384 10.240'",
+   "fluence/peak-flux table p.166: 'bn120905657 1.96E-05 +/- 6.32E-07 5.09 +/- 1.03 3.82 +/- 0.48 3.55 +/- 0.23' (10-1000 keV)",
+   "BATSE-band table p.211: 'bn120905657 1.09E-05 +/- 3.15E-07 1.71 +/- 0.35 1.34 +/- 0.18 1.15 +/- 0.08' (50-300 keV)"
+  ],
+  "vonKienlin_2020__2020ApJ...893...46V": [
+   "trigger table p.51: identical blank GRB-name entry for bn120905657",
+   "VizieR J/ApJ/893/46/table4 recno 990 machine row: Fermi=bn120905657, f_Fermi=(blank), GRB=(blank), Obs=2012-09-05T15:46:21, RAJ2000=356.0, DEJ2000=+17.0, Error=1.8, Loc=Fermi-GBM, Al=14, Time=2048 ms, Energy=47-291 keV, Other=(blank)",
+   "VizieR J/ApJ/893/46/table5 recno 990: Det='6+7+9+10+11', T90=195.587 +/- 16.795 (start -7.168), T50=83.969 +/- 7.384 (start 10.240)"
+  ],
+  "GCN": [
+   "absent - n_circulars = 0. Four gcn.gsfc.nasa.gov/other/*.gcn3 URLs -> HTTP 404 (control 100122A.gcn3 -> 200); five gcn.nasa.gov live-search queries -> totalItems 0 (control 100122A -> 2). Evidence: results/gcn/bn120905657/bn120905657_gcn_raw.txt"
+  ]
+ },
+ "blind_first_note": "This freeze contains NO number from the current sweep. results/sweep106/ was not read at any point. Every fit number quoted is either (a) the 2026-07-17 archival prior, explicitly labelled, or (b) published catalog/journal values. The new fit starts blind."
+}

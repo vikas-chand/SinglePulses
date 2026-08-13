@@ -25,7 +25,8 @@ Gowri pulse parameters (A, s_l, s_r, r_l, r_r), φ = s_l/s_r, R², class.
 
 ## The four measurements
 1. **T90/T50** — cumulative background-subtracted counts between 5%/95% (25%/75%);
-   errors by bootstrap resampling (n=100). ⚠ **BROKEN — see defect ledger.**
+   errors by **Poisson mock light curves (n=200, time order preserved; T90 formed per
+   realization so the t5/t95 covariance is included)** — fixed 2026-08-13, see defect ledger.
 2. **MVT** — Haar-wavelet cross-check in this chain; the CANONICAL MVT is Bala's
    `mvt_runner` run separately (the upstream Bala code was NOT adoptable unmodified —
    repaired fork; the old classifier is quarantined; LATBright-era MVT MC numbers are
@@ -56,6 +57,41 @@ What looked like three inconsistent durations was one burst obeying one power la
 frame-alignment item with a number attached). Cite Qin+2013; note their caveat that bright-burst
 samples give steeper (−0.4, Bissaldi+2011).
 
+### ⚠ CORRECTION (Vikas's Qin reading, 2026-08-13; PDF-verified same day)
+**The exponent is a POPULATION-MEAN relation, not a per-burst law.** Their §Figure 7 fits
+`T̄₉₀` — the *sample mean* T90 — against the central energy of each band; the slope
+−0.20 ± 0.02 describes how the population average moves, and says nothing about the scatter
+of any single burst around it. Our rule above applies it to INDIVIDUAL bursts (bn090530760
+matched to 0.72 — a good outcome, but one draw from a distribution whose width we never
+measured).
+**Consequences, binding from now on:**
+1. A band-corrected T90 diff is a CONSISTENCY CHECK with population-level scatter attached,
+   never a precision prediction. Never call a residual mismatch a discrepancy on the strength
+   of E^−0.20 alone.
+2. To use it per-burst we must measure the per-burst relation ourselves — `scripts/40` already
+   computes T90 per band, so the campaign's own multi-band T90s give both the population slope
+   AND its scatter. Do that before the frozen numbers are quoted.
+3. **Their T90 is count-space by their own statement** — verbatim: *"Our calculation is done
+   purely in count space. Since the GBM is constantly slewing in orbit, this method could skew
+   the T90 estimation for long GRBs."* The GBM catalog instead accumulates response-corrected
+   photon fluence. So a Qin-vs-catalog T90 difference can be METHOD, not band (a T9-class
+   coverage/estimator distinction). Label which space every harvested T90 lives in.
+4. Source audits (resolved 2026-08-13 against the PDF; full record in skill reference 22):
+   the HR "inconsistency" is **under-signposting, not contradiction** — the 25–50 keV
+   denominator is quoted as the legacy BATSE definition (Kouveliotou+1993), the Fig. 4 caption
+   states the 50–100 keV denominator actually plotted for GBM; their GBM hardness is
+   model-derived from GCN spectral parameters, not counts. The `091010`/`090910` clash is a
+   CAPTION typo (text + panel label say 091010). The short:long ratio 1:6.5 (39:253) is
+   internally consistent. **Genuinely open:** Table 2's soft-band P_KMM (2.25e−2, 5.9e−4)
+   reject one Gaussian under their own `P<0.05` rule while the text says bimodality is
+   rejected — do not inherit; and the paper NEVER states its Bayesian-block fitness function
+   or prior, so Figure 1 is not reproducible from the paper alone.
+5. Their σ_T90 combines separate t5/t95 Monte Carlo spreads in quadrature; t5 and t95 come
+   from the SAME cumulative light curve and are correlated. Our MC must form
+   `T90^(j) = t95^(j) − t5^(j)` per realization and take the spread of that distribution
+   directly (covariance included by construction). Check `scripts/40`'s estimator against this
+   before quoting any T90 error.
+
 ## L26 — LAG SIGN is a systematic trap: state the convention, verify against a known burst  *(2026-08-10)*
 Two independent instances, one ours and one published:
 1. **Ours:** the handbook lag sign is INVERTED (defect ledger above) — caught only by cross-check.
@@ -76,7 +112,7 @@ OWN internal consistency (trend statement vs prose vs table sign) rather than as
 ## 🔴 Defect ledger (check BEFORE quoting any number)
 | defect | evidence | state |
 |---|---|---|
-| **T90 bootstrap errors broken** | `T90_ERR > T90` in **84/89** rows | OPEN — fix in handbook `temporal.py` |
+| **T90 bootstrap errors broken** | `T90_ERR > T90` in **84/89** rows | ✅ **FIXED 2026-08-13** — root cause: the estimator resampled BIN INDICES with replacement and interpolated against `lc.time[idx]`, destroying time order (np.interp on a non-monotonic y). Replaced with Poisson mock light curves in place, `T90 = t95 − t5` formed PER realization (Qin+2013's method, minus their quadrature/covariance error). Post-fix: bn090530760 143.47 ± 0.65 s, bn081224887 19.04 ± 0.95 s. Found by auditing OUR code against Vikas's Qin reading package. |
 | **bn130310840 committed row is a FAILED fit** | T90 = 17.91 ± 68.24 s vs 2.09 s blind re-run and ~2.4 s published | OPEN — refit + replace row |
 | **Lag sign inverted** | handbook lag sign convention opposite to the standard (positive = soft lags hard) | OPEN — fix at source, then re-survey |
 | MVT: only the Haar cross-check is in the catalog | canonical Bala MVT runs separately | by design — label which MVT you quote |

@@ -1,0 +1,49 @@
+{
+ "burst": "bn081222204",
+ "grb_name": "GRB 081222",
+ "harvest_utc": "2026-08-12T00:00:00Z (doc-layer worker session)",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5; 1b Scholar-note, 3b latest-first, 3c prompt-scope, Phase 4 frame+consensus)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "query_forms": [
+  {"form": "full:\"GRB 081222\"", "numFound": 28, "note": "name has NO letter suffix in GCNs; Swift trigger 337914 = GBM 251614441 (identity verified in the 2026-07-30 dossier)"},
+  {"form": "full:\"bn081222204\"", "numFound": 1, "note": "Lu 2018 ApJ 865 153 (Comprehensive Analysis IV) - the ONLY paper this form catches; missed by the name form"},
+  {"form": "full:\"081222204\"", "numFound": 5, "note": "Barnacka 2012, Virgili 2012, Ghirlanda 2010 + non-refereed"},
+  {"form": "full:\"251614441\"", "numFound": 0, "note": "trigger number form empty"}
+ ],
+ "scholar_channel": "NOT invoked (Phase 1b): the four-form ADS query returned a rich, self-consistent footprint (17 refereed) with no vocabulary-gap symptom; Scholar is reserved for thin/empty or cross-community cases.",
+ "same_day_contamination_check": "T1: GRB 081222 carries no letter suffix; all refereed hits checked against trigger 081222204/337914 where tables permit (Virgili, Ghirlanda, Lu, Atteia, Ukwatta all list the trigger or z=2.77). NOTE: Lu+2018 calls it 'GRB 081222A (bn081222204)' - a naming variant, same burst; do not propagate the A.",
+ "n_refereed_papers": 17,
+ "n_new_papers_downloaded": 0,
+ "corpus_status": "All 17 refereed papers already have PDFs in Skills_training/ and rows in corpus_index.csv; 16 rows already carry bn081222204 in cited_by_bursts. ONE update needed: Lu_2018_2018ApJ865153L (currently bn090530760;proj37;proj38, read=Y) must gain bn081222204 - queued below, NOT written (shared-CSV rule).",
+ "pending_shared_csv_rows": [
+  {"file": "Skills_training/corpus_index.csv", "action": "UPDATE row bibcode=2018ApJ...865..153L: cited_by_bursts += ';bn081222204', n_bursts += 1 (1->2). Rationale: full:\"bn081222204\" ADS hit + PDF-verified rows on pp. 34/39/51/54."}
+ ],
+ "papers": [
+  {"bibcode": "2018ApJ...865..153L", "first_author": "Lu, Rui-Jing", "year": 2018, "title": "A Comprehensive Analysis of Fermi GRB Data. IV. Spectral Lag and its Relation to Ep Evolution", "role": "dedicated-sample analysis w/ per-burst tables", "prompt_sections": "SS3-4; p39 TR-Band table (GRB 081222A row: bins -0.77..15.62 s); p51 per-band lags; p54 tau31=0.76+/-0.16 s, W=6.84, k_E=-0.58+/-0.26, class H", "module_future_tags": [], "found_via": "q2 full:bn081222204", "in_corpus": "yes (read=Y 2026-08-10); pending cited_by_bursts update", "series_note": "T2: series member IV; II (Lu 2012 ApJ 756 112) already in corpus; I (2011ApJ...730..141Z) and III (Qin+2013) did not hit on any query form - burst likely absent there"},
+  {"bibcode": "2012MNRAS.424.2821V", "first_author": "Virgili", "year": 2012, "title": "Joint Swift-BAT + Fermi-GBM spectral/temporal analysis", "role": "PRIME integrated-spectrum anchor (joint fit)", "prompt_sections": "SS2-3 + Table 3 (Band alpha=-0.85+0.07/-0.08, Ep=140+14/-13, beta=-2.39+0.33/-0.22, dt=14.336 s, chi2 460/371; footnote c: significant spectral evolution) + T90 table (GBM 26.75+/-0.53 s, BAT 33 s)", "module_future_tags": [], "in_corpus": "yes"},
+  {"bibcode": "2010A&A...511A..43G", "first_author": "Ghirlanda", "year": 2010, "title": "Spectral-luminosity relation within individual Fermi GRBs", "role": "time-resolved evolution anchor", "prompt_sections": "Table 1 (integrated alpha=-0.55+/-0.07, Ep=134+/-9, beta=-2.10+/-0.06) + TR appendix table p11 (COLUMN IS E0; Ep=(2+alpha)E0 = 311->192->152->120->127 keV, verified <1%)", "module_future_tags": [], "in_corpus": "yes"},
+  {"bibcode": "2012MNRAS.419..614U", "first_author": "Ukwatta", "year": 2012, "title": "Lag-luminosity relation in the GRB source frame", "role": "lag anchor", "prompt_sections": "SS2-3 + Tables (source-frame lag 227+/-51 ms, 4.45sigma, interval -0.80..15.58 s, obs bands 27-40/53-66 keV; POSITIVE lag = hard leads)", "module_future_tags": [], "in_corpus": "yes"},
+  {"bibcode": "2011A&A...526A.110D", "first_author": "Daigne", "year": 2011, "title": "Reconciling prompt spectra with synchrotron (marginally fast cooling)", "role": "theory frame for alpha ~ -2/3", "prompt_sections": "p2 mention of 081222 as example; SS2-4 theory", "module_future_tags": [], "in_corpus": "yes"},
+  {"bibcode": "2017ApJ...837..119A", "first_author": "Atteia", "year": 2017, "title": "Maximum isotropic energy of GRBs", "role": "energetics + multi-instrument consensus datum", "prompt_sections": "p5 (LARGEST GBM/KW Eiso spread in sample: 2.4e53 vs 1.7e53 erg, 30%) + rows p7 (GBM: Band Ep 143, a -0.86, b -2.31) and p9 (KW: Comp Ep 192, a -0.84)", "module_future_tags": [], "in_corpus": "yes"},
+  {"bibcode": "2015ApJ...815..134H", "first_author": "Hakkila", "year": 2015, "title": "Swift GRB pulse shapes / pulse spectral evolution", "role": "pulse-shape sample member", "prompt_sections": "081222 BAT pulse-fit row (verify column defs before diffing - T3)", "module_future_tags": [], "in_corpus": "yes"},
+  {"bibcode": "2012PASP..124..297L", "first_author": "Li, Zhaosheng", "year": 2012, "title": "Spectral lags via CCF of smoothed light curves", "role": "lag-method sample member", "prompt_sections": "lag table row for 081222", "module_future_tags": [], "in_corpus": "yes"},
+  {"bibcode": "2026A&A...707A.392Z", "first_author": "Zhang, Xue", "year": 2026, "title": "Central engines from prompt light curves", "role": "sample member (newest paper; Phase 3b: read first among NEW-era claims)", "prompt_sections": "engine-class row for 081222 (prompt-LC based)", "module_future_tags": [], "in_corpus": "yes"},
+  {"bibcode": "2012PhRvD..86d3001B", "first_author": "Barnacka", "year": 2012, "title": "Femtolensing constraints on primordial black holes", "role": "uses 081222204 GBM data as lensing probe", "prompt_sections": "none (not a spectral/temporal target)", "module_future_tags": ["module-future;exotic"], "in_corpus": "yes"},
+  {"bibcode": "2014ApJ...785...84J", "first_author": "Japelj", "year": 2014, "title": "Reverse-shock emission in optical afterglows", "role": "afterglow sample member", "prompt_sections": "none", "module_future_tags": ["module-future;afterglow"], "in_corpus": "yes"},
+  {"bibcode": "2013MNRAS.432.1231C", "first_author": "Covino", "year": 2013, "title": "Dust extinction of GRB afterglows", "role": "afterglow sample member", "prompt_sections": "none", "module_future_tags": ["module-future;afterglow"], "in_corpus": "yes"},
+  {"bibcode": "2012MNRAS.421.1265M", "first_author": "Melandri", "year": 2012, "title": "Dark-burst population (BAT6)", "role": "afterglow sample member (081222 not dark)", "prompt_sections": "none", "module_future_tags": ["module-future;afterglow"], "in_corpus": "yes"},
+  {"bibcode": "2012A&A...539A...3B", "first_author": "Bernardini", "year": 2012, "title": "X-ray light curves: clues to the central engine", "role": "afterglow/engine sample member", "prompt_sections": "none", "module_future_tags": ["module-future;afterglow"], "in_corpus": "yes"},
+  {"bibcode": "2016ApJ...828...36D", "first_author": "Del Vecchio", "year": 2016, "title": "GRB light-curve decay indices in the afterglow phase", "role": "afterglow sample member", "prompt_sections": "none", "module_future_tags": ["module-future;afterglow"], "in_corpus": "yes"},
+  {"bibcode": "2019MNRAS.483.5380T", "first_author": "Tanvir", "year": 2019, "title": "Escaping ionizing radiation fraction (LyC) from GRB sightlines", "role": "host/cosmo sample member (uses z=2.77 afterglow spectrum)", "prompt_sections": "none", "module_future_tags": ["module-future;host-cosmo"], "in_corpus": "yes"},
+  {"bibcode": "2021A&A...653A..83V", "first_author": "Vielfaure", "year": 2021, "title": "GRBs as probes of high-z Lyman-alpha emitters", "role": "host/cosmo sample member", "prompt_sections": "none", "module_future_tags": ["module-future;host-cosmo"], "in_corpus": "yes"}
+ ],
+ "published_value_sources_new_this_pass": [
+  {"source": "glg_bcat_all_bn081222204_v01.fit (HEASARC 2008/bn081222204/current)", "values": "T90=18.88+/-2.32 s (T90START=0.384 s), T50=4.67+/-0.23 s, FLU(10-1000)=1.18871e-5+/-9.57e-8 erg/cm2, PF64=14.50, PF256=13.75 ph/s/cm2, TRIGTIME=251614441.256"},
+  {"source": "glg_scat_all_bn081222204_flnc_band_v03.fit", "values": "Band -1.024..35.840 s, dets BGO_00/NAI_00/NAI_01/NAI_02: Ep=147.2 +8.4/-8.8 keV, alpha=-0.844 +0.045/-0.047, beta=-2.300 +0.119/-0.097, NRGFLNC=1.207e-5 erg/cm2, redchi2 1.153 (480 dof)"},
+  {"source": "glg_scat_all_bn081222204_flnc_comp_v03.fit", "values": "Comptonized: Epeak=177.9 +8.1/-9.1 keV, index=-0.945+/-0.036, redchi2 1.189 (481 dof)"},
+  {"source": "glg_scat_all_bn081222204_flnc_sbpl_v03.fit", "values": "SBPL: Ebreak=101.9 +12.0/-13.7 keV, low=-1.042+/-0.040, high=-2.355 +0.136/-0.110, redchi2 1.162 (480 dof)"},
+  {"source": "glg_scat_all_bn081222204_pflx_band_v03.fit", "values": "PFLX Band 3.072..4.096 s: Ep=174.6 +16.1/-33.2 keV, alpha=-0.726 +0.114/-0.087, beta=-2.61 (+9.8, unconstrained)"}
+ ],
+ "redshift": "z = 2.77 spectroscopic, TWO independent confirmations (Cucchiara GCN 8713 Gemini-S DLA; Graham GCN 8718 Gemini-N) - already in the 2026-07-30 dossier",
+ "prompt_relevant_summary": "P3-diff anchors: GBM catalog flnc/pflx + Konus GCN 8721 + Virgili+2012 joint fit (integrated); Ghirlanda+2010 TR (Ep 311->127, E0 convention!) + Lu+2018 TR-Band (both hard-to-soft); lags Ukwatta 227+/-51 ms source-frame + Lu tau31 0.76+/-0.16 s, class H; T90 consensus spans 18.9 (bcat) - 26.75 (Virgili GBM) - 33 s (BAT), band+coverage dependent (T9)."
+}

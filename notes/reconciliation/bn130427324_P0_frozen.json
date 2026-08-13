@@ -1,0 +1,159 @@
+{
+ "burst": "bn130427324",
+ "grb_name": "GRB 130427A",
+ "tally": null,
+ "tally_note": "campaign doc-layer worker, not a numbered walkthrough burst; no tally assigned. NB this burst carries a standing deferral record (results/gcn/bn130427324/bn130427324_BLOCKERS.md, 2026-08-07) which this freeze does not override.",
+ "frozen_utc": "2026-08-12T19:20:00Z",
+ "blind_discipline": {
+  "sweep106": "NOT READ. Nothing under results/sweep106/ was listed, opened, globbed or referenced by this worker at any point. The blind fits in flight are untouched.",
+  "archival_prior_deliberately_opened": "results/clean_per_burst_human_final/bn130427324/spectral_fits.ecsv WAS opened - by explicit instruction, as the ARCHIVAL PRIOR that P0 is frozen against. It is a pre-L18 artefact of an older engine, not the blind run. Also read: results/background_intervals.ecsv (the stamped selection rows), results/qc/bn130427324_step1_response_coverage.ecsv (pre-existing, re-verified not rewritten), and the response/data headers in data/bn130427324/.",
+  "order": "external literature + GCN + GBM-catalog frame harvested FIRST (Steps 0/0b), archival prior read SECOND, predictions written LAST and never revised afterwards."
+ },
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "window": {
+  "src_start": 119.10713298805479,
+  "src_stop": 178.44166725378912,
+  "detectors": "n6 (53.24 deg), n9 (6.42 deg), na (43.18 deg), b1 (63.95 deg), lle (angle nan in the catalog row)",
+  "stamp": "APPROVED_BY='Vikas Chand', APPROVED_UTC=2026-07-19T22:18:36Z, APPROVAL_MODE=human_gui, WINDOW_SOURCE=accepted_suggestion",
+  "backgrounds": "per-detector; n6 [81.807,117.807]+[185.807,211.807]; n9 [96.807,116.807]+[192.807,261.807]; na [85.807,117.807]+[192.807,261.807]; b1 [97.807,117.807]+[192.807,261.807]; lle [96.807,116.807]+[192.807,261.807]",
+  "coverage_label_T9": "SECOND EMISSION EPISODE ONLY - the 'FRED-like pulse at ~T0+120 s' (GCN 14473), 'the second emission episode' of Konus (GCN 14487), 'a dim, broad peak at T0 + 120 s' (Ackermann+2014), the 'postburst' of Du+2022. Contains NONE of the first pulse and NONE of the pile-up-affected interval. Straddles T95: 23.2 s of the window lies inside the GBM T90 [4.096, 142.338] s, 36.1 s lies beyond it.",
+  "detector_set_corroboration": "the GBM SPECTRAL CATALOG fitted exactly b1+n6+n9+na for this burst, and Deng+2024 independently chose 'n6,n9,na,b1'. Our approved GBM set matches both. (Bissaldi+2015 used n9+na+n0+b1 - n0 instead of n6.)"
+ },
+ "external_frame": "Most-analysed GRB of the Fermi era (476 refereed full-text hits) yet our COMPONENT is nearly unstudied. (a) THE ONLY published spectral measurement covering our window: Konus-Wind GCN 14487, 3-channel CPL over KW T0+120->250 s = GBM [+123.08, +253.08] s, 'alpha~-1.6 and the peak energy Ep ~ 240 keV', fluence ~9e-5 erg/cm2 (band ambiguous after the GCN 14579 correction), NO uncertainties quoted. (b) THE ONLY dedicated refereed analysis of the component: Du+2022 (2022ApJ...940...48D) 'main bursts and postbursts' - abstract states the postbursts are 'mainly dominated by the nonthermal components' and that for GRB 130427A NO postburst time bin exceeds the synchrotron death line; PDF UNOBTAINABLE (IOP captcha, no arXiv), so only abstract-level. (c) Three refereed EXCLUSIONS of this burst: Ravasio+2019 (pile-up, 'standard analysis can be performed only on its precursor'), Duan+2020 (brightness), Maraventano+2025 ('its GBM light curve suffers from saturation effects'). (d) First-pulse frames that are NOT our component: Preece+2014 (0-2.5 s, synchrotron, Ep first bin 5400+/-1500 keV); Toffano+2021 (3-15 s: Band Ep=852+/-6.7, chi2r 6.01, AIC 942 vs 2SBPL alpha1=-0.63, alpha2=-1.67, Ebreak=224+/-10, Epeak=992+/-12, beta=-3.7, chi2r 2.83, AIC 812 -> a PUBLISHED TWO-BREAK detection, first pulse); Aldowma+2026 (GBM+LAT+LLE, 11.23-142.34 s: Band+PL Ep=886+/-11; peak-flux 8.192-9.216 s Band+BB kT=43+/-16 keV); Deng+2024 (thermal component in 100% of 54 bins over -0.1 to 12.5 s, detectors n6,n9,na,b1); Li+2024 (first-pulse kT ladder 24.1->33.0->39.3->44.5 keV); Li+2023 (SN-rise CPL+BB kT=42.63 keV; UPE skipped 'in view of a pile-up problem'); Macera+2025 (three first-pulse bins 11.11-22.61 s, synchrotron nu_c 57->22->9 keV). (e) GBM catalog (b1+n6+n9+na, C-STAT, flnc [0,254.976] s): Band Ep=824.99+/-5.45, alpha=-1.0177, beta=-2.8286, NRGFLNC=1.412e-3 erg/cm2, REDCHSQ 7.2528/481 - UNACCEPTABLE by a factor 7, so NO AIC was recomputed from it (T8 judgement, documented in the harvest). bcat: T90=138.242+/-3.238 s from +4.096 (50-300 keV), fluence(10-1000 keV)=2.46198e-3, PF64=1259.22 ph/cm2/s. (f) LAT: >100 MeV emission is CONTINUOUS through our window, decaying as t^-0.79 (Ajello+2019 BPL alpha1=0.79+/-0.16, alpha2=1.42+/-0.10), total LAT duration ~34 ks, 95 GeV photon at T0+244 s (66 s AFTER our window closes), LAT PL index over the T90 window -1.96+/-0.07 (GCN 14508). (g) z=0.3399+/-0.0002 (VLT/X-shooter GCN 14491); SN 2013cq. (h) FOUR T0 aliases: GBM 07:47:06.42; BAT +51 s; Konus +3.081 s; AGILE +8.58 s.",
+ "archival_prior": {
+  "spectral_fits_ecsv": "results/clean_per_burst_human_final/bn130427324/spectral_fits.ecsv - PRESENT, 9 rows (BLOCK -1 = window-integrated [121.473, 173.108] s, then 8 time-resolved blocks), PLUGIN_DETS='n6,n9,na,b1,lle' throughout (N_DETS=5)",
+  "CRITICAL_CAVEAT": "EVERY archival row includes the LLE plugin with a response that is INVALID for this window (D1: single matrix built for [+5.017, +34.916] s at theta=48.1 deg, our window at theta 36.5->23.0 deg, Delta-theta = 19.9 deg; verdict INVALID_DRM_SLEW in results/qc/bn130427324_step1_response_coverage.ecsv). The archival high-energy effective area is therefore WRONG BY AN UNKNOWN FACTOR, and every model whose shape is anchored above ~10 MeV (DSBPL beta, CPL cutoff, Band beta) inherits that error. Treat all archival numbers below as a pattern to predict against, never as a measurement.",
+  "block_coverage_gap": "blocks span [121.473, 173.108] s = 51.6 s of the 59.3 s stamped window; 2.37 s at the start and 5.33 s at the end carry no block.",
+  "blocks": [
+   {"BLOCK": -1, "T": [121.473, 173.108], "note": "window-integrated"},
+   {"BLOCK": 0, "T": [121.473, 122.580]},
+   {"BLOCK": 1, "T": [122.580, 126.321]},
+   {"BLOCK": 2, "T": [126.321, 129.735]},
+   {"BLOCK": 3, "T": [129.735, 142.992], "note": "this block crosses T95 = 142.338 s"},
+   {"BLOCK": 4, "T": [142.992, 149.677]},
+   {"BLOCK": 5, "T": [149.677, 156.317]},
+   {"BLOCK": 6, "T": [156.317, 166.435]},
+   {"BLOCK": 7, "T": [166.435, 173.108]}
+  ],
+  "union_rule_counts": {
+   "rule": "(LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05) - both nested tests, union",
+   "time_resolved_blocks_firing": 6,
+   "time_resolved_blocks_total": 8,
+   "which": "BLOCK 0 (CPL+BB only: LRT 15.43, kT 27.48), BLOCK 2 (CPL+BB only: 18.53, kT 20.03), BLOCK 3 (CPL+BB only: 37.64, kT 20.50), BLOCK 4 (Band+BB only: 10.97, kT 8.35 - the CPL+BB pair is dead here, LRT 2.6e-5 and kT railed at 1.001), BLOCK 5 (BOTH: Band+BB 10.23 kT 22.46, CPL+BB 32.33 kT 22.47), BLOCK 6 (Band+BB only: 26.45, kT 11.46 - but BANDBB_VALID is False)",
+   "non_firing": "BLOCK 1 (1.256 / -0.0002), BLOCK 7 (1.858 / -1.0e-5)",
+   "integrated_row": "BLOCK -1 fires on BOTH pairs and enormously: LRT_BANDBB_BAND = 83.32 (kT 22.04, but BANDBB_VALID False) and LRT_CPLBB_CPL = 102.9 (kT 22.00, CPLBB_VALID True). CPL+BB is the AIC and BIC winner with a margin of 66.7 over the next VALID model.",
+   "T8_baseline_dependence_is_extreme_here": "in 4 of the 6 firing blocks only ONE of the two nested pairs fires, and in BLOCK 4 the two pairs disagree in opposite directions (Band+BB fires, CPL+BB is degenerate with CPL). Any BB margin quoted for this burst MUST name its baseline."
+  },
+  "LRT_BANDBB_BAND": [83.32, 0.3223, 1.256, 2.032, -0.0001891, 10.97, 10.23, 26.45, 1.858],
+  "LRT_CPLBB_CPL": [102.9, 15.43, -0.0001652, 18.53, 37.64, 2.583e-05, 32.33, 0.09499, -1.03e-05],
+  "LRT_DSBPL_SBPL": [69.06, 0.5495, 1.373, 7.016, 19.15, 15.26, 1.065, 1.485, 1.302],
+  "kt_values_keV": {
+   "BANDBB_KT": [22.04, 27.96, 9.32, 6.037, 1.234, 8.351, 22.46, 11.46, 27.13],
+   "BANDBB_KT_ERR": [1.933, 11.58, 2.904, 1.231, 81.31, 1.372, 2.376, 1.462, 11.06],
+   "CPLBB_KT": [22.00, 27.48, 72.85, 20.03, 20.50, 1.001, 22.47, 1.454, 4.184],
+   "CPLBB_KT_ERR": [2.587, 9.281, 0.0, 0.8514, 1.047, 0.0, 2.367, 0.2356, 24.42],
+   "order": "[BLOCK -1, 0, 1, 2, 3, 4, 5, 6, 7]",
+   "note": "three kT errors are exactly 0.0 (BLOCK 1 CPLBB, BLOCK 4 CPLBB) or absurd (BLOCK 3 BANDBB_KT_ERR = 81.31 on kT = 1.234) - railed/degenerate BB components, i.e. the fit found no blackbody and parked the parameter."
+  },
+  "aic_winners": {
+   "BEST_AIC_MODEL": ["CPL+BB", "Band", "SBPL", "SBPL", "SBPL", "Band+BB", "CPL+BB", "CPL", "CPL"],
+   "BEST_BIC_MODEL": ["CPL+BB", "Band", "CPL", "SBPL", "SBPL", "SBPL", "CPL+BB", "CPL", "CPL"],
+   "margin_over_next_VALID_model": [66.66, 0.68, 0.23, 3.20, 5.53, 4.70, 1.94, 3.91, 4.00],
+   "verdict": "the window-integrated row clears the framework-locked dAIC >= 10 bar spectacularly (66.7 for CPL+BB) while NOT ONE time-resolved block does (max 5.53). AIC and BIC disagree in 2 of 9 rows. The integrated-vs-resolved gap is itself suspicious: 51.6 s of integration with a mis-normalised LLE plugin is exactly the configuration in which a systematic masquerades as a component."
+  },
+  "band_Ep_evolution_keV": [202.9, 163.8, 219.7, 161.1, 185.9, 170.0, 120.7, 159.0, 4436.0],
+  "band_Ep_note": "order [BLOCK -1, 0..7]. NOT monotonic: 163.8 -> 219.7 -> 161.1 -> 185.9 -> 170.0 -> 120.7 -> 159.0, then BLOCK 7's 4436 keV with BAND_VALID = False (railed, meaningless). Range over the valid blocks is a factor 1.8 - this looks FLAT / mildly tracking, NOT the classic hard-to-soft decay.",
+  "engine_health_flags_in_the_archive": [
+   "DSBPL_VALID is False in 6 of 9 rows (-1, 0, 2, 3, 4, 6, 7); DSBPL_XP railed at or near the 5000 keV cap in rows -1, 0, 3, 6, 7 and DSBPL_BETA railed at -5 in rows -1(no, -4.263), 0, 2, 4 -> L19 BOUND_CAPPED territory and exactly the L9 'Ep cap' failure mode.",
+   "BAND_VALID False in BLOCK 7 (Ep = 4436 keV, beta = -5 railed); SBPL_VALID False in BLOCKS 6 and 7 (SBPL_EBREAK railed at 5000 keV); BANDBB_VALID False in rows -1, 6, 7 (BANDBB_EP = 3367 / 5000 / 4739 keV with beta = -5).",
+   "CPL_XC runaway: 10680 keV (BLOCK 0), 16340 keV (BLOCK 6), 11860 keV (BLOCK 7); CPLBB_XC = 6930 keV in the window-integrated row and 9744 / 13620 / 11870 keV in BLOCKS 5/6/7 - i.e. the 'CPL+BB' winner of the integrated row is effectively POWER-LAW + BB. This is the signature to watch when the invalid LLE plugin is removed.",
+   "xb/kT ratios (L25 degeneracy check), order [-1,0..7]: DSBPL_XB/BANDBB_KT = [1.63, 2.66, 1.32, 10.12, 47.85, 3.63, 2.21, 73.4, 0.38]; DSBPL_XB/CPLBB_KT = [1.64, 2.71, 0.17, 3.05, 2.88, 30.3, 2.21, 578, 2.44]. Nothing sits convincingly at the ~3.92 signature, but BLOCK 2 (3.05) and BLOCK 4 (3.63) are close enough that the L25 check must be run explicitly rather than eyeballed."
+  ],
+  "archival_verdict_summary": "Pre-L18 engine, 5 plugins INCLUDING an invalid-DRM LLE, 8 blocks: a very strong window-integrated CPL+BB (dAIC 66.7) whose CPL component has a runaway 6.9 MeV cutoff, a BB firing in 6 of 8 time-resolved blocks with kT clustering at 20-28 keV, no decisive model preference in ANY individual block (max dAIC 5.53), a flat/mildly-tracking Ep around 120-220 keV, and railed parameters in a third of the fits."
+ },
+ "predictions": [
+  "P-A (Ep level vs the ONE published number for our component, falsifiable): Konus (GCN 14487) reports Ep ~ 240 keV for the second episode integrated over GBM [+123.08, +253.08] s - an interval 2.2x longer than ours that adds the decaying tail we do not see. Predict our window-integrated nuFnu peak energy of the AIC-winning model lands in [150, 400] keV, i.e. within a factor 1.7 of the Konus value. FALSIFIED if it falls outside [150, 400] keV. Secondary, sign-specific: IF the pulse is hard-to-soft, our shorter and earlier integration should give Ep >= 240 keV; the archival window-integrated Band gave 202.9 keV, i.e. BELOW Konus, which would instead indicate a soft-to-hard or flat pulse OR an LLE-driven bias. Recording both branches now so neither can be claimed as a postdiction.",
+  "P-A2 (spectral evolution class, falsifiable): predict NO monotonic hard-to-soft decay across the blocks of this pulse - specifically, predict the AIC-winner nuFnu peak varies by less than a factor 3 across all VALID time-resolved blocks and changes direction at least once (flat / tracking class). FALSIFIED by a monotonic decline across >= 5 consecutive blocks, or by Ep(first valid)/Ep(last valid) >= 3. [archival Band Ep over blocks 0-6: 163.8, 219.7, 161.1, 185.9, 170.0, 120.7, 159.0 - factor 1.8, three direction changes]",
+  "P-B (blackbody / union rule, falsifiable, literature-anchored on BOTH sides): Du+2022's abstract says the POSTBURST of GRB 130427A is 'mainly dominated by the nonthermal components' while Du+2025's population says 16/18 second bursts improve with a BB. Our archive fires the union rule in 6 of 8 blocks - but with the invalid LLE plugin in every fit. Predict that under the corrected engine the union rule fires in FEWER blocks than the archival 6, and specifically in <= 4 of the time-resolved blocks, with every firing kT in [12, 35] keV. FALSIFIED if >= 6 time-resolved blocks fire, if any firing kT < 5 or > 60 keV, or if zero fire (which would over-shoot in the other direction and indicate the BB was purely an LLE artefact).",
+  "P-B2 (baseline dependence, falsifiable, T8): predict the CPL+BB pair keeps firing more often than the Band+BB pair (count over time-resolved blocks: N_fire(CPL+BB) >= N_fire(Band+BB)), and predict the window-integrated row again fires on both. FALSIFIED if Band+BB fires in strictly more blocks than CPL+BB. Any reported BB margin must name its baseline. [archival: CPL+BB fires in 4 blocks, Band+BB in 3]",
+  "P-C (two-break census, falsifiable): Toffano+2021 published a decisive 2SBPL for the FIRST pulse (AIC 942 -> 812, dAIC 130). No 2SBPL fit of the SECOND pulse exists anywhere in the literature, so a two-break result here would be NEW, not a reproduction. Predict AT MOST ONE time-resolved block reaches dAIC >= 10 for DSBPL over the best VALID single-break model with alpha1 off its bound and xb separated from kT beyond the L25 band. FALSIFIED if >= 3 blocks do, or if zero blocks show any DSBPL preference at all (dAIC > 0) once the bounds are widened. [archival: DSBPL was INVALID in 6 of 9 rows and its raw AIC advantage over the best valid model peaked at 15.1 in BLOCK 3 while DSBPL_VALID was False]",
+  "P-C2 (engine diagnosis, falsifiable, L9/L19): the archival DSBPL_XP railed at the 5000 keV cap in 5 rows and SBPL_EBREAK railed at 5000 keV in BLOCKS 6-7. Predict that L9's widened Ep caps move DSBPL_XP off 5000 keV in at least 3 of those rows, and that where it moves off the rail the DSBPL preference WEAKENS rather than strengthens. FALSIFIED if any un-railed row returns a LARGER DSBPL margin than its archival value.",
+  "P-D (the LLE decision, procedural + falsifiable): D1 says this burst's LLE response is INVALID for our window (Delta-theta = 19.9 deg), corroborated independently by Ackermann+2014's '47.3 deg -> 20.1 deg' ARR slew. Predict the production run either (i) quarantines LLE and fits GBM-only, or (ii) regenerates the DRM for [+119, +178] s - and NOT (iii) silently reuses gll_cspec_bn130427324_v02.rsp. FALSIFIED by any production fit whose PLUGIN_DETS contains 'lle' with the shipped v02 response. NB this is a DATA-QUALITY exclusion under the D5 hierarchy (demonstrated response invalidity), never a significance-based one, and the with/without pair must be retained.",
+  "P-D2 (what removing the bad LLE does, falsifiable): the archival window-integrated winner is CPL+BB whose cutoff sits at CPLBB_XC = 6930 keV, i.e. effectively PL+BB - a shape that is only weakly constrained by GBM alone and is exactly what a mis-normalised 10-100 MeV plugin would produce. Predict that with the invalid LLE removed the window-integrated cutoff energy comes DOWN below 2 MeV, and that the CPL+BB margin over the next valid model drops below 50 (from 66.7). FALSIFIED if the GBM-only window-integrated fit keeps a cutoff above 5 MeV, or keeps a margin >= 50.",
+  "P-E (pile-up / saturation acquittal, falsifiable, QC-anchored): Ackermann+2014 bounds the piled-up interval to '4.5 and 11.5 s'; Konus says the second episode is '~100 times weaker in a peak count rate than the initial complex'; Maraventano+2025 asserts 'saturation effects' without an interval. Predict the measured peak NaI count rate inside [119.1, 178.4] s is at least 20x below the first-pulse peak rate in the SAME detector, i.e. our window is outside any plausible pile-up regime. FALSIFIED if the ratio is under 20x. This is the measurement that closes blocker 2 of bn130427324_BLOCKERS.md; until it is made, the acquittal rests on Konus's count-rate statement rather than on our own data.",
+  "P-F (high-energy component, falsifiable, D4-anchored): unlike bn120624933, the LAT detection here is CONTINUOUS through our window (Ajello+2019: extended emission decaying as t^-0.79 out to ~34 ks; GCN 14508: significant >100 MeV emission throughout the first orbit to ~735 s). Predict therefore that an additional hard component or a hard high-energy tail IS present in [119, 178] s at the >=2 sigma level once the LLE/LAT bands are handled correctly - i.e. that the archival beta values near -2.2 are NOT the whole story. FALSIFIED if a GBM-only fit with a valid high-energy band shows no hard excess and every model's beta is steeper than -2.5. NB the 95 GeV photon arrives at T0+244 s, 66 s AFTER our window closes - do not import it as evidence about our interval (D4 runs both ways).",
+  "P-G (frame trap, procedural, non-negotiable): no published number may be diffed before re-alignment on (i) COMPONENT - ours is the SECOND EPISODE; Preece+2014 (0-2.5 s), Toffano+2021 (3-15 s), Li+2024 (-2 to 18 s), Deng+2024 (-0.1 to 12.5 s), Li+2023 (0-0.65 s and 15-25.5 s), Macera+2025 (11-22.6 s) and the GBM peak-flux row (8.192-9.216 s) are all FIRST PULSE; (ii) T0 - four aliases, GBM 0, BAT +51 s, Konus +3.081 s, AGILE +8.58 s; (iii) BAND - T90/fluence 50-300 keV vs 10-1000 keV (GBM), 15-350 keV (BAT), 20 keV-15 MeV (Konus spectra), 20-1200 or 20-10000 keV (Konus fluence, ambiguous), 8 keV-40 MeV (our GBM joint); (iv) DETECTOR SET - ours n6+n9+na+b1(+lle) matches the GBM spectral catalog exactly, but durations used n6+n9+na and Bissaldi used n0 instead of n6; (v) Ep CONVENTION - Li+2023 quotes Ec (e-folding), Ep = (2+alpha)Ec; Toffano quotes BOTH Ebreak and Epeak for the 2SBPL; the GBM catalog SBPL row is a BREAK energy; (vi) ERROR CONVENTION - BAT 90% CL, Konus 1 sigma, GBM catalog 1 sigma; (vii) STATISTIC - GBM catalog Castor C-STAT with REDCHSQ 7.25 (unusable for model comparison).",
+  "P-H (what a NEW result here would be, scope note): because our component has exactly one published spectral measurement (a 3-channel Konus CPL with no errors) and one abstract-level analysis (Du+2022), essentially every number we produce for [119, 178] s is an UNPUBLISHED DECISION to be scored against the expert band, not a literature reconciliation. The single genuine reconciliation target is the Konus Ep ~ 240 keV / alpha ~ -1.6 pair (P-A). Everything else in the P3 diff is a first measurement."
+ ],
+ "harvest_snippets": {
+  "GCN_14473_GBM": [
+   "The GBM light curve consists of a bright structured peak followed at ~T0+120 s by a FRED-like pulse. The overall duration (T90) is about 138s s (50-300 keV).",
+   "Owing to the brightness of the burst, systematic effects are very large and no single model gives an adequate fit in this preliminary analysis.",
+   "A Band function fit in the interval from T0+0.002 s to T0+18.432 s yields the following parameters Epeak = 830 +/- 5 keV, alpha = -0.789 +/- 0.003, and beta = -3.06 +/- 0.02.",
+   "The event fluence (10-1000 keV) in this time interval is (1.975 +/- 0.003)E-03 erg/cm^2. The 1.024 sec peak photon flux measured starting from T0+7.48808 s in the 8-1000 keV band is 1052 +/- 2 ph/s/cm^2, making this the most intense and fluent GRB detected by Fermi GBM."
+  ],
+  "GCN_14487_KonusWind": [
+   "This extremely bright phase of the event passes into a weaker decaying tail out to ~T0+120s, when the second emission episode started. It shows a FRED-like pulse, ~100 times weaker in a peak count rate than the initial complex.",
+   "Modelling the 3-channel time-averaged spectrum of the second emission episode (from T0+120 s to T0+250 s) by a power law with exponential cutoff model yiels the photon index alpha~-1.6 and the peak energy Ep ~ 240 keV. The 20-1200 keV energy fluence measured at this phase of the event is ~9x10^-5 erg/cm2.",
+   "The time-averaged spectrum of the main phase of the burst (measured from T0 to T0+18.688 s) is best fit in the 20 keV-15 MeV range by the GRB (Band) function with ... alpha = -0.958 +/- 0.006, beta = -4.17 +/- 0.16, Ep = 1028 +/- 8 keV, chi2 = 124/96 dof.",
+   "the main phase of the burst had a fluence of (2.68 +/- 0.01)x10^-3 erg/cm2 and a 16-ms peak flux, measured from T0+7.774 s, of (6.9 +/- 0.1)x10^-4 erg/cm2/s",
+   "GCN 14579 correction: 'the correct energy range for the total K-W energy fluence and the peak flux estimations for GRB 130427A is 20-10000 keV, not 20 - 1200 keV, as mentioned.'"
+  ],
+  "Ackermann2014": [
+   "The GBM light curves consist of an initial peak with a few-second duration, a much brighter multipeaked emission episode lasting ~10 s, and a dim, broad peak at T0 + 120 s, which fades to an undetectable level after ~300 s (also seen in the Swift light curve).",
+   "The GBM data between 4.5 and 11.5 s are not included because they are substantially affected by pulse pileup (SOM).",
+   "An extra power law is statistically significant when fitting the data from T0 + 11.5 s to T0 + 33.0 s (SOM).",
+   "At the time of the GBM trigger, the GRB was 47.3 deg from the LAT boresight ... The Autonomous Repoint Request brought the burst to 20.1 deg from the LAT boresight ... It remained in the LAT field of view for 715 s until it became occulted by the Earth, re-emerging from Earth occultation at T0 + 3135 s.",
+   "the record breaking 95 GeV photon at T0 + 244 s",
+   "the 10 keV - 20 MeV fluence measured with the GBM in the 400 s following T0 is ~4.2 x 10-3 erg cm-2. The issue with pulse pileup and the uncertainties in the calibration of the GBM detectors contribute to a systematic error which we estimate to be less than 20%"
+  ],
+  "Du2022_ABSTRACT_ONLY": [
+   "both bursts have the thermal components, and the thermal components are mainly found in the main bursts, while the postbursts are mainly dominated by the nonthermal components",
+   "in the postburst, only GRB 160509A has four time bins exceeding the dead line, while none of GRB 130427A exceed the dead line",
+   "the correlations of the spectral parameters have different behaviors in the main bursts and postbursts",
+   "PDF UNOBTAINABLE - IOP Radware captcha on both the DOI PDF and the ADS PUB_PDF gateway; no arXiv eprint exists. These four lines are the entire content available to us."
+  ],
+  "Ravasio2019_exclusion": [
+   "From our selection we excluded GRB 090902B and GRB 130427A for the following reasons... GRB 130427A, due to its large fluence, suffered from pile-up effects (Preece et al. 2014) and a standard analysis can be performed only on its precursor, which does not satisfy our selection criterion."
+  ],
+  "Maraventano2025_exclusion": [
+   "The bright GRB 130427A, despite having a LLE signal detection significance of 15sigma, was excluded from the analysis as its GBM light curve suffers from saturation effects."
+  ],
+  "Duan2020_exclusion": [
+   "We remove a pure black body burst GRB 090902B, three extremely bright bursts (GRBs 080916C, 130427A and 160625B) and 2 long bursts that have been studied in Li et al. (2019) (GRB 131231A) and Duan & Wang (2019) (GRB 180720B) in detail."
+  ],
+  "Toffano2021": [
+   "In the cases of GRB 130427A and GRB 160625B, which have a multi-peaked, long-duration light curve, we consider the brightest portion of the light curve by selecting the time intervals 3.0-15 s and 188-210 s, respectively.",
+   "Table row 130427(324): Band alpha=-0.66+/-0.01, Ep=852+/-6.7, beta=-3.27+/-0.03 | 2SBPL alpha1=-0.63+/-0.01, alpha2=-1.67+/-0.03, Ebreak=224+/-10, Epeak=992+/-12, beta=-3.7+/-0.04 | chi2r 6.01 vs 2.83 | AIC 942 vs 812"
+  ],
+  "Aldowma2026": [
+   "GRB 130427A GBM+LAT+LLE 11.23-142.34 Band+PL -0.95 +/- 0.01 -3.0 +/- 0.04 886 +/- 11 -1.83 +/- 0.03 - 8.92 +/- 1.3 x 10^-6 12757 201",
+   "GRB 130427A GBM ... Band -0.98 +/- 0.03 -3.07 +/- 0.09 884 +/- 11 - - 1.37 +/- 0.06 x 10^-5 7230 0",
+   "GRB 130427A GBM+LAT+LLE 8.192-9.216 Band+BB -0.49 +/- 0.01 -3.88 +/- 0.16 934 +/- 16 - 43 +/- 16 6.4 +/- 2.3 x 10^-4 2588 399"
+  ],
+  "Deng2024": [
+   "Table 2: GRB 130427A(G) 0.34 n6,n9,na,b1 138.24 -0.1 ~2.5 3 ~12.5 100%(11/11) 100%(43/43)",
+   "their 'precursor' and 'main burst' are BOTH inside the first pulse - incompatible vocabulary with Du+2022's 'main burst / postburst'. T9 landmine."
+  ],
+  "Li2024": [
+   "GRB130427A -2.048 2.048 Band+BB 363.389 24.066 ... | 2.048 4.096 Band 97.664 5.000 ... | 4.096 5.120 Band+BB 459.147 33.025 ... | 5.120 6.144 Band+BB 695.987 39.277 ... | 6.144 7.168 Band+BB 880.279 44.453 ...",
+   "kT ladder through the first pulse: 24.1 -> 33.0 -> 39.3 -> 44.5 keV. NB they impose a 5-60 keV kT prior, which shapes every value."
+  ],
+  "GBM_scat_v00": [
+   "flnc [0.000, 254.976] s, dets b1+n6+n9+na, Castor C-STAT: Band Ep=824.99+/-5.45 keV, alpha=-1.0177+/-0.0018, beta=-2.8286+/-0.0324, NRGFLNC=(1.4117+/-0.0018)e-3 erg/cm2, REDCHSQ 7.2528/481",
+   "flnc Comp Ep=867.16+/-4.98; flnc SBPL Ebreak=513.68+/-5.66 (break, not Ep); flnc PL index=-1.4031 REDCHSQ 184.91/483",
+   "pflx [8.192, 9.216] s: Band Ep=717.58+/-6.00 alpha=-0.4545 beta=-3.1275 REDCHSQ 4.2163/481",
+   "AIC deliberately NOT recomputed (T8): REDCHSQ 7.25 means systematics, not shape, dominate the statistic."
+  ],
+  "GBM_bcat_tcat": [
+   "T90 = 138.242 +/- 3.238 s from +4.096 s (50-300 keV); T50 = 4.096 +/- 1.448 from +6.144 s",
+   "FLU(10-1000 keV) = 2.46198e-3 +/- 1.238e-6 erg/cm2; FLU(50-300 keV) = 8.17183e-4; PF64 = 1259.22 +/- 10.51 ph/cm2/s from +7.808 s",
+   "tcat: RA_OBJ=173.136 DEC_OBJ=27.7129 ERR_RAD=0.0013 LOC_SRC='Swift, XRT' THETA=47.3092 PHI=126.673 DET_MASK=00000010011100 TRIGSCAL=64"
+  ],
+  "step1_QC_reverified": [
+   "n6/n9/na/b1: glg_cspec_<det>_bn130427324_v00.rsp2, 10 matrices each, coverage [-37.889, +347.141] s relative to TRIGTIME -> brackets [119.107, 178.442] -> PASS",
+   "lle: gll_cspec_bn130427324_v02.rsp, SINGLE matrix, TSTART/TSTOP = [+5.017, +34.916] s -> built on the FIRST pulse; D1 verdict INVALID_DRM_SLEW (theta 48.1 deg vs 36.5->23.0 deg, Delta-theta 19.9 deg)",
+   "re-derived independently 2026-08-12 from data/bn130427324/; matches the pre-existing results/qc/bn130427324_step1_response_coverage.ecsv (2026-07-31) to 3 decimals. That file was NOT rewritten."
+  ]
+ }
+}

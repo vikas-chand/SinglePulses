@@ -1,0 +1,99 @@
+{
+ "burst": "bn100614498",
+ "grb_name": "GRB 100614B",
+ "harvest_utc": "2026-08-12T17:40:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form query; Phase 1b Scholar-note web bridge; 3b latest-first; 3c prompt-scope; Phase 4 frame+consensus; traps T1/T6/T9 exercised)",
+ "identity": {
+  "trigger": "bn100614498 / MET TRIGTIME 298209445.306156",
+  "trigger_utc": "2010-06-14 11:57:23.31",
+  "name_source": "Paciesas+2012 (2012ApJS..199...18P) Table 1, arXiv PDF p.45 verbatim row 'bn100614498 | GRB 100614B | 11:57:23.3062 | 224.8 | 40.9 | 3 | Fermi-GBM | 16 | 4096 | 47-291 | W*' - name<->trigger verified by the UT time matching our TRIGTIME to the ms; tcat v01 OBJECT=GRB100614498, GCN_FLAG=No",
+  "same_day_contamination_guard": "GRB 100614A = Swift-BAT trigger 424716 at 21:38:26 UT (GCN 10837), RA/Dec 263.5/+49.2 - a DIFFERENT burst ~10 h later, ~35 deg away, with a large dark-burst literature (D'Elia+2011 A&A 532 A48 + 25 ADS name-form hits). NOTHING from the 100614A record may enter this burst (LiteratureHarvest T1). Note the letter inversion: ours triggered EARLIER in the day but carries 'B' (announcement order, not trigger order)."
+ },
+ "ads_queries": [
+  {"form": "full:\"bn100614498\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"100614498\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:(\"GRB 100614B\" OR \"GRB100614B\")", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"298209445\" (trigger MET)", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:(\"GRB 100614A\" OR \"GRB100614A\") [contamination check only]", "numFound": 25, "refereed_hits": "several, ALL the Swift burst - excluded per T1 (Akerlof+2013 row shows 21:38:26; D'Elia+2011 is the Swift dark burst)"}
+ ],
+ "scholar_note_bridge": {
+  "channel": "WebSearch (Phase 1b: ADS four-form came back zero; Scholar-style web query as finding channel)",
+  "query": "\"GRB100614498\" OR \"GRB 100614498\"",
+  "found": "aanda.org PDF aa21528-13 containing the token in a printed appendix table",
+  "resolved_via_ads": "doi:10.1051/0004-6361/201321528 -> 2013A&A...557A.100H (Heussaff, Atteia & Zolnierowski 2013) - web finds, ADS verifies; the query string recorded per skill rule"
+ },
+ "n_refereed_papers": 4,
+ "papers": [
+  {
+   "bibcode": "2013A&A...557A.100H",
+   "first_author": "Heussaff, V.",
+   "year": 2013,
+   "title": "The Epeak - Eiso relation revisited with Fermi GRBs. Resolving a long-standing debate?",
+   "doctype": "article (REFEREED)",
+   "classification": "sample-member row (no-redshift GBM sample, Ep-fluence plane / selection-effects analysis)",
+   "verbatim_anchor": "Table A.2 (arXiv PDF p.15): 'GRB100614498 -0.91 0.22 -2.21 0.08 41 5 196.3 3.3' (alpha, beta, Epo [keV], fluence [1e-7 erg/cm2])",
+   "t6_chain_note": "values are CHAINED from Goldstein+2012 (their Sect. 2: sample selected 'from the Fermi GRB spectral catalog of Goldstein et al. (2012)', 482 GRBs GRB080714086->GRB100709602) - primary is Goldstein+2012; current HEASARC scat v03 supersedes both",
+   "pdf": "Skills_training/Heussaff_2013_2013A&A557A100H_bn100614498.pdf (arXiv:1306.1757 copy; A&A journal PDF bot-blocked curl)",
+   "prompt_sections": "Sect. 2 (sample + Band-fit conventions, alpha>-2/beta<-2, Ep def) + Table A.2 row - prompt spectral frame; Sects. 3-5 (Ep-Eiso relation, redshift selection effects) - population context, not per-burst reconciliation",
+   "module_future_tags": "module-future;cosmo (Ep-Eiso/Amati-plane methodology; our burst sits in the NO-redshift control sample)"
+  },
+  {
+   "bibcode": "2012ApJS..199...18P",
+   "first_author": "Paciesas, W. S.",
+   "year": 2012,
+   "title": "The Fermi GBM Gamma-Ray Burst Catalog: The First Two Years",
+   "doctype": "article (REFEREED)",
+   "classification": "catalog-member (4 printed rows verified in arXiv PDF)",
+   "verbatim_anchor": "p.45 'bn100614498 | GRB 100614B | 11:57:23.3062 | 224.8 | 40.9 | 3 | Fermi-GBM | 16 | 4096 | 47-291 | W*'; p.59 dets 6+7+9+10+11, T90=172.291+/-12.447 (start -149.763), T50=72.193+/-5.346 (start -74.497); p.75 fluence 1.96E-05+/-3.26E-07, pflux(1024ms)=5.46+/-0.16; p.91 (50-300 keV) fluence 8.92E-06+/-1.41E-07",
+   "pdf": "Skills_training/Paciesas_2012_2012ApJS19918P_bn100614498.pdf (arXiv:1201.3099 copy)",
+   "prompt_sections": "Table 1 (identity/trigger), Table 2 durations (p.59 row), Tables 3-4 fluence/peak-flux rows - ALL prompt; this is the T90 + name PRIMARY",
+   "module_future_tags": "none (pure prompt catalog)"
+  },
+  {
+   "bibcode": "2012ApJS..199...19G",
+   "first_author": "Goldstein, A.",
+   "year": 2012,
+   "title": "The Fermi GBM Gamma-Ray Burst Spectral Catalog: The First Two Years",
+   "doctype": "article (REFEREED)",
+   "classification": "catalog-member (membership certain: burst inside the 482-GRB range GRB080714086->GRB100709602 and Heussaff+2013 drew our row from it; per-burst row NOT printed - token '100614' absent from the 43-pp arXiv PDF, tables machine-readable only)",
+   "verbatim_anchor": "membership via Heussaff+2013 Sect. 2 quote: 'We select events ... from the Fermi GRB spectral catalog of Goldstein et al. (2012) ... 482 GRBs between GRB080714086 and GRB100709602'",
+   "pdf": "Skills_training/Goldstein_2012_2012ApJS19919G_bn100614498.pdf (arXiv:1201.2981 copy)",
+   "prompt_sections": "Sects. 3-4 (catalog fit methodology: model defs, C-stat, flnc/pflx interval construction) - the conventions behind the scat files we mine; per-burst numbers taken from HEASARC scat v03 FITS instead (later revision)",
+   "module_future_tags": "none (pure prompt catalog)"
+  },
+  {
+   "bibcode": "2013ApJS..207...39H",
+   "first_author": "Hurley, K.",
+   "year": 2013,
+   "title": "The Interplanetary Network Supplement to the Fermi GBM Catalog of Cosmic Gamma-Ray Bursts",
+   "doctype": "article (REFEREED)",
+   "classification": "catalog-member (IPN detection row); ALREADY IN CORPUS (G2 dedup - not re-fetched)",
+   "verbatim_anchor": "p.42: '2010 Jun 14 11:57:23 GRB100614498 INT,Suz' (found by PyMuPDF scan of the existing corpus copy; trigger-time verified)",
+   "pdf": "Skills_training/Hurley_2013_2013ApJS20739H.pdf (existing corpus copy, corpus_index row 29)",
+   "prompt_sections": "the single table row - independent INTEGRAL SPI-ACS + Suzaku-WAM detection of the prompt emission; nothing numeric to diff",
+   "module_future_tags": "module-future;mm (IPN cross-mission context)"
+  }
+ ],
+ "finding": "NO DEDICATED-ANALYSIS PAPER EXISTS for GRB 100614B / bn100614498. The refereed footprint is 2 catalog memberships with printed rows (Paciesas+2012, Hurley+2013), 1 machine-readable-only catalog membership (Goldstein+2012), and 1 sample-row reuse (Heussaff+2013, chained from Goldstein). Zero circulars (tcat GCN_FLAG=No), zero afterglow record, no redshift. The external comparison frame for the P3 diff is the GBM catalog machinery itself: HEASARC scat v03 (dets b1,n6,n9; flnc interval [-90.114,+17.408] s; Band Ep=41.39+5.07/-5.60 keV, alpha=-0.800, beta=-2.185; SBPL Ebreak=20.88 keV tied with Band; pflx interval [-4.096,0] s PRE-trigger, Comp Ep=78.2+12.6/-21.6) + bcat v02 (T90=172.291+/-12.447 s from T90START=-149.763 s - the D4 flag: our stamped window -13..+16 s covers only the trigger pulse and our pre-burst bkg sits inside the catalog T90 span; human-accepted flag results/human_review_qc_flags.txt line 2). All filed with component-coverage labels in results/gcn/bn100614498/bn100614498_dossier.md.",
+ "local_corpus_check": {
+  "method": "PyMuPDF text scan of all 121 PDFs in Skills_training/ for token '100614'",
+  "hits": 3,
+  "note": "Hurley_2013 (x2 copies, OUR burst, trigger-time verified) + Akerlof_2013 (the SWIFT 100614A at 21:38:26 - contamination, excluded). No sample/method paper in the corpus carries our burst's numbers."
+ },
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   {"action": "update", "row": 29, "filename": "Hurley_2013_2013ApJS20739H.pdf", "change": "cited_by_bursts: bn081224887 -> bn081224887;bn100614498, n_bursts: 1 -> 2 (G2 dedup)"},
+   {"action": "append", "filename": "Heussaff_2013_2013A&A557A100H_bn100614498.pdf", "bibcode": "2013A&A...557A.100H", "arxiv": "1306.1757", "theme": "prompt-EpEiso-selection-effects", "cited_by_bursts": "bn100614498", "n_bursts": 1, "read": "N"},
+   {"action": "append", "filename": "Paciesas_2012_2012ApJS19918P_bn100614498.pdf", "bibcode": "2012ApJS..199...18P", "arxiv": "1201.3099", "theme": "gbm-catalog-durations-2yr", "cited_by_bursts": "bn100614498", "n_bursts": 1, "read": "N"},
+   {"action": "append", "filename": "Goldstein_2012_2012ApJS19919G_bn100614498.pdf", "bibcode": "2012ApJS..199...19G", "arxiv": "1201.2981", "theme": "gbm-catalog-spectral-2yr", "cited_by_bursts": "bn100614498", "n_bursts": 1, "read": "N"}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "append", "row_csv": "bn100614498,SWIFT_SIBLING_ONLY_100614A,0,N,0,0", "note": "columns trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed; ads_hits/refereed = burst-specific forms (all zero); the 25 name-form hits belong to the Swift burst. Raw file kept as contamination reference."}
+  ]
+ },
+ "prompt_vs_future_classification": {
+  "prompt_relevant": "HEASARC bcat/tcat/scat values + Paciesas+2012 rows (durations, fluences, peak fluxes) + Heussaff/Goldstein spectral row - all prompt-phase; these are the P3 diff targets.",
+  "module_future": "Heussaff+2013 Sects. 3-5 tagged module-future;cosmo (Amati-plane selection effects); Hurley+2013 tagged module-future;mm (IPN). No afterglow/SN literature exists for this burst."
+ },
+ "vikas_reading_list": "10-minute item: Heussaff+2013 Sect. 2 + Table A.2 row only (our burst in the no-redshift control sample; note their alpha=-0.91 vs scat v03 alpha=-0.80 - catalog-version drift, not a conflict); Paciesas+2012 rows are transcribed in the dossier - no reading needed; defer Heussaff Sects. 3-5 (cosmo module shelf)."
+}

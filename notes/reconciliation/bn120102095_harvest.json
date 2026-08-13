@@ -1,0 +1,185 @@
+{
+ "burst": "bn120102095",
+ "grb_name": "GRB 120102A (name↔trigger verified verbatim in GCN 12801: 'trigger 347163385 / 120102095')",
+ "harvest_utc": "2026-08-12",
+ "worker": "doc-layer worker (Steps 0 / 0b / 1); results/sweep106/ never opened",
+ "queries": {
+  "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+  "four_forms": {
+   "full:\"GRB 120102A\"": 9,
+   "full:\"bn120102095\"": 1,
+   "full:\"120102095\"": 1,
+   "full:\"347163385\"": 0
+  },
+  "extra_forms": {
+   "full:\"GRB120102A\"": 0,
+   "full:\"GRB 120102\"": 0,
+   "full:\"120102A\"": 11,
+   "full:\"510922\"": "18 hits, ALL unrelated (Swift trigger number is not indexed as a burst identifier) — discarded"
+  },
+  "form_yield_note": "Only 4 distinct refereed/eprint items came from ADS full text: 2022ApJ...941...99L, 2025MNRAS.540L...6Q (both via full:\"120102A\"), 2018ApJ...865..153L (via full:\"bn120102095\"), 2017ifs..confE..74B (via full:\"120102095\", resolved to its refereed sibling 2019A&A...629A..69B). The other 8 hits are the GCN circulars (Step 0a's job).",
+  "local_corpus_sweep": "fitz search for '120102095' / '120102A' across all Skills_training/*.pdf (160 files at run time) — surfaced 2 papers ADS full text missed entirely (table-only mentions): vonKienlin+2014 (GBM 4-yr burst catalog) and Golkhou+2015 (MVT). The corpus sweep is again load-bearing.",
+  "corpus_false_positive": "Acuner+2018 p.19 contains '120102416' = GRB 120102B, a DIFFERENT GBM trigger 7.7 h later the same day (T1 trap, hit for real here). Acuner+2018 does NOT contain our burst.",
+  "heasarc_catalog_query": "HEASARC TAP (xamin/vo/tap/sync, ADQL) on table fermigbrst, trigger_name='bn120102095' — used because Gruber+2014's spectral tables are machine-readable-only and are NOT in the PDF text (verified: zero 'bn12' tokens in the 74-page corpus copy). This gives the official catalog time-integrated + peak-flux fits quoted in the dossier §3.3.",
+  "scholar_channel": {
+   "used": true,
+   "reason_per_phase1b": "Rule 1b trigger #1 satisfied — the ADS four-form query came back THIN (4 items, only 1 of them a dedicated time-resolved prompt analysis).",
+   "channel": "web search agent used as the Scholar-equivalent finding channel (Scholar itself has no API); every hit was to be resolved back to an ADS bibcode before entering any record",
+   "queries_run": [
+    "\"GRB 120102A\" prompt emission spectral analysis Fermi GBM Konus",
+    "\"120102A\" gamma-ray burst host galaxy OR redshift OR optical afterglow study"
+   ],
+   "yield": "ZERO new papers. Query 1 returned only same-genre papers about OTHER bursts (120323A, 220101A, 140102A...). Query 2 returned FRB 121102 noise plus two non-refereed resources: Greiner's GRB table page (mpe.mpg.de/~jcg/grb120102A.html) and the Swift GRB catalog page — both mirrors of the circulars, no new measurement, no redshift. Recorded as a finding, not a failure.",
+   "resolved_to_ads": []
+  }
+ },
+ "n_papers": 6,
+ "papers": [
+  {
+   "bibcode": "2025MNRAS.540L...6Q",
+   "first_author": "Qu, Yan-Kun",
+   "year": 2025,
+   "title": "Pieces of evidence for multiple progenitors of Swift long gamma-ray bursts",
+   "refereed": true,
+   "found_via": "ads full:\"120102A\"",
+   "local_pdf": "Skills_training/Qu_2025_2025MNRAS540L6Q_bn120102095.pdf (arXiv 2505.05561, downloaded 2026-08-12, 653 kB, %PDF verified)",
+   "in_corpus_index": false,
+   "action": "NEW — PDF downloaded, corpus row QUEUED (no shared-CSV write by this worker)",
+   "prompt_sections": "NONE are prompt-spectroscopy. Table 2 (p.6) only — the burst's single appearance, in the 'GRBs without redshift' list. Read time ~1 min. §2-§4 (luminosity function, evolution models, Table 1) = DEFER.",
+   "module_future_tags": ["module-future; cosmo", "module-future; population"],
+   "burst_content": "GRB 120102A listed under 'GRBs without redshift' in a 280-burst Swift compilation — the citable, positive confirmation that this burst has no measured z as of 2025. No prompt spectral value for our burst.",
+   "caution": "Sample membership only. Do not import their luminosity-function numbers into any prompt claim."
+  },
+  {
+   "bibcode": "2022ApJ...941...99L",
+   "first_author": "Lü, Lian-Zhong",
+   "year": 2022,
+   "title": "The Spectral Evolution Patterns and Implications of Gamma-Ray Burst X-Ray Flares",
+   "refereed": true,
+   "found_via": "ads full:\"120102A\" (and full:\"GRB 120102A\")",
+   "local_pdf": "NOT OBTAINED — IOP PDF fetch blocked by Radware bot captcha on two attempts (direct + ADS link_gateway PUB_PDF); no arXiv version exists (ADS identifier list has no arXiv id)",
+   "in_corpus_index": false,
+   "action": "NEW — corpus row QUEUED as NOPDF; needs a human browser session or institutional access",
+   "prompt_sections": "UNKNOWN (paper not read). Expected relevance is X-ray FLARE spectral evolution, i.e. late central-engine, not prompt.",
+   "module_future_tags": ["module-future; afterglow", "module-future; flare"],
+   "burst_content": "Sample membership confirmed by ADS full text only. No value extracted. Honest gap.",
+   "caution": "Do NOT infer the burst has an X-ray flare from membership alone — their tables may also list non-flare comparison bursts. Verify at source when the PDF is obtained."
+  },
+  {
+   "bibcode": "2019A&A...629A..69B",
+   "first_author": "Burgess, J. M.",
+   "year": 2019,
+   "title": "Is spectral width a reliable measure of GRB emission physics?",
+   "refereed": true,
+   "found_via": "ads full:\"120102095\" returned the conference version 2017ifs..confE..74B (NOT REFEREED); resolved to the refereed sibling via ADS author+title query, then verified by finding GRB120102095 in the refereed PDF itself (pp. 8-9)",
+   "local_pdf": "Skills_training/Burgess_2019_2019AA629A69B_bn120102095.pdf (arXiv 1705.05718, downloaded 2026-08-12, 1.47 MB, %PDF verified)",
+   "in_corpus_index": false,
+   "action": "NEW — PDF downloaded, corpus row QUEUED. NOTE: a DIFFERENT Burgess 2019 (2019A&A...627A.105B, POLAR polarization) is already in the corpus — do not conflate.",
+   "prompt_sections": "§2 sample+method (44 bright GBM GRBs, ≥30σ, ≥2 NaI + 1 BGO, catalog peak-flux interval, catalog detectors/backgrounds) — READ; Table on p.9, row '120102095' — READ; §3-§4 synchrotron-vs-width argument — READ (this is the paper's point). Nothing to defer: the whole paper is prompt.",
+   "module_future_tags": [],
+   "burst_content": "Peak-flux-interval Bayesian fits for our burst: α_Band = -1.06 (+0.08,-0.09); α_SBPL = -1.08 (+0.21,-0.19); spectral width Δ_SBPL = 0.60 (+0.45,-0.60); posterior-predictive p_B(Band) = 0.902, p_B(synchrotron) = 0.900 → an IDEALIZED SYNCHROTRON MODEL IS ADEQUATE for this burst's peak spectrum (not rejected). Also δDIC ≈ -4.15 and p_eff ≈ 9.97 / 3.38 (column-order caveat below).",
+   "caution": "T4 COLUMN-ORDER AMBIGUITY: the extracted header order (α_Band, α_SBPL, Δ_SBPL, δDIC, p_eff^Band, p_eff^SBPL, p_B^Band, p_B^synch) does not match the body, where position 6 goes negative across bursts and positions 4-5 are always ~3-35. Body order is almost certainly α_Band, α_SBPL, Δ_SBPL, p_eff^Band, p_eff^SBPL, δDIC, p_B^Band, p_B^synch. α's, Δ_SBPL and the two p_B's are unambiguous; δDIC/p_eff carry the caveat. T7: 'synchrotron is adequate' is a statement relative to THIS idealized synchrotron model and the peak-flux interval only.",
+   "why_it_matters": "This is the one paper in the burst's record that makes a physical-model claim about our exact interval — and it is a claim our engine can contradict or confirm."
+  },
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "first_author": "Lu, Rui-Jing",
+   "year": 2018,
+   "title": "A Comprehensive Analysis of Fermi GRB Data. IV. Spectral Lag and its Relation to Ep Evolution",
+   "refereed": true,
+   "found_via": "ads full:\"bn120102095\"",
+   "local_pdf": "Skills_training/Lu_2018_2018ApJ865153L.pdf (+ _PUB.pdf) — ALREADY IN CORPUS, read=Y (Vikas, 2026-08-10)",
+   "in_corpus_index": true,
+   "action": "G2 dedup — NO re-download, NO re-surface for reading; queued cited_by_bursts += bn120102095",
+   "prompt_sections": "ALL prompt. Table 1 p.35 (KRL pulse fit, NaI + 4 energy bins); Table 2 p.44 (4 time-resolved Band fits); Table 3 p.52 (energy-resolved lag τ̂, timebin 3.5-12.0 s) + footnote a on p.53 (energy-band definitions — REQUIRED to use Table 3); Table 4 p.54 (τ̂31, W, k_τ̂, k_E, evolution class); figures pp.15 and 28 (Ep track; t_pE and W_E vs energy). Nothing to defer.",
+   "module_future_tags": [],
+   "burst_content": "Time-resolved Band, 4 bins (GBM T0): [-2.18,3.54] Ep=414.60±155.43, α=-1.33±0.07, β=-2.26±0.66, F=6.26e-7, χ²r=1.04; [3.54,5.16] Ep=389.72±63.13, α=-1.01±0.06, β=-2.05±0.12, F=3.04e-6, χ²r=1.43; [5.16,6.13] Ep=283.92±67.09, α=-1.03±0.09, β=-1.81±0.07, F=2.93e-6, χ²r=0.89; [6.13,12.35] Ep=232.48±64.40 (α/β/F/χ²r fall on a page break, NOT extracted). Pulse (KRL): NaI I_m=108.65±3.63, t_m=5.14±0.04 s, r=3.48±0.29, d=3.75±0.41, t0=-2.71, χ²r=1.33; t_m per energy band 5.35/5.22/5.09/4.94 s (25-50/50-100/100-300/300-1000 keV) → higher energy peaks EARLIER. Lag τ̂ vs a fixed 8-25 keV reference, timebin (3.5-12.0 s): 0.08±0.12, 0.15±0.11, 0.15±0.12, 0.34±0.15 s; τ̂31 = 0.11±0.08 s; W = 2.37 s (FWHM 8-1000 keV); k_τ̂ = 0.20±0.15; k_E = -0.39±0.23; evolution class = H (hard-to-soft).",
+   "caution": "T3 — copy the definition with the number: τ̂ is referenced to a FIXED 8-25 keV band ('the spectral lag increases with increasing photon energy E (given the same reference band in 8-25 keV)', §5), and W is the FWHM at 8-10^3 keV. Two-column table layout on p.52 interleaves bursts: the assignment used here was VERIFIED by recomputing τ̂3-τ̂1 (0.15-0.08=0.07) against the published τ̂31=0.11±0.08, and by the same check on the neighbouring bn111017657 (0.86-0.21=0.65 vs published 0.66±0.13). The alternative assignment fails by 6σ."
+  },
+  {
+   "bibcode": "2015ApJ...811...93G",
+   "first_author": "Golkhou, V. Zach",
+   "year": 2015,
+   "title": "On the Nature of the Shortest Timescale of Variability in GRBs",
+   "refereed": true,
+   "found_via": "LOCAL CORPUS SWEEP (fitz) — ADS full text MISSED it",
+   "local_pdf": "Skills_training/Golkhou_2015_2015ApJ81193G_bn120119170.pdf — ALREADY IN CORPUS",
+   "in_corpus_index": true,
+   "action": "G2 dedup — NO re-download; queued cited_by_bursts += bn120102095",
+   "prompt_sections": "Table 2 row '120102095' (p.26) — the only per-burst content; their §2-§3 method (wavelet MVT definition) should be read once, generically, not per burst.",
+   "module_future_tags": [],
+   "burst_content": "Δt_min = 0.338 ± 0.023 s; Δt_S/N = 0.092 ± 0.008 s; T90 = 28.417 ± 8.204 s (GBM catalog value, reused); T_start,100 = -25.674 s; T_stop,100 = 29.990 s; σ_X,tmin = 0.47, σ_X,tS/N = 0.13; z column blank.",
+   "caution": "Their T_start,100 = -25.674 s is independent evidence for pre-trigger emission, i.e. it bears on our background window [-30,-8] s (dossier §7 item 5). Their Δt_min is NOT our Haar MVT (ours: 0.4956 ± 0.0375 s) — different estimators, do not diff without matching definitions."
+  },
+  {
+   "bibcode": "2014ApJS..211...13V",
+   "first_author": "von Kienlin, A.",
+   "year": 2014,
+   "title": "The Second Fermi GBM Gamma-Ray Burst Catalog: The First Four Years",
+   "refereed": true,
+   "found_via": "LOCAL CORPUS SWEEP (fitz) — ADS full text MISSED it",
+   "local_pdf": "Skills_training/vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf — ALREADY IN CORPUS",
+   "in_corpus_index": true,
+   "action": "G2 dedup — NO re-download; queued cited_by_bursts += bn120102095",
+   "prompt_sections": "Table 6 p.59 (identity/location/trigger algorithm/other detections), Table 7 p.87 (T90/T50 + detectors used), Table 8 p.118 (10-1000 keV fluence + peak fluxes), Table 9 p.148 (50-300 keV). All prompt; no deferred sections.",
+   "module_future_tags": [],
+   "burst_content": "bn120102095 = GRB 120102A, 02:16:23.2391 UT, RA/Dec 276.2/24.7, error 0.0°, location source Swift, trigger algorithm 10 / 512 ms / 47-291 keV, other detections 'K, R, IA, S, Me'. Detectors used 3+4+5. T90 = 28.417 ± 8.204 s, T90_start = -11.520 s; T50 = 4.032 ± 0.231 s, T50_start = +3.200 s (50-300 keV). Fluence(10-1000 keV) = 1.34e-5 ± 4.39e-8 erg/cm2, PF64/256/1024 = 22.82±1.57 / 21.31±0.78 / 19.04±0.39 ph/cm2/s. Fluence(50-300 keV) = 6.77e-6 ± 2.32e-8, PF = 9.18±0.87 / 8.49±0.39 / 7.74±0.19.",
+   "caution": "T1 — the adjacent catalog row bn120102416 = GRB 120102B is a DIFFERENT burst. T9 — T90 covers the first weak peak's tail (starts -11.52 s) while T50 covers the main-peak core only."
+  }
+ ],
+ "not_papers_but_used": [
+  {
+   "source": "HEASARC fermigbrst (GBM Burst Catalog, live table; Gruber+2014 / von Kienlin+2014 lineage)",
+   "why": "Gruber+2014's spectral tables are machine-readable-only — the corpus PDF contains no burst rows (verified). The catalog fits are published values and belong in the P3 diff.",
+   "values": "flnc window [-1.024, 19.456] s, best model flnc_comp: Ep = 338.44 ± 27.59 keV, index = -1.1955 ± 0.0310, χ²r = 0.970; flnc Band: Ep = 274.65 ± 33.08, α = -1.1537 ± 0.0405, β = -2.0613 ± 0.1605, χ²r = 0.963. pflx window [5.120, 6.144] s, best model pflx_band: Ep = 276.17 ± 42.86, α = -0.9625 ± 0.0677, β = -1.9401 ± 0.1121, χ²r = 0.886. Catalog background: low [-32.0, -28.5], high [27.5, 33.33]. bcat mask 00011100000000, scat mask 00011100000010 → n3,n4,n5,b0."
+  },
+  {
+   "source": "GCN circulars 12794, 12795, 12796, 12797, 12799, 12800, 12801, 12875 (n=8)",
+   "why": "Step 0a; archived verbatim at results/gcn/bn120102095/bn120102095_gcn_raw.txt; all preliminary by their own statement (Phase 3b)."
+  }
+ ],
+ "phase3b_reading_order_latest_first": [
+  "2025MNRAS.540L...6Q  (1 min — Table 2 only; gives the no-redshift statement)",
+  "2022ApJ...941...99L  (BLOCKED — PDF not obtained; module-future/afterglow anyway)",
+  "2019A&A...629A..69B  (PRIMARY READ — the only physical-model claim about our exact peak-flux interval)",
+  "2018ApJ...865..153L  (already read=Y; re-open Tables 1-4 rows only)",
+  "2015ApJ...811...93G  (Table 2 row only)",
+  "2014ApJS..211...13V  (catalog rows only)"
+ ],
+ "vikas_reading_list_prompt_scoped": [
+  "Burgess 2019 A&A 629 A69 — §2 (sample/method) + p.9 table row 120102095 + §3-4 (width vs synchrotron). ~30 min. THE paper for this burst.",
+  "Lu 2018 ApJ 865 153 — you have read it; just re-open Tables 1/2/3+footnote a/4 for the bn120102095 rows. ~10 min.",
+  "DEFER (module-future shelf): Lü 2022 ApJ 941 99 (X-ray flares) when the afterglow module starts; Qu 2025 MNRAS 540 L6 (population/cosmo) when the population module starts."
+ ],
+ "pending_shared_csv_rows": {
+  "_hard_rule": "This worker made NO writes to any shared CSV. The rows below are QUEUED for the merge worker.",
+  "Skills_training/corpus_index.csv": {
+   "append_trigger_to_existing_rows": [
+    "Lu_2018_2018ApJ865153L.pdf (2018ApJ...865..153L): cited_by_bursts += bn120102095, n_bursts += 1",
+    "vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf (2014ApJS..211...13V): cited_by_bursts += bn120102095, n_bursts += 1",
+    "Golkhou_2015_2015ApJ81193G_bn120119170.pdf (2015ApJ...811...93G): cited_by_bursts += bn120102095, n_bursts += 1"
+   ],
+   "new_rows": [
+    "Burgess_2019_2019AA629A69B_bn120102095.pdf,2019A&A...629A..69B,1705.05718,spectral-width;synchrotron-adequacy;peak-flux-Bayesian;44-GRB-bright-sample,bn120102095,1,N,",
+    "Qu_2025_2025MNRAS540L6Q_bn120102095.pdf,2025MNRAS.540L...6Q,2505.05561,module-future;cosmo;swift-long-GRB-progenitors;no-redshift-list,bn120102095,1,N,",
+    "NOPDF_Lu_2022_2022ApJ94199L,2022ApJ...941...99L,,module-future;afterglow;xray-flare-spectral-evolution;IOP-CAPTCHA-no-OA-pdf,bn120102095,1,N,"
+   ],
+   "new_row_provenance": "arXiv ids 1705.05718 and 2505.05561 were taken from the ADS identifier field in this session's own query (not from memory). 2022ApJ...941...99L has NO arXiv id in ADS — the empty field is correct, not an omission."
+  },
+  "results/gcn/gcn_index.csv": {
+   "row": "bn120102095,120102A,8,N,11_unique_across_forms,6_refereed_incl_local_sweep",
+   "columns": "trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed",
+   "note": "z_mention = N (no circular reports a redshift; the positive 'no z' statement comes from Qu+2025, not a circular). ads_hits counts unique bibcodes across the four+extra forms EXCLUDING the 1990 chemistry false positive and the 18 unrelated '510922' hits. ads_refereed = 6 = the papers list above (4 found via ADS + 2 via the local corpus sweep)."
+  }
+ },
+ "issues": [
+  "Lü+2022 (2022ApJ...941...99L) PDF NOT OBTAINED — IOP Radware captcha on both the direct /pdf URL and the ADS link_gateway; no arXiv version. Sample membership confirmed by ADS full text only; zero values extracted. The single unharvested paper of this burst.",
+  "Lu+2018 Table 2, 4th time bin [6.13, 12.35] s: only Ep = 232.48 ± 64.40 keV was extracted; α, β, flux and χ²r fall across the p.44/45 page break and were not recovered.",
+  "Burgess 2019 table column-order ambiguity (T4) — δDIC and p_eff assignments carry a caveat; α_Band, α_SBPL, Δ_SBPL, p_B values are unambiguous.",
+  "LAG SIGN CONVENTION CLASH, unresolved by design (T5/L26): Lu+2018 τ̂31 = +0.11 ± 0.08 s with high energy leading (t_m 5.35 → 4.94 s from 25-50 to 300-1000 keV), vs our results/temporal_catalog_human.ecsv LAG = -0.0515 ± 0.0096 s at 117σ. Same physical burst, opposite sign. Must be reconciled at the convention level before any lag diff is quoted.",
+  "Ep inter-instrument spread 276-805 keV for the same main pulse (Konus CPL 805 vs GBM catalog Band 275). Phase-4 consensus rule applied: propagate the spread, do not pick a favourite. Likely driver is CPL-vs-Band with an unconstrained β (Konus: β < -2.04 only) plus the 20 keV-4 MeV vs 10-1000 keV band difference.",
+  "NEW background concern raised (NOT acted on; not present in results/human_review_qc_flags.txt): our approved pre-burst background [-30, -8] s overlaps the BAT-detected weak first peak (GBM clock -28.2 → -8.2 s), corroborated by GBM catalog T90_start = -11.52 s and Golkhou T_start,100 = -25.674 s. The GBM catalog's own low background stops at -28.5 s. Stage-1 flags are decisions — this is Vikas's call, not a unilateral edit.",
+  "Corpus dedup sweep could not open 2 of 160 Skills_training PDFs (Hurley_2017_2017ApJS22931H_bn101126198.pdf, You_2026_2026AA710A125Y_bn101126198.pdf), almost certainly mid-write by a concurrent worker; neither is expected to contain this burst but the sweep over them is unverified.",
+  "Google-Scholar-equivalent channel returned zero new papers for this burst (two queries, recorded above). The burst's refereed footprint really is 6 papers, none of which is a dedicated single-burst study."
+ ]
+}

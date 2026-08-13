@@ -1,0 +1,21 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn090620400}
+# - {src_start: -0.91}
+# - {src_stop: 18.27}
+# - {lle_note: 'no gll_* files on disk; LAT boresight angle 60 deg (GCN 9554) -> no LLE/LAT expected; D1 theta check n/a'}
+# - {trigdat_note: 'trigdat absent; poshist present (geometry covered) - note, not blocker'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n6 -7.936 119.042 3 PASS
+n7 -7.936 119.042 3 PASS
+n8 -7.936 119.042 3 PASS
+nb -7.936 119.042 3 PASS
+b1 -7.936 119.042 3 PASS

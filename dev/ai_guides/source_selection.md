@@ -48,6 +48,13 @@ Add the `source` object to the decision file (alongside `detectors`, `windows`, 
 ## QC checklist (self-check before approving)
 - [ ] `t2 > t1`, both finite floats, trigger-relative seconds.
 - [ ] `pre_stop <= t1` and `t2 <= post_start` for EVERY detector in `windows` (the tightest gap wins).
+  ⚠ **This rule is a Stage-1 WARNING, not an invariant of the shipped catalog** (2026-08-12,
+  after TWO operators independently re-flagged adjudicated rows): the human gate may ACCEPT an
+  overrun (GUI soft-warn + override), and accepted overruns are recorded in
+  `results/human_review_qc_flags.txt` (20 detector-rows across 16 bursts as of 2026-08-12,
+  BGO-dominated). Any validator of the shipped catalog MUST join that ledger and report only
+  UNADJUDICATED violations — `scripts/43_catalog_validator.py` is the reference implementation.
+  A QC check that ignores the decisions ledger manufactures alarms (the F-2 class).
 - [ ] `t1` sits just before the first clearly-elevated bin; the rate at `t1` is near baseline, not mid-rise.
 - [ ] `t2` is past the last elevated bin; the tail has returned to baseline (no truncated decay).
 - [ ] Exactly one contiguous interval — no real emission excluded between t1 and t2.

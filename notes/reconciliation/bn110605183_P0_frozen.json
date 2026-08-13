@@ -1,0 +1,97 @@
+{
+ "burst": "bn110605183",
+ "grb_name": "GRB 110605A",
+ "tally": null,
+ "tally_note": "campaign doc-layer worker, not a numbered walkthrough burst; no tally assigned",
+ "frozen_utc": "2026-08-12",
+ "blindness_statement": "results/sweep106/ was NEVER opened by this worker (hard rule). The archival prior below WAS opened deliberately and is recorded here IN FULL precisely so that it cannot be retro-fitted after the blind sweep lands: everything I know about this burst's fits at freeze time is written down. Nothing else about our current-era fits has been read.",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "stamped_selection_at_freeze": {
+  "detectors": ["n2", "n5", "b0"],
+  "source_window_s": [-1.5481286713286408, 30.61764475524481],
+  "backgrounds": "n2 pre [-26.667,-5.667] post [36.333,155.333]; n5 pre [-24.666,-5.666] post [41.334,154.334]; b0 pre [-26.665,-6.665] post [21.335,125.335]",
+  "stamp": "APPROVED_BY = Vikas Chand, APPROVED_UTC = 2026-07-19T22:18:36Z, mode = human_gui, WINDOW_SOURCE = accepted_suggestion (results/background_intervals.ecsv lines 88-90; results/approval/bn110605183_decision.json)",
+  "viewing_angles_deg": {"n2": 21.483, "n5": 47.850, "b0": 50.778},
+  "qc_flag": "results/human_review_qc_flags.txt line 4: 'bn110605183 source[-1.54813,30.6176]_overruns_bkg_gap b0[gap -6.66508,21.3349] 2026-07-19T22:18:36Z' - the b0 post-background begins at +21.33 s, i.e. INSIDE the source window, so the source interval overruns b0's background gap. Human-ACCEPTED adjudication; a DECISION, not a defect (Stage-1 flags ARE decisions). Carry it: b0's background model is interpolated across part of the burst, which matters most for the >250 keV band where the BGO carries beta."
+ },
+ "archival_prior": {
+  "requested_path": "results/clean_per_burst_human_final/bn110605183/spectral_fits.ecsv",
+  "requested_path_status": "ABSENT - this burst never entered the human-final per-burst fit archive (88 bursts are there; bn110605183 is not one of them)",
+  "fallback_used": "results/clean_per_burst_final/bn110605183/spectral_fits.ecsv - EXPLICITLY LABELLED as a pre-human-margin-reselection product, NOT a human-final one",
+  "why_it_is_stale": "bn110605183 is listed in dev/stale_refit_worklist.txt (line 14). The fallback table's blocks span [0.113, 17.828] s, whereas the stamped human window is [-1.548, +30.618] s: the archival fits used a DIFFERENT, SHORTER source interval and the older background selection (the superseded prototype backgrounds -30.665/-29.464 and 209.88/289.88 appear in results/background_intervals_clean.ecsv for this trigger). Every number below is therefore a prior on a different frame, not a prediction of what the blind sweep must reproduce.",
+  "sibling_archives_seen": "results/clean_per_burst_consensus/ is byte-equivalent in block edges to _final; results/clean_per_burst/ uses blocks [0.116,24.372] and is visibly BB-seed-poisoned (its integrated Band railed at Ep = 3852 keV with LRT_BANDBB_BAND = 254.8) - recorded so nobody later mistakes that era's numbers for evidence.",
+  "n_blocks": {"time_resolved": 3, "integrated": 1},
+  "union_rule": {
+   "definition": "(LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05) - BOTH nested tests, the union rule",
+   "per_block": [
+    {"block": -1, "interval_s": [0.113, 17.828], "role": "time-integrated", "LRT_BANDBB_BAND": 15.149, "BANDBB_KT_keV": 36.700, "BANDBB_KT_ERR": 2.452, "BANDBB_VALID": true, "LRT_CPLBB_CPL": 1.067, "CPLBB_KT_keV": 2.793, "CPLBB_VALID": true, "fires": true, "arm": "Band+BB"},
+    {"block": 0, "interval_s": [0.113, 5.920], "LRT_BANDBB_BAND": 5.547, "BANDBB_KT_keV": 38.492, "BANDBB_VALID": true, "LRT_CPLBB_CPL": 31.911, "CPLBB_KT_keV": 39.613, "CPLBB_KT_ERR": 3.818, "CPLBB_VALID": true, "fires": true, "arm": "CPL+BB"},
+    {"block": 1, "interval_s": [5.920, 14.004], "LRT_BANDBB_BAND": 9.147, "BANDBB_KT_keV": 30.691, "BANDBB_VALID": false, "LRT_CPLBB_CPL": 1.297, "CPLBB_KT_keV": 3.865, "CPLBB_VALID": true, "fires": false, "note": "the Band arm misses the 9.2 threshold by 0.053 - a knife-edge non-detection, and the Band+BB fit is flagged INVALID anyway"},
+    {"block": 2, "interval_s": [14.004, 17.828], "LRT_BANDBB_BAND": 7.979, "BANDBB_KT_keV": 23.171, "BANDBB_VALID": false, "LRT_CPLBB_CPL": 10.710, "CPLBB_KT_keV": 21.882, "CPLBB_VALID": false, "fires": true, "arm": "CPL+BB", "note": "fires on LRT+kT but FAILS the model-validity gate - counted separately below"}
+   ],
+   "counts": {
+    "time_resolved_blocks_firing_on_LRT_and_kT": 2,
+    "time_resolved_blocks_firing_AND_passing_the_validity_gate": 1,
+    "time_resolved_blocks_total": 3,
+    "integrated_block_fires": true
+   }
+  },
+  "kt_values_keV": {"blk-1_bandbb": 36.700, "blk0_bandbb": 38.492, "blk0_cplbb": 39.613, "blk1_bandbb": 30.691, "blk2_bandbb": 23.171, "blk2_cplbb": 21.882, "blk-1_cplbb": 2.793, "blk1_cplbb": 3.865},
+  "aic_winners": {
+   "blk-1": {"winner": "Band+BB", "AIC": 4932.08, "margin_over_next_valid": 11.15, "next": "Band 4943.23", "verdict": "the ONLY decisive preference in the whole archival table (dAIC >= 10 doctrine)"},
+   "blk0": {"winner": "Band+BB", "AIC": 3759.20, "margin_over_next_valid": 1.04, "next": "SBPLF 3760.24", "verdict": "INDISTINGUISHABLE - four models inside 1.6 AIC"},
+   "blk1": {"winner": "Band", "AIC": 4038.29, "margin_over_next_valid": 1.39, "next": "SBPLF 4039.68", "verdict": "indistinguishable; BEST_BIC was CPL"},
+   "blk2": {"winner": "CPL", "AIC": 3258.44, "margin_over_next_valid": 1.02, "next": "Band 3259.46", "verdict": "indistinguishable"}
+  },
+  "two_break_prior": {
+   "LRT_DSBPL_SBPL": {"blk-1": 7.483, "blk0": 6.534, "blk1": 3.231, "blk2": 1.390},
+   "dAIC_DSBPL_minus_SBPL": {"blk-1": -3.48, "blk0": -2.54, "blk1": 0.77, "blk2": 2.61},
+   "DSBPL_VALID": {"blk-1": true, "blk0": false, "blk1": false, "blk2": false},
+   "verdict": "NO two-break signal anywhere in the archival era - the best case (integrated block) is 3.5 AIC, far short of 10, and the DSBPL breaks in the time-resolved blocks sit at xb = 361-672 keV (i.e. railed high, above Ep), the classic L8 seed artefact. Because L8/L9 hardening had not landed when these fits were made, this is a LOWER LIMIT: absence here is weak evidence."
+  }
+ },
+ "external_frame": "NO dedicated paper, NO circulars, NO redshift. GBM catalog (scat FITS, SCATALOG=3, Castor C-STAT, dets b0/n2/n5 = our approved set exactly, flnc [-2.048,+60.416] s): Band Ep = 151.01 (+9.22/-9.83) keV, alpha = -0.610, beta = -2.220 (+0.107/-0.086), REDCHSQ 1.0825/360; Comp Ep = 185.62; SBPL Ebreak = 96.81 keV (break, not Ep), REDCHSQ 1.0828/360 - Band and SBPL TIED; PL rejected at 2.048/362. pflx [3.072,4.096] s: Band Ep = 216.31, Comp Ep = 230.70. bcat: T90 = 82.689 +/- 3.083 s from +1.536 s, T50 = 24.064 +/- 0.572 s from +4.864 s (50-300 keV, n1+n2+n5); fluence(10-1000) = 1.9252e-05. Lu+2018 time-resolved Band over [-0.83,+16.30] s: Ep = 326.72 +/- 54.68 -> 186.22 +/- 25.03 -> 151.78 +/- 18.31 -> 103.45 +/- 14.62 keV with alpha ~ -0.3 to -0.55 and beta ~ -1.93 to -2.31; evolution class H (hard-to-soft), kE = -0.77 +/- 0.14, tau_hat_31 = 1.48 +/- 0.42 s, W(FWHM 8 keV-1 MeV) = 21.95 s. Shao+2017 (n2): limiting 1-keV lag tau = 25.37 s, omega = 16.27 s, gamma = 0.310, delta_t_HR = 2.459 +/- 0.237 s.",
+ "predictions": [
+  "P-A (window-integrated Ep, falsifiable): Ep is monotonically decreasing (Lu+2018 class H), so our window [-1.548,+30.618] s - which is SHORTER than the catalog flnc [-2.048,+60.416] s but LONGER than Lu's [-0.83,+16.30] s - must give a window-integrated Band Ep ABOVE the catalog's 151 keV and BELOW Lu's first-bin 327 keV. Predict 150 <= Ep <= 240 keV. FALSIFIED if Ep < 140 keV or > 260 keV, or if MINOS fails to bound it.",
+  "P-A2 (high-energy tail, falsifiable): beta is well measured with the BGO in every external frame (catalog -2.220 +0.107/-0.086; Lu's four bins -1.93 to -2.31), so models carrying a high-energy power law must beat the exponential cutoff. Predict Band (or SBPL/DSBPL) beats CPL window-integrated, and predict our fitted beta lands in -2.5 <= beta <= -1.8. FALSIFIED if CPL wins by dAIC >= 10 window-integrated, or if beta falls outside that band with MINOS-bounded errors.",
+  "P-A3 (straight power law, falsifiable): catalog PL is rejected at REDCHSQ 2.048/362 against ~1.08 for the curved models. Predict PL is the WORST of the base models in every block by dAIC >= 20. FALSIFIED if PL is ever within 10 AIC of the block winner.",
+  "P-B (hard-to-soft, falsifiable and the sharpest test here): Lu+2018 measured monotonic softening 327 -> 186 -> 152 -> 103 keV over [-0.83,16.30] s and class H with kE = -0.77 +/- 0.14. Predict our per-block Ep sequence is monotonically DECREASING across the time-resolved blocks (no rise, no tracking), that the FIRST block's Ep exceeds 240 keV, and that a log Ep vs log(t+t0) slope computed on our blocks lands within 2 sigma of -0.77. FALSIFIED by any intensity-tracking pattern (Ep rising with flux), by a first-block Ep < 200 keV, or by a slope outside [-1.05, -0.49].",
+  "P-C (blackbody, falsifiable, UNPUBLISHED-DECISION class): nobody has ever proposed a thermal component for this burst - there is no published answer to memorize, which is exactly what makes it useful. The stale archival prior nevertheless fired the union rule in the time-integrated block (Band+BB over Band by dAIC 11.15, kT = 36.7 +/- 2.5 keV) and in 1-2 of 3 time-resolved blocks. Predict the union rule fires in the integrated fit again, and in >= 1 time-resolved block, with kT in 15-50 keV. ***L25 TRAP, DECLARED IN ADVANCE***: at kT ~ 37 keV the blackbody's nu-F-nu peak sits at ~3.92*kT ~ 144 keV, essentially ON TOP of the Band Ep (151-162 keV) - this is precisely the degenerate regime where a 'BB' can be a re-parametrised low-energy break. Any BB claim here MUST clear the L25 xb-vs-kT check and the L28 per-NaI residual-coherence check before it is called a photosphere, and the b0-background QC flag above must be carried into that judgement. FALSIFIED if the union rule fires in ZERO blocks including the integrated one, or if kT lands outside 10-70 keV.",
+  "P-D (two-break, falsifiable): the archival era found no two-break signal (best LRT_DSBPL_SBPL = 7.48, best dAIC = 3.5, and the time-resolved DSBPL breaks railed at xb = 361-672 keV = the L8 seed artefact). The catalog's own SBPL break (96.81 keV) sits BELOW Band Ep (151 keV), which is the ordinary one-break picture. Predict DSBPL does NOT win by dAIC >= 10 in any block. A DSBPL win WOULD be a genuine unpublished-discovery candidate and must survive the L8 default-seed restart before it is believed - the archival non-detection is a LOWER LIMIT, not evidence of absence, because L8/L9 hardening postdates it.",
+  "P-E (temporal, falsifiable): predict our 50-300 keV T90 reproduces 82.7 +/- 3.1 s to within its error (there is no pre-trigger emission - T90START = +1.536 s - so this is a clean comparison, unlike the D4 bursts), and that our lag measurement is POSITIVE (soft photons later) with a 100-300 vs 25-50 keV value near 1.5 s. FALSIFIED by a negative lag, or by |T90 - 82.7| > 3 sigma once band and detector set are matched (50-300 keV, n1+n2+n5 - note the duration catalog includes n1, which we do NOT approve at 63.85 deg).",
+  "P-F (frame trap, procedural, not falsifiable): our window covers ~36% of the T90 span (all of T50). Because Ep softens monotonically, ANY Ep/fluence diff against the catalog MUST re-align interval AND detector set first. The published ladder to place ourselves on: Lu bin1 327 > pflx 216/231 > Lu bin2 186 > flnc Band/Comp 151/186 > Lu bin4 103 keV. Never quote a burst-level Ep without its interval."
+ ],
+ "harvest_snippets": {
+  "vonKienlin2014": [
+   "Table 6 p.55: 'bn110605183 GRB 110605A 04:23:32.3035 14.9 52.5 1.0 Fermi-GBM 10 512 47-291 Mo, K, IA, W'",
+   "Table 7 p.84: 'bn110605183 1+2+5 82.689 +/- 3.083 1.536 24.064 +/- 0.572 4.864'",
+   "Table 8 p.114: 'bn110605183 1.93E-05 +/- 5.59E-08 10.04 +/- 1.51 9.16 +/- 0.76 8.22 +/- 0.37'",
+   "Table 9 p.144 (50-300 keV): 'bn110605183 1.16E-05 +/- 3.17E-08 5.25 +/- 0.69 4.75 +/- 0.36 4.31 +/- 0.17'",
+   "legend p.63: 'bOther instrument detections: Mo: Mars Observer , K: Konus-Wind, R: RHESSI, IA: INTEGRAL SPI-ACS, IS: INTEGRAL IBIS-ISGRI, S: Swift, Me: Messenger, W: Suzaku, A: AGILE, M: MAXI, L: Fermi LAT'"
+  ],
+  "Lu2018": [
+   "Table 2 p.42: 'GRB 110605A (bn110605183) -0.83 -3.68 0.02 +/- 0.00 326.72 +/- 54.68 -0.55 +/- 0.12 -1.93 +/- 0.12 1.24E-06 +/- 4.28E-08 0.97'",
+   "Table 2 p.42 (remaining bins): '3.68 -5.68 ... 186.22 +/- 25.03 -0.28 +/- 0.16 -2.11 +/- 0.15 1.53E-06'; '5.68 -9.11 ... 151.78 +/- 18.31 -0.32 +/- 0.16 -2.31 +/- 0.21 9.32E-07'; '9.11 -16.30 ... 103.45 +/- 14.62 -0.29 +/- 0.23 -2.15 +/- 0.14 5.11E-07'",
+   "Table 1 p.35: 'bn110605183 NaI 51.97 +/- 2.02 3.77 +/- 0.19 1.96 +/- 0.22 1.38 +/- 0.15 1.95 1.14'",
+   "Table 3 p.51: 'bn110605183 (-0.5-25.0)' bands (2) 0.85 +/- 0.49, (3) 1.73 +/- 0.41, (5) 2.48 +/- 0.41 - lags w.r.t. 8-25 keV",
+   "Table 4 p.54: 'bn110605183 H 1.48 +/- 0.42 21.95 2.03 +/- 0.79 -0.77 +/- 0.14'"
+  ],
+  "Shao2017": [
+   "Table 1 p.9: '110605183 82.69 +/- 3.08 1.00 -7.452 +9.839/-0.140 25.367 +19.457/-1.900 0.149 +0.452/-0.003 16.274 +5.620/-2.665 0.310 +0.066/-0.039 n2 2.459 +/- 0.237'"
+  ],
+  "Hurley2017": [
+   "membership confirmed by ADS full-text form full:\"GRB110605183\" (1 hit, this paper); ROW NOT EXTRACTED - no arXiv eprint and the IOP PDF is Radware-captcha-blocked. Nothing numeric claimed from it."
+  ],
+  "GBM_catalog_FITS": [
+   "scat flnc band v02 (SCATALOG=3, Castor C-STAT, dets BGO_00+NAI_02+NAI_05, [-2.048,60.416] s): Ep = 151.01 +9.22/-9.83, alpha = -0.610 +0.062/-0.067, beta = -2.220 +0.107/-0.086, NRGFLNC = 2.1013e-05 +/- 5.99e-07, REDCHSQ 1.0825 dof 360",
+   "scat flnc sbpl: Ebreak = 96.81 +10.25/-11.88 keV (break scale 0.3 fixed), indices -0.834 / -2.290, REDCHSQ 1.0828 dof 360 - TIED with Band",
+   "scat pflx band ([3.072,4.096] s): Ep = 216.31 +17.98/-32.68, alpha = -0.320, beta unconstrained (+49.1/-0.31)",
+   "bcat v02: T90 = 82.689 +/- 3.083 (T90START +1.536), T50 = 24.064 +/- 0.572 (T50START +4.864), FLU = 1.92515e-05 +/- 5.59306e-08, PFLX(1.024 s) = 8.21684 +/- 0.367554 from +3.520 s",
+   "tcat v01: TRIG_ALG 10, TRIGSCAL 512 ms, TRIG_SIG 4.7, DET_MASK 01000100000000 (n1+n5 triggered), THETA 109.086 deg (no LAT), GCN_FLAG Yes (notice, not circular)"
+  ],
+  "GCN_circulars": [
+   "ZERO - 110605.gcn3 / 110605A.gcn3 / 110605B.gcn3 all HTTP 404 with 110604A.gcn3 and 110721A.gcn3 returning 200 as positive controls; Greiner's table has no 110605 row"
+  ]
+ },
+ "scoring_note": "This burst is a high-value AI-Scientist specimen precisely BECAUSE the literature stops short: three papers use it as a row in a timing sample and none fits a model beyond Band. Its Stage-1 decisions (detector set, window) are externally corroborated - the GBM spectral catalog independently chose b0+n2+n5 and Shao independently chose n2 - so the DECISIONS we can score here are the unpublished ones: the block count, the BB verdict under the union rule (with the L25 degeneracy declared in advance), and the two-break verdict. There is no published answer to memorise for any of the three."
+}

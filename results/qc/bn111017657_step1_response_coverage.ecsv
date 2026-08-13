@@ -1,0 +1,68 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# - {name: THETA_T0_DEG, datatype: float64}
+# - {name: THETA_SRC_MIN_DEG, datatype: float64}
+# - {name: THETA_SRC_MAX_DEG, datatype: float64}
+# - {name: DTHETA_SRC_DEG, datatype: float64}
+# - {name: D1_VERDICT, datatype: string}
+# - {name: THETA_BKGPOS_START_DEG, datatype: float64}
+# - {name: THETA_BKGPOS_END_DEG, datatype: float64}
+# - {name: DTHETA_BKGPOS_DEG, datatype: float64}
+# meta: !!omap
+# - {trigger: bn111017657}
+# - {grb_name: GRB 111017A (named by the GBM team in GCN 12449; trigger 340559125 / 111017.657)}
+# - {trigtime_met: 340559125.719054}
+# - src_window: [-1.0, 15.0]
+# - bkg_windows:
+#   - [-31.0, -8.0]
+#   - [25.0, 135.0]
+# - {src_window_source: 'results/background_intervals.ecsv (Vikas Chand, 2026-07-19T22-18-36Z, human_gui, accepted_suggestion)'}
+# - {approved_detectors: 'n6,n7,n9,b1'}
+# - {on_disk_not_approved: 'n8 - theta 56.85 deg at T0, above the 50 deg NaI rule; present in BCAT_DETECTOR_MASK but ABSENT from the GBM
+#     SCAT mask, so the exclusion is consistent with the official catalog and is not a data gap'}
+# - {external_detector_corroboration: 'GBM catalog SCAT_DETECTOR_MASK 00000011010001 decodes to n6,n7,n9,b1 - exact match to the approved
+#     set; Yu+2019 Table 1 analysed (n6)n7n9b1; Shao+2017 brightest NaI = n6'}
+# - {lle_present: false}
+# - {lat_present: false}
+# - {has_lat_flag: False (results/grb_sample.ecsv)}
+# - {trigdat: 'MISSING - a note, not a blocker; glg_poshist_all_111017_v01.fit is present so geometry is covered'}
+# - {tte_files: 5}
+# - {cspec_pha_files: 5}
+# - {rsp_files: '5, ALL single-matrix .rsp v01. ZERO .rsp2 exist for this burst. Per D2 this must NOT be reported as a NO-RSP2 failure
+#     - scripts/10::find_rsp accepts .rsp'}
+# - {d1_theta_check: RUN - mandatory here because every response is single-matrix AND the burst triggered a Fermi ARR slew (GCN 12449)}
+# - {d1_result: 'max Delta-theta across the stamped source window = 0.19 deg (n7 and n9); D1 threshold is 4 deg, so ALL FOUR RESPONSES
+#     ARE VALID over the window we fit'}
+# - {arr_slew: 'GCN 12449 verbatim - this burst was ''bright enough to result in a Fermi spacecraft autonomous rapid repoint (ARR) maneuver''.
+#     Slew onset measured from poshist at t approx +52 to +55 s, i.e. AFTER the source window closes at +15 s'}
+# - {slew_over_src_window_deg: 0.644}
+# - {slew_over_bkgpos_window_deg: 10.67}
+# - {FLAG_BACKGROUND_NONSTATIONARY: 'The POST background interval +25..+135 s straddles the ARR slew - the spacecraft boresight moves
+#     10.67 deg across it (n6 20.43 -> 12.25 deg, b1 55.93 -> 63.46 deg). About +25..+52 s is attitude-stable; +52..+135 s is not. A polynomial
+#     background fit over this span assumes a rate-stationary detector orientation, which is false here because Earth-limb and albedo
+#     geometry track attitude. This does NOT invalidate any response - it is a background-model risk that propagates into every block.
+#     Recommended Step 5/6 sensitivity check - refit the background with the post window truncated to +25..+50 s and compare block-level
+#     parameters. NOTE this is a flag on an ALREADY-APPROVED human selection, raised for the record, not an instruction to change it'}
+# - {d4_note: 'T90_START = +0.256 s, T90 = 11.07 +/- 0.41 s (GBM catalog, 50-300 keV), so the T90 span +0.26..+11.33 s sits inside the
+#     stamped window -1.0/+15.0 s. GCN 12449 reports ''one main peak'' - no pre-trigger episode. Yu+2019 and Shao+2017 both open their
+#     source interval at -5 s and report no earlier emission'}
+# - {verdict: PASS_WITH_FLAG}
+# - {verdict_detail: 'Responses PASS the D1 off-axis test, which is the correct test for single-matrix DRMs. File manifest is complete
+#     for a GBM-only burst. One flag raised, against the POST background interval crossing the ARR slew - see FLAG_BACKGROUND_NONSTATIONARY'}
+# - {checked_by: 'Claude (doc-layer worker), 2026-08-12'}
+# - {estimator_provenance: 'angles from scripts/00_prototype_one_burst.py::get_detector_angle + get_pointing_at_trigger, i.e. the PRODUCTION
+#     estimator. It reproduces the stamped DET_ANGLE values in results/background_intervals.ecsv to 0.01 deg - n6 20.41 vs 20.406, n7
+#     13.92 vs 13.922, n9 46.75 vs 46.750, b1 55.88 vs 55.876'}
+# schema: astropy-2.0
+DETECTOR RSP N_MATRICES RSP_T0 RSP_T1 COVERS_SRC THETA_T0_DEG THETA_SRC_MIN_DEG THETA_SRC_MAX_DEG DTHETA_SRC_DEG D1_VERDICT THETA_BKGPOS_START_DEG THETA_BKGPOS_END_DEG DTHETA_BKGPOS_DEG
+n6 glg_cspec_n6_bn111017657_v01.rsp 1 -135.68 478.73 True 20.41 20.41 20.42 0.01 PASS_dtheta_lt_4deg 20.43 12.25 8.18
+n7 glg_cspec_n7_bn111017657_v01.rsp 1 -135.68 478.73 True 13.92 13.74 13.93 0.189 PASS_dtheta_lt_4deg 13.63 18.58 4.95
+n9 glg_cspec_n9_bn111017657_v01.rsp 1 -135.68 478.73 True 46.75 46.74 46.93 0.19 PASS_dtheta_lt_4deg 47.05 44.85 2.19
+b1 glg_cspec_b1_bn111017657_v01.rsp 1 -135.68 478.73 True 55.88 55.87 55.91 0.041 PASS_dtheta_lt_4deg 55.93 63.46 7.53

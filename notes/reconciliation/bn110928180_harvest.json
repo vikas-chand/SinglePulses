@@ -1,0 +1,150 @@
+{
+ "burst": "bn110928180",
+ "grb_name": "GRB 110928B",
+ "harvest_utc": "2026-08-12T18:05:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form ADS query; Phase 1b web/Scholar-style bridge; Phase 3b latest-first; Phase 3c prompt-scope; Phase 4 frame + multi-instrument consensus; traps T1/T3/T5/T9 all exercised for real on this burst)",
+ "identity": {
+  "trigger": "bn110928180 / MET TRIGTIME 338876393.41039",
+  "trigger_utc": "2011-09-28 04:19:51 (MJD 55832.180456139)",
+  "name_source": "Narayana Bhat+2016 (2016ApJS..223...28N) Table 5, arXiv:1603.07612 PDF p.74 - trigger token 'bn110928180' at x=507 pairs with name token '110928B' at x=507 in the parallel name row (coordinate-verified, not index-guessed). Independently reproduced by Golkhou+2015 Table 2 ('110928180 110928B') and Maccary+2025 Table 1 ('GRB110928B <-> bn110928180'). HEASARC fermigbrst 'name' field carries the letterless long form GRB110928180.",
+  "position_gbm": "RA=153.4, Dec=+34.29, error_radius=1.42 deg (statistical) - HEASARC fermigbrst",
+  "position_best": "IPN 3-sigma box centre RA=149.627, Dec=+31.888, area 0.212 deg2 (Hurley+2017 via VizieR J/ApJS/229/31 table6 recno 105); 3.97 deg from the GBM catalog position; GBM 3-sigma contour 719 deg2 -> ratio 3390",
+  "position_trap": "the TTE primary header carries RA_OBJ=30.0, DEC_OBJ=-15.0, ERR_RAD=3.0 - a stale flight-software placeholder 122.8 deg from the IPN box. Verified inert: recomputing detector angles from the poshist quaternions reproduces the stamped DET_ANGLE column to <=0.004 deg with the CATALOG position, so the header value never entered Stage 1.",
+  "same_day_contamination_guard_T1": "THREE distinct 2011-09-28 events, TWO label clashes. (a) GRB 110928A = Swift-BAT trigger 504215 at 01:51:31 UT, RA 257.745 Dec +36.547, T90(15-350 keV)=26.7+/-4.8 s (GCN 12394/12399) - 13 circulars, 16 ADS name-form hits, ALL someone else's burst. (b) 'GRB 110928B' in Augusto+2012 = Swift-BAT trigger 504307 at 19:17:20 UT, RA 278.950 Dec -19.328, a 17.1-min image trigger the authors themselves identify with the MAXI black-hole-candidate XRB J1836-194 - NOT a GRB and not ours. (c) ours = GBM bn110928180 at 04:19:51 UT, RA 153.4 Dec +34.29. NOTHING from (a) or (b) may enter this dossier. The only safe search tokens are bn110928180 / 110928180."
+ },
+ "ads_queries": [
+  {"form": "full:\"bn110928180\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"110928180\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:(\"GRB 110928180\" OR \"GRB110928180\")", "numFound": 1, "refereed_hits": 1, "hit": "2017ApJS..229...31H"},
+  {"form": "full:\"338876393\" (trigger MET)", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:(\"GRB 110928B\" OR \"GRB110928B\") [name form]", "numFound": 1, "refereed_hits": 1, "hit": "2012PhRvD..86b2001A - EXCLUDED, it is the Swift 504307 / MAXI J1836-194 event (T1)"},
+  {"form": "full:(\"GRB 110928A\" OR \"GRB110928A\") [contamination check only]", "numFound": 16, "refereed_hits": "13 GCN circulars + 1 GCN report + 1 eprint, ALL the Swift 01:51:31 burst - excluded per T1"}
+ ],
+ "ads_full_text_blind_spot": {
+  "finding": "THE FOUR-FORM ADS QUERY MISSED TWO OF THE FOUR REFEREED PAPERS THAT CARRY THIS BURST'S NUMBERS.",
+  "missed_1": "Golkhou+2015 (2015ApJ...811...93G) prints '110928180' in Table 2 on arXiv PDF p.25, yet full:\"110928180\" returns numFound=0. Found instead by a PyMuPDF token scan of the 150 PDFs already in Skills_training/ - i.e. by the LOCAL CORPUS, not by ADS.",
+  "missed_2": "Maccary+2025 (2025A&A...702A..95M) carries the burst only in a machine-readable table (VizieR J/A+A/702/A95 table1, recno 671); the token appears nowhere in the 14-page PDF. Found by a web bridge (Phase 1b) -> VizieR row lookup.",
+  "lesson": "ADS full-text does not index long machine-readable/appendix tables reliably. For a burst with a thin ADS footprint, the four-form query is a FLOOR, not a census: it must be followed by (i) a local-corpus token scan and (ii) VizieR row lookups in the standard catalog series. Both are cheap and both paid out here."
+ },
+ "phase1b_web_bridge": {
+  "channel": "WebSearch (Scholar-style finding channel; ADS four-form came back with 1 hit)",
+  "queries": ["\"GRB 110928180\" OR \"GRB110928180\" Fermi GBM", "\"110928180\" gamma-ray burst minimum variability timescale spectral"],
+  "found": "no burst-specific page, but surfaced the 2025 A&A MVT sample paper (aanda.org aa55418-25) as a candidate sample host",
+  "resolved_via_ads": "title query -> 2025A&A...702A..95M (Maccary et al.); membership then CONFIRMED by the VizieR row, not by the web page. Web finds, ADS verifies - doctrine intact.",
+  "vizier_row_lookups_run": ["J/ApJS/229/31 table2/table5/table6 (Hurley+2017) -> HIT", "J/A+A/702/A95 table1 (Maccary+2025) -> HIT", "J/A+A/588/A135 tablea1 (Yu+2016 time-resolved) -> 0 rows", "J/ApJ/913/60 table5 (Poolakkil+2021 z-subset) -> 0 rows", "J/ApJS/211/13 + J/ApJS/223/28 (von Kienlin+2014, Bhat+2016) -> VizieR carries only the trigger-algorithm tables, not the burst list; burst rows taken from the printed Bhat+2016 tables and from HEASARC fermigbrst instead"]
+ },
+ "n_refereed_papers": 5,
+ "papers": [
+  {
+   "bibcode": "2025A&A...702A..95M",
+   "first_author": "Maccary, R.",
+   "year": 2025,
+   "title": "Gamma-ray burst minimum variability timescales with Fermi/GBM",
+   "doctype": "article (REFEREED)",
+   "classification": "sample-member row (MVT population study) - THE MOST RECENT ANALYSIS, hence the Phase-3b default comparison frame",
+   "verbatim_anchor": "VizieR J/A+A/702/A95 table1 recno 671: 'GRB110928B | bn110928180 | FWHM 3.02394 (-0.78226/+1.05524) s | t90 148.226 | Npeaks 2.0 | z blank | Class II | 153.50000 +34.30000'",
+   "definition_to_carry_T3": "abstract verbatim: 'the MVT, defined as the full width at half maximum (FWHM) of the narrowest pulse in the light curve'; narrowest pulse identified by MEPSA (their Sect. 2.3). Npeaks = number of MEPSA-identified peaks.",
+   "pdf": "Skills_training/Maccary_2025_2025A&A702A95M_bn110928180.pdf (arXiv:2508.08995, 14 pp, verified %PDF; NEW to the corpus)",
+   "prompt_sections": "Sect. 2 (MVT definitions: FWHMmin vs dtmin vs dtdet - read this before any MVT diff) + Sect. 2.3 (MEPSA procedure) + Table 1 row - ALL prompt-temporal, directly feeds our Step 7. Sects. 4-6 (MVT-T90 plane, LFBOT/magnetar-giant-flare comparisons, Lp-FWHM correlation) = population context, not per-burst reconciliation.",
+   "module_future_tags": "none (pure prompt temporal)"
+  },
+  {
+   "bibcode": "2017ApJS..229...31H",
+   "first_author": "Hurley, K.",
+   "year": 2017,
+   "title": "The InterPlanetary Network Supplement to the Second Fermi GBM Catalog of Cosmic Gamma-Ray Bursts",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "catalog-member (IPN detection + triangulated localization) - the ONLY hit the four-form ADS query found",
+   "verbatim_anchor": "VizieR J/ApJS/229/31 table2 recno 273: '2011-09-28T04:19:51 | GRB | 110928180 | INT,Kon,MES,MO,RHE,Suz'; table5 recno 106 annuli (127.9796/+19.9781 R=22.7514+/-0.2595 deg; 184.2308/-0.2950 R=45.8813+/-0.1741 deg); table6 recno 105 error box centre 149.627/+31.888, corners (149.733,32.287)(149.936,31.942)(149.318,31.833)(149.520,31.483), aGBM=719 deg2, aIPN=0.212 deg2, ratio=3390",
+   "pdf": "NOT FETCHED - see fetch_failures. Source of record = VizieR J/ApJS/229/31, doi:10.26093/cds/vizier.22290031 (machine-readable version of the same tables).",
+   "prompt_sections": "the three table rows - independent 6-instrument confirmation of the PROMPT emission (SPI-ACS, Konus-Wind, MESSENGER GRNS, Mars Odyssey, RHESSI, Suzaku-WAM) + the localization that supersedes the GBM position. Nothing spectral to diff.",
+   "module_future_tags": "module-future;mm (IPN cross-mission timing/localization)"
+  },
+  {
+   "bibcode": "2016ApJS..223...28N",
+   "first_author": "Narayana Bhat, P.",
+   "year": 2016,
+   "title": "The Third Fermi GBM Gamma-Ray Burst Catalog: The First Six Years",
+   "doctype": "article (REFEREED)",
+   "classification": "catalog-member with FOUR PRINTED ROWS (name, durations, fluence/peak-flux in two bands) - the duration/fluence PRIMARY for this burst, and the source of the precursor footnote",
+   "verbatim_anchor": "p.74 Table 5 name pairing bn110928180 <-> 110928B (x-coordinate verified); p.118 Table 6 'bn110928180n 0+1+3+4 148.226 +/- 1.925 -119.298 15.424 +/- 0.500 0.576'; p.160 Table 7 '1.42E-05 +/- 9.36E-08 | 6.50 +/- 0.89 | 5.15 +/- 0.41 | 4.20 +/- 0.19' (10-1000 keV); p.205 Table 8 '8.23E-06 +/- 4.71E-08 | 3.70 +/- 0.55 | 3.01 +/- 0.25 | 2.37 +/- 0.11' (50-300 keV); p.135 FOOTNOTE n verbatim: 'Localization of precursor at T0 -120 s is consistent with burst location and was included in the duration analysis.'",
+   "footnote_significance": "footnote 'n' is used EXACTLY ONCE in the entire catalog - on this burst. It is the T9 component-coverage label for every duration/fluence number here.",
+   "pdf": "Skills_training/NarayanaBhat_2016_2016ApJS22328N_bn110928180.pdf (arXiv:1603.07612, 225 pp, verified %PDF; NEW to the corpus)",
+   "prompt_sections": "Sect. 3.2 (duration/peak-flux/fluence method: T90 from 5%->95% accumulated fluence in 50-300 keV; NaI-only; detector rule 'low source angles (typically < 60 deg) and no apparent blockage by any other GBM detector, or LAT or the LAT radiators' - the published twin of our D5 rule) + the four table rows + the p.135 footnote block. ALL prompt.",
+   "module_future_tags": "none (pure prompt catalog)"
+  },
+  {
+   "bibcode": "2015ApJ...811...93G",
+   "first_author": "Golkhou, V. Zach",
+   "year": 2015,
+   "title": "The Energy Dependence of GRB Minimum Variability Timescales",
+   "doctype": "article (REFEREED)",
+   "classification": "sample-member row (MVT). ALREADY IN THE CORPUS as Golkhou_2015_2015ApJ81193G_bn120119170.pdf - G2 dedup applied, NOT re-downloaded. Found ONLY by the local-corpus token scan (ADS full-text missed it).",
+   "verbatim_anchor": "Table 2, arXiv PDF p.25, row reconstructed by word coordinates: '110928180 110928B < 0.203 0.110 +/- 0.010 148.226 +/- 1.925 -192.673 91.909 0.20 0.23 ...' (columns: Trigger ID, GRB Name, dt_min, dt_S/N, T90, T_start_100, T_stop_100, sigma_X,tmin, sigma_X,tS/N, z)",
+   "definition_to_carry_T3": "dt_min = their wavelet/Haar-based minimum variability timescale (UPPER LIMIT here); dt_S/N = their S/N-matched timescale. NOT the same quantity as Maccary's FWHMmin - the two differ by ~15x on this burst by construction, not by disagreement.",
+   "chained_value_flag_T6": "their T90 = 148.226 +/- 1.925 s is IDENTICAL to the GBM catalog to 3 decimals -> chained from Bhat+2016/HEASARC, not an independent measurement. Their T_start_100 = -192.673 s / T_stop_100 = +91.909 s ARE their own.",
+   "pdf": "Skills_training/Golkhou_2015_2015ApJ81193G_bn120119170.pdf (existing corpus copy; filename carries a different burst's suffix - corpus_index row update queued)",
+   "prompt_sections": "Sect. 2-3 (Haar-wavelet MVT estimator + its energy dependence) + Table 2 row - prompt-temporal, feeds Step 7. Their energy-dependence result is the frame our own MVT-vs-band work must align to.",
+   "module_future_tags": "none (pure prompt temporal)"
+  },
+  {
+   "bibcode": "2014ApJS..211...13V",
+   "first_author": "von Kienlin, Andreas",
+   "year": 2014,
+   "title": "The Second Fermi GBM Gamma-Ray Burst Catalog: The First Four Years",
+   "doctype": "article (REFEREED)",
+   "classification": "catalog-member by construction (2008-07-12 -> 2012-07-11 covers our 2011-09-28 trigger) and by the CDS cross-link: the Hurley+2017 VizieR row for 110928180 carries an explicit 'GBM2' link to J/ApJS/211/13. Per-burst row NOT printed in the PDF on disk (token '110928180' absent from the 150-PDF corpus scan apart from Golkhou) - machine-readable only. ALREADY IN THE CORPUS (Skills_training/vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf), NOT re-downloaded.",
+   "verbatim_anchor": "membership evidenced by (a) HEASARC fermigbrst bcatalog=2 for this trigger and (b) the GBM2 cross-link in Hurley+2017's VizieR row. NO printed row quoted - honest.",
+   "pdf": "Skills_training/vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf (existing corpus copy)",
+   "prompt_sections": "Sects. 2-3 (trigger algorithms, localization, duration method) - the conventions behind the catalog fields we mine; superseded per-burst by Bhat+2016 for this trigger.",
+   "module_future_tags": "none (pure prompt catalog)"
+  }
+ ],
+ "excluded_contamination": [
+  {
+   "bibcode": "2012PhRvD..86b2001A",
+   "first_author": "Augusto, C. R. A.",
+   "year": 2012,
+   "reason": "T1. Its 'GRB110928B' is Swift-BAT trigger 504307 at 19:17:20 UT, RA 278.950 Dec -19.328, which the paper itself says 'corresponds to the MAXI source J1836-194' (a black-hole-candidate X-ray binary) - a different event 15 h after ours and 128 deg away. This paper is ALREADY in Skills_training (Augusto_2012_..._bn101126198.pdf) and would have entered this dossier through the name-form query.",
+   "keep_as": "mm-shelf method example only (ground-array Auger/Tupi muon coincidence search); NOT a source of any number for this burst."
+  },
+  {
+   "note": "the 13 GCN circulars 12394-12409 and GCN Report 347 all belong to Swift GRB 110928A (01:51:31 UT). Raw archive kept at results/gcn/bn110928180/bn110928180_gcn_raw_110928A_CONTAMINATION.txt as the contamination reference."
+  }
+ ],
+ "finding": "NO DEDICATED-ANALYSIS PAPER EXISTS for GRB 110928B / bn110928180, and ZERO GCN circulars were ever issued for it. The refereed footprint is 5 papers, all sample/catalog memberships: 2 GBM catalogs (von Kienlin+2014 machine-readable, Narayana Bhat+2016 with four PRINTED rows), 1 IPN supplement (Hurley+2017, 7-instrument detection + a 0.212 deg2 triangulated box, 3390x smaller than the GBM contour), and 2 MVT population papers (Golkhou+2015, Maccary+2025) whose two MVT estimators differ by ~15x BY DEFINITION. The single most consequential harvested fact is Narayana Bhat+2016's Table-6 footnote n - used exactly once in the whole catalog, on this burst: 'Localization of precursor at T0 -120 s is consistent with burst location and was included in the duration analysis.' Every published T90/fluence for this burst therefore covers PRECURSOR + MAIN, while our stamped window [-7.338, +30.455] s covers MAIN ONLY - the T9 component-coverage mismatch is the dominant diff hazard here. No redshift, no afterglow, no host, no photospheric or synchrotron advocacy anywhere in the record: a clean null-streak baseline burst.",
+ "local_corpus_check": {
+  "method": "PyMuPDF token scan of all 150 PDFs in Skills_training/ for '110928180' and for 'GRB110928*'",
+  "hits": "Golkhou_2015 p.25 (OUR burst, the ADS query missed it) + Augusto_2012 pp.1,6,7,8 (the Swift 504307 / MAXI J1836-194 event - contamination, excluded)",
+  "corrupt_files_found": "2 files in Skills_training/ are NOT PDFs but Radware/IOP captcha HTML pages saved with .pdf extensions: Hurley_2017_2017ApJS22931H_bn101126198.pdf (14371 B) and You_2026_2026AA710A125Y_bn101126198.pdf (772 B). Both fail fitz.open(). NOT touched by this worker (idempotence rule); reported as an issue for whoever owns bn101126198."
+ },
+ "fetch_failures": [
+  {
+   "target": "Hurley+2017 published PDF (2017ApJS..229...31H, PUB_OPENACCESS, doi 10.3847/1538-4365/229/2/31)",
+   "attempts": "iopscience.iop.org/article/<doi>/pdf with a browser UA + ADS referer -> HTTP 200 but content_type text/html, 14371 B, a Radware Bot Manager captcha page. No arXiv version exists (arXiv API search over 'Interplanetary Network Supplement' lists the BeppoSAX/BATSE/HETE-2/first-GBM supplements but NOT the second-GBM one).",
+   "resolution": "used VizieR J/ApJS/229/31 (doi:10.26093/cds/vizier.22290031), the machine-readable version of the same tables. NO captcha page was saved to the corpus."
+  },
+  {
+   "target": "gcn.nasa.gov new-site circulars API",
+   "attempts": "/api/circulars?query=... , ?limit=2 , /api/v1/circulars , /circulars.json - every form returned {\"message\":\"Unexpected Server Error\"} or the SPA shell",
+   "resolution": "the service was down this session. Zero-circular conclusion rests on the classic archive (110928.gcn3 == 110928A.gcn3, all Swift; 110928B.gcn3 = 404) + the ADS circular-bibcode sweep. Recorded as a limitation, not passed off as a verified null."
+  }
+ ],
+ "prompt_vs_future_classification": {
+  "prompt_relevant": "Narayana Bhat+2016 four rows + footnote n; HEASARC fermigbrst flnc/pflx model tables (dets n0,n3,b0; flnc [-62.464,+29.696] s; pflx [8.192,9.216] s); Golkhou+2015 dt_min/dt_S/N; Maccary+2025 FWHMmin/Npeaks. These are the P3 diff targets.",
+  "module_future": "Hurley+2017 tagged module-future;mm (IPN cross-mission). NO afterglow / SN / cosmology literature exists for this burst - the beyond-prompt shelf is empty, and that emptiness is itself recorded in the dossier."
+ },
+ "vikas_reading_list": "15-minute item, in this order. (1) Maccary+2025 Sect. 2 ONLY (~2 pp): the three competing MVT definitions - read it before we quote any MVT for this burst, because Golkhou's <0.203 s and Maccary's 3.02 s are DIFFERENT QUANTITIES, not a disagreement. Defer their Sects. 4-6. (2) Narayana Bhat+2016 p.135 footnote block (10 lines) + Sect. 3.2 (~1 p): the precursor footnote that reframes T90 for this burst, and their detector rule (<60 deg, no blockage) which is our D5 stated in print. (3) Golkhou+2015 Sects. 2-3 skim IF we go after energy-dependent MVT. Nothing else needs reading - Hurley+2017 is three table rows (transcribed in the dossier) and von Kienlin+2014 has no printed row for us.",
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   {"action": "append", "filename": "Maccary_2025_2025A&A702A95M_bn110928180.pdf", "bibcode": "2025A&A...702A..95M", "arxiv": "2508.08995", "theme": "prompt-temporal;MVT-MEPSA-FWHM;MVT-T90-plane", "cited_by_bursts": "bn110928180", "n_bursts": 1, "read": "N", "read_date": ""},
+   {"action": "append", "filename": "NarayanaBhat_2016_2016ApJS22328N_bn110928180.pdf", "bibcode": "2016ApJS..223...28N", "arxiv": "1603.07612", "theme": "gbm-catalog-durations-fluence-6yr", "cited_by_bursts": "bn110928180", "n_bursts": 1, "read": "N", "read_date": ""},
+   {"action": "append_or_update", "filename": "Golkhou_2015_2015ApJ81193G_bn120119170.pdf", "bibcode": "2015ApJ...811...93G", "arxiv": "1501.05948", "theme": "prompt-temporal;MVT-wavelet;energy-dependence", "cited_by_bursts": "bn120119170;bn110928180", "n_bursts": 2, "read": "N", "read_date": "", "note": "PDF exists on disk but corpus_index.csv currently has NO row for it (index/directory drift) - append if still missing, else append the trigger to cited_by_bursts and bump n_bursts"},
+   {"action": "append_or_update", "filename": "vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf", "bibcode": "2014ApJS..211...13V", "arxiv": "1401.5080", "theme": "gbm-catalog-2nd-4yr", "cited_by_bursts": "bn110920546;bn110928180", "n_bursts": 2, "read": "N", "read_date": "", "note": "same index/directory drift as above"},
+   {"action": "note_only", "filename": "Hurley_2017_2017ApJS22931H_bn101126198.pdf", "bibcode": "2017ApJS..229...31H", "note": "DO NOT index this file - it is a 14371-byte Radware captcha HTML page, not a PDF. Our burst uses VizieR J/ApJS/229/31 (doi:10.26093/cds/vizier.22290031) instead. Whoever owns bn101126198 should re-fetch or delete it."}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "append", "row_csv": "bn110928180,SWIFT_SIBLING_ONLY_110928A,0,N,1,1", "note": "columns trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed. n_circulars=0 for OUR burst (the 13 circulars on the 110928 page are Swift 110928A). ads_hits/ads_refereed = 1/1 from the four-form query (Hurley+2017); the true refereed footprint is 5 papers, the other 4 found via local-corpus scan and VizieR row lookups - see the ads_full_text_blind_spot block."}
+  ]
+ }
+}

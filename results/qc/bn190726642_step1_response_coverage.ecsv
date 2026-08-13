@@ -1,0 +1,31 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn190726642}
+# - {src_start: -1.093594405594331}
+# - {src_stop: 31.384391608391724}
+# - {window_stamp: 'APPROVED_BY=Vikas Chand 2026-07-19T22:18:36Z human_gui (results/background_intervals.ecsv)'}
+# - {manifest_tte: 4}
+# - {manifest_cspec_pha: 4}
+# - {manifest_rsp2: 4}
+# - {manifest_rsp: 0}
+# - {manifest_poshist: 1}
+# - {manifest_trigdat: 0}
+# - {manifest_lle: 0}
+# - {manifest_lat: 0}
+# - {note_trigdat: 'trigdat absent: NOTE not blocker, poshist present (DataInventory.md Phase 1)'}
+# - {note_lle: 'no LLE/LAT holdings; LAT boresight angle 72 deg at trigger (GCN 25154) - outside FoV, consistent'}
+# - {note: 'GBM multi-matrix .rsp2 judged by interval coverage vs stamped source window (bn100130729 rule); no single-matrix/LLE responses
+#     present, so no D1 off-axis test needed'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n9 -124.930 481.289 26 PASS
+na -124.930 481.289 26 PASS
+nb -124.930 481.289 26 PASS
+b1 -124.930 481.289 26 PASS

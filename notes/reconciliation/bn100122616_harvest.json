@@ -1,0 +1,150 @@
+{
+ "burst": "bn100122616",
+ "grb_name": "GRB 100122A",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form query; Phase 1b Scholar rule; 3b latest-first; 3c prompt-scope; Phase 4 frame+consensus; traps T1-T9)",
+ "identity": {
+  "trigger": "bn100122616 / MET 285864459.314122",
+  "trigger_utc": "2010-01-22 14:47:37.31",
+  "name_source": "GCN 10355 (Fermi GBM team): 'triggered and located GRB 100122A (trigger 285864459 / 100122616)' - name<->trigger verified by the trigger number in the circular; TRIGTIME matches our TTE headers exactly",
+  "same_day_contamination_guard": "No GRB 100122B exists; classic archive pages 100122.gcn3 and 100122A.gcn3 are byte-identical (2 circulars, both ours). T1 satisfied."
+ },
+ "ads_queries": [
+  {"form": "full:\"GRB 100122A\"", "numFound": 3, "refereed_hits": 1, "note": "2013ARep...57..233G (Gorbovskoy, MASTER first results) + the 2 GCNs"},
+  {"form": "full:\"bn100122616\"", "numFound": 1, "refereed_hits": 1, "note": "2018ApJ...865..153L (Lu+2018 Comprehensive-IV)"},
+  {"form": "full:\"100122616\"", "numFound": 5, "refereed_hits": 3, "note": "adds 2019ApJ...886...20Y, 2024AN....34530179M, 2010ApJ...725L..15A; plus eprint 2026arXiv260417835L"},
+  {"form": "full:\"285864459\"", "numFound": 0, "refereed_hits": 0}
+ ],
+ "local_corpus_scan": {
+  "method": "PyMuPDF text scan of all 114 PDFs in Skills_training/ for token '100122'",
+  "extra_hits_beyond_ads": ["2012ApJ...756..112L (Lu+2012, Comprehensive-II lineage: intensity-tracking class + Ep-evolution panel for GRB 100122A)", "2013ApJ...763...15Q (Qin+2013, Comprehensive-III lineage: energy-dependent T90 row)", "2013ApJS..207...39H (Hurley+2013 IPN supplement: 5-spacecraft detection row)"],
+  "note": "ADS full-text does not index these table rows; the local corpus scan is what found them (G2 payoff)"
+ },
+ "google_scholar_channel": "not needed this burst - the ADS four-form + local corpus scan returned a rich record (Phase 1b trigger condition 'thin or empty' not met)",
+ "n_refereed_papers": 8,
+ "papers": [
+  {
+   "bibcode": "2019ApJ...886...20Y",
+   "first_author": "Yu, Hoi-Fung",
+   "year": 2019,
+   "title": "Bayesian Time-resolved Spectroscopy of GRB Pulses",
+   "classification": "sample-member (dedicated pulse analysis). Table 1 row p.4: dets (n6)nab1, src -5..40 s, bkg -20..-10 & 50..80 s, N=14 bins, N(S>=20)=5; p.9 verbatim: 'GRB 100122616 i.t. to unclassified' (spectral evolution class 'i.t. to ?').",
+   "in_corpus_already": true,
+   "pdf": "Skills_training/Yu_2019_ApJ_886_20.pdf (+_arxiv copy); read=Y (Vikas)",
+   "prompt_sections": "Table 1 row (p.4, selection frame) + Table 5/evolution discussion p.9 - all prompt spectroscopy; entire paper in-scope",
+   "module_future_tags": ""
+  },
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "first_author": "Lu, Rui-Jing",
+   "year": 2018,
+   "title": "A Comprehensive Analysis of Fermi GRB Data. IV. Spectral Lag and its Relation to Ep Evolution",
+   "classification": "sample-member (tracking-pulse subsample). Table 4 row: Evolution=T, that31=-0.03+/-0.07, W=3.00 s, thatk=-0.21+/-0.08, kE=+0.72+/-0.11; narrative p.6: one of 3/28 tracking pulses with positive kE (soft-to-hard dominated); p.8: WE narrows with increasing E (4/30).",
+   "in_corpus_already": true,
+   "pdf": "Skills_training/Lu_2018_2018ApJ865153L.pdf (+_PUB); read=Y (Vikas 2026-08-10)",
+   "prompt_sections": "SS3-4 + Table 4 row (lag/kE) - prompt temporal+spectral; T3 trap lives in this paper (W defined twice)",
+   "module_future_tags": ""
+  },
+  {
+   "bibcode": "2012ApJ...756..112L",
+   "first_author": "Lu, Rui-Jing",
+   "year": 2012,
+   "title": "A Comprehensive Analysis of Fermi GRB Data. II. Ep Evolution Patterns",
+   "classification": "sample-member. GRB 100122A = one of 7/43 'late pulses show intensity tracking' (p.8); time-resolved Ep panel p.5.",
+   "in_corpus_already": true,
+   "pdf": "Skills_training/Lu_2012_2012ApJ756112L.pdf (+_PUB); read=MAYBE",
+   "prompt_sections": "p.5 figure panel + SS3.2 tracking classification - prompt Ep evolution",
+   "module_future_tags": ""
+  },
+  {
+   "bibcode": "2013ApJ...763...15Q",
+   "first_author": "Qin, Ying",
+   "year": 2013,
+   "title": "A Comprehensive Analysis of Fermi GRB Data. III. Energy-dependent T90",
+   "classification": "sample-member (catalog row). Table 1 p.19: T90(8-1000)=7.94+/-0.33 s; per-band 8.13/9.15/7.65/6.30/5.34 s (8-15/15-25/25-50/50-100/100-350 keV), 350-1000 missing.",
+   "in_corpus_already": true,
+   "pdf": "Skills_training/Qin_2013_2013ApJ76315Q.pdf; read=N",
+   "prompt_sections": "Table 1 row only (Step-7 temporal frame); also the source of the T90 ~ E^-0.20 correction used in Phase 4",
+   "module_future_tags": ""
+  },
+  {
+   "bibcode": "2013ApJS..207...39H",
+   "first_author": "Hurley, K.",
+   "year": 2013,
+   "title": "The IPN Supplement to the Fermi GBM Catalog",
+   "classification": "catalog-mention. p.40 row: GRB100122616 14:47:37 detected by INT,Kon,MES,MO,RHE (INTEGRAL, Konus-Wind, MESSENGER, Mars Odyssey, RHESSI).",
+   "in_corpus_already": true,
+   "pdf": "Skills_training/Hurley_2013_2013ApJS20739H.pdf; read=N",
+   "prompt_sections": "one table row (detection record); nothing spectral to diff",
+   "module_future_tags": "module-future;mm (IPN interplanetary-network record)"
+  },
+  {
+   "bibcode": "2010ApJ...725L..15A",
+   "first_author": "Akerlof, C. W.",
+   "year": 2010,
+   "title": "Searching for Needles in Haystacks - Using the Fermi/GBM to Find GRB gamma-rays with the Fermi/LAT Detector",
+   "classification": "sample-member (NEW to corpus this pass). Table 1 'List of 22 GBM trigger GRBs' row: 100122A / 100122616 / RA 79.20 / Dec -2.71 / S_GBM=10.0 microerg/cm2. LAT sub-threshold matched-filter search at GBM positions.",
+   "in_corpus_already": false,
+   "pdf": "Skills_training/Akerlof_2010_2010ApJ725L15A_bn100122616.pdf (arXiv 1010.1588; IOP PUB-PDF fetch bot-blocked, PUB_OPENACCESS exists)",
+   "prompt_sections": "Table 1 row + the stacked/matched-filter result section (does the 22-burst stack include a signal attributable to soft bursts like this one?) - prompt high-energy context for our GBM-only census (L17 relevance: LAT non-detection frame)",
+   "module_future_tags": ""
+  },
+  {
+   "bibcode": "2024AN....34530179M",
+   "first_author": "Ma, Guan-Lun",
+   "year": 2024,
+   "title": "The statistical characteristics of the prompt emission lightcurves of gamma-ray bursts",
+   "classification": "sample-member (found via full:\"100122616\"). FETCH FAILED: Unpaywall reports OA at Wiley pdfdirect 10.1002/asna.20230179 but Cloudflare bot-blocks curl; needs a human-browser fetch. Row content unharvested - honest gap.",
+   "in_corpus_already": false,
+   "pdf": null,
+   "prompt_sections": "unknown until fetched; expected: LC statistical parameters row (Step-7 temporal frame)",
+   "module_future_tags": ""
+  },
+  {
+   "bibcode": "2013ARep...57..233G",
+   "first_author": "Gorbovskoy, E. S.",
+   "year": 2013,
+   "title": "The MASTER-II network of robotic optical telescopes. First results",
+   "classification": "instrument/follow-up mention (found via full:\"GRB 100122A\"). MASTER's own account of the GCN 10354 response. FETCH FAILED: arXiv 1305.1620 bot-blocked (three UA/mirror attempts); Springer PUB paywalled.",
+   "in_corpus_already": false,
+   "pdf": null,
+   "prompt_sections": "none expected (optical response + limits)",
+   "module_future_tags": "module-future;afterglow (early optical limits context)"
+  }
+ ],
+ "eprints_not_counted_in_refereed": [
+  {
+   "bibcode": "2026arXiv260417835L",
+   "first_author": "Li, Liang",
+   "year": 2026,
+   "title": "Three Subclasses of the Intensity-tracking Pattern in GRB Spectral Evolution",
+   "classification": "sample-member, NOT REFEREED (eprint). Table 1: Class=Type I (aligned peaks, 5/20), Model=Band, Nbin=6, tp(F)=tp(Ep)=21.26+/-0.71 s; Table 2: FWHM_F=3.79 s, tr=1.24, td=2.55, kappa=2.06, rho(Ep,F)=0.90; dedicated Ep-F evolution panel p.12.",
+   "in_corpus_already": "PDF present 3x in Skills_training/ (intensity_tracking + per-burst copies for bn090620400, bn090719063) but NO corpus_index row exists yet - row queued below",
+   "pdf": "Skills_training/Li_2026_intensity_tracking_arXiv260417835.pdf",
+   "prompt_sections": "Table 1 + Table 2 rows, Fig p.12 (GRB 100122616 Ep-F panel) - prompt spectral evolution; the strongest recent frame for P-B2 (Phase 3b latest-first: this 2026 eprint is the newest analysis and the default comparison frame for evolution class, with the caveat it is unrefereed)",
+   "module_future_tags": ""
+  }
+ ],
+ "latest_first_ordering": "Li 2026 (eprint, evolution frame) > Yu 2019 (refereed, Bayesian per-pulse) > Lu 2018 > Qin 2013 > Lu 2012 > GBM catalog scat v03 (2010-era chi2 fits) > GCN 10355 (preliminary by own statement)",
+ "finding": "RICHLY SAMPLED BUT NEVER SINGLED OUT: 8 refereed papers + 1 eprint touch bn100122616, all as a SAMPLE MEMBER (Comprehensive-II/III/IV lineage, Yu+2019 Bayesian pulses, Akerlof+2010 LAT sub-threshold, IPN, MASTER, Ma+2024); no dedicated single-burst analysis exists. No redshift, no afterglow. Cross-era consensus: soft (integrated Band Ep 42-46 keV, beta ~ -2.31 well-constrained) intensity-tracking main pulse (Li 2026 Type I: tp(Ep)=tp(F)=21.26 s, rho=0.90; Lu+2018 kE=+0.72). External P3 frames = GBM catalog scat v03 + the five sample-paper rows, all filed with component-coverage labels in the dossier.",
+ "fetch_failures": [
+  "Ma+2024 (Wiley Cloudflare block; OA exists per Unpaywall)",
+  "Gorbovskoy+2013 (arXiv bot-block after the first PDF fetch of the session succeeded; retried 3x)",
+  "Akerlof+2010 published IOP PDF (bot-block; arXiv v1 secured instead)"
+ ],
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   {"action": "add_row", "filename": "Akerlof_2010_2010ApJ725L15A_bn100122616.pdf", "bibcode": "2010ApJ...725L..15A", "arxiv": "1010.1588", "theme": "lat-subthreshold-search;gbm-sample", "cited_by_bursts": "bn100122616", "n_bursts": 1, "read": "N"},
+   {"action": "add_row", "filename": "Li_2026_intensity_tracking_arXiv260417835.pdf", "bibcode": "2026arXiv260417835L", "arxiv": "2604.17835", "theme": "intensity-tracking-subclasses;timeres-Ep-evolution;NOT-REFEREED", "cited_by_bursts": "bn090620400;bn090719063;bn100122616", "n_bursts": 3, "read": "N", "note": "PDF already on disk 3x; index row was missing entirely"},
+   {"action": "append_cited_by", "bibcode": "2019ApJ...886...20Y", "add": "bn100122616"},
+   {"action": "append_cited_by", "bibcode": "2018ApJ...865..153L", "add": "bn100122616"},
+   {"action": "append_cited_by", "bibcode": "2012ApJ...756..112L", "add": "bn100122616"},
+   {"action": "append_cited_by", "bibcode": "2013ApJ...763...15Q", "add": "bn100122616"},
+   {"action": "append_cited_by", "bibcode": "2013ApJS..207...39H", "add": "bn100122616"}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "add_row", "trigger": "bn100122616", "gcn_page": "results/gcn/bn100122616/", "n_circulars": 2, "z_mention": "-", "ads_hits": 9, "ads_refereed": 8}
+  ]
+ },
+ "vikas_reading_list": "Prompt-curated (Phase 3c): (1) Li 2026 arXiv:2604.17835 - Table 1+2 rows and the GRB 100122616 panel p.12 ONLY (Type I aligned-peak tracking; unrefereed - weigh accordingly); (2) Yu+2019 p.4 Table 1 row + p.9 'i.t. to ?' note (already read=Y; 2-min refresh); (3) Akerlof+2010 (4 pp, NEW) - Table 1 row + whether the stacked LAT result bears on soft GBM-only bursts; SS on the matched-filter method - defer nothing, it is short. Deferred (module-future): Hurley IPN row, Gorbovskoy MASTER account."
+}

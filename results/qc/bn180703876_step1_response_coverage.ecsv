@@ -1,0 +1,28 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn180703876}
+# - {src_start: -3.0}
+# - {src_stop: 33.0}
+# - {src_pos: 'RA=6.4699 Dec=-67.1802 (Swift-XRT afterglow, GCN 22931)'}
+# - {lle_drm_interval_rel_s: 0.000..10.000}
+# - {lle_theta_drm_deg: 44.2}
+# - {lle_theta_src_min_deg: 44.19}
+# - {lle_theta_src_max_deg: 44.25}
+# - {lle_delta_theta_deg: 0.05}
+# - {lle_drm_verdict: PASS}
+# - {note: 'single-matrix/LLE responses judged by off-axis angle (D1), not interval overlap; GBM rsp2 by TSTART/TSTOP bracket vs stamped
+#     window'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n6 -129.026 477.192 12 PASS
+n7 -129.026 477.192 12 PASS
+n8 -129.026 477.192 12 PASS
+b1 -129.026 477.192 12 PASS
+lle 0.000 10.000 1 PASS

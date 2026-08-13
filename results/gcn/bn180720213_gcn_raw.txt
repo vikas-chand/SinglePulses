@@ -1,0 +1,95 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22970
+SUBJECT: AGILE/MCAL detection of GRB 180720A
+DATE:    18/07/20 07:09:02 GMT
+FROM:    Alessandro Ursi at INAF/IAPS  <alessandro.ursi@gmail.com>
+
+AGILE/MCAL detection of GRB 180720A
+
+A.Ursi (INAF/IAPS), M. Tavani (INAF/IAPS, and Univ. Roma Tor Vergata), F.
+Verrecchia (SSDC and INAF/OAR), N. Parmiggiani, A. Bulgarelli
+(INAF/IASF-Bo), A. Trois, M. Pilia (INAF/OA-Cagliari), C. Pittori, F.
+Lucarelli (SSDC and INAF/OAR), M. Marisaldi (University of Bergen), F.
+Longo (Univ. Trieste and INFN Trieste), M. Cardillo, G. Piano (INAF/IAPS),
+G. Minervini, A. Argan, Y. Evangelista (INAF/IAPS), V. Fioretti, F.
+Fuschino (INAF/IASF-Bo), , I. Donnarumma (ASI), A. Giuliani (INAF/IASF-Mi),
+report on behalf of the AGILETeam:
+
+The AGILE Mini-CALorimeter (MCAL) detected a burst at T0 = 2018-07-20
+05:06:03.29 +/- 0.01 s (UTC), lasting about ~ 3.6 s in the 0.4-100 MeV
+energy range. The light curve is composed of a single smooth peak and
+released a total of ~3000 counts at E> 400 keV in the detector, above an
+average background rate of 20 counts / 32 ms.
+
+Further analysis is still in progress.
+
+The AGILE-MCAL detector has a full solid angle acceptance, and is
+operational in the range 0.4 - 100 MeV.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22974
+SUBJECT: GRB 180720A: Fermi GBM observation
+DATE:    18/07/20 14:39:48 GMT
+FROM:    Elisabetta Bissaldi at INFN,Bari  <elisabetta.bissaldi@ba.infn.it>
+
+E. Bissaldi (Politecnico & INFN Bari)
+reports on behalf of the Fermi GBM Team:
+
+
+"At 05:06:02.06 UT on 20 July 2018, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 180720A (trigger 553755967 / 180720213),
+which was also detected by the AGILE/MCAL (Ursi et al. 2018, GCN 22970).
+
+The on-ground calculated location, using the GBM trigger data, is
+
+RA, Dec = 127.0, -0.4 (J2000 degrees),
+
+with an uncertainty of 1 degree (radius, 1-sigma containment,
+statistical only; there is additionally a systematic error
+which we have characterized as a core-plus-tail model,
+with 90% of GRBs having a 3.7 deg error and a small tail
+suffering a larger than 10 deg systematic error.
+[Connaughton et al. 2015, ApJS, 216, 32]).
+
+The angle from the Fermi LAT boresight at the GBM trigger time is 74 degrees.
+
+The GBM light curve consists of single FRED-like peak
+with a duration (T90) of about 9 s (50-300 keV).
+The time-averaged spectrum from T0 to T0+10 s is
+best fit by a Band function with Epeak = 260 +/- 15 keV,
+alpha = -1.08 +/- 0.02 and beta = -2.13 +/- 0.06.
+
+The event fluence (10-1000 keV) in this time interval is
+(2.563 +/- 0.026)E-05 erg/cm^2. The 1-sec peak photon flux measured
+starting from T0+1.3 s in the 10-1000 keV band
+is 36.5 +/- 0.5 ph/s/cm^2.
+
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  22975
+SUBJECT: Correction: Swift trigger #848890 is GRB 180720B (not GRB 180720A)
+DATE:    18/07/20 14:48:26 GMT
+FROM:    Amy Lien at GSFC  <amy.y.lien@nasa.gov>
+
+M. H. Siegel (PSU), D. N. Burrows (PSU), A. Deich (PSU),
+J.D. Gropp (PSU), J. A. Kennea (PSU), S. J. LaPorte (PSU),
+A. Y. Lien (GSFC/UMBC), M. J. Moss (George Washington University),
+K. L. Page (U Leicester), D. M. Palmer (LANL), B. Sbarufatti (PSU) and
+A. Tohuvavohu (PSU) report on behalf of the Neil Gehrels Swift
+Observatory Team:
+
+The GRB name in GCN Circ. #22973 should be GRB 180720B because of 
+an earlier detection of GRB 180720A from AGILE/MCAL (GCN Circ. #22970).
+
+We apologize for the mistake and any confusion caused by this.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR

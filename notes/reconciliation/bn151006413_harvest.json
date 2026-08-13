@@ -1,0 +1,201 @@
+{
+ "burst": "bn151006413",
+ "grb_name": "GRB 151006A",
+ "harvest_utc": "2026-08-12 (doc-layer worker, Steps 0/0b/1)",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1, 1b, 2, 3, 3b, 3c, 4, 5; traps T1-T9 applied) + GCNIntelligence.md",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env; token length 40, HTTP 200)",
+ "identity_verification": "GCN 18404 (Fermi GBM Team) names 'GRB 151006A (trigger 465818101/151006413)'; TRIGTIME 465818101.82507 matches every local response header. Swift-BAT trigger 657750 (GCN 18398). ADS full:\"GRB 151006B\" = 0 hits and gcn.gsfc.nasa.gov/other/151006.gcn3 == 151006A.gcn3 -> suffix A unique (T1 clear).",
+
+ "query_forms": [
+  {"form": "full:\"GRB 151006A\"", "numFound": 40, "note": "19 GCN newsletters + 21 articles/eprints; the productive form"},
+  {"form": "full:\"bn151006413\"", "numFound": 0, "note": "GBM trigger-name form finds nothing for this burst"},
+  {"form": "full:\"151006413\"", "numFound": 2, "note": "Tiwari+2025 (arXiv:2510.05239) and Ashkar+2024 (38th ICRC); both real sample tables, no digit-coincidence"},
+  {"form": "full:\"465818101\"", "numFound": 0, "note": "GBM trigger NUMBER form finds nothing (papers quote 151006413 or the name)"},
+  {"form": "full:\"GRB151006A\"", "numFound": 5, "note": "defensive no-space form; adds Yang+2018 SPIE (COSI) and Vadawale+2016 SPIE"},
+  {"form": "full:\"657750\"", "numFound": 22, "note": "Swift trigger number - ALL 22 are digit coincidences (nuclear data sheets, water policy, ML preprints). Recorded as a negative result: the Swift trigger number is not a usable search key."},
+  {"form": "full:\"GRB 151006B\"", "numFound": 0, "note": "same-day contamination probe (T1) - negative"},
+  {"form": "full:\"GRB 151006\"", "numFound": 0, "note": "bare form - negative"}
+ ],
+ "scholar_channel_used": false,
+ "scholar_note": "Phase 1b (Google Scholar) NOT invoked: the four-form ADS query returned a rich, non-thin result (2 dedicated + 7 numeric-sample papers). Phase 1b is reserved for thin/empty returns and cross-community bridging.",
+
+ "n_papers_cataloged": 9,
+ "n_refereed_papers": 6,
+ "n_refereed_note": "REFEREED (doctype=article): Basak+2017, Rao+2016, Chattopadhyay+2021, Chattopadhyay+2019, Maraventano+2025, Zhang B.-B.+2016. NOT refereed: Tiwari+2025 and Wu+2022 (eprints), Ashkar+2024 (conference proceedings).",
+ "n_papers_with_burst_specific_numbers": 8,
+ "n_pdfs_newly_downloaded": 6,
+
+ "papers": [
+  {
+   "bibcode": "2017MNRAS.472..891B",
+   "first_author": "Basak, R.", "authors_note": "Basak, Iyyani, CHAND, Chattopadhyay, Bhattacharya, Rao, Vadawale",
+   "year": 2017, "doctype": "article", "refereed": true,
+   "title": "Surprise in simplicity: an unusual spectral evolution of a single pulse GRB 151006A",
+   "arxiv": "1707.09924", "doi": "10.1093/mnras/stx1970",
+   "class": "DEDICATED-ANALYSIS",
+   "pdf": "Skills_training/Basak_2017_2017MNRAS472891B_bn151006413.pdf (arXiv v1, 13 pp)",
+   "pub_pdf": "NOT obtained - OUP academic.oup.com PDF fetch returned non-PDF (bot wall). ADS lists PUB_OPENACCESS; retry from a browser if the version of record is needed for citation.",
+   "prompt_sections": ["2.1 effective-area-correction procedure (EAC constants)", "3.1 + Table 2 Band Ep/alpha/beta evolution, 14 bins", "3.3 Bayesian blocks on NaI 0+1+3 and BGO-0 hardness ratio", "3.5 + Table 4 BIC model selection", "Appendix A Tables A1 (Band+BB) / A2 (2BB+PL) / A3 (BB+PL)"],
+   "defer_sections": ["3.2 late-time BAT+XRT (>88 s)", "3.4 CZTI polarization", "4 discussion of afterglow-onset alternative"],
+   "module_future_tags": ["module-current;prompt-spectroscopy", "module-current;prompt-temporal", "module-future;polarimetry", "module-future;afterglow"],
+   "steps_served": {"5_binning": "their Bayesian blocks -1--1, 1--10, 10--15, 15--24 s (NaI 0+1+3, 8-900 keV); NaI3-only: -1--1, 1--14, 14--24 s", "6_fitting": "Table 2 Band per bin; Table A1 Band+BB kT=10-33 keV; Table A2 2BB+PL; Table 4 BIC winners; detector set n0,n1,n3,b0+LLE(+LAT bins 8,11); PG-Stat, xspec 12.9.0", "7_temporal": "peak times 1.4 s (0.1-100 MeV) vs 5.4 s (8-100 keV); LLE 54 sigma, ~30 s", "9_qc": "LLE EAC constant unstable (0.40-1.02, sometimes <0.3) -> they FROZE LLE and LAT constants to 1"},
+   "traps_hit": {"T5": "abstract says HTS 'until ~16-20 s' but 3.1 says 'until Bin 9' (=27.5 s); both true in different model frames (Band-only jump at bins 10-11; Band+BB jump already at bin 8). Recorded, not resolved.", "T8": "BIC = -2lnL + k ln(nu+k) with the '-2 ln L' column = the PG-Stat; VERIFIED by recomputation (bin1 Band 489.8+4ln481=514.5; Band+BB 488.1+6ln481=525.1). ERROR FOUND: Table 4 bin-2 Band+BB BIC printed 525.1, correct value 487.5 (duplicate of bin 1). Conclusion unaffected.", "T7": "their +BB/2BB claims are relative to Band / PL continua over a GBM+LLE band with beta > -2; not transferable to a DSBPL baseline.", "T9": "their bins 12-19 (53-573 s) are outside our window entirely."}
+  },
+  {
+   "bibcode": "2016ApJ...833...86R",
+   "first_author": "Rao, A. R.", "authors_note": "Rao, CHAND, Hingar, Iyyani, ... Basak (AstroSat CZTI team)",
+   "year": 2016, "doctype": "article", "refereed": true,
+   "title": "AstroSat CZT Imager Observations of GRB 151006A: Timing, Spectroscopy, and Polarisation Study",
+   "arxiv": "1608.07388", "doi": "10.3847/1538-4357/833/1/86",
+   "class": "DEDICATED-ANALYSIS",
+   "pdf": "Skills_training/Rao_2016_2016ApJ83386R_bn151006413.pdf (arXiv v1, 13 pp)",
+   "pub_pdf": "NOT obtained - iopscience PDF fetch returned non-PDF (bot wall) despite PUB_OPENACCESS.",
+   "prompt_sections": ["3.1 + Table 1 Norris pulse fits per energy band (w and asymmetry, with definitions)", "3.2 + Table 2 Band fits GBM / GBM+CZTI / BAT / BAT+CZTI", "Table 3 BBPL and 2BBPL parameters"],
+   "defer_sections": ["3.3 localisation demonstration", "3.4 polarisation + Fig. 8 detectability forecast", "instrument description"],
+   "module_future_tags": ["module-current;prompt-spectroscopy", "module-current;prompt-temporal", "module-future;polarimetry", "module-future;instrument"],
+   "steps_served": {"6_fitting": "time-integrated -5.5..85.2 s Band: GBM Ep=218 +126/-78, alpha=-1.1, beta=-1.8, chi2red 0.67; BBPL kT=30 keV; 2BBPL kT1=46, kT2=12.6 keV", "7_temporal": "Norris w = 26 +/- 14 s (50-100 keV), 21.2 +/- 2.3 s (100-200 keV), 15.6 s (200-500 keV) -> width narrows with energy; asymmetry kappa 0.72-0.92", "9_qc": "CZT cross-normalisation vs GBM n0 = 0.8 +/- 0.1; CZTI data below 100 keV discarded (scattered/fluorescent components)"},
+   "traps_hit": {"T3": "their w and kappa are DEFINED in-text (w = tau2(1+4 sqrt(tau1/tau2))^0.5, kappa = tau2/w) - definition copied with the numbers.", "T7": "the '2BBPL shows a peak at 1 MeV / up to three blackbodies' remark is continuum- and bandwidth-relative and is explicitly deferred by the authors to Basak+2017."}
+  },
+  {
+   "bibcode": "2021JApA...42...82C",
+   "first_author": "Chattopadhyay, Tanmoy", "year": 2021, "doctype": "article", "refereed": true,
+   "title": "Sub-MeV spectroscopy with AstroSat-CZT imager for gamma ray bursts",
+   "arxiv": "2102.13594", "doi": "10.1007/s12036-021-09718-2",
+   "class": "SAMPLE-MEMBER (numbers for our burst)",
+   "pdf": "Skills_training/Chattopadhyay_2021_2021JApA4282C_bn151006413.pdf (arXiv, 18 pp)",
+   "prompt_sections": ["spectral-analysis section + Table 1 (GRB151006A row) + Table 2 (BAT vs BAT+CZTI vs Fermi Band comparison) + Fig. joint-fit residual panel"],
+   "defer_sections": ["CZTI response/normalisation calibration discussion", "Compton/Veto instrument sections"],
+   "module_future_tags": ["module-current;prompt-spectroscopy", "module-future;instrument"],
+   "steps_served": {"5_binning": "their integrated interval is set by BAYESIAN BLOCKS: -1.11 to 30.21 s - a 0.2/1.1 s match to our archival block span -1.299..31.326 s (independent external validation of our Step-5 edges)", "6_fitting": "Band over -1.11..30.21 s with GBM+LAT+BAT: alpha=-1.31+/-0.02, beta=-2.19 +0.03/-0.04, Epeak=1000 +1008/-139 keV, log10 F = -6.37, chi2/dof=664.70/772; Table 2 (90% errors): Fermi alpha=-1.08, beta=-1.89, Ep=350 +400/-126"},
+   "traps_hit": {"T9": "Table-1 interval (-1.11, 30.21 s) vs Table-2 'Fermi' fit are DIFFERENT frames for the same burst - do not mix.", "T4": "PDF minus signs are non-ASCII; values transcribed by eye from the extracted text, not regex."}
+  },
+  {
+   "bibcode": "2025A&A...697A.161M",
+   "first_author": "Maraventano, C.", "year": 2025, "doctype": "article", "refereed": true,
+   "title": "High energy time lags of gamma-ray bursts",
+   "arxiv": null, "doi": null,
+   "class": "SAMPLE-MEMBER (numbers for our burst); ALREADY IN CORPUS",
+   "pdf": "Skills_training/Maraventano_2025_2025AA697A161M.pdf (PRE-EXISTING - NOT re-downloaded per lesson G2)",
+   "corpus_status": "PRESENT in Skills_training/corpus_index.csv (filename Maraventano_2025_2025AA697A161M.pdf); needs cited_by_bursts += bn151006413, n_bursts += 1 (queued, see pending_shared_csv_rows)",
+   "prompt_sections": ["2.1-2.2 energy-band definitions + LLE reduction (Table 1)", "4 lag results + the per-GRB lag table (151006A row)", "the LLE power-law spectral-index table (151006A row)"],
+   "defer_sections": ["quantum-gravity lag-transition discussion", "correlation analyses over the full 70-GRB sample"],
+   "module_future_tags": ["module-current;prompt-temporal", "module-current;prompt-highenergy"],
+   "steps_served": {"7_temporal": "bands B1=NaI 10-100 keV, B2=BGO 150-500 keV, B3=BGO 0.5-1 MeV, B4=LLE 30-100 MeV; DCF+asymmetric-Gaussian; POSITIVE tau = harder band leads. GRB 151006A over (-2.0, 13.5) s: tau12=1.53+/-0.33 s, tau13=2.55+/-0.41 s, tau14=3.92+/-0.80 s - a SAMPLE EXTREMUM ('the largest spectral lags ... GRB 151006A with tau13 ~2.6 s')", "6_fitting": "LLE-only PL over Delta t = (-1.0, 45.0) s (our window's twin): alpha_LLE = -2.90 +0.60/-0.51, Norm = 4.54 +/- 1.38 e-8 erg/cm2/s, PG-Stat/DOF = 2.39/6"},
+   "traps_hit": {"T3": "lag SIGN convention stated and copied (positive = hard leads, attributed to hard-to-soft evolution); band edges copied with the numbers."}
+  },
+  {
+   "bibcode": "2019ApJ...884..123C",
+   "first_author": "Chattopadhyay, Tanmoy", "year": 2019, "doctype": "article", "refereed": true,
+   "title": "Prompt Emission Polarimetry of Gamma-Ray Bursts with the AstroSat CZT Imager",
+   "arxiv": "1707.06595", "doi": "10.3847/1538-4357/ab40b7",
+   "class": "SAMPLE-MEMBER (numbers for our burst)",
+   "pdf": "Skills_training/Chattopadhyay_2019_2019ApJ884123C_bn151006413.pdf (arXiv v3, 26 pp)",
+   "prompt_sections": ["Table 1 sample row (T90, analysis interval, Band parameters, incident angles)", "Fig. 12 Bayes-factor verdict"],
+   "defer_sections": ["polarimetry methodology, modulation curves, model-discrimination discussion"],
+   "module_future_tags": ["module-future;polarimetry", "module-current;prompt-spectroscopy"],
+   "steps_served": {"6_fitting": "interval (0, 37.0) s: alpha = -1.17 +0.08/-0.07, beta = -2.16 +0.05/-0.18, Ep = 447 +207/-121 keV; T90 = 84.0 s; incident direction (60.82 deg, 67.57 deg)", "9_qc": "photons for this burst pass through UVIT/SXT/CZTI-collimator material"},
+   "traps_hit": {"T6-adjacent": "this paper RETRACTS the earlier polarization hint of its own team: 'GRB 151006A ... Bayes factor slightly higher than 1, therefore the possibility that these GRBs are unpolarized can not be completely ruled out.' Phase 3b: the newer frame wins - do NOT cite Rao+2016's mu~0.32 or Basak+2017's 77/94% as a polarization detection."}
+  },
+  {
+   "bibcode": "2016ApJ...820L..32Z",
+   "first_author": "Zhang, Bin-Bin", "year": 2016, "doctype": "article", "refereed": true,
+   "title": "Central Engine Memory of Gamma-Ray Bursts and Soft Gamma-Ray Repeaters",
+   "arxiv": "1603.01381", "doi": "10.3847/2041-8205/820/2/L32",
+   "class": "SAMPLE-MEMBER (qualitative + morphological)",
+   "pdf": "Skills_training/Zhang_2016_2016ApJ820L32Z_bn151006413.pdf (arXiv, 7 pp)",
+   "prompt_sections": ["3.2 'GRB 151006A and its X-ray flare' + Fig. 2"],
+   "defer_sections": ["GRB 140508A case", "SGR section", "DTW methodology"],
+   "module_future_tags": ["module-future;engine", "module-future;afterglow", "module-current;prompt-temporal"],
+   "steps_served": {"7_temporal": "describes the burst as 'a single FRED shape light curve with a duration about 20 s' (SHORTER than every catalog T90 - a morphological, not a T90, statement: T9) and reports 'a significant X-ray flare between ~50 s and ~100 s' matched by Dynamic Time Warping to the 0-50 s prompt pattern"},
+   "traps_hit": {"T9": "'duration about 20 s' is the visible FRED in their combined LC, NOT a T90; must not be diffed against 93.4 s."}
+  },
+  {
+   "bibcode": "2025arXiv251005239T",
+   "first_author": "Tiwari, P.", "year": 2025, "doctype": "eprint", "refereed": false,
+   "title": "From X-rays to High-Energy Gamma-rays: A Comprehensive Multi-Wavelength Study of Early Gamma-Ray Burst Afterglows",
+   "arxiv": "2510.05239",
+   "class": "SAMPLE-MEMBER (afterglow; identity numbers only for prompt)",
+   "pdf": "Skills_training/Tiwari_2025_2025arXiv251005239T_bn151006413.pdf (20 pp)",
+   "prompt_sections": ["Table 1 identity row only (positions, BAT vs GBM trigger offset 4.9 s, T90 pair 211.1 +/- 39.1 s and 95.0 +/- 6.1 s)"],
+   "defer_sections": ["all spectral/temporal analysis: their windows are 210-587 s and 587-1101 s = pure afterglow, entirely outside our -1.3..42 s window"],
+   "module_future_tags": ["module-future;afterglow"],
+   "steps_served": {"0_identity": "independent tabulation of trigger times and the BAT-GBM offset"},
+   "traps_hit": {"D4": "a detection/measurement outside our window predicts nothing inside it - their X-ray/GeV results are cataloged, not diffed."}
+  },
+  {
+   "bibcode": "2022arXiv220804681W",
+   "first_author": "Wu, Rui-Rui", "year": 2022, "doctype": "eprint", "refereed": false,
+   "title": "Time-resolved polarizations of gamma-ray burst prompt emission with observed energy spectra",
+   "arxiv": "2208.04681",
+   "class": "SAMPLE-MEMBER (model prediction driven by this burst's observed Ep(t))",
+   "pdf": "Skills_training/Wu_2022_2022arXiv220804681W_bn151006413.pdf (12 pp)",
+   "prompt_sections": ["Appendix Fig. A3 (GRB 151006A): predicted PD/PA tracks driven by the observed Epeak(t) over 0-100 s"],
+   "defer_sections": ["magnetic-field-configuration modelling, other sample GRBs"],
+   "module_future_tags": ["module-future;polarimetry"],
+   "steps_served": {"6_fitting": "uses a published Ep(t) track for this burst as model input - a downstream CONSUMER of Basak+2017's numbers, not an independent measurement"},
+   "traps_hit": {"T6": "chained citation risk - its Ep(t) is inherited, not re-derived; do not treat as an independent frame."}
+  },
+  {
+   "bibcode": "2024icrc.confE.555A",
+   "first_author": "Ashkar, H.", "year": 2024, "doctype": "inproceedings", "refereed": false,
+   "title": "All sky archival search for FRB high energy counterparts with Swift and Fermi",
+   "arxiv": "2309.02883",
+   "class": "CATALOG-MENTION (matched by the '151006413' string)",
+   "pdf": "NOT downloaded - conference proceedings, no burst-specific prompt measurement expected",
+   "prompt_sections": [],
+   "defer_sections": ["all"],
+   "module_future_tags": ["module-future;mm"],
+   "steps_served": {},
+   "traps_hit": {"honesty": "classification inferred from the ADS full-text match alone; the PDF was NOT read, so 'catalog-mention' is UNVERIFIED."}
+  }
+ ],
+
+ "instrument_and_review_mentions_not_fetched": [
+  "2017JApA...38...31B Bhalerao+ (CZTI instrument paper)", "2017CSci..113..595R Rao+ (CZTI overview)",
+  "2016SPIE.9905E..1GV Vadawale+ (CZTI in-orbit performance)", "2021JApA...42...93M Mate+ (AstroSat mass model)",
+  "2021JApA...42...73S Sharma+ (fast transients with CZTI)", "2022JATIS...8c8005V Vaishnava+ (off-axis polarimetry verification)",
+  "2017NewAR..76....1M McConnell (polarimetry review)", "2019PASP..131k1001I Ilie (polarimetry review)",
+  "2022hxga.book...33B Bernard (gamma-ray polarimetry chapter)", "2018JATIS...4a1003T Tatischeff+ (e-ASTROGAM)",
+  "2018SPIE10699E..2KY Yang+ (COSI polarimetric performance)", "2018JApA...39....2R Rao (high-energy transients)",
+  "2018JApA...39...14G Gupta (magnetars/FRBs)", "2018MmSAI..89..283B Basak & Rao (THESEUS proceedings)",
+  "2018ApJ...862..154C Chand+ (GRB 160802A line-of-death paper)"
+ ],
+ "instrument_mentions_caveat": "These 15 were classified from ADS full-text matching only; no PDF was fetched and no text was read. The 'mention-only, no burst-specific measurement' label is therefore UNVERIFIED for every one of them. Basak & Rao 2018 (MmSAI) and Chand+2018 (ApJ 862, 154) are the two most likely to carry a real 151006A number and should be checked if the P3 diff needs more frames.",
+
+ "pending_shared_csv_rows": [
+  {"target": "Skills_training/corpus_index.csv", "action": "ADD", "row": "Basak_2017_2017MNRAS472891B_bn151006413.pdf,2017MNRAS.472..891B,1707.09924,timeres-singlepulse;spectral-evolution;lle-lat;polarimetry,bn151006413,1,N,"},
+  {"target": "Skills_training/corpus_index.csv", "action": "ADD", "row": "Rao_2016_2016ApJ83386R_bn151006413.pdf,2016ApJ...833...86R,1608.07388,timeres-singlepulse;pulse-shape;czti-polarimetry;joint-instrument,bn151006413,1,N,"},
+  {"target": "Skills_training/corpus_index.csv", "action": "ADD", "row": "Chattopadhyay_2021_2021JApA4282C_bn151006413.pdf,2021JApA...42...82C,2102.13594,joint-instrument-spectroscopy;bayesian-blocks,bn151006413,1,N,"},
+  {"target": "Skills_training/corpus_index.csv", "action": "ADD", "row": "Chattopadhyay_2019_2019ApJ884123C_bn151006413.pdf,2019ApJ...884..123C,1707.06595,polarimetry-sample;prompt-spectra,bn151006413,1,N,"},
+  {"target": "Skills_training/corpus_index.csv", "action": "ADD", "row": "Zhang_2016_2016ApJ820L32Z_bn151006413.pdf,2016ApJ...820L..32Z,1603.01381,central-engine;xray-flare;dtw,bn151006413,1,N,"},
+  {"target": "Skills_training/corpus_index.csv", "action": "ADD", "row": "Tiwari_2025_2025arXiv251005239T_bn151006413.pdf,2025arXiv251005239T,2510.05239,afterglow-xray-gev;module-future,bn151006413,1,N,"},
+  {"target": "Skills_training/corpus_index.csv", "action": "ADD", "row": "Wu_2022_2022arXiv220804681W_bn151006413.pdf,2022arXiv220804681W,2208.04681,polarization-modelling;module-future,bn151006413,1,N,"},
+  {"target": "Skills_training/corpus_index.csv", "action": "UPDATE", "row": "Maraventano_2025_2025AA697A161M.pdf (bibcode 2025A&A...697A.161M): cited_by_bursts += bn151006413; n_bursts += 1 (do NOT re-download - lesson G2)"},
+  {"target": "results/gcn/gcn_index.csv", "action": "ADD", "row": "bn151006413,base,19,N,40,9"}
+ ],
+ "shared_csv_note": "This worker is FORBIDDEN from writing shared CSVs. All rows above are queued for the orchestrator. The gcn_index row uses the file's existing schema trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed (z_mention = N because no circular contains a redshift).",
+
+ "published_value_sources": [
+  {"source": "glg_bcat_all_bn151006413_v00.fit (HEASARC, downloaded to /tmp/gbmcat151006 - NOT added to the repo)", "values": "T90 = 93.44 +/- 6.15 s (50-300 keV, T90START = +1.536 s); T50 = 30.46 +/- 1.06 s (T50START +7.168 s); FLU(10-1000 keV) = 1.22355e-05 +/- 4.70e-08 erg/cm2; PFLX(1.024 s) = 4.967 +/- 0.232 ph/s/cm2 from T0+5.248 s"},
+  {"source": "glg_scat_all_bn151006413_flnc_band_v01.fit", "values": "FLNC Band, interval -1.024..84.992 s: Ep = 178.93 -36.49/+45.59 keV, alpha = -1.0493 -0.0765/+0.0951, beta = -1.6813 -0.0359/+0.0309; NRGFLNC(10-1000) = 2.0719e-5 erg/cm2; REDCHSQ 0.9165 / 480 dof"},
+  {"source": "glg_scat_all_bn151006413_flnc_comp_v01.fit", "values": "FLNC Comptonized: Epeak = 983.07 +/- 183.31 keV, index = -1.3434 +/- 0.0229; REDCHSQ 0.9906 / 481"},
+  {"source": "glg_scat_all_bn151006413_flnc_sbpl_v01.fit", "values": "FLNC SBPL: lambda_low = -1.0966 -0.0797/+0.1021, Ebreak = 56.27 -11.52/+15.34 keV (break scale 0.3 fixed, pivot 100 keV), lambda_high = -1.6821; REDCHSQ 0.9151 / 480"},
+  {"source": "glg_scat_all_bn151006413_pflx_band_v01.fit", "values": "PFLX Band, 5.12..6.144 s: Ep = 201.68 -72.00/+170.65 keV, alpha = -0.940, beta = -1.650; REDCHSQ 0.9422 / 480"},
+  {"source": "glg_scat_all_bn151006413_pflx_comp_v01.fit", "values": "PFLX Comptonized, 5.12..6.144 s: Epeak = 929.25 -406.64/+17787 keV (UNCONSTRAINED above), index = -1.2451"},
+  {"source": "glg_tcat_all_bn151006413_v01.fit", "values": "LOC_SRC = 'Swift, XRT'; RA=147.426, Dec=70.5036, ERR_RAD=0.00133 deg; THETA (LAT boresight) = 30.514 deg; DET_MASK 11010000000000 = n0,n1,n3; RELIABLT 1.0"},
+  {"source": "GCN 18404 (Roberts & Meegan, Fermi GBM)", "values": "PRELIMINARY: T90 ~84 s (50-300 keV); Band over T0+0..T0+83.7 s: Ep = 227 +/- 53 keV, alpha = -1.17 +/- 0.07, beta = -1.68 +/- 0.04; fluence(10-1000) = (1.15 +/- 0.02)e-5; 1-s peak photon flux 4.9 +/- 0.2 ph/s/cm2 from T0+5.24 s"},
+  {"source": "GCN 18409/18410 (Cummings+, Swift-BAT refined)", "values": "T90(15-350 keV) = 203.9 +/- 41.6 s; FRED from ~T-5 s, peak ~T+1 s, end ~T+310 s; T-4.9..T+311.2 s best fit by a SIMPLE POWER LAW, index 1.56 +/- 0.06; fluence(15-150) = 6.9 +/- 0.2e-6 erg/cm2; 1-s peak 2.6 +/- 0.2 ph/cm2/s from T+1.49 s (90% errors)"},
+  {"source": "GCN 18413 (Golenetskii+, Konus-Wind)", "values": "duration ~114 s; emission to ~10 MeV; fluence(20 keV-10 MeV) = 5.30 (-0.87,+0.92)e-5 erg/cm2; 64-ms peak energy flux 5.60e-6 from T0+2.928 s. Band T0..T0+73.984 s: alpha=-1.26(-0.23,+0.42), beta=-1.73(-0.13,+0.09), Ep=223(-132,+514) keV, chi2=85/97. CPL T0..T0+8.448 s (PEAK): alpha=-1.40(-0.06,+0.07), Ep=2600(-1200,+2900) keV, chi2=71/98; Band on the same interval: same alpha/Ep, beta < -1.7"},
+  {"source": "GCN 18422 (Bhalerao+, AstroSat CZTI)", "values": "60.7 deg off pointing axis; detected >60 keV; FRED-model T90 = 65 s (60-80 keV), 75 s (80-100 keV), 50 s (100-250 keV); first CZTI Compton-event GRB light curve"},
+  {"source": "GCN 18475 (Yoshida+, CALET CGBM)", "values": "CGBM trigger 09:54:59.97 UT; SGM (BGO, 30 keV-20 MeV) only, HXM null due to large incidence angle; 'two spikes peaking at T0-2 s and T0+2 s, emission ending around T0+~60 s'; T90 = 63 +/- 5 s (30-1000 keV)"},
+  {"source": "GCN 18407 (McCauley+, Swift-XRT refined)", "values": "LC: PL index 0.3(+0.7,-1.6) -> break at T+64.1 s -> 1.377(+0.020,-0.019); WT spectrum photon index 1.45(+0.06,-0.05), NH = 4.9(+0.5,-0.4)e21 cm-2; PC index 2.08(+0.17,-0.16), NH = 4.3(+0.9,-0.8)e21; Galactic 7.7e20; excess significance 7.1 sigma"}
+ ],
+
+ "multi_instrument_consensus_note": "Phase-4 rule (Rossi+2026 procedure): do NOT pick a favourite Ep. The time-integrated Ep estimates are GBM catalog Band 178.9 -36.5/+45.6, GBM catalog Comptonized 983 +/- 183, GBM catalog SBPL break 56.3 -11.5/+15.3, GCN-18404 Band 227 +/- 53, Konus Band 223 -132/+514, Rao+2016 GBM Band 218 +126/-78 and GBM+CZTI 189 +87/-67, BAT+CZTI 160 +215/-67, Chattopadhyay+2019 (0-37 s) 447 +207/-121, Chattopadhyay+2021 (-1.11..30.21 s, GBM+LAT+BAT) 1000 +1008/-139. The spread is NOT measurement scatter: it is driven by (a) whether the fitted band reaches above ~1 MeV and (b) which parametrisation is used - because beta ~ -1.68..-1.75 (> -2) means the nuFnu spectrum RISES above the Band break, so 'Ep' from a GBM-only Band fit is a low break, not the peak. Propagate this as a SYSTEMATIC and quote a per-frame value, never a single number.",
+
+ "redshift": "none - no optical/NIR afterglow was ever detected despite 8 campaigns (Kanata T+73 s, MITSuME T+93 s, UVOT T+36 s, OSN, Mondy R>22.4 at 0.31 d, MITSuME Akeno, MITSuME Ks). Dark burst: intrinsic NH = (4.3-5.1)e21 cm-2 at 7.1 sigma (GCN 18407) plus Galactic E(B-V)=0.24. No circular in the 19-circular file contains 'z ='. => NO rest-frame quantity is computable for this burst.",
+
+ "same_day_contamination_check": "CLEAR. ADS full:\"GRB 151006B\" = 0; the GCN per-GRB pages 151006.gcn3 and 151006A.gcn3 are byte-identical (19 circulars, GCN 18398-18475), all concerning this burst. The only cross-mission ambiguity is trigger-TIME, not identity: GBM 09:54:57.83, KW 09:54:57.746, CZTI 09:54:57.825, CALET 09:54:59.97, BAT 09:55:01 - all recorded in the dossier so that no T0 is silently swapped.",
+
+ "finding": "RICH-LITERATURE BURST, and the richest of the doc-layer wave so far: 19 GCN circulars from 8 instruments (Swift BAT/XRT/UVOT, Fermi GBM+LAT/LLE, Konus-Wind, AstroSat CZTI, CALET CGBM, plus 6 optical facilities) and 9 papers carrying burst-specific numbers, of which TWO are dedicated analyses - both co-authored by this project's PI (V. Chand). The burst is historically notable as the first GRB detected by AstroSat CZTI and the first detected by CALET CGBM. The scientifically load-bearing fact for our pipeline is that every wide-band time-integrated fit returns beta ~ -1.7 (harder than -2), so no nuFnu peak sits inside the GBM band; Konus needs Ep = 2600 keV near the peak and our archival LLE-joint fits put Ep at 2-5 MeV. NO published analysis of this burst has ever fitted a double-smoothly-broken power law, while our archival census prefers DSBPL by both AIC and BIC in the time-integrated block and in blk1 - so the two-break test is genuinely NEW work here, not a reproduction."
+}

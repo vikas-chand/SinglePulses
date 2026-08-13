@@ -1,0 +1,397 @@
+# Raw GCN circulars for GRB 120919A (= GBM trigger bn120919309 / 369732284)
+# Source: https://gcn.gsfc.nasa.gov/other/120919A.gcn3  (fetched 2026-08-12, HTTP 200)
+# Also checked: 120919.gcn3 (superset: 120919A + 120919B) and 120919B.gcn3 (a DIFFERENT burst - see dossier T1 note)
+# 6 circulars for 120919A: 13785, 13786, 13787, 13790, 13791, 13821
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13785
+SUBJECT: GRB 120919A: Fermi GBM detection
+DATE:    12/09/20 11:02:08 GMT
+FROM:    Arne Rau at MPE  <arau@mpe.mpg.de>
+
+Arne Rau (MPE) reports on behalf of the Fermi GBM Team:
+
+"At 07:24:41.98  UT on 19 September 2012, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 120919A (trigger 369732284 / 120919309).
+
+The on-ground calculated location, using the GBM trigger
+data, is RA = 213.4, DEC = -46.3 (J2000 degrees,
+equivalent to 14 h 14 m, -46 d 18 '), with an uncertainty
+of 1.1 degrees (radius, 1-sigma containment,
+statistical only; there is additionally a systematic
+error which is currently estimated to be 2 to 3 degrees).
+
+The angle from the Fermi LAT boresight is 63 degrees.
+Moreover, this burst was bright enough to result in a Fermi spacecraft
+autonomous re-point request (ARR) maneuver.
+
+This burst was also independently detected by INTEGRAL SPI-ACS.
+
+The GBM light curve shows a single bright pulse
+with a duration (T90) of about 22.5 s (50-300 keV).
+The time-averaged spectrum from T0+0.003 s to T0+10.496 s is
+best fit by a Band function with Epeak = 162 +/- 8 keV,
+alpha = -0.76 +/- 0.04, and beta = -2.15 +/- 0.06
+
+The event fluence (10-1000 keV) in this time interval is
+(1.679 +/- 0.026)E-05 erg/cm^2. The 1.024-sec peak photon flux measured
+starting from T0+2.62 s in the 10-1000 keV band
+is 25.3 +/- 0.3 ph/s/cm^2.
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog."
+
+[GCN OPS NOTE(20sep12):  Per author's request, the fluence value
+was changed from "(1.60 +/- 0.03)E-06" to "(1.679 +/- 0.026)E-05".]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13786
+SUBJECT: IPN Triangulation of long GRB 120919A
+DATE:    12/09/20 15:18:00 GMT
+FROM:    Dmitry Svinkin at Ioffe Institute  <svinkin@mail.ioffe.ru>
+
+K. Hurley on behalf of the Mars Odyssey and MESSENGER GRB teams,
+
+J. Goldsten, on behalf of the MESSENGER GRNS GRB team,
+
+I. G. Mitrofanov, D. Golovin, M. L. Litvak, and A. B. Sanin,
+on behalf of the HEND-Odyssey GRB team,
+
+S. Golenetskii, R. Aptekar, E. Mazets, V. Pal'shin, D. Frederiks,
+D. Svinkin, and T. Cline on behalf of the Konus-Wind team,
+
+W. Boynton, C. Fellows, K. Harshman, H. Enos, and R. Starr, on
+behalf of the GRS-Odyssey GRB team,
+
+V. Connaughton, M. Briggs, and C. Meegan, on behalf of the Fermi
+GBM team,
+
+A. von Kienlin, X. Zhang, A. Rau, V. Savchenko, E. Bozzo, and C.
+Ferrigno, on behalf of the INTEGRAL SPI-ACS GRB team, and
+
+G. Di Cocco, F. Fuschino, M. Galli, C. Labanti, and M. Marisaldi, on 
+behalf of the AGILE MCAL team, report:
+
+The long-duration GRB 120919A (Fermi/GBM detection: Rau, GCN Circ. 
+13785) was observed by Konus-Wind, MESSENGER (GRNS), Mars Odyssey 
+(HEND), INTEGRAL (SPI-ACS), and AGILE (MCAL) at about 26682 s UT (07:24:42).
+
+We have triangulated the burst to a preliminary, 3 sigma error box whose
+coordinates are:
+   ---------------------------------------------
+     RA(2000), deg                 Dec(2000), deg
+    ---------------------------------------------
+    Center:
+     214.768 (14h 19m 04s) -45.564 (-45d 33' 52")
+    Corners:
+     215.108 (14h 20m 26s) -45.474 (-45d 28' 26")
+     214.693 (14h 18m 46s) -45.722 (-45d 43' 19")
+     214.428 (14h 17m 43s) -45.653 (-45d 39' 09")
+     214.843 (14h 19m 22s) -45.407 (-45d 24' 24")
+    ---------------------------------------------
+The error box area is 236  sq. arcmin, and its maximum
+dimension is 31 arcmin (the minimum one is 12 arcmin).
+
+This box can be improved.
+
+The center of the GBM ground position given in
+GCN Circ. 13785 is 1.2 deg from the center of this box.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13787
+SUBJECT: Konus-Wind observation of GRB 120919A
+DATE:    12/09/20 15:26:34 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The long-duration GRB 120919A
+(Fermi-GBM detection: Rau, GCN 13785;
+IPN detection and localization: Hurley et al., GCN 13786)
+triggered Konus-Wind at T0=26678.597s UT (07:24:38.597)
+
+The light curve shows a single pulse with a duration of ~8 s
+followed by a weaker and softer emission till ~T0+30 s.
+The emission in the main bursting episode is seen up to 7 MeV.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB120919_T26678/
+
+As observed by Konus-Wind, the burst
+had a fluence of 1.4(-0.1,+0.1)x10-5 erg/cm2,
+and a 64-ms peak flux, measured from T0+2.432s,
+of 4.1(-0.5,+0.5)x10-6 erg/cm2/s
+(both in the 20 keV - 10 MeV energy range).
+
+The time-integrated spectrum (measured from T0 to T0+8.448 s)
+is best fit in the 20 keV - 10 MeV range
+by a power law with exponential cutoff model, for which
+alpha = -1.05 (-0.1, +0.1),
+and Ep = 225(-19, +23) keV,
+chi2 = 100.3/84 dof.
+
+All the quoted results are preliminary.
+All the quoted errors are at the 90% confidence level.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13790
+SUBJECT: GRB 120919A: Swift-XRT observations
+DATE:    12/09/21 10:47:01 GMT
+FROM:    Andy Beardmore at U Leicester  <ab271@leicester.ac.uk>
+
+A.P. Beardmore (U. Leicester) and S.R. Oates (MSSL-UCL) report on
+behalf of the Swift-XRT team:
+
+We have analysed 4.7 ks of XRT data for the GBM and IPN-detected burst
+GRB 120919A (Rau et al. GCN Circ. 13785, Hurley et al.	GCN Circ.
+13786), from 133.7 ks to 157.6 ks after the IPN trigger. The data are
+entirely in Photon Counting (PC) mode.	Two uncatalogued X-ray sources
+are detected within the IPN error box with the following refined XRT
+positions :
+
+Source 1 :
+
+RA, Dec = 214.83981, -45.56220 which is equivalent to:
+
+RA (J2000): 14h 19m 21.56s
+Dec(J2000): -45d 33m 43.9s
+
+with an uncertainty of 3.1 arcsec (radius, 90% confidence). This
+position is 181 arcsec from the centre of the IPN error box. The
+source is detected with a 0.3-10 keV count rate of 0.0067 +/- 0.0014
+count/s, which corresponds to an observed flux of 2.7e-13 erg cm^-2
+s^-1 for a typical GRB-like spectrum.
+
+Source 2 :
+
+RA, Dec =  214.79040, -45.56518 which is equivalent to:
+
+RA (J2000): 14h 19m 09.70s
+Dec(J2000): -45d 33m 54.66s
+
+with an uncertainty of 5.5 arcsec (radius, 90% confidence). This
+position is 57 arcsec from centre of the IPN error box. The source is
+detected with a 0.3-10 keV count rate of 0.0037 +/- 0.0011 count/s,
+which corrsponds to an observed flux of 1.5e-13 erg cm^-2 s^-1 for a
+typical GRB-like spectrum.
+
+We cannot determine whether either of the sources are fading at the
+present time.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13791
+SUBJECT: GRB 120919A: Swift/UVOT Upper Limits
+DATE:    12/09/21 13:24:16 GMT
+FROM:    Samantha Oates at MSSL  <sro@mssl.ucl.ac.uk>
+
+S.R. Oates (MSSL-UCL) reports on behalf of the Swift/UVOT team:
+
+The Swift/UVOT began settled observations of the field of GRB 120919A
+134 ks after the IPN trigger (Hurley et al. GCN Circ. 13786)
+No optical afterglow is found within the IPN error box nor 
+at the location of the two uncatalogued XRT sources (Beardmore et al. GCN Circ. 13790). 
+We note the presence of a catalogued USNO-B1 source within 4.5" of XRT source 1,
+with a m2 magnitude 20.52 +\- 0.17.
+
+Preliminary 3-sigma upper limits using the UVOT photometric system
+(Breeveld et al. 2011, AIP Conf. Proc. 1358, 373) for the initial exposures are:
+
+Filter         T_start(s)   T_stop(s)      Exp(s)         Mag
+
+m2              133695       157598         4891         >21.4
+
+The magnitudes in the table are not corrected for the Galactic extinction
+due to the reddening of E(B-V) = 0.10 in the direction of the burst
+(Schlegel et al. 1998).
+
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13821
+SUBJECT: Further Swift-XRT observations of the GRB 120919A field.
+DATE:    12/09/27 15:23:15 GMT
+FROM:    Andy Beardmore at U Leicester  <ab271@leicester.ac.uk>
+
+A.P. Beardmore (U. Leicester) and S.R. Oates (MSSL-UCL) report on
+behalf of the Swift-XRT team:
+
+Further XRT follow-up observations covering the field of the GBM and
+IPN-detected burst GRB 120919A (Rau et al. GCN Circ. 13785, Hurley et
+al.  GCN Circ.  13786) have been performed. The data total 15 ks in
+Photon Counting (PC) mode, collected in three observations from 134 ks
+to 573 ks after the trigger. The two X-ray sources identified within
+the IPN error box after the inital XRT observation (Beardmore and
+Oates, GCN C. 13790) show no evidence for fading. Likewise, none of
+the additional sources seen in the XRT field, but outside the IPN
+error box, show evidence for fading, implying we have not detected any
+X-ray counterpart to this GRB. The 3 sigma detection limit is
+approximately 2.5e-3 count/s (per 5ks observation), which corresponds
+to a 0.3-10 keV flux limit of 1.0e-13 erg cm^-2 s^-1 (for a typical
+GRB spectrum).
+
+
+
+================================================================
+# APPENDIX - circulars for the SAME-DAY, DIFFERENT burst GRB 120919B (NOT ours; recorded for the T1 audit trail)
+================================================================
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13788
+SUBJECT: IPN Triangulation of long GRB 120919B
+DATE:    12/09/20 15:35:40 GMT
+FROM:    Valentin Pal'shin at Ioffe Inst  <val@mail.ioffe.ru>
+
+K. Hurley on behalf of the Mars Odyssey and MESSENGER GRB teams,
+
+J. Goldsten, on behalf of the MESSENGER GRNS GRB team,
+
+I. G. Mitrofanov, D. Golovin, M. L. Litvak, and A. B. Sanin,
+on behalf of the HEND-Odyssey GRB team,
+
+S. Golenetskii, R. Aptekar, E. Mazets, V. Pal'shin, D. Frederiks,
+D. Svinkin, and T. Cline on behalf of the Konus-Wind team,
+
+W. Boynton, C. Fellows, K. Harshman, H. Enos, and R. Starr, on
+behalf of the GRS-Odyssey GRB team,
+
+V. Connaughton, M. Briggs, and C. Meegan, on behalf of the Fermi
+GBM team, and
+
+A. von Kienlin, X. Zhang, A. Rau, V. Savchenko, E. Bozzo, and C.
+Ferrigno, on behalf of the INTEGRAL SPI-ACS GRB team, report:
+
+The long-duration, moderately intense GRB 120919B was observed by Fermi
+(GBM: trigger 369710066), Konus-Wind, MESSENGER (GRNS), INTEGRAL
+(SPI-ACS), and Mars Odyssey (HEND) at about 4463 s UT (01:14:23).
+
+We have triangulated it to a preliminary, 3 sigma error box whose
+coordinates are:
+   ---------------------------------------------
+    RA(2000), deg                 Dec(2000), deg
+   ---------------------------------------------
+   Center:
+    302.633 (20h 10m 32s) -37.490 (-37d 29' 25")
+   Corners:
+    302.735 (20h 10m 56s) -37.483 (-37d 28' 59")
+    302.857 (20h 11m 26s) -38.235 (-38d 14' 04")
+    302.530 (20h 10m 07s) -37.497 (-37d 29' 50")
+    302.401 (20h 09m 36s) -36.706 (-36d 42' 21")
+   ---------------------------------------------
+The error box area is 457  sq. arcmin, and its maximum
+dimension is 1.57 deg (the minimum one is 10 arcmin).
+
+This box can be improved.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13789
+SUBJECT: Konus-Wind observation of GRB 120919B
+DATE:    12/09/20 15:52:27 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The long-duration, moderately intense GRB 120919B
+(IPN detection and localization: Hurley et al., GCN 13788)
+triggered Konus-Wind at T0=04499.597s UT (01:14:59.401)
+
+The light curve shows multiple pulses in the time interval
+starting at ~T0-30s and ending at ~T0+100s.
+The emission in the main bursting episode is seen up to 8 MeV.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB120919_T04499/
+
+As observed by Konus-Wind, the burst
+had a fluence of 3.1(-0.5,+0.7)x10-5 erg/cm2,
+and a 256-ms peak flux, measured from T0+13.056 s,
+of 4.3(-0.9,+1.1)x10-6 erg/cm2/s
+(both in the 20 keV - 10 MeV energy range).
+
+The time-integrated spectrum (measured from T0 to T0+98.560 s)
+is best fit in the 20 keV - 10 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -0.9 (-0.4, +0.5),
+the high energy photon index beta = -2.3 (-2.7, +0.3),
+the peak energy Ep = 250(-60, +190) keV,
+chi2 = 86.9/83 dof.
+
+The spectrum of the main bursting episode (measured from T0 to T0+16.640 s)
+is best fit in the 20 keV - 10 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -1.0 (-0.2, +0.2),
+the high energy photon index beta = -2.4 (-1.0, +0.3),
+the peak energy Ep = 300(-70, +85) keV,
+chi2 = 76.3/83 dof.
+
+All the quoted results are preliminary.
+All the quoted errors are at the 90% confidence level.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  13792
+SUBJECT: GRB 120919B: MASTER prompt optical observations 
+DATE:    12/09/21 13:54:00 GMT
+FROM:    Vladimir Lipunov at Moscow State U/Krylov Obs  <gcncirc@observ.inetcomm.ru>
+
+H. Levato and C. Saffe
+Instituto de Ciencias Astronomicas, de la Tierra y del Espacio (ICATE)
+
+C. Mallamaci, C. Lopez and F. Podest
+Observatorio Astronomico Felix Aguilar (OAFA)
+
+E. Gorbovskoy, V. Lipunov,  V. Kornilov, D. Denisenko, A. Kuznetsov,
+D. Kuvshinov, A. Belinski, N. Tyurina, N. Shatskiy, P. Balanutsa, D. Zimnukhov,
+V.V. Chazov
+Lomonosov Moscow State University, Sternberg Astronomical Institute
+
+A. Tlatov, A.V. Parhomenko, D. Dormidontov, V. Sennik
+Kislovodsk Solar Station of the Pulkovo Observatory
+
+K. Ivanov, S. Yazev, N.M. Budnev, O. Gres, O. Chuvalaev, V.A. Poleshchuk
+Irkutsk State University
+
+V. Yurkov, Yu. Sergienko, D. Varda, E. Sinyakov
+Blagoveschensk Educational State University, Blagoveschensk
+
+V. Krushinski, I. Zalozhnich,  A. Popov, A. Bourdanov
+Ural Federal University
+
+
+MASTER-ICATE robotic Very Wide Field Cameras (FOV=2x384 square degrees,
+D=72mm, f/1.2, 1 pix = 22 arcsec, http://observ.pereplet.ru) located in
+Argentina (Observatorio Astronomico Felix Aguilar,
+http://93.180.27.230:8080/) were pointed to the GRB120919B by FERMI 
+369710066 trigger   30 s after notice time and 55 s after GRB time at 
+2012-09-19 01:15:18 UT.
+We cover full IPN-triangulations error-box (K. Hurley et. al. GCN13788)
+We haven`t found  optical transient  within IPN-triangulations error-box
+   our first (5 s exposure) set and on coadd image with complete exposure
+of 45 seconds durnig gamma-burst activity (Golenetskii et al., GCN 13789).
+
+The 5-sigma upper limit on single image has  been about 11.7 mag and 12.5 
+mag on coadded image.
+
+Also, we are marginaly see ~2 sigma OT at position Ra 20:10:26.40 Dec 
++37:31:48.00 with magnitude 12.5+-0.5m .
+
+The coverage map and OT image available here 
+http://master.sai.msu.ru/static/GRB/GRB120919B_2x2deg.png
+
+Our cameras are continuously imaging the sky with 5 sec exposures.
+
+This message can be cited.
+
+

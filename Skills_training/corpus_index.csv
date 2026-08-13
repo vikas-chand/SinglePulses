@@ -1,12 +1,12 @@
 filename,bibcode,arxiv,theme,cited_by_bursts,n_bursts,read,read_date
-Yu_2019_ApJ_886_20.pdf,2019ApJ...886...20Y,1810.07313,prompt-timeresolved;BAYESIAN-DIC;CPL-vs-Band;beta-degeneracy,bn081125496;bn081224887;bn090620400;proj34,1,Y,pre-2026-08-10 (Vikas recalls reading; founding paper of #34)
-Meng_2019_ApJ_882_26.pdf,2019ApJ...882...26M,1904.08526,prompt-photosphere,bn081125496,1,N,
+Yu_2019_ApJ_886_20.pdf,2019ApJ...886...20Y,1810.07313,prompt-timeresolved;BAYESIAN-DIC;CPL-vs-Band;beta-degeneracy,bn081125496;bn081224887;bn090620400;proj34;bn100707032,2,Y,pre-2026-08-10 (Vikas recalls reading; founding paper of #34)
+Meng_2019_ApJ_882_26.pdf,2019ApJ...882...26M,1904.08526,prompt-photosphere,bn081125496;bn081224887,2,N,
 Virgili_2012_MNRAS_424_2821.pdf,2012MNRAS.424.2821V,1112.4363,prompt-spectral-temporal,bn081222204,1,N,
 Ukwatta_2012_MNRAS_419_614.pdf,2012MNRAS.419..614U,1109.0666,prompt-lag,bn081222204,1,N,
 Ghirlanda_2010_AA_511_A43.pdf,2010A&A...511A..43G,0908.2807,prompt-Ep-Liso,bn081222204,1,N,
 Daigne_2011_AA_526_A110.pdf,2011A&A...526A.110D,1009.2636,prompt-synchrotron,bn081222204,1,N,
 Li_2012_2012PASP124297L.pdf,2012PASP..124..297L,1202.2658,method-lag,bn081222204,1,N,
-Hakkila_2015_ApJ_815_134.pdf,2015ApJ...815..134H,1511.03695,prompt-pulse-shape,bn081222204,1,N,
+Hakkila_2015_ApJ_815_134.pdf,2015ApJ...815..134H,1511.03695,prompt-pulse-shape,bn081222204;bn100707032,2,N,
 Atteia_2017_2017ApJ837119A.pdf,2017ApJ...837..119A,1702.02961,prompt-Eiso,bn081222204,1,N,
 Zhang_2026_2026AA707A392Z.pdf,2026A&A...707A.392Z,2602.05587,prompt-central-engine,bn081222204,1,N,
 Japelj_2014_2014ApJ78584J.pdf,2014ApJ...785...84J,1402.3701,afterglow-reverseshock,bn081222204,1,N,
@@ -18,17 +18,17 @@ Tanvir_2019_2019MNRAS4835380T.pdf,2019MNRAS.483.5380T,1805.07318,host-cosmo,bn08
 Vielfaure_2021_2021AA653A83V.pdf,2021A&A...653A..83V,2105.09314,host-cosmo,bn081222204,1,N,
 Barnacka_2012_2012PhRvD86d3001B.pdf,2012PhRvD..86d3001B,1204.2056,exotic-femtolensing,bn081222204,1,N,
 Sonbas_2013_2013ApJ767L28S.pdf,2013ApJ...767L..28S,1210.6850,lag-mvt-curvature,project37,0,Y,
-Lu_2012_2012ApJ756112L.pdf,2012ApJ...756..112L,1204.0714,comprehensive-II;timeres-Ep-evolution;h2s-vs-tracking,bn081224887;bn090530760;proj34,1,MAYBE,"pre-2026-08 (Vikas: ""Lu or Li, unsure which"")"
-Basak_2014_2014MNRAS442419B.pdf,2014MNRAS.442..419B,1405.0119,timeres-singlepulse,bn081224887,1,N,
+Lu_2012_2012ApJ756112L.pdf,2012ApJ...756..112L,1204.0714,comprehensive-II;timeres-Ep-evolution;h2s-vs-tracking,bn081224887;bn090530760;proj34;bn100707032,2,MAYBE,"pre-2026-08 (Vikas: ""Lu or Li, unsure which"")"
+Basak_2014_2014MNRAS442419B.pdf,2014MNRAS.442..419B,1405.0119,timeres-singlepulse,bn081224887;bn100707032,2,N,
 Bissaldi_2011_2011ApJ73397B.pdf,2011ApJ...733...97B,1101.3325,broadband-spectroscopy,bn081224887,1,N,
-Li_2019_2019ApJS2457L.pdf,2019ApJS..245....7L,1905.02340,thermal-components,bn081224887,1,N,
-Li_2020_2020ApJ894100L.pdf,2020ApJ...894..100L,1908.09240,thermal-components,bn081224887,1,N,
-Hakkila_2014_2014ApJ78388H.pdf,2014ApJ...783...88H,1401.4047,pulse-shape-hakkila-lineage,bn081224887,1,N,
-Ackermann_2013_2013ApJS20911A.pdf,2013ApJS..209...11A,1303.2908,lat-catalog,bn081224887,1,N,
+Li_2019_2019ApJS2457L.pdf,2019ApJS..245....7L,1905.02340,thermal-components,bn081224887;bn100707032,2,N,
+Li_2020_2020ApJ894100L.pdf,2020ApJ...894..100L,1908.09240,thermal-components,bn081224887;bn100707032,2,N,
+Hakkila_2014_2014ApJ78388H.pdf,2014ApJ...783...88H,1401.4047,pulse-shape-hakkila-lineage,bn081224887;bn100707032,2,N,
+Ackermann_2013_2013ApJS20911A.pdf,2013ApJS..209...11A,1303.2908,lat-catalog,bn081224887;bn100707032,2,N,
 (no pdf),2012A&A...547A..95L,,lat-upper-limits,bn081224887,1,N,
-Hurley_2013_2013ApJS20739H.pdf,2013ApJS..207...39H,1301.3522,ipn-catalog,bn081224887,1,N,
-Shao_2017_2017ApJ844126S.pdf,2017ApJ...844..126S,1610.07191,spectral-lag,bn081224887,1,N,
-Li_2021_2021ApJS25343L.pdf,2021ApJS..253...43L,2101.04325,high-latitude-curvature;HLE;bulk-acceleration;BB-blocks-published,bn081224887;bn090620400;proj37;proj38;step5-validation,1,Y,2026-08-10
+Hurley_2013_2013ApJS20739H.pdf,2013ApJS..207...39H,1301.3522,ipn-catalog,bn081224887;bn090829672;bn100614498;bn100707032,4,N,
+Shao_2017_2017ApJ844126S.pdf,2017ApJ...844..126S,1610.07191,spectral-lag,bn081224887;bn100707032;bn110605183;bn111009282,4,N,
+Li_2021_2021ApJS25343L.pdf,2021ApJS..253...43L,2101.04325,high-latitude-curvature;HLE;bulk-acceleration;BB-blocks-published,bn081224887;bn090620400;proj37;proj38;step5-validation;bn100707032,2,Y,2026-08-10
 Maraventano_2025_2025AA697A161M.pdf,2025A&A...697A.161M,2503.17216,spectral-lag,bn081224887,1,N,
 (no pdf),2017PASJ...69R...2Y,,suzaku-wam,bn081224887,1,N,
 (no pdf),2012PASJ...64...26T,,fred-decay-spectral-evolution,bn081224887,1,N,
@@ -36,9 +36,9 @@ Zhang_2011_2011ApJ72690Z.pdf,2011ApJ...726...90Z,1011.1197,icmart-two-timescale,
 deUgartePostigo_2013_2013AA557L18D.pdf,2013A&A...557L..18D,1309.1167,dedicated-burst-paper;redshift,bn120624933,1,N,
 Ajello_2019_2019ApJ87852A.pdf,2019ApJ...878...52A,1906.11403,lat-catalog-2,bn120624933,1,N,
 Sharma_2021_2021ApJ908L2S.pdf,2021ApJ...908L...2S,2008.07544,central-engine-BH,bn120624933,1,N,
-Tak_2023_2023ApJ949110T.pdf,2023ApJ...949..110T,2212.07095,broad-pulse-evolution,bn120624933,1,READING,
+Tak_2023_2023ApJ949110T.pdf,2023ApJ...949..110T,2212.07095,broad-pulse-evolution,bn120624933;bn081224887,2,READING,
 Meng_2026_2026AA706A142M.pdf,2026A&A...706A.142M,2503.01558,photosphere,bn120624933,1,N,
-Chang_2026_2026MNRAS546ag047C.pdf,2026MNRAS.546ag047C,2601.04468,poynting-flux-outflow,bn120624933,1,N,
+Chang_2026_2026MNRAS546ag047C.pdf,2026MNRAS.546ag047C,2601.04468,poynting-flux-outflow,bn120624933;bn200524211,2,N,
 Li_2026_2026ApJS28318L.pdf,2026ApJS..283...18L,2412.08226,Ep-estimation,bn120624933,1,N,
 Fraija_2025_2025MNRAS5431945F.pdf,2025MNRAS.543.1945F,2509.23345,ssc-reverse-shock,bn120624933,1,N,
 Amelino-Camelia_2026_2026JCAP02035A.pdf,2026JCAP...02..035A,2501.13840,neutrino-LIV,bn120624933,1,N,
@@ -71,10 +71,108 @@ Wistemar_2025_2025ApJ986118W.pdf,2025ApJ...986..118W,2504.00092,Lorentz-factor-m
 Veres_2015_2015ApJ81031V.pdf,2015ApJ...810...31V,1411.7368,VLA-afterglow,bn130518580,1,N,
 (no pdf),2024ApJ...972..132C,,thermal-dominated,bn130518580,1,N,
 Zhang_2011_2011ApJ730141Z.pdf,2011ApJ...730..141Z,1009.3338,comprehensive-I;spectral-components;LAT-GBM;extra-PL;Planck-narrowing,proj34;proj42;proj43,1,N,
-Qin_2013_2013ApJ76315Q.pdf,2013ApJ...763...15Q,1205.1188,comprehensive-III;energy-dependent-T90;duration-selection,step7-temporal;bn090530760,1,N,
-Lu_2018_2018ApJ865153L.pdf,2018ApJ...865..153L,1808.00636,comprehensive-IV;lag-Ep;pulse-classification,bn090530760;proj37;proj38,1,N,
-Preece_2016_2016ApJ821_12P_PUB.pdf,2016ApJ...821...12P,1603.05061,which-Epeak;Ep-evolution;single-pulse-simulation;time-avg-vs-peakflux;Amati-caveat,bn110721200;bn130427324;proj34;proj43,2,N,
+Qin_2013_2013ApJ76315Q.pdf,2013ApJ...763...15Q,1205.1188,comprehensive-III;energy-dependent-T90;duration-selection,step7-temporal;bn090530760;bn081224887;bn100707032,3,Y,2026-08-13 (deep-read + skill patch; population-vs-per-burst correction into Temporal.md)
+Lu_2018_2018ApJ865153L.pdf,2018ApJ...865..153L,1808.00636,comprehensive-IV;lag-Ep;pulse-classification,bn090530760;proj37;proj38;bn081224887;bn100707032;bn110605183;bn111009282,5,Y,2026-08-10 (deep-reading notes + skill patch delivered)
+Preece_2016_2016ApJ821_12P_PUB.pdf,2016ApJ...821...12P,1603.05061,which-Epeak;Ep-evolution;single-pulse-simulation;time-avg-vs-peakflux;Amati-caveat,bn110721200;bn130427324;proj34;proj43;bn100707032,3,N,
 Zhang_2019_NatAs_polarization_arXiv190104207.pdf,2019NatAs...3..258Z,1901.04207,POLARIZATION;PA-rotation;five-GRBs,bn170114917;proj42,1,N,
 Wang_2024_2024ApJ97215W_twice90_arXiv.pdf,2024ApJ...972...15W,2407.10547,POLARIZATION;twice-90-rotation;170114A-specific,bn170114917;proj42,1,N,
 Burgess_2019_2019AA627A105B_arXiv190104719.pdf,2019A&A...627A.105B,1901.04719,POLARIZATION+SPECTRA-joint;synchrotron-decaying-B,bn170114917;proj34;proj42,1,N,
 Kole_2020_POLARcat_arXiv200904871.pdf,2020A&A...644A.124K,2009.04871,POLAR-catalog;14-GRBs,bn170114917,1,N,
+Tierney_2013_2013AA550A102T.pdf,2013A&A...550A.102T,1301.4859,low-energy-anomalies;extrapolated-LET-method;edge-features;L28-anchor,project-core;L28;proj34-HET-mirror,0,N,
+Wang_2019_2019ApJ87439W_PUB.pdf,2019ApJ...874...39W,1811.05433,BdHN-II-180728A;SN-prediction;photospheric-interpretation;arXiv-sibling-on-disk,bn180728728;module-future;sn,1,Y,2026-08-11 (deep-read notes + skill patch delivered; claims PDF-verified)
+Yi_2025_2025arXiv251018207Y_bn190222537.pdf,2025arXiv251018207Y,,S4 empirical relationships + Table 1 (slope_tp=-0.46+0.04-0.,bn190222537,1,N,
+Goldstein_2020_2020ApJ89540G_bn190222537.pdf,2020ApJ...895...40G,,Fig 1 only (all-NaI 50-300 keV lightcurve + RoboBA signal se,bn190222537,1,N,
+Cai_2021_2021MNRAS5083910C_bn190401139.pdf,2021MNRAS.508.3910C,2109.12270,SS2-3 (HE CsI as GRB monitor; blind-search method; Fig. 1 = ,bn190401139,1,N,
+Abbott_2021_2021ApJ91586A_bn190401139.pdf,2021ApJ...915...86A,2010.14550,none - the burst appears once; in the could-not-analyze foot,bn190401139,1,N,
+Macera_2025_2025AA700A88M_bn180703876.pdf,2025A&A...700A..88M,2501.10507,Sample-2; Table 2 (p.4): 0-22.3 s GBM+LAT synchrotron fit p=,bn180703876,1,N,
+Aldowma_2024_2024MNRAS5292676A_bn180703876.pdf,2024MNRAS.529.2676A,2401.11005,none (180703A appears only as one of five GBM bursts added t,bn180703876,1,N,
+Pasumarti_2023_2023JHEAp4041P_bn180703876.pdf,2023JHEAp..40...41P,2307.02296,spectral-lag transition data for 180703A (E0=20 keV; z=0.67;,bn180703876,1,N,
+Wei_2022_2022Univ8519W_bn180703876.pdf,2022Univ....8..519W,2210.03897,lag-transition fit parameters for 180703A (p.10 table); posi,bn180703876,1,N,
+Ahlgren_2020_2020ApJ897178A_bn180703876.pdf,2020ApJ...897..178A,2006.07095,p.5: 180703A in their candidate-pair time-resolved spectral ,bn180703876,1,N,
+Mangano_2021_2021SSRv21723M_bn191125206.pdf,2021SSRv..217...23M,,BepiColombo-MGNS-interplanetary-detection-p16-only,bn191125206;module-future;mm,1,N,
+Luo_2020_2020JHEAp271L_bn181212693.pdf,2020JHEAp..27....1L,,Band-vs-CPL-18-spectra-sample;181212A-integrated,bn181212693,1,N,
+Rossi_2026_2026AA708A60R_PUB.pdf,2026A&A...708A..60R,,180728A-dedicated;SN2018fip;prompt-in-4.1-only;Ep-i-123+-28;Eiso-2.5e51;z0.117,bn180728728;module-future;sn;afterglow,1,N,
+Nuessle_2024_2024ApJ974120N_arXiv.pdf,2024ApJ...974..120N,2407.08857,SVM-progenitor-classification-from-prompt;180728A-training-collapsar;long-short-mixing,bn180728728;census-context,1,N,
+Ghosh_2026_2026arXiv260809704G_bn200524211.pdf,2026arXiv260809704G,2608.09704,dedicated-multiwavelength-prompt-afterglow,bn200524211,1,N,
+Andreoni_2021_2021ApJ91863A_bn200524211.pdf,2021ApJ...918...63A,2104.06352,module-future;afterglow;ztfrest,bn200524211,1,N,
+Ho_2022_2022ApJ93885H_bn200524211.pdf,2022ApJ...938...85H,2201.12366,module-future;afterglow;dirty-fireballs,bn200524211,1,N,
+Burgess_2014_2014ApJ78417B_bn090719063.pdf,2014ApJ...784...17B,1304.4628,synchrotron-plus-BB;BB-claim-origin,bn090719063;bn081224887;bn100707032,3,N,
+Burgess_2014_2014ApJ784L43B_bn090719063.pdf,2014ApJ...784L..43B,1403.0374,thermal-nonthermal-correlation,bn090719063;bn081224887;bn100707032,3,N,
+Iyyani_2016_2016MNRAS4562157I_bn081224887.pdf,2016MNRAS.456.2157I,1511.07390,synchrotron-limits;photosphere;BB-claim-lineage,bn081224887;bn100707032,2,N,
+Acuner_2018_2018MNRAS4751708A_bn081224887.pdf,2018MNRAS.475.1708A,1712.01568,gbm-catalogue-clustering;photosphere-indications,bn081224887;bn100707032,2,N,
+Guetta_2009_2009arXiv09102134G_bn090530760.pdf,2009arXiv0910.2134G,0910.2134,lat-suppression;luminosity-function;gcn-chained-values;proceedings-not-refereed,bn090530760,1,N,
+Iyyani_2016_2016MNRAS4562157I_bn090719063.pdf,2016MNRAS.456.2157I,1511.07390,synchrotron-limitations;photosphere;T6-primary-for-thermal-claims,bn090719063,1,N,
+Ghirlanda_2011_2011MNRAS418L109G_bn090719063.pdf,2011MNRAS.418L.109G,1109.1833,short-vs-long-spectral-evolution;catalog-row,bn090719063,1,N,
+Burgess_2019_2019MNRAS4851262B_bn090719063.pdf,2019MNRAS.485.1262B,1512.01059,golenetskii-hierarchical;unknown-z-posterior;module-future;cosmo,bn090719063,1,N,
+Chen_2022_2022ApJ93225C_bn090719063.pdf,2022ApJ...932...25C,,hybrid-jet-210610B;090719-comparison-mention,bn090719063,1,N,
+CaballeroGarcia_2023_2023MNRAS5193201C_bn090719063.pdf,2023MNRAS.519.3201C,2205.07790,210619B-multiwavelength;090719-mention-only,bn090719063;bn100707032,2,N,
+Li_2026_2026arXiv260417835L_bn090719063.pdf,2026arXiv260417835L,2604.17835,intensity-tracking-subclasses;TypeII;Ep-flux-lag,bn090719063,1,N,
+Guetta_2009_2009arXiv09102134G_bn090719063.pdf,2009arXiv0910.2134G,0910.2134,proceedings;GCN-value-copy,bn090719063,1,N,
+2019ApJ...886...20Y (Yu_2019): cited_by += bn090719063
+2019ApJS..245....7L (Li_2019): cited_by += bn090719063
+2020ApJ...894..100L (Li_2020): cited_by += bn090719063
+2021ApJS..253...43L (Li_2021): cited_by += bn090719063
+2023ApJ...949..110T (Tak_2023): cited_by += bn090719063
+2017ApJ...844..126S (Shao_2017): cited_by += bn090719063
+2018ApJ...865..153L (Lu_2018): cited_by += bn090719063
+Li_2026_2026arXiv260417835L_bn090804940.pdf,2026arXiv260417835L,2604.17835,intensity-tracking-subclasses;Ep-evolution;NOT-REFEREED-eprint,bn090804940,1,N,
+Burgess_2014_2014ApJ78417B_bn090809978.pdf,2014ApJ...784...17B,1304.4628,prompt-physical-synchrotron;single-pulse;BB-verdicts,bn090809978,1,N,
+Bianchin_2011_2011AA536A46B_bn090809978.pdf,2011A&A...536A..46B,1110.4758,prompt-detection;IBIS-PICsIT;hard-band-T90,bn090809978,1,N,
+UPDATE Basak_2014_2014MNRAS442419B.pdf: cited_by_bursts += bn090809978, n_bursts += 1
+UPDATE Shao_2017_2017ApJ844126S.pdf: cited_by_bursts += bn090809978, n_bursts += 1
+UPDATE Meng_2019_ApJ_882_26.pdf: cited_by_bursts += bn090809978, n_bursts += 1
+UPDATE Jiang_2021_2021MNRAS505L26J.pdf: cited_by_bursts += bn090809978, n_bursts += 1
+UPDATE Lu_2018_2018ApJ865153L.pdf: cited_by_bursts += bn090809978, n_bursts += 1
+UPDATE Lu_2012_2012ApJ756112L.pdf: cited_by_bursts += bn090809978, n_bursts += 1
+Yu_2015_2015AA583A129Y_bn090829672.pdf,2015A&A...583A.129Y,1507.05589,prompt-spectral-sharpness;synchrotron-test,bn090829672;bn100707032,2,N,
+Ghirlanda_2011_2011MNRAS418L109G_bn090829672.pdf,2011MNRAS.418L.109G,1109.1833,prompt-timeresolved;short-vs-long-Ep-flux,bn090829672,1,N,
+Guetta_2011_2011AA525A53G_bn090829672.pdf,2011A&A...525A..53G,1003.0566,LAT-upper-limits;GBM-luminosity-function,bn090829672,1,N,
+Akerlof_2010_2010ApJ725L15A_bn090829672.pdf,2010ApJ...725L..15A,1010.1588,LAT-photon-cluster-search,bn090829672,1,N,
+Bordoloi_2026_2026ApJ100358B_bn091209001.pdf,2026ApJ..1003...58B,arXiv:2511.20310,quasi-thermal/IC physical model (initial-41 Band sample),bn091209001,1,N,
+Golkhou_2015_2015ApJ81193G_bn120119170.pdf,2015ApJ...811...93G,1501.05948,prompt-temporal;MVT;variability-catalog,bn120119170;bn110618366;bn110928180,3,N,
+vonKienlin_2014_2014ApJS211_13V_bn110920546.pdf,2014ApJS..211...13V,1401.5080,gbm-burst-catalog;durations;fluence,bn110920546;bn110618366;bn110928180,3,N,
+NO_PDF_iop_captcha_no_arxiv,2017ApJS..229...31H,,ipn-catalog;localization,bn101126198;bn110618366,2,N,
+Iyyani_2015_2015MNRAS4501651I_bn110920546.pdf,2015MNRAS.450.1651I,1503.05926,prompt-photosphere;SUBPHOTOSPHERIC-DISSIPATION;2BB+PL;TWO-BREAK;spectral-width;DEDICATED-bn110920546,bn110920546,1,N,
+Shenoy_2013_2013ApJ778_3S_bn110920546.pdf,2013ApJ...778....3S,1304.4168,prompt-temporal;CURVATURE-HLE;peakflux-peakfreq;pulse-width-energy;lag;DEDICATED-bn110920546,bn110920546,1,N,
+McGlynn_2012_2012grbconfE12M_bn110920546.pdf,2012grb..confE..12M,,prompt-photosphere;Band+BB;PRIMARY-SOURCE-for-chained-values;proceedings,bn110920546,1,N,
+Ryde_2019_2019MNRAS4841912R_bn110920546.pdf,2019MNRAS.484.1912R,1901.01775,prompt-timeresolved;alpha-intensity;subphotospheric-heating;OUTLIER-bn110920546,bn110920546,1,N,
+Biltzinger_2020_2020AA640A8B_bn110920546.pdf,2020A&A...640A...8B,2005.11219,methods-background;SAA-activation;PHYSICAL-BKG-MODEL;showcase-bn110920546,bn110920546,1,N,
+WangK_2020_2020ApJ899111W_bn110920546.pdf,2020ApJ...899..111W,2006.15901,prompt-photosphere;variability;thermal-fraction,bn110920546,1,N,
+Hascoet_2013_2013AA551A124H_bn110920546.pdf,2013A&A...551A.124H,1302.0235,prompt-photosphere;theory;citation-only,bn110920546,1,N,
+Ahlgren_2015_2015MNRAS454L31A_bn110920546.pdf,2015MNRAS.454L..31A,1506.02926,prompt-photosphere;DREAM;subphotospheric;citation-only,bn110920546,1,N,
+Iyyani_2018_2018JApA39_75I_bn110920546.pdf,2018JApA...39...75I,,review;prompt-emission;MODEL-DEGENERACY-bn110920546,bn110920546,1,N,
+Burgess_2019_2019MNRAS4851262B_bn110920546.pdf,2019MNRAS.485.1262B,1512.01059,prompt-timeresolved;Golenetskii;hierarchical-Bayes,bn110920546,1,N,
+PeEr_2017_2017ApJ850200P_bn110920546.pdf,2017ApJ...850..200P,1604.06590,theory;magnetization;citation-only,bn110920546,1,N,
+Tang_2021_2021ApJ922255T_bn110920546.pdf,2021ApJ...922..255T,2103.15355,prompt-extraPL;short-GRB;citation-only,bn110920546,1,N,
+SharmaV_2020_2020MNRAS4935218S_bn110920546.pdf,2020MNRAS.493.5218S,2003.02284,polarization;prompt;citation-only;MULTIPLE-BREAKS-statement,bn110920546,1,N,
+WangF_2020_2020ApJ893_77W_bn110920546.pdf,2020ApJ...893...77W,1902.05489,statistics;GRB-catalog;NAME-COLLISION-record,bn110920546,1,N,
+Gupta_2023_2023arXiv231216265G_bn110920546.pdf,2023arXiv231216265G,2312.16265,thesis;multiwavelength;citation-only,bn110920546,1,N,
+2023ApJ...949..110T (Tak_2023_2023ApJ949110T.pdf): cited_by += bn110920546, n_bursts += 1
+2023MNRAS.519.3201C (CaballeroGarcia_2023_..._bn090719063.pdf): cited_by += bn110920546, n_bursts += 1
+2021ApJS..253...43L (Li_2021_2021ApJS25343L.pdf): cited_by += bn110920546, n_bursts += 1
+2019ApJS..245....7L (Li_2019_2019ApJS2457L.pdf): cited_by += bn110920546, n_bursts += 1
+2019ApJ...886...20Y (Yu_2019_ApJ_886_20.pdf): cited_by += bn110920546, n_bursts += 1
+2019MNRAS.485..474A (Ahlgren_2019_2019MNRAS485474A.pdf): cited_by += bn110920546, n_bursts += 1
+2018ApJ...865..153L (Lu_2018_2018ApJ865153L.pdf): cited_by += bn110920546, n_bursts += 1
+2014ApJ...784L..43B (Burgess_2014_2014ApJ784L43B_bn090719063.pdf): cited_by += bn110920546, n_bursts += 1
+2014ApJ...784...17B (Burgess_2014_2014ApJ78417B_bn090809978.pdf): cited_by += bn110920546, n_bursts += 1
+Yu_2016_2016AA588A135Y_bn110721200.pdf,2016A&A...588A.135Y,1601.05206,prompt-timeresolved;GBM-catalog;PLBB-negative,bn110721200;bn110920546,2,N,
+Wang_2024_2024RAA24b5006W_bn110721200.pdf,2024RAA....24b5006W,2401.14969,prompt-timeresolved;evolution-patterns,bn110721200;bn110920546,2,N,
+Zhang_2022_2022arXiv220507670Z_bn130310840.pdf,2022arXiv220507670Z,2205.07670,DEDICATED;magnetar-giant-flare;QPO;high-Ep;prompt-spectroscopy,bn130310840,1,N,
+Lu_2017_2017arXiv171006979L_bn130310840.pdf,2017arXiv171006979L,1710.06979,short-GRB-catalog;GBM+LLE;prompt-spectroscopy,bn130310840,1,N,
+Bissaldi_2015_2015arXiv150204714B_bn130310840.pdf,2015arXiv150204714B,1502.04714,bright-BGO-LLE-sample;energy-dependent-duration;detector-geometry,bn130310840,1,N,
+NarayanaBhat_2016_2016ApJS22328N_bn110928180.pdf,2016ApJS..223...28N,1603.07612,gbm-burst-catalog-3;durations;fluence,bn110928180;bn130310840,2,N,
+Greiner_2024_2024A&A691A158G_bn100707032.pdf,2024A&A...691A.158G,,grond-afterglow-sample;module-future-afterglow,bn100707032;bn130310840,2,N,
+Fraija_2026_2026MNRAS545f1970F_bn150902733.pdf,2026MNRAS.545f1970F,2511.23426,module-future;afterglow;reverse-shock;ssc,bn150902733,1,N,
+He_2022_2022AA657A111H_bn150902733.pdf,2022A&A...657A.111H,2109.05177,module-future;afterglow;lat-upturn;ssc,bn150902733,1,N,
+2021ApJS..253...43L (Li_2021_2021ApJS253_43L_PUB.pdf): cited_by += bn150902733, n_bursts += 1
+2026arXiv260417835L (Li_2026_intensity_tracking_arXiv260417835.pdf): cited_by += bn150902733, n_bursts += 1
+2023ApJ...949..110T (Tak_2023_2023ApJ949110T.pdf): cited_by += bn150902733, n_bursts += 1
+2019ApJ...878...52A (Ajello_2019_2019ApJ87852A.pdf): cited_by += bn150902733, n_bursts += 1
+Basak_2017_2017MNRAS472891B_bn151006413.pdf,2017MNRAS.472..891B,1707.09924,timeres-singlepulse;spectral-evolution;lle-lat;polarimetry,bn151006413,1,N,
+Rao_2016_2016ApJ83386R_bn151006413.pdf,2016ApJ...833...86R,1608.07388,timeres-singlepulse;pulse-shape;czti-polarimetry;joint-instrument,bn151006413,1,N,
+Chattopadhyay_2021_2021JApA4282C_bn151006413.pdf,2021JApA...42...82C,2102.13594,joint-instrument-spectroscopy;bayesian-blocks,bn151006413,1,N,
+Chattopadhyay_2019_2019ApJ884123C_bn151006413.pdf,2019ApJ...884..123C,1707.06595,polarimetry-sample;prompt-spectra,bn151006413,1,N,
+Zhang_2016_2016ApJ820L32Z_bn151006413.pdf,2016ApJ...820L..32Z,1603.01381,central-engine;xray-flare;dtw,bn151006413,1,N,
+Tiwari_2025_2025arXiv251005239T_bn151006413.pdf,2025arXiv251005239T,2510.05239,afterglow-xray-gev;module-future,bn151006413,1,N,
+Wu_2022_2022arXiv220804681W_bn151006413.pdf,2022arXiv220804681W,2208.04681,polarization-modelling;module-future,bn151006413,1,N,

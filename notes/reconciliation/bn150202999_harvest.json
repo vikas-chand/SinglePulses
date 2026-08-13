@@ -1,0 +1,270 @@
+{
+ "burst": "bn150202999",
+ "grb_name": "GRB 150202B",
+ "grb_name_verification": "Resolved from a circular, never assumed: GCN 17385 (LAT) and GCN 17388 (GBM) both name it GRB 150202B and both quote 'trigger 444614351/150202999' with 23:59:08.27 UT on 02 Feb 2015, matching results/grb_sample.ecsv TRIGGER_TIME (MJD 57055.999401313 -> 2015-02-02T23:59:08.273) and the response-header TRIGTIME 444614351.273414. von Kienlin+2020 p.66 prints the pairing verbatim.",
+ "generated_utc": "2026-08-12",
+ "generated_by": "106-burst campaign doc-layer worker (Steps 0, 0b, 1)",
+ "skills_followed": [
+  "dev/ai_guides/GCNIntelligence.md",
+  "dev/ai_guides/LiteratureHarvest.md",
+  "dev/ai_guides/DataInventory.md"
+ ],
+ "idempotency": "results/gcn/bn150202999/ did NOT exist (created: dossier + gcn_raw). notes/reconciliation/bn150202999_* did NOT exist (created: harvest + P0 freeze). results/qc/bn150202999_step1_response_coverage.ecsv did NOT exist (created). PRE-EXISTING and NOT overwritten: notes/literature_tier1/bn150202999.md (earlier-era note with 4 candidate papers - read, cross-checked, and superseded in scope by this harvest, file untouched); results/clean_per_burst_human_final/bn150202999/ (archival fits, read-only as the P0 prior). results/sweep106/ was NEVER listed or read.",
+ "ads_queries": {
+  "token": "ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env (40 chars, working)",
+  "four_required_forms": {
+   "full:\"GRB 150202B\"": {
+    "numFound": 8,
+    "articles": 1,
+    "note": "7 of the 8 hits are the burst's own GCN circulars; the only article is Duan & Wang 2020."
+   },
+   "full:\"bn150202999\"": {
+    "numFound": 0
+   },
+   "full:\"150202999\"": {
+    "numFound": 0
+   },
+   "full:\"444614351\"": {
+    "numFound": 0
+   }
+  },
+  "extra_forms_run": {
+   "full:\"GRB150202B\"": 0,
+   "full:\"150202B\"": "11 (7 GCNs + Duan2020 + Nava2018 + 2 false positives: 2009Tecto..28.1003H and 2016ChPhB..25j7805S, both matching a sample/specimen ID)",
+   "full:\"GRB 150202\"": 0,
+   "full:\"GRB150202999\"": 0,
+   "full:\"GRB 150202999\"": 0,
+   "full:\"GRB150202\"": 0,
+   "body:\"150202B\"": 4,
+   "citations(2015GCN.17385....1A)": 0,
+   "citations(2015GCN.17388....1P)": "1 -> 2020ApJ...893...77W (Wang F.+2020); see unverified_membership below",
+   "citations(2015GCN.17422....1G)": 0,
+   "citations(2015GCN.17398....1H)": 0,
+   "citations(2015GCN.17429....1S)": 0,
+   "title:\"Interplanetary Network Supplement\" year:2015-2026": "1 -> Hurley+2017 (2017ApJS..229...31H), supplement to the SECOND GBM catalog, whose coverage ends before 2015 -> excluded by date, not fetched"
+  },
+  "doctype_filter": "kept {article, eprint} per the skill; circulars handled by Step 0a",
+  "series_check": "No numbered series among the hits (no 'Comprehensive Analysis I-IV' style set). Duan & Wang 2019 (GRB 180720B) and Li+2019 (GRB 131231A) are companion single-burst papers of the Duan & Wang lineage but do not contain 150202B - not fetched."
+ },
+ "scholar_channel_phase_1b": {
+  "used": true,
+  "trigger_condition": "Condition 1 of Phase 1b: 'the ADS four-form query comes back thin or empty'. The four required forms returned exactly ONE refereed article (Duan & Wang 2020) - the thinnest possible non-zero result.",
+  "channel_actually_used": "HONEST NOTE: Google Scholar itself has no API and no browser was driven in this pass. The finding channel used was the agent's general web-search tool, which is a SUBSTITUTE for the Scholar channel, not the Scholar channel itself. Every hit was resolved back to an ADS bibcode before entering this manifest, exactly as the skill requires.",
+  "queries_used": [
+   "\"GRB 150202B\" Fermi spectral analysis prompt emission",
+   "\"150202B\" gamma-ray burst LLE time-resolved spectrum paper",
+   "\"GRB 150202B\" 2015 Fermi GBM burst"
+  ],
+  "yield": "1 NEW refereed paper that the four-form ADS query MISSED: Maraventano+2025 (2025A&A...697A.161M). The search surfaced the arXiv HTML/PDF of 'High energy time lags of Gamma Ray Bursts'; a direct PyMuPDF grep of arXiv:2503.17216 found '150202B' on 3 pages; the bibcode was then resolved via ADS (arXiv:2503.17216 -> 2025A&A...697A.161M, REFEREED, PUB_OPENACCESS)."
+ },
+ "harvest_lesson_HL_bn150202999": "THE FOUR-FORM ADS QUERY MISSED A 2025 REFEREED A&A PAPER THAT MEASURES THIS BURST. ADS full:\"150202B\" returns 11 documents and Maraventano+2025 is not among them, even though the string '150202B' appears on 3 of its 18 pages (sample list, Table 2 lag row, Table 3 dash row). The burst appears there ONLY inside tables, and ADS's indexed full text evidently does not cover them for this record. GENERALISABLE RULE: for bursts whose entire literature footprint is table rows in sample papers (i.e. every faint/undistinguished burst in our 106), a null ADS full-text result is NOT evidence of absence - the Phase-1b finding channel must be run, and candidate sample papers (lag catalogs, LLE catalogs, GBM/LAT catalogs) should be grepped directly at the PDF level.",
+ "identity_verification_T1": "MANDATORY here and it CAUGHT something. https://gcn.gsfc.nasa.gov/other/150202.gcn3 mixes two bursts: GRB 150202A (Swift-BAT trigger 629547, 23:10:02 UT, RA 39.236 Dec -33.150, with its own XRT afterglow and excess N_H) and our GRB 150202B (Fermi, 23:59:08.27 UT, RA 86.8 Dec 58.6). The two are 127 deg apart and 49 min apart. Circulars 17376/17381/17382/17390/17392/17401 belong to 150202A and were EXCLUDED from bn150202999_gcn_raw.txt. No 150202A value entered the dossier. Every paper row below was accepted only after the burst was pinned to trigger 444614351 / bn150202999 / RA 86.x Dec 58-59 / T90 167 s.",
+ "n_papers": 6,
+ "n_papers_refereed": 6,
+ "n_pdfs_new_this_pass": 4,
+ "n_pdfs_reused_no_redownload": 2,
+ "n_pdfs_not_obtained": 0,
+ "papers": [
+  {
+   "bibcode": "2025A&A...697A.161M",
+   "first_author": "Maraventano, C.",
+   "year": 2025,
+   "title": "High energy time lags of gamma-ray bursts",
+   "role": "SAMPLE MEMBER - the NEWEST analysis of this burst (Phase 3b: diff this frame FIRST)",
+   "refereed": true,
+   "doctype": "article",
+   "pdf": "Skills_training/Maraventano_2025_2025AA697A161M_bn150202999.pdf",
+   "pdf_source": "arXiv:2503.17216 (EPRINT_OPENACCESS; PUB_OPENACCESS also available)",
+   "in_corpus_index_before": false,
+   "found_via": "Phase-1b finding channel (web search), NOT the four-form ADS query",
+   "identity_verified_by": "GRB name '150202B' in the 70-burst LLE-catalog sample list (p.6), Table 2 lag row (p.7), Table 3 dash row (p.9); sample drawn from the Fermi LLE catalog + GBM catalog, i.e. keyed to the GBM trigger",
+   "prompt_sections": "READ: Sec.3 (DCF lag method + the sign convention sentence - copy it WITH the number, T3), Sec.4 (LLE 30-100 MeV pegpwrlw spectral procedure, and why 7 bursts needed the 10 MeV extension), Table 2 (our lag row), Sec.5.1 + Sec.8 (the 'positive tau12/tau13 -> negative tau14' class our burst belongs to). SKIP for now: Sec.6 (lag vs fluence population statistics), Sec.7 (alpha_LLE vs beta_BEST scenario) - population-level, not burst-level.",
+   "values_for_us": {
+    "interval_s": "4.0 to 17.5 (rel. GBM trigger); inside our stamped window -3 to 22 s",
+    "tau12_s": "+0.07 +/- 0.02  [Band1 10-100 keV vs Band2 150-500 keV]",
+    "tau13_s": "+0.12 +/- 0.04  [Band1 vs Band3 500 keV-1 MeV]",
+    "tau14_s": "-0.10 +/- 0.04  [Band1 vs Band4 30-100 MeV LLE]",
+    "sign_convention": "positive lag = high-energy photons PRECEDE low-energy ones (verbatim: 'positive spectral lags (i.e., high energy photons preceding low energy ones, by definition)')",
+    "lle_spectrum": "NOT REPORTED for 150202B (Table 3 gives '-'); the paper reports LLE spectra for 56 of the 70 bursts and gives no per-burst reason"
+   },
+   "module_future_tags": [],
+   "why_it_matters": "Its tau14 < 0 at ~2.5 sigma puts 150202B in the class the authors read as 'a potential spectral inversion around 10-100 MeV' / a distinct harder high-energy component emerging - a directly testable claim for our joint GBM+LLE fits, and the ONLY published statement about this burst's high-energy behaviour inside our window."
+  },
+  {
+   "bibcode": "2021ApJ...913...60P",
+   "first_author": "Poolakkil, S.",
+   "year": 2021,
+   "title": "The Fermi-GBM Gamma-Ray Burst Spectral Catalog: 10 yr of Data",
+   "role": "CATALOG (the source of the 4-model time-integrated and peak-flux fits we diff against)",
+   "refereed": true,
+   "doctype": "article",
+   "pdf": "Skills_training/Poolakkil_2021_2021ApJ91360P_bn150202999.pdf",
+   "pdf_source": "arXiv:2103.13528",
+   "in_corpus_index_before": false,
+   "identity_verified_by": "NOT via the PDF - a PyMuPDF grep of all 27 pages finds NO '150202' string (the catalog's per-burst tables are machine-readable only). Membership and values were taken instead from the HEASARC fermigbrst TAP table (name='GRB150202999'), which IS the catalog's data product, queried directly this pass.",
+   "prompt_sections": "READ: Sec.2-3 (model definitions, Castor C-STAT, the pflx/flnc interval conventions, and how 'best model' is chosen) so our AIC comparison is frame-aligned. SKIP: population distributions.",
+   "values_for_us": {
+    "flnc_interval_s": "-3.072 to 201.730 (TOTAL: both episodes)",
+    "flnc_best_model": "Band; Ep = 234.24 +/- 13.78 keV, alpha = -0.830 +/- 0.031, beta = -2.149 +/- 0.106, red-chi2 0.9876/480",
+    "flnc_comp": "Ep = 286.38 +/- 11.04, index -0.900 +/- 0.022, 1.0171/481",
+    "flnc_sbpl": "Ebreak = 136.95 +/- 11.08 keV, lam1 -0.983 +/- 0.023, lam2 -2.174 +/- 0.082, brkscale 0.30 fixed, 0.98892/480",
+    "flnc_plaw": "index -1.4547, 3.126/482 (rejected)",
+    "pflx_interval_s": "8.192 to 9.216 (1.024 s peak; EP1 peak)",
+    "pflx_best_model": "SBPL; Ebreak = 158.12 +/- 18.38 keV, lam1 -0.863 +/- 0.040, lam2 -2.133 +/- 0.118, 1.0261/480",
+    "pflx_band": "Ep = 281.82 +/- 24.74, alpha -0.705 +/- 0.051, beta -2.091 +/- 0.119, 1.0276/480",
+    "pflx_comp": "Ep = 359.92 +/- 23.05, index -0.793 +/- 0.039, 1.1017/481"
+   },
+   "module_future_tags": [],
+   "why_it_matters": "THE catalog frame for our P3 diff, and note that BOTH catalog 'best models' involve a break-energy parameterisation (Band integrated, SBPL at peak) with SBPL essentially tied with Band - i.e. the burst is already known to be curvature-dominated, which is what our SBPL/DSBPL menu probes."
+  },
+  {
+   "bibcode": "2020ApJ...890...90D",
+   "first_author": "Duan, Ming-Ya",
+   "year": 2020,
+   "title": "A Spectral Analysis of Fermi-LLE Gamma-Ray Bursts",
+   "role": "DEDICATED-ish ANALYSIS (the only paper that fits this burst time-resolved; 36-burst LLE sample, 7 slices for 150202B)",
+   "refereed": true,
+   "doctype": "article",
+   "pdf": "Skills_training/Duan_2020_2020ApJ89090D.pdf",
+   "pdf_source": "already on disk from an earlier burst - NOT re-downloaded (G2 rule)",
+   "in_corpus_index_before": true,
+   "corpus_row_before": "Duan_2020_2020ApJ89090D.pdf | 2020ApJ...890...90D | 1912.10587 | LLE-sample;timeres;correlations;selection-effects | cited_by: project-core;bn130427324;bn110721200 | read=N",
+   "identity_verified_by": "'150202B' on 8 pages incl. Table 1 (peak slice), Table 2 (integrated), Table 3 (detectors n0,n1,b0 + correlations); sample = LLE bursts from Ajello+2019, keyed to the Fermi trigger",
+   "prompt_sections": "READ: Sec.2 (RMFIT, TTE, 2 NaI + 1 BGO, FIRST-ORDER polynomial background, S/N=40, Band-only, LLE/LAT deliberately dropped - every one of these is a frame item for the diff); Table 1 row (peak slice); Table 2 row (integrated); Table 3 row (correlations + evolution class); Sec.3.3 text on the two 'anti-tracking' bursts. SKIP: Sec.3.4 simulation of artificial correlations (population-level).",
+   "values_for_us": {
+    "integrated_0_to_50.048_s": "alpha = -0.7537 +/- 0.0440, beta = -2.260 +/- 0.166, Ep = 235.0 +/- 17.7 keV, red-chi2 1.23 [coverage: EP1 + the quiet gap; EP2 excluded]",
+    "peak_slice_8.063_8.789_s": "alpha = -0.7736 +/- 0.0612, beta = -1.872 +/- 0.070, Ep = 383.2 +/- 53.8 keV, red-chi2 1.07",
+    "n_slices": 7,
+    "detectors": "n0,n1,b0 (NO n3, NO LLE)",
+    "correlations": "r(Ep-F) = +0.72, r(alpha-F) = -0.48, r(Ep-alpha) = -0.69",
+    "evolution_class": "Ep rough-tracking / alpha ANTI-tracking (1 of only 2 anti-trackers in 36 bursts)",
+    "synchrotron_limit": "'not all' slices have alpha > -2/3",
+    "lag_expectation": "listed among bursts expected to show NEGATIVE lags (a prediction from Ep/flux peak alignment, not a measurement)",
+    "NOT_TABULATED": "the 7 per-slice (Ep, alpha) values - only the peak slice and the integrated fit are printed; Figure 6 shows the evolution graphically"
+   },
+   "module_future_tags": [],
+   "why_it_matters": "The single strongest external constraint on our Step-6 evolution classification, and it makes a sharp, falsifiable claim: alpha ANTI-tracks the flux (r = -0.48). Our archival block-resolved alphas run the other way (hardest near the flux peak, softest at the end), so this is a real diff item, not a formality."
+  },
+  {
+   "bibcode": "2020ApJ...893...46V",
+   "first_author": "von Kienlin, A.",
+   "year": 2020,
+   "title": "The Fourth Fermi-GBM Gamma-Ray Burst Catalog: A Decade of Data",
+   "role": "CATALOG (durations, localization, fluence, peak fluxes)",
+   "refereed": true,
+   "doctype": "article",
+   "pdf": "Skills_training/vonKienlin_2020_2020ApJ89346V_bn150202999.pdf",
+   "pdf_source": "arXiv:2002.11460",
+   "in_corpus_index_before": false,
+   "corpus_note": "The 2014 (2nd) catalog by the same first author IS in the corpus under two filenames; this is the FOURTH catalog, a different paper - a new row is required, not an edit.",
+   "identity_verified_by": "PDF rows verified verbatim on 4 pages: p.66 'bn150202999 | GRB 150202B | 23:59:08.2734 | 86.8 | 58.5 | 1.0 | Fermi-GBM'; p.131 durations; p.193 fluence/peak-flux; p.252 BATSE-band fluence/peak-flux",
+   "prompt_sections": "READ: the trigger table row (p.66) for the name/position/other-detector flags, the duration table row (p.131) for T90/T50 AND the detector set used, and Sec.2 for the duration/fluence conventions (band, background fitting). SKIP: the decade-level statistics.",
+   "values_for_us": {
+    "p66_row": "bn150202999 | GRB 150202B | 23:59:08.2734 | RA 86.8 | Dec 58.5 | err 1.0 deg | Fermi-GBM | ... | 'K, IA, Mo, Me, L, ARR' (other-instrument / ARR flags)",
+    "p131_durations": "detector set 0+1+3 | T90 = 167.427 +/- 3.367 s (start 1.536) | T50 = 7.168 +/- 0.362 s (start 7.680)",
+    "p193_10-1000keV": "fluence 3.25E-05 +/- 9.45E-08 erg/cm2 | peak flux 64ms 30.83 +/- 1.52 | 256ms 28.93 +/- 0.76 | 1024ms 23.80 +/- 0.38 ph/cm2/s",
+    "p252_50-300keV": "fluence 1.74E-05 +/- 5.21E-08 | peak flux 12.74 / 12.40 / 10.93"
+   },
+   "module_future_tags": [],
+   "why_it_matters": "Independent confirmation, at the printed-page level, that the catalog duration/fluence numbers in results/grb_sample.ecsv are the 4th-catalog values, AND that the catalog's own detector set is exactly our approved NaI set (0,1,3) - which closes a detector-set explanation for any T90/fluence disagreement in advance."
+  },
+  {
+   "bibcode": "2019ApJ...878...52A",
+   "first_author": "Ajello, M.",
+   "year": 2019,
+   "title": "A Decade of Gamma-Ray Bursts Observed by Fermi-LAT: The Second GRB Catalog (2FLGC)",
+   "role": "CATALOG (LLE + LAT detection, intervals, likelihood spectrum) - the source of the D4 interval facts",
+   "refereed": true,
+   "doctype": "article",
+   "pdf": "Skills_training/Ajello_2019_2019ApJ87852A.pdf",
+   "pdf_source": "already on disk from bn120624933 - NOT re-downloaded (G2 rule)",
+   "in_corpus_index_before": true,
+   "corpus_row_before": "Ajello_2019_2019ApJ87852A.pdf | 2019ApJ...878...52A | 1906.11403 | lat-catalog-2 | cited_by: bn120624933 | read=N",
+   "identity_verified_by": "'150202B' verified verbatim on PDF pages 56 (trigger/position/theta), 61 (LLE + LAT durations), 70 (likelihood row), 81 (highest-energy event); HEASARC fermilgrb row 211 gives trigger_met = 444614351.27",
+   "prompt_sections": "READ: the tab_durations row (p.61) - T_LAT,0 / T_LAT,1 / LLE T05-T95 - this is the D4 gate for whether any LAT statement bears on our window; the likelihood table row (p.70); Sec.2-3 on how LLE significance and LAT durations are defined. SKIP: afterglow-phase temporal-decay modelling (not populated for this burst anyway).",
+   "values_for_us": {
+    "lle": "detection significance 20.0 sigma (BBBD); LLE T05 = 4.862, T90 = 12.648, T95 = 17.510 s -> ENTIRELY inside our -3..22 s window",
+    "lat_intervals": "TL0 = 44.86 s, TL1 = 115.70 s, TL100 = 70.84 +/- 54.49 s -> ENTIRELY outside our window (D4)",
+    "like_best": "0-4000 s: TS = 29.12, photon index -2.175 +/- 0.389, flux 1.60 +/- 0.66e-6 ph/cm2/s, fluence 4.84 +/- 3.33e-6 erg/cm2",
+    "like_lat": "44.86-115.70 s: TS = 12.25, index -1.795 +/- 0.647",
+    "like_gbm": "1.536-168.963 s: TS = 15.36, index -1.830 +/- 0.548",
+    "highest_energy_event": "1 GeV at t = 115.70 s, association probability 0.99",
+    "geometry": "theta = 17.23 deg, zenith = 66.90 deg, ARR flag = 1, no redshift, no extended-emission temporal fit (lat_bpl_chi2 = lat_spl_chi2 = 999)"
+   },
+   "module_future_tags": [],
+   "why_it_matters": "It settles two things that govern our fit: (a) the LLE signal is real and lives entirely inside our window, so our LLE plugin should carry information; (b) every >100 MeV statement about this burst belongs to 44.9-115.7 s and therefore predicts NOTHING about our -3..22 s window (D4)."
+  },
+  {
+   "bibcode": "2018IJMPD..2742003N",
+   "first_author": "Nava, Lara",
+   "year": 2018,
+   "title": "High-energy emission from gamma-ray bursts",
+   "role": "REVIEW with a compiled LAT-GRB table (Table 1) containing this burst",
+   "refereed": true,
+   "doctype": "article",
+   "pdf": "Skills_training/Nava_2018_2018IJMPD2742003N_bn150202999.pdf",
+   "pdf_source": "arXiv:1804.01524",
+   "in_corpus_index_before": false,
+   "identity_verified_by": "Table 1 row on p.10 verbatim: '150202B | L | 167 | 234+/-14 | (5.49 +/- 0.09)10-5 | GBMcat | N | <0.1 | - | 17385' (T90 and Epeak match the GBM catalog; the reference column points at GCN 17385, our LAT circular)",
+   "prompt_sections": "READ: Table 1 row; Sec.3.1-3.2 (LAT detection statistics, the definition of temporally extended HE emission - our burst is flagged 'N'). SKIP: the afterglow/external-shock chapters (module-future).",
+   "values_for_us": {
+    "row": "T90 = 167 s; Epeak = 234 +/- 14 keV (source 'GBMcat'); fluence (5.49 +/- 0.09)e-5 erg/cm2 [BAND UNVERIFIED - footnote f not recoverable from the PDF text layer]; z = none; extended emission = N; highest-energy photon = '< 0.1' GeV; arrival time = '-'; ref = GCN 17385"
+   },
+   "module_future_tags": [
+    "module-future; afterglow"
+   ],
+   "why_it_matters": "It is the only published source that states a highest-energy-photon value for this burst, and it says '< 0.1 GeV' - in direct conflict with 2FLGC's 1 GeV event at 115.7 s (p = 0.99). Recorded as an open inconsistency (dossier Sec.7 item 1), impacting nothing inside our window but not to be laundered either way."
+  }
+ ],
+ "checked_and_excluded": [
+  {
+   "bibcode": "2017ApJS..229...31H",
+   "reason": "IPN Supplement to the SECOND Fermi GBM catalog; its coverage ends before 2015, so 150202B cannot be in it. Not fetched."
+  },
+  {
+   "bibcode": "2020ApJ...893...77W",
+   "reason": "Wang F.+2020 'A Comprehensive Statistical Study of GRBs' CITES GCN 17388 (ADS citations() query), and the PDF's reference list contains 'Pelassa, V. 2015, GRB Coordinates Network, 17388' (p.85) - but a whitespace-normalised search of all 210 pages finds NO occurrence of '150202'. MEMBERSHIP UNVERIFIED; the PDF is already in the corpus (cited_by bn110920546) and was NOT re-downloaded. Not counted as a paper for this burst."
+  },
+  {
+   "bibcode": "2009Tecto..28.1003H",
+   "reason": "ADS full:'150202B' false positive (geology; matches a sample ID)."
+  },
+  {
+   "bibcode": "2016ChPhB..25j7805S",
+   "reason": "ADS full:'150202B' false positive (semiconductor physics; matches a specimen ID)."
+  },
+  {
+   "note": "arXiv:2606.10926 ('Time lags as a proxy of the spectral evolution in GRBs', 2026) was surfaced by the Phase-1b search and grepped directly: 0 occurrences of '150202' in 13 pages. Excluded on evidence, not assumption."
+  }
+ ],
+ "zero_papers_finding": null,
+ "zero_circulars_finding": null,
+ "gcn_finding": "n_circulars = 7 for GRB 150202B (17385 LAT, 17388 GBM, 17396 Swift tiling, 17398 IPN, 17405 XRT/UVOT, 17422 Konus-Wind, 17429 XRT afterglow confirmation). Fetched from https://gcn.gsfc.nasa.gov/other/150202B.gcn3 (HTTP 200, 13457 bytes). The unsuffixed page 150202.gcn3 (23982 bytes) additionally carries 6 circulars for the UNRELATED Swift burst GRB 150202A - excluded (T1).",
+ "redshift_finding": "NONE. No circular reports a redshift; 2FLGC redshift = '--'; Nava 2018 Table 1 z column empty; UVOT found nothing at the afterglow position (GCN 17405). Recorded as an honest 'none', not an absence of searching.",
+ "pending_shared_csv_rows": {
+  "_rule": "NO shared CSV was written by this worker. These rows are queued for whoever consolidates.",
+  "corpus_index_new_rows": [
+   "Maraventano_2025_2025AA697A161M_bn150202999.pdf,2025A&A...697A.161M,2503.17216,prompt-lags;LLE-sample;DCF;high-energy-component,bn150202999,1,N,",
+   "Poolakkil_2021_2021ApJ91360P_bn150202999.pdf,2021ApJ...913...60P,2103.13528,gbm-spectral-catalog;4-model;flnc-pflx,bn150202999,1,N,",
+   "vonKienlin_2020_2020ApJ89346V_bn150202999.pdf,2020ApJ...893...46V,2002.11460,gbm-burst-catalog-4;durations;fluence,bn150202999,1,N,",
+   "Nava_2018_2018IJMPD2742003N_bn150202999.pdf,2018IJMPD..2742003N,1804.01524,review;LAT-GRB-table;high-energy,bn150202999,1,N,"
+  ],
+  "corpus_index_rows_needing_only_cited_by_update": [
+   "Duan_2020_2020ApJ89090D.pdf (2020ApJ...890...90D): cited_by_bursts 'project-core;bn130427324;bn110721200' -> append ';bn150202999'; n_bursts 0 -> (the existing n_bursts value 0 is already inconsistent with 3 listed bursts; flagging, not fixing)",
+   "Ajello_2019_2019ApJ87852A.pdf (2019ApJ...878...52A): cited_by_bursts 'bn120624933' -> append ';bn150202999'; n_bursts 1 -> 2"
+  ],
+  "gcn_index_csv_row": {
+   "_file": "results/gcn/gcn_index.csv",
+   "_header": "trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed",
+   "_row": "bn150202999,150202B,7,-,11,6"
+  },
+  "_corpus_index_state_note": "Skills_training/corpus_index.csv currently has 159 data rows (160 lines incl. header). It was READ, never written, by this pass."
+ },
+ "open_gaps": [
+  "Duan & Wang 2020 do NOT tabulate the 7 per-slice (Ep, alpha) values for 150202B - only Figure 6 shows them. Our block-resolved diff against their evolution class must therefore be qualitative (sign of the alpha-F correlation) unless the figure is digitised.",
+  "Nava 2018 Table 1's fluence band (footnote f) could not be recovered from the PDF text layer; the 5.49e-5 value is recorded with the band UNVERIFIED.",
+  "Maraventano+2025 report no LLE 30-100 MeV spectrum for this burst (Table 3 dashes) and give no per-burst reason; whether that reflects low LLE statistics or a fit failure is UNKNOWN, and it is a caution for how much high-energy leverage our LLE plugin can be expected to carry.",
+  "Wang F.+2020 cites GCN 17388 but the string '150202' is absent from its 210-page PDF - membership unresolved (see checked_and_excluded).",
+  "The Phase-1b channel used was a general web search, not Google Scholar itself; a browser-driven Scholar pass could still surface something this pass missed."
+ ]
+}

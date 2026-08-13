@@ -1,0 +1,12 @@
+{
+ "burst": "bn150721242",
+ "tally": 12,
+ "frozen_utc": "2026-08-12 (POST-FIT freeze \u2014 fit initially failed 2026-08-11 night, refit after per-bin coverage engine fix)",
+ "engine": "L18/L19/L20/L26/L27/L28 active + per-bin RSP2 coverage fallback",
+ "disclosure": "P0 frozen AFTER the refit completed; the completion check exposed the log tail (blk7: Band alpha=-0.55 Ep=30, BB kT=4.4 LRT=29.8, winner SBPLfree). All OTHER blocks unseen at freeze. Interpretation-bias mitigation = disclosure, not abstinence (bn081125496 precedent). Predictions below derive from the archival census prior only.",
+ "census_prior": "archival: 9 rows; Band+BB-sig blocks [(-1, 8.6), (7, 4.1)]",
+ "predictions": [
+  "P-A: archival census class carries to the refit (see census_prior)",
+  "P-B: blocks 1-7 only; block 0 + T_INT RESPONSE_UNCOVERED (DRM starts +0.064 s vs approved edge -1.2 s) \u2014 a documented quality exclusion, not a choice"
+ ]
+}

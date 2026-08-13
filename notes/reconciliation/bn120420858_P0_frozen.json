@@ -1,0 +1,75 @@
+{
+ "burst": "bn120420858",
+ "grb_name": "GRB 120420B",
+ "tally": null,
+ "tally_note": "106-burst campaign doc-layer worker (parallel sweep), not a numbered gated-walkthrough burst; no tally assigned",
+ "frozen_utc": "2026-08-12 (doc-layer pass; BEFORE any sweep106 fit table opened - this worker is hard-barred from results/sweep106/. The only fit table read is the ARCHIVAL production run recorded under census_prior, which the protocol allows as prior)",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "predictions": [
+  "P-A (BB union rule): ZERO or at most ONE block will pass the union rule (LRT_BANDBB_BAND>=9.2 & kT>1.05 OR LRT_CPLBB_CPL>=9.2 & kT>1.05). Archival: NO block passes either leg - max LRT_BANDBB_BAND = 4.20 (blk0), max LRT_CPLBB_CPL = 1.87 (blk1); the fitted BB temperatures where they exist at all are 3.46-5.85 keV (BANDBB), i.e. the L28 edge-constrained low-kT class that sits under the NaI fit floor and means nothing on its own. Physically a photospheric component is implausible here: the continuum peak is at ~8 MeV (see P-B), so a 4 keV BB is three decades below the peak and carries negligible flux. FALSIFIED IF >=2 blocks pass the union rule, or a preferred kT > 20 keV with LRT>=9.2 appears in any block.",
+  "P-A2 (two-break): LRT_DSBPL_SBPL will stay BELOW 9.2 in the integrated block and in every resolved block. Archival: 0.228 (integrated), 2.147 (blk0), -0.010 (blk1) - the last one NEGATIVE, i.e. the nested DSBPL fit landed above SBPL (an L12-family local-minimum symptom, harmless at this magnitude). The two-break question is structurally ill-posed for this burst: DSBPL's upper break xp railed at the OLD 5 MeV cap in all three archival blocks (5000.0, 5000.0, 4999.97 keV) and its lower break xb is unconstrained (899+/-81, 900+/-69, 10.8+/-219 keV). With the widened cap (xp bounds now 30-5e4 keV, scripts/10 line 361) I expect xp to float to 5-15 MeV and xb to remain undetermined. FALSIFIED IF LRT_DSBPL_SBPL >= 9.2 in the integrated block with a well-constrained xb.",
+  "P-B (spectral hardness / literature frame, integrated over the stamped window): the new integrated fit will place the nuFnu peak in the MeV DECADE, Ep = 5-12 MeV, NOT at the ~290-363 keV of the GBM catalog fluence spectrum, and the CPL index will land in -1.10..-1.35. Derivation of the archival frame (Phase-4 convention conversion, Ep = (2+index)*Ec since our CPL is parameterised by the e-folding energy xc while the catalog reports the nuFnu peak): integrated index -1.2217, xc 9695.2 keV -> Ep = 7546 keV; blk0 index -1.1512, xc 9482.2 -> Ep = 8048 keV; blk1 index -1.2713, xc 7910.0 -> Ep = 5764 keV. Independent published corroboration at the SAME model family and an interval INSIDE our window: catalog pflx_comp over 1.280-2.304 s gives Ep = 7993 +/- 2513 keV, index = -1.1257 +/- 0.0684. The catalog's 290/363 keV values belong to a DIFFERENT interval (flnc, -3.84..247.04 s = the full 255 s, T9 coverage TOTAL) whose soft post-48-s tail dominates; diffing them against our 50 s window without the coverage label would manufacture a 20x discrepancy. FALSIFIED IF the new integrated CPL returns Ep < 1 MeV with a non-railed, tightly constrained error.",
+  "P-B2 (BOUND_CAPPED behaviour - the L9 heir, and the sharpest test in this file): at least one high-energy bound diagnostic will fire in the integrated fit. Specifically (i) Band beta rails at its lower bound -1.6 (scripts/10 line 312) or sits within 0.05 of it - the published Band beta is -1.6440 +/- 0.0429 over an interval that is SOFTER than ours (it includes the whole 255 s tail), so our harder 50 s window should want beta flatter than -1.6, which the bound forbids; and/or (ii) Band Ep / DSBPL xp float into 5-15 MeV, above the NaI band and at the top of the BGO band, with large asymmetric errors; and/or (iii) SBPL Ebreak rails high (the catalog's own SBPL railed at 10682 +/- 7649 keV). The archival run cannot be used to test this - it railed Band Ep at the OLD 5 MeV cap (4999.9999 / 4999.9992 / 3695.5 keV) and reported BAND_VALID=False for the two Ep-railed blocks, which is precisely the L9 failure mode this hardening was written for. FALSIFIED IF Band returns beta well inside (-2.2, -1.7) AND Ep < 1 MeV with symmetric, tight errors.",
+  "P-B3 (evolution inside the window): hard-to-soft softening WITHIN our 50 s window will be MILD - a factor ~1.4, blk0 Ep(CPL) ~ 8.0 MeV -> blk1 ~ 5.8 MeV across -2 -> 43.7 s - because the dramatic softening that takes the 255 s integrated spectrum down to Ep ~ 363 keV happens mostly AFTER 48 s, outside anything we fit. PREDICT block-resolved Ep(CPL) stays above 2 MeV in every block inside the window. FALSIFIED IF any block inside 48 s returns a well-constrained Ep(CPL) < 1 MeV.",
+  "P-C (identity, not a fit target): GRB 120420B (catalog-assigned, verified from three independent sources; NOT from a circular - there are ZERO circulars). NO redshift, NO afterglow, NO follow-up of any kind. Other-instrument detections flagged by von Kienlin+2020: Konus-Wind, INTEGRAL SPI-ACS, Suzaku - none with a published per-burst value I could reach. LAT: theta = 109.71 deg at T0 (source OUTSIDE the FoV), zero events in the downloaded LAT file (-250..+1500 s, P8R3 transient, 12 deg ROI, 30 MeV-300 GeV), like_gbm_ts = 0.0, detection confined to 3501.67-3908.01 s. No LLE (lle_bbbd_sig = 0.0; no gll_* on disk). GBM-only (n4, n8, b0, b1) is the only defensible configuration - which is exactly why the MeV-scale Ep of P-B cannot be pinned down: there is no data above ~40 MeV, and the peak sits at the very top of the BGO band.",
+  "P-D (coverage caveat the P3 diff MUST carry, T9/D4): our stamped source window -2..+48 s spans ~19% of T90 = 254.913 +/- 4.222 s and holds only ~40-43% of the 50-300 keV NET counts (measured this pass with a background polynomial fitted OUTSIDE 0-320 s; n4/n8 net significance is still 8.2/10.8 sigma at 48-60 s, 14.1/16.2 sigma at 80-120 s and 6.2/9.1 sigma at 200-255 s). Every 'time-integrated' number we produce is the integral of the first fifth of this burst. Additionally all four stamped POST-background windows (b1 58.0-189.5, b0 87.6-277.6, n4 114.6-249.6, n8 131.6-243.6 s) sit ON that tail, so the fitted background is biased high and net source counts inside the window are biased low. PREDICT: the new integrated fit will therefore land slightly HARDER and slightly FAINTER than a clean-background version would. FALSIFIED IF a clean-background refit (pre-window only) changes the integrated CPL index by less than 0.02 and the normalisation by less than 3%."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn120420858/spectral_fits.ecsv (previous production run - allowed as prior)",
+  "n_blocks": 3,
+  "block_layout": "1 time-integrated (BLOCK=-1, -2.000 to 43.683 s) + 2 time-resolved (blk0 -2.000 to 10.551 s; blk1 10.551 to 43.683 s). NOTE the archival block span STOPS 4.3 s short of the stamped source stop (48.0 s); also notes/significance_table.csv records n_blocks=4 / n_sig20=1 / pass_ge5=no / median_sig=14.84 / max_sig=21.14 for a DIFFERENT binning era, and dev/FAILED_FITS.md line 30 records n4 spec_num 7 failing in an 8-BB-bin era. Block counts across eras are inconsistent - do not treat 3 as canonical.",
+  "dets_per_block": "n4,n8,b0,b1 (4)",
+  "union_rule_blocks": [],
+  "n_union_resolved": 0,
+  "union_rule_detail": {"LRT_BANDBB_BAND": {"-1": 1.755, "0": 4.196, "1": 2.829}, "LRT_CPLBB_CPL": {"-1": 0.577, "0": 1.723, "1": 1.873}, "threshold": 9.2, "verdict": "NO block passes either leg; the union rule is unanimously negative"},
+  "bandbb_kt_values_keV": {"-1": "4.903 +/- 1.529", "0": "3.462 +/- 0.846", "1": "5.851 +/- 1.265"},
+  "cplbb_kt_values_keV": {"-1": "4.616 +/- 1.682", "0": "3.163 +/- 0.878", "1": "74.90 +/- 27.20 (unconstrained/dubious)"},
+  "bandbb_kt_median_all_blocks_keV": 4.903,
+  "aic_winner_distribution": {"CPL": 3},
+  "bic_winner_distribution": {"CPL": 3},
+  "lrt_dsbpl_sbpl": {"-1": 0.228, "0": 2.147, "1": -0.010},
+  "lrt_dsbpl_sbpl_ge_9p2_blocks": {},
+  "integrated_key_numbers": {
+   "CPL (AIC winner)": "index = -1.2217, xc = 9695.2 keV -> derived Ep = (2+index)*xc = 7546 keV; AIC 7662.51",
+   "BAND": "Ep = 4999.9999 keV RAILED at the old 5 MeV cap (quoted err 0.021 keV = the rail signature), alpha = -1.1200 +/- 0.0266, beta = -2.171 +/- 0.232; BAND_VALID = False; AIC 7668.72",
+   "SBPL": "Ebreak = 5000.0 keV RAILED; SBPL_VALID = False; AIC 7665.58",
+   "DSBPL": "xb = 899.1 +/- 81.0 keV, xp = 5000.0 RAILED, alpha1 = -1.197, alpha2 = -1.288, beta = -2.675; DSBPL_VALID = False; AIC 7669.35",
+   "BANDBB": "kT = 4.903 +/- 1.529 keV, BANDBB_VALID = False; AIC 7670.97",
+   "CPLBB": "kT = 4.616 +/- 1.682 keV, CPLBB_VALID = True; AIC 7665.93",
+   "AIC spread": "CPL 7662.51 < SBPL 7665.58 < CPLBB 7665.93 < BAND 7668.72 < DSBPL 7669.35 < BANDBB 7670.97 - CPL wins by dAIC = 3.06 over the runner-up, i.e. BELOW the dAIC>=10 doctrine threshold: the archival integrated model choice is NOT decisive"
+  },
+  "validity_flags": {"BAND_VALID": {"-1": false, "0": false, "1": true}, "SBPL_VALID": {"-1": false, "0": false, "1": true}, "DSBPL_VALID": {"-1": false, "0": false, "1": false}, "BANDBB_VALID": {"-1": false, "0": false, "1": true}, "CPLBB_VALID": {"-1": true, "0": true, "1": true}, "CPL_VALID": {"-1": true, "0": true, "1": true}},
+  "class": "HARD, Ep-ABOVE-BAND burst: no BB anywhere (0/3 union), no two-break anywhere, CPL wins on AIC in every block but only by dAIC ~ 3, and every curved model that carries a high-energy break RAILED at the old 5 MeV Ep cap. The archival run is therefore NOT a measurement of this burst's peak energy - it is a record of the cap being hit (the L9 failure mode). Two-break count for this burst is 0 and, unusually, that zero is trustworthy: the archival DSBPL LRTs are ~0-2, nowhere near threshold, so no L8/L9 hardening can plausibly promote it."
+ },
+ "harvest_snippets": {
+  "GCN_circulars": [
+   "ZERO. Five archive URLs 404, the live gcn.nasa.gov search index returns totalItems=0 for every form, and the complete 2012-04-18..2012-04-26 listing (24 circulars) contains nothing at all from 2012-04-20. Evidence: results/gcn/bn120420858/bn120420858_gcn_raw.txt"
+  ],
+  "GBM_catalog_fermigbrst_live": [
+   "flnc (-3.840..247.040 s, dets n8+b1 via scat mask 00000000100001, Castor C-STAT): BEST = Band, Ep = 289.730 +/- 68.212 keV, alpha = -0.95320 +/- 0.08244, beta = -1.64403 +/- 0.04295, chi2r = 1.1977/238; flnc_comp Ep = 363.352 +/- 40.759, index = -0.94284 +/- 0.05651, chi2r 1.2886/239; flnc_plaw index = -1.45609 +/- 0.01241, chi2r 1.3389/240; flnc_sbpl indx1 = -1.39801, Ebreak = 10681.6 +/- 7649.0 keV (RAILED HIGH), indx2 = -2.4971 +/- 2.0847; Band energy fluence 2.8048e-05 erg/cm2 (10-1000 keV)",
+   "pflx (1.280..2.304 s, PEAK BIN, inside our window): BEST = Comptonized, Ep = 7993.06 +/- 2513.17 keV, index = -1.12570 +/- 0.06839, chi2r 0.9688/239; pflx_band Ep = 254.50 +/- 94.80, alpha = -0.55100 +/- 0.63620, beta = -1.47623 +/- 0.06921",
+   "durations/fluence: T90 = 254.913 +/- 4.222 s (T90START 0.003, 50-300 keV), T50 = 124.866 +/- 3.238 s (T50START 21.504), fluence(10-1000) = 4.32524e-05 +/- 2.14e-07 erg/cm2, flux_1024 = 4.809 +/- 0.328 ph/cm2/s at t = 1.728 s; error_radius 1.11 deg; bcat mask 00001000100000 = n4+n8"
+  ],
+  "vonKienlin2020_4th_GBM_catalog_VizieR": [
+   "table4 recno 908: 'bn120420858 | 120420B | 2012-04-20T20:35:13 | 109.3 | +10.8 | 1.1 | Fermi-GBM | 11 | 512 | 47-291 | K, IA, W' - ReadMe Note(3): K = Konus-Wind, IA = INTEGRAL SPI-ACS, W = Suzaku. NOTE the 'L = Fermi LAT' code is ABSENT here although 2FLGC carries the burst (cross-catalog inconsistency, recorded not resolved)",
+   "table5 recno 908: Det = '4+8', T90 = 254.913 +/- 4.222 (start 0.003), T50 = 124.866 +/- 3.238 (start 21.504)"
+  ],
+  "Ajello2019_2FLGC": [
+   "Table 2 p.56 verbatim: '120420B 2012-04-20 20:35:13 356646915.070 108.77 15.17 0.29 109.7 76.8 0 29 - -' (RA, Dec, loc err, theta, zenith, ARR, LTF TS, LLE sig, redshift)",
+   "Table 3 p.61 verbatim: '120420B (L) 0.003 254.92 254.91 - - - 3501.7 3908.0 410 +/- 10' (TGBM,05/95/90; TLLE,05/95/90 all ABSENT; TLAT,0 = 3501.7 s, TLAT,1 = 3908.0 s, TLAT,100 = 410 +/- 10 s)",
+   "Table 4 p.68 verbatim: '120420B LTF (0.0-4000.0) 51 12.2 32 -2.2+/-0.3 0.3+/-0.1 1.0+/-0.7 -' / 'EXT (254.9-3908.0) 45 10.0 27 -2.1+/-0.4 0.3+/-0.1 1.0+/-0.7 -' / 'LAT (3501.7-3908.0) 28 9.0 28 -2.1+/-0.4 0.5+/-0.2 0.2+/-0.1 -'. There is NO 'GBM (...)' row for this burst - the LAT was never fitted in the prompt window",
+   "Table 6 p.81 verbatim: '120420B - - - - 4 1.90 3800.54 1.00' (GBM time window: NO photon with P>0.9; time-resolved: 4 events, max 1.90 GeV at t = 3800.54 s, P = 1.00)",
+   "HEASARC fermilgrb cross-verification (T4 guard): theta 109.7107, zenith 76.765, arr_flag 0, irfs P8_TRANSIENT010E, tl0 3501.66992, tl1 3908.01001, tl100 406.34 +/- 13.955, like_best_ts 31.8215 (index -2.15418 +/- 0.33463), like_lat_ts 28.3742, like_ext_ts 26.9632, like_gbm_ts 0.0, lle_bbbd_sig 0.0, ext_emission_max_ene 1900.0 MeV at 3800.54 s, gcn_name 'GRB120420B'"
+  ],
+  "ADS_four_form": [
+   "ALL SEVEN legitimate forms return ZERO: full:\"GRB 120420B\", full:\"GRB120420B\", full:\"GRB 120420A\", full:\"GRB 120420\", full:\"bn120420858\", full:\"120420858\", full:\"356646915\". Token verified live (control full:\"100122616\" -> 5 hits). The ONE refereed paper that carries the burst (Ajello+2019) was found only by the local PyMuPDF scan of Skills_training/ - ADS does not index its machine tables."
+  ],
+  "prior_repo_material": [
+   "notes/literature_tier1/bn120420858.md (earlier era): had the name resolution and the five GBM catalog papers, flagged the 'anomalously shallow beta ~ -1.64' as the hook to our curvature/model-selection questions - CORRECT and independently confirmed this pass; but MISSED Ajello+2019 entirely",
+   "notes/codex_bkg_review.md line 133: 'bn120420858 | QUESTIONABLE | Weak NET persists beyond source stop 48 s to roughly 52-55 s; post starts 58 s, only 3-6 s after actual return.' - UNDER-STATED: with a background fitted outside 0-320 s the tail is significant to ~200-255 s (P-D). Codex's estimate used the same contaminated post-window it was judging.",
+   "dev/FAILED_FITS.md line 30: 'GRB120420858 | bn120420858 | n4 | 7 | T90=254.9 s, 8 BB bins total (4 sig)' - an isolated per-bin fit failure in an older binning era"
+  ]
+ },
+ "step1_qc_pointer": "results/qc/bn120420858_step1_response_coverage.ecsv (verdict PASS_WITH_WARN: all 4 responses valid; WARN-1 component coverage, WARN-2 background-on-tail, WARN-3 4.44 deg GBM-vs-LAT position offset, INFO LAT unusable / no LLE)",
+ "dossier_pointer": "results/gcn/bn120420858/bn120420858_dossier.md"
+}

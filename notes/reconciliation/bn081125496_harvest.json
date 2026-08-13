@@ -1,0 +1,94 @@
+{
+ "burst": "bn081125496",
+ "grb_name": "GRB 081125 (no letter suffix per GCN 8553; Lu+2018 tables call it 'GRB 081125A' - naming variant, same trigger)",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5; 1b Scholar-note, 3b latest-first, 3c prompt-scope, Phase 4 frame+consensus; traps T1-T9 checked)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "query_forms": [
+  {"form": "full:\"GRB 081125\"", "numFound": 3, "note": "Yu+2019, Meng+2019, GCN 8553 (newsletter -> Step 0a's product, already on file)"},
+  {"form": "full:\"bn081125496\"", "numFound": 1, "note": "Lu+2018 (Comprehensive Analysis IV, spectral lag)"},
+  {"form": "full:\"081125496\"", "numFound": 2, "note": "Ma+2024 (AN, LC statistics) + Shao+2017 (spectral lag)"},
+  {"form": "full:\"249306820\"", "numFound": 0, "note": "trigger-number form empty"},
+  {"form": "full:\"GRB081125\"", "numFound": 1, "note": "defensive no-space form -> Hurley+2013 (IPN supplement)"}
+ ],
+ "scholar_channel": "NOT invoked (Phase 1b): the ADS four-form footprint is rich (7 refereed hits), no cross-community bridge question is posed for this burst, and it is not a paperless case. Recorded per the Phase-1b rule that the decision itself is logged.",
+ "t1_same_day_check": "GRB 081125 has NO letter suffix (single burst that day per GCN archive 081125.gcn3, 1 circular). Hurley+2013 lists neighboring-day triggers (081124060, 081126899) as distinct entries - no same-day contamination. Lu+2018's 'GRB 081125A' is a naming variant of THIS trigger (row carries bn081125496), not a different burst.",
+ "t2_series_check": "Lu+2018 is Comprehensive Analysis IV (lag -> our Step 7). Series on disk: I Zhang+2011 (2011ApJ...730..141Z) - fitz search: 0 hits for 081125, burst NOT in part I; II Lu+2012 (2012ApJ...756..112L) - 13 hits, time-resolved Band bins p31 + h.t.s. classification p5 -> our Step 6; III (energy-dependent T90) not returned by any query form - burst presence unverified (ADS table indexing is unreliable; check when Step 7 needs it); IV Lu+2018 -> Step 7.",
+ "t6_primary_verification": "Meng+2019 attributes a MULTI-pulse classification of GRB 081125 to Lu+2012. At the primary (Lu_2012_2012ApJ756112L.pdf p5), 081125 appears verbatim under 'Clear hard-to-soft evolution throughout the burst (3/43 GRBs): 081125, 090719, 100701B' - a whole-burst h.t.s. class; NO multi-pulse label for 081125 was found in this pass. The chained citation does NOT verify as stated; Meng's multi-pulse label remains model-driven (their structured-jet fit), consistent with the 2026-07-30 reconciliation record's verdict.",
+ "n_refereed_papers": 7,
+ "papers": [
+  {
+   "bibcode": "2024AN....34530179M",
+   "cite": "Ma, Guan-Lun et al. 2024, Astronomische Nachrichten 345, e30179 - 'The statistical characteristics of the prompt emission lightcurves of gamma-ray bursts'",
+   "role": "sample-member (LC statistics)",
+   "found_via": "full:\"081125496\"",
+   "oa": "NOT open access (ADS property = REFEREED only; no EPRINT_OPENACCESS/PUB_OPENACCESS) - PDF NOT fetched, mention verified only via the ADS full-text hit; table row unread (honest gap)",
+   "prompt_sections": "unknown sections (no PDF access); expected: prompt LC statistical sample tables -> Step 7 temporal, low priority",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2019ApJ...886...20Y",
+   "cite": "Yu, Dereli-Begue & Ryde 2019, ApJ 886, 20 - Bayesian time-resolved spectroscopy of GRB pulses",
+   "role": "dedicated-analysis sample member + NAMED example; PRIMARY comparison frame (Phase 3b latest-first: most recent time-resolved spectral analysis)",
+   "corpus": "Skills_training/Yu_2019_ApJ_886_20.pdf (+_arxiv.pdf); corpus_index read=Y; cited_by already contains bn081125496",
+   "prompt_sections": "Table 1 row (dets (na)nb,b1; src -5..20 s; 12 BB bins, 6 at S>=20; h.t.s.; alpha-Ep Type 1 r=-0.69, F-Ep Type 1 r=-0.19, F-alpha Type 1 r=0.74) -> Steps 5/6; SS3.5.1 named break-at-alpha_max example -> Step 6 evolution",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2019ApJ...882...26M",
+   "cite": "Meng et al. 2019, ApJ 882, 26 - photospheric emission from a structured jet",
+   "role": "dedicated-analysis (physical/photospheric forward model of THIS burst)",
+   "corpus": "Skills_training/Meng_2019_ApJ_882_26.pdf; corpus_index read=N; cited_by already contains bn081125496",
+   "prompt_sections": "SS3.4.1 (pp.10-11) structured-jet modeling of GRB 081125; their 'no empirical model fits 4.3-6.3 s -> PL+COMP (FIXED cutoff, footnote 5)' claim -> Step 6 diff item (walkthrough-era scripts/41 check: does not survive a free fit); multi-pulse label is model-driven (see t6_primary_verification)",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "cite": "Lu et al. 2018, ApJ 865, 153 - Comprehensive Analysis of Fermi GRB Data. IV. Spectral lag",
+   "role": "sample-member (pulse fits, time-resolved spectra, lag)",
+   "corpus": "Skills_training/Lu_2018_2018ApJ865153L.pdf; corpus_index read=Y (2026-08-10 deep-reading notes); cited_by APPEND PENDING (currently bn090530760;proj37;proj38)",
+   "prompt_sections": "Table 2 FRED pulse-fit row p34 (bn081125496 NaI: 120.36+/-2.61, 3.16+/-0.07, 1.47+/-0.07, 7.92+/-1.76, 0.81, 1.41 - T3 trap: copy column DEFINITIONS with the numbers before any diff) -> Step 7; time-resolved Band table p39 ('GRB 081125A (bn081125496)': -1.66..2.14 s Ep=327.61+/-40.31 alpha=-0.45+/-0.11 beta=-2.32+/-0.26; 2.14..2.87 s Ep=250.51+/-15.71 alpha=-0.16+/-0.09 beta=-3.17+/-0.58; 2.87..3.85 s Ep=142.74...) -> Step 6; lag tables p51 (pulse 1: 0.36+/-0.17) and p54 (Evolution=H, tau_hat31=1.37+/-0.10 s, W=5.25 s, k_tau=1.74+/-0.25, kE=-0.71+/-0.07) -> Step 7",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "cite": "Shao et al. 2017, ApJ 844, 126 - spectral lag measurement (50 GBM GRBs)",
+   "role": "sample-member (lag)",
+   "corpus": "Skills_training/Shao_2017_2017ApJ844126S.pdf; corpus_index read=N; cited_by APPEND PENDING (currently bn081224887)",
+   "prompt_sections": "Table 1 row p9 (081125496: T90=9.28+/-0.61 s, bin 0.46 s, det na, Delta-tHR=2.521+/-0.126 s; intermediate pulse-model columns t0/tau/beta/omega/gamma parsed flat - T4: confirm column mapping against the typeset table before diffing) -> Step 7",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2013ApJS..207...39H",
+   "cite": "Hurley et al. 2013, ApJS 207, 39 - IPN supplement to the Fermi GBM catalog",
+   "role": "catalog-mention (IPN detections + triangulation)",
+   "corpus": "Skills_training/Hurley_2013_2013ApJS20739H.pdf; corpus_index read=N; cited_by APPEND PENDING (currently bn081224887)",
+   "prompt_sections": "p32 detection row (GRB081125496 seen by AGILE, INTEGRAL SPI-ACS, Konus, Mars Odyssey, RHESSI, Suzaku, Swift(d)) + p45 IPN localization row (081125 11:53:39, 42.70 -18.90 ...) -> Step 0 identity/position cross-check; multi-instrument consensus input if Konus ever publishes spectral values",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2012ApJ...756..112L",
+   "cite": "Lu et al. 2012, ApJ 756, 112 - Comprehensive Analysis II. Ep evolution patterns",
+   "role": "sample-member (time-resolved Ep evolution); entered via T6 primary-source verification of Meng+2019's chained citation, NOT via the four ADS forms (its full text lists the burst as bare '081125' - a query-vocabulary gap worth remembering)",
+   "corpus": "Skills_training/Lu_2012_2012ApJ756112L.pdf; corpus_index read=MAYBE; cited_by APPEND PENDING (currently bn081224887;bn090530760;proj34)",
+   "prompt_sections": "p5 classification verbatim 'Clear hard-to-soft evolution throughout the burst (3/43 GRBs): 081125, ...' -> Step 6 evolution class; p31 time-resolved Band bins (081125 bins 1-7+: 0.003-1.152 s Ep=332.0+/-159.5 alpha=-0.57+/-0.23 ... monotonic Ep decline 332->95 keV by bin 7) -> Step 6 diff; p19 flux-Ep tracking figure -> Step 6",
+   "module_future_tags": []
+  }
+ ],
+ "finding_beyond_prompt": "ZERO beyond-prompt literature exists: no afterglow, no host, no redshift, no SN, no multimessenger record (single GCN circular, GBM-only localization, LAT boresight angle 126 deg). module_future shelf is EMPTY for this burst - recorded as a result, not an omission.",
+ "redshift": "none (no follow-up ever occurred; GCN archive holds exactly one circular, GCN 8553)",
+ "pdf_fetches_this_pass": "NONE needed: 6 of 7 papers already on disk in Skills_training/ (G2 dedup rule); the 7th (Ma+2024) has no legal OA copy (not fetched).",
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   {"action": "append cited_by", "row_key": "2018ApJ...865..153L", "append": "bn081125496", "n_bursts": "+1"},
+   {"action": "append cited_by", "row_key": "2017ApJ...844..126S", "append": "bn081125496", "n_bursts": "+1"},
+   {"action": "append cited_by", "row_key": "2013ApJS..207...39H", "append": "bn081125496", "n_bursts": "+1"},
+   {"action": "append cited_by", "row_key": "2012ApJ...756..112L", "append": "bn081125496", "n_bursts": "+1"},
+   {"action": "new row", "row": "(no pdf),2024AN....34530179M,,prompt-lightcurve-statistics,bn081125496,1,N,", "note": "not open access; no arXiv id found on the ADS record"}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "verify-or-append", "row": "bn081125496,GRB 081125,1,8553,none", "note": "GCNIntelligence output spec asks for one row per burst; file not modified by this worker (shared-CSV hard rule) - check whether the 2026-07-29 era pass already appended it"}
+  ]
+ },
+ "existing_products_noted": "results/gcn/bn081125496/bn081125496_dossier.md existed (2026-07-29/30 era, Steps 0+0b already run once) - EXTENDED with a formal PUBLISHED VALUES (P3 diff) section, not overwritten. notes/reconciliation/bn081125496.md is a COMPLETED walkthrough-era reconciliation record (P0-P6, 2026-07-30/31) and is part of the prior for the new sweep freeze."
+}

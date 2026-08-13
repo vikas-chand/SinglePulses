@@ -1,0 +1,64 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# - {name: THETA_T0_DEG, datatype: float64}
+# - {name: THETA_SRCEND_DEG, datatype: float64}
+# - {name: DELTA_THETA_DEG, datatype: float64}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn120102095}
+# - {grb_name: 'GRB 120102A (verified verbatim from GCN 12801, not assumed)'}
+# - {trigtime_met: 347163385.239084}
+# - src_window: [-1.5, 15.0]
+# - {src_window_source: 'results/background_intervals.ecsv (Vikas Chand, 2026-07-19T22:18:36Z, human_gui, accepted_suggestion)'}
+# - bkg_neg: [-30.0, -8.0]
+# - bkg_pos: [22.0, 120.0]
+# - {approved_detectors: 'n3,n4,n5,b0'}
+# - source_radec_used: [276.225, 24.7135]
+# - {source_radec_note: grb_sample.ecsv / GBM catalog value; the enhanced XRT position 276.22471 +24.71352 (GCN 12795) is 0.0004 deg away
+#     - immaterial for detector angles}
+# - {tte_files: 4}
+# - {cspec_pha_files: 4}
+# - {rsp_files: 4}
+# - {rsp_form: ALL SINGLE-MATRIX .rsp - this burst ships NO .rsp2}
+# - {d2_naming_note: 'pipeline scripts/10::find_rsp globs glg_cspec_<det>_*.rsp* and therefore resolves the .rsp form; a .rsp2-only glob
+#     would have raised 4 FALSE alarms here (D2)'}
+# - {poshist: glg_poshist_all_120102_v01.fit present}
+# - {trigdat: 'MISSING (note, not blocker - poshist present, geometry covered)'}
+# - {lle_present: false}
+# - {lat_present: false}
+# - {lat_note: 'HAS_LAT=False in grb_sample.ecsv; GCN 12801 quotes a LAT boresight angle of 84 deg and poshist gives theta_LATz = 87.2-87.9
+#     deg across the source window - the burst was outside the LAT FoV, so the absence of LLE/LAT data is expected, not a gap'}
+# - {d1_theta_check: 'APPLIED. All four responses are single-matrix, so per D1 the interval test is not decisive and the off-axis-angle
+#     test governs. Per-detector angles recomputed from the poshist quaternions using the pipeline own primitive scripts/00_prototype_one_burst.py::get_detector_angle
+#     at the source-window start, middle and end.'}
+# - {d1_result: 'max |delta theta| over the stamped source window = 0.64 deg (n3); n4 0.18, n5 -0.28, b0 -0.29. Far inside the D1 tolerance
+#     (<=4 deg fine; >=15 deg invalid). Angles at T0 reproduce the stamped DET_ANGLE values to 0.01 deg.'}
+# - {d1_validity_horizon: 'the same single-matrix DRMs drift past 4 deg (n3) only near t ~ +95 s: +90 s gives 3.83 deg, +120 s gives 5.10
+#     deg. Any future refit of THIS burst with a window extending beyond ~+90 s must regenerate the responses.'}
+# - {rsp_interval_note: 'the .rsp headers advertise TSTART/TSTOP = trigtime -136.19 / +478.22 s, which brackets the source window, so
+#     the naive interval test also passes - but that is not what earns the PASS (D1): the spacecraft rocks through ~26 deg of n3 angle
+#     inside that advertised span.'}
+# - {d4_note: 'PRE-TRIGGER EMISSION EXISTS. GBM catalog T90_START = -11.520 s; Golkhou+2015 T_start,100 = -25.674 s; GCN 12799 (BAT) reports
+#     a weak peak from BAT T0 to T+20 s = GBM -28.2 to -8.2 s, plus a possible 3-4 sigma precursor near GBM -98 s. The trigger time is
+#     NOT the burst start: GBM triggered 28.24 s after Swift-BAT, on the MAIN pulse.'}
+# - {qc_flag_new: "BKG_NEG [-30, -8] s OVERLAPS the BAT-detected weak first peak (GBM clock -28.2 to -8.2 s). bn120102095 is NOT in results/human_review_qc_flags.txt,\
+#     \ so this is a NEW observation, not an accepted decision. For comparison the GBM catalog own pre-burst background is [-32.0, -28.5]\
+#     \ s, i.e. it stops short of that region; Burgess 2019 \xA72 records modifying catalog backgrounds generically for on-source contamination.\
+#     \ RAISED FOR VIKAS - not acted on: Stage-1 flags are decisions and this selection is human-approved."}
+# - {verdict: 'PASS (responses) + FLAG (background window). All 4 approved detectors resolve to a real response file under the correct
+#     naming, and every response is valid over the stamped source window by the off-axis-angle test (max delta theta 0.64 deg). Separately
+#     flagged: possible source contamination of the negative background interval - a selection question, not a response problem.'}
+# - {checked_by: 'Claude (doc-layer worker), 2026-08-12'}
+# schema: astropy-2.0
+DETECTOR RSP N_MATRICES RSP_T0 RSP_T1 COVERS_SRC THETA_T0_DEG THETA_SRCEND_DEG DELTA_THETA_DEG VERDICT
+n3 glg_cspec_n3_bn120102095_v00.rsp 1 -136.19 478.22 True 42.76 43.4 0.64 PASS
+n4 glg_cspec_n4_bn120102095_v00.rsp 1 -136.19 478.22 True 21.06 21.24 0.18 PASS
+n5 glg_cspec_n5_bn120102095_v00.rsp 1 -136.19 478.22 True 39.42 39.13 -0.28 PASS
+b0 glg_cspec_b0_bn120102095_v00.rsp 1 -136.19 478.22 True 36.09 35.8 -0.29 PASS

@@ -1,0 +1,28 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn091209001}
+# - {src_start: -5.0}
+# - {src_stop: 27.0}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z human_gui)'}
+# - {coverage_rule: 'GBM multi-matrix rsp2: PASS if min(TSTART)<=SRC_START and max(TSTOP)>=SRC_STOP, rel TRIGTIME=282009646.897734'}
+# - manifest: {n_cspec_pha: 2, n_lat: 0, n_lle: 0, n_poshist: 1, n_rsp: 0, n_rsp2: 2, n_trigdat: 0, n_tte: 2}
+# - {manifest_note: 'trigdat absent locally = note not blocker (poshist present, DataInventory Phase 1; glg_trigdat_all_bn091209001_v01.fit
+#     exists on HEASARC). No LLE/LAT arm: zero gll_* files on HEASARC and tcat v03 THETA=117.60 deg (source far off LAT boresight).
+#     D1 off-axis check N/A (no single-matrix LLE responses). TTE spans -30.1..300.5 s: covers src window and both bkg intervals
+#     (pre -30..-12 marginally, TTE starts -30.1; cspec pha spans +-4000 s covers all).'}
+# - {d4_note: 'bcat v03 T90START=-5.888 s, T95=+37.06 s; stamped window -5..27 s opens 0.89 s after T05 and closes 10 s before catalog
+#     T95; Bordoloi+2026 (2026ApJ..1003...58B) fit a soft tail bin 22.08..44.0 s (Ep=32.3 keV) partly outside our window. Frame
+#     difference to LABEL in the P3 diff (T9 component coverage), not a data problem; window is the human-approved stamp.'}
+# - {position_note: 'cspec v00 header RA_OBJ=30.0 DEC_OBJ=-15.0 is the early flight localization; authoritative tcat v03 gives
+#     RA=260.96 DEC=38.29 ERR_RAD=2.93 deg (Fermi GBM ground). Stamped n4 angle 27.49 deg (<=50 deg NaI rule OK).'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n4 -7.17 118.79 2 PASS
+b0 -7.17 118.79 2 PASS

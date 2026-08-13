@@ -1,0 +1,67 @@
+bn120130938 — RAW GCN CIRCULAR RECORD
+=====================================
+Compiled 2026-08-12 by the doc-layer worker (Steps 0 / 0b / 1).
+Skill: dev/ai_guides/GCNIntelligence.md.
+
+RESULT: n_circulars = 0.  THIS IS A RESULT, NOT AN ERROR (GCNIntelligence.md
+"Honest absence" rule).  There is no circular text to quote, so this file
+records the SEARCH instead, so the null can be re-checked.
+
+
+1. CLASSIC PER-GRB ARCHIVE (cheapest first)
+-------------------------------------------
+  https://gcn.gsfc.nasa.gov/other/120130A.gcn3   -> HTTP 404 (216 bytes, error page)
+  https://gcn.gsfc.nasa.gov/other/120130.gcn3    -> HTTP 404 (215 bytes)
+  https://gcn.gsfc.nasa.gov/other/120130B.gcn3   -> HTTP 404 (216 bytes)
+  (fetched 2026-08-12)
+
+
+2. JSON-API SCAN (fallback, GCNIntelligence.md step 2)
+-------------------------------------------------------
+  Endpoint: https://gcn.nasa.gov/circulars/<id>.json
+  Bracketing probes: 12850 = 2012-01-18, 12900 = 2012-01-27,
+                     12950 = 2012-02-13, 13000 = 2012-03-02.
+  Full scan run over IDs 12890-12965 inclusive (76 circulars,
+  2012-01-21T20:02:06Z -> 2012-02-19T17:14:39Z), i.e. the range fully brackets
+  the trigger time 2012-01-30T22:30:34.465 UT with >8 days of margin on each side.
+
+  Matched on the strings "120130" (subject OR body) and "349655436" (trigger
+  number, body).  MATCHES: ZERO.
+
+  Nearest neighbours in the scanned range, verbatim subjects:
+    12903  2012-01-28 23:41:44  GRB 120127A / P48 Imaging
+    12904  2012-01-30 18:38:05  IPN Triangulation of GRB 120129A (long/intense)
+    12905  2012-01-31 10:18:12  Konus-Wind observation of GRB 120129A
+    12906  2012-01-31 14:27:52  GRB 120116A, the review of the sky area in plate archives
+    12907  2012-01-31 14:59:21  GRB 120129A: MASTER optical observations
+    12908  2012-02-02 21:57:17  GRB 111228A: Possible host detected by Swift/UVOT
+    12909  2012-02-02 22:53:28  GRB 120202A: A long GRB detected by INTEGRAL
+
+  Note circulars 12904 and 12905 straddle our trigger IN TIME (18:38 UT on
+  2012-01-30, and 10:18 UT on 2012-01-31) and both concern GRB 120129A — a
+  DIFFERENT burst on the previous day.  No GBM circular was ever issued for
+  bn120130938, and no follow-up circular exists.  The next lettered GRB with a
+  circular after 120129A is 120202A: the letter "A" for 2012-01-30 was never
+  claimed by anyone in the GCN stream.
+
+
+3. LETTER-NAME CROSS-CHECK (GCNIntelligence.md identity resolution; T1)
+-----------------------------------------------------------------------
+  J. Greiner's GRB table (https://www.mpe.mpg.de/~jcg/grbgen.html, fetched
+  2026-08-12) lists for January 2012 ONLY:
+    120102A 120106A 120107A 120114A 120116A 120118A 120118B 120119A 120121A 120127A
+  -> no 120129x and no 120130x entry.  (That table is restricted to bursts with
+  precise/afterglow positions, which is why the IPN-only 120129A is absent too.)
+  CONCLUSION: no external authority ever assigned a letter suffix to
+  bn120130938.  Use the TRIGGER, not a lettered name (see dossier).
+
+
+4. WHAT REPLACES THE CIRCULARS
+-------------------------------
+  All identity + published numbers in the dossier come from
+    (a) the HEASARC FERMIGBRST living catalog row (queried 2026-08-12,
+        bparam_trigger_name=bn120130938; row last_modified 2018-06-02), and
+    (b) the on-disk GBM data-product headers
+        (glg_cspec_*_bn120130938_v00.rsp; TRIGTIME = 349655436.465458).
+  There is NO refereed paper (see notes/reconciliation/bn120130938_harvest.json,
+  n_papers = 0).

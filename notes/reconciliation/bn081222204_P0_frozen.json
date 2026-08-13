@@ -1,0 +1,68 @@
+{
+ "burst": "bn081222204",
+ "grb_name": "GRB 081222 (z=2.77 spectroscopic; Lu+2018 alone calls it 081222A)",
+ "tally": 24,
+ "tally_basis": "24th P0-freeze file in notes/reconciliation/ (23 existed before this one)",
+ "frozen_utc": "2026-08-12 (doc-layer worker); BEFORE any results/sweep106/ output opened (hard rule: that tree was never read)",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "frozen_before_any_new_fit_output": true,
+ "prior_exposure_disclosure": "HONEST CAVEAT: this burst was walkthrough burst #2 - a full reconciliation (notes/reconciliation/bn081222204.md, completed 2026-07-31) exists using the WALKTHROUGH-era engine and binning (7 blocks over -0.01..14.32 s; Ep 290->88, one CPL+BB block kT=21.4 keV). Those numbers are known to the project and to this freeze's author. What is frozen here is the prediction set for the NEW blind sweep (results/sweep106/, unread), anchored on the ARCHIVAL census (clean_per_burst_human_final) + literature, not on any sweep output.",
+ "predictions": [
+  "P-A (census null-BB class, union rule): NO block in the new sweep fits will pass EITHER nested test - (LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 keV) OR (LRT_CPLBB_CPL >= 9.2). Archival prior: 0/7 blocks pass either. Max LRT_BANDBB_BAND = 4.07 (blk4, kT=19.5); max LRT_CPLBB_CPL = 8.13 (blk-1 time-integrated, kT=26.4).",
+  "P-A2 (borderline CPL-side shoulder, falsifiable direction): the CPL+BB shoulder sits just under threshold on the CPL side only - archival LRT_CPLBB_CPL = 8.13 (blk-1) and 7.62 (blk0) with kT ~ 26-30 keV, and the walkthrough-era fit (different binning) had one decay block (7.92-10.23 s) prefer CPL+BB with kT = 21.4 keV. PREDICTION: new-sweep time-integrated LRT_CPLBB_CPL lands in 6-12 with kT 20-30 keV; if the new binning finely resolves the 8-12 s decay, that block may cross 9.2 on the CPL side while the Band side stays null (Band's beta absorbs the shoulder - the bn191129141 pattern).",
+  "P-A3 (no two-break burst): no block reaches LRT_DSBPL_SBPL >= 9.2 (archival max 2.92 at blk2; DSBPL_VALID in 3/7 blocks); bn081222204 will NOT enter the two-break census. (Two-break count remains a lower limit until L8/L9 hardening - doctrine caveat, not burst-specific.)",
+  "P-B (integrated-spectrum anchor, falsifiable numbers): the time-integrated Band fit over the stamped window (-1.16..16.48 s) gives alpha = -0.83 +/- 0.06, Ep = 155 +/- 20 keV, beta in [-2.6, -2.2]. Anchors: archival blk-1 (-0.822 / 160.2 / -2.48); GBM catalog flnc_band v03 (-0.844 / 147.2 / -2.30, but TOTAL -1..35.8 s coverage); Konus GCN 8721 (-0.67 / 165 / -2.35, 0..16.64 s); Virgili+2012 joint BAT+GBM (-0.85 / 140 / -2.39, 14.34 s). T9: our window is MAIN-pulse; catalog is TOTAL.",
+  "P-B2 (winner family): AIC winners are the single-peak curved family (Band or CPL) in every block; no +BB model wins at the 9.2 criterion (archival AIC: Band 3, CPL 4; BIC: Band 2, CPL 5).",
+  "P-B3 (evolution class): hard-to-soft Ep decline by factor ~2.5-3 across the pulse (Ghirlanda TR Ep 311->120 keV over -2..8 s, E0 convention corrected; Lu+2018 class H; archival Band_EP 160->98 blk0->blk5 with a 248-keV blk1 peak-of-pulse maximum), with time-resolved alpha at/below the -2/3 death line in most blocks (synchrotron-compatible - the emission-regime OPPOSITE of walkthrough burst #1).",
+  "P-B4 (temporal): T90(GBM 50-300) ~ 19 s starting T0+0.4 s (bcat 18.88 +/- 2.32 s); our stamped window (ends 16.48 s) truncates the faint tail, so any window-internal duration reads as MAIN-pulse only; standard-convention spectral lag is POSITIVE (Ukwatta source-frame 227 +/- 51 ms, 4.45 sigma; Lu tau31 = 0.76 +/- 0.16 s)."
+ ],
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn081222204/spectral_fits.ecsv",
+  "n_blocks": 7,
+  "layout": "blk-1 = time-integrated [-0.467, 14.571] s + blk0..blk5 time-resolved",
+  "plugin_dets": "n0,n1,n2,b0",
+  "stamped_window": "SRC -1.16..16.48 s (human_gui, Vikas Chand, 2026-07-19T22:18:36Z)",
+  "criterion_union": "(LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2)",
+  "significant_bb_blocks_bandbb": 0,
+  "significant_bb_blocks_cplbb": 0,
+  "significant_bb_blocks_union": 0,
+  "bandbb_kt_values_all_blocks": [4.6, 8.45, 4.41, 5.3, 6.61, 19.53, 5.3],
+  "cplbb_kt_values_all_blocks": [26.38, 29.56, 4.33, 4.46, 1.0, 19.32, 26.54],
+  "kt_note": "kT lists ordered blk-1,0,1,2,3,4,5; none attached to a passing LRT; CPLBB_KT=1.0 at blk3 is at/near the fit floor (railed, not physical)",
+  "max_LRT_BANDBB_BAND": {"block": 4, "value": 4.07, "kt": 19.53},
+  "max_LRT_CPLBB_CPL": {"block": -1, "value": 8.13, "kt": 26.38},
+  "LRT_CPLBB_CPL_runners": {"blk-1": 8.13, "blk0": 7.62, "blk4": 3.06},
+  "aic_winners": {"Band": 3, "CPL": 4},
+  "aic_winner_by_block": {"blk-1": "Band", "blk0": "Band", "blk1": "CPL", "blk2": "Band", "blk3": "CPL", "blk4": "CPL", "blk5": "CPL"},
+  "bic_winners": {"Band": 2, "CPL": 5},
+  "time_integrated_band": {"alpha": -0.822, "ep_keV": 160.25, "beta": -2.477},
+  "LRT_DSBPL_SBPL_max": 2.92,
+  "dsbpl_valid_blocks": 3
+ },
+ "harvest_snippets": {
+  "KonusWind_GCN8721": [
+   "time-integrated T0..T0+16.64 s, 20 keV-1 MeV: Band alpha=-0.67(-0.33,+0.39), Ep=165(-29,+47) keV, beta=-2.35(-1.25,+0.30); fluence 1.32e-5 erg/cm2"
+  ],
+  "GBM_catalog_bcat_v01": [
+   "T90 = 18.8803 +/- 2.31821 s (T90START = 0.38397 s); T50 = 4.672 +/- 0.231 s; FLU(10-1000 keV) = 1.18871e-05 +/- 9.57e-08 erg/cm2; PF64 = 14.50 ph/s/cm2 (HEASARC 2008/bn081222204/current)"
+  ],
+  "GBM_catalog_scat_flnc_band_v03": [
+   "Band -1.024..35.840 s, dets BGO_00/NAI_00/NAI_01/NAI_02: Ep = 147.2 +8.4/-8.8 keV, alpha = -0.844 +0.045/-0.047, beta = -2.300 +0.119/-0.097, redchi2 1.153 (480 dof)"
+  ],
+  "Virgili2012": [
+   "Table 3: 081222A 081222204 Band dt=14.336 s alpha 0.85 +0.07/-0.08 beta 2.39 +0.33/-0.22 Ep 140 +14/-13 chi2 460/371 (indices listed as magnitudes; sign restored); T90 table: GBM 26.75+/-0.53 s, BAT 33 s; footnote c: significant spectral evolution"
+  ],
+  "Ghirlanda2010": [
+   "Table 1: 081222(204) z=2.77 alpha=-0.55+/-0.07 Ep=134+/-9 beta=-2.10+/-0.06 8-1000 keV; TR table p11 gives E0 (e-folding): Ep=(2+alpha)E0 = 311->192->152->120->127 keV over -2..20 s (conversion verified <1%)"
+  ],
+  "Lu2018": [
+   "p39 'GRB 081222A (bn081222204)' TR-Band: -0.77..2.28 s Ep 171.1+/-31.7 alpha -0.61+/-0.14 beta -1.79+/-0.07; 2.28..3.78 s Ep 191.2+/-30.2 alpha -0.85+/-0.10; p54: class H, tau31 = 0.76+/-0.16 s, W = 6.84, k_E = -0.58+/-0.26"
+  ],
+  "Ukwatta2012": [
+   "GRB081222 337914: interval -0.80..15.58 s, source-frame lag (100-150 vs 200-250 keV rest) = 227 +/- 51 ms, 4.45 sigma, POSITIVE-lag sample member"
+  ],
+  "Atteia2017": [
+   "p5: 'The largest differences reach 30% for GRB 081222 (Eiso = 2.4e53 erg for Fermi/GBM vs Eiso = 1.7e53 erg for Konus-Wind)' - the biggest GBM/KW spread in their sample; multi-instrument consensus Eiso ~ (2.0+/-0.4)e53 erg"
+  ]
+ }
+}

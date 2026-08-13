@@ -1,0 +1,2803 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14448
+SUBJECT: GRB 130427A: Swift detection of a very bright burst with a likely bright optical counterpart
+DATE:    13/04/27 08:24:13 GMT
+FROM:    David Palmer at LANL  <palmer@lanl.gov>
+
+A. Maselli (INAF-IASFPA), A. P. Beardmore (U Leicester),
+A. Y. Lien (NASA/GSFC/ORAU), V. Mangano (INAF-IASFPA),
+C. J. Mountford (U Leicester), K. L. Page (U Leicester),
+D. M. Palmer (LANL) and M. H. Siegel (PSU) report on behalf of the
+Swift Team:
+
+At 07:47:57 UT, the Swift Burst Alert Telescope (BAT) triggered and
+located GRB 130427A (trigger=554620).  Swift slewed immediately to the burst. 
+The BAT on-board calculated location is 
+RA, Dec 173.139, +27.692 which is 
+   RA(J2000) = 11h 32m 33s
+   Dec(J2000) = +27d 41' 29"
+with an uncertainty of 3 arcmin (radius, 90% containment, including 
+systematic uncertainty).  The BAT light curve shows an extremely bright
+complex peak about 20 seconds long starting at T-50, while Swift was 
+slewing from the previous pre-planned target, followed by a smaller 
+peak during the slew to the burst with emission through at least T+200. 
+The peak count rate was ~ 100,000 counts/sec (15-350 keV), 
+at T-40 sec, before the trigger. 
+
+The XRT began observing the field at 07:50:17.7 UT, 140.2 seconds after
+the BAT trigger. XRT found a bright, uncatalogued X-ray source located
+at RA, Dec 173.1362, 27.7129 which is equivalent to:
+   RA(J2000)  = +11h 32m 32.69s
+   Dec(J2000) = +27d 42' 46.4"
+with an uncertainty of 4.7 arcseconds (radius, 90% containment). This
+location is 75 arcseconds from the BAT onboard position, within the BAT
+error circle. No event data are yet available to determine the column
+density using X-ray spectroscopy. 
+
+UVOT took a finding chart exposure of 150 seconds with the White filter
+starting 147 seconds after the BAT trigger.  A blurred bright source
+appears to be located near the XRT position in the initial 2.7'x2.7'
+sub-image.  However, the lack of reference stars and lack of star tracker
+lock prevents a definitive identification and the measurement of a position
+or magnitude. 
+
+This is an extremely bright burst in all three instruments,
+and it was also seen by Fermi/GBM. 
+
+After the slew to the burst, the star trackers had trouble
+locking on to give a spacecraft attitude, so the XRT position
+may be inaccurate at the arcminute level. 
+
+The apparent optical counterpart appears extremely blurred, 
+possibly due to the lack of star tracker lock, but more likely to be 
+due to instrumental effects on a very bright optical counterpart. 
+
+
+Further follow-up is warranted for all ground-based observatories. 
+
+Burst Advocate for this burst is A. Maselli (maselli AT ifc.inaf.it). 
+Please contact the BA by email if you require additional information
+regarding Swift followup of this burst. In extremely urgent cases, after
+trying the Burst Advocate, you can contact the Swift PI by phone (see
+Swift TOO web site for information: http://www.swift.psu.edu/too.html.)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14449
+SUBJECT: GRB 130427A: P60 early nondetection
+DATE:    13/04/27 08:39:09 GMT
+FROM:    Daniel Perley at Caltech  <dperley@astro.caltech.edu>
+
+D. A. Perley (Caltech) reports on behalf of a larger collaboration:
+
+The Palomar 60-inch telescope automatically responded to GRB 130427A 
+(Maselli et al., GCN 14448) and began taking observations at 07:52:22 UT 
+(4.42 minutes after the BAT trigger).  A series of 60-second images were 
+taken in r, i, and z filters; observations are still ongoing. Inspection 
+of individual frames shows no detection of an optical transient 
+consistent with the XRT position to approximately r > 20.6 mag, i > 20.7 
+mag, z > 19.7 mag.
+
+Nondetection of an afterglow in rapidly-triggered P60 observations is 
+unusual (Cenko et al. 2009, ApJ 693, 1484), especially in the presence 
+of an very bright GRB and early XRT afterglow.  This is suggestive of a 
+highly extinguished (or possibly high-redshift) burst, and may indicate 
+that the possible UVOT source reported by Maselli et al. was spurious. 
+Further observations, especially in the NIR, are strongly encouraged.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14450
+SUBJECT: GRB 130427A: early optical observations
+DATE:    13/04/27 08:46:41 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+L. Elenin (KIAM),  A. Volnova ( IKI),  V. Savanevych (KNURE),   A. 
+Bryukhovetskiy (NSFCTC),  I. Molotov (KIAM), A. Pozanenko (IKI) report on
+behalf of  larger GRB  follow-up collaboration:
+
+We started observation of  the field of  the Swift GRB 130427A (Maselli et 
+al., GCN 14448)  with 0.45-m telescope of ISON-NM observatory on Apr. 27 
+(UT)   07:50:17.
+On the first images of 30 s exposure we identified very bright optical 
+counterpart of GRB 130427A (Maselli et al., GCN 14448) at about 12m in the 
+intitial images.
+
+The coordinates of the counterpart are (J2000) 11 32 32.84 +27 41 56.2 with 
+uncertainties of about 1".
+
+Observations are continuing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14451
+SUBJECT: GRB 130427A: P60 early detection
+DATE:    13/04/27 08:56:29 GMT
+FROM:    Daniel Perley at Caltech  <dperley@astro.caltech.edu>
+
+D. A. Perley (Caltech) reports on behalf of a larger collaboration:
+
+Upon further inspection of the P60 images, we identify a very bright 
+optical source separated by about 51 arcseconds from the XRT afterglow 
+location but consistent with the optical afterglow location reported by 
+Elenin et al. (GCN 14450)   The source is saturated in the early images. 
+  Further observations are ongoing.
+
+We also note that there is an SDSS galaxy at this position, suggesting a 
+low-redshift event.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14452
+SUBJECT: GRB 130427A: Faulkes Telescope North detection
+DATE:    13/04/27 09:21:48 GMT
+FROM:    Cristiano Guidorzi at Ferrara U,Italy  <guidorzi@fe.infn.it>
+
+A. Melandri (INAF-OAB), C. Guidorzi (U. Ferrara), A. Gomboc,
+J. Japelj (U. Ljubljana), C.G. Mundell (LJMU) report on
+behalf of a larger collaboration:
+
+The 2-m Faulkes Telescope North robotically followed up GRB130427A
+(SWIFT trigger 554620,  Maselli et al. GCN 14448 ) starting 4.3 min
+after the GRB trigger time. We detect a bright fading source
+at the position reported by Elenin et al. (GCN 14450), Perley
+(GCN 14451) with R ~11.5 mag.
+
+We note also a faint, 21-mag, underlying source visible in SDSS
+images that may suggest this GRB is nearby with a bright host galaxy.
+
+Observations are ongoing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14453
+SUBJECT: GRB 130427A: PAIRITEL NIR Detections
+DATE:    13/04/27 09:47:41 GMT
+FROM:    Adam Morgan at U.C. Berkeley  <qmorgan@gmail.com>
+
+A. N. Morgan (UC Berkeley) reports:
+
+We observed the field of GRB 130427A (Maselli et al., GCN 14448) with the
+1.3m PAIRITEL located at Mt. Hopkins, Arizona. Observations began at
+2013-Apr-27 07h59m24s UT, 11.45 minutes after the Swift Trigger.  In
+preliminary mosaics (consisting of 75 ~8 second images for a total
+effective exposure time of 9.75 minutes) taken simultaneously in the J, H,
+and Ks filters, we detect the optical afterglow (Elenin et al., GCN 14450;
+Perley, GCN 14451; Melandri et al., GCN 14452).
+
+The preliminary photometry yields:
+
+post burst
+t_mid (hr) exp.(m)   filt  mag   m_err
+0.36       9.75      J     12.13  0.03
+0.36       9.75      H     11.75  0.04
+0.36       9.75      Ks    11.02  0.08
+
+Observations continued until the source passed beyond telescope limits. All
+magnitudes are given in the Vega system, calibrated to 2MASS. No correction
+for Galactic extinction has been made to the above reported values.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14454
+SUBJECT: GRB 130427A: MITSuME Akeno Optical observation(T0+8000s~)
+DATE:    13/04/27 11:19:18 GMT
+FROM:    Yoichi Yatsu at Tokyo Tech.  <yatsu@hp.phys.titech.ac.jp>
+
+Y. Yatsu, Y. Yano,  R. Usui, Y. Tachibana, K. Ito, T. Yoshii,
+S. Kurita, Y. Saito, and N. Kawai (Tokyo Tech)
+report on behalf of the MITSuME collaboration:
+
+We observed GRB 130427A (Maselli et al., GCNC 14448) with an
+optical tri-color (g, Rc, and Ic)  camera attached to the MITSuME
+50 cm telescope of Akeno Observatory, Yamanashi, Japan.
+
+The observation started on 2013-04-27 10:06:09.60 UT (8293 sec after the
+trigger).
+And we found the optical counterpart reported in the twilight sky.
+The measured magnitudes were listed below.
+
+MID-MJD  T-EXP[sec]         g'                 Rc                Ic
+-------------------------------------------------------------------------------------------
+ 56409.4231929  360  15.66+/-0.10  15.03+/-0.07  14.71+/-0.09
+-------------------------------------------------------------------------------------------
+T-EXP: Total Exposure time [sec]
+(The photon flux were calibrated against GSC2.3 catalog.)
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14455
+SUBJECT: GRB 130427A: Gemini-North redshift
+DATE:    13/04/27 11:43:31 GMT
+FROM:    Andrew Levan at U.of Leicester  <A.J.Levan@warwick.ac.uk>
+
+A.J. Levan (U. Warwick), S.B. Cenko (U.C. Berkeley), D.A. Perley
+(Caltech) and N.R. Tanvir (U. Leicester) report for a larger
+collaboration:
+
+We obtained spectroscopy of the afterglow of GRB 130427A (Maselli
+et al. GCN 14448, Elenin et al. GCN 14450, Perley et al. GCN 14451)
+with Gemini-North / GMOS, begininnig at 09:19 UT roughly 1.5 hours
+after the burst. Two different central wavelengths were observed
+giving a coverage from ~3100-6700 A. The resulting spectra are of
+very high signal to noise given the brightness of the afterglow.
+In these spectra we identify absorption lines due to Ca H and K,
+Mg I as well as the Mg II doublet at a common redshift of z=0.34.
+We suggest this to be the redshift of GRB 130427A.
+
+We do not see evidence for emission lines from an underlying host,
+although given the brightness of the afterglow this is not surprising.
+The absolute magnitude of object in SDSS, if at z=0.34 is M_R ~
+-19.7, relatively bright for a GRB host.
+
+We thank the Gemini-staff for their help in rapidly obtaining these
+observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14456
+SUBJECT: GRB 130427A: Continued P60 follow-up of an extremely bright optical afterglow
+DATE:    13/04/27 11:52:44 GMT
+FROM:    S. Bradley Cenko at Caltech  <cenko@srl.caltech.edu>
+
+D. A. Perley (Caltech) and S. B. Cenko (UC Berkeley) report:
+
+We have continued observations of the afterglow of GRB130427A (Maselli et
+al., GCN 14448) with the Palomar 60-inch telescope until the field set.
+Relative to SDSS reference stars in the field, in some select recent
+images we estimate afterglow magnitudes of:
+
+r' = 14.86 mag  (t = 1.40 hours)
+r' = 15.32 mag  (t = 2.31 hours)
+r' = 15.55 mag  (t = 3.10 hours)
+
+This is brighter (by about 1 mag) than any other Swift burst as measured
+at similar epoch (as of 2010; Kann et al. ApJ 720:1513), though still
+significantly fainter than GRB 030329 which reached approximately 13 mag
+at 0.1 day.  The rate of fading corresponds to a relatively shallow decay
+index of approximately alpha~-0.85, suggesting that this afterglow will
+remain bright for an extended period.  Worldwide small-telescope follow-up
+(including by amateurs) is strongly encouraged.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14457
+SUBJECT: GRB 130427A: iTelescope T11 optical observations
+DATE:    13/04/27 12:26:03 GMT
+FROM:    Veli-Pekka Hentunen at Taurus Hill Obs,A95  <veli-pekka.hentunen@kassiopeia.net>
+
+Veli-Pekka Hentunen, Markku Nissinen and Tuomo Salmi (Taurus Hill
+Observatory, Varkaus, Finland) report:
+
+We have detected GRB 130427A optical afterglow at iTelescope 
+observatory T11 (Mayhill, New Mexico) 0.50-m/6.8 astrograph and FLI 
+ProLine PL11002M CCD. Three unfiltered and three photometric V filter 
+images with 120 sec exposure time were made.
+
+The afterglow was detected at following position RA 11:32:32.83
+and DEC +27:41:56.4
+
+The following magnitudes were obtained from the observations using
+NOMAD1 1176-0248446 (R=13.520, V=13.120) as the comparison:
+
+Tmid(sec)+T0   Filter         Exp. time    Mag          Mag err. 
+4597              unfiltered     120            15.02CR     0.04
+4743              unfiltered     120            15.09CR     0.05
+4887              unfiltered     120            15.11CR     0.05
+5438              V                120            14.89V       0.04
+5582              V                120            14.89V       0.04
+5726              V                120            14.86V       0.04
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14458
+SUBJECT: GRB 130427A: Weihai optical observations
+DATE:    13/04/27 13:08:24 GMT
+FROM:    Dong Xu at DARK/NBI  <dong.dark@gmail.com>
+
+D. Xu (DARK/NBI), C. Cao, S.-M. Hu, C.-M. Zhang (SDU) report:
+
+We observed the field of GRB 130427A (Maselli et al., GCN 14448) with
+the 1m telescope located in Weihai, Shandong Province, China. A series
+of I-, R-, V-, and B-band frames were obtained, and observations are
+still ongoing.
+
+Although under quite much cloud, at the afterglow position (Elenin et
+al., GCN 14450; Perley, GCN 14451) we detect the optical counterpart
+with R=15.5 mag, with a median time of 4.178 hr after the BAT trigger
+and calibrated with nearby USNO B1 stars.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14459
+SUBJECT: GRB 130427A: RATIR Optical and NIR Observations
+DATE:    13/04/27 13:30:44 GMT
+FROM:    Nat Butler at Az State U  <natbutler@asu.edu>
+
+Nat Butler (ASU), Alan M. Watson (UNAM), Alexander Kutyrev (GSFC), William
+H. Lee (UNAM), Michael G. Richer (UNAM), Chris Klein (UCB), Ori Fox (UCB)
+J. Xavier Prochaska (UCSC), Josh Bloom (UCB), Antonino Cucchiara (UCSC),
+Eleonora Troja (GSFC), Owen Littlejohns (ASU), Enrico Ramirez-Ruiz (UCSC),
+José A. de Diego (UNAM), Leonid Georgiev (UNAM), Jesús González (UNAM),
+Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC), and Harvey Moseley (GSFC)
+report:
+
+We observed the field of GRB 130427A (Maselli, et al., GCN 14448) with the
+Reionization and Transients Infrared Camera (RATIR; www.ratir.org) on the
+1.5m Harold Johnson Telescope at the Observatorio Astronómico Nacional on
+Sierra San Pedro Mártir from 2013/04 27.34 to 2013/04 27.39 UTC (0.25 to
+1.67 hours after the BAT trigger), obtaining a total of 1.07 hours exposure
+in the r' and i' bands and 0.45 hours exposure in the Z, Y, J, and H bands.
+
+For a source at afterglow location reported by Elenin et al. (GCN 14450),
+in comparison with SDSS DR8 and 2MASS, we obtain the following detections:
+
+  i' 14.46 +/- 0.01
+  Z  14.13 +/- 0.03
+  Y  14.02 +/- 0.03
+  J  14.05 +/- 0.02
+  H  13.77 +/- 0.03
+
+These magnitudes are not corrected for Galactic extinction in the direction
+of the GRB.
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14462
+SUBJECT: GRB 130427A: MAXI/GSC detection
+DATE:    13/04/27 15:19:38 GMT
+FROM:    Satoshi Nakahira at JAXA/MAXI  <nakahira.satoshi@jaxa.jp>
+
+T. Kawamuro, M. Shidatsu  (Kyoto U.), S. Nakahira (JAXA), H. Negoro (Nihon U.),
+S. Ueno, H. Tomida, M. Kimura, M. Ishikawa (JAXA),
+T. Mihara, M. Sugizaki, M. Serino, M. Morii, T. Yamamoto, J. Sugimoto, T. Takagi, M. Matsuoka (RIKEN),
+N. Kawai, R. Usui, K. Ishikawa, T. Yoshii (Tokyo Tech),
+A. Yoshida, T. Sakamoto, Y. Nakano (AGU),
+H. Tsunemi, M. Sasaki (Osaka U.),
+M. Nakajima, T. Onodera, K. Fukushima, K. Suzuki (Nihon U.),
+Y. Ueda, M. Shidatsu (Kyoto U.),
+Y. Ueda (Kyoto U.),
+Y. Tsuboi, M. Higa (Chuo U.),
+M. Yamauchi, K. Yoshidome, Y. Ogawa, H. Yamada (Miyazaki U.),
+K. Yamaoka (Nagoya U.) report on behalf of the MAXI team
+
+MAXI/GSC detected the bright GRB 130427A in the scan transit
+at 2013-04-27T08:42 UT, about 50 min after the trigger by Swift-BAT (Maselli et al. GCN 14448).
+The one-scan averaged 2-10 keV fluxes were 71 +- 19 mCrab and 23 +- 13 mCrab in the scan transits
+at 2013-04-27T08:42 and 2013-04-27T10:13, respectively.
+
+There were no significant excess fluxes in the previous scan transit at 07:12 UT and
+in the transit at 11:46 with an upper limit of 30 mCrab for each.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14464
+SUBJECT: GRB 130427A: Optical Observations
+DATE:    13/04/27 15:40:25 GMT
+FROM:    Myungshin Im at Seoul Nat U  <mim@astro.snu.ac.kr>
+
+M. Im (CEOU/SNU) on behalf of a larger collaboration
+
+We observed GRB 130427A (Maselli et al., GCN 14448) 
+in BVRI filters using T30 telescope (0.5m) of the iTelescope
+network (AAO, Australia), and also are conducting 
+follow-up imaging observations using facilities in Korea.
+
+The T30 observation started at about 4 hours after the BAT alert,
+and other observations starting at a similar epoch. We clearly 
+identify the fading afterglow in T30 images, at the location 
+reported earlier (Elenin et al. GCN 14450).
+
+Preliminary BRI magnitudes of the afterglow in one of the epochs, 
+calibrated against a USNO B-1 star in the vicinity of the afterglow,
+are given below:
+
+   T(mid, UT)         Mag
+04-27 11:42:56     I=14.86 +- 0.12
+04-27 11:45:29     R=15.60 +- 0.10
+04-27 11:50:29     B=16.10 +- 0.15
+
+Follow-up observations are still ongoing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14465
+SUBJECT: GRB 130427A: MITSuME Okayama Optical Observation
+DATE:    13/04/27 16:22:27 GMT
+FROM:    Daisuke Kuroda at OAO/NAOJ  <dikuroda@oao.nao.ac.jp>
+
+D. Kuroda, K. Yanagisawa, Y. Shimizu, H. Toda (OAO, NAOJ),
+S. Nagayama (NAOJ), M. Yoshida (Hiroshima), K. Ohta (Kyoto)
+and N. Kawai(Tokyo Tech)
+report on behalf of the MITSuME collaboration:
+
+We observed the field of GRB 130427A (Masell et al., GCNC 14448)
+with the optical three color (g', Rc and Ic) CCD camera attached
+to the MITSuME 50cm telescope of Okayama Astrophysical Observatory.
+
+The observation started on 013-04-27 10:57:02 UT (~3.2 h after the burst).
+We detected the previously reported afterglow (Elenin et al., GCNC 14450)
+in all the three bands.
+
+Photometric results of the OT are listed below.
+We used SDSS catalog for flux calibration.
+
+#T0+[day]  MID-UT    T-EXP[sec]   g'   g'_err Rc    Rc_err Ic    Ic_err
+-----------------------------------------------------------------------
+0.13478    11:02:01     540.0    15.82  0.03  15.48  0.02  15.04  0.03
+0.30675    15:09:39     540.0    16.45  0.06  16.27  0.03  15.87  0.04
+------------------------------------------------------------------------
+T0+ : Elapsed time after the burst [day]
+T-EXP: Total Exposure time [sec]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14466
+SUBJECT: GRB 130427A: GMG optical observation
+DATE:    13/04/27 17:32:43 GMT
+FROM:    Xiao-hong Zhao at Yunnan Obs  <zhaoxiaohong78@gmail.com>
+
+X.-H. Zhao (YNAO and PSU), J. Mao (RIKEN and YNAO), Y. X. Xin(YNAO), J.-M. Bai 
+(YNAO) report on behalf of a larger collaboration:
+
+We observed the field of GRB 130427A (Maselli et al., GCN 14448) with 2.4m Gao-Mei-Gu (GMG) telescope. Observation
+was started at 13:25:18 UT on 2013-04-27 (i.e., 5.6 hrs after the burst) under a bad weather condition. The sloan filters of g', r',i' and z' were used. The afterglow is very bright in every band with magnitudes of g'~16.36, r'~16.1, i'~15.9 and z'~15.8. The observations are ongoing. 
+   
+We thank the GMG staff, especially Hong-Yan Gao and Jian-Duo He for
+performing these observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14468
+SUBJECT: GRB 130427A: Zadko observatory - Gingin optical observations
+DATE:    13/04/27 17:43:48 GMT
+FROM:    Alain Klotz at IRAP-CNRS-OMP  <Alain.Klotz@free.fr>
+
+B. Gendre, A. Klotz (IRAP-CNRS-OMP), D. Macpherson (UWA/ICRAR),
+D. Coward (UWA), M. Boer, K. Siellez, H. Dereli ,
+O. Bardho (UNS-CNRS-ARTEMIS-OCA), A. Williams (PO-UWA),
+R. Martin (PO-UWA) report:
+
+We imaged the field of GRB 130427A detected by SWIFT
+(trigger 554620) with the Zadko robotic telescope (D=100cm)
+located at the observatory - Gingin, Australia.
+
+The observations started 3.44h after the GRB trigger
+(the event occured during the local afternoon).
+The elevation of the field increased from
+23 degrees above horizon and weather conditions
+were good.
+
+We detect the optical couterpart discovered by
+Elenin et al. (GCNC 14450). The unfiltered images
+are analyzed regarding the R magnitude of star
+catalogues. The preliminary light curve is:
+
+Tstart Tstop Rmag  1sig
+(mins) (mins)
+    207   219 15.50 0.1
+    220   232 15.54 0.1
+    238   250 15.37 0.1
+    252   264 15.56 0.1
+    265   277 15.51 0.1
+    304   319 15.58 0.1
+    447   450 16.27 0.2
+
+Magnitudes are not corrected for galactic dust extinction.
+
+This message may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14470
+SUBJECT: GRB 130427A: Swift-BAT refined analysis
+DATE:    13/04/27 19:33:00 GMT
+FROM:    Scott Barthelmy at NASA/GSFC  <scott@lheamail.gsfc.nasa.gov>
+
+S. D. Barthelmy (GSFC), W. H. Baumgartner (GSFC/UMBC), J. R. Cummings (GSFC/UMBC),
+E. E. Fenimore (LANL), N. Gehrels (GSFC), H. A. Krimm (GSFC/USRA),
+A. Y. Lien (NASA/GSFC/ORAU), C. B. Markwardt (GSFC), A. Maselli (INAF-IASFPA),
+D. M. Palmer (LANL), T. Sakamoto (AGU), G. Sato (ISAS),
+M. Stamatikos (OSU), J. Tueller (GSFC), T. N. Ukwatta (MSU)
+(i.e. the Swift-BAT team):
+ 
+Using the data set from T-60 to T+243 sec from recent telemetry downlinks,
+we report further analysis of BAT GRB 130427A (trigger #554620)
+(Maselli, et al., GCN Circ. 14448).  The BAT ground-calculated position is
+RA, Dec = 173.150, 27.706 deg which is 
+   RA(J2000)  =  11h 32m 36.1s 
+   Dec(J2000) = +27d 42' 20.3" 
+with an uncertainty of 1.0 arcmin, (radius, sys+stat, 90% containment).
+The partial coding was 14%.
+ 
+The mask-weighted light curve shows the main emission occuring during a
+pre-planned slew.  The burst location came into the BAT FoV at ~T-52 sec.
+The first recorded peak started at ~T-51 sec and ending at ~T-50 sec.
+The main, large peak started at ~T-50 sec, peaked at ~T-42 sec (~310 cnts/cm2/sec),
+and ended at ~T-10 sec.  The spacecraft settled at T+0, and then BAT triggered
+(a 64-sec image trigger) at the beginning a long slow peak starting at ~T+0 sec,
+peaking at ~T+90 sec, and returning to baseline ~T+2000 sec.
+T90 (15-350 keV) is 162.83 +- 1.36 sec (estimated error including systematics).
+We note that (a) there is a possibility that there was emission from this burst
+before it came into the BAT FoV at ~T-52 sec, and (b) that Fermi-GBM triggered
+on this burst at 07:47:06.42 (T_bat-51 sec) [GCN/FERMI_GBM_FLIGHT_POSITION Notice,
+TrigNum=388741629].
+ 
+The time-averaged spectrum from T-51.05 to T+223.50 sec is best fit by a simple
+power-law model.  The power law index of the time-averaged spectrum is
+1.21 +- 0.02.  The fluence in the 15-150 keV band is 3.1 +- 0.03 x 10^-4 erg/cm2.
+The 1-sec peak photon flux measured from T-44.25 sec in the 15-150 keV band
+is 331.0 +- 4.6 ph/cm2/sec.  All the quoted errors are at the 90% confidence
+level. 
+ 
+The results of the batgrbproduct analysis are available at
+http://gcn.gsfc.nasa.gov/notices_s/554620/BA/
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14471
+SUBJECT: GRB 130427A: Fermi-LAT detection of a burst
+DATE:    13/04/27 20:10:41 GMT
+FROM:    Judith Racusin at GSFC  <judith.racusin@nasa.gov>
+
+S. Zhu, J. Racusin, D. Kocevski, J. McEnery (NASA/GSFC), F. Longo (Univ of Trieste and INFN), J. Chiang (SLAC), G. Vianello (Stanford) report on behalf of the Fermi-LAT team:
+
+At 07:47:06 UT on 27 April 2013, Fermi LAT detected high energy emission from GRB 130427A, which was also detected by Fermi-GBM (trigger 388741629/130427324) and by Swift (Maselli et al. GCN 14448).  The GBM detection triggered an autonomous repoint of the spacecraft.
+
+The LAT on-ground location is consistent with the optical position reported in Elenin et al. (GCN 14450). The burst was about 47 deg from the LAT boresight at the time of the trigger and within the LAT field of view for the next 700 seconds.
+
+The data from the Fermi LAT show a multi-peaked light curve consistent with the GBM trigger. More than 200 photons above 100 MeV are observed within 100 seconds with a TS of >1000.  Using the non-standard LAT Low Energy (LLE) data selection, thousands of counts above background were detected within a 100 s interval coinciding with the time of the GBM emission, with a significance of ~40 sigma. The highest energy LAT photon has an energy of 94 GeV.
+
+A GBM circular is forthcoming.
+
+The Fermi LAT point of contact for this burst is Sylvia Zhu (s.jc.zhu@gmail.com).
+
+The Fermi LAT is a pair conversion telescope designed to cover the energy band from 20 MeV to greater than 300 GeV. It is the product of an international collaboration between NASA and DOE in the U.S. and many scientific institutions across France, Italy, Japan and Sweden.
+
+[GCN OPS NOTE(30apr13): Per author's request, time in the first sentence was changed from "07:47:15" to "07:47:06".]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14472
+SUBJECT: GRB130427A: Swift/UVOT followup observations of an Optical Afterglow
+DATE:    13/04/27 20:22:45 GMT
+FROM:    Tyler Pritchard at PSU  <tapritchard@astro.psu.edu>
+
+T. Pritchard (PSU), A. Maselli (INAF-IASFPA), N. P. M. Kuin (MSSL),
+S. R. Oates (MSSL-UCL), M. De Pasquale (MSSL-UCL),
+and M. H. Siegel (PSU), report on behalf of the Swift/UVOT team:
+
+Further to Maselli et al., GCN Circ. 14448 we have performed manual
+stacking and aspect corrections on the initial UVOT image.  These
+resulting images still retain some instrumental effects due to the
+brightness of the object and loss of star tracking lock.
+
+Preliminary 3-sigma detections using the UVOT photometric system
+(Breeveld et al. 2011, AIP Conf. Proc. 1358, 373) for the UVOT
+observations are:
+
+Filter         T_start(s)   T_stop(s)      Exp(s)         Mag
+wh          1522         1542           19.5         13.8±1.1
+v         382          401           19.5        12.1±0.04
+b            480          500           19.5        12.6±1.09
+u            456          475           19.5        11.8±1.09
+w1           430          450           19.5        11.2±0.04
+m2           406          426           19.5        11.2±0.04
+w2           358          377           19.5        11.2±0.04
+
+The magnitudes in the table are not corrected for the Galactic extinction
+due to the reddening of E(B-V) = 0.24 in the direction of the burst
+(Schlegel et al. 1998).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14473
+SUBJECT: GRB 130427A: Fermi GBM observation
+DATE:    13/04/27 20:27:19 GMT
+FROM:    Andreas von Kienlin at MPE  <azk@mpe.mpg.de>
+
+A. von Kienlin (MPE) reports on behalf of the Fermi GBM Team:
+
+"At 07:47:06.42 UT on 27 April 2013, the Fermi Gamma-Ray Burst Monitor
+triggered and located GRB 130427A (trigger 388741629/130427324) which
+was also detected by the Swift/BAT and Fermi/LAT (Maselli et al. 2013, 
+GCN 14448  and S. Zhu et al., GCN 14471) The GBM on-ground location is 
+consistent with the Swift position.
+
+The angle from the Fermi LAT boresight is 48 degrees.
+
+Based on hard and intense emission in a GBM BGO detector, GBM 
+initiated an Autonomous Report Request. This request caused Fermi 
+to reorient towards this GRB (GBM flight location).  
+
+The GBM light curve consists of a bright structured peak followed 
+at ~T0+120 s by a FRED-like pulse. The overall duration (T90) 
+is about 138s s (50-300 keV).
+
+Owing to the brightness of the burst, systematic effects are very large 
+and no single model gives an adequate fit in this preliminary analysis.  
+A Band function fit in the interval  from T0+0.002 s to T0+18.432 s yields 
+the following parameters Epeak = 830 +/- 5 keV, alpha = -0.789 +/- 0.003, 
+and beta = -3.06 +/- 0.02. 
+
+The event fluence (10-1000 keV) in this time interval is
+(1.975 +/- 0.003)E-03 erg/cm^2. The 1.024 sec peak photon flux measured
+starting from T0+7.48808 s in the 8-1000 keV band
+is 1052 +/- 2 ph/s/cm^2, making this the most intense and fluent GRB 
+detected by Fermi GBM.
+
+Further analysis is being performed"
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14474
+SUBJECT: GRB 130427A: optical observations in CrAO
+DATE:    13/04/27 21:13:31 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+A. Volnova ( IKI),   D. Shakhovskoy (CrAO),   V. Rumyantsev (CrAO), A. 
+Pozanenko (IKI) report on behalf of  larger GRB  follow-up collaboration:
+
+We started observation of the field of  the Swift GRB 130427A (Maselli et 
+al., GCN 14448)  with AZT-11 telescope of CrAO observatory on Apr. 27 (UT) 
+18:21:45 in VRI filters. We clearly detect  still bright optical counterpart 
+of GRB 130427A (Maselli et al., GCN 14448, Elenin et al. GCN 14450, Perley 
+GCN 14451).    Preliminary photometry is following
+
+   filter   tstart (UT) exp,s   T-t0,d       OT +/- err
+   R       18:21:45   120      0,76580   16,71 +/- 0,06
+   R       18:27:52   120      0,77005   16,87 +/- 0,06
+   R       18:34:00   120      0,77431   16,83 +/- 0,07
+   R       18:40:07   120      0,77855   16,81 +/- 0,06
+
+Observation is continuing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14475
+SUBJECT: GRB 130427A: T100 observations
+DATE:    13/04/27 22:39:19 GMT
+FROM:    Eda Sonbas at NASA/GSFC  <edasonbas@gmail.com>
+
+E. Sonbas (Adiyaman Univ.), T. Guver (Sabanci Univ.), E. Gogus (Sabanci
+Univ.), H. Kirbiyik (TUG) report on behalf of a larger collaboration
+
+We observed the field of Swift  GRB 130427A (Maselli et al. GCN#14448)
+with  the  1.0 meter  T100  telescope  (TUBITAK National  Observatory,
+Antalya - Turkey),  starting April, 27, 20:39:28 UT (~ 13 hours after
+the trigger). Observations were carried out in the R filter under good
+weather conditions. The afterglow is clearly  detected in 60 s R band
+images at a position that is consistent with Elenin et al. GCN#14450
+
+Using USNO-B1 star USNO-B1 1177-0254824  (RA=  11:32:31.23, Dec=
++27:42:23.02 ) in the field, the magnitudes of the OT were estimated as
+follows;
+
+t-t0 (hr)         exp.(s)      filt            mag             err (+/-)
+12.850        60               R            16.2              0.05
+12.871        60               R            16.6              0.03
+12.874        60               R            16.3              0.03
+12.877        60               R             16.5             0.01
+
+Further observations using the same filter are ongoing.
+
+We are grateful to the TUBITAK National Observatory staff for promptly
+scheduling the observations and their technical support.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14476
+SUBJECT: GRB 130427A: RAPTOR Bright Counterpart Before Swift Trigger
+DATE:    13/04/28 00:12:42 GMT
+FROM:    James Wren at LANL  <jwren@nis.lanl.gov>
+
+J. Wren, W.T. Vestrand, P. Wozniak, and H. Davis,
+of Los Alamos National Laboratory report:
+
+Three RAPTOR full-sky persistent monitors at Maui, HI, and Los Alamos, NM,
+independently detected  bright optical emission at the location of the
+Swift trigger 554620 (Maselli, et al., GCN 14448).  Starting at 07:47:07.28
+UT (50.2 seconds before the Swift trigger) we detect a brightening counterpart
+which peaks at magnitude R~7.4.  After the peak, the source fades to below
+10th magnitude at approximately the Swift trigger time.  The unfiltered images
+from all three monitors are calibrated to the Tycho-2 V-band catalog.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14478
+SUBJECT: GRB 130427A: NOT optical photometry and redshift
+DATE:    13/04/28 00:47:29 GMT
+FROM:    Dong Xu at DARK/NBI  <dong.dark@gmail.com>
+
+D. Xu (DARK/NBI), A. de Ugarte Postigo (IAA-CSIC, DARK/NBI), S.
+Schulze (PUC and MCSS), J. Jessen-Hansen (AU), G. Leloudas (OKC,
+Stockholm), T. Kruehler, J.P.U. Fynbo (DARK/NBI), P. Jakobsson (U.
+Iceland) report on behalf of a larger collaboration:
+
+We observed the field of GRB 130427A (Maselli et al., GCN 14448) with
+the 2.5m Nordic Optical Telescope (NOT) equipped with the ALFOSC
+camera. Observations started at 20:39:12 UT on 2013-04-27 (i.e., 12.85
+hr after the BAT trigger).
+
+We first obtained a series of frames in the sloan u-, g-, r-, i-, and
+z-band filters. The optical afterglow (ref., Elenin et al., GCN 14450)
+is clearly detected in the stacked images in each of these filters.
+Preliminary analysis gives the following magnitudes
+
+u=17.70+/-0.03
+g=17.34+/-0.03
+r=17.07+/-0.03
+i=16.94+/-0.03
+z=16.88+/-0.03
+
+at a mean time of 12.96 hr post-trigger, calibrated with nearby stars
+in the SDSS field.
+
+We also carried out a 1800s spectroscopic exposure. The spectrum
+covers 3200 - 9100 AA at a resolution of ~700 and has a high S/N. We
+detect prominent absorption lines of the MgII doublet, MgI and CaII K
+& H as well as weak emission lines of the [OII] doublet and H-beta,
+all at a common redshift of z=0.338+/-0.002, consistent with the
+redshift reported by Levan et al. (GCN 14455).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14480
+SUBJECT: GRB 130427A:  VLA 5 GHz detection
+DATE:    13/04/28 03:38:35 GMT
+FROM:    Ashley Zauderer at CfA  <bevinashley@gmail.com>
+
+B. A. Zauderer, E. Berger, S. Chakraborti, and A. Soderberg (Harvard)
+report on behalf of a larger collaboration:
+
+"We observed the position of GRB 130427A (Maselli et al.; GCN 14448)
+beginning 2013 Apr 27.99 (dt = 0.67 d) with the Very Large Array in its
+D configuration (synthesized beam ~18'' x 11'').  At a mean frequency of 
+~5.8 GHz, we detect a source with a flux of ~1 mJy +/- 20 uJy at a
+position consistent with the optical afterglow (e.g. Elenin et al., 
+Perley et al.; GCNs 14450, 14451). Followup observations are planned for 
+this nearby z~0.34 GRB (Levan et al., Xu et al; GCNs 14455, 14478).
+
+We thank the VLA observatory staff for their support of these observations."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14481
+SUBJECT: GRB 130427A: SNUO/SOAO/BOAO Observation
+DATE:    13/04/28 03:47:29 GMT
+FROM:    Myungshin Im at Seoul Nat U  <mim@astro.snu.ac.kr>
+
+M. Im, C. Choi (CEOU/SNU), H.-I. Sung, Y.-B. Jeon (KASI), 
+and Y. Urata (NCU) on behalf of a larger collaboration
+
+We continued our follow-up imaging observation of
+GRB 130427A (Maselli et al., GCN 14448) in BVRI filters at 
+Seoul National University Observatory (SNUO, 0.6m), Sobaeksan 
+Optical Astoronomy Observatory (SOAO, 0.6m), and Bohyunsan 
+Optical Astronomy Observatory (BOAO), all located in Korea.
+
+The observations span the time period of about 4 hrs 
+between 04-27 11:28 and 04-27 15:48 UT. The GRB afterglow 
+(e.g., Elenin et al. GCN 14450; Im GCN 14464) is identified 
+in the observed frames at magnitudes of ~16-17 mag
+
+Further analysis of the data is ongoing, and additional follow-up 
+observation with these and other facilities is ongoing and planned.
+
+We thank the staffs of SOAO for performing the ToO observation.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14482
+SUBJECT: GRB 130427A:  CARMA 85 GHz detection
+DATE:    13/04/28 05:22:11 GMT
+FROM:    Ashley Zauderer at CfA  <bevinashley@gmail.com>
+
+B. A. Zauderer, E. Berger, S. Chakraborti, and A. M. Soderberg (Harvard) 
+report on behalf of the CARMA Key Project "A Millimeter View of the 
+Transient Universe":
+
+"We began observing the field of GRB 130427A (Maselli et al.; GCN 14448) 
+with the Combined Array for Research in Millimeter Astronomy on 2013 Apr 
+28.13 UT (dt ~ 0.8 d).  In 45 minutes integration on source at a mean 
+frequency of 85 GHz, we detect a radio counterpart with a preliminary 
+flux of ~3 mJy (>10-sigma) at a position consistent with the reported 
+optical afterglow (Elenin et al., Perley et al.; GCNs 14450, 14451) and 
+our VLA 5 GHz detection (Zauderer et al.; GCN 14480). Observations are 
+ongoing.
+
+We thank the CARMA observers and the observatory staff for their support."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14483
+SUBJECT: GRB 130427A: Continued RATIR Optical and NIR Observations
+DATE:    13/04/28 05:46:39 GMT
+FROM:    Nat Butler at Az State U  <natbutler@asu.edu>
+
+Nat Butler (ASU), Alan M. Watson (UNAM), Alexander Kutyrev (GSFC), William
+H. Lee (UNAM), Michael G. Richer (UNAM), Chris Klein (UCB), Ori Fox (UCB)
+J. Xavier Prochaska (UCSC), Josh Bloom (UCB), Antonino Cucchiara (UCSC),
+Eleonora Troja (GSFC), Owen Littlejohns (ASU), Enrico Ramirez-Ruiz (UCSC),
+José A. de Diego (UNAM), Leonid Georgiev (UNAM), Jesús González (UNAM),
+Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC), and Harvey Moseley (GSFC)
+report:
+
+We again observed the field of GRB 130427A (Maselli, et al., GCN 14448)
+with the Reionization and Transients Infrared Camera (RATIR; www.ratir.org)
+on the 1.5m Harold Johnson Telescope at the Observatorio Astronómico
+Nacional on Sierra San Pedro Mártir from 2013/04 28.14 to 2013/04 28.20 UTC
+(19.62 to 20.99 hours after the BAT trigger), obtaining a total of 1.07
+hours exposure in the r' and i' bands and 0.45 hours exposure in the Z, Y,
+J, and H bands.
+
+We continue to detect the optical/NIR afterglow (Elenin et al; GCN 14450)
+in all bands.  In comparison with SDSS DR8 and 2MASS, we find:
+
+  r'    17.68 +/- 0.01
+  i'    17.52 +/- 0.01
+  Z     17.26 +/- 0.04
+  Y     17.12 +/- 0.02
+  J     17.21 +/- 0.02
+  H     17.01 +/- 0.03
+
+These magnitudes are in the AB system and not corrected for Galactic
+extinction in the direction of the GRB.  Uncertaints are 1-sigma.  The
+source has faded by about 3 magnitudes in all bands as compared to our
+measurements last night (Butler et al. 2013; GCN 14459).
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14484
+SUBJECT: GRB 130427A: SPI-ACS/INTEGRAL observations
+DATE:    13/04/28 06:38:27 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+A. Pozanenko (IKI), P. Minaev (IKI), A. Volnova (IKI) report:
+
+The SPI-ACS detector (> 80 keV) of INTEGRAL observatory was triggered by the 
+Swift GRB 130427A  (Maselli et al., GCN 14448) on (UT) T0=07:47:06.36. Light 
+curve of the GRB 130427A 
+(http://www.isdc.unige.ch/integral/ibas/cgi-bin/ibas_acs_web.cgi) consists 
+of the first peak of ~ 1 s duration  which coincides with bright optical 
+emission detected by RAPTOR (Wren et al., GCN 14476). This peak is also 
+clearly visible in the BAT light curve at ~T0_BAT-51 s ( 
+http://gcn.gsfc.nasa.gov/notices_s/554620/BA/ ). Following the first peak 
+extremely intense emission was detected coinciding with BAT/Swift and 
+Fermi-LAT detection (Zhu et al., GCN 14471). The emission in SPI-ACS 
+detector is significantly detectable at least up to 100 s after T0.
+
+The SPI-ACS light curve can be also found at
+http://grb.rssi.ru/GRB130427A/GRB130427A_SPI-ACS.png
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14485
+SUBJECT: GRB 130427A: Swift-XRT refined Analysis
+DATE:    13/04/28 08:29:05 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+J.A. Kennea (PSU), M.C. Stroh (PSU), D.N. Burrows (PSU), J.P. Osborne
+(U. Leicester), K.L. Page (U. Leicester), C. Pagani (U. Leicester), A.
+Melandri (INAF-OAB), B. Sbarufatti (INAF-OAB/PSU), G. Stratta (ASDC)
+and A. Maselli report on behalf of the Swift-XRT team:
+
+We have analysed 2.4 ks of XRT data for GRB 130427A (Maselli  et al.
+GCN Circ. 14448),  from 130 s to 48.1 ks after the  BAT trigger. The
+data comprise 84 s in Windowed Timing (WT) mode (the first 9 s were
+taken while Swift was slewing) with the remainder in Photon Counting
+(PC) mode. The refined XRT position is RA, Dec = 173.13594, +27.69769
+which is equivalent to:
+
+RA (J2000): 11 32 32.63
+Dec(J2000): +27 41 51.7
+
+with an uncertainty of 3.5 arcsec (radius, 90% confidence).
+
+The light curve can be modelled with an initial power-law decay with an
+index of alpha=7.9980 (+0.0021, -1.0800), followed by a break at T+252
+s to an alpha of 0.61 (+/-0.10).
+
+A spectrum formed from the PC mode data can be fitted with an absorbed
+power-law with a photon spectral index of 1.79 (+0.17, -0.16). The
+best-fitting absorption column is  9.9 (+6.4, -6.0) x 10^20 cm^-2, at a
+redshift of 0.34, in addition to the Galactic value of 1.8 x 10^20
+cm^-2 (Kalberla et al. 2005). The counts to observed (unabsorbed)
+0.3-10 keV flux conversion factor deduced from this spectrum  is 4.0 x
+10^-11 (4.7 x 10^-11) erg cm^-2 count^-1. 
+
+A summary of the PC-mode spectrum is thus:
+Galactic foreground: 1.8 x 10^20 cm^-2
+Intrinsic column:    9.9 (+6.4, -6.0) x 10^20 cm^-2 at z=0.34
+Photon index:	     1.79 (+0.17, -0.16)
+
+If the light curve continues to decay with a power-law decay index of
+0.61, the count rate at T+24 hours will be 2.3 count s^-1,
+corresponding to an observed (unabsorbed) 0.3-10 keV flux of 9.4 x
+10^-11 (1.1 x 10^-10) erg cm^-2 s^-1.
+
+The results of the XRT-team automatic analysis are available at
+http://www.swift.ac.uk/xrt_products/00554620.
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14486
+SUBJECT: GRB 130427A: Kanata/HOWPol optical imaging polarimetry
+DATE:    13/04/28 10:21:20 GMT
+FROM:    Koji Kawabata at HASC,Hiroshima U  <kawabtkj@hiroshima-u.ac.jp>
+
+R. Itoh, K. Kawaguchi, Y. Moritani, K. Takaki, K. S. Kawabata, M. Ohno, 
+H. Takahashi, Y. Tanaka, and M. Yoshida (Hiroshima Univ.) report on behalf 
+of Kanata team:
+
+We performed a series of optical imaging polarimetry for the optical 
+afterglow of GRB 130427A (Elenin et al., GCN 14450) from 3.87 hr through
+10.04 hr after the Swift/BAT trigger (Maselli et al., GCN 14448) with HOWPol 
+attached to the 1.5-m Kanata telescope at Higashi-Hiroshima Observatory, Japan. 
+
+Our quick-look analysis indicates that the R-band magnitude of the optical 
+afterglow was 15.9 at the beginning of our observation, and then smoothly 
+declined. Its decline rate between 3.87 hr and 10.04 hr can be approximated by 
+a single power-low decay with an index -1.0. The polarization seems not so 
+large (<~3%) in that period. Further analysis is ongoing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14487
+SUBJECT: Konus-Wind observation of GRB 130427A
+DATE:    13/04/28 10:22:50 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+S. Golenetskii, R.Aptekar, D. Frederiks, E. Mazets, V. Pal'shin,
+P. Oleynik, M. Ulanov, D. Svinkin, and T. Cline on behalf
+of the Konus-Wind team, report:
+
+The long extremely intense GRB 130427A (Swift-BAT trigger #554620:
+Maselli et al., GCN 14448; Barthelmy et al., GCN 14470;
+Fermi-LAT detection: Zhu et al., GCN 14471;
+Fermi-GBM observation: von Kienlin, GCN 14473;
+SPI-ACS/INTEGRAL observations: Pozanenko et al., GCN 14484)
+triggered Konus-Wind (K-W) at T0=28029.501s UT (07:47:09.501)
+~50 s before the BAT trigger.
+
+The K-W light curve shows a huge mult-peaked emission complex
+started at ~T0, peaked at ~T0+8 s, and having a duration of ~20 s.
+The emission is seen up to ~12 Mev.
+This extremely bright phase of the event passes into a weaker decaying
+tail out to ~T0+120s, when the second emission episode started.
+It shows a FRED-like pulse, ~100 times weaker in a peak count
+rate than the initial complex.
+The decaying emission is detectable by K-W in the 20-1200 keV band
+out to ~T0+250s, when the instrument switched into the data readout mode.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB130427_T28029/
+
+As observed by Konus-Wind, the main phase of the burst had
+a fluence of (2.68 ± 0.01)x10^-3 erg/cm2 and a 16-ms peak flux,
+measured from T0+7.774 s, of (6.9 ± 0.1)x10^-4 erg/cm2/s
+(both in the 20 - 1200 keV energy range).
+The fluence of GRB 130427A is the highest observed by K-W
+for ~18 years of GRB observations and its peak flux
+is only ~30% lower than measured by K-W for the
+ultra-luminous GRB 110918A.
+
+The time-averaged spectrum of the main phase of the burst
+(measured from T0 to T0+18.688 s) is best fit in the 20 keV-15 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -0.958 ± 0.006,
+the high energy photon index beta = -4.17 ± 0.16,
+the peak energy Ep = 1028 ± 8 keV,
+chi2 = 124/96 dof.
+
+The spectrum at the maximum count rate (measured from T0+7.680 to T0+7.936 s)
+is best fit in the 20 keV - 15 MeV range
+by a power law with exponential cutoff model, for which:
+the photon index alpha = -0.57 ± 0.02, and
+the peak energy Ep = 1213 ± 31 keV,
+chi2 = 63/84 dof.
+
+Modelling the 3-channel time-averaged spectrum
+of the second emission episode (from T0+120 s to T0+250 s)
+by a power law with exponential cutoff model
+yiels the photon index alpha~-1.6 and
+the peak energy Ep ~ 240 keV.
+The 20-1200 keV energy fluence measured at this
+phase of the event is ~9x10^-5 erg/cm2.
+
+Assuming z=0.34 (Levan et al., GCN 14455; Xu et al. GCN 14478)
+and a standard cosmology model with H_0 = 70 km/s/Mpc,
+Omega_M = 0.27, and Omega_Lambda = 0.73,
+the isotropic energy release E_iso is ~8.5x10^53 erg,
+and the peak luminosity (L_iso)_max is ~2.7x10^53 erg/s.
+
+All the quoted errors are estimated at the 1 sigma confidence level.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14488
+SUBJECT: GRB 130427A: Continued iTelescope T21 optical observations
+DATE:    13/04/28 11:37:46 GMT
+FROM:    Veli-Pekka Hentunen at Taurus Hill Obs,A95  <veli-pekka.hentunen@kassiopeia.net>
+
+Veli-Pekka Hentunen, Markku Nissinen and Tuomo Salmi (Taurus Hill
+Observatory, Varkaus, Finland) report:
+
+We have continued observing GRB 130427A optical afterglow at iTelescope
+observatory T21 (Mayhill, New Mexico) 0.43-m/6.8 astrograph and
+FLI-PL6303E CCD. Two unfiltered, two photometric R filter and two
+photometric V filter images with 600 sec exposure time were made.
+
+The following magnitudes were obtained from the observations using
+NOMAD1 1176-0248446 (R=13.520, V=13.120) as the comparison:
+
+Tmid(h)+T0      Filter     Exp. time         Mag          Mag err. 
+22.67              V              600                17.73V         0.11
+22.85              V              600                17.72V         0.11
+23.10              unfiltered   600                18.01CR       0.07
+23.27              unfiltered   600                18.22CR       0.09
+23.56              R              600                18.18R          0.12
+23.74              R              600                18.36R          0.14
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14489
+SUBJECT: GRB 130427A, Optical Observations
+DATE:    13/04/28 11:48:15 GMT
+FROM:    Shashi Bhushan Pandey at ROTSE  <shaship@umich.edu>
+
+S. B. Pandey and Brajesh Kumar (ARIES Nainital India, on behalf of larger
+Indian GRB collaboration)
+
+We observed Swift GRB 130427A field (Maselli et al., GCN 14448) using 1.04m
+telescope at ARIES Nainital on 2013-04-27 starting at 14:25:16 UT in
+UBV(RI)_c filters. Several frames were obtained in average sky conditions.
+
+We clearly detect the bright optical counterpart of GRB 130427A (Maselli et
+al. GCN 14448, Elenin et al. GCN 14450) in each individual exposures.
+
+The preliminary photometry is as following:
+
+ (UT)Start    filter    exp(sec)      mag
+ 14:25:16       B        300        16.61 +/- 0.06
+ 14:53:36       I         200       14.83 +/- 0.05
+
+The photometry was performed in comparison to nearby USNO- B1 stars. Our
+observations seem to follow the power-law decay exponent ~ -0.9 as noticed 
+by Perley and Cenko GCN 14456.
+
+Further observations are going on. This massage may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14490
+SUBJECT: GRB 130427A optical time series
+DATE:    13/04/28 13:46:40 GMT
+FROM:    AAVSO GRB Network at AAVSO  <matthewt@aavso.org>
+
+Patrick Wiggins (Stansbury Park, Utah, United States) reports the following 
+optical observations of the error box of GRB 130427A (GCN Circ #14448,
+Maselli et al.) to the AAVSO International High Energy Network:
+
+P. Wiggins reports three hours of time-series photometry of the bright GRB 
+130427A (Maselli et al., GCN Circ. #14448; Elenin et al., GCN Circ. # 
+14450). Wiggins used a 0.35-m C-14 f/5.5 telescope with an SBIG ST-10XME 
+camera and clear filter located in Stansbury Park, Utah.  Observations 
+commenced 2013 April 27 08:05:12 UT -- less than 20 minutes post trigger 
+-- and continued through 11:10:06 UT.  The first four observations were 
+made with 60-second exposure times, which were found to be close to 
+saturation; subsequent exposure times were 30 seconds.  The transient was 
+detected by visual inspection of the first frame, and found to be very 
+bright.  Time-series observations were begun immediately.
+
+Thirty-three images of the field were taken, and the resulting light curve 
+is as follows.  All magnitudes are taken with respect to the comparison 
+star GSC 01984-00021, which has an r-magnitude of 12.553 (APASS DR7, 
+http://www.aavso.org/apass ); the resulting magnitudes should be 
+interpreted as through a clear filter with r'-band zero point.  Note that 
+the first four magnitudes with integration times of 60 seconds may be 
+saturated.  All times are given as the mid-point of the exposure, UT on 
+2013 April 27, and T(0)+h is hours since trigger (07:47:57 UT):
+
+     Obs. UT	T(0)+h	Exp. time	magn.	mag.err.
+08:05:41.529	0.296	   60.00	13.108	 0.006
+08:06:57.779	0.317	   60.00	13.194	 0.007
+08:14:16.467	0.439	   60.00	13.557	 0.009
+08:27:07.951	0.653	   60.00	13.995	 0.013
+08:40:35.701	0.877	   30.00	14.304	 0.024
+08:46:36.857	0.978	   30.00	14.413	 0.027
+08:50:51.998	1.049	   30.00	14.47	 0.029
+08:55:17.311	1.122	   30.00	14.546	 0.030
+09:00:52.545	1.215	   30.00	14.623	 0.033
+09:06:26.014	1.308	   30.00	14.684	 0.035
+09:11:59.514	1.401	   30.00	14.731	 0.038
+09:17:33.139	1.493	   30.00	14.792	 0.041
+09:23:06.748	1.586	   30.00	14.829	 0.043
+09:28:40.357	1.679	   30.00	14.969	 0.050
+09:34:18.373	1.773	   30.00	14.957	 0.050
+09:39:51.873	1.865	   30.00	14.911	 0.050
+09:45:25.545	1.958	   30.00	15.025	 0.055
+09:50:59.404	2.051	   30.00	15.158	 0.064
+09:56:32.982	2.143	   30.00	15.104	 0.064
+10:02:06.529	2.236	   30.00	15.22	 0.073
+10:07:40.154	2.329	   30.00	15.138	 0.071
+10:13:13.732	2.421	   30.00	15.249	 0.080
+10:15:01.029	2.451	   30.00	15.219	 0.078
+10:20:47.498	2.547	   30.00	15.302	 0.088
+10:26:21.123	2.64	   30.00	15.424	 0.099
+10:31:54.732	2.733	   30.00	15.387	 0.100
+10:37:28.451	2.825	   30.00	15.247	 0.091
+10:43:02.248	2.918	   30.00	15.512	 0.123
+10:48:35.811	3.011	   30.00	15.496	 0.124
+10:54:09.561	3.103	   30.00	15.517	 0.128
+10:59:43.279	3.196	   30.00	15.633	 0.150
+11:05:19.092	3.289	   30.00	15.555	 0.150
+11:10:20.982	3.373	   30.00	15.48	 0.153
+
+The AAVSO International High Energy Network is supported through the
+AAVSO Endowment Fund.  We thank the Charles Curry Foundation and
+NASA for past support.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14491
+SUBJECT: GRB 130427A: VLT/X-shooter redshift confirmation
+DATE:    13/04/28 15:05:53 GMT
+FROM:    Hector Flores at Obs.de Paris,Meudon  <hector.flores@obspm.fr>
+
+GRB 130427A: VLT/X-shooter redshift confirmation
+
+H. Flores (Obs. de Paris), S. Covino (INAF), D. Xu, T. Kruehler,
+J. Fynbo, B. Milvang-Jensen(DARK/NBI), A. de Ugarte Postigo (IAA-CSIC,
+DARK/NBI), L. Kaper (UVA) and  K. Wiersema (U. Leicester) report on behalf
+of the X-shooter GRB collaboration:
+
+VLT/X-shooter observed the afterglow of GRB 130427A (Maselli et al.,
+GCN 14448; Elenin et al., GCN 14450), starting on 2013-04-28 at UT
+00:23. The observation consisted of 2x600s exposures.
+
+In the spectra we detect the continuum in the complete range from 3000
+to 24800 A. We find several absorption features including FeII, MnII,
+MgII, MgI, TiII, CaII, NaI, and emission lines such as H-alpha,
+H-beta,  [OIII], and [OII], all at a common redshift of z=0.3399 +/- 0.0002,
+consistent with the measurement in Levan et al. (GCN 14455) and
+Xu et al. (GCN 14478).
+
+We thank the Paranal staff for excellent support, in particular Andrea
+Mehner and Christophe Martayan.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14492
+SUBJECT: GRB 130427A : Xinglong TNT optical observation
+DATE:    13/04/28 17:55:49 GMT
+FROM:    L.P. Xin at NAOC  <xlp@bao.ac.cn>
+
+L.P. Xin, J. Y. Wei, Y. L. Qiu,  J. Wang, 
+J. S. Deng, C. Wu, X.H. Han  report on behalf of EAFON team:
+
+We began to observe the field of GRB 130427A  (Maselli, et al., GCN 14448)
+using  80cm TNT telescope located at Xinglong observatory, China
+at 12:52:38 UT on 2013-04-28.  We obtained several B, V, R-band images.  
+
+The optical counterpart is detected in all images. The prelinary analysis shows that
+its brightness is about R=18.3 mag, calibrated with USNO B2 stars, 
+at the mean time of  29.08 h after the trigger time.
+
+This message may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14494
+SUBJECT: GRB 130427A: CARMA 3mm observations
+DATE:    13/04/28 22:38:23 GMT
+FROM:    Daniel Perley at Caltech  <dperley@astro.caltech.edu>
+
+D. A. Perley (Caltech) reports on behalf of a larger collaboration:
+
+We observed the position of GRB 130427A (Maselli et al.; GCN 14448) with 
+the Combined Array for Research in Millimeter Astronomy on two epochs on 
+2013-04-28 (UT), between 01:45 and 02:46 and again between 07:22 and 
+08:14, at a frequency of 93 GHz (3 mm).  The afterglow is well-detected 
+in both epochs.  Preliminary reduction gives fluxes of:
+
+3.7 +/- 0.4 mJy  (t_mid = 0.769 day)
+2.6 +/- 0.4 mJy  (t_mid = 1.000 day)
+
+These values are consistent with the flux reported by Zauderer et al. 
+(GCN 14482) as also measured by CARMA at a time intermediate between 
+these epochs.
+
+The source location is:
+
+RA = 11:32:32.82
+Dec = +27:41:56.06
+(J2000, uncertainty 0.4 arcsec)
+
+Further observations are planned.
+
+We thank the CARMA staff for their support in executing these observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14495
+SUBJECT: GRB 130427A: Nishi-Harima NIR Observations
+DATE:    13/04/29 00:11:01 GMT
+FROM:    Daisuke Kuroda at OAO/NAOJ  <dikuroda@oao.nao.ac.jp>
+
+J. Takahashi, K. Morihana, S. Honda and Y. Takagi (Univ. of Hyogo)
+report on behalf of Nayuta team:
+
+We observed the field of GRB 130427A (Masell et al., GCNC 14448)
+in near-infared three bands (J, H and Ks) with NIC attached to the
+Nayuta 2-m telescope at the Nishi-Harima Astronomical Observatory.
+
+The observations were conducted from 2013-04-27 12:26 UT to 2013-04-27
+17:25 UT (from ~4.7 h to ~9.6 h after the burst).
+We detected the previously reported afterglow (Elenin et al., GCNC 14450)
+in all the three bands.
+
+Photometric results of our observations are listed below.
+We used 2MASS 11323755+2743196 as the reference star for flux calibration.
+
+# MID-UT   T-EXP[sec]  J    J_err H    H_err  Ks    Ks_err
+-----------------------------------------------------------------------
+12:26:56     150       14.7  0.2  13.5  0.2   13.5   0.2
+13:27:59     150       14.7  0.2  14.2  0.2   13.2   0.3
+14:39:42     150       14.7  0.3  14.3  0.2   13.4   0.3
+17:17:31     150       --*   --*  14.8  0.2   14.6   0.2
+17:24:52     300       15.2  0.2  14.8  0.2   14.0   0.2
+------------------------------------------------------------------------
+T-EXP: Total Exposure time [sec]
+* Photometry was not possible because the signal from the reference star
+was too low.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14497
+SUBJECT: GRB 130427A: Skynet/PROMPT Observations
+DATE:    13/04/29 05:45:38 GMT
+FROM:    Adam S. Trotter at UNC-Chapel Hill/PROMPT/Skynet  <atrotter@physics.unc.edu>
+
+A. Trotter, D. Reichart, J. Haislip, A. LaCluyze, T. Berger, H. T. 
+Cromartie, R. Egger, A. Foster, N. Frank, K. Ivarsen, M. Maples, J. 
+Moore, M. Nysewander, E. Speckhard, and J. A. Crain report:
+
+Skynet observed the Swift/XRT localization of GRB 130427A (Maselli et 
+al., GCN 14448, Swift trigger #554620) with four 16" telescopes of the 
+PROMPT array at CTIO, Chile, starting at 2013-04-27, 23:28 UT, and 
+continuing until 04-28, 05:30 UT (t=15.69h-21.67h post-trigger). It took 
+~124 160-s exposures, simultaneously in each of the BVRI bands. We 
+performed photometry on each exposure, calibrated to two SDSS stars in 
+the field. We detect a fading afterglow in BVRI at the position reported 
+by Elenin et al. (GCN 14450), which is ~50" south of the initial XRT 
+localization.
+
+A preliminary light curve of the first night's data is at:
+http://skynet.unc.edu/grb/grb130427a.png
+
+Further Skynet observations are ongoing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14498
+SUBJECT: GRB 130427A: MITSuME Okayama and Ishigakijima Optical Observation after 1 day
+DATE:    13/04/29 06:06:15 GMT
+FROM:    Daisuke Kuroda at OAO/NAOJ  <dikuroda@oao.nao.ac.jp>
+
+D. Kuroda, (OAO, NAOJ), H. Hanayama (IAO, NAOJ), K. Yanagisawa,
+Y. Shimizu, H. Toda (OAO, NAOJ), T. Miyaji J. Watanabe, (IAO, NAOJ),
+S.Nagayama (NAOJ), M. Yoshida (Hiroshima), K. Ohta (Kyoto)
+and N. Kawai(Tokyo Tech) report on behalf of the MITSuME collaboration:
+
+We observed the field of GRB 130427A (Masell et al., GCNC 14448)
+with the optical three color (g', Rc and Ic) CCD camera attached
+to the MITSuME 50cm telescope of Okayama Astrophysical Observatory
+and the Murikabushi 1m telescope of Ishigakijima Astronomical
+Observatory.
+
+We detected the previously reported afterglow (Elenin et al., GCNC 14450)
+in all the three bands. Photometric results of the OT are listed below.
+We used SDSS catalog for flux calibration.
+
+Okayama Astrophysical Observatory:
+The observation started on 2013-04-28 11:29:25 UT (~1.15 days after the burst).
+
+#T0+[day]  MID-UT    T-EXP[sec]   g'   g'_err Rc    Rc_err Ic    Ic_err
+-----------------------------------------------------------------------
+1.16123    11:40:06    1440.0    18.4   0.2   17.9   0.1   17.7   0.1
+------------------------------------------------------------------------
+T0+ : Elapsed time after the burst [day]
+T-EXP: Total Exposure time [sec]
+
+Ishigakijima Astronomical Observatory:
+The observation started on 2013-04-28 14:02:08 UT (~1.26 days after the burst).
+#T0+[day]  MID-UT    T-EXP[sec]   g'   g'_err  Rc   Rc_err  Ic   Ic_err
+-----------------------------------------------------------------------
+1.31290    15:18:30    1020.0    18.61 0.06   18.22 0.04   17.37 0.05
+------------------------------------------------------------------------
+T0+ : Elapsed time after the burst [day]
+T-EXP: Total Exposure time [sec]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14502
+SUBJECT: GRB 130427A: Improved Swift-XRT analysis
+DATE:    13/04/29 14:32:17 GMT
+FROM:    Phil Evans at U of Leicester  <pae9@leicester.ac.uk>
+
+P.A. Evans, K.L. Page (U. Leicester), A. Maselli, V. Mangano, M. Capalbi 
+(INAF-IASFPA), D.N. Burrows (PSU) report on behalf of the Swift-XRT team:
+
+We have reanalysed the XRT data for GRB 130427A (Maselli  et al. GCN 
+Circ. 14448) from 144 s to 141 ks  after the BAT trigger. The data 
+comprise 1.9 ks of  Windowed Timing (WT) mode data, with the rest taken 
+in Photon Counting (PC) mode.
+
+The star trackers on Swift failed to find a correct aspect solution 
+during the first 1.9 ks of exposure (when the WT mode data were 
+collected; see GCN Circ. 14448), and the GRB is seen to be drifting on 
+the XRT detector. We have fitted this drift as a linear function, which 
+is a good representation to the data. We have then rebuilt the GRB light 
+curve and spectrum using this information. However, the time-tag of 
+individual photon events may be incorrect by up to 1 second, and the 
+method that we have used to correct the attitude may introduce low-level 
+fluctuations. It is therefore inappropriate to perform any detailed 
+timing or periodicity analysis with the current XRT data. We are working 
+to rectify this situation.
+
+The light curve can be modelled as a broken power-law with an initial 
+decay index of 2.81 (+/- 0.04) with a break at T+421 s to a slope of 
+alpha=1.17 (+/-0.01). This then breaks again at T+53.4ks to a final 
+slope of 1.79 (+0.5, -0.05).
+
+A spectrum formed from the WT mode data can be fitted with an absorbed 
+power-law with a photon spectral index of 1.91 (+/-0.11). The best 
+fitting absorption column is 2.8 (+/-0.05) x 10^21 cm^-2 at a redshift 
+of 0.34, in addition to the Galactic value of 1.8 x 10^20 cm^-2 
+(Kalberla et al. 2005). The counts to observed (unabsorbed) 0.3-10 keV 
+flux conversion factor deduced from this spectrum  is 3.8 x 10^-11 (5.2 
+x 10^-11) erg cm^-2 count^-1.
+
+If the light curve continues to decay with a power-law decay index of 
+1.79, the count rate at T+3 days will be 0.14 count/sec, corresponding 
+to an observed (unabsorbed) 0.3-10 keV flux of 5.3 x 10^-12 (7.3 x 
+10^-12) erg cm^-2 s^-1.
+
+The automated light curve of this GRB is online at 
+http://www.swift.ac.uk/xrt_curves/00554620/
+
+
+This circular is an official product of the Swift-XRT team.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14503
+SUBJECT: GRB 130427A in the Ep,i - Eiso plane
+DATE:    13/04/29 17:09:35 GMT
+FROM:    Lorenzo Amati at INAF-IASF/Bologna  <amati@iasfbo.inaf.it>
+
+L. Amati (INAF - IASF Bologna, Italy), S. Dichiara, F. Frontera, C. 
+Guidorzi (University of Ferrara, Italy), report:
+
+Based on the preliminary values of fluence and spectral parameters 
+reported by the Fermi/GBM (Kienlin et al., GCN 14473) and Konus-Wind 
+(Golenetskii et al., GCN 14487) teams, and by assuming a redshift of 0.34 
+(Levan et al., CGN 14455; Flores et al., GCN 14491) and a standard 
+Lambda_CDM cosmology with H_0 = 70 km/s/Mpc, Omega_M = 0.27, Omega_Lambda 
+= 0.73, we estimate for GRB 130427A an intrinsic spectral peak energy Ep,i 
+of 1250+/-150 keV and an isotropic-equivalent radiated energy of 
+(1.05+/-0.15)x10^54 erg (1-10000 keV cosmological rest-frame).
+
+These values are fully consistent with the best-fit power-law of the 
+Ep,i-Eiso correlation holding for all long-bright cosmological GRBs (as 
+determined, e.g., by Amati et al. 2009, A&A 508, 173). This is further 
+evidence that the prompt emission properties of GRB 130427A, the most 
+energetic GRB detected at z < 1, are the same as those of very bright, 
+high-redshift events. Hence, its relatively low redshift makes it a unique 
+case for investigating wether this class of events is associated to SNe 
+with properties similar to those associated to "local" sub-luminous GRBs.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14505
+SUBJECT: GRB 130427A: CrAO RT-22 36 GHz observation
+DATE:    13/04/29 20:35:17 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+A. Volvach (CrAO), L. Volvach (CrAO), A. Pozanenko (IKI) on behalf of 
+larger  collaboration report:
+
+We observed the field of GRB 130427A (Maselli et al., GCN 14448) on Apr. 
+28 between (UT) 16:22-18:41 with 22-m radio telescope RT-22 of
+Crimean Astrophysical Observatory at mean frequency of 36 GHz. At the 
+position of  the optical (Elenin et al., GCN 14450; Perley et al., GCN 
+14451) and radio afterglow (Zauderer et al., GCN 14480; Zauderer et al., 
+GCN 14482; Perley, GCN 14494) we detected a source with a flux 1.9 Â± 0.4 
+mJy  at T_mid = 1.405 days after burst trigger.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14506
+SUBJECT: GRB 130427A: Continued RATIR Optical and NIR Observations
+DATE:    13/04/29 20:41:58 GMT
+FROM:    Nat Butler at Az State U  <natbutler@asu.edu>
+
+Nat Butler (ASU), Alan M. Watson (UNAM), Alexander Kutyrev (GSFC), William
+H. Lee (UNAM), Michael G. Richer (UNAM), Chris Klein (UCB), Ori Fox (UCB)
+J. Xavier Prochaska (UCSC), Josh Bloom (UCB), Antonino Cucchiara (UCSC),
+Eleonora Troja (GSFC), Owen Littlejohns (ASU), Enrico Ramirez-Ruiz (UCSC),
+José A. de Diego (UNAM), Leonid Georgiev (UNAM), Jesús González (UNAM),
+Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC), and Harvey Moseley (GSFC)
+report:
+
+We again observed the field of GRB 130427A (Maselli, et al., GCN 14448)
+with the Reionization and Transients Infrared Camera (RATIR; www.ratir.org)
+on the 1.5m Harold Johnson Telescope at the Observatorio Astronómico
+Nacional on Sierra San Pedro Mártir from 2013/04 29.14 to 2013/04 29.27 UTC
+(43.64 to 46.60 hours after the BAT trigger), obtaining a total of 3.02
+hours exposure in the r' and i' bands and 1.57 hours exposure in the Z, Y,
+J, and H bands.
+
+We continue to detect the optical/NIR afterglow (Elenin et al; GCN 14450)
+in all bands.  In comparison with SDSS DR8 and 2MASS, we find:
+
+  r'    18.90 +/- 0.01
+  i'    18.67 +/- 0.01
+  Z     18.38 +/- 0.03
+  Y     18.19 +/- 0.02
+  J     18.29 +/- 0.02
+  H     18.01 +/- 0.02
+
+These magnitudes are in the AB system and not corrected for Galactic
+extinction in the direction of the GRB.  Uncertaints are 1-sigma.  The
+source has faded by about 1 magnitude in all bands as compared to our
+measurements on the previous night (Butler et al. 2013; GCN 14483).
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14507
+SUBJECT: GRB 130427A: SARA-N detection
+DATE:    13/04/29 21:18:59 GMT
+FROM:    Dieter Hartmann at Clemson.U  <hdieter@clemson.edu>
+
+William C. Keel (U. of Alabama, Tuscaloosa), Dieter Hartmann and Aman Kaur
+(Clemson University) report:
+
+We observed the field of GRB 130427A (Maselli, et al., GCN 14448) with the
+SARA 0.9m telescope at KPNO  (http://saraobservatory.org) from 0350-0420 UT
+on April 29, obtaining a total of 30 min exposure in the B,V, and R band.
+
+We detect the optical afterglow (Elenin et al; GCN14450) in all bands.
+In comparison with Landolt (PG 0942) standard stars we find
+
+B = 19.32
+V = 19.00
+R = 18.53
+
+These magnitudes are not corrected for Galactic extinction, but include
+KPNO airmass corrections at the time of observation.
+
+This message may be cited
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14508
+SUBJECT: GRB 130427A: Fermi-LAT refined analysis
+DATE:    13/04/29 21:30:22 GMT
+FROM:    Judith Racusin at GSFC  <judith.racusin@nasa.gov>
+
+S. Zhu, J. Racusin (NASA/GSFC), J. Chiang (SLAC), G. Vianello (Stanford) report on behalf of the Fermi LAT team:
+
+Using LAT source class events >100 MeV between T0+0 and 700 seconds after the GBM trigger, we find a LAT localization of RA = 173.148, Dec = +27.709, with a 68% containment radius of 0.068 degrees (statistical only). This localization is consistent with other reported positions.
+
+The >100 MeV emission spectrum during the GBM T90 (T0+0 to 138 seconds) is fit by a power law with an index of -1.96 +/- 0.07. The fluence during this time is (1.1 +/- 0.1)E-4 erg/cm^2, making this the highest fluence LAT-detected burst in the LAT energy range (Fermi LAT Collaboration, arXiv:1303.2908). The >100 MeV peak flux, measured from 11.52 to 37.33 seconds, is (1.4 +/- 0.2)E-3 ph/cm^2/s.
+
+The LAT Low Energy (LLE) emission during the bright structured peak (0 to 20 seconds) is roughly correlated with the GBM emission. A spike at T0+0 seconds is coincident in both LAT and LLE, but precedes the onset of the GBM emission. There are peaks in the LAT light curve at approximately 13 and 22 seconds; neither peak is coincident with the LLE or GBM.
+
+Significant emission >100 MeV was detected throughout the first orbit until ~735 seconds, at which point the burst became occulted by the Earth. The LAT emission was still significantly detected when the burst emerged from occultation at ~3000 seconds, and remained detectable for about a day. The extended emission light curve can be fit by a broken power-law that has a power-law index = -0.89 +/- 0.04 at early times, and at late times, it has an index in the range -1.3 to -1.5; the temporal break occurs around 550-800 seconds after the GBM trigger.
+
+We clarify that the Swift-BAT trigger time (Barthelmy et al., GCN 14470) is ~51 seconds after the GBM trigger, so the emission detected by RAPTOR beginning ~50 seconds before the Swift trigger with a peak magnitude of R~7.4 (Wren et al., GCN 14476) is therefore coincident with the GBM and LAT emission onset.
+
+The Fermi LAT point of contact for this burst is Sylvia Zhu (s.jc.zhu@gmail.com).
+
+The Fermi LAT is a pair conversion telescope designed to cover the energy band from 20 MeV to greater than 300 GeV. It is the product of an international collaboration between NASA and DOE in the U.S. and many scientific institutions across France, Italy, Japan and Sweden.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14509
+SUBJECT: GRB 130427A: further GMG observations
+DATE:    13/04/29 22:59:58 GMT
+FROM:    Xiao-hong Zhao at Yunnan Obs  <zhaoxiaohong78@gmail.com>
+
+X.-H. Zhao (YNAO and PSU), J. Mao (RIKEN and YNAO), J. G. Wang(YNAO), J.-M. Bai 
+(YNAO) report on behalf of a larger collaboration:
+
+We further observed the afterglow of GRB 130427A (Maselli et al., GCN 14448) with 2.4m Gao-Mei-Gu (GMG) telescope on Apr 28 and Apr 29. 
+The sloan filter of r' was used. The magnitudes of the afterglow are 
+r'~18.2  31.16 hrs after trigger
+r'~18.9  53.37 hrs after trigger 
+
+We thank the GMG staff, especially Hong-Yan Gao, Jian-Duo He and Gui-Hua He for performing these observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14510
+SUBJECT: GRB 130427A: Continued Skynet/PROMPT Observations
+DATE:    13/04/30 01:26:11 GMT
+FROM:    Adam S. Trotter at UNC-Chapel Hill/PROMPT/Skynet  <atrotter@physics.unc.edu>
+
+A. Trotter, D. Reichart, J. Haislip, A. LaCluyze, T. Berger, H. T. 
+Cromartie, R. Egger, A. Foster, N. Frank, K. Ivarsen, M. Maples, J. 
+Moore, M. Nysewander, E. Speckhard, and J. A. Crain report:
+
+Skynet continued observing the Swift/XRT localization of GRB 130427A 
+(Maselli et al., GCN 14448, Swift trigger #554620) with four 16" 
+telescopes of the PROMPT array at CTIO, Chile, starting at 2013-04-28, 
+23:06 UT, and continuing until 04-29, 3:51 UT (t=39.28h-44.03h 
+post-trigger). It took ~110 160-s exposures, simultaneously in each of 
+the BVRI bands. We performed photometry on each exposure, calibrated to 
+two SDSS stars in the field. B-band photometry was performed on stacks 
+of 3-4 images in order to provide at least 3sigma detections.
+
+A preliminary light curve of the second's data is at:
+http://skynet.unc.edu/grb/grb130427a_2.png
+
+A light curve of both the first and second nights' data is at:
+http://skynet.unc.edu/grb/grb130427a_1_2.png
+
+See Trotter et al. (GCN 14497) for a description of the first night's 
+observations.  Further Skynet observations are ongoing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14511
+SUBJECT: GRB 130427A: Challis Observatory optical observations
+DATE:    13/04/30 03:59:05 GMT
+FROM:    Jay Norris at Boise State U.  <jnorris@custertel.net>
+
+Jay Norris, Daryl Macomb (Boise State U.) report:
+
+We observed GRB 130427A with the Challis Observatory's 0.4-m telescope
+(114.33 deg W, 44.5 deg N, 2165 m elevation) on April 29, 05:58 to 06:22 UT.
+Using seventeen 10-second frames in the R filter acquired in a clear sky,
+centered at ~ 06:06 UT, 22.3 hours after the Swift/BAT trigger (GCN 14448),
+we clearly detected the optical afterglow.
+
+Comparison with six stars in the field of view (R = 15.5 to 16.8 mag)
+yielded an estimate of R = 17.6 mag for the afterglow with uncertainty
+of ~ 0.15 mag.  Further observations were interrupted by clouds.
+
+[GCN OPS NOTE(30apr13): Per author's request, the affiliation in the FROM-line
+was changed to Boise State U.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14513
+SUBJECT: GRB 130427A: MITSuME Ishigakijima Optical Observation after 2 days
+DATE:    13/04/30 14:33:12 GMT
+FROM:    Daisuke Kuroda at OAO/NAOJ  <dikuroda@oao.nao.ac.jp>
+
+D. Kuroda (OAO, NAOJ),  H. Hanayama, T. Miyaji, J. Watanabe (IAO, NAOJ),
+K. Yanagisawa (OAO, NAOJ), S.Nagayama (NAOJ), M. Yoshida (Hiroshima),
+K. Ohta (Kyoto) and N. Kawai(Tokyo Tech)
+report on behalf of the MITSuME collaboration:
+
+We observed the field of GRB 130427A (Masell et al., GCNC 14448)
+with the optical three color (g', Rc and Ic) CCD camera attached
+to the Murikabushi 1m telescope of Ishigakijima Astronomical
+Observatory.
+
+We detected the previously reported afterglow (Elenin et al., GCNC 14450)
+in all the three bands. The observation started on 2013-04-29 15:02:55 UT (~2.30
+days after the burst).
+
+Photometric results of the OT are listed below.
+We used SDSS catalog for flux calibration.
+
+#T0+[day]  MID-UT    T-EXP[sec]   g'   g'_err  Rc   Rc_err  Ic   Ic_err
+-----------------------------------------------------------------------
+2.31262    15:18:06   1500.0     19.19 0.05   18.87 0.04   18.65 0.09
+2.33383    15:48:38   1440.0     19.29 0.06   18.90 0.05   18.76 0.11
+------------------------------------------------------------------------
+T0+ : Elapsed time after the burst [day]
+T-EXP: Total Exposure time [sec]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14514
+SUBJECT: GRB 130427A: Continued RATIR Optical and NIR Observations
+DATE:    13/04/30 14:42:55 GMT
+FROM:    Nat Butler at Az State U  <natbutler@asu.edu>
+
+Nat Butler (ASU), Alan M. Watson (UNAM), Alexander Kutyrev (GSFC), William
+H. Lee (UNAM), Michael G. Richer (UNAM), Chris Klein (UCB), Ori Fox (UCB)
+J. Xavier Prochaska (UCSC), Josh Bloom (UCB), Antonino Cucchiara (UCSC),
+Eleonora Troja (GSFC), Owen Littlejohns (ASU), Enrico Ramirez-Ruiz (UCSC),
+José A. de Diego (UNAM), Leonid Georgiev (UNAM), Jesús González (UNAM),
+Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC), and Harvey Moseley (GSFC)
+report:
+
+We again observed the field of GRB 130427A (Maselli, et al., GCN 14448)
+with the Reionization and Transients Infrared Camera (RATIR; www.ratir.org)
+on the 1.5m Harold Johnson Telescope at the Observatorio Astronómico
+Nacional on Sierra San Pedro Mártir from 2013/04 30.14 to 2013/04 30.37 UTC
+(67.58 to 73.15 hours after the BAT trigger), obtaining a total of 3.91
+hours exposure in the r' and i' bands and 1.64 hours exposure in the Z, Y,
+J, and H bands.
+
+We continue to detect the optical/NIR afterglow (Elenin et al; GCN 14450)
+in all bands.  In comparison with SDSS DR8 and 2MASS, we find:
+
+  r'    19.39 +/- 0.01
+  i'    19.31 +/- 0.01
+  Z     18.89 +/- 0.03
+  Y     18.75 +/- 0.03
+  J     18.87 +/- 0.02
+  H     18.56 +/- 0.03
+
+These magnitudes are in the AB system and not corrected for Galactic
+extinction in the direction of the GRB.  Uncertaints are 1-sigma.  The
+source has faded by about 0.5 magnitude in all bands as compared to our
+measurements on the previous night (Butler et al. 2013; GCN 14506).
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14515
+SUBJECT: GRB 130427A: high energy gamma-ray detection by AGILE
+DATE:    13/04/30 15:57:24 GMT
+FROM:    Francesco Verrecchia at ASDC  <francesco.verrecchia@asdc.asi.it>
+
+=========================================================================
+F. Verrecchia, C. Pittori (ASDC and INAF/OAR), A. Giuliani (INAF/IASF-Mi),
+M. Marisaldi (INAF/IASF-Bo), F. Longo (University of Trieste and INFN
+Trieste), F. Lucarelli (ASDC and INAF/OAR), E. Del Monte, F. Lazzarotto, I.
+Donnarumma, Y. Evangelista, M. Feroci, L. Pacciani, P. Soffitta, E. Costa,
+I. Lapshov, M. Rapisarda (INAF/IAPS Rome), G. Barbiellini, (INFN Trieste),
+A. Bulgarelli, F. Gianotti, M. Trifoglio, G. Di Cocco, C. Labanti, V.
+Fioretti, F. Fuschino, M. Galli (INAF/IASF-Bo), A. Chen, S. Mereghetti,
+F. Perotti, P. Caraveo (INAF/IASF-Mi), M. Cardillo, E. Striani, M. Tavani
+(INAF/IAPS Rome, and Univ. Roma Tor Vergata), A. Argan, G. Piano, S.
+Sabatini, V. Vittorini (INAF/IAPS Rome), G. Pucella (ENEA Frascati), A.
+Pellizzoni, A. Trois (INAF/OA Cagliari), M. Pilia (ASTRON), S. Vercellone
+(INAF/IASF-Pa), P. W. Cattaneo, A. Rappoldi (INFN Pavia), A. Morselli, P.
+Picozza (INFN Roma-2), M. Prest, E. Vallazza (Universita` 
+dell'Insubria), P.
+Lipari, D. Zanello (INFN Roma-1), P. Giommi (ASI), and G. Valentini (ASI),
+on behalf of the AGILE Team, report:
+
+The AGILE Gamma Ray Imaging Detector (GRID) detected high energy emission
+from GRB 130427A (A. Maselli et al., GCN 14448), also reported
+by Fermi-LAT (S. Zhu et al., GCN 14471).
+A preliminary analysis of the AGILE-GRID data in temporal coincidence with
+the GRB shows a significant excess of gamma-ray photons above 50 MeV at the
+location of the event. The emission detected by the AGILE-GRID mostly
+occurred between ~ t0 + 180 sec and t0 + 700 sec where t0 is 27 April 2013
+at 07:47:15 UT. During this interval, the burst position was inside the
+instrument FOV.
+
+A maximum likelihood analysis of the AGILE-GRID data integrating over 12
+hours, from 2013-04-27 05:00 UT to 2013-04-27 17:00 UT, using the standard
+parameters used by AGILE quick look to detect persistent gamma-ray sources,
+yields a detection at a significance level larger than 6 sigma, and a mean
+flux F = (8.0+/-2.7) 10-6 ph/cm2/s (E > 100 MeV).
+The preliminary photon spectral index obtained with this integration is
+1.55 +/- 0.30.
+Due to the exceptionally high fluence above 100 MeV of this burst, it is
+possible for the first time to derive its properties using the maximum
+likelihood techniques routinely used in the standard data analysis of
+AGILE-GRID point sources.
+
+The GRB also triggered the AGILE Minicalorimeter (MCAL), sensitive to
+gamma-rays above 350 keV, at the time 07:47:06 UT.
+According to the MCAL light curve, the emission lasts for about 20 s 
+divided
+into three main episodes. Although the large initial off-axis angle (more
+than 120 degrees) prevents an accurate spectral analysis of MCAL data,
+significant emission above 15 MeV is detected.
+
+This measurement was obtained with AGILE observing a large portion of the
+sky in spinning mode.
+
+This message may be cited.
+=========================================================================
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14516
+SUBJECT: GRB 130427A: photo-z of possible SDSS host galaxy
+DATE:    13/04/30 16:59:55 GMT
+FROM:    Alina Volnova at SAI MSU  <alinusss@gmail.com>
+
+A. Vonova (IKI), L. Elenin (KIAM), A. Pozanenko (IKI)
+
+We have investigated photo-z of possible host galaxy (Melandri et al., GCN
+14452, Levan et al., 14455). Using LePhare sw (Arnouts et al. 1999, MNRAS,
+310, 540; Ilbert et al. 2006, A&A, 457, 841) and SDSS  magnitudes  we
+estimated a redshift of the galaxy z = 0.49 (+0.12,-0.24). This photo-z
+value is compatible with a spectroscopy redshift (Levan et al., GCN 14455;
+Xu et al., GCN 14478; Flores et al., 14491) and  confirms the SDSS galaxy
+as the host.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14517
+SUBJECT: GRB 130427A: Nishi-Harima Optical Spectroscopic Observations
+DATE:    13/04/30 18:06:47 GMT
+FROM:    Akira Arai at Nishi-Harima Astro._Obs/U_of_Hyogo  <arai@nhao.jp>
+
+A. Arai, J. Takahashi, K. Morihana, S. Honda and Y. Takagi (Univ. of Hyogo)
+report on behalf of Nayuta team:
+
+We performed low resolution ( R ~ 500) optical spectroscopic observations
+of a source on the position of GRB 130427A (Masell et al., GCNC 14448)
+with MALLS attached to the Nayuta 2-m telescope at the Nishi-Harima
+Astronomical Observatory.
+
+The observations were conducted from 2013-04-27 12:48 UT to 2013-04-27
+22 : 09 UT (from ~5.1 h to ~ 5.4 h after the burst).
+
+The resulting spectrum ( S/N ~ 5) shows a feature less continuum light
+without any emission nor absorption line features in the wavelength
+range between 450 nm and 680 nm.
+
+[GCN OPS NOTE(30apr13): Per operator, I have corrected a mistake I made 
+in assigning the affiliation for this submitor.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14518
+SUBJECT: GRB 130427A: Continued GMG optical observations
+DATE:    13/04/30 23:02:28 GMT
+FROM:    Xiao-hong Zhao at Yunnan Obs  <zhaoxiaohong78@gmail.com>
+
+X.-H. Zhao (YNAO and PSU), J. Mao (RIKEN and YNAO), L. Chang (YNAO), J.-M. Bai 
+(YNAO) report on behalf of a larger collaboration:
+
+We again observed the afterglow of GRB 130427A (Maselli et al., GCN 14448) with 2.4m Gao-Mei-Gu (GMG) telescope from 15:46:37 UT on 2013-04-30. 
+We used the sloan filter of r' and obtained two images with the exposure time of 900s each image. The GRB afterglow decayed to r'~19.4 with a middle time of
+80.2 hrs post-burst. 
+
+We thank the GMG staff, especially Jian-Duo He and Gui-Hua He for performing these observations.////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14519
+SUBJECT: GRB 130427A: GMRT radio detection
+DATE:    13/05/01 08:20:09 GMT
+FROM:    Poonam Chandra at TIFR  <poonam@ncra.tifr.res.in>
+
+Poonam Chandra (NCRA-TIFR) reports on behalf of a larger team:
+
+We carried out Giant Metrewave Radio Telescope (GMRT) observations of
+GRB 130427A at 1390 GHz band on 2013 Apr 30.57 UT. In our preliminary
+analysis we detect the GRB with a flux density of 500+/-94 uJy at
+RA, Decl (J200) of 11 32 32.81, +27 41 56.00 which is consistent with
+optical position reported by Elenin et al. (GCN 14450) within error bars.
+
+We thank GMRT staff for making these observations possible. More
+observations are planned.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14520
+SUBJECT: GRB 130427A: High-energy neutrino search
+DATE:    13/05/01 14:09:45 GMT
+FROM:    Erik Blaufuss at U. Maryland/IceCube  <blaufuss@icecube.umd.edu>
+
+Search for high-energy neutrinos in coincidence with GRB 130427A
+
+The IceCube collaboration (icecube.wisc.edu) reports:
+
+We used the data from IceCube to perform several searches for high-energy neutrinos in spatial and temporal 
+coincidence with GRB 130427A (A. Maselli et al., GCN 14485). 
+
+The first analysis is an automated online search for muon neutrino multiplets of two or more neutrinos in coincidence
+within 100 seconds and 3.5 degrees. The search has a threshold of ~1 TeV and does not depend on an external GRB
+trigger. No such multiplet was found. 
+
+A second offline analysis is a likelihood based search for muon neutrinos with energies ~1 TeV and higher, with a primary 
+background of atmospheric neutrinos and atmospheric muons. Data was scanned in the T90=162.83 s window reported by Swift BAT (S. D. 
+Barthelmy et al., GCN 14470), and found no neutrinos.  We also performed a series of rolling time-window searches 
+covering a window of interest of +/- 1 hour relative to the burst time and again found no neutrinos.
+
+A final search focused on  neutrinos of all flavors with energies ~100 TeV and higher that have interaction vertices that fall within the detector in a window 
+of interest of +-1 day. Because the intrinsic background for this search is very low only temporal information was used 
+in this search. No neutrinos were found in this search.
+
+Implications with respect to neutrino fluence for this GRB will be reported elsewhere. 
+
+IceCube is a kilometer cubed neutrino telescope located at the geographic South Pole sensitive to neutrinos above 
+~100 GeV. Previous limits on the emission of neutrinos by GRBs have been presented in R. Abbasi et al., Nature 484, 
+351–354 (2012). A description of the multiplet search is found in R. Abbasi et al., A&A 539, A60 (2012). Funding 
+acknowledgement and author list for IceCube are listed [http://icecube.wisc.edu/collaboration/authors/current here]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14521
+SUBJECT: GRB 130427A: ABT optical observations
+DATE:    13/05/01 14:15:39 GMT
+FROM:    Klaas Wiersema at U Leicester  <kw113@leicester.ac.uk>
+
+I. van de Stadt (AWSV Metius, the Netherlands), K. Wiersema (U. of Leicester),
+T. Bekkers (AWSV Metius), M. Seynen (AWSV Metius) and
+F. Nieuwenhout (AWSV Metius) report:
+
+We observed the afterglow of GRB 130427A with the ABT, a 10-inch remote controlled observatory in Alkmaar,
+The Netherlands. In a series of V band exposures the afterglow is detected with
+V=18.70 +/- 0.13 mag at midtime 1.633 days after burst.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14522
+SUBJECT: GRB 130427A: VLA 20 GHz detection
+DATE:    13/05/01 14:19:24 GMT
+FROM:    Alessandra Corsi at GWU  <corsi@email.gwu.edu>
+
+A. Corsi (GWU) reports on behalf of a larger collaboration:
+ 
+We imaged the position of GRB 130427A (Maselli et al., GCN 14448) with
+the Very Large Array in the 20-22 GHz frequency band, starting at about
+1.9 days after the burst. A provisional reduction shows a source consistent
+with the location of the GRB optical (e.g., Elenin et al., GCN 14450; Perley et al.,
+GCN 14451) and radio (e.g., Zauderer et al., GCN 14480) afterglow. At this time
+and frequency (~21 GHz), we estimate a preliminary flux of about 1.3 mJy.
+ 
+Further observations are planned.
+We thank the VLA staff for their support.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14523
+SUBJECT: GRB 130427A: SARA-N optical observations
+DATE:    13/05/01 20:29:14 GMT
+FROM:    Dieter Hartmann at Clemson.U  <hdieter@clemson.edu>
+
+Aman Kaur, Dieter Hartmann (Clemson University), and William C. Keel (U.
+of Alabama, Tuscaloosa),  report:
+
+We continued our observations of GRB 130427A (Maselli, et al., GCN 14448) 
+with the SARA 0.9m telescope at KPNO  (http://saraobservatory.org)
+starting on April 29. We obtained a total of 190 min exposure in the R
+band, with a sequence of 36 five min exposures,  and one ten  min
+exposure.
+
+We detect the optical afterglow (Elenin et al; GCN14450) decay between  R
+= 19.2 and R = 19.4
+during that sequence, which implies a temporal power law decay of the flux
+density with a slope of
+alpha ~ 0.8
+
+Magnitudes are not corrected for Galactic extinction.
+
+This message may be cited
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14525
+SUBJECT: GRB 130427A: KAIT optical observations
+DATE:    13/05/02 07:17:53 GMT
+FROM:    Weikang Zheng at U.of Michigan  <zwk@umich.edu>
+
+WeiKang Zheng, S. Bradley Cenko, Alexei V. Filippenko and Adam Morgan
+(UC Berkeley) report on behalf of the KAIT GRB team:
+
+We observed the afterglow of GRB 130427A (e.g., Maselli et al., GCN
+14448; Elenin et al., GCN 14450; Perley, GCN 14451) with the 0.76-m
+Katzman Automatic Imaging Telescope (KAIT) located at Lick Observatory
+on Apr. 28, 29, 30, and May 1 UT. Observations were carried out in the
+B, V, R, and I filters. A series of images, lasting for about an hour,
+was taken on each night. The afterglow is well detected in all filters,
+and the estimated R-band magnitudes (calibrated to SDSS, transformed to
+R) are as follows, with times relative to the BAT trigger:
+
+t_mid(hr) exp(s) R(mag) err
+
+20.2 60.0 17.4 +/- 0.1
+45.1 60.0 18.5 +/- 0.1
+69.1 360.0 19.1 +/- 0.1
+93.1 600.0 19.6 +/- 0.2
+
+A power-law fit to the data shows the afterglow continues to decay with
+an index of roughly -1.0 (Itoh et al., GCN 14486).
+
+Further observations are planned.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14526
+SUBJECT: GRB 130427A: Predictions about the occurrence of a supernova
+DATE:    13/05/02 09:15:09 GMT
+FROM:    Remo Rufinni at ICRA  <ruffini@icra.it>
+
+R. Ruffini, C.L. Bianco, M. Enderli, M. Muccino, A.V. Penacchioni, G.B. Pisani, J.A. Rueda, N. Sahakyan, Y. Wang, L. Izzo report:
+
+The late x ray observations of GRB 130427A by Swift-XRT clearly evidence a pattern typical of a family of GRBs associated to supernova (SN) following the Induce Gravitational Collapse (IGC) paradigm (Rueda & Ruffini 2012; Pisani et al. 2013). We assume that the luminosity of the possible SN associated to GRB 130427A would be the one of 1998bw, as found in the IGC sample described in Pisani et al. 2013. Assuming the intergalactic absorption in the I-band (which corresponds to the R-band rest-frame) and the intrinsic one, assuming a Milky Way type for the host galaxy, we obtain a magnitude expected for the peak of the SN of I = 22 - 23 occurring 13-15 days after the GRB trigger, namely between the 10th and the 12th of May 2013.
+
+Further optical and radio observations are encouraged.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14534
+SUBJECT: GRB 130427A: MITSuME Ishigakijima Optical Observation after 5 days
+DATE:    13/05/03 00:10:46 GMT
+FROM:    Daisuke Kuroda at OAO/NAOJ  <dikuroda@oao.nao.ac.jp>
+
+D. Kuroda (OAO, NAOJ),  H. Hanayama, T. Miyaji, J. Watanabe (IAO, NAOJ),
+K. Yanagisawa (OAO, NAOJ), S.Nagayama (NAOJ), M. Yoshida (Hiroshima),
+K. Ohta (Kyoto) and N. Kawai(Tokyo Tech)
+report on behalf of the MITSuME collaboration:
+
+We observed the field of GRB 130427A (Masell et al., GCNC 14448)
+with the optical three color (g', Rc and Ic) CCD camera attached
+to the Murikabushi 1m telescope of Ishigakijima Astronomical
+Observatory.
+
+We detected the previously reported afterglow (Elenin et al., GCNC 14450)
+in only Rc-band. The observation started on 2013-05-02 13:08:42 UT
+(~5.2 days after the burst).
+
+Photometric result and three sigma upper limits of the OT are listed below.
+We used SDSS catalog for flux calibration.
+
+#T0+[day]  MID-UT    T-EXP[sec]   g'   Rc   Rc_err  Ic
+---------------------------------------------------------
+5.25248    13:51:30    540.0    >20.7  20.3 0.3   >19.1
+---------------------------------------------------------
+T0+ : Elapsed time after the burst [day]
+T-EXP: Total Exposure time [sec]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14538
+SUBJECT: GRB 130427A: Pan-STARRS 1 optical observations
+DATE:    13/05/03 04:00:34 GMT
+FROM:    Heather Flewelling at IfA/Hawaii  <flewelling.heather@gmail.com>
+
+H. Flewelling, A. Schultz, N. Primak, K. C. Chambers, E. A. Magnier, W.
+Sweeney, C. Z. Waters, S. Chastel, M. E. Huber, I. Smith, report on behalf
+of Pan-STARRS 1:
+
+Pan-STARRS 1, a 1.8 m survey telescope located at Haleakala, Hawaii,
+observed GRB 130427A (Masell et al., GCNC 14448) a total of 4 times in the
+z and y filters using the 1.4 Gigapixel camera, in the course of normal
+survey operations. PS1 detected the afterglow (Elenin et al., GCNC 14450),
+and the observations were calibrated with the "ubercal" technique (Schafly
+et al 2011) and the PS1 reference catalog (Magnier et al 2012). The results
+are:
+
+t_mid(hr) exp(s) filter      mag
+108.18    80.0    y      19.52 +/- 0.10
+108.21    80.0    y      19.66 +/- 0.09
+111.35    60.0    z      19.84 +/- 0.07
+111.37    60.0    z      19.81 +/- 0.06
+
+Note the host galaxy pre-outburst has been observed in the PS1 3pi survey
+and thus photometry of the host galaxy is available.
+
+This discovery was made possible by the PS1 system operated by the
+ PS1 Science Consortium and its member institutions (
+http://www.ps1sc.org/PS1_System_GCN.shtml ). We thank the telescope
+ operators of the PS1 telescope for their support.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14549
+SUBJECT: GRB 130427A: Non-observation of VHE emission with HAWC
+DATE:    13/05/04 01:24:00 GMT
+FROM:    Dirk Lennarz at HAWC  <dirk.lennarz@gatech.edu>
+
+D. Lennarz, I. Taboada (Georgia Tech) report on behalf of the HAWC
+collaboration (http://www.hawc-observatory.org/collaboration/):
+
+We used data from the partially built HAWC detector to perform a search
+for VHE emission in temporal coincidence with GRB 130427A (A. Maselli et
+al., GCN 14448). This search was conducted using the scaler data
+acquisition only, as the main data acquisition was not operational at
+the time. At the time of the GBM trigger, the elevation of the burst in
+HAWC's field of view, was only 33.13 degrees and setting. The
+sensitivity of HAWC at this elevation is more than 2 orders of magnitude
+poorer than near the zenith. Furthermore, while near zenith the nominal
+threshold of the scaler system is a few GeV, towards the horizon the
+nominal threshold is much higher.
+
+We used six search windows with respect to the GBM trigger time: one in
+the range 0 s to 20 s, which covers the bright structured peak seen by
+Fermi-GBM that seems to be correlated with the Fermi-LAT emission (S.
+Zhu et al., GCN 14508), an extended window from -5 s to 55 s and a
+window from -5 s to 145 s, which is slightly larger than the T90
+reported by GBM. We also searched around the second peak in the GBM
+light curve (120 s to 300 s), -10 s to 10 s around the time of the
+highest energy LAT photon and in an extended window from -10 s to 290 s.
+We find a deviation of +38960 / -77884 / -337877 / -165991 / -519485 /
+-1036 of the global PMT count with respect to a moving average in the
+six time windows mentioned above. The p-value for these deviations
+assuming background hypothesis are 17 % / 78 % / 95 % / 71 % / 90 % and
+50 % respectively. Our observations are consistent with background only.
+
+The implications of this non-detection with respect to the VHE fluence
+of this GRB will be reported elsewhere.
+
+HAWC is a gamma-ray detector under construction in Central Mexico. It
+currently consists of 29 operational Water Cherenkov Detectors out of
+300 planned. A detailed description of the sensitivity of HAWC to GRBs
+can be found in A.U. Abeysekara et al., Astroparticle Physics 35,
+641-Â–650 (2012).
+
+////////////////////////////////////////////////////////////////////////
+ATEL #5042                                                           ATEL #5042
+
+Title:  An untriggered optical detection of GRB 130427A
+Author: A. J. Drake, S. G. Djorgovski, A. A. Mahabal, M. J. Graham,
+                R. Williams (Caltech); J. Prieto (Princeton); M. Catelan (PUC Chile);
+                E. Christensen, S. M. Larson (LPL/ UA)
+Queries:        ajd@cacr.caltech.edu
+Posted: 4 May 2013; 05:51 UT
+Subjects:Optical, Gamma-Ray Burst, Transient
+
+During the course of the regular survey operations the Catalina Real-time
+Transient Survey (CRTS) automatically detected new optical source
+<a href=http://nesssi.cacr.caltech.edu/catalina/20130502/1305021260564136026.html>CSS130502:113233+274156</a>
+at RA=11:32:32.90, Dec=+27:41:56.5 (J2000).  Based on four observations
+spanning the period May 02.191 to 02.211UT the transient was found to have
+V=19.6+/-0.2.  A public alert for the transient detection was automatically
+sent to VOEventNet sources such as SkyAlert within minutes of observation.
+Subsequently, a clear match between CSS130502:113233+274156 and the recent
+luminous GRB 130427A  (Palmer et al. 2013, GCN#14448, Elenin et al. 2013,
+GCN#14450) was discovered.
+
+The untriggered optical detection of GRB 130427A by CRTS makes this one of the few GRBs that
+have been detected without prior knowledge of the event. Furthermore, this detection suggests that
+the increased cadence and coverage of the CRTS-II project, along with other future transient surveys,
+will strongly constrain the existence of GRB-related events such as orphan afterglows.
+
+We wish to thank D. Bishop for bringing the correspondence between CSS130502:113233+274
+and GRB 130427A to our attention.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14579
+SUBJECT: GRB 130427A: correction to GCN 14487
+DATE:    13/05/05 21:50:56 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+D. Frederiks, on behalf of the Konus-Wind team, reports:
+
+We have also found a typo in our GCN Circ. 14487 "Konus-Wind observation of GRB 130427A":
+the correct energy range for the total K-W energy fluence and the peak flux estimations
+for GRB 130427A is 20-10000 keV, not "20 - 1200 keV", as mentioned.
+
+The 20-10000 keV range is a standard for K-W estimations of GRB energetics
+in the observer frame.
+
+We thank D.A.Kann for his help in clearing this issue and sorry again for the inconvenience.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14582
+SUBJECT: GRB 130427A: optical observations in CrAO
+DATE:    13/05/05 22:29:40 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+V. Rumyantsev (CrAO), K.Antoniuk (CrAO),  D. Shakhovskoy (CrAO), A. 
+Pozanenko (IKI) report on  behalf of larger GRB follow-up collaboration:
+
+We continue observation of the Swift GRB 130427A (Maselli et  al., GCN 
+14448)  with AZT-11 telescope of CrAO observatory. Preliminary 
+photometry the optical afterglow of GRB 130427A (Maselli et al., GCN 
+14448, Elenin et al. GCN 14450, Perley GCN 14451) is following
+
+T_start (UT)             T0+     Filter Exp.  OT
+                          mid,days       s     mag
+2013-05-02T19:34:45.35   5.5618  R      6120  19.75 +/- 0.15
+2013-05-03T20:41:27.17   6.5581  R      3600  20.30 +/- 0.25
+2013-05-04T18:26:22.25   7.4747  R      5400  20.20 +/- 0.18
+
+Photometry is based on SDSS star
+SDSS id             B      eB    V      eV    R      eR    I      eI
+J113220,11+274133,5 17,421 0,020 16,911 0,020 16,561 0,015 16,124 0,016
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14590
+SUBJECT: GRB 130427A: RHESSI observations
+DATE:    13/05/06 17:37:44 GMT
+FROM:    Kevin Hurley at UCBerkeley/SSL  <khurley@ssl.berkeley.edu>
+
+David M. Smith (UC Santa Cruz), Andre Csillaghy (Fachhochschule Nordwestschweiz),
+Kevin Hurley (UC Berkeley), Hugh Hudson (UC Berkeley, U. Glasgow), Steven Boggs
+(UC Berkeley), and Andrew Inglis (NASA Goddard/CUA) report:
+
+The Reuven Ramaty High-Energy Solar Spectroscopic Imager (RHESSI)
+satellite observed the prompt emission of GRB 130427A (Maselli et
+al. , GCN 14448), with usable data over the approximate range 50 keV to
+15 MeV, and a time resolution of 1us on each photon recorded.
+Absolute timing accuracy is ~1ms.  Since the GRB was 122 degrees from
+the Sun, the photons entered through the rear of the spectrometer.
+
+The lightcurve of the main outburst in three energy bands is shown binned to 25ms 
+resolution at:
+http://scipp.ucsc.edu/~dsmith/rhessi/grb/130427a_longplot.gif
+The black, red, and orange lightcurves represent the energy ranges 50 keV to 1 MeV,
+1-5 MeV, and 5-15 MeV, respectively.  
+
+The lightcurve of the slower, fainter peak of the GRB, about two minutes after
+the primary outburst, is shown here:
+http://scipp.ucsc.edu/~dsmith/rhessi/grb/130427a_lateplot.gif
+The black, red, and orange lightcurves in this case represent the energy ranges 
+50-200 keV, 200-500 keV, and 500 keV to 1 MeV, respectively.
+
+RHESSI data are publicly available.  We invite anyone intending to use the RHESSI
+data to consult with us about instrumental issues associated with the observation.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14592
+SUBJECT: GRB 130427A: Tautenburg afterglow observations
+DATE:    13/05/06 22:41:33 GMT
+FROM:    Alexander Kann at TLS Tautenburg  <kann@tls-tautenburg.de>
+
+D. A. Kann, B. Stecklum, and F. Ludwig (TLS Tautenburg) report:
+
+We observed the optical afterglow (Elenin et al., GCN 14450) of the nearby
+(Levan et al., GCN 14455), extremely bright GRB 130427A (Maselli et al.,
+GCN 14448; Zhu et al., GCN 14471; von Kienlin, GCN 14473; Golenetskii et
+al., GCN 14487) with the 1.34m Schmidt telescope of the Thueringer
+Landessternwarte Tautenburg equipped with a 4k CCD camera under good
+weather conditions. We obtained 3 x 600 sec frames in the Rc band. The
+afterglow is detected in each frame.
+
+Using the nearby star given in Rumyantsev et al. (GCN 14582), we derive a
+preliminary magnitude of Rc = 20.27 +/- 0.07 at 8.55173 days after the
+GRB.
+
+This value is in good agreement with detections from the last few days
+(Kuroda et al., GCN 14534; Rumyantsev et al., GCN 14582). The afterglow
+does not yet show clear signs of flattening associated with either a
+rising supernova component or a significant contribution from the
+underlying host galaxy.
+
+This message may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14596
+SUBJECT: GRB 130427A: Amateur observations from Sweden
+DATE:    13/05/07 19:05:46 GMT
+FROM:    Lars Hermansson at Uppsala Amateur Astronomers  <lars.hermansson4@comhem.se>
+
+L. Hermansson, P. Holmström, M. Johansson (Sandvreten Observatory, Sweden)
+
+We observed the field of GRB 130427A (Maselli et al., GCN 14448; Elenin et
+al., GCN 14450) with the 0.45 m f/4.5 Newton located at Sandvreten
+Observatory, Sweden.
+
+Observations were obtained between 2013-Apr-27 22:29:03 and 23:48:43 UT. Two
+images each were obtained in each of B, V, Rc and Ic bands with Schüler
+Johnson-Cousins photometric filters and an SBIG ST-7E CCD.
+
+The following magnitudes were obtained from the observations with Maxim DL
+software using four SDSS comparison stars transformed to the BVRI system
+using Lupton (2005). Magnitudes are not corrected for extinction.
+
+Filter    Tmid (T0+day)   Exp (s)    Mag         Err
+B         0.65231         2x600      17.74       0.06
+V         0.63317         2x300      17.38       0.03
+Rc        0.61726         2x300      16.99       0.03
+Ic        0.66821         2x300      16.78       0.05
+
+We wish to thank D. A. Kann and the Cosmoquest forum for alerting us to GRB
+130427A. We are also grateful for the guidance D.A. Kann provided during the
+preparation of this report.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14597
+SUBJECT: GRB 130427A: Excess optical emission consistent with an emerging supernova
+DATE:    13/05/07 21:28:28 GMT
+FROM:    Dong Xu at DARK/NBI  <dong.dark@gmail.com>
+
+D. Xu (DARK/NBI), A. de Ugarte Postigo (IAA-CSIC, DARK/NBI), T.
+Kruehler, D. Malesani (DARK/NBI), G. Leloudas (OKC, Stockholm and
+DARK/NBI), J.P.U. Fynbo, J. Hjorth, (DARK/NBI), S. Schulze (PUC and
+MCSS), P. Jakobsson, Z. Cano (U. Iceland), J. Gorosabel
+(IAA-CSIC/UPV-EHU), report:
+
+We have been monitoring the optical counterpart of GRB 130427A
+(Maselli et al., GCN 14448; Elenin et al., 14450) starting 12.85 hr
+after the GRB trigger (Xu et al., GCN 14478), mainly using the 2.5
+Nordic  Optical Telescope (NOT) equipped with the ALFOSC camera.
+Observations were carried out using the SDSS filters.
+
+The light curve between ~1.0 and 5.0 days after the trigger (observer
+frame) is well fit by a power law with decay index 1.3. Starting from
+day 5.0, however, the light curve gradually flattens. The flattening,
+albeit reduced, is still evident after subtracting the (known) flux
+contribution of the host galaxy. In particular, clear flux in excess
+of the afterglow and host contribution is apparent on May 5 and 6,
+that is 8.6 and 9.6 days after the GRB.
+
+Photometry in the Sloan griz filters was secured during the night of
+May 6. After subtracting from the observed flux the host contribution,
+and correcting for the (small) Galactic extinction, the SED clearly
+deviates from a power-law, in sharp contrast with our earlier
+measurements and the typical spectrum of GRB afterglows. Instead, the
+griz SED shows a broad hump peaking in the i and r bands, which is
+roughly consistent with the spectrum of other broad-lined SNe
+associated with GRBs at comparable epochs (e.g., SN 1998bw: Patat et
+al. ApJ, 555 900; SN 2006aj: Pian et al., Nat. 442,1011).
+
+The flattening in the decay, the change of the spectral shape, and the
+overall flux level are all consistent with the emergence of a SN,
+though detailed spectroscopy and long-term monitoring will be required
+to fully assess the nature of the flux excess.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14605
+SUBJECT: GRB 130427A, LBT optical spectrum
+DATE:    13/05/08 15:46:33 GMT
+FROM:    Peter Garnavich at U of Notre Dame  <pgarnavi@nd.edu>
+
+P. Garnavich (Notre Dame) reports:
+
+A spectrum of the GRB 130427A afterglow was obtained with the
+Large Binocular Telescope (LBT+MODS1 instrument) on 2013 May 7.15 (UT),
+9.8 days after the burst. The spectrum covers 340 nm to 950 nm and
+is dominated by a power-law continuum. Narrow Balmer, [OII], [OIII]
+emission lines, and MgII and MgI absorption lines from the host
+galaxy are present at a redshift of 0.340.
+
+The LBT spectrum shows no obvious undulations characteristic of a
+broad-lined type Ic supernova such as SN 1998bw. In contrast,
+a 98bw-like supernova was detectable from GRB 030329 around
+seven days after its burst (Stanek et al. 2003, ApJ, 591, L17).
+This early detection was primarily due to the prominent peak
+seen around 500 nm (rest frame) in broad-lined type Ic events.
+
+Adding a pre-maximum spectrum of SN 1998bw
+(Patat et al. 2001, ApJ, 555, 900) to a power-law continuum
+suggests that any 98bw-like supernova is at least an R-band
+magnitude fainter than the afterglow 10 days after the
+GRB 130427A burst.
+
+I thank Rick Pogge, Paul Martini and Scott Adams for help in
+obtaining the spectra.
+The LBT is an international collaboration among institutions in the
+United States, Italy and Germany. LBT Corporation partners are:
+The University of Arizona on behalf of the Arizona university system;
+Istituto Nazionale di Astrofisica, Italy; LBT Beteiligungsgesellschaft,
+Germany, representing the Max-Planck Society, the Astrophysical
+Institute Potsdam, and Heidelberg University; The Ohio State University,
+and The Research Corporation, on behalf of The University of Notre Dame,
+University of Minnesota and University of Virginia.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14606
+SUBJECT: GRB 130427A: Continued RATIR Optical and NIR Observations
+DATE:    13/05/08 16:34:04 GMT
+FROM:    Alan M. Watson at Instituto de Astronomia UNAM  <alan@astro.unam.mx>
+
+Alan M. Watson (UNAM), Nat Butler (ASU), Alexander Kutyrev (GSFC),
+William H. Lee (UNAM), Michael G. Richer (UNAM), Chris Klein (UCB), Ori
+Fox (UCB) J. Xavier Prochaska (UCSC), Josh Bloom (UCB), Antonino
+Cucchiara (UCSC), Eleonora Troja (GSFC), Owen Littlejohns (ASU), Enrico
+Ramirez-Ruiz (UCSC), José A. de Diego (UNAM), Leonid Georgiev (UNAM),
+Jesús González (UNAM), Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC),
+and Harvey Moseley (GSFC) report:
+
+We have been monitoring GRB 130427A with the Reionization and
+Transients Infrared Camera (RATIR; www.ratir.org) on the 1.5m Harold
+Johnson Telescope at the Observatorio Astronómico Nacional on Sierra San
+Pedro Mártir. We have precise and homogeneous photometry for all nights
+except 2013 May 6.
+
+During the first night the optical afterglow is well-fitted by a power
+law with an index of -1. However, around 1 day after the burst there is
+a break, and the power law steepens.
+
+Our photometry in gri from 2 to 11 days is well-fitted by a power law
+with an index very close to -1.5 plus a constant contribution with i =
+21.23 ± 0.05, g-i =  0.74 ± 0.12, and r-i =  0.05 ± 0.05, consistent
+with the SDSS DR9 photometry of the presumed host galaxy.
+
+We see no evidence for an additional component such as the one mentioned
+by Xu et al. (GCN Circular 14597).
+
+Further observations are planned.
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14608
+SUBJECT: GRB 130427A: Ten nights of Skynet/PROMPT/GORT observations
+DATE:    13/05/08 19:14:43 GMT
+FROM:    Adam S. Trotter at UNC-Chapel Hill/PROMPT/Skynet  <atrotter@physics.unc.edu>
+
+A. Trotter, D. Reichart, J. Haislip, A. LaCluyze, K. McLin, L. Cominsky, 
+T. Berger, H. T. Cromartie, R. Egger, A. Foster, N. Frank, K. Ivarsen, 
+M. Maples, J. Moore, M. Nysewander, E. Speckhard, and J. A. Crain report:
+
+Skynet continued observing the Swift/XRT localization of GRB 130427A 
+(Maselli et al., GCN 14448, Swift trigger #554620) with four 16" 
+telescopes of the PROMPT array at CTIO, Chile (BVRI bands), and with the 
+14" GLAST Optical Robotic Telescope (GORT) at the Hume Observatory in 
+California (RcIc bands). Our observations span 10 nights, from t=0.65 to 
+10.8 days post-trigger. Skynet has taken 2684 160-second exposures on 
+the 4 PROMPT telescopes, and 360 160-second exposures on GORT, or a 
+total of over 135 hours on source. We performed photometry on each 
+exposure, calibrated to two SDSS stars in the field. We stacked 
+exposures to improve sensitivity, in groups ranging from 3 exposures on 
+night 1, to 60 exposures on night 10.
+
+We detect a fading afterglow in BVRI at the position reported by Elenin 
+et al. (GCN 14450), which is ~50" south of the initial XRT localization. 
+From night 2 onwards, the light curves fade with an approximate power 
+law index alpha=-1 (with no corrections for the known host galaxy flux). 
+We see some evidence for flattening of the I-band light curve beginning 
+at t~8 days, and of the R-band curve at t~10 days, though it is not 
+clear whether this is due to host galaxy contamination or to an 
+intrinsic re-brightening.
+
+A preliminary light curve including all Skynet observations through 
+t=10.8 days is at:
+http://skynet.unc.edu/grb/grb130427a_10.png
+
+See Trotter et al. (GCN 14497, GCN 14510) for descriptions and light 
+curves of the first and second nights' observations. Further Skynet 
+observations are ongoing.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14615
+SUBJECT: GRB 130427A: Keck/LRIS Observations
+DATE:    13/05/09 15:39:04 GMT
+FROM:    Daniel Perley at Caltech  <dperley@astro.caltech.edu>
+
+D. A. Perley and S. Tang (Caltech) report:
+
+On the night of 2013-05-09 UT we observed the location of GRB 130427A 
+with the Low Resolution Imaging Spectrometer (LRIS) on the Keck I 10m 
+telescope, during excellent weather conditions (clear skies and 0.7 
+arcsecond seeing).
+
+In a pair of 90 second g-band images we clearly detect the transient 
+superimposed on a faint, extended source that we identify as the host 
+galaxy.  While blended with the light of the transient, the diameter of 
+this extended emission is approximately 3 arcseconds, corresponding to a 
+physical size of ~14 kpc at a redshift of z=0.34.  The magnitude of the 
+transient at this time (within a 1" aperture centered on the optical 
+position) is:
+
+  g = 21.23 +/- 0.04 mag  (t = 12.00 days)
+
+This is consistent (within uncertainties) with the rate of decay seen in 
+recent P60 observations between 1-8 days post-GRB after subtraction of 
+the host galaxy.
+
+We also acquired a deep sequence of spectroscopic observations (2000 sec 
+total integration) with LRIS, covering a wavelength range from 
+approximately 3250 to 10300 Angstroms.   We observe no broad features or 
+other evidence of contribution of a supernova to the spectrum at this 
+time, similar to as reported from LBT observations two nights previously 
+(Garnavich et al., GCN 14605.)
+
+We thank and S. R. Kulkarni and the PTF collaboration for these 
+observations.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14617
+SUBJECT: GRB 130427A: host galaxy observations
+DATE:    13/05/09 20:03:02 GMT
+FROM:    Klaas Wiersema at U Leicester  <kw113@leicester.ac.uk>
+
+K. Wiersema (U. of Leicester), O. Vaduvescu (ING), N. Tanvir (U. of Leicester), 
+A. Levan (Warwick) and O. Hartoog (U. of Amsterdam) report:
+
+We observed the position of GRB 130427A with the 4.2m William Herschel telescope,
+using the PFIP camera, on May 8th, under good seeing conditions (0.7 arcseconds). 
+Exposures of 4x600 seconds were obtained using a narrowband filter covering 
+the [O II] emission line doublet (3728 A) at the redshift of the 
+GRB (z=0.3399; Levan et al., Xu et al. and Flores et al.; GCN 14455, 14478, 14491).
+We used this filter to obtain the best visibility of the host galaxy against the bright afterglow
+and possible supernova contribution.
+The resulting data show a clear detection of the host galaxy. The GRB is located near, but
+somewhat offset from, a brighter patch in the host. The host is an irregular galaxy, with
+a broadly elliptical shape. The GRB is located North-West of the
+majority of extended, smooth, host emission - a convenient choice in spectrograph slit
+position angle may minimize host contamination and aid in identification of SN signatures.
+The long axis of the host is approximately oriented along 70 degrees position angle (where
+North=0, East = 90 degrees), and is approximately 3.4 arcseconds in length.
+
+A jpg finder chart of the [OII] imaging can be found here:
+http://www.star.le.ac.uk/~kw113/grb130427A/hostgalaxy_130427a.jpg
+
+[GCN OPS NOTE(09may13): Per author's request, the "Apr 8" was changed to "May 8"
+in the first sentence.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14631
+SUBJECT: GRB 130427A: Tautenburg 2nd epoch: No break, no clear SN
+DATE:    13/05/14 02:39:21 GMT
+FROM:    Alexander Kann at TLS Tautenburg  <kann@tls-tautenburg.de>
+
+D. A. Kann, B. Stecklum, and C. Hoegner (TLS Tautenburg) report:
+
+We observed the optical afterglow position (Elenin et al., GCN 14450) of
+GRB 130427A (Maselli et al., GCN 14448) with the 1.34m Schmidt telescope
+of the Thueringer Landessternwarte Tautenburg equipped with the 2k CCD
+camera under good weather conditions. We obtained 3 x 600 sec frames in
+the Rc band. The afterglow is detected in each frame.
+
+Using the nearby star given in Rumyantsev et al. (GCN 14582) and also used
+in our first epoch observations (Kann et al., GCN 14592), we derive a
+preliminary magnitude of Rc = 20.37 +/- 0.07 at 15.54806 days after the
+GRB.
+
+This magnitude is only insignificantly fainter than the one we derived in
+the first epoch, evidencing a clear flattening (see also Xu et al., GCN
+14597). The host galaxy is expected to have about 21st magnitude in Rc
+(Vega) following r' = 21.26 from SDSS (see, e.g., Watson et al., GCN
+14606). Subtracting this magnitude from our detection yields a magnitude
+for the optical transient of ~ 21.2 +/- 0.2.  This value agrees well with
+an extrapolation of the earlier slope, implying that no further break has
+occurred in the optical light curve (in agreement with the X-ray decay,
+which shows a very similar slope). This implies either that the post-jet
+break decay is among the most shallow known, or that a jet break has still
+not occurred, pushing GRB 130427A further into the territory of hyper-
+luminous events (Fan et al., arXiv:1305.1261, though see Laskar et al.,
+arXiv:1305.2453).
+
+The situation concerning a rising supernova is still unclear. Xu et al.
+(GCN 14597) claimed a host-independent flattening and spectral change,
+which was afterwards disputed on photometric (Watson et al., GCN 14606;
+Perley & Tang, GCN 14615) and spectroscopic (Garnavich, GCN 14605; Perley
+& Tang, GCN 14615) grounds. Our measurement offers no solution to this
+conundrum, but it is possible that the SN, even if as luminous as SN
+1998bw, will peak at a magnitude significantly fainter than the host
+galaxy and afterglow (Ruffini et al., GCN 14526), making detection more
+difficult than even in the case of GRB 030329/SN 2003dh.
+
+We wish to thank T. Kruehler for discussions relating to the host galaxy.
+
+This message may be cited.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14645
+SUBJECT: GRB 130427A: optical observations
+DATE:    13/05/14 20:23:42 GMT
+FROM:    Alexei Pozanenko at IKI, Moscow  <apozanen@iki.rssi.ru>
+
+A. Volnova (IKI), I. Korobtsev (ISTP), E. Klunko (ISTP), A. Pozanenko 
+(IKI)  on behalf of  larger GRB  follow-up collaboration:
+
+We continue observation of the Swift GRB 130427A (Maselli et  al., GCN 
+14448)  with AZT-33IK telescope of Sayan observatory (Mondy). The 
+afterglow (Elenin et al. GCN 14450, Perley GCN 14451) is clearly 
+detected. The brightness of the afterglow+host  is following:
+
+UT start,            t-t0       Filter Exp.   OT
+                     (mid, days)        (s)    (mag.)
+
+2013-05-13T15:20:00  16.3346   R      3600    20.66 +/- 0.06
+2013-05-14T14:24:35  17.2968   R      3600    20.63 +/- 0.07
+
+The photometry is based on the same star  reported by Rumyantsev et al. 
+(GCN 14582). After subtraction  of a suggested brightness (R, Vega)of 
+the host galaxy (e.g. Watson et al., GCN 14606; Kann et al., GCN 14631) 
+from our photometric values, our light curve can be approximated (in 
+general)  by a single power law   starting at ~ 0.6 days after burst 
+trigger.  Indeed our early observations suggest some flattening between 
+6.5 - 13 days (Xu et al., GCN 14597; Kann et al., GCN 14631). It could 
+be due to a SN or due to a wide bump analogous to bumps observed early 
+in the light curve.  However photometry is still preliminary and more 
+detailed calibration/intercalibration is necessary.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14646
+SUBJECT: GRB 130427A: Spectroscopic detection of the SN from the 10.4m GTC
+DATE:    13/05/14 21:21:33 GMT
+FROM:    Antonio de Ugarte Postigo at IAA-CSIC  <deugarte@iaa.es>
+
+A. de Ugarte Postigo (IAA-CSIC, DARK/NBI), D. Xu (DARK/NBI), 
+G. Leloudas (OKC, Stockholm, DARK/NBI),  T. Kruehler, 
+D. Malesani (DARK/NBI), J. Gorosabel (IAA-CSIC, UPV/EHU), Z. Cano (U. Iceland),
+C.C. Thoene, R. Sanchez-Ramirez (IAA-CSIC), S. Schulze (PUC and MCSS), 
+J.P.U. Fynbo, J. Hjorth (DARK/NBI), P. Jakobsson (U. Iceland) and 
+A. Cabrera-Lavers (IAC-ULL) report on behalf of a larger collaboration:
+
+We obtained spectroscopy of the optical counterpart and host galaxy of 
+GRB 130427A (Maselli et al., GCN 14448; Elenin et al., GCN 14450) with the 
+10.4m GTC telescope, 16.7 days after the GRB onset. This is 12.5 days in the 
+host galaxy rest-frame (z = 0.34; Levan et al. GCN 14455, Xu et al. GCN 14478 
+and Flores et al. GCN 1449). Observations consisted of 4x1200s with the 
+R500R grism, covering the range between 4800 and 10000 AA with a 
+resolution of ~600. The slit was oriented to cover both the afterglow and the 
+host galaxy centre.
+
+The spectrum has a strong contribution from the host galaxy. To overcome this, 
+we built a synthetic host galaxy spectrum based on the SDSS (DR9) photometry 
+using LePhare (version 2.2, Arnouts et al. 1999, MNRAS, 310, 540; Ilbert et al. 
+2006, A&A, 457, 841). We then subtracted this host galaxy template from the 
+GTC spectrum to obtain a "clean" spectrum of the counterpart associated to GRB 
+130427A.
+
+The resulting spectrum is that of a broad-lined Ic SN, with a prominent bump at 
+~6800 A observer frame. In particular, we obtain an excellent match with the 
+spectrum of  SN 2010bh at 12.7 (rest-frame) days after GRB 100316D 
+(Bufano et al. 2012, ApJ 753, 67).
+
+We stress that this conclusion is independent of the host galaxy model 
+adopted. By running SNID (Blondin & Tonry 2007, ApJ, 666, 1024) on the 
+original spectrum (i.e. including host contamination), we still obtain good 
+matches with a series of broad-lined Type Ic SNe, including SNe 1998bw, 
+1997ef, 2002ap and 2006aj, albeit at a lower redshift. The fact that SNID 
+suggests a lower redshift  is explained by the fact that SN 2010bh had high 
+expansion velocities, reaching ~34000 km/s at similar phases (Bufano et al. 
+2012, ApJ 753, 67), which we suggest is also the case for the SN associated 
+with GRB 130427A.
+
+A figure of our preliminary analysis can be seen at:
+
+http://www.iaa.es/~deugarte/GRBs/130427A/130427A_GTC.jpg
+
+We acknowledge excellent support from the GTC staff.
+
+[GCN OPS NOTE(14may13): Per author's request, ZCwas added to the author list.]
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14662
+SUBJECT: GRB 130427A: Skynet detections of a possible supernova
+DATE:    13/05/15 17:02:50 GMT
+FROM:    Adam S. Trotter at UNC-Chapel Hill/PROMPT/Skynet  <atrotter@physics.unc.edu>
+
+A. Trotter, D. Reichart, J. Haislip, A. LaCluyze, K. McLin, L. Cominsky, 
+A. Smith, D. Caton, L. Hawkins, B. Holmes, T. Linder, T. Berger, H. T. 
+Cromartie, R. Egger, A. Foster, N. Frank, K. Ivarsen, M. Maples, J. 
+Moore, M. Nysewander, E. Speckhard, and J. A. Crain report:
+
+Skynet has continued observing the Swift/XRT localization of GRB 130427A 
+(Maselli et al., GCN 14448, Swift trigger #554620) with: four 16" 
+telescopes of the PROMPT array at CTIO, Chile (BVRI bands); the 14" 
+GLAST Optical Robotic Telescope (GORT) at the Hume Observatory in 
+California (RcIc bands); the 14" Deep Sky Observatory (DSO-14) telescope 
+at Pisgah National Forest, NC; and the 30" telescope at the Astronomical 
+Research Observatory (ARO-30) in Westfield, IL. Our observations now 
+span 18 nights, from t=0.65 to 17.6 days post-trigger. Skynet has taken 
+3420 160-second exposures on the 4 PROMPT telescopes, 420 160-second 
+exposures on GORT, 91 160s exposures on DSO-14 and 133 60-160s exposures 
+on ARO-30, or a total of over 178 hours on source. We performed 
+photometry on each exposure, calibrated to two SDSS stars in the field. 
+We stacked exposures to improve sensitivity, in groups ranging from 3 
+exposures on night 1, to 60 exposures on night 18.
+
+In Trotter et al. (GCN 14608) we reported a flattening of the light 
+curve at t~10 days.  That flattening has continued, with possible 
+chromatic bumps in V, R and I bands at ~14d, 11d and 10d, respectively.  
+Our most recent observations, at t=17.8d, show a rebrightening in V, R 
+and I bands; we speculate that this may be the onset of the classical 
+supernova, which was detected spectroscopically by de Ugarte Postigo et 
+al. (GCN 14646) at t=16.7 days.
+
+A preliminary light curve including all Skynet observations through 
+t=17.8 days is at:
+http://skynet.unc.edu/grb/grb130427a_17.png
+
+Further observations are scheduled.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14666
+SUBJECT: GRB 130427A: Continued RATIR Optical and NIR Observations - Photometric Evidence for a New Component 
+DATE:    13/05/16 01:57:40 GMT
+FROM:    Alan M. Watson at Instituto de Astronomia UNAM  <alan@astro.unam.mx>
+
+Alan M. Watson (UNAM), Nat Butler (ASU), Alexander Kutyrev (GSFC),
+William H. Lee (UNAM), Michael G. Richer (UNAM), Chris Klein (UCB), Ori
+Fox (UCB), J. Xavier Prochaska (UCSC), Josh Bloom (UCB), Antonino
+Cucchiara (UCSC), Eleonora Troja (GSFC), Owen Littlejohns (ASU), Enrico
+Ramirez-Ruiz (UCSC), José A. de Diego (UNAM), Leonid Georgiev (UNAM),
+Jesús González (UNAM), Carlos Román-Zúñiga (UNAM), Neil Gehrels (GSFC),
+and Harvey Moseley (GSFC) report:
+
+We have continued to monitor GRB 130427A with the Reionization and
+Transients Infrared Camera (RATIR; www.ratir.org) on the 1.5m Harold
+Johnson Telescope at the Observatorio Astronómico Nacional on Sierra San
+Pedro Mártir, obtaining homogenous photometry in griZYJH. We have
+photometry for every night except 2013 May 6. On most nights our
+photometric uncertainties in gri are about 2%.
+
+As we reported earlier in Watson et al. (GCN Circular 14606), the
+optical afterglow during the first day is well-fitted by a power law
+with a temporal index of -1. However, around T+1d there is a break, and
+the power law steepens. From T+2.5d to T+14.9d our gri photometry is
+well-fitted by a power law with a temporal index close to -1.5 plus a
+constant component consistent with the presumed SDSS host galaxy.
+
+However, our observations at T+15.9d, T+16.9d, and T+17.9d are
+systematically brighter than this fit. Adding a new component starting
+at T+15.5d with zero colors and constant magnitude significantly
+improves the fit (with a confidence level of better than 99.5%). The
+constant component has
+
+  g = r = i = 24.53 ± 0.25.
+
+We do not mean to suggest that the new component actually has zero color
+or constant magnitude. However, at this moment our data cannot usefully
+constrain anything other than a characteristic brightness.
+
+Our data, model, and residuals are shown at
+
+  https://dl.dropboxusercontent.com/u/528672/GCN/2013-05-16-GRB-130427A.pdf
+
+Assuming a distance modulus of 41.26, the new component corresponds to
+an absolute magnitude of -16.7 ± 0.25. If the new component is a Type 1c
+supernova, as suggested by de Ugarte Postigo et al. (GCN Circular
+14646), we might expect the peak extinction-corrected absolute magnitude to be
+around -18 (Drout et al. 2011, ApJ, 741, 97). Thus, depending on the
+host galaxy extinction, we might be seeing this possible supernova at or just
+before its peak.
+
+We caution that the new component is currently about 2 magnitudes
+fainter than the afterglow component, which at 18.0 days is predicted to
+have
+
+  i = 22.21 ± 0.04
+
+and even fainter then the galaxy, which is predicted to have
+
+  i = 21.23 ± 0.03.
+
+The relative brightnesses of the new component, the fading afterglow,
+and the host galaxy also have significant implications for unveiling the
+spectrum of the possible supernova.
+
+We further caution that from our data alone we cannot exclude the
+possibility that the new component might simply be a significant
+flattening of the late afterglow component.
+
+The largest residuals of our observations from the model (with or
+without the new component) are at the level of 0.05 magnitudes. We do
+not see the large variations reported by Trotter et al. (GCN Circular
+14662).
+
+Further observations are planned.
+
+We thank the staff of the Observatorio Astronómico Nacional in San Pedro
+Mártir.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14669
+SUBJECT: GRB 130427A:: BTA spectroscopic observations on May 10/11.
+DATE:    13/05/16 21:22:08 GMT
+FROM:    Alberto Castro-Tirado at Inst.de Astro. de Andalucia  <ajct@iaa.es>
+
+Vladimir V. Sokolov (SAO-RAS), Alberto J. Castro-Tirado (IAA-CSIC),
+Alexander S. Moskvitin, Elena A. Barsukova, Viktoria N. Komarova, Nikolaj
+V. Borisov, Azamat F. Valeev, Tatyana N. Sokolova (SAO-RAS) and Vitaly P.
+Goranskij (SAI-MSU, SAO-RAS), report:
+
+"We have obtained 3 epochs of spectroscopy for the GRB 130427A optical
+afterglow (Maselli et al. GCNC 14448, Elenin et al. GCNC 14450) with the
+6-meter BTA equipped with Scorpio. The spectra (with exposure times of
+4 x 900 s, 5 x 900 s and 4 x 1200 s) were taken on May 2/3, 5/6 and
+10/11 respectively. We used the VPHG 550G grating which covers the
+3700-7900 A spectral range and provides a 13 A spectral resolution.
+
+Narrow host galaxy lines such as 3727 A [OII], [OIII] 4959 A, 5007 A and
+Balmer lines are noticeable in all spectra. The measured redshift is 0.3393,
+in good agreement with the previously reported values (Levan et al. GCNC
+14455; Xu et al. GCNC 14478; Flores et al. GCNC 14491; Garnavich GCNC 14605
+and Perley & Tang, GCNC 14615). Particularly, we detect marginal excess
+emission in the range 6000-7000 A on the later spectrum obtained on May
+10/11, which can be interpreted as evidence of the underlying SN (de
+Ugarte Postigo et al., GCNC 14646), what is also supported by the
+long-term photometric observations (Trotter et al., GCNC 14662; Watson et
+al., GCNC 14666).
+
+Our preliminary flux-calibrated spectra can be seen at:
+
+http://www.sao.ru/hq/grb/GRB130427A/GRB130427A_BTA_May2-10.jpg
+
+We thanks S.N. Fabrika, O.P. Zhelenkova, Yu.Yu. Balega, V.V. Vlasyuk and
+A.S. Moiseev for their help in obtaining the observations."
+
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14672
+SUBJECT: GRB 130427A: Konkoly optical observations 
+DATE:    13/05/18 19:56:36 GMT
+FROM:    Janos Kelemen at Konkoly Obs/Hungary  <kelemen@konkoly.hu>
+
+J. Kelemen (kelemen at konkoly.hu) on behalf of the GRB OT observing program
+at the Konkoly Observatory.
+
+Starting on the evening of 15/05/2013 we observed the field of GRB 130427A
+(Maselli et al., GCN 14448) 18.5435 days after the burst, using a 60/90/180 cm
+Schmidt telescope located at the Mountain Station of the Konkoly
+Observatory equipped with an Apogee CCD camera through R filter. On the coadded 
+R images (total exp.time 1120 sec) we detected the OT and the host galaxy as
+well. 
+Based on the nearby UCAC-4 stars we provide 20.90 +/- 0.05 magnitude in the R
+band for the OT. The brightness of the host galaxy was not subtracted. 
+
+time from GRB    exp    filter     Mag.       
+
+18.5435        1120 s     R       20.9 +/-0.05
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14673
+SUBJECT: VLT observations of GRB 130427A
+DATE:    13/05/18 20:47:44 GMT
+FROM:    Andrea Melandri at INAF-OAB  <andrea.melandri@brera.inaf.it>
+
+A. Melandri (INAF-OAB), V. D'Elia (ASDC), P. D'Avanzo (INAF-OAB), M.  
+Della Valle (INAF-OAC), E. Pian (INAF-OAT/SNS), G. Tagliaferri (INAF- 
+OAB) on behalf of a larger collaboration report:
+
+We have observed the field of GRB 130427A (Maselli et al., GCN 14448)  
+for 9 epochs from t-t0=6.7 to t-t0=18.8 days after the burst event.   
+The preliminary light curve in BVR and I bands does not show any  
+evidence of a bump related to a SN, and it is marginally consistent  
+with a SN component, which should be at least 2 mag fainter than 98bw  
+at maximum.
+
+The spectrum (2x1800s) of 13 May, after comparison with SN2010bh  
+template, is suggestive, in the range 5000A-7500A of broad GRB-SN  
+features, but altogether, we don't find the good similarity that the  
+GTC finds (de Ugarte-Postigo et al., CBET 3529). The spectrum of the  
+transient (after subtraction of a galaxy template) is available at:
+
+http://www.brera.inaf.it/utenti/davanzo/grb/GRB130427A/GRB130427A.png
+
+Observations have been taken in the framework of the ESO-Program  
+091.D-0291 (PI E. Pian).
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  14686
+SUBJECT: GRB 130427A / SN 2013cq: Hubble Space Telescope Observations
+DATE:    13/05/20 23:08:33 GMT
+FROM:    Andrew S. Fruchter at STScI  <fruchter@stsci.edu>
+
+A.J. Levan (U. Warwick), A.S. Fruchter, J. Graham (STScI), N.R. Tanvir (U. Leicester), Jens Hjorth, Johan Fynbo (Dark Cosmology Centre, Copenhagen), D. Perley (Caltech), S.B. Cenko (U.C. Berkeley), E. Pian (Trieste), Z. Cano (U. Iceland) A. Pe'er (Cork), R. Hounsell (STScI), K. Mishra (ARIES, India), C. Kouveliotou (MSFC) report:
+
+We observed the optical/NIR counterpart of GRB 130427A (Maselli et al. GCN 14448) with the Hubble Space Telescope beginning at 02:23 UT on 20 May 2013. The afterglow is well detected in our multi-band observations in the UV (F336W), optical (F606W) and NIR (F160W) and is offset approximately 0.8" from the optical centroid of its host. The host itself also contains additional star forming complexes including a bright UV source approximately 0.25" from the GRB position.
+
+In the three bands we measure preliminary magnitudes of the afterglow + supernova of
+
+F336W=23.10 +/- 0.02
+F606W=21.85 +/- 0.02
+F160W=21.34 +/- 0.03
+
+These magnitudes show significant curvature in the optical likely due to the underlying supernova SN 2013cq (de Ugarte Postigo CBET 3529; Xu et al. GCN 14597).    If the optical light were entirely dominated by supernova emission the absolute magnitude at z=0.34 would be M_B~ -19.1 at 17 rest-frame days post burst. However, SNe are weaker UV and IR emitters and so under the naive assumption that the UV and IR bands are dominated by power-law afterglow emission with minimal supernova contribution the inferred magnitude of the supernova in the V-band (rest frame B-band) is V~23. This corresponds to an absolute magnitude of M_B ~ -17.9, approximately a magnitude fainter than the B-band peak of SN 1998bw (which occurred at a comparable epoch of 15 days post burst).     However, the SN could contribute as much as one half of the flux we are seeing in the NIR and UV and there may be substantial host emission underneath the object in the optical and UV.   Thus the SN magnitude should be considered very approximate.  
+Images of the field are posted at
+
+http://www.star.le.ac.uk/~anl/GRB130427A
+
+We thank the staff of STScI for their work in rapidly scheduling these observations.
+

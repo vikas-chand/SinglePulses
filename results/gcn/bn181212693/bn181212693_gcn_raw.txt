@@ -1,0 +1,208 @@
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  23524
+SUBJECT: GRB 181212A: Fermi GBM Detection
+DATE:    18/12/13 02:19:16 GMT
+FROM:    C. Michelle Hui at MSFC/Fermi-GBM  <c.m.hui@nasa.gov>
+
+C. L. Fletcher (USRA)
+
+report on behalf of the Fermi GBM Team:
+
+
+
+"At 16:37:46.05 UT on 12 December 2018, the Fermi Gamma-Ray Burst Monitor
+
+triggered and located GRB 181212A (trigger 566325471 / 181212693).
+
+
+
+The on-ground calculated location, using the GBM trigger
+
+data, is RA = 298.4, DEC = -3.7 (J2000 degrees,
+
+equivalent to 19 h 53 m 33.60 s, -03 d 42 '), with an uncertainty
+
+of 2.3 degrees (radius, 1-sigma containment,
+
+statistical only; there is additionally a systematic
+
+error which we have characterized as a core-plus-tail model, with 90% of
+
+GRBs having a 3.7 deg error and a small tail suffering a larger than 10 deg
+
+systematic error. [Connaughton et al. 2015, ApJS, 216, 32] ).
+
+
+
+The angle from the Fermi LAT boresight at the GBM trigger time is 114 degrees.
+
+
+
+The GBM light curve consists of a bright pulse
+
+with a duration (T90) of about 58 s (50-300 keV).
+
+The time-averaged spectrum from T0+0 s to T0+58 s is
+
+best fit by a Band function with Epeak = 72 +/- 8 keV,
+
+alpha = -1.4 +/- 0.1, and beta = -2.2 +/- 0.1
+
+
+
+The event fluence (10-1000 keV) in this time interval is
+
+(2.138 +/- 0.052)E-05 erg/cm^2. The 1-sec peak photon flux measured
+
+starting from T0+1.9 s in the 10-1000 keV band
+
+is 66 +/- 1 ph/s/cm^2.
+
+
+
+The spectral analysis results presented above are preliminary;
+
+final results will be published in the GBM GRB Catalog."
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  23534
+SUBJECT: IPN Triangulation of GRB 181212A (long)
+DATE:    18/12/14 07:42:53 GMT
+FROM:    Dmitry Svinkin at Ioffe Institute  <svinkin@mail.ioffe.ru>
+
+K. Hurley, on behalf of the IPN,
+
+I. G. Mitrofanov, D. Golovin, M. L. Litvak, and A. B. Sanin,
+on behalf of the HEND-Odyssey GRB team,
+
+D. Svinkin, S. Golenetskii, R. Aptekar, D. Frederiks, A. Kozlova
+and T. Cline on behalf of the Konus-Wind team,
+
+A. Goldstein, M. S. Briggs, and C. Wilson-Hodge
+on behalf of the Fermi GBM team,
+
+A. von Kienlin, X. Zhang, A. Rau, V. Savchenko, E. Bozzo,
+and C. Ferrigno, on behalf of the INTEGRAL SPI-ACS GRB team,
+
+S. Barthelmy, J. Cummings, H. Krimm, and D. Palmer,
+on behalf of the Swift-BAT team,
+
+and
+
+W. Boynton, C. Fellows, K. Harshman, H. Enos, and R. Starr,
+on behalf of the GRS-Odyssey GRB team, report:
+
+The long-duration GRB 181212A
+(Fermi-GBM detection: Fletcher, GCN Circ. 23524)
+was detected by Fermi (GBM trigger 566325471), Konus-Wind,
+INTEGRAL (SPI-ACS), Mars-Odyssey (HEND), and Swift (BAT)
+at about 59866 s UT (16:37:46).
+The burst was outside the coded field of view of the BAT.
+
+We have triangulated it to a preliminary, 3 sigma error box
+whose coordinates are:
+  ---------------------------------------------
+   RA(2000), deg                 Dec(2000), deg
+  ---------------------------------------------
+  Center:
+   300.663 (20h 02m 39s)  -0.324 ( +0d 19' 27")
+  Corners:
+   301.111 (20h 04m 27s)  +1.224 ( +1d 13' 26")
+   300.707 (20h 02m 50s)  +1.563 ( +1d 33' 47")
+   300.075 (20h 00m 18s)  -3.456 ( -3d 27' 22")
+   300.497 (20h 01m 59s)  -3.868 ( -3d 52' 05")
+  ---------------------------------------------
+The error box area is about 2.31 sq. deg, and its maximum
+dimension is 5.43 deg (the minimum one is 29 arcmin).
+The Sun distance was about 43 deg.
+
+This box may be improved.
+
+A triangulation map is posted at
+http://www.ioffe.ru/LEA/GRBs/GRB181212_T59862/IPN
+
+The Konus-Wind time history and spectrum will be given in a forthcoming
+GCN Circular.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  23540
+SUBJECT: Konus-Wind observation of GRB 181212A
+DATE:    18/12/14 11:40:05 GMT
+FROM:    Dmitry Frederiks at Ioffe Institute  <fred@mail.ioffe.ru>
+
+D. Frederiks, S. Golenetskii, R.Aptekar, A. Kozlova,
+A.Lysenko,  D. Svinkin, A. Tsvetkova,  M. Ulanov, and T. Cline,
+on behalf of the Konus-Wind team, report:
+
+The long GRB 181212A (IPN Triangulation: Hurley et al., GCN 23534;
+Fermi-GBM detection: Fletcher, GCN 23524)
+triggered Konus-Wind at T0=59862.922 s UT (16:37:42.922).
+
+The burst light curve shows a single bright pulse followed
+by a weaker extended emission.
+The total duration of the burst (T90, 80-1300 keV) is ~66 s.
+The emission in the main peak is seen up to ~10 MeV.
+
+As observed by Konus-Wind, the burst had a fluence of
+(2.4 ± 0.5)x10^-5 erg/cm2 and a 64-ms peak energy flux,
+measured from T0+1.536 s, of (1.02 ± 0.13)x10^-5 erg/cm2
+(both in the 20 keV - 10 MeV energy range).
+
+The time-integrated spectrum (measured from T0 to T0+72.448 s)
+is best fit in the 20 keV - 15 MeV range by a cutoff power-law
+(CPL) function with the following model parameters:
+the photon index alpha = -1.75(-0.08,+0.08),
+and the peak energy Ep = 216(-45,+84) keV,
+chi2 = 100/98 dof.
+Fitting this spectrum with the GRB (Band) function yields
+the same alpha and Ep, and only an upper limit on beta (<-2.3).
+
+The spectrum near the peak count rate (measured from T0
+to T0+6.912 s) is best fit in the 20 keV - 15 MeV range
+by the GRB (Band) function with the following model parameters:
+the low-energy photon index alpha = -1.55 (-0.12,+0.09),
+the high energy photon index beta = -2.38 (-7.62,+0.14),
+the peak energy Ep = 158 (-20,+47) keV,
+chi2 = 101/95 dof.
+
+The Konus-Wind light curve of this GRB is available at
+http://www.ioffe.ru/LEA/GRBs/GRB181212_T59862/
+
+All the quoted errors are estimated at the 68% confidence level.
+All the presented results are preliminary.
+
+////////////////////////////////////////////////////////////////////////
+TITLE:   GCN CIRCULAR
+NUMBER:  23541
+SUBJECT: GRB 181212A:Insight-HXMT/HE detection
+DATE:    18/12/15 11:34:45 GMT
+FROM:    Shuo Xiao at IHEP  <xiaoshuo@ihep.ac.cn>
+
+S. Xiao, C. K. Li, X. B. Li, G. Li, J. Y. Liao, S. L. Xiong, 
+C. Z. Liu, X. F. Li, Z. W. Li, Z. Chang, X. F. Lu, J. L. Zhao,
+A. M. Zhang, Y. F. Zhang, C. L. Zou (IHEP), Y. J. Jin, 
+Z. Zhang (THU), T. P. Li (IHEP/THU), F. J. Lu, L. M. Song, 
+H. Y. Wang, M. Wu, Y. P. Xu, S. N. Zhang (IHEP), 
+report on behalf of the Insight-HXMT team: 
+At 2018-12-12T16:37:45.500 (T0), the Insight-HXMT/HE detected 
+GRB 181212A (trigger ID: HEB181212692) in a routine search of the data, 
+which was also triggered by Fermi/GBM (Fletcher et al., GCN23524) and
+Konus-Wind (Frederiks et al., GCN23540).
+The Insight-HXMT/HE light curve mainly consists of single 
+pulse with a duration (T90) of 5.48 s measured from T0+0.72 s. 
+The 1-s peak rate, measured from T0+2.07 s, is 8019.2 cnts/s. 
+The total counts from this burst is 20371.7 counts. 
+URL_LC: http://www.hxmt.org/images/GRB/HEB181212692_lc.jpg 
+All measurements above are made with the CsI detectors operating in the 
+regular mode with the energy range of about 80-800 keV (record energy). 
+Only gamma-rays with energy greater than about 200 keV can penetrate 
+the spacecraft and leave signals in the CsI detectors installed inside 
+of the telescope. 
+Insight-HXMT is the first Chinese space X-ray telescope, which was 
+fundedjointly by the China National Space Administration (CNSA) and 
+the Chinese Academy of Sciences (CAS). 
+More information could be found at: http://www.hxmt.org.
+

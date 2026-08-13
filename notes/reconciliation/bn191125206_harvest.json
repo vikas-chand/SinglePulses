@@ -1,0 +1,47 @@
+{
+ "burst": "bn191125206",
+ "grb_name": "GRB 191125A",
+ "harvest_utc": "2026-08-11T16:43:04Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (four-form query; Phase 3c scope rules)",
+ "identity": {
+  "trigger": "bn191125206 / MET 596350608.13565",
+  "trigger_utc": "2019-11-25 04:56:43",
+  "name_source": "GCN 26292 (Fermi GBM Team): 'triggered and located GRB 191125A (trigger 596350608.13565 / 191125206)' - name<->trigger verified by the trigger number quoted in the circular itself; TRIGTIME matches our TTE headers exactly",
+  "same_day_contamination_guard": "GRB 191125B = bn191125634 at 15:12:45 UT (GCN 26293; MASTER follow-up GCN 26299 is ALSO 191125B). No 191125B value may enter this burst's record (LiteratureHarvest T1)."
+ },
+ "ads_queries": [
+  {"form": "full:\"GRB 191125A\"", "numFound": 1, "refereed_hits": 0, "note": "only 2019GCN.26292....1F (newsletter)"},
+  {"form": "full:\"bn191125206\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"191125206\"", "numFound": 1, "refereed_hits": 0, "note": "the GCN circular only"},
+  {"form": "full:\"596350608\"", "numFound": 1, "refereed_hits": 0, "note": "the GCN circular only"},
+  {"form": "full:(\"GRB191125A\" OR \"GRB 191125A\") (defensive, no-space)", "numFound": 2, "refereed_hits": 1, "note": "adds 2021SSRv..217...23M (Mangano+2021, REFEREED + PUB_OPENACCESS)"}
+ ],
+ "n_refereed_papers": 1,
+ "papers": [
+  {
+   "bibcode": "2021SSRv..217...23M",
+   "first_author": "Mangano, Valeria",
+   "year": 2021,
+   "title": "BepiColombo Science Investigations During Cruise and Flybys at the Earth, Venus and Mercury",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "instrument-demo mention (NOT an analysis paper): Fig. 9 (p.16) shows the MGNS 1-s count-rate time profile of GRB191125A as the example cruise GRB; context is MGNS participation in the InterPlanetary Network (IPN). No spectral or temporal numbers for the burst are given.",
+   "verbatim_anchor": "Fig. 9 Time profile of gamma-ray burst GRB191125A detected by MGNS gamma-ray spectrometer (1 s acquisition integrated counts)",
+   "pdf": "Skills_training/Mangano_2021_2021SSRv21723M_bn191125206.pdf",
+   "pdf_source": "OSTI OA mirror https://www.osti.gov/servlets/purl/1814517 (Springer link.springer.com bot-blocks curl; Unpaywall located mirrors); 81 pp, %PDF verified, burst mention verified by PyMuPDF on p.16",
+   "prompt_sections": "p.16 (Fig. 9 + the single MGNS-GRB paragraph) - confirms an independent interplanetary detection of the prompt emission; nothing to diff numerically",
+   "module_future_tags": "module-future;mm (IPN/interplanetary-network context; MGNS localization triangulation role)"
+  }
+ ],
+ "finding": "NEAR-PAPERLESS BURST. Zero refereed papers ANALYZE GRB 191125A / bn191125206; the single refereed appearance (Mangano+2021) is an instrument-demonstration light curve with no measurements. The GCN record is one auto-generated circular (26292). The external comparison frame for the P3 diff is therefore the GBM online catalog (bcat/tcat/scat FITS from HEASARC FTP bursts/2019/bn191125206/current/, fetched 2026-08-11): T90=77.31+/-0.81 s (50-300 keV, T90START=1.79 s), fluence(10-1000 keV)=4.967e-5 erg/cm2, flnc Comp Ep=915.6-83/+97 keV index=-1.4625+/-0.012 (dets n1,n3,n5,b0, interval -1.024..115.712 s, PSTAT), Band beta RAILED at -2.0001 in both flnc and pflx fits - all filed in the dossier's PUBLISHED VALUES section and in the P0 freeze.",
+ "local_corpus_check": {
+  "method": "PyMuPDF text scan of all 98 PDFs in Skills_training/ for the token '191125'",
+  "hits": 1,
+  "note": "the only hit is the Mangano PDF this harvest itself added; no sample/method paper in the corpus mentions this burst"
+ },
+ "corpus_index_updates": "PENDING - one row to add for 2021SSRv..217...23M (theme instrument-demo/IPN, cited_by_bursts bn191125206, read=N); shared CSV Skills_training/corpus_index.csv deliberately NOT touched per campaign hard rule - orchestrator appends",
+ "prompt_vs_future_classification": {
+  "prompt_relevant": "GCN 26292 (identity/localization) and GBM catalog bcat/scat values (durations + time-integrated/peak spectral fits) - all prompt-phase; these are the P3 diff targets. Mangano+2021 Fig. 9 = prompt light-curve existence proof only.",
+  "module_future": "Mangano+2021 tagged module-future;mm (IPN context). No afterglow, SN, or cosmology literature exists for this burst (no follow-up was ever triggered; LAT boresight angle 71 deg per GCN 26292, no LLE/LAT holdings)."
+ },
+ "vikas_reading_list": "optional 2-minute item: Mangano+2021 p.16 Fig. 9 only (our burst as BepiColombo MGNS's showcase GRB) - no sections to reconcile; the GBM catalog numbers are filed in results/gcn/bn191125206/bn191125206_dossier.md"
+}

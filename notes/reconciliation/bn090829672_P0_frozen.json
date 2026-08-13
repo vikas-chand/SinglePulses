@@ -1,0 +1,73 @@
+{
+ "burst": "bn090829672",
+ "grb_name": "GRB 090829A",
+ "tally": 24,
+ "tally_note": "= count of existing *_P0_frozen.json (23) + 1 at write time; approximate under concurrent doc-layer workers (bn100614498 worker active in the same batch)",
+ "frozen_utc": "2026-08-12T22:34:00Z",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "frozen_before_any_new_fit_output": true,
+ "blind_note": "results/sweep106/ NEVER read (hard rule; blind fits in progress). Archival prior below is the pre-existing census (clean_per_burst_human_final), permitted by the skill.",
+ "census_prior": {
+  "source": "results/clean_per_burst_human_final/bn090829672/spectral_fits.ecsv",
+  "n_blocks": 35,
+  "layout": "blk-1 = time-integrated [30.405, 70.234] s + blk0..blk33 time-resolved",
+  "plugin_dets": "n6,n9,na,b1",
+  "criterion": "UNION rule: (LRT_BANDBB_BAND >= 9.2 & BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 & CPLBB_KT > 1.05) - BOTH nested tests counted",
+  "significant_bb_blocks_union": 3,
+  "significant_bb_blocks_resolved_only": 2,
+  "bandbb_arm_pass": [{"block": -1, "LRT": 24.9, "kT": 4.114, "kT_err": 0.175}],
+  "cplbb_arm_pass": [
+   {"block": 17, "t": [46.78, 47.04], "LRT": 12.303, "kT": 24.583, "kT_err": 2.46, "note": "high-kT class; same block's BANDBB kT=4.98 with LRT 4.53 - the two arms disagree on the component's identity"},
+   {"block": 18, "t": [47.04, 47.75], "LRT": 38.482, "kT": 3.989, "kT_err": 1.181, "note": "BANDBB arm LRT 6.99, kT 4.21+/-0.46"}
+  ],
+  "near_misses": {"blk23_cpl": 9.19, "blk25_band": 8.85, "blk13_band": 8.34, "blk27_cpl": 8.01, "blk27_band": 7.93, "blk12_band": 7.41},
+  "significant_bb_kt_values": [4.114, 24.583, 3.989],
+  "aic_winners": {"CPL": 14, "Band+BB": 6, "Band": 6, "CPL+BB": 5, "SBPL": 3, "DSBPL": 1},
+  "bic_winners": {"CPL": 28, "Band": 3, "SBPL": 2, "Band+BB": 1, "CPL+BB": 1},
+  "time_integrated_band": {"alpha": -1.37, "ep_keV": 212.98, "beta": -2.424},
+  "time_integrated_bandbb": {"alpha": -1.127, "ep_keV": 164.83, "beta": -2.226, "kT_keV": 4.114, "aic_margin_vs_band": 20.9, "aic_margin_vs_sbpl": 20.2},
+  "LRT_DSBPL_SBPL_ge_9p2": {"blk12": 11.1, "blk23": 9.62, "blk29": 9.2, "blk31": 10.93},
+  "dsbpl_validity_note": "ALL four LRT>=9.2 DSBPL fits are DSBPL_VALID=False with rising alpha1~+2.3..+2.5 (blk23 inverted -1.50/+0.50) and xb~10-12.6 keV ~ 3.92*kT(4.1)=16 keV - the L25 BB-mimic geometry; DSBPL_VALID in 11/35 blocks; census has NO valid two-break block",
+  "engine_caveat": "census fits predate L18 default-seed DSBPL restart + L19/L27 rail handling; two-break count is a LOWER LIMIT by doctrine"
+ },
+ "predictions": [
+  "P-A (BB class - POSITIVE): the new time-integrated block (30.4-70.2 s) WILL pass the Band+BB arm: LRT_BANDBB_BAND >= 9.2 with kT = 4.1 +/- 0.8 keV (census: LRT 24.9, kT 4.11+/-0.18). FALSIFIED IF the new blk-1 LRT < 9.2 or kT outside 2.5-6 keV.",
+  "P-A2 (resolved BB recurs where the literature says spectra are narrowest): >= 2 resolved blocks inside 42-55 s will pass the union rule (census: blk17 CPL-arm 12.3, blk18 CPL-arm 38.5; near-misses blk12/13/23/25/27 all in 42-55 s), and the low-kT side will sit at kT ~ 4-5 keV. External anchor: Yu+2015 report theta below the Maxwellian limit during 'the main emission pulses between 35-55 s' - the +BB preference and the too-narrow-for-synchrotron interval should COINCIDE. FALSIFIED IF zero resolved union passes, or passes land outside 40-60 s.",
+  "P-A3 (no valid two-break): no block will yield a VALID DSBPL with LRT_DSBPL_SBPL >= 9.2 AND a falling-falling-falling break geometry; any LRT>=9.2 DSBPL will again show the rising-alpha1 xb~3.92kT BB-mimic (L25) or fail validity. bn090829672 stays OUT of the two-break census. FALSIFIED IF a valid two-break block appears (which the L18 restart could legitimately produce - census predates it; that would be a REAL engine-fix discovery, record loudly).",
+  "P-B (catalog anchor, falsifiable numbers): a time-integrated Band fit over OUR window will give alpha = -1.37 +/- 0.06, Ep = 213 +/- 25 keV, beta = -2.42 +/- 0.20 - i.e. HARDER alpha and higher Ep than the GBM catalog FLNC Band (alpha=-1.4928+/-0.013, Ep=187.9 -10.6/+11.5, beta=-2.188; interval -3.07..115.71 s, SAME dets b1/n6/n9/na) because the catalog interval adds the soft precursor + tail (T9 frame difference, NOT a discrepancy). FALSIFIED IF our-window Band lands ON the catalog values or moves in the opposite (softer/lower-Ep) direction.",
+  "P-B2 (winner family): the time-integrated AIC winner will be Band+BB (census margin +20.9 over Band, +20.2 over SBPL); BIC may still prefer the single-component family (census blk-1 BIC winner differs across blocks; BIC winners are CPL-dominated 28/35).",
+  "P-B3 (temporal frame): T90(50-300 keV) = 67.6 +/- 2.9 s starting T0+10.24 (bcat v03); GCN's 85 s is the 8-1000 keV total-episode number; WAM's ~30 s is 100-1000 keV about its own T0 (+36.13 s) - three DIFFERENT frames, all consistent with a weak precursor + main pulse peaking at T0+46 s (catalog PFLX bin 46.08-47.10 s sits inside our window). Any new T90 must be labeled with band + start before diffing.",
+  "P-C (high-energy null): no LAT/LLE data exist locally and the published record is doubly null (Guetta+2011 R(2)<3%; Akerlof+2010 cluster search null) - the reconciliation must NOT manufacture a high-energy component expectation from the ARR/47-deg boresight (D4 sibling: a repoint is not a detection)."
+ ],
+ "harvest_snippets": {
+  "GCN9849_FermiGBM": [
+   "At 16:07:38.86 UT on 29 August 2009, the Fermi Gamma-Ray Burst Monitor triggered and located GRB 090829 (trigger 273254860 / 090829672).",
+   "The GBM light curve, with a duration (T90) of about 85 s (8-1000 keV), consists of a weak precursor followed by a bright peak.",
+   "time-averaged spectrum from T0-6.1 s to T0+92 s is adequately fit by a Band function with Epeak = 183 +/- 31 keV, alpha = -1.44 +/- 0.04, and beta = -2.1 +/- 0.1",
+   "The angle from the Fermi LAT boresight is 47 degrees. This burst triggered an automatic repoint of Fermi."
+  ],
+  "GCN9896_SuzakuWAM": [
+   "total duration (T90) of about 30 s ... fluence in 100 - 1000 keV was 5.65(-1.19, +0.34) x10-5 erg/cm2",
+   "power-law with exponential cutoff model: dN/dE ~ E^{-alpha} * exp(-(2-alpha)*E/Epeak) with alpha: 1.52(-0.29, +0.26), and Epeak: 344(-52, +91) keV (chi2/d.o.f. = 50.7/36)"
+  ],
+  "Yu2015": [
+   "GRB 090829.672 (bottom right panel) has the largest fraction of spectra consistent with a Maxwellian synchrotron explanation (13 out of 32 spectra, 40%). ... During the main emission pulses between 35 - 55 s, theta decreases below the Maxwellian limit",
+   "Table B.1 row: 090829.672 32 130.12 13.03 67.80 5.62 153.69 2.56 72.83 0.38"
+  ],
+  "Ghirlanda2011": [
+   "Table 1 row: 090829(672) 93.186 N6,N10,B1 1024"
+  ],
+  "Guetta2011": [
+   "R(2) < 3% for the brightest in the sample (GRB081207 and GRB090829A)",
+   "table row (GCN-inherited, T6): 090829A 85.0 1.02e+02 5.15e+01 8 1000 Band 183.0 -1.44 -2.10 47 0"
+  ],
+  "Akerlof2010": [
+   "sample row: 090829A 090829672 329.23 -34.19 102.0 (highest fluence in their 16-burst LAT-FoV sample); their only positive identification is GRB 090228A - null for 090829A"
+  ],
+  "GBM_catalog_v03": [
+   "bcat: T90=67.585+/-2.896 s (start T0+10.240), T50=12.288+/-1.448 s, FLU(10-1000)=7.664e-5+/-1.6e-7, PF256=52.24+/-0.66",
+   "scat FLNC Band (-3.072..115.712 s, b1/n6/n9/na, C-STAT): Ep=187.92 -10.60/+11.51, alpha=-1.4928+/-0.013, beta=-2.188 -0.078/+0.058, REDCHSQ 1.214/478",
+   "scat PFLX Band (46.080..47.104 s): Ep=199.83 -17.45/+19.90, alpha=-1.0207+/-0.044, beta=-2.134 -0.096/+0.072"
+  ]
+ }
+}

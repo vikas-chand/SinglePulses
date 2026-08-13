@@ -1,0 +1,6 @@
+lag-MVT: 22 bursts with accepted +lag and finite MVT (of 89)
+curvature slope prediction E_h/E_l-1 = 3.899  (E_h=173, E_l=35 keV)
+Spearman rho(MVT,lag) = +0.307  (p=0.17)
+log-log fit: slope=0.45+/-0.26, intercept=-0.57 (in log space)
+  -> compare fitted slope to 1.0 (linear tau~dt) and check if lag~slope_pred*MVT
+wrote temporal_properties/figures/lag_vs_mvt.png

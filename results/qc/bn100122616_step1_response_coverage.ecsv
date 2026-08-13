@@ -1,0 +1,42 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DETECTOR, datatype: string}
+# - {name: RSP2, datatype: string}
+# - {name: N_MATRICES, datatype: int64}
+# - {name: RSP_T0, datatype: float64}
+# - {name: RSP_T1, datatype: float64}
+# - {name: COVERS_SRC, datatype: bool}
+# meta: !!omap
+# - {trigger: bn100122616}
+# - {grb_name: GRB 100122A}
+# - {generated_utc: '2026-08-12'}
+# - {src_start: 16.55982097902104}
+# - {src_stop: 33.79524475524482}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand, 2026-07-19T22:18:36Z, human_gui)'}
+# - {trigtime_met: 285864459.314122}
+# - {manifest_counts: tte=5 cspec_pha=5 rsp2=4 rsp=1 poshist=1 trigdat=0 lle=0 lat=0}
+# - {notes: 'trigdat absent: note not blocker, poshist present (DataInventory Phase 1). No LLE/LAT data expected or present: no gll_*
+#     files locally or in HEASARC current/ despite LAT boresight angle 45 deg (GCN 10355); GBM-only burst, so no D1 LLE theta check applies.
+#     n6/n9/b1 resolve to 10-matrix cspec .rsp2 spanning -7.17..118.79 s rel TRIGTIME, bracketing the stamped source window AND all stamped
+#     background intervals except the pre-bkg start (-26 s): the first rsp2 matrix opens at -7.17 s, i.e. the polynomial background fit
+#     over [-26,8] s uses the earliest matrix for pre-matrix times - standard and harmless (background is detector-count-space, not response-folded).
+#     WARN-1 (D1 gray zone): na ships only a SINGLE-MATRIX catalog .rsp (v03) valid -135..479 s; interval overlap is the wrong test. Off-axis
+#     check via poshist + production get_detector_angle (scripts/00): theta_na = 46.07 deg at trigger (= the stamped DET_ANGLE, so stamps
+#     used trigger-time attitude + tcat v05 position 79.20,-2.71) but 49.6 -> 53.1 deg across the source window 16.56-33.80 s: Delta-theta
+#     ~ 3.5-7 deg vs the likely DRM build attitude. Between the D1 thresholds (<~4 fine, >~15 invalid) -> NOT a quarantine; record + watch
+#     the na EAC cross-norm in fits (D5 corroboration test). Note na also drifts past the 50-deg NaI preference during the window (46
+#     -> 53 deg); selection was human-approved (Stage-1 flags ARE decisions). n7 data present but unapproved/unused (56.8 deg). WARN-2
+#     (D4/T9): the GCN-10355 light curve is 2 pulses - weak at trigger (t~0) + main at ~21 s. Our window covers the MAIN PULSE ONLY, and
+#     the stamped pre-bkg interval [-26,+8] s CONTAINS the weak trigger pulse (catalog T90 starts at 5.12 s). No accepted QC flag exists
+#     for this burst (human_review_qc_flags.txt); the human approval stands - recorded so early-block low-energy claims remember the possible
+#     slight background bias. Angle stability across window (tcat pos): n6 48.2->43.0, n9 6.7->10.5, b1 53.2->52.6 deg - multi-matrix
+#     rsp2 tracks these; fine. TTE v00 header position (30,-15) is an early localization, superseded by tcat v05 (79.20,-2.71); stamped
+#     DET_ANGLEs verified to match tcat position to 3 decimals this pass.'}
+# - {verdict: PASS}
+# schema: astropy-2.0
+DETECTOR RSP2 N_MATRICES RSP_T0 RSP_T1 COVERS_SRC
+n6 glg_cspec_n6_bn100122616_v00.rsp2 10 -7.1681 118.7865 True
+n9 glg_cspec_n9_bn100122616_v00.rsp2 10 -7.1681 118.7865 True
+na glg_cspec_na_bn100122616_v03.rsp 1 -135.1706 479.2418 True
+b1 glg_cspec_b1_bn100122616_v00.rsp2 10 -7.1681 118.7865 True

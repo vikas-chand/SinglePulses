@@ -1,0 +1,63 @@
+{
+ "burst": "bn090829672",
+ "grb_name": "GRB 090829A",
+ "harvest_utc": "2026-08-12T22:33:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1, 1b, 2, 3, 3b, 3c, 4, 5; traps T1-T9 consulted)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "prior_products_found": "results/gcn/bn090829672/ existed from 2026-07-29 (gcn_raw.txt + ads_hits.json + gcn_index.csv row); EXTENDED, nothing overwritten. No dossier/harvest/P0/step1-QC existed before today.",
+ "queries": [
+  {"form": "GRB name with suffix", "q": "full:\"GRB 090829A\"", "numFound": 2, "refereed_articles": 1, "note": "Guetta+2011 + GCN 9896 (Suzaku WAM)"},
+  {"form": "GBM trigger name", "q": "full:\"bn090829672\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "day-fraction", "q": "full:\"090829672\"", "numFound": 4, "refereed_articles": 3, "note": "Yu+2015, Ghirlanda+2011, Akerlof+2010 + Burgess 2017 (inproceedings, not refereed)"},
+  {"form": "trigger number", "q": "full:\"273254860\"", "numFound": 0, "refereed_articles": 0},
+  {"form": "defensive no-space", "q": "full:\"GRB090829A\"", "numFound": 1, "refereed_articles": 1, "note": "Hurley+2013 IPN supplement (uses GRB090829672 designation)"},
+  {"form": "bare name", "q": "full:\"GRB 090829\"", "numFound": 1, "refereed_articles": 1, "note": "Yu+2015 again (duplicate)"}
+ ],
+ "same_day_contamination_check": "T1 REAL HERE: GRB 090829B = trigger 273257442 / 090829702 (16:50:40.13 UT, GCN 9856) is a different burst 43 min later; GCN 9856 is inside our gcn_raw.txt (shared 090829.gcn3 page) and 090829B rows sit adjacent to 090829A's in the Guetta+2011 and Akerlof+2010 tables. All harvested rows verified by trigger 273254860/090829672 or by the A-suffixed name cross-checked against trigger time 16:07:38.",
+ "n_refereed_papers": 5,
+ "papers": [
+  {"bibcode": "2015A&A...583A.129Y", "first_author": "Yu, Hoi-Fung", "year": 2015, "doctype": "article", "arxiv": "1507.05589", "class": "SAMPLE-MEMBER (highlighted case: burst with the largest Maxwellian-consistent spectral fraction, 13/32 spectra)", "title": "The sharpness of gamma-ray burst prompt emission spectra", "pdf": "Skills_training/Yu_2015_2015AA583A129Y_bn090829672.pdf", "prompt_sections": "S4 + Fig 5 (bottom right = this burst, theta(t) evolution; theta below Maxwellian limit during main pulses 35-55 s), S5/Fig 8 (7/70 bursts green class), Table B.1 row 090829.672 (N=32, <theta>=130.12 SD 13.03, theta_int=153.69+/-2.56)", "module_future_tags": [], "mined_into_dossier": true},
+  {"bibcode": "2011MNRAS.418L.109G", "first_author": "Ghirlanda, G.", "year": 2011, "doctype": "article", "arxiv": "1109.1833", "class": "SAMPLE-MEMBER (long-GRB time-resolved comparison sample)", "title": "Short and long gamma-ray bursts: same emission mechanism?", "pdf": "Skills_training/Ghirlanda_2011_2011MNRAS418L109G_bn090829672.pdf", "prompt_sections": "Table 1 row 090829(672): duration 93.186 s, dets N6,N10,B1 (= n6,na,b1, subset of ours), 1024 ms resolution; S2-3 time-resolved CPL Ep-flux correlation method", "module_future_tags": [], "mined_into_dossier": true},
+  {"bibcode": "2011A&A...525A..53G", "first_author": "Guetta, D.", "year": 2011, "doctype": "article", "arxiv": "1003.0566", "class": "SAMPLE-MEMBER (LAT non-detection constraint; table values are GCN-inherited, T6 flag)", "title": "FERMI constraints on the high energy, ~1 GeV, emission of long gamma ray bursts", "pdf": "Skills_training/Guetta_2011_2011AA525A53G_bn090829672.pdf", "prompt_sections": "Table (p11) row 090829A = GCN 9849 values verbatim (Band 183.0/-1.44/-2.10, T90 85 s, fluence 1.02e-4, LAT angle 47 deg, detection flag 0); S4/Fig 2: R(2) < 3% for GRB090829A (0.1-1 GeV fluence < 3% of prompt fluence, one of the two tightest in sample)", "module_future_tags": [], "mined_into_dossier": true},
+  {"bibcode": "2010ApJ...725L..15A", "first_author": "Akerlof, C. W.", "year": 2010, "doctype": "article", "arxiv": "1010.1588", "class": "SAMPLE-MEMBER (LAT cluster-search null for this burst; their one identification is GRB 090228A)", "title": "Searching for Needles in Haystacks - Using the Fermi/GBM to Find GRB gamma-rays with the Fermi/LAT Detector", "pdf": "Skills_training/Akerlof_2010_2010ApJ725L15A_bn090829672.pdf", "prompt_sections": "Table 1 row 090829A 090829672 329.23 -34.19 fluence 102.0 uerg/cm2 (highest in their 16-burst sample); S4-5: only GRB 090228A identified -> LAT non-detection for 090829A", "module_future_tags": [], "mined_into_dossier": true},
+  {"bibcode": "2013ApJS..207...39H", "first_author": "Hurley, K.", "year": 2013, "doctype": "article", "arxiv": "1301.3522", "class": "CATALOG-MENTION (IPN observation record + triangulation annuli)", "title": "The Interplanetary Network Supplement to the Fermi GBM Catalog of Cosmic Gamma-Ray Bursts", "pdf": "Skills_training/Hurley_2013_2013ApJS20739H.pdf (ALREADY IN CORPUS - G2 dedup, duplicate download deleted)", "prompt_sections": "p37 row: GRB090829672 observed by AGI,Kon,MES,MO,Suz,Swi(d); p47 row: two IPN annuli (272.5797,-23.5677) R=45.0800 hw 0.0170 and (5.9261,+7.6379) R=60.2763 hw 0.0375", "module_future_tags": ["module-future;localization"], "mined_into_dossier": true}
+ ],
+ "non_refereed_hits_not_harvested": [
+  {"bibcode": "2017ifs..confE..74B", "note": "Burgess 2017 inproceedings (spectral-width rebuttal to Yu+2015 methodology); not refereed, not fetched; flagged as context for the T7 continuum-relative caveat on sharpness claims"}
+ ],
+ "published_value_sources_nonpaper": [
+  {"source": "glg_tcat_all_bn090829672_v02.fit (HEASARC current)", "values": "OBJECT GRB090829672, TRIGTIME 273254860.864052, RA_OBJ 329.23, DEC_OBJ -34.19, ERR_RAD 1.0 deg, LOC_SRC Fermi/GBM"},
+  {"source": "glg_bcat_all_bn090829672_v03.fit", "values": "T90=67.585+/-2.896 s (T90START=10.240 s), T50=12.288+/-1.448 s, FLU(10-1000 keV)=7.66371e-05+/-1.58e-07 erg/cm2, PF64=58.574, PF256=52.237+/-0.660 ph/s/cm2"},
+  {"source": "glg_scat_all_bn090829672_flnc_band_v03.fit", "values": "FLNC Band, interval -3.072..115.712 s, dets BGO_01/NAI_06/NAI_09/NAI_10 (= b1,n6,n9,na = OUR APPROVED SET), Castor C-STAT: Ep=187.92 -10.60/+11.51 keV, alpha=-1.4928+/-0.013, beta=-2.188 -0.078/+0.058, NRGFLNC(10-1000)=9.152e-5+/-8.7e-7 erg/cm2, REDCHSQ=1.214 (478 dof)"},
+  {"source": "glg_scat_all_bn090829672_flnc_comp_v03.fit", "values": "FLNC Comptonized: Epeak=226.66 -8.36/+9.15 keV, index=-1.5202+/-0.009, REDCHSQ=1.227 (479 dof)"},
+  {"source": "glg_scat_all_bn090829672_flnc_sbpl_v03.fit", "values": "FLNC SBPL: Ebreak=123.76 -10.29/+11.50 keV, low=-1.5616+/-0.009, high=-2.1788 -0.049/+0.044, break scale 0.3 fixed, REDCHSQ=1.217 (478 dof)"},
+  {"source": "glg_scat_all_bn090829672_flnc_plaw_v03.fit", "values": "FLNC PLAW: index=-1.7169, REDCHSQ=1.925 (480 dof) - disfavored vs curved models"},
+  {"source": "glg_scat_all_bn090829672_pflx_band_v03.fit", "values": "PFLX Band, interval 46.080..47.104 s (inside our window): Ep=199.83 -17.45/+19.90 keV, alpha=-1.0207+/-0.044, beta=-2.134 -0.096/+0.072"},
+  {"source": "glg_scat_all_bn090829672_pflx_comp_v03.fit", "values": "PFLX Comptonized: Epeak=276.45 -14.62/+16.06 keV, index=-1.1260+/-0.026"},
+  {"source": "GCN 9849 (Wilson-Hodge, Fermi GBM)", "values": "T90~85 s (8-1000 keV); Band -6.1..92 s: Ep=183+/-31, alpha=-1.44+/-0.04, beta=-2.1+/-0.1; fluence (1.02+/-0.02)e-4 erg/cm2; pf1s=51.5+/-0.9 from T0+46 s; ARR repoint; weak precursor + bright peak"},
+  {"source": "GCN 9896 (Noda, Suzaku WAM)", "values": "T90~30 s (100-1000 keV, T0_WAM=GBM T0+36.13 s); CPL POSITIVE-alpha convention: alpha=1.52 -0.29/+0.26, Ep=344 -52/+91 keV (90% CL); fluence(100-1000)=5.65e-5; pf1s=13.07 from T0_WAM+12 s"}
+ ],
+ "weighting_phase3b": "No dedicated refereed spectral re-analysis exists, so the newest standardized frame = GBM catalog v03 scat/bcat (HEASARC current; identical detector set to ours) > Yu+2015 (shape statements, 32 time-resolved spectra) > Ghirlanda+2011 (dets/duration) > GCN 9849/9896 (preliminary by own statement) ~ Guetta+2011 table (GCN-inherited, T6).",
+ "scholar_channel_phase1b": {"used": false, "reason": "ADS four-form query is NOT thin (5 refereed papers found); Scholar remains the fallback finding channel only", "suggested_query_strings": ["GRB 090829A prompt emission", "gamma-ray burst 090829 sharpness synchrotron"], "rule": "Scholar finds, ADS verifies - any future Scholar hit must resolve to an ADS bibcode before entering this manifest"},
+ "pdfs_fetched": [
+  "Skills_training/Yu_2015_2015AA583A129Y_bn090829672.pdf (arXiv 1507.05589, 13.9 MB, %PDF verified)",
+  "Skills_training/Ghirlanda_2011_2011MNRAS418L109G_bn090829672.pdf (arXiv 1109.1833, %PDF verified)",
+  "Skills_training/Guetta_2011_2011AA525A53G_bn090829672.pdf (arXiv 1003.0566, %PDF verified)",
+  "Skills_training/Akerlof_2010_2010ApJ725L15A_bn090829672.pdf (arXiv 1010.1588, %PDF verified)"
+ ],
+ "pending_shared_csv_rows": {
+  "rule": "worker hard rule - no writes to shared CSVs; rows queued here for the coordinator to apply",
+  "Skills_training/corpus_index.csv": [
+   {"action": "ADD", "row": "Yu_2015_2015AA583A129Y_bn090829672.pdf,2015A&A...583A.129Y,1507.05589,prompt-spectral-sharpness;synchrotron-test,bn090829672,1,N,"},
+   {"action": "ADD", "row": "Ghirlanda_2011_2011MNRAS418L109G_bn090829672.pdf,2011MNRAS.418L.109G,1109.1833,prompt-timeresolved;short-vs-long-Ep-flux,bn090829672,1,N,"},
+   {"action": "ADD", "row": "Guetta_2011_2011AA525A53G_bn090829672.pdf,2011A&A...525A..53G,1003.0566,LAT-upper-limits;GBM-luminosity-function,bn090829672,1,N,"},
+   {"action": "ADD", "row": "Akerlof_2010_2010ApJ725L15A_bn090829672.pdf,2010ApJ...725L..15A,1010.1588,LAT-photon-cluster-search,bn090829672,1,N,"},
+   {"action": "UPDATE existing row (G2 dedup)", "filename": "Hurley_2013_2013ApJS20739H.pdf", "change": "cited_by_bursts: bn081224887 -> bn081224887;bn090829672 ; n_bursts: 1 -> 2 ; read flag untouched (N)"}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "UPDATE existing row (2026-07-29 era)", "row_key": "bn090829672", "change": "ads_refereed: 4 -> 5 (no-space form surfaced Hurley+2013); ads_hits stays 7 unique for-this-burst docs (GCN 9856 belongs to 090829B and is excluded)"}
+  ]
+ },
+ "vikas_reading_list": "Yu+2015 (Skills_training/Yu_2015_2015AA583A129Y_bn090829672.pdf): S4 + Fig 5 bottom-right + Table B.1 row = the Maxwellian-narrow 35-55 s claim that overlaps our +BB blocks (READ NOW, ~20 min); Ghirlanda+2011: Table 1 row + S2 method only (5 min); Guetta+2011: p4 R(2)<3% sentence + p11 table row (5 min, values are GCN-inherited); Akerlof+2010: skim - membership + null only; Hurley+2013: already on the bn081224887 shelf, p37/p47 rows only.",
+ "redshift": "none (no afterglow was ever identified; GBM-only ~1 deg localization + IPN annuli)"
+}

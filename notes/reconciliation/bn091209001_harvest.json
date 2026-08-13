@@ -1,0 +1,68 @@
+{
+ "burst": "bn091209001",
+ "grb_name": "GRB 091209 (no letter suffix ever assigned; no GCN designation exists; catalog OBJECT GRB091209001)",
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5; 1b Scholar-note, 3b latest-first, 3c prompt-scope, Phase 4 frame+consensus, traps T1-T9)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "query_forms": [
+  {"form": "full:\"GRB 091209\"", "numFound": 0, "note": "name form empty - the burst has no conventional-name literature"},
+  {"form": "full:\"bn091209001\"", "numFound": 0, "note": ""},
+  {"form": "full:\"091209001\"", "numFound": 1, "note": "the ONLY productive form: Bordoloi+2026, matched in its machine-readable Table 2 (trigger never appears in article body text)"},
+  {"form": "full:\"282009646\"", "numFound": 0, "note": "trigger MET number form"},
+  {"form": "full:\"GRB091209\"", "numFound": 0, "note": "defensive no-space form"},
+  {"form": "full:\"GRB 091209A\" OR full:\"GRB091209A\"", "numFound": 0, "note": "defensive letter-suffix form"}
+ ],
+ "scholar_note": "Phase 1b trigger condition MET (ADS thin: 1 paper). Google Scholar sweep NOT run this session (no API; finding-channel requires human browser or browsing agent). Recommended query if run later: 'GRB 091209 gamma-ray burst' + 'quasi-thermal 091209001'. Any hit must resolve back to an ADS bibcode before entering this manifest.",
+ "n_refereed_papers": 1,
+ "papers": [
+  {
+   "bibcode": "2026ApJ..1003...58B",
+   "authors": "Bordoloi, Mittal & Iyyani",
+   "title": "From Empirical to Physical Model: Direct Fits of Optically Thin Inverse Compton Scattering to Prompt GRB Spectra",
+   "pub": "ApJ 1003, 58 (2026 May 20); arXiv:2511.20310; doi:10.3847/1538-4357/ae623d",
+   "properties": "REFEREED, PUB_OPENACCESS, DATA",
+   "role_of_our_burst": "member of the initial 41-burst quasi-thermal sample (Band criteria alpha > -0.5, -1.7 > beta > -3.3); NOT in the final 4-burst IC sample (131014A, 200412B, 200829A, 230614C). Excluded because its Band beta rails at -5 in 4/5 time-resolved bins (no constrained high-energy index). Appears ONLY in machine-readable Table 2 + the 41-image figure set.",
+   "pdfs": [
+    "Skills_training/Bordoloi_2026_2026ApJ100358B_bn091209001.pdf (arXiv, 26 pp)",
+    "Skills_training/Bordoloi_2026_2026ApJ100358B_bn091209001_PUB.pdf (ApJ VoR, 20 pp)"
+   ],
+   "mrt": "https://content.cld.iop.org/journals/0004-637X/1003/1/58/revision1/apjae623dt2_mrt.txt (Table 2, fetched+parsed this run: 5 rows for GRB091209001)",
+   "prompt_sections": "SS2 sample selection (why our burst enters/exits the 41->4 funnel) + Appendix B / Table 2 MRT (its 5 time-resolved Band rows) + figure set image for 091209001 (alpha/beta evolution vs T70) - these are the prompt-relevant parts for Vikas; SS3-5 IC physical fits and Appendix C degeneracy analysis concern only the final four - defer",
+   "module_future_tags": ["module-future;physical-model (optically thin IC as alternative physical continuum; Naima framework)"],
+   "harvested_values_091209001": {
+    "frame": "Band function, T0 = GBM trigger 282009646.898, 1-sigma errors, alpha bound +1 / beta bound -5 (railed value = BOUND_CAPPED statement, not a measurement)",
+    "bins": [
+     {"bin": 1, "t": [-3.998, 0.117], "alpha": "+1.0 (railed)", "beta": "-3.772 +1.496/-0.695", "ep_keV": "117.823 +12.227/-11.268"},
+     {"bin": 2, "t": [0.117, 7.039], "alpha": "+1.0 (railed)", "beta": "-5.0 (railed)", "ep_keV": "78.54 +3.241/-3.093"},
+     {"bin": 3, "t": [7.039, 14.914], "alpha": "+0.547 +0.207/-0.245", "beta": "-5.0 (railed)", "ep_keV": "64.702 +2.569/-2.383"},
+     {"bin": 4, "t": [14.914, 22.082], "alpha": "+1.0 (railed)", "beta": "-5.0 (railed)", "ep_keV": "40.04 +2.211/-1.978"},
+     {"bin": 5, "t": [22.082, 44.0], "alpha": "+1.0 (railed)", "beta": "-5.0 (railed)", "ep_keV": "32.284 +3.116/-2.827"}
+    ],
+    "bin_edge_echo": "their bin2/bin3 edge 7.039 s == our archival blk0/blk1 edge 7.039292 s (independent Bayesian-blocks agreement to 3 decimals)",
+    "coverage_caveat_T9": "their bins span -4.0..44.0 s vs our stamped window -5..27 s: their soft-tail bin 5 (Ep=32 keV) lies mostly OUTSIDE our window; diff bin-to-block on overlap only"
+   }
+  }
+ ],
+ "published_value_sources_catalog": [
+  {"source": "glg_bcat_all_bn091209001_v03.fit (HEASARC)", "values": "T90=42.945+/-8.035 s (50-300 keV, T90START=-5.888 s), T50=11.392+/-0.771 s, FLU(10-1000 keV)=1.0032e-5+/-1.92e-7 erg/cm2, PF64=10.32+/-2.21, PF256=7.07 ph/s/cm2", "coverage": "TOTAL"},
+  {"source": "glg_tcat_all_bn091209001_v03.fit", "values": "RA=260.96 DEC=+38.29 ERR_RAD=2.93 deg (Fermi GBM ground loc), LAT theta=117.60 deg, GCN_FLAG='No'", "coverage": "n/a"},
+  {"source": "glg_scat_all_bn091209001_flnc_band_v03.fit", "values": "interval -4.096..44.032 s, dets NAI_04+BGO_00: alpha=+0.299 +0.205/-0.254 (POSITIVE), Ep=61.56 +3.72/-3.37 keV, beta=-3.034 +0.379/-0.257, NRGFLNC(10-1000)=6.68e-6 erg/cm2, redchisq=1.048 (239 dof)", "coverage": "TOTAL (FLNC window)"},
+  {"source": "glg_scat_all_bn091209001_flnc_comp_v03.fit", "values": "index=+0.092 +0.145/-0.151, Ep=65.81 +2.19/-2.37 keV, redchisq=1.074 (240 dof)", "coverage": "TOTAL"},
+  {"source": "glg_scat_all_bn091209001_flnc_sbpl_v03.fit", "values": "low=-0.232 +0.189/-0.227, Ebreak=51.77 +6.86/-8.42 keV, high=-3.261 +0.352/-0.259, redchisq=1.048 (239 dof) [SBPL slope convention, NOT Band alpha]", "coverage": "TOTAL"},
+  {"source": "glg_scat_all_bn091209001_flnc_plaw_v03.fit", "values": "index=-1.727+/-0.019, redchisq=1.969 (241 dof) - strongly disfavored", "coverage": "TOTAL"},
+  {"source": "glg_scat_all_bn091209001_pflx_band_v03.fit", "values": "interval 12.288..13.312 s: alpha=-0.226 +0.535/-0.547, Ep=53.54 +7.07/-9.10 keV, beta=-2.905 +0.998/-0.495", "coverage": "PEAK 1.024 s"},
+  {"source": "glg_scat_all_bn091209001_pflx_comp_v03.fit", "values": "index=-0.376 +0.421/-0.0, Ep=55.94 +6.36/-11.55 keV", "coverage": "PEAK 1.024 s"}
+ ],
+ "gcn_finding": "ZERO GCN circulars (per-GRB pages 091209.gcn3 and 091209A.gcn3 both 404; archive page 10200-10299 spanning 2009-12-08..12-15 has zero '091209' occurrences; tcat GCN_FLAG='No'). Recorded as a result.",
+ "redshift": "none (no spectroscopy or follow-up of any kind exists)",
+ "same_day_contamination_check": "T1: literature identifies the burst ONLY by 9-digit trigger 091209001; no other mission triggered on 2009-12-09 events sharing the '091209' name (GRB 091208A/B are the nearest neighbors, previous day). No contamination pathway found.",
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   "Bordoloi_2026_2026ApJ100358B_bn091209001.pdf,2026ApJ..1003...58B,arXiv:2511.20310,quasi-thermal/IC physical model (initial-41 Band sample),bn091209001,1,N,"
+  ],
+  "results/gcn/gcn_index.csv": [
+   "bn091209001,GRB 091209,0 circulars (404 per-GRB page; tcat GCN_FLAG=No),no redshift,no follow-up,dossier results/gcn/bn091209001/bn091209001_dossier.md"
+  ]
+ },
+ "corpus_index_note": "corpus_index.csv read, not written (hard rule): 2026ApJ..1003...58B NOT present -> NEW paper, PDFs downloaded, row queued above. Note for the merger: 090620400 and 120905657 (both campaign bursts) also appear in this paper - cited_by_bursts should eventually list them too."
+}

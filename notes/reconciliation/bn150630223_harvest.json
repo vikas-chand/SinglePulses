@@ -1,0 +1,157 @@
+{
+ "burst": "bn150630223",
+ "grb_name": "GRB 150630223",
+ "grb_name_note": "LETTERLESS. No letter-suffixed designation was ever assigned. See identity.designation_evidence. 'GRB 150630A' appears ONLY as Maccary+2025's internally-constructed same-day-order label and must not be used as the burst's name.",
+ "harvest_utc": "2026-08-12T23:40:00Z",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phase 1 four-form ADS; Phase 1b web/Scholar-style bridge + VizieR row lookups + local-corpus token scan; Phase 3b latest-first; Phase 3c prompt-scope with module-future tags; Phase 4 frame-align + multi-instrument consensus; traps T1/T3/T6/T7/T9)",
+ "prior_products": "NONE. results/gcn/bn150630223/ did not exist before this run; notes/reconciliation/bn150630223_* did not exist; results/qc/bn150630223_step1_response_coverage.ecsv did not exist. Nothing was overwritten - all four products are new.",
+
+ "identity": {
+  "trigger": "bn150630223",
+  "trigtime_met": 457334449.760854,
+  "trigger_utc": "2015-06-30 05:20:47 (MJD 57203.222760858)",
+  "designation": "GRB 150630223",
+  "designation_evidence": "(a) HEASARC fermigbrst field name = 'GRB150630223' (letterless long form). (b) von Kienlin+2020 Table 4 (VizieR J/ApJ/893/46/table4, recno 1656) leaves the 'GRB' column - defined as 'Gamma-ray burst identifier (YYMMDDA)' - BLANK. That column IS populated for neighbours that earned a name: recno 1653 bn150627183 -> '150627A' and recno 1658 bn150702998 -> '150702A', both Fermi-LAT localised. (c) Zero GCN circulars exist under any 150630 form, so no name was ever assigned in real time.",
+  "position_gbm": "RA=116.81, Dec=-21.31, error_radius=1.46 deg (STATISTICAL ONLY; GBM systematic is ~3-4 deg and is NOT included) - HEASARC fermigbrst. von Kienlin+2020 Table 4 rounds to 116.8 / -21.3 / 1.5.",
+  "position_best": "SAME - the GBM position is the only one that exists. No IPN box, no arcsecond counterpart, no afterglow. See instrument_story.ipn_gap.",
+  "galactic": "l = 238.15204534, b = +1.95880158 - only 2 deg off the Galactic plane, a crowded and extincted field",
+  "position_trap_verified_inert": "The TTE primary header carries RA_OBJ=30.0, DEC_OBJ=-15.0, ERR_RAD=3.0 - the SAME stale flight-software placeholder found on bn110928180, 132 deg from the catalog position. Verified inert here: recomputing detector angles from the poshist quaternions reproduces the stamped DET_ANGLE column to <=0.018 deg with the CATALOG position (n4 23.048 vs 23.031; n5 56.451 vs 56.453; b0 53.388 vs 53.389), whereas the placeholder gives 61.40/64.92/63.99 deg - nothing like the stamped values. The placeholder never entered Stage 1. NOTE FOR THE CAMPAIGN: this is now the SECOND burst on which (30.0, -15.0, 3.0) has been found in a TTE header; it should be treated as a known GBM flight-software placeholder, not a per-burst anomaly.",
+  "same_day_contamination_guard_T1": "TWO GBM triggers on 2015-06-30. Ours = bn150630223 at 05:20:47 UT, RA 116.81 Dec -21.31, T90 22.784 s, detectors n4+n5. The other = bn150630958 at 22:59:00 UT, RA 358.2 Dec -47.4, T90 39.169 s, detector n8 - 17.6 h later and ~130 deg away. Maccary+2025 labels ours GRB150630A and that one GRB150630B. Any '150630B' or 'T90 ~ 39 s' hit belongs to the other burst. Separately: no OTHER mission issued a GRB 150630A - the classic GCN archive 404s on 150630A, which it would not do if any mission had named a burst that.",
+  "maccary_name_trap": "Maccary+2025's n_GRB flag ('*' = 'GRB not appear with a GCN-style name in the literature') is BLANK on our row - but the flag is set on only 29 of 3379 rows, far too few to mark every letterless GBM burst in a 3379-row GBM-derived catalog. A blank therefore carries NO information that 'GRB150630A' is attested, and ADS full-text on 'GRB 150630A' / 'GRB150630A' returns 0. Recorded so a later reader does not promote their label to the burst's name."
+ },
+
+ "gcn_circulars": {
+  "n_circulars": 0,
+  "verdict": "VERIFIED NULL (not an unavailable lookup)",
+  "evidence": "Classic per-GRB archive 404s on 150630.gcn3, 150630A.gcn3, 150630B.gcn3, 457334449.gcn3. CONTROL in the same session: 150626A.gcn3 (200, 10327 B), 150627.gcn3 (200, 12629 B), 150702A.gcn3 (200, 11808 B), 150301A.gcn3 (200, 12772 B) - the endpoint was alive, so the 404s are real absences. ADS circular sweep: bibstem:GCN full:'150630' -> numFound 1, which is 2022GCN.31471....1P (Pankov+, GRB 220101A) - an unrelated circular matching on the digit string, NOT our burst.",
+  "channel_unavailable": "gcn.nasa.gov JSON API returned {'message':'Unexpected Server Error'} on /api/circulars and the SPA HTML shell on /circulars.json and /api/v1/circulars. Recorded as unavailable; contributes no evidence in either direction. The null rests on the classic archive + ADS only.",
+  "raw_file": "results/gcn/bn150630223/bn150630223_gcn_raw.txt (records the null and its evidence; there is no circular text to archive)",
+  "why_zero": "GBM-only trigger with a 1.5 deg error radius (nothing to follow up), 2 deg off the Galactic plane (worst-case field), and outside the LAT FoV (boresight 112.3 deg at T0). Konus-Wind, INTEGRAL SPI-ACS and Mars Observer all detected it and none of those teams circulated either."
+ },
+
+ "ads_queries": [
+  {"form": "full:\"GRB 150630A\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"bn150630223\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"150630223\"", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"457334449\" (trigger MET)", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"GRB150630A\" [extra]", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"GRB 150630\" [extra]", "numFound": 0, "refereed_hits": 0},
+  {"form": "full:\"GRB150630223\" [extra]", "numFound": 0, "refereed_hits": 0},
+  {"form": "bibstem:GCN full:\"150630\" [circular sweep]", "numFound": 1, "refereed_hits": 0, "hit": "2022GCN.31471....1P - unrelated (GRB 220101A), excluded"}
+ ],
+
+ "ads_full_text_blind_spot": {
+  "finding": "THE FOUR-FORM ADS QUERY RETURNED ZERO ON ALL FOUR FORMS, YET THREE REFEREED PAPERS CARRY THIS BURST'S NUMBERS. Every one of them was found by a channel OTHER than ADS full-text.",
+  "found_by_vizier_row_lookup": "von Kienlin+2020 (4 rows in J/ApJ/893/46 tables 4/5/6/7) and Maccary+2025 (J/A+A/702/A95 table1 recno 1449). Neither trigger token appears in either PDF's body text.",
+  "found_by_construction_plus_heasarc": "Poolakkil+2021 - its per-burst spectral fits are distributed through HEASARC fermigbrst rather than printed, and the paper states its data 'are available online at the HEASARC website'.",
+  "local_corpus_scan_result": "PyMuPDF token scan of all 178 PDFs in Skills_training/ for '150630223', 'GRB150630', 'GRB 150630', 'bn150630' -> ZERO hits, including in the vonKienlin_2020 and Poolakkil_2021 copies already on disk. Confirms these are machine-readable-table memberships, not printed rows.",
+  "lesson": "Reinforces the bn110928180 finding: ADS full-text does not index long machine-readable/appendix tables. For a thin-footprint burst the four-form query is a FLOOR, not a census, and returning zero from it is NOT evidence of zero literature. The mandatory follow-ups are (i) a local-corpus token scan and (ii) VizieR row lookups in the standard catalog series - here the VizieR lookups produced 100% of the findings."
+ },
+
+ "phase1b_web_bridge": {
+  "channel": "WebSearch (Scholar-style finding channel), invoked because the ADS four-form came back empty on all four forms",
+  "queries": ["\"GRB 150630\" Fermi GBM bn150630223 Konus-Wind", "\"bn150630223\" OR \"150630223\" gamma-ray burst"],
+  "found": "NOTHING burst-specific. Both queries returned unrelated GRBs. Recorded as a negative result for the bridge on this burst - it does not always pay out.",
+  "vizier_row_lookups_run": [
+   "J/ApJ/893/46 tables 4,5,6,7 (von Kienlin+2020, 4th GBM catalog) -> HIT, 4 rows (recno 1656)",
+   "J/A+A/702/A95 table1 (Maccary+2025 MVT) -> HIT, recno 1449",
+   "J/ApJ/913/60 table5 (Poolakkil+2021 redshift subset) -> 0 rows (expected: no z)",
+   "J/ApJ/886/20 table1 (Yu+2019 Bayesian time-resolved GBM pulses) -> 0 rows",
+   "HEASARC TAP fermigbrst (trigger_name='bn150630223') -> HIT, full catalog row incl. all flnc/pflx spectral fits"
+  ],
+  "negative_lookups_worth_recording": [
+   "ADS title:'Interplanetary Network Supplement' year:2018-2026 -> numFound 0. No IPN supplement covers 2015; Hurley+2013 and Hurley+2017 both end before it.",
+   "Konus-Wind published catalogs are redshift-selected (Tsvetkova+2017/2021) or short-GRB-selected (Svinkin+2016, Lysenko+2025). Our burst is long with no z -> in none of them.",
+   "ioffe.ru per-burst KW pages: GRB150630_T19245/6/7 all HTTP 404; the KW GRB index returns HTTP 403.",
+   "Yu+2016 (2016A&A...588A.135Y) time-resolved catalog covers the first four years only -> cannot contain a 2015 burst."
+  ]
+ },
+
+ "n_refereed_papers": 3,
+ "papers": [
+  {
+   "bibcode": "2025A&A...702A..95M",
+   "first_author": "Maccary, R.",
+   "year": 2025,
+   "title": "Gamma-ray burst minimum variability timescales with Fermi/GBM",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "sample-member row (MVT population study) - THE MOST RECENT ANALYSIS, hence the Phase-3b default comparison frame",
+   "verbatim_anchor": "VizieR J/A+A/702/A95 table1 recno 1449: 'GRB150630A | bn150630223 | FWHM 8.43348 (-2.18166/+2.94297) s | t90 22.784 | Npeaks 1.0 | z blank | Class II | 116.75000 -21.30000'",
+   "definition_to_carry_T3": "Their headline MVT = FWHM_min, 'the full width at half maximum (FWHM) of the narrowest pulse in the light curve', narrowest pulse identified by MEPSA. Their Sect. 2 lists THREE distinct estimators - (i) FWHM_min, (ii) Golkhou+2015/Veres+2023 wavelet dt_min, (iii) MEPSA detection timescale dt_det. Table 1's FWHM column is (i). Never diff across estimators. Npeaks = number of MEPSA-identified peaks. Class per VizieR Note (1): I / II / SEE.",
+   "chained_value_flag_T6": "their t90 = 22.784 is IDENTICAL to the GBM catalog - chained, not independent. FWHM, Npeaks and Class ARE their own.",
+   "why_it_matters_here": "Npeaks = 1.0 is an INDEPENDENT, PUBLISHED, AUTOMATED confirmation that this is a single-pulse burst - external validation of its membership in our sample, from a method (MEPSA) unrelated to ours. And MVT = 8.4 s against T90 = 22.8 s says the narrowest structure is >1/3 of the burst: a smooth, unstructured event.",
+   "pdf": "Skills_training/Maccary_2025_2025A&A702A95M_bn110928180.pdf - ALREADY IN THE CORPUS (G2 dedup applied, NOT re-downloaded). Filename carries a different burst's suffix; corpus_index row queued.",
+   "prompt_sections": "Sect. 2 (the three MVT definitions - read BEFORE quoting any MVT) + Sect. 2.3 (MEPSA peak-finding, which is what Npeaks=1 means) + Table 1 row. ALL prompt-temporal; feeds our Step 7. Sects. 4-6 (MVT-T90 plane, LFBOT / magnetar-giant-flare comparisons, Lp-FWHM correlation) = population context, defer.",
+   "module_future_tags": "none (pure prompt temporal)"
+  },
+  {
+   "bibcode": "2021ApJ...913...60P",
+   "first_author": "Poolakkil, S.",
+   "year": 2021,
+   "title": "The Fermi-GBM Gamma-Ray Burst Spectral Catalog: 10 yr of Data",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "catalog-member. THE PRIMARY PUBLISHED SPECTRAL FRAME for this burst - the only published spectral fits that exist for it.",
+   "membership_evidence": "By construction plus the machine-readable row. Paper p.2 verbatim: 'In 10 years, GBM has triggered on 2356 GRBs (von Kienlin et al. 2020), of which, 2297 are useful for spectroscopy and are included in this Catalog. All of the data from these bursts are available online at the HEASARC website.' Our 2015-06-30 trigger is inside the 10-yr window and HEASARC fermigbrst carries a COMPLETE set of flnc_* and pflx_* fits (4 models x 2 intervals) for it. HONEST CAVEAT: the token '150630223' does not appear anywhere in the PDF (verified by PyMuPDF scan of the corpus copy) - this is a machine-readable membership, and the values below are quoted from the HEASARC row, not from a printed table.",
+   "verbatim_anchor": "HEASARC fermigbrst, trigger_name='bn150630223'. FLNC interval [-1.024,+16.384] s, dets n4+n5+b0, Castor C-STAT: PL index=-1.8759984+/-0.0130036 (redchisq 1.379258/361) declared best (flnc_best_fitting_model='flnc_plaw'); COMP Ep=813.81696+/-365.15265 keV, index=-1.8516349+/-0.0199362 (1.3821858/360); BAND Ep=757.30127+/-710.04852, alpha=-1.85033+/-0.0224587, beta=-2.430495+/-1.3113923 (1.3840271/359); SBPL Ebreak=2239.3604+/-20083.807, indx1=-1.8457675, indx2=-23.60788+/-540.8335, brksc=0.3 fixed (1.3715345/359). PFLX interval [+3.072,+4.096] s: PL index=-1.9134043+/-0.0281254 (1.0079108/361) declared best; COMP Ep=295.39771+/-107.31526, index=-0.527 n/a index=-1.8545483+/-0.0457802; BAND Ep=309.97546+/-120.86687, alpha=-1.8558439+/-0.0445347, beta=-7.3859634+/-9393.9824 (unconstrained).",
+   "trap_T7_recorded": "'PL is best' is relative to the four models the catalog tried, and NONE fits well time-integrated (every redchisq 1.37-1.38 on ~360 dof). The catalog menu contains NO additive component - no blackbody, no two-break. Its verdict is therefore SILENT about, not evidence against, the components our 6-model menu tests.",
+   "trap_T9_recorded": "The flnc window [-1.024,+16.384] s covers only ~70% of T90 = [+0.560,+23.344] s and stops 7 s before T95. OUR stamped window [-2.0,+23.0] s is a strict SUPERSET. Coverage must be re-aligned before any fluence or index diff.",
+   "additional_frame_fact": "peak-slice redchisq 1.008 vs time-integrated 1.379 - a single PL describes the peak well and the integrated spectrum poorly. Textbook signature of averaged-over spectral evolution, and the strongest published motivation for our time-resolved decomposition.",
+   "pdf": "Skills_training/Poolakkil_2021_2021ApJ91360P_bn150202999.pdf - ALREADY IN THE CORPUS (G2 dedup, NOT re-downloaded). arXiv:2103.13528.",
+   "prompt_sections": "Sect. 2 + Table 1 (model set, C-STAT convention, and the catalog's 'best model' selection RULE) - required reading before diffing our AIC ladder against their 'best'. Sect. 3 (population distributions) = context. ALL prompt.",
+   "module_future_tags": "none (pure prompt spectral)"
+  },
+  {
+   "bibcode": "2020ApJ...893...46V",
+   "first_author": "von Kienlin, A.",
+   "year": 2020,
+   "title": "The Fourth Fermi-GBM Gamma-Ray Burst Catalog: A Decade of Data",
+   "doctype": "article (REFEREED, PUB_OPENACCESS)",
+   "classification": "catalog-member with FOUR machine-readable rows - the duration/fluence/identity PRIMARY for this burst",
+   "verbatim_anchor": "VizieR J/ApJ/893/46, recno 1656 throughout. table4: 'bn150630223 | [GRB name BLANK] | 2015-06-30T05:20:47 | 116.8 | -21.3 | 1.5 | Fermi-GBM | Al=9 | Time=256 | Energy=47-291 | Other=K, IA, Mo'. table5: 'bn150630223 | [flag BLANK] | Det 4+5 | T90 22.784 +/- 1.864 | T90st 0.560 | T50 6.144 +/- 0.572 | T50st 2.864'. table6 (10-1000 keV): 'Fluence 1.1e-05 +/- 5.6e-08 | PF64 24.20 +/- 2.46 | PF256 22.34 +/- 1.22 | PF1024 20.20 +/- 0.58'. table7 (50-300 keV): 'Fluence 4.9e-06 +/- 3.0e-08 | PF64 5.69 +/- 0.84 | PF256 4.57 +/- 0.38 | PF1024 4.00 +/- 0.17'.",
+   "footnote_decoded": "Table 4 'Other' = instrument detections, catalog Note (3): K = Konus-Wind, IA = INTEGRAL SPI-ACS, Mo = Mars Observer, (L = Fermi LAT - ABSENT for our burst, present for the neighbouring 150627A and 150702A). Note (2): algorithm 9 = 256 ms timescale, 128 ms offset, channels 3-4, 50-300 keV.",
+   "negative_result_that_matters": "table5's f_Fermi flag column is BLANK for our burst. That column carries footnote 'c' = 'Partial earth occultation is likely; durations are lower limits', and 171 of the table's rows DO carry some flag - so the blank is a POSITIVE statement by the GBM team that no occultation caveat applies. This is in direct tension with our own poshist geometry (source 0.16-1.72 deg above the geometric limb across the stamped window, crossing it at T0-5.2 s) and the tension is recorded, not resolved. See P0 P-E/P-F.",
+   "pdf": "Skills_training/vonKienlin_2020_2020ApJ89346V_bn150202999.pdf (also ..._bn160625945.pdf) - ALREADY IN THE CORPUS x2 (G2 dedup, NOT re-downloaded). arXiv:2002.11460.",
+   "prompt_sections": "Sect. 3 (duration method: T90 from 5%->95% accumulated fluence, 50-300 keV, NaI-only; and the detector-selection rule) + Table 5 footnote block (footnote c on partial Earth occultation - directly relevant to our Sect. 5 limb finding) + the four table rows. ALL prompt.",
+   "module_future_tags": "none (pure prompt catalog)"
+  }
+ ],
+
+ "excluded_contamination": [
+  {"item": "bn150630958 / 'GRB150630B' (Maccary+2025 recno 1450)", "reason": "T1. Same calendar day, 17.6 h later (22:59:00 UT), RA 358.2 Dec -47.4 (~130 deg away), T90 39.169 s, detector n8. Any 150630 hit with T90 ~ 39 s belongs to it."},
+  {"bibcode": "2022GCN.31471....1P", "reason": "matched only on the digit string '150630' inside a GRB 220101A optical-observation circular. Not our burst."}
+ ],
+
+ "finding": "NO DEDICATED-ANALYSIS PAPER EXISTS for GRB 150630223, and ZERO GCN CIRCULARS were ever issued for it - a verified null on both counts, with a same-session control proving the circular archive was alive. The four-form ADS query returned ZERO on all four forms; the entire refereed footprint (3 papers) was recovered by VizieR row lookups and by construction, never by ADS full-text, and a token scan of all 178 corpus PDFs found the burst printed in NONE of them. The footprint is: von Kienlin+2020 (4th GBM catalog, 4 machine-readable rows - durations, fluences, identity, and the K/IA/Mo multi-instrument detection), Poolakkil+2021 (GBM spectral catalog - the ONLY published spectral fits, distributed via HEASARC), and Maccary+2025 (MVT, the Phase-3b latest frame). THREE facts dominate what we inherit. (1) The published spectral picture is a near-featureless SOFT POWER LAW: the catalog's declared best model is PL in BOTH the time-integrated (index -1.876 +/- 0.013) and peak-flux (index -1.913 +/- 0.028) fits, with Ep unconstrained in every curved model (CPL 814 +/- 365, Band 757 +/- 710, SBPL break 2239 +/- 20084 keV) - and the catalog menu contains no additive component at all, so it is silent about, not evidence against, a blackbody. (2) Maccary+2025's MEPSA peak-finder returns Npeaks = 1 with MVT = 8.4 s against T90 = 22.8 s - independent published confirmation of a smooth single pulse, exactly our sample definition. (3) THE DOMINANT HAZARD IS NOT LITERATURE BUT GEOMETRY: at the GBM catalog position the source crossed the Earth's geometric limb at T0-5.2 s and sits only 0.16-1.72 deg above it across the whole stamped window (line-of-sight tangent height climbing 7 -> 78 km), while the ENTIRE pre-burst background window is taken with the source occulted. A systematic whose strength falls monotonically across exactly our source window can mimic both a FRED rise and a hard-to-soft evolution. The GBM team did NOT flag this burst for partial Earth occultation, and GBM plainly saw a bright 24 ph/cm2/s pulse that a 13 km tangent height could not transmit - most likely meaning the true position is several degrees further from the limb than the catalog position (systematic ~3-4 deg vs the quoted 1.46 deg statistical). Recorded as a named alternative hypothesis with falsification tests in P0, not resolved. No redshift, no afterglow, no host, no model advocacy of any kind: a clean null-streak baseline burst whose time-resolved spectroscopy has no published counterpart.",
+
+ "local_corpus_check": {
+  "method": "PyMuPDF token scan of all 178 PDFs in Skills_training/ for '150630223', 'GRB150630', 'GRB 150630', 'bn150630'",
+  "hits": "ZERO - including in the vonKienlin_2020 and Poolakkil_2021 copies already on disk, confirming machine-readable-only membership",
+  "corrupt_files_found": "1 index/directory drift: Skills_training/Tong_2022_2022RNAAS6115T_bn130310840.pdf is listed in corpus_index.csv but the FILE DOES NOT EXIST on disk (fitz: \"no such file\"). NOT touched by this worker (idempotence rule); reported as an issue for whoever owns bn130310840."
+ },
+
+ "fetch_failures": [
+  {"target": "gcn.nasa.gov circulars JSON API", "attempts": "/api/circulars?query=, /circulars.json?query=, /api/v1/circulars?query= - Unexpected Server Error or SPA shell", "resolution": "recorded as unavailable. The zero-circular conclusion rests on the classic archive (with a 4-burst positive control) + the ADS circular sweep, NOT on this channel."},
+  {"target": "Konus-Wind per-burst pages (ioffe.ru)", "attempts": "GRB150630_T19245/T19246/T19247 -> HTTP 404; http://www.ioffe.ru/LEA/GRBs/ index -> HTTP 403", "resolution": "no KW values obtained. The KW detection is attested only by von Kienlin+2020's 'Other' column. Recorded as a gap, not as an absence of detection."},
+  {"target": "HEASARC W3Browse w3query.pl form endpoint", "attempts": "returned an HTML error page", "resolution": "switched to the Xamin TAP sync endpoint with FORMAT=votable (FORMAT=csv is rejected) - full catalog row retrieved."}
+ ],
+
+ "prompt_vs_future_classification": {
+  "prompt_relevant": "von Kienlin+2020 four rows (T90/T50 + both fluence bands + peak fluxes + trigger band/algorithm + the blank occultation flag); Poolakkil+2021 flnc and pflx model tables via HEASARC (4 models x 2 intervals, dets n4+n5+b0); Maccary+2025 FWHM_min / Npeaks / Class. These are the P3 diff targets.",
+  "module_future": "ONE item: the unexploited IPN triangulation (Konus-Wind + INTEGRAL SPI-ACS + Mars Observer all detected the burst per vK+2020 'Other' = K, IA, Mo, but no supplement covering 2015 was ever published). Tagged module-future;mm. It has a concrete scientific motive here - an improved position would settle the Earth-limb question of Sect. 5. NO afterglow / SN / cosmology literature exists: the beyond-prompt shelf is otherwise EMPTY, and that emptiness is itself the record."
+ },
+
+ "vikas_reading_list": "12-minute item, in this order. (1) Maccary+2025 Sect. 2 ONLY (~2 pp): the three competing MVT definitions (FWHM_min vs wavelet dt_min vs MEPSA dt_det) - read before we quote any MVT, and note their Npeaks = 1 is an independent automated confirmation that this is a single-pulse burst. Defer Sects. 4-6. (2) Poolakkil+2021 Sect. 2 + Table 1 (~2 pp): the model set, the C-STAT convention, and the catalog's 'best model' RULE - we need to know exactly what 'PL is best' does and does not mean before diffing our 6-model AIC ladder against it, and their menu contains NO additive component. (3) von Kienlin+2020 Sect. 3 + the Table 5 footnote block (~1 p): the duration method (50-300 keV, 5%->95%) and specifically footnote 'c' on partial Earth occultation, which our poshist geometry says might have applied to this burst and which the catalog did not invoke. Nothing else: there is no dedicated paper.",
+
+ "pending_shared_csv_rows": {
+  "_rule": "NO shared CSV was written by this worker. Every row below is QUEUED for whoever owns the merge.",
+  "Skills_training/corpus_index.csv": [
+   {"action": "append_or_update", "filename": "Maccary_2025_2025A&A702A95M_bn110928180.pdf", "bibcode": "2025A&A...702A..95M", "arxiv": "2508.08995", "theme": "prompt-temporal;MVT-MEPSA-FWHM;Npeaks;MVT-T90-plane", "cited_by_bursts": "bn110928180;bn150630223", "n_bursts": 2, "read": "N", "read_date": "", "note": "PDF is on disk but corpus_index.csv currently has NO row for this bibcode (index/directory drift). Append if still missing, else append the trigger to cited_by_bursts and bump n_bursts. Do NOT re-download."},
+   {"action": "append_or_update", "filename": "Poolakkil_2021_2021ApJ91360P_bn150202999.pdf", "bibcode": "2021ApJ...913...60P", "arxiv": "2103.13528", "theme": "gbm-spectral-catalog-10yr;flnc-pflx-4model;best-model-rule", "cited_by_bursts": "bn150202999;bn150630223", "n_bursts": 2, "read": "N", "read_date": "", "note": "same index/directory drift - PDF on disk, no index row. Do NOT re-download."},
+   {"action": "append_or_update", "filename": "vonKienlin_2020_2020ApJ89346V_bn150202999.pdf", "bibcode": "2020ApJ...893...46V", "arxiv": "2002.11460", "theme": "gbm-burst-catalog-10yr;durations;fluence;multi-instrument-Other-column", "cited_by_bursts": "bn150202999;bn160625945;bn150630223", "n_bursts": 3, "read": "N", "read_date": "", "note": "TWO copies on disk (…_bn150202999.pdf and …_bn160625945.pdf) and NO index row for either. Index one, and consider de-duplicating the file. Do NOT re-download."},
+   {"action": "note_only", "filename": "Tong_2022_2022RNAAS6115T_bn130310840.pdf", "note": "corpus_index.csv row exists but the FILE IS MISSING from Skills_training/ (fitz: no such file). Re-fetch or drop the row. Owner: whoever handles bn130310840. Not touched here."}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "append", "row_csv": "bn150630223,none_404,0,N,0,3", "note": "columns trigger,gcn_page,n_circulars,z_mention,ads_hits,ads_refereed. gcn_page='none_404' - no classic archive page exists under any 150630 form (verified against a 4-burst positive control). n_circulars=0 VERIFIED. z_mention=N (no redshift anywhere). ads_hits=0: the four-form full-text query returned zero on ALL FOUR forms. ads_refereed=3 is the TRUE footprint, recovered entirely by VizieR row lookups + membership-by-construction - see ads_full_text_blind_spot. The 0-vs-3 gap in this row is the point, not an inconsistency."}
+  ]
+ }
+}

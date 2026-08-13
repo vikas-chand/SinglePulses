@@ -1,0 +1,40 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: DET_ANGLE, datatype: string}
+# - {name: RSP_FILE, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn120119170}
+# - {grb_name: GRB 120119A}
+# - {src_start: -1.0}
+# - {src_stop: 47.0}
+# - {bkg_neg: '[-32.0, -10.0]'}
+# - {bkg_pos: '[55.0, 145.0]'}
+# - {window_source: 'results/background_intervals.ecsv (APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z human_gui accepted_suggestion)'}
+# - {trigtime_met: 348638667.064212}
+# - {trigtime_source: 'header of glg_cspec_n9_bn120119170_v00.rsp2 (D3: the poshist file carries no TRIGTIME)'}
+# - {coverage_rule: 'GBM multi-matrix rsp2: PASS if min(TSTART) <= SRC_START and max(TSTOP) >= SRC_STOP, times relative to TRIGTIME (bn100130729 lesson)'}
+# - {naming_rule: 'D2 - resolved via glg_cspec_<det>_<trigger>_v*.rsp2 with .rsp fallback, matching scripts/10::find_rsp; no false alarm raised'}
+# - manifest: {n_cspec_pha: 4, n_lat: 0, n_lle: 0, n_poshist: 1, n_rsp: 0, n_rsp2: 4, n_trigdat: 1, n_tte: 4}
+# - {lle_d1_check: 'NOT APPLICABLE - no gll_lle_*.fit / gll_pt_*.fit / gll_cspec_*.rsp in data/bn120119170/. The off-axis-angle (D1) test is only defined for single-matrix responses; all four GBM responses here are multi-matrix rsp2.'}
+# - {lle_lat_absence_flag: 'ISSUE - GCN 12874 reports the Fermi-LAT boresight angle as 31.4 deg, i.e. the burst was inside the LAT field of view, yet no LLE triplet and no LAT/ FT1+FT2 are on disk. Per L17 / feedback_take_data_every_band, band inclusion is gated on DATA QUALITY, never on detection significance; the LLE+LAT arm should be acquired and quality-tested before this burst is recorded as GBM-only. Not a Step-1 FAIL (nothing on disk is wrong) - a data-acquisition gap.'}
+# - {tte_span_rel_s: '[-32.2, 300.8] for all four detectors'}
+# - {tte_margin_flag: 'MARGINAL - the approved pre-burst background window starts at -32.0 s, only 0.2 s after the TTE files begin (-32.2 s). Passes, with essentially no margin; any future re-selection that moves the pre-burst window earlier will run off the start of the data.'}
+# - {cspec_span_rel_s: '[-4003.4, 4001.9], 2395 rows (n9) - no constraint'}
+# - {d4_window_vs_event: 'The stamped window [-1, +47] s is a strict SUB-INTERVAL of the event. GBM catalog T90 = 55.297 s starting at T0+3.072 s ends at +58.37 s; the catalog flnc fit interval runs to +57.344 s; Golkhou+2015 T100 = [-15.904, +85.811] s; Swift-BAT refined (GCN 12884) sees three overlapping peaks running to T_BAT+220 s with T90(15-350) = 253.8 +/- 24.5 s, and Moss+2022 Sec 5.2 attributes the difference to a ~100 s dim tail. Every duration/fluence diff must carry a component-coverage label (T9).'}
+# - {detector_angle_note: 'na sits at 50.58 deg, marginally outside the project preference for NaI <= 50 deg. It is inside the human-approved selection AND inside the GBM catalog own scat_detector_mask (00000000011101 = n9,na,nb,b1), which is an exact independent match to our detector set. Recorded, not challenged.'}
+# - {human_review_qc_flags: 'results/human_review_qc_flags.txt contains 16 rows; bn120119170 is NOT among them - no accepted source-overruns-bkg-gap or other Stage-1 flag for this burst.'}
+# - {overall_verdict: PASS}
+# - {run_utc: '2026-08-12'}
+# - {run_by: 'doc-layer worker, DataInventory.md Phases 1-2'}
+# schema: astropy-2.0
+DET DET_ANGLE RSP_FILE COV_START COV_STOP N_MAT VERDICT
+n9 43.664 glg_cspec_n9_bn120119170_v00.rsp2 -128.514 477.704 15 PASS
+na 50.577 glg_cspec_na_bn120119170_v00.rsp2 -128.514 477.704 15 PASS
+nb 18.393 glg_cspec_nb_bn120119170_v00.rsp2 -128.514 477.704 15 PASS
+b1 16.161 glg_cspec_b1_bn120119170_v00.rsp2 -128.514 477.704 15 PASS

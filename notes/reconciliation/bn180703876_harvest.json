@@ -1,0 +1,129 @@
+{
+ "burst": "bn180703876",
+ "grb_name": "GRB 180703A",
+ "harvest_utc": "2026-08-11T16:55Z",
+ "identity_check": "GBM trigger 552344505 / 180703876, 21:01:40.50 UT 2018-07-03 (GCN 22896, 22883). Same-day sibling GRB 180703B (22:46:51 UT, trigger 552350816, 2FLGC p59) excluded from all hits (T1).",
+ "queries": {
+  "endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+  "forms": {
+   "full:\"GRB 180703A\" (refereed)": 6,
+   "full:\"GRB180703A\" (refereed)": 1,
+   "full:\"bn180703876\"": 0,
+   "full:\"180703876\"": 0,
+   "full:\"552344505\"": 0
+  },
+  "note": "trigger-form zeros are an INDEXING artifact, not absence: 2FLGC (Ajello+2019) provably contains 180703A rows (local PDF pp. 59,63,75,79,83) yet ADS full-text returns 0 for bibcode-scoped '180703' - long machine-readable tables are not indexed. GBM 10-yr catalogs (von Kienlin 2020; Poolakkil 2021) therefore also unverifiable via full-text; membership likely (trigger inside their 2008-2018/07 window) but NOT confirmed; HEASARC fermigbrst row for bn180703876 EXISTS (trigger_name matched) though the field query returned only the name column."
+ },
+ "n_papers": 8,
+ "papers": [
+  {
+   "bibcode": "2026MNRAS.546ag047C",
+   "first_author": "Chang, Xue-Zhao",
+   "year": 2026,
+   "title": "Identifying the poynting-flux-dominated outflow of Fermi GRBs with non-thermal spectrum and its energy-resolved light curve fitting",
+   "arxiv": "2601.04468",
+   "oa_fetched": false,
+   "file": "Skills_training/Chang_2026_2026MNRAS546ag047C.pdf",
+   "dedupe": "ALREADY IN CORPUS (cited_by bn120624933) - not re-fetched per G2; corpus_index cited_by append PENDING (shared-CSV freeze)",
+   "prompt_sections": "180703A rows: integrated -5~35 s CPL alpha=-0.86+0.07/-0.08, Ep=419.7+57.3/-56.9 keV, S/N 35.4, Band+BB/CPL+BB Non-Converged (pp.17,19); group (I) single pulse, energy-resolved width w(E) negative slope, moderately strong (p.7); width/lag row 1~35 s: -0.33+0.11/-0.21 (p.25); Fig. A3 energy-resolved LC (p.28)",
+   "module_future_tags": "module-future;interpretation (Poynting-flux outflow classification)",
+   "notes": "their z=0.6687 vs GCN 23889 z=0.6678 - presumed typo, recorded not resolved (L26/T5 discipline)"
+  },
+  {
+   "bibcode": "2025A&A...700A..88M",
+   "first_author": "Macera, Samanta",
+   "year": 2025,
+   "title": "Gamma-ray burst prompt emission spectra at high energies",
+   "arxiv": "2501.10507",
+   "oa_fetched": true,
+   "file": "Skills_training/Macera_2025_2025AA700A88M_bn180703876.pdf",
+   "dedupe": "NEW; A&A PUB_PDF fetch via ADS gateway FAILED (kept arXiv v1); corpus_index row PENDING (shared-CSV freeze)",
+   "prompt_sections": "Sample-2, Table 2 (p.4): 0-22.3 s GBM+LAT synchrotron fit p=4.40+0.40/-0.48, nu_c=97+11/-9 keV, nu_m=1.42+0.50/-0.38 MeV, flux 1.59e-6, Emax=0.2 GeV, no HE cutoff; their LLE flag = NO for 180703A (we hold an LLE triplet - frame difference); nuFnu spectrum figure p.30",
+   "module_future_tags": "module-future;afterglow (their LAT temporal modeling / early-afterglow contamination analysis)",
+   "notes": "the strongest P3 comparison frame: effective two-break (nu_c ~97 keV, peak ~1.4 MeV) over the same interval our DSBPL menu adjudicates"
+  },
+  {
+   "bibcode": "2024MNRAS.529.2676A",
+   "first_author": "Aldowma, Tamador",
+   "year": 2024,
+   "title": "Deep Neural Networks for estimation of gamma-ray burst redshifts",
+   "arxiv": "2401.11005",
+   "oa_fetched": true,
+   "file": "Skills_training/Aldowma_2024_2024MNRAS5292676A_bn180703876.pdf",
+   "dedupe": "NEW; corpus_index row PENDING (shared-CSV freeze)",
+   "prompt_sections": "none (180703A appears only as one of five GBM bursts added to their z-known input set, p.2)",
+   "module_future_tags": "module-future;cosmo",
+   "notes": "sample-member mention only"
+  },
+  {
+   "bibcode": "2023JHEAp..40...41P",
+   "first_author": "Pasumarti, Vibhavasu",
+   "year": 2023,
+   "title": "Bayesian evidence for spectral lag transition due to Lorentz invariance violation for 32 Fermi/GBM Gamma-ray bursts",
+   "arxiv": "2307.02296",
+   "oa_fetched": true,
+   "file": "Skills_training/Pasumarti_2023_2023JHEAp4041P_bn180703876.pdf",
+   "dedupe": "NEW; corpus_index row PENDING (shared-CSV freeze)",
+   "prompt_sections": "spectral-lag transition data for 180703A (E0=20 keV, z=0.67; tables pp.5-8): one of five GRBs with linear-LIV Bayes factor >100 under SBPL intrinsic model - i.e. a strong measured lag transition; Step-7 lag-relevant",
+   "module_future_tags": "module-future;cosmo|mm (LIV inference itself)",
+   "notes": "lag DATA prompt-relevant; LIV conclusion deferred"
+  },
+  {
+   "bibcode": "2022Univ....8..519W",
+   "first_author": "Wei, Jin-Nan",
+   "year": 2022,
+   "title": "Exploring Anisotropic Lorentz Invariance Violation from the Spectral-Lag Transitions of Gamma-Ray Bursts",
+   "arxiv": "2210.03897",
+   "oa_fetched": true,
+   "file": "Skills_training/Wei_2022_2022Univ8519W_bn180703876.pdf",
+   "dedupe": "NEW; corpus_index row PENDING (shared-CSV freeze)",
+   "prompt_sections": "lag-transition fit parameters for 180703A (p.10 table); position/z row (6.5, -67.1, z=0.6678, p.5)",
+   "module_future_tags": "module-future;cosmo|mm",
+   "notes": "reuses the same lag-transition phenomenology; anisotropic LIV framing"
+  },
+  {
+   "bibcode": "2020ApJ...897..178A",
+   "first_author": "Ahlgren, Bjorn",
+   "year": 2020,
+   "title": "A Search for Lensed Gamma-Ray Bursts in 11 yr of Observations by Fermi GBM",
+   "arxiv": "2006.07095",
+   "oa_fetched": true,
+   "file": "Skills_training/Ahlgren_2020_2020ApJ897178A_bn180703876.pdf",
+   "dedupe": "NEW; corpus_index row PENDING (shared-CSV freeze)",
+   "prompt_sections": "p.5: 180703A in their candidate-pair time-resolved spectral subsample; GBM responses regenerated for the Swift position, best-fit parameters consistent within 1 sigma - a response-systematics data point for Step 1/9",
+   "module_future_tags": "module-future;cosmo (lensing)",
+   "notes": "single text mention; pair partner not named in text (tables use pair indices)"
+  },
+  {
+   "bibcode": "2026JCAP...02..035A",
+   "first_author": "Amelino-Camelia, Giovanni",
+   "year": 2026,
+   "title": "Redshift leverage for the search of GRB neutrinos affected by quantum properties of spacetime",
+   "arxiv": "2501.13840",
+   "oa_fetched": false,
+   "file": "Skills_training/Amelino-Camelia_2026_2026JCAP02035A.pdf",
+   "dedupe": "ALREADY IN CORPUS (cited_by bn120624933) - not re-fetched per G2; cited_by append PENDING (shared-CSV freeze)",
+   "prompt_sections": "none (catalog-row membership only: GRB180703A, RA 6.468, Dec -67.179, MJD 58302.876, z=0.6678, class MP; p.10)",
+   "module_future_tags": "module-future;mm",
+   "notes": "found only by the no-space name form - four-form lesson holds"
+  },
+  {
+   "bibcode": "2019ApJ...878...52A",
+   "first_author": "Ajello, Marco",
+   "year": 2019,
+   "title": "A Decade of Gamma-Ray Bursts Observed by Fermi-LAT: The Second GRB Catalog (2FLGC)",
+   "arxiv": "1906.11403",
+   "oa_fetched": false,
+   "file": "Skills_training/Ajello_2019_2019ApJ87852A.pdf",
+   "dedupe": "ALREADY IN CORPUS (cited_by bn120624933); found via LOCAL PDF grep, NOT via ADS full-text (tables unindexed); cited_by append PENDING (shared-CSV freeze)",
+   "prompt_sections": "180703A rows: p.63 durations (GBM T90=20.74 s; LLE 0.93-8.05 s; LAT onset 3.8 s, end 1614 s, 1610+/-80); p.75 >=100 MeV fits (GBM-window TS=24, index -3+/-1); p.83 max photon 0.93 GeV @ 40.46 s",
+   "module_future_tags": "module-future;afterglow (EXT-window LAT decay, p.79: SPL index 0.8+/-0.2 to 1610 s)",
+   "notes": "D4 discipline applied: LAT detection interval CHECKED against our -3..33 s window - onset inside, peak photon and 98% of the LAT duration outside"
+  }
+ ],
+ "not_found_but_expected": [
+  "von Kienlin 2020 (2020ApJ...893...46V, GBM burst catalog 10yr) and Poolakkil 2021 (2021ApJ...913...60P, GBM spectral catalog 10yr): trigger 2018-07-03 falls inside both coverage windows; ADS full-text returns 0 (tables unindexed) and PDFs not in local corpus - membership UNVERIFIED, flagged for the P3 diff",
+  "no dedicated single-burst paper on GRB 180703A found in any query form (the burst's literature is sample-membership only)"
+ ],
+ "shared_csv_freeze_note": "corpus_index.csv and gcn_index.csv NOT touched per campaign hard rule; 3 cited_by appends + 5 new rows queued in this manifest for the post-campaign merge"
+}

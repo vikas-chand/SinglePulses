@@ -1,0 +1,99 @@
+{
+ "burst": "bn090804940",
+ "grb_name": "GRB 090804940",
+ "name_aliases": ["GRB 090804A (Lu+2018 usage)", "GRB 090804 (Yu+2019 usage)"],
+ "harvest_utc": "2026-08-12",
+ "skill": "dev/ai_guides/LiteratureHarvest.md (Phases 1-5; 1b Scholar-note, 3b latest-first, 3c prompt-scope, Phase 4 frame+consensus; traps T1-T9 consulted)",
+ "ads_endpoint": "https://api.adsabs.harvard.edu/v1/search/query (ADS_DEV_KEY from ~/Desktop/Projects/FXTs/.env)",
+ "query_forms": [
+  {"form": "full:\"GRB 090804\"", "numFound": 1, "note": "Yu+2019 only; NO other-mission GRB 090804 papers -> no T1 name contamination"},
+  {"form": "full:\"bn090804940\"", "numFound": 1, "note": "Lu+2018 (Comprehensive IV) - the hit the 2026-07-29 single-query sweep MISSED"},
+  {"form": "full:\"090804940\"", "numFound": 4, "note": "Li 2026 eprint, Ma 2024, Li&Zhang 2021, Shao 2017"},
+  {"form": "full:\"271118002\"", "numFound": 0, "note": "trigger-MET form empty (zero circulars exist to carry it)"},
+  {"form": "full:\"GRB090804940\"", "numFound": 1, "note": "defensive no-space form -> Yu+2019"},
+  {"form": "full:\"GRB 090804940\"", "numFound": 3, "note": "subset of form 3"}
+ ],
+ "scholar_channel_note": "Phase 1b not exercised: ADS returned a healthy 6-paper footprint keyed on our vocabulary; no cross-community bridge query was needed. If a future module needs one, record the query string here.",
+ "n_refereed_papers": 5,
+ "n_papers_total": 6,
+ "papers": [
+  {
+   "bibcode": "2019ApJ...886...20Y",
+   "title": "Bayesian Time-resolved Spectroscopy of GRB Pulses",
+   "year": 2019, "refereed": true,
+   "corpus_file": "Yu_2019_ApJ_886_20.pdf (+_arxiv.pdf)", "corpus_status": "existing; read=Y",
+   "prompt_sections": "Table 1 row p4 (dets n3n4(n5)b0, src -1..15 s, KRL, 14 bins, i.t. class); §4.1-4.3 pp9-11 relation discussion - GRB 090804 named 4x (alpha ~ -0.5 constant; Golenetskii prominent r~0.9; Ep-alpha and F-alpha very weak)",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2021ApJS..253...43L",
+   "title": "Testing the High-latitude Curvature Effect of GRBs with Fermi Data",
+   "year": 2021, "refereed": true,
+   "corpus_file": "Li_2021_2021ApJS25343L.pdf (+_PUB.pdf)", "corpus_status": "existing; read=Y",
+   "prompt_sections": "Table 1 p14 (T90/fluence/dets/src/bkg/11 bins); FRED fit p15+p28 (tp=1.88+/-0.08 s, 0.128 s LC); phase-PL Table p16 + fig p19 (Phase I 1.10+/-0.16 from 1.279 s; Phase II 3.09+/-0.53 from 4.678 s); §3 pp9-10 HLE verdicts (Phase II satisfies alpha>=2+beta; violates constant-Gamma Ec(t) prediction); footnote 5 p6 (achromatic peak time); derived-quantity row p18",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2018ApJ...865..153L",
+   "title": "A Comprehensive Analysis of Fermi GRB Data. IV. Spectral Lag",
+   "year": 2018, "refereed": true,
+   "corpus_file": "Lu_2018_2018ApJ865153L.pdf (+_PUB.pdf)", "corpus_status": "existing; read=Y",
+   "prompt_sections": "p41 Table 5 block 'GRB 090804A (bn090804940)' time-resolved Band rows (Ep 88.6->127.4 keV rising over -0.77..1.74 s); p37 pulse-fit row (NaI, tp~2.19 s); p51+p55 lag/classification rows (class T, 0.19+/-0.09); LC+Ep-evolution figs p19/p28; T3 trap applies (W defined twice)",
+   "module_future_tags": [],
+   "note": "NEW hit vs the 2026-07-29 sweep: only the bn-form query surfaces it. Series (T2): parts I-III already in corpus from other bursts; this burst absent from their full text."
+  },
+  {
+   "bibcode": "2017ApJ...844..126S",
+   "title": "A New Measurement of the Spectral Lag of GRBs",
+   "year": 2017, "refereed": true,
+   "corpus_file": "Shao_2017_2017ApJ844126S.pdf", "corpus_status": "existing; read=N",
+   "prompt_sections": "Table 2 row p9 (pulse-model lag quantities, det n5, T90 5.57+/-0.36); per-band lag figure panel p20",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2024AN....34530179M",
+   "title": "The statistical characteristics of the prompt emission lightcurves of GRBs",
+   "year": 2024, "refereed": true,
+   "corpus_file": null, "corpus_status": "NEW but NOT FETCHED - paywalled (Wiley AN, doi 10.1002/asna.20230179; no OPENACCESS property, no arXiv version). Recorded honestly; row queued with empty filename.",
+   "prompt_sections": "unknown (no accessible full text); sample-member for prompt LC statistics per ADS full-text match on '090804940'",
+   "module_future_tags": []
+  },
+  {
+   "bibcode": "2026arXiv260417835L",
+   "title": "Three Subclasses of the Intensity-tracking Pattern in GRB Spectral Evolution",
+   "year": 2026, "refereed": false,
+   "corpus_file": "Li_2026_2026arXiv260417835L_bn090804940.pdf", "corpus_status": "NEW - fetched 2026-08-12 (arXiv 2604.17835, 2.0 MB, %PDF verified); eprint NOT REFEREED - Phase 3b: weight below the refereed frame",
+   "prompt_sections": "Table p5 row (subclass II intensity-tracking; CPL; 8 bins; T90 5.57+/-0.36); Golenetskii table p16; Ep(t)/F-Ep figures p7, p12, p24",
+   "module_future_tags": []
+  }
+ ],
+ "finding_gcn": "ZERO GCN circulars (classic archive 090804[.A/.B].gcn3 all 404; new-site full-text search totalItems=0). GBM-only burst, never circulated, no follow-up, no redshift. Recorded as a result per GCNIntelligence honest-absence rule.",
+ "finding_literature": "6 papers, ALL sample-member (no dedicated analysis). Latest-first frame (Phase 3b): Li 2026 eprint > Li&Zhang 2021 > Yu+2019 > Lu+2018 > Shao+2017 > (Ma+2024 inaccessible). The strongest refereed comparison frames for our steps: Yu+2019 (time-resolved CPL, i.t. class) and Li&Zhang 2021 (BB-block bins, FRED tp, phase power laws).",
+ "published_value_sources": [
+  {"source": "glg_bcat_all_bn090804940_v02.fit (HEASARC)", "values": "T90=5.568+/-0.362 s (50-300 keV, T90START=0.640 s); T50=2.560+/-0.143 s; FLU(10-1000)=1.44259e-05+/-1.86e-07 erg/cm2; PF1024=36.65+/-0.41; PF64=40.69+/-1.68 ph/s/cm2; bkg intervals (-52.92,-5.42)+(17.92,83.33) s", "coverage": "total (single pulse)"},
+  {"source": "HEASARC FERMIGBRST living catalog row (TAP, 2026-08-12)", "values": "FLNC best=Comptonized: Ep=98.19+/-1.50 keV, index=-0.610 (interval -1.024..11.264 s); FLNC Band: Ep=96.15+/-1.71, alpha=-0.582+/-0.035, beta=-3.584+/-0.372; PFLX best=Comptonized: Ep=119.30, index=-0.378 (1.024..2.048 s); scat_detector_mask=00011100000010 -> n3,n4,n5,b0 = OUR approved set", "coverage": "total; PFLX = peak 1.024 s"},
+  {"source": "Yu+2019 Table 1 + text", "values": "dets n3n4(n5)b0; src -1..15 s; class i.t.; alpha ~ -0.5 ~constant; Golenetskii prominent (r~0.9), Ep-alpha r=-0.15, F-alpha r=-0.22 (weak)", "coverage": "total (single pulse)"},
+  {"source": "Li&Zhang 2021 Tables+figs", "values": "tp(FRED,0.128s)=1.88+/-0.08 s; Phase I PL 1.10+/-0.16 (1.279-8.705 s); Phase II PL 3.09+/-0.53 (4.678-8.705 s); Phase II satisfies HLE alpha>=2+beta; violates constant-Gamma Ec(t) prediction; achromatic peak time (fn 5)", "coverage": "decay-phase segments labeled per row"},
+  {"source": "Lu+2018 p41 Table 5", "values": "time-resolved Band: [-0.77,1.28] Ep=88.58+/-6.25, a=-0.15+/-0.16, b=-2.63+/-0.18; [1.28,1.74] Ep=127.42+/-11.82, a=-0.46+/-0.12, b=-2.36+/-0.14", "coverage": "time-resolved (rise of single pulse)"}
+ ],
+ "frame_align_notes": "Ep convention: FERMIGBRST Ep = nuFnu peak; Lu+2018 Band Ep same convention; Li&Zhang/Li2026 use Ec (CPL e-folding) in places - Ep=(2+a)Ec correction MANDATORY before diffing their Ec,p ~ 72.9 keV (p16) against catalog Ep~96 keV (with a~-0.6: (2-0.6)*72.9=102 keV, consistent). Multi-instrument consensus rule not applicable (single instrument, GBM only).",
+ "prompt_scope_note": "ANALYSIS scope prompt-only per Phase 3c; the entire literature record of this burst is prompt-phase anyway (no afterglow/SN/cosmo/mm record exists), so the module-future shelf is empty.",
+ "pending_shared_csv_rows": {
+  "Skills_training/corpus_index.csv": [
+   {"action": "update", "match_bibcode": "2019ApJ...886...20Y", "change": "append bn090804940 to cited_by_bursts; n_bursts+=1"},
+   {"action": "update", "match_bibcode": "2021ApJS..253...43L", "change": "append bn090804940 to cited_by_bursts; n_bursts+=1"},
+   {"action": "update", "match_bibcode": "2018ApJ...865..153L", "change": "append bn090804940 to cited_by_bursts; n_bursts+=1"},
+   {"action": "update", "match_bibcode": "2017ApJ...844..126S", "change": "append bn090804940 to cited_by_bursts; n_bursts+=1"},
+   {"action": "add", "row": "Li_2026_2026arXiv260417835L_bn090804940.pdf,2026arXiv260417835L,2604.17835,intensity-tracking-subclasses;Ep-evolution;NOT-REFEREED-eprint,bn090804940,1,N,"},
+   {"action": "add", "row": ",2024AN....34530179M,,prompt-LC-statistics;PAYWALLED-not-fetched,bn090804940,1,N,", "note": "no PDF - Wiley paywall, no arXiv; filename left empty deliberately"}
+  ],
+  "results/gcn/gcn_index.csv": [
+   {"action": "add", "row_fields": {"trigger": "bn090804940", "grb_name": "GRB 090804940", "n_circulars": 0, "redshift": "none", "position": "RA 130.4, Dec -11.3, err 1.0 deg (GBM, tcat v02)", "notes": "zero circulars (classic 404 + new-site search 0); GBM-only; dossier 2026-08-12"}}
+  ]
+ },
+ "issues": [
+  "Ma+2024 (2024AN....34530179M) inaccessible: Wiley paywall, no OA/arXiv version - its per-burst values could not be harvested",
+  "Column semantics of several harvested table rows (Yu+2019 trailing relation columns; Lu+2018 p37/p51/p55; Shao+2017 Table 2; Li&Zhang 2021 p18) are recorded RAW with hedges - pin against each table header before any quantitative P3 diff",
+  "The 2026-07-29 era single-query sweep missed Lu+2018; four-form querying is confirmed necessary (LiteratureHarvest Phase 1)"
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "burst": "bn200524211",
+ "grb_name": "GRB 200524A",
+ "mode": "REPRODUCTION (P3-class), NOT BLIND",
+ "frozen_utc": "2026-08-12T00:00:00Z",
+ "replaces": "P0 (blind prediction impossible: the operator's report is known to this worker)",
+ "disclosure": "Already known before our re-run: Khushboo's T_INT result (alpha=-0.710+-0.068, Ep=228.7+-30.0 keV, beta=-1.862+-0.091, winner SBPL by dAIC 2.4 over Band), the GCN 27809 GBM values (Band alpha=-0.66+-0.06, Ep=192+-16, beta=-1.77+-0.03) and GCN 27867 Konus-Wind values (Band alpha=-0.75, Ep~215, beta=-2.13), plus - harvested at Step 0b of this same session - Ghosh+2026 (arXiv:2608.09704) time-integrated/time-resolved GBM fits and Chang+2026 (2026MNRAS.546ag047C) 0-30 s Band fit; nothing under results/verification_khushboo_200524211/ was read.",
+ "targets": {
+  "khushboo_tint": {
+   "role": "PRIMARY reproduction target (operator verification)",
+   "alpha": {"value": -0.710, "err": 0.068},
+   "Ep_keV": {"value": 228.7, "err": 30.0},
+   "beta": {"value": -1.862, "err": 0.091},
+   "winner": "SBPL",
+   "dAIC_over_band": 2.4,
+   "dAIC_note": "2.4 < the framework's dAIC>=10 decision threshold - by our doctrine SBPL vs Band is a TIE at this margin; diff the parameter values, and treat winner-identity agreement as a soft check (T8: margins live against a NAMED baseline - here baseline=Band)",
+   "frame": "our pipeline (3ML, scripts/10 6-model menu), stamped source window [-2.2055, +25.9309] s rel. GBM T0 (MET 611989445.358208), detectors n0,n1,n3,b0, GBM-only (no LLE, no LAT), background from stamped per-detector intervals (b0 row carries the human-ACCEPTED source-overruns-bkg-gap adjudication - a decision, not a defect)"
+  },
+  "gcn_27809_gbm": {
+   "role": "SECONDARY target (external, PRELIMINARY by its own statement)",
+   "model": "Band",
+   "alpha": {"value": -0.66, "err": 0.06},
+   "Ep_keV": {"value": 192, "err": 16},
+   "beta": {"value": -1.77, "err": 0.03},
+   "fluence_erg_cm2": {"value": 2.08e-05, "err": 0.03e-05, "band": "10-1000 keV"},
+   "peak_flux_ph_cm2_s": {"value": 13.3, "err": 0.3, "band": "10-1000 keV", "from": "T0+5.3 s (1-s)"},
+   "frame": "GBM team, interval T0-1.5 to T0+25.1 s rel. GBM T0 (close to our stamped window [-2.21,+25.93]), standard GBM fit band, detector set unstated; T90~38 s (50-300 keV)"
+  },
+  "gcn_27867_kw_timeavg": {
+   "role": "SECONDARY target (external, PRELIMINARY, 90% CL errors)",
+   "model": "Band",
+   "alpha": {"value": -0.75, "err_minus": 0.18, "err_plus": 0.25},
+   "Ep_keV": {"value": 215, "err_minus": 46, "err_plus": 48},
+   "beta": {"value": -2.13, "err_minus": 0.31, "err_plus": 0.20},
+   "chi2_dof": "105/97",
+   "fluence_erg_cm2": {"value": 3.48e-05, "err_minus": 0.62e-05, "err_plus": 0.74e-05, "band": "20 keV - 10 MeV"},
+   "frame": "Konus-Wind, interval T0kw to T0kw+40.704 s where T0kw = GBM T0 + 2.886 s (05:04:03.246 UT), i.e. GBM T0+2.89 to T0+43.6 s - LONGER and LATER than our window; band 20 keV-10 MeV"
+  },
+  "gcn_27867_kw_peak": {
+   "role": "context target (peak spectrum, not window-matched)",
+   "model": "Band",
+   "alpha": {"value": -0.55, "err_minus": 0.18, "err_plus": 0.26},
+   "Ep_keV": {"value": 203, "err_minus": 36, "err_plus": 36},
+   "beta": {"value": -2.14, "err_minus": 0.21, "err_plus": 0.16},
+   "chi2_dof": "130/97",
+   "frame": "Konus-Wind, T0kw+0.256 to T0kw+7.936 s (= GBM T0+3.1 to T0+10.8 s), 20 keV-10 MeV; main-peak component only (T9)"
+  },
+  "literature_context_not_formal_targets": {
+   "note": "harvested Step 0b (see bn200524211_harvest.json + dossier PUBLISHED VALUES rows 6-11); informational frames for the P3 discussion, not pass/fail targets of the reproduction",
+   "ghosh2026_tint_-1_40s": {"model": "Band", "alpha": -0.59, "beta": -1.60, "Ep_keV": 149, "frame": "RMFIT v4.3.2, dets n0,n1,n3,b0 (<=60deg), (-1,40) s - includes the soft tail our window excludes"},
+   "ghosh2026_tint_-1_15s": {"model": "Band", "alpha": -0.68, "beta": -1.73, "Ep_keV": 201, "frame": "same tools, (-1,15) s"},
+   "chang2026_0_30s": {"model": "Band (BIC)", "alpha": -0.81, "Ep_keV": 266.6, "beta": -2.21, "frame": "Bayesian, 0-30 s, purely non-thermal class"}
+  }
+ },
+ "frame_notes": {
+  "detector_set": "n0,n1,n3,b0 (stamped results/background_intervals.ecsv rows 302-305, APPROVED_BY='Vikas Chand' 2026-07-19T22:18:36Z human_gui accepted_suggestion)",
+  "source_window_s": [-2.205504895104852, 25.93086433566441],
+  "trigtime_met": 611989445.358208,
+  "her_run": "GBM-only, no LLE",
+  "our_rerun_flags": "--include-bgo --skip-lle",
+  "qc_flag": "results/human_review_qc_flags.txt line 11: b0 source[-2.2055,25.9309]_overruns_bkg_gap b0[gap -6.91365,22.0863] - human-ACCEPTED adjudication (decision, not defect)",
+  "ep_convention": "all Ep values above are nuFnu-peak Ep; SBPL break-vs-peak convention must be checked against scripts/10 MODEL_SPECS before diffing Khushboo's SBPL Ep against Band Ep values (L21)",
+  "kw_t0_offset_s": 2.886,
+  "lat": "LAT observed only from T0+110 s (SAA during prompt; GCN 27797) - no LAT/LLE constraint exists inside our window (D4); data/bn200524211/ has no LLE triplet, LAT/ dir present but out of scope for this GBM-only reproduction"
+ }
+}
