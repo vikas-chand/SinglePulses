@@ -109,7 +109,7 @@ def _tx_with_mc(tc, raw_counts, bkg_counts, src, frac=0.90, n_mc=1000, seed=0):
     """
     m = (tc >= src[0]) & (tc <= src[1])
     if m.sum() < 8:
-        return np.nan, np.nan, np.nan, np.nan
+        return np.nan, np.nan, np.nan, np.nan, False, {}
     tcw = tc[m]
     raw_w = np.asarray(raw_counts, float)[m]
     bkg_w = np.asarray(bkg_counts, float)[m]
@@ -122,13 +122,29 @@ def _tx_with_mc(tc, raw_counts, bkg_counts, src, frac=0.90, n_mc=1000, seed=0):
                      ((a - tcw[0]) <= _dtb or (tcw[-1] - b) <= _dtb))
     rng = np.random.default_rng(int(seed) & 0xFFFFFFFF)
     lam = np.maximum(raw_w, 0.0)          # RAW rate is >= 0 by construction
-    vals = []
+    vals, a_vals, b_vals = [], [], []
     for _ in range(int(n_mc)):
         v, _a, _b = _tx_core(tcw, rng.poisson(lam) - bkg_w, frac)
         if np.isfinite(v):
-            vals.append(v)
-    err = float(np.std(vals)) if len(vals) >= 50 else np.nan
-    return tx, err, a, b, truncated
+            vals.append(v); a_vals.append(_a); b_vals.append(_b)
+    # KEEP THE DISTRIBUTIONS (Vikas, 2026-08-13): the spread alone hides asymmetry
+    # and bimodality. A bimodal t5 or t95 means the boundary is not well defined by
+    # the data (two plausible edges), which a single sigma silently averages over.
+    vals = np.asarray(vals, float)
+    a_s = np.asarray(a_vals, float)
+    b_s = np.asarray(b_vals, float)
+    if len(vals) >= 50:
+        err = float(np.std(vals))
+        lo16, med, hi84 = np.percentile(vals, [16, 50, 84])
+        dist = dict(t90=vals, t5=a_s, t95=b_s,
+                    t90_med=float(med), t90_lo=float(med - lo16), t90_hi=float(hi84 - med),
+                    t5_sd=float(np.std(a_s)), t95_sd=float(np.std(b_s)),
+                    # covariance actually realised between the two edges
+                    rho=float(np.corrcoef(a_s, b_s)[0, 1]) if len(a_s) > 2 else np.nan)
+    else:
+        err = np.nan
+        dist = {}
+    return tx, err, a, b, truncated, dist
 
 
 def survey_one(row):
@@ -167,8 +183,10 @@ def survey_one(row):
     # counts = rate * dt.  Deterministic per-trigger seed (not one global seed).
     _seed = abs(hash(trig)) % (2 ** 32)
     _raw_c, _bkg_c = tot * dt, bkg * dt
-    _t90, _t90e, _a90, _b90, _trunc90 = _tx_with_mc(tc, _raw_c, _bkg_c, src, 0.90, 1000, _seed)
-    _t50, _t50e, _a50, _b50, _trunc50 = _tx_with_mc(tc, _raw_c, _bkg_c, src, 0.50, 1000, _seed + 1)
+    _t90, _t90e, _a90, _b90, _trunc90, _d90 = _tx_with_mc(tc, _raw_c, _bkg_c, src, 0.90,
+                                                          1000, _seed)
+    _t50, _t50e, _a50, _b50, _trunc50, _d50 = _tx_with_mc(tc, _raw_c, _bkg_c, src, 0.50,
+                                                          1000, _seed + 1)
     if np.isfinite(_t90):
         t90 = (_t90, _t90e, _a90, _b90)
     if np.isfinite(_t50):
@@ -191,6 +209,12 @@ def survey_one(row):
         "TRIGGER_NAME": trig, "REF_DET": row["ref"], "BIN_MS": dt * 1000,
         "T90": float(t90[0]), "T90_ERR": float(t90[1]),
         "T90_WINDOW_TRUNCATED": bool(_trunc90),
+        # asymmetric MC errors + the realised t5/t95 correlation (Vikas 2026-08-13)
+        "T90_ERR_LO": float(_d90.get("t90_lo", np.nan)),
+        "T90_ERR_HI": float(_d90.get("t90_hi", np.nan)),
+        "T5_SD": float(_d90.get("t5_sd", np.nan)),
+        "T95_SD": float(_d90.get("t95_sd", np.nan)),
+        "T5_T95_RHO": float(_d90.get("rho", np.nan)),
         "T90_START": float(t90[2]), "T90_STOP": float(t90[3]),
         "T50": float(t50[0]),
         "MVT_S": mvt.get("mvt_s", np.nan), "MVT_ERR_S": mvt.get("mvt_err_s", np.nan),

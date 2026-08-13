@@ -474,8 +474,8 @@ def fig_step7(trig, out):
             # realizations of RAW counts minus the fitted background)
             _rawc = rate * dt
             _bkgc = (np.polyval(c, tc) if c is not None else np.zeros_like(tc)) * dt
-            t90v, t90e, t5, t95, _tr = _TXMC(tc, _rawc, _bkgc, src, 0.90, 400,
-                                             abs(hash((trig, e1, e2))) % (2 ** 32))
+            t90v, t90e, t5, t95, _tr, _dist = _TXMC(tc, _rawc, _bkgc, src, 0.90, 400,
+                                                    abs(hash((trig, e1, e2))) % (2 ** 32))
             exc = float(cum_c.max() / tot_c - 1.0) if tot_c > 0 else np.inf
             ok = np.isfinite(t90v) and tot_c >= 200.0 and exc <= 0.10
             if ok:
