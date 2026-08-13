@@ -32,6 +32,30 @@ Your branch predates these, and two of them change results you already looked at
 
 ---
 
+## 0b. ⚠ THE SELECTIONS ARE ALREADY MADE — ADOPT THEM, NEVER RE-PICK
+
+**Vikas, 2026-08-13: the detector selection, the background windows and the source interval
+are already done by him, and they pass to you AS THEY ARE. Your products are built on those
+prior selections.**
+
+They live in `results/background_intervals.ecsv` — **tracked in git, so `git pull` gives you
+the exact file** (436 rows, 106 bursts; `APPROVAL_MODE` = `human_gui` on 433 of them,
+`APPROVED_BY` = Vikas Chand). Every command below already reads it via
+`--bkg-file results/background_intervals.ecsv`. Do **not** run the picker, do not adjust a
+window, do not drop a detector — not even one that looks wrong.
+
+If a selection looks wrong to you, that is a **finding to report, not a change to make**:
+write it down (burst, detector, what you see) and send it to Vikas. Two things to check first,
+because both have already produced false alarms:
+- `results/human_review_qc_flags.txt` — 20 detector-rows carry an **accepted** source-overruns-
+  background-gap override. Those are Vikas's decisions, not defects. `scripts/43_catalog_validator.py`
+  does this join for you and currently reports 20 adjudicated / 0 unadjudicated.
+- individual detectors may legitimately have **different** background windows for the same burst.
+
+Why this matters beyond tidiness: with Stage-1 held fixed and identical on both systems, any
+difference between your run and ours comes from binning, fitting or execution — not from
+different selections. That is what makes the cross-system comparison interpretable.
+
 ## 1. Run the burst (heavy tier)
 
 ```bash

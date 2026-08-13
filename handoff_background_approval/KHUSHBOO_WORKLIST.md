@@ -7,6 +7,12 @@ same Skill Library on the same approved Stage-1 selections; the comparison is th
 `scripts/47_compare_systems.py` produces the diff (winner agreement, verdict agreement,
 per-parameter sigma, and the divergence bins: underspecification / judgment / execution
 error). Start with the post-2020 list below, then continue through the rest of the 106.
+
+**Stage-1 is FIXED and shared.** Detector selection, background windows and source intervals
+are Vikas's completed human decisions (`results/background_intervals.ecsv`, tracked in git —
+433/436 rows stamped `human_gui`). You adopt them unchanged; you do not re-pick. That is what
+makes the diff meaningful: both systems start from identical inputs, so any divergence is in
+binning/fitting/execution, never in selection.
 **Do not look at our results for a burst before you finish yours** — a diff is only worth
 something if the runs are independent.
 
