@@ -12,6 +12,36 @@ CAT = os.path.join(BASE, 'results', 'background_intervals.ecsv')
 SAMPLE = os.path.join(BASE, 'results', 'single_pulse_grbs.ecsv')
 
 
+LEDGER = os.path.join(BASE, 'results', 'human_review_qc_flags.txt')
+
+
+@pytest.fixture(scope='module')
+def adjudicated():
+    """(trigger, detector) pairs whose source-overruns-the-gap was ACCEPTED at the
+    human gate (results/human_review_qc_flags.txt).
+
+    The gap rule is a Stage-1 WARNING, overridable by the gate -- not an invariant
+    of the shipped catalog (dev/ai_guides/source_selection.md). Two operators and
+    one external audit have each re-flagged these same 20 rows as bugs; a test that
+    fails on a legitimate, ledgered decision is a defect in the test. So the
+    invariant is now: NO UNADJUDICATED violations. Same join as
+    scripts/43_catalog_validator.py.
+    """
+    acc = set()
+    if not os.path.exists(LEDGER):
+        pytest.fail(f'decisions ledger missing: {LEDGER} -- cannot distinguish an '
+                    f'accepted override from a real violation (fail loud, never skip)')
+    for line in open(LEDGER):
+        parts = line.split('\t')
+        if len(parts) >= 3 and 'overruns_bkg_gap' in parts[1]:
+            trig = parts[0].strip()
+            for tok in parts[2].split(','):
+                det = tok.split('[')[0].strip()
+                if det:
+                    acc.add((trig, det))
+    return acc
+
+
 @pytest.fixture(scope='module')
 def cat():
     if not os.path.exists(CAT):
@@ -32,16 +62,23 @@ def test_no_duplicate_rows(cat):
     assert len(pairs) == len(set(pairs))
 
 
-def test_ordering_and_source_in_gap(cat):
+def test_ordering_and_source_in_gap(cat, adjudicated):
+    """Window ordering always holds; source-in-gap holds unless the gate accepted
+    an override (then the row must be IN the ledger)."""
+    bad = []
     for r in cat:
         p0, p1 = float(r['BKG_NEG_START']), float(r['BKG_NEG_STOP'])
         q0, q1 = float(r['BKG_POS_START']), float(r['BKG_POS_STOP'])
         s1, s2 = float(r['SRC_START']), float(r['SRC_STOP'])
-        assert p0 < p1 <= s1 < s2 <= q0 < q1, \
-            f"{r['TRIGGER_NAME']} {r['DETECTOR']}"
+        key = (str(r['TRIGGER_NAME']).strip(), str(r['DETECTOR']).strip())
+        # ordering of the windows themselves is unconditional
+        assert p0 < p1 and q0 < q1 and s1 < s2, f'{key} degenerate window'
+        if not (p1 <= s1 and s2 <= q0) and key not in adjudicated:
+            bad.append(key)
+    assert not bad, f'UNADJUDICATED source-outside-gap rows: {bad}'
 
 
-def test_margin_band(cat):
+def test_margin_band(cat, adjudicated):
     """Near-edge margins.
 
     The 5-40 s hug-the-burst band is the AI-SELECTION rule (ai_guides), so it
@@ -52,6 +89,9 @@ def test_margin_band(cat):
     test_ordering, mode-independent.
     """
     for r in cat:
+        key = (str(r['TRIGGER_NAME']).strip(), str(r['DETECTOR']).strip())
+        if key in adjudicated:
+            continue          # accepted override: margins are negative BY DECISION
         g_pre = float(r['SRC_START']) - float(r['BKG_NEG_STOP'])
         g_post = float(r['BKG_POS_START']) - float(r['SRC_STOP'])
         if str(r['APPROVAL_MODE']).strip() == 'human_gui':

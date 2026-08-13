@@ -72,6 +72,25 @@ TABLES = _tables()
 IDS = [p for p, _ in TABLES]
 
 
+def test_guarded_tables_are_present():
+    """The lesson suite is only as real as the tables it can see.
+
+    `results/` is gitignored, so on GitHub Actions NONE of the guarded fit tables
+    exist: every parametrized lesson test silently parametrizes over an empty list
+    and the suite reports green while checking nothing (found 2026-08-13, and the
+    external audit's C1 'the lesson suite is nominal'). Our own doctrine: an
+    invariant that cannot find its reference must FAIL LOUDLY, not skip. This test
+    is that alarm -- it is expected to fail in any environment without the fit
+    products, which is the honest signal.
+    """
+    assert TABLES, (
+        'NO guarded fit tables found under %s -- the lesson tests below are '
+        'VACUOUS in this environment (they parametrize over an empty list and '
+        'report green while checking nothing). Either provide the products or '
+        'treat this run as UNVERIFIED; do not read a green suite as a pass.'
+        % ', '.join(GUARDED_ROOTS))
+
+
 def _blocks(t):
     bc = next(c for c in ('BLOCK', 'BLK') if c in t.colnames)
     return t[np.asarray(t[bc]) >= 0], bc          # resolved blocks only (not T_INT)
