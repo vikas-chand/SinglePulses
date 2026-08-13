@@ -148,8 +148,12 @@ def build(trig, out):
               f"{max(r[1]-r[0] for r in rows):.2f} s — the binning adapts to the light curve "
               "rather than using a fixed cadence.", ""]
     fig(f"{trig}_step5_binning.png", out,
-        "Step 5. Net light curve with the Bayesian blocks drawn as an adaptive step; the "
-        "number on each block is its significance.", L)
+        "Step 5. Net light curve (filled histogram) with the Bayesian blocks drawn as a "
+        "continuous step, coloured by block significance $S$. $S$ is computed by threeML's "
+        "own routine (Li \\& Ma equivalent for a Gaussian background, Vianello 2018) and is "
+        "ACCUMULATED over the block, so it grows with duration as well as with rate: a long "
+        "dim block can legitimately outscore a short bright one. Here the 2.83 s shoulder "
+        "block scores above the 0.76 s peak block for exactly that reason.", L)
 
     # ---------------- 5 spectroscopy
     L += ["## 5 · Time-resolved spectroscopy", ""]

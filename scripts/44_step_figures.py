@@ -36,16 +36,21 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CAT = os.path.join(ROOT, "results", "background_intervals.ecsv")
 DATA = os.path.join(ROOT, "data")
 
-plt.rcParams.update({"font.family": "serif", "mathtext.fontset": "stix",
-                     "font.size": 11, "xtick.direction": "in", "ytick.direction": "in",
-                     "xtick.top": True, "ytick.right": True,
-                     "xtick.minor.visible": True, "ytick.minor.visible": True,
-                     "savefig.dpi": 160})
-COLORS = {"n": "#b3216a", "b": "#3aa6a0", "l": "#5b3fa0"}
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from plot_style import apply_pub_style, PUB, det_color   # noqa: E402
+apply_pub_style()
+
+_DET_ORDER = {}
 
 
-def dcol(det):
-    return COLORS.get(str(det)[0], "gray")
+def dcol(det, trig=None):
+    """Stable colour per detector WITHIN a burst (NaI cycle by first appearance;
+    BGO and LLE fixed)."""
+    key = (trig, str(det).strip())
+    if key not in _DET_ORDER:
+        n = sum(1 for k in _DET_ORDER if k[0] == trig and not k[1].startswith(("b", "l")))
+        _DET_ORDER[key] = n
+    return det_color(det, _DET_ORDER[key])
 
 
 def _note(ax, msg):
@@ -93,7 +98,22 @@ def binned(times, lo, hi, dt=0.128):
     if times.size:
         outside = (tc < times.min()) | (tc > times.max())
         rate = np.where(outside, np.nan, rate)
-    return tc, rate, dt
+    return tc, rate, dt, e
+
+
+def lc_hist(ax, edges, rate, color, label=None, alpha_fill=0.22, lw=None, zorder=2):
+    """Light curve as a FILLED STEP HISTOGRAM -- the LATBright idiom
+    (GRB260226A/s01b_combined_lightcurve.py): fill_between(step='post') on the
+    bin LEFT EDGES plus a step outline. Binned data must look binned, and
+    where='post' places each level over its own bin rather than interpolating
+    between centres."""
+    x = np.asarray(edges[:-1], float)
+    y = np.asarray(rate, float)
+    ax.fill_between(x, y, step="post", color=color, alpha=alpha_fill, linewidth=0,
+                    zorder=zorder)
+    ax.step(x, y, where="post", color=color,
+            linewidth=(lw if lw is not None else PUB["lw_reference"]),
+            alpha=0.85, zorder=zorder + 1, label=label)
 
 
 def ylim_from_data(ax, y, pad_lo=0.08, pad_hi=0.12):
@@ -132,7 +152,7 @@ def fig_step1_2(trig, out):
         return []
     made = []
     # --- step 1: response coverage + angle
-    fig, axes = plt.subplots(1, 2, figsize=(11, 0.55 * len(rs) + 2.6))
+    fig, axes = plt.subplots(1, 2, figsize=(13, 0.62 * len(rs) + 3.0))
     ax, ax2 = axes
     src1 = float(rs["SRC_START"][0]); src2 = float(rs["SRC_STOP"][0])
     for i, r in enumerate(rs):
@@ -157,25 +177,40 @@ def fig_step1_2(trig, out):
                 pass
         if np.isfinite(lo):
             ok = (lo <= src1) and (hi >= src2)
-            ax.barh(i, hi - lo, left=lo, height=0.55,
-                    color=("#3aa6a0" if ok else "crimson"), alpha=0.55)
-            ax.text(hi, i, "  PASS" if ok else "  FAIL", va="center", fontsize=8,
-                    color=("#177" if ok else "crimson"))
+            # FILL = detector identity (same colour as the right panel);
+            # EDGE = the verdict. One colour must mean one detector everywhere.
+            ax.barh(i, hi - lo, left=lo, height=0.55, color=dcol(det, trig), alpha=0.55,
+                    edgecolor=("#1a7d3a" if ok else PUB["c_bgo"]),
+                    linewidth=(1.6 if ok else 2.4))
+            ax.text(hi, i, "  PASS" if ok else "  FAIL", va="center",
+                    fontsize=PUB["tick_size"] - 2, ha="left",
+                    color=("#1a7d3a" if ok else PUB["c_bgo"]), fontweight="bold")
         else:
-            ax.text(src1, i, "  no response found", va="center", fontsize=8, color="crimson")
+            ax.text(src1, i, "  no response found", va="center",
+                    fontsize=PUB["tick_size"] - 3, color=PUB["c_bgo"])
         ax2.barh(i, float(r["DET_ANGLE"]) if str(r["DET_ANGLE"]) not in ("nan", "--") else 0,
-                 height=0.55, color=dcol(det), alpha=0.8)
-    ax.axvspan(src1, src2, color="k", alpha=0.18, label="stamped source window")
+                 height=0.55, color=dcol(det, trig), alpha=0.85)
+    ax.axvspan(src1, src2, color=PUB["c_src_win"], alpha=0.18, lw=0, zorder=1)
+    for _x in (src1, src2):
+        ax.axvline(_x, color=PUB["c_src_win"], lw=1.0, alpha=0.8, zorder=3)
     ax.set_yticks(range(len(rs)))
     ax.set_yticklabels([str(r["DETECTOR"]).strip() for r in rs])
-    ax.set_xlabel("time since trigger (s)"); ax.legend(fontsize=8, framealpha=0.9, edgecolor="0.6")
-    ax.set_title("step 1 — response (DRM) coverage vs source window", fontsize=10, loc="left")
-    ax2.axvline(60, color="crimson", ls="--", lw=1.2, label="60° rule")
+    _xl = ax.get_xlim(); ax.set_xlim(_xl[0], _xl[1] + 0.16 * (_xl[1] - _xl[0]))
+    # label the band directly (reference §5: never place a legend over data)
+    ax.set_ylim(-0.7, len(rs) - 0.05)
+    ax.annotate("source\nwindow", xy=(src2, 0.985), xycoords=("data", "axes fraction"),
+                xytext=(6, -4), textcoords="offset points", ha="left", va="top",
+                fontsize=PUB["tick_size"] - 3, color=PUB["c_src_win"], linespacing=1.1)
+    ax.set_xlabel("time since trigger (s)")
+    ax.set_title("response (DRM) coverage", loc="left")
+    ax2.axvline(60, color=PUB["c_bgo"], ls="--", lw=1.4, label=r"$60^\circ$ rule")
     ax2.set_yticks(range(len(rs)))
     ax2.set_yticklabels([str(r["DETECTOR"]).strip() for r in rs])
-    ax2.set_xlabel("off-axis angle (deg)"); ax2.legend(fontsize=8, framealpha=0.9, edgecolor="0.6")
-    ax2.set_title("step 2 — approved detectors", fontsize=10, loc="left")
-    fig.suptitle(f"{trig}  ·  steps 1–2: data inventory & detector selection", fontsize=12)
+    ax2.set_xlabel(r"off-axis angle (deg)")
+    ax2.legend(loc="lower right")
+    ax2.set_title("approved detectors", loc="left")
+    fig.suptitle(f"{trig} — steps 1–2: data inventory and detector selection",
+                 fontsize=PUB["label_size"])
     fig.tight_layout()
     f = os.path.join(out, f"{trig}_step1_inventory.png")
     fig.savefig(f, bbox_inches="tight"); plt.close(fig); made.append(f)
@@ -202,7 +237,8 @@ def fig_step345(trig, out, blocks_file=None):
     # ---------- step 3: per-detector background fits
     dets = [str(r["DETECTOR"]).strip() for r in rs if not str(r["DETECTOR"]).strip() == "lle"]
     n = len(dets)
-    fig, axes = plt.subplots(n, 1, figsize=(10, 2.1 * n), sharex=True, squeeze=False)
+    fig, axes = plt.subplots(n, 1, figsize=(12, 2.9 * n + 0.6), sharex=True,
+                             squeeze=False)
     for i, det in enumerate(dets):
         ax = axes[i][0]
         ev, _ = events(trig, det)
@@ -211,8 +247,8 @@ def fig_step345(trig, out, blocks_file=None):
         rr = rs[[str(x).strip() == det for x in rs["DETECTOR"]]][0]
         p_, q_ = ((float(rr["BKG_NEG_START"]), float(rr["BKG_NEG_STOP"])),
                   (float(rr["BKG_POS_START"]), float(rr["BKG_POS_STOP"])))
-        tc, rate, _ = binned(ev, min(lo, p_[0] - 5), max(hi, q_[1] + 5))
-        ax.plot(tc, rate, color="0.62", lw=0.7, zorder=2)
+        tc, rate, _, ed = binned(ev, min(lo, p_[0] - 5), max(hi, q_[1] + 5))
+        lc_hist(ax, ed, rate, PUB["c_data"], zorder=2)
         c, m = polyfit_bkg(tc, rate, p_, q_)
         if c is not None:
             # SOLID only across the span the polynomial is actually constrained
@@ -220,55 +256,74 @@ def fig_step345(trig, out, blocks_file=None):
             # where it is pure extrapolation, so a wild deg-3 tail beyond the
             # windows is visibly EXTRAPOLATION and not a claim about the data.
             inside = (tc >= p_[0]) & (tc <= q_[1])
-            ax.plot(tc[inside], np.polyval(c, tc[inside]), color=dcol(det), lw=1.8,
-                    zorder=5, label=f"{det} background (deg {len(c)-1})")
+            ax.plot(tc[inside], np.polyval(c, tc[inside]), color=dcol(det, trig),
+                    lw=PUB["lw_primary"], zorder=5,
+                    label=f"{det} — order {len(c)-1}")
             out_hi = tc > q_[1]
             if out_hi.any():
-                ax.plot(tc[out_hi], np.polyval(c, tc[out_hi]), color=dcol(det), lw=1.0,
-                        ls=":", alpha=0.55, zorder=4)
+                ax.plot(tc[out_hi], np.polyval(c, tc[out_hi]), color=dcol(det, trig),
+                        lw=PUB["lw_secondary"], ls=":", alpha=0.6, zorder=4)
         for w in (p_, q_):
-            ax.axvspan(w[0], w[1], color="#3aa6a0", alpha=0.18, lw=0, zorder=1)
-        ax.axvspan(src[0], src[1], color="crimson", alpha=0.12, lw=0, zorder=1)
+            ax.axvspan(w[0], w[1], color=PUB["c_bkg_win"], alpha=0.15, lw=0, zorder=1)
+        ax.axvspan(src[0], src[1], color=PUB["c_src_win"], alpha=0.13, lw=0, zorder=1)
         ylim_from_data(ax, rate)
         ax.set_xlim(np.nanmin(tc[np.isfinite(rate)]), np.nanmax(tc[np.isfinite(rate)]))
-        ax.legend(fontsize=8, loc="upper right", framealpha=0.92, edgecolor="0.6")
-        ax.set_ylabel("rate (cts s$^{-1}$)", fontsize=9)
+        ax.legend(loc="upper right")
+        ax.set_ylabel(r"rate (cts s$^{-1}$)")
     axes[-1][0].set_xlabel("time since trigger (s)")
-    fig.suptitle(f"{trig}  ·  step 3: background windows (green) + fitted polynomial; "
-                 f"source (red)", fontsize=11)
-    fig.tight_layout()
+    fig.suptitle(f"{trig} — step 3: fitted background through the approved windows",
+                 fontsize=PUB["label_size"] + 2, y=0.995)
+    # one shared explanation, stated once (reference §5: no repeated legends)
+    axes[0][0].text(0.005, 1.06, "shaded: background windows (teal) · source interval "
+                    "(magenta);  solid: polynomial where constrained, dotted: extrapolation",
+                    transform=axes[0][0].transAxes, fontsize=PUB["tick_size"] - 3,
+                    color="0.35", ha="left", va="bottom")
+    fig.tight_layout(rect=[0, 0, 1, 0.985])
     f = os.path.join(out, f"{trig}_step3_background.png")
     fig.savefig(f, bbox_inches="tight"); plt.close(fig); made.append(f)
 
     # ---------- step 4: source window inside the common gap
     ev, _ = events(trig, refdet)
-    fig, ax = plt.subplots(figsize=(10, 3.4))
+    fig, ax = plt.subplots(figsize=(11, 4.0))
     if ev is None:
         _note(ax, "no TTE for reference detector")
     else:
-        tc, rate, _ = binned(ev, lo, hi)
-        ax.plot(tc, rate, color="0.45", lw=0.8)
+        tc, rate, _, ed = binned(ev, lo, hi)
+        lc_hist(ax, ed, rate, "0.45", zorder=2)
         ylim_from_data(ax, rate)
         good = np.isfinite(rate)
         if good.any():
             ax.set_xlim(tc[good].min(), tc[good].max())
         gap_lo = max(float(r["BKG_NEG_STOP"]) for r in rs)
         gap_hi = min(float(r["BKG_POS_START"]) for r in rs)
-        ax.axvspan(gap_lo, gap_hi, color="#3aa6a0", alpha=0.13, label="common background gap")
-        ax.axvspan(src[0], src[1], color="crimson", alpha=0.22, label="stamped source window")
+        ax.axvspan(gap_lo, gap_hi, color=PUB["c_bkg_win"], alpha=0.15, lw=0,
+                   label="common background gap")
+        ax.axvspan(src[0], src[1], color=PUB["c_src_win"], alpha=0.20, lw=0,
+                   label="stamped source window")
+        for _x in (src[0], src[1]):
+            ax.axvline(_x, color=PUB["c_src_win"], lw=1.1, alpha=0.85, zorder=3)
+        # ZOOM to what this figure is about: the gap and its margins. The far
+        # background belongs to step 3, and at full range the burst occupied
+        # under a sixth of the panel.
+        _sp = max(gap_hi - gap_lo, src[1] - src[0])
+        ax.set_xlim(gap_lo - 0.55 * _sp, gap_hi + 0.55 * _sp)
+        _m = (tc >= ax.get_xlim()[0]) & (tc <= ax.get_xlim()[1])
+        ylim_from_data(ax, rate[_m])
         if src[0] < gap_lo or src[1] > gap_hi:
             ax.text(0.02, 0.92, "source overruns the gap — ADJUDICATED (see QC ledger)",
                     transform=ax.transAxes, fontsize=9, color="crimson")
-        ax.legend(fontsize=8, framealpha=0.9, edgecolor="0.6")
-        ax.set_xlabel("time since trigger (s)"); ax.set_ylabel(f"{refdet} cts/s")
-    ax.set_title(f"{trig}  ·  step 4: source interval", fontsize=11, loc="left")
+        ax.legend(loc="upper right")
+        ax.set_xlabel("time since trigger (s)")
+        ax.set_ylabel(r"rate (cts s$^{-1}$)")
+    ax.set_title(f"{trig} — step 4: source interval inside the background gap "
+                 f"(detector {refdet})", fontsize=PUB["label_size"], loc="left")
     fig.tight_layout()
     f = os.path.join(out, f"{trig}_step4_source.png")
     fig.savefig(f, bbox_inches="tight"); plt.close(fig); made.append(f)
 
     # ---------- step 5: Bayesian blocks
     bf = blocks_file or os.path.join(out, "blocks", f"bb_blocks_spectral_{trig}.ecsv")
-    fig, ax = plt.subplots(figsize=(10, 3.8))
+    fig, ax = plt.subplots(figsize=(11.5, 4.6))
     if not os.path.exists(bf):
         _note(ax, f"no blocks file: {os.path.basename(bf)}")
     elif ev is None:
@@ -285,31 +340,40 @@ def fig_step345(trig, out, blocks_file=None):
                 continue
             _seen.add(_k); _keep.append(_r)
         bt = Table(rows=_keep, names=bt.colnames)
-        tc, rate, _ = binned(ev, lo, hi)
+        tc, rate, _, ed = binned(ev, lo, hi)
         c, _m = polyfit_bkg(tc, rate, pre, post)
         net = rate - (np.polyval(c, tc) if c is not None else 0.0)
-        ax.plot(tc, net, color="0.7", lw=0.7, label="net LC (0.128 s)")
+        lc_hist(ax, ed, net, PUB["c_data"], label="net light curve (0.128 s bins)",
+                zorder=2)
         sig = np.asarray(bt["SIGNIFICANCE"], float) if "SIGNIFICANCE" in bt.colnames else None
         smax = np.nanmax(sig) if sig is not None and np.isfinite(sig).any() else 1.0
+        smin = np.nanmin(sig) if sig is not None and np.isfinite(sig).any() else 0.0
+        # a colourbar carries significance (Vikas 2026-08-13: a bar, not printed
+        # numbers -- the numbers cluttered the peak where blocks are narrowest)
+        _cmap = plt.cm.viridis
+        _norm = matplotlib.colors.Normalize(vmin=smin, vmax=smax)
         for j, r in enumerate(bt):
             t1, t2 = float(r["T_START"]), float(r["T_STOP"])
             m = (tc >= t1) & (tc < t2)
             lvl = float(np.mean(net[m])) if m.any() else np.nan
             sh = (sig[j] / smax) if sig is not None and np.isfinite(sig[j]) else 0.4
-            ax.hlines(lvl, t1, t2, color=plt.cm.viridis(0.15 + 0.7 * sh), lw=3.0, zorder=4)
-            ax.axvline(t1, color="0.35", lw=0.5, ls=":")
-            if sig is not None and np.isfinite(sig[j]):
-                ax.text(0.5 * (t1 + t2), lvl, f"{sig[j]:.0f}", fontsize=6.5, ha="center",
-                        va="bottom", color="0.25")
-        ax.axvline(float(bt["T_STOP"][-1]), color="0.35", lw=0.5, ls=":")
+            col = _cmap(_norm(sig[j] if sig is not None and np.isfinite(sig[j]) else smin))
+            # horizontal bars ONLY -- no vertical connectors (Vikas, 2026-08-13).
+            ax.hlines(lvl, t1, t2, color=col, lw=PUB["lw_primary"] + 1.6, zorder=5)
+        ax.axvline(float(bt["T_STOP"][-1]), color="0.55", lw=0.7, ls=":", zorder=1)
         ax.set_xlim(src[0] - 3, src[1] + 3)
         inwin = (tc >= src[0] - 3) & (tc <= src[1] + 3)
         ylim_from_data(ax, net[inwin])
         ax.axhline(0, color="0.75", lw=0.7, zorder=0)
-        ax.legend(fontsize=8, framealpha=0.9, edgecolor="0.6")
-        ax.set_xlabel("time since trigger (s)"); ax.set_ylabel("net cts/s")
-        ax.set_title(f"{trig}  ·  step 5: Bayesian blocks ({len(bt)}), colour/number = block "
-                     f"significance", fontsize=11, loc="left")
+        ax.legend(loc="upper right")
+        ax.set_xlabel("time since trigger (s)")
+        ax.set_ylabel(r"net rate (cts s$^{-1}$)")
+        ax.set_title(f"{trig} — step 5: {len(bt)} Bayesian blocks", fontsize=PUB["label_size"],
+                     loc="left")
+        sm = plt.cm.ScalarMappable(cmap=_cmap, norm=_norm); sm.set_array([])
+        cb = fig.colorbar(sm, ax=ax, pad=0.012, aspect=26, extend="neither")
+        cb.set_label(r"block significance $S$", fontsize=PUB["tick_size"])
+        cb.ax.tick_params(labelsize=PUB["tick_size"] - 2)
     fig.tight_layout()
     f = os.path.join(out, f"{trig}_step5_binning.png")
     fig.savefig(f, bbox_inches="tight"); plt.close(fig); made.append(f)
@@ -356,7 +420,7 @@ def fig_step7(trig, out):
             tb = tt[sel]
             if tb.size < 50:
                 continue
-            tc, rate, dt = binned(tb, pre[0], post[1], dt=0.256)
+            tc, rate, dt, _ed = binned(tb, pre[0], post[1], dt=0.256)
             c, _m = polyfit_bkg(tc, rate, pre, post)
             net = rate - (np.polyval(c, tc) if c is not None else 0.0)
             msrc = (tc >= src[0]) & (tc <= src[1])
