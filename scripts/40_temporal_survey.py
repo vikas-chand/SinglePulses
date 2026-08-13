@@ -183,6 +183,16 @@ def survey_one(row):
     # counts = rate * dt.  Deterministic per-trigger seed (not one global seed).
     _seed = abs(hash(trig)) % (2 ** 32)
     _raw_c, _bkg_c = tot * dt, bkg * dt
+    # TAIL OUTSIDE THE WINDOW (L29): significance of net emission in the region that
+    # belongs to no fit -- [SRC_STOP, BKG_POS_START]. >=3 sigma means the approved
+    # window truncates real emission and T90 is a LOWER LIMIT.
+    _gm = (tc >= src[1]) & (tc < post[0])
+    if _gm.sum() >= 5:
+        _gnet = float(np.sum((tot[_gm] - bkg[_gm]) * dt))
+        _gerr = float(np.sqrt(max(np.sum(tot[_gm] * dt), 1.0)))
+        _tail_sig = _gnet / _gerr if _gerr > 0 else np.nan
+    else:
+        _gnet, _tail_sig = np.nan, np.nan
     _t90, _t90e, _a90, _b90, _trunc90, _d90 = _tx_with_mc(tc, _raw_c, _bkg_c, src, 0.90,
                                                           1000, _seed)
     _t50, _t50e, _a50, _b50, _trunc50, _d50 = _tx_with_mc(tc, _raw_c, _bkg_c, src, 0.50,
@@ -215,6 +225,8 @@ def survey_one(row):
         "T5_SD": float(_d90.get("t5_sd", np.nan)),
         "T95_SD": float(_d90.get("t95_sd", np.nan)),
         "T5_T95_RHO": float(_d90.get("rho", np.nan)),
+        "TAIL_OUTSIDE_WINDOW_CTS": float(_gnet),
+        "TAIL_OUTSIDE_WINDOW_SIG": float(_tail_sig),
         "T90_START": float(t90[2]), "T90_STOP": float(t90[3]),
         "T50": float(t50[0]),
         "MVT_S": mvt.get("mvt_s", np.nan), "MVT_ERR_S": mvt.get("mvt_err_s", np.nan),

@@ -94,46 +94,56 @@ measured).
    directly (covariance included by construction). Check `scripts/40`'s estimator against this
    before quoting any T90 error.
 
-## L29 — the T90 SEARCH WINDOW dominates the error budget; our quoted σ is ~10× too small  *(bn081125496, 2026-08-13; Vikas: "should we start from background subtracted rates without marking tstart or tstop by ourselves?")*
-Measured directly on bn081125496 by sliding only the search-window STOP:
+## L29 — T90 is measured INSIDE the approved source window, by decision; where emission continues past it, T90 is a LOWER LIMIT  *(bn081125496, 2026-08-13)*
 
-| window stop (s) | T90 (s) | MC error |
+**Vikas asked** whether t5/t95 should come from the background-subtracted rates
+"without marking tstart or tstop by ourselves". Testing that produced a finding, and
+my first diagnosis of it was WRONG — recorded here because the wrong version is the
+tempting one.
+
+**What I first claimed:** T90 grows with the search window (7.84 s at stop=9.9 →
+10.01 s at stop=17.9) because the 95% crossing drifts into a noisy tail. **Vikas's
+objection killed it:** on background-subtracted rates the extra bins scatter about
+ZERO, so noise cannot systematically inflate the total.
+
+**What is actually happening (measured, det na, 8–900 keV):**
+
+| region | mean net rate | reading |
 |---|---|---|
-| 9.90 | 7.84 | ±0.14 |
-| 11.90 (**the approved window**) | **8.65** | ±0.20 |
-| 14.90 | 9.59 | ±0.29 |
-| 17.90 | 10.01 | ±0.43 |
+| PRE window (fitted) | +0.1 ± 9.3 cts/s | zero by construction |
+| POST window (fitted) | −0.0 ± 3.5 cts/s | zero by construction |
+| far tail 120–140 s | −1.5 ± 8.2 cts/s | **zero — the polynomial is good (the control)** |
+| last 3 s inside the source window | +222.5 ± 22.5 | 10σ |
+| **gap 11.9 → 30.0 s (in NO fit)** | **+43.3 ± 8.7** | **5σ, ≈780 net counts** |
 
-**The statistical error is ~2%; the window-choice systematic is ~25%.** Every T90 we
-quote carries an uncertainty an order of magnitude smaller than the choice that
-actually sets it.
+The background model is sound; the burst simply **continues past the approved source
+window**. The window-sensitivity scan was not measuring a systematic — it was the
+estimator correctly finding more real emission each time the window opened.
 
-**Root cause — a window doing two jobs.** `SRC_START/SRC_STOP` is a **spectroscopy**
-selection: a human choosing an interval that captures the emission for fitting. We
-then reuse it as the **duration search interval**, which is a different job with a
-different optimum. A wide window is harmless for spectroscopy (extra background bins
-add noise, not bias) but T90 grows with it, because the 95% point drifts into the
-tail as more of the noisy decay is admitted.
+**DECISION (Vikas, 2026-08-13): "so we better do with the start and stop we marked."**
+T90/T50 are measured inside the approved source window. The window is a human
+decision and is not re-derived by the temporal step.
 
-**RULES:**
-1. A quoted T90 states its search window. Two T90s measured over different windows
-   are not comparable — this is the T9/component-coverage rule applied to duration.
-2. The MC error is the STATISTICAL error only. Until a window systematic is measured
-   per burst, do not present T90 ± σ_MC as the total uncertainty.
-3. **Before any T90 population result**, run the window-sensitivity scan per burst and
-   quote σ_window alongside σ_MC (a scan of ±2 s costs ~1 s of compute per burst).
-4. Related open choice: a genuinely data-driven interval (extend until the cumulative
-   flattens within noise, à la the catalog method) would remove the human choice but
-   introduces its own convergence criterion. Not adopted; **measure the sensitivity
-   first**, then decide with numbers.
+**Consequences that must be stated wherever a duration is quoted:**
+1. Ours is a **windowed T90**: the duration of the emission *inside the approved
+   interval*. Where emission continues beyond it, T90 is a **LOWER LIMIT**.
+2. It is therefore **not directly comparable to a catalogue T90**, which uses its own
+   interval (and, for GBM, response-corrected photon fluence rather than counts).
+   bn081125496: ours 8.50 ± 0.18 s vs Shao+2017's 9.28 ± 0.61 s — the difference is
+   largely the tail we exclude by choice, not a disagreement about the data.
+3. `TAIL_OUTSIDE_WINDOW_SIG` is recorded per burst: the significance of net emission
+   in `[SRC_STOP, BKG_POS_START]`, the region belonging to no fit. ≥3σ means the
+   window truncates real emission and the duration is a lower limit.
+4. The same truncation applies to the SPECTROSCOPY: those counts are outside the
+   fitted interval, so our spectral results describe the emission in the window, not
+   necessarily the whole burst (T9 component coverage — say so in any P3 diff).
 
-**Also now recorded per burst** (Vikas's second request): the MC keeps the full t5 and
-t95 DISTRIBUTIONS, not just a spread — `T90_ERR_LO/HI` (16th/84th percentiles, so
+**Also implemented (Vikas's second request):** the MC keeps the full t5/t95
+DISTRIBUTIONS, not just a spread — `T90_ERR_LO/HI` (16th/84th percentiles, so
 asymmetry shows), `T5_SD`, `T95_SD`, and `T5_T95_RHO`, the realised correlation
-between the two edges. bn081125496: ρ = +0.083, so quadrature (0.188 s) and the
-covariance-correct value (0.182 s) differ by only 1% here — Qin's quadrature
-approximation is mild for THIS burst, but ρ is now measured per burst instead of
-assumed.
+between the edges. bn081125496: ρ = +0.083, so quadrature (0.188 s) and the
+covariance-correct value (0.182 s) differ by 1% — Qin's approximation is mild here,
+but ρ is now measured per burst instead of assumed.
 
 ## L26 — LAG SIGN is a systematic trap: state the convention, verify against a known burst  *(2026-08-10)*
 Two independent instances, one ours and one published:
