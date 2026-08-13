@@ -80,9 +80,33 @@ def events(trig, det):
 
 
 def binned(times, lo, hi, dt=0.128):
+    """Binned rate with EMPTY-COVERAGE bins masked to NaN.
+
+    The TTE file does not always span the requested range; empty leading/trailing
+    bins were being drawn as a rate of 0, producing a cliff to zero at the panel
+    edge that squashed the real signal into the top half of the axes
+    (presentation pass 2026-08-13)."""
     e = np.arange(lo, hi + dt, dt)
     c, _ = np.histogram(times, bins=e)
-    return 0.5 * (e[:-1] + e[1:]), c / dt, dt
+    tc = 0.5 * (e[:-1] + e[1:])
+    rate = c / dt
+    if times.size:
+        outside = (tc < times.min()) | (tc > times.max())
+        rate = np.where(outside, np.nan, rate)
+    return tc, rate, dt
+
+
+def ylim_from_data(ax, y, pad_lo=0.08, pad_hi=0.12):
+    """Limits from the DATA's own spread (2nd-99.5th percentile), never anchored
+    at zero -- a background-dominated light curve wastes half the panel otherwise."""
+    y = np.asarray(y, float); y = y[np.isfinite(y)]
+    if y.size < 5:
+        return
+    lo, hi = np.percentile(y, 1.0), np.percentile(y, 99.7)
+    if hi <= lo:
+        return
+    span = hi - lo
+    ax.set_ylim(lo - pad_lo * span, hi + pad_hi * span)
 
 
 def polyfit_bkg(tc, rate, pre, post, maxdeg=3):
@@ -188,16 +212,27 @@ def fig_step345(trig, out, blocks_file=None):
         p_, q_ = ((float(rr["BKG_NEG_START"]), float(rr["BKG_NEG_STOP"])),
                   (float(rr["BKG_POS_START"]), float(rr["BKG_POS_STOP"])))
         tc, rate, _ = binned(ev, min(lo, p_[0] - 5), max(hi, q_[1] + 5))
-        ax.plot(tc, rate, color="0.6", lw=0.7)
+        ax.plot(tc, rate, color="0.62", lw=0.7, zorder=2)
         c, m = polyfit_bkg(tc, rate, p_, q_)
         if c is not None:
-            ax.plot(tc, np.polyval(c, tc), color=dcol(det), lw=1.6,
-                    label=f"{det} bkg poly (deg {len(c)-1})")
+            # SOLID only across the span the polynomial is actually constrained
+            # over (first pre-window sample -> last post-window sample); dashed
+            # where it is pure extrapolation, so a wild deg-3 tail beyond the
+            # windows is visibly EXTRAPOLATION and not a claim about the data.
+            inside = (tc >= p_[0]) & (tc <= q_[1])
+            ax.plot(tc[inside], np.polyval(c, tc[inside]), color=dcol(det), lw=1.8,
+                    zorder=5, label=f"{det} background (deg {len(c)-1})")
+            out_hi = tc > q_[1]
+            if out_hi.any():
+                ax.plot(tc[out_hi], np.polyval(c, tc[out_hi]), color=dcol(det), lw=1.0,
+                        ls=":", alpha=0.55, zorder=4)
         for w in (p_, q_):
-            ax.axvspan(w[0], w[1], color="#3aa6a0", alpha=0.16)
-        ax.axvspan(src[0], src[1], color="crimson", alpha=0.10)
-        ax.legend(fontsize=8, loc="upper right", framealpha=0.9, edgecolor="0.6")
-        ax.set_ylabel("cts/s", fontsize=9)
+            ax.axvspan(w[0], w[1], color="#3aa6a0", alpha=0.18, lw=0, zorder=1)
+        ax.axvspan(src[0], src[1], color="crimson", alpha=0.12, lw=0, zorder=1)
+        ylim_from_data(ax, rate)
+        ax.set_xlim(np.nanmin(tc[np.isfinite(rate)]), np.nanmax(tc[np.isfinite(rate)]))
+        ax.legend(fontsize=8, loc="upper right", framealpha=0.92, edgecolor="0.6")
+        ax.set_ylabel("rate (cts s$^{-1}$)", fontsize=9)
     axes[-1][0].set_xlabel("time since trigger (s)")
     fig.suptitle(f"{trig}  ·  step 3: background windows (green) + fitted polynomial; "
                  f"source (red)", fontsize=11)
@@ -213,6 +248,10 @@ def fig_step345(trig, out, blocks_file=None):
     else:
         tc, rate, _ = binned(ev, lo, hi)
         ax.plot(tc, rate, color="0.45", lw=0.8)
+        ylim_from_data(ax, rate)
+        good = np.isfinite(rate)
+        if good.any():
+            ax.set_xlim(tc[good].min(), tc[good].max())
         gap_lo = max(float(r["BKG_NEG_STOP"]) for r in rs)
         gap_hi = min(float(r["BKG_POS_START"]) for r in rs)
         ax.axvspan(gap_lo, gap_hi, color="#3aa6a0", alpha=0.13, label="common background gap")
@@ -264,6 +303,9 @@ def fig_step345(trig, out, blocks_file=None):
                         va="bottom", color="0.25")
         ax.axvline(float(bt["T_STOP"][-1]), color="0.35", lw=0.5, ls=":")
         ax.set_xlim(src[0] - 3, src[1] + 3)
+        inwin = (tc >= src[0] - 3) & (tc <= src[1] + 3)
+        ylim_from_data(ax, net[inwin])
+        ax.axhline(0, color="0.75", lw=0.7, zorder=0)
         ax.legend(fontsize=8, framealpha=0.9, edgecolor="0.6")
         ax.set_xlabel("time since trigger (s)"); ax.set_ylabel("net cts/s")
         ax.set_title(f"{trig}  ·  step 5: Bayesian blocks ({len(bt)}), colour/number = block "
@@ -287,9 +329,12 @@ def fig_step7(trig, out):
               if str(r["DET_ANGLE"]) not in ("nan", "--") else 999)
     det = str(ref["DETECTOR"]).strip()
     p = tte_path(trig, det)
-    fig, ax = plt.subplots(figsize=(9, 4.2))
+    fig = plt.figure(figsize=(10.6, 4.3))
+    gsr = fig.add_gridspec(1, 2, width_ratios=[3.1, 1.0], wspace=0.28,
+                           left=0.075, right=0.985, top=0.88, bottom=0.15)
+    ax = fig.add_subplot(gsr[0]); axE = fig.add_subplot(gsr[1])
     if p is None:
-        _note(ax, "no TTE");
+        _note(ax, "no TTE"); _note(axE, "");
     else:
         with fits.open(p) as h:
             t0 = None
@@ -304,7 +349,9 @@ def fig_step7(trig, out):
         src = (float(ref["SRC_START"]), float(ref["SRC_STOP"]))
         pre = (float(ref["BKG_NEG_START"]), float(ref["BKG_NEG_STOP"]))
         post = (float(ref["BKG_POS_START"]), float(ref["BKG_POS_STOP"]))
-        for (e1, e2) in BANDS:
+        _cols = ["#2b3a67", "#3aa6a0", "#6aa84f", "#f08c4b", "#b3216a"]
+        _t90s, _over = [], []
+        for _ib, (e1, e2) in enumerate(BANDS):
             sel = (emid[np.clip(ch, 0, len(emid) - 1)] >= e1) & (emid[np.clip(ch, 0, len(emid) - 1)] < e2)
             tb = tt[sel]
             if tb.size < 50:
@@ -319,15 +366,41 @@ def fig_step7(trig, out):
             cum = cum / cum[-1]
             tsrc = tc[msrc]
             t5 = np.interp(0.05, cum, tsrc); t95 = np.interp(0.95, cum, tsrc)
-            ln, = ax.plot(tsrc, cum, lw=1.4, label=f"{e1}–{e2} keV  T90={t95-t5:.1f}s")
-            ax.axvline(t5, color=ln.get_color(), ls=":", lw=0.8)
-            ax.axvline(t95, color=ln.get_color(), ls=":", lw=0.8)
-        ax.axhline(0.05, color="0.7", lw=0.6); ax.axhline(0.95, color="0.7", lw=0.6)
-        ax.set_xlabel("time since trigger (s)"); ax.set_ylabel("cumulative net counts (norm.)")
-        ax.legend(fontsize=8, framealpha=0.9, edgecolor="0.6")
-    ax.set_title(f"{trig}  ·  step 7: energy-resolved T90 (t5/t95 dotted) — the E-dependence, "
-                 f"per burst", fontsize=10, loc="left")
-    fig.tight_layout()
+            c_ = _cols[_ib % len(_cols)]
+            ax.plot(tsrc, cum, lw=1.6, color=c_, zorder=3,
+                    label=f"{e1}–{e2} keV   $T_{{90}}$ = {t95-t5:.1f} s")
+            # mark the T90 SPAN rather than 10 separate vertical lines
+            ax.plot([t5, t95], [-0.10 - 0.045 * _ib] * 2, color=c_, lw=2.6,
+                    solid_capstyle="butt", zorder=4, clip_on=False)
+            _t90s.append((0.5 * (e1 + e2), t95 - t5))
+            if np.nanmax(cum) > 1.15:
+                _over.append(f"{e1}-{e2} keV")
+        ax.axhline(0.05, color="0.75", lw=0.6, zorder=1)
+        ax.axhline(0.95, color="0.75", lw=0.6, zorder=1)
+        ax.set_ylim(-0.34, 1.12)          # room below zero for the T90 span bars
+        ax.set_xlabel("time since trigger (s)")
+        ax.set_ylabel("cumulative net counts (normalised)")
+        ax.legend(fontsize=8.5, loc="upper left", framealpha=0.92, edgecolor="0.6")
+        if _over:
+            ax.text(0.985, 0.97, "cumulative overshoots 1 (low S/N, curve leaves frame): "
+                    + ", ".join(_over), transform=ax.transAxes, ha="right", va="top",
+                    fontsize=6.8, color="0.35")
+        # right panel: the E-dependence this figure exists to show
+        if len(_t90s) >= 3:
+            E_ = np.array([a for a, _ in _t90s]); T_ = np.array([b for _, b in _t90s])
+            for _i, (e_, t_) in enumerate(zip(E_, T_)):
+                axE.plot(e_, t_, "o", ms=6, color=_cols[_i % len(_cols)], zorder=4)
+            axE.plot(E_, T_, "-", color="0.4", lw=1.1, zorder=3)
+            k = np.polyfit(np.log10(E_), np.log10(T_), 1)[0]
+            xx = np.logspace(np.log10(E_.min()), np.log10(E_.max()), 20)
+            axE.plot(xx, T_[0] * (xx / E_[0]) ** (-0.20), ls="--", color="crimson",
+                     lw=1.0, zorder=2, label="$E^{-0.20}$ (pop. mean)")
+            axE.set_xscale("log"); axE.set_yscale("log")
+            axE.set_xlabel("band centre (keV)"); axE.set_ylabel("$T_{90}$ (s)")
+            axE.set_title(f"this burst: slope {k:+.2f}", fontsize=9)
+            axE.legend(fontsize=7, framealpha=0.9, edgecolor="0.6", loc="lower left")
+    ax.set_title(f"{trig}  ·  step 7: energy-resolved $T_{{90}}$ — horizontal bars mark each "
+                 f"band's $t_5$–$t_{{95}}$ span", fontsize=10, loc="left")
     f = os.path.join(out, f"{trig}_step7_temporal.png")
     fig.savefig(f, bbox_inches="tight"); plt.close(fig)
     return [f]
