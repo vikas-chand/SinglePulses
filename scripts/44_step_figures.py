@@ -360,7 +360,10 @@ def fig_step345(trig, out, blocks_file=None):
             col = _cmap(_norm(sig[j] if sig is not None and np.isfinite(sig[j]) else smin))
             # horizontal bars ONLY -- no vertical connectors (Vikas, 2026-08-13).
             ax.hlines(lvl, t1, t2, color=col, lw=PUB["lw_primary"] + 1.6, zorder=5)
-        ax.axvline(float(bt["T_STOP"][-1]), color="0.55", lw=0.7, ls=":", zorder=1)
+        # bracket the analysed span: dotted verticals at the FIRST block start and
+        # the LAST block stop (Vikas, 2026-08-13)
+        ax.axvline(float(bt["T_START"][0]), color="0.55", lw=0.9, ls=":", zorder=1)
+        ax.axvline(float(bt["T_STOP"][-1]), color="0.55", lw=0.9, ls=":", zorder=1)
         ax.set_xlim(src[0] - 3, src[1] + 3)
         inwin = (tc >= src[0] - 3) & (tc <= src[1] + 3)
         ylim_from_data(ax, net[inwin])
@@ -372,7 +375,7 @@ def fig_step345(trig, out, blocks_file=None):
                      loc="left")
         sm = plt.cm.ScalarMappable(cmap=_cmap, norm=_norm); sm.set_array([])
         cb = fig.colorbar(sm, ax=ax, pad=0.012, aspect=26, extend="neither")
-        cb.set_label(r"block significance $S$", fontsize=PUB["tick_size"])
+        cb.set_label(r"block significance ($\sigma$)", fontsize=PUB["tick_size"])
         cb.ax.tick_params(labelsize=PUB["tick_size"] - 2)
     fig.tight_layout()
     f = os.path.join(out, f"{trig}_step5_binning.png")
