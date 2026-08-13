@@ -1,4 +1,16 @@
-# Khushboo's worklist — post-2020 bursts, one at a time
+# Khushboo's worklist — burst by burst, working toward ALL 106
+
+**The point of this run (Vikas, 2026-08-13):** *"she will eventually run all 106 in her
+system so that we can then finally check what differences we get in different systems."*
+So this is not a division of labour — it is a **replication arm**. Both systems run the
+same Skill Library on the same approved Stage-1 selections; the comparison is the result.
+`scripts/47_compare_systems.py` produces the diff (winner agreement, verdict agreement,
+per-parameter sigma, and the divergence bins: underspecification / judgment / execution
+error). Start with the post-2020 list below, then continue through the rest of the 106.
+**Do not look at our results for a burst before you finish yours** — a diff is only worth
+something if the runs are independent.
+
+## Start here (post-2020)
 
 39 bursts. The sweep has already FITTED most of them, so for those your job is the
 review pass: run `scripts/45_all_products.py` to make every figure, then look. For the
