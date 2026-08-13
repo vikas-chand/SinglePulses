@@ -91,6 +91,23 @@ Add `--skip-overlays` for a fast pass (no per-bin refits, no threeML needed).
 
 ---
 
+## 2b. APPROVE each step as you go (this is the deliverable)
+
+Vikas: *run one burst at a time, look at and approve each product and each step of the
+analysis.* So the review is a **signed record**, not just a look:
+
+```bash
+mkdir -p notes/approvals
+cp handoff_background_approval/KHUSHBOO_APPROVAL_SHEET_TEMPLATE.md \
+   notes/approvals/${TRIG}_approval.md
+# fill it in step by step, then:
+git add notes/approvals/${TRIG}_approval.md && git commit -m "approval: $TRIG" && git push
+```
+
+Approve each step **before** moving to the next; if a step is not OK, stop there and write
+why rather than carrying the doubt forward. Your sheets are the second-operator record the
+whole comparison rests on.
+
 ## 3. What each figure is for (this is the diagnosis order)
 
 | figure | look for |
