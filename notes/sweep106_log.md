@@ -70,3 +70,45 @@ notes/READING_LIST_106.md. Provisional doctrine stands until Vikas blesses the n
 - bn201104001 blocks=0 fit=0 montage=0 2026-08-13T03:33:05Z
 - bn211207416 blocks=0 fit=0 montage=0 2026-08-13T03:36:22Z
 - bn210524208 blocks=0 fit=0 montage=0 2026-08-13T03:40:22Z
+- bn221201517 blocks=0 fit=0 montage=0 2026-08-13T03:47:35Z
+- bn230320884 blocks=0 fit=0 montage=0 2026-08-13T03:50:10Z
+- bn201016019 blocks=0 fit=0 montage=0 2026-08-13T03:58:18Z
+- bn210803497 blocks=0 fit=0 montage=0 2026-08-13T04:01:30Z
+- bn220525008 blocks=0 fit=0 montage=0 2026-08-13T04:02:31Z
+- bn230802285 blocks=0 fit=0 montage=0 2026-08-13T04:03:26Z
+- bn130518580 blocks=0 fit=0 montage=0 2026-08-13T04:06:32Z
+- bn210714331 blocks=0 fit=0 montage=0 2026-08-13T04:09:08Z
+- bn230405832 blocks=0 fit=0 montage=0 2026-08-13T04:14:52Z
+- bn221209243 blocks=0 fit=0 montage=0 2026-08-13T04:20:39Z
+- bn230614424 blocks=0 fit=0 montage=0 2026-08-13T04:29:44Z
+- bn241117845 blocks=0 fit=0 montage=0 2026-08-13T04:43:23Z
+- bn250407659 blocks=0 fit=0 montage=0 2026-08-13T04:51:12Z
+- bn240204630 blocks=0 fit=0 montage=0 2026-08-13T04:53:02Z
+- bn240710643 blocks=0 fit=0 montage=0 2026-08-13T04:58:23Z
+- bn250814432 blocks=0 fit=0 montage=0 2026-08-13T05:05:49Z
+- bn231020790 blocks=0 fit=0 montage=0 2026-08-13T05:13:11Z
+- bn241223506 blocks=0 fit=0 montage=0 2026-08-13T05:18:22Z
+- bn231030832 blocks=0 fit=0 montage=0 2026-08-13T05:21:58Z
+- bn230409626 blocks=0 fit=0 montage=0 2026-08-13T05:32:51Z
+- bn260105973 blocks=0 fit=0 montage=0 2026-08-13T05:40:34Z
+- bn251016999 blocks=0 fit=0 montage=0 2026-08-13T05:53:17Z
+- bn160625945 blocks=0 fit=0 montage=0 2026-08-13T05:56:07Z
+- bn250702413 blocks=0 fit=0 montage=0 2026-08-13T06:04:34Z
+- bn240403498 blocks=0 fit=0 montage=0 2026-08-13T06:16:02Z
+- bn250902062 blocks=0 fit=0 montage=0 2026-08-13T06:30:55Z
+- bn230812790 blocks=0 fit=0 montage=0 2026-08-13T07:21:55Z
+- bn250313607 blocks=0 fit=0 montage=0 2026-08-13T07:39:24Z
+- temporal survey exit 0 2026-08-13T07:40:52Z
+=== SWEEP106 COMPLETE 2026-08-13T07:40:52Z ===
+
+### POST-SWEEP CHAIN 2026-08-13T07:41:16Z
+
+### POST-SWEEP CHAIN 2026-08-13T07:41:24Z
+- temporal_all106 exit 0 2026-08-13T07:41:28Z
+- temporal_all106 exit 0 2026-08-13T07:41:36Z
+- step figures exit 0 2026-08-13T07:44:36Z
+- per-bin overlays exit 1 2026-08-13T07:44:36Z
+=== OVERNIGHT CHAIN COMPLETE 2026-08-13T07:44:36Z ===
+- step figures exit 0 2026-08-13T07:44:43Z
+- per-bin overlays exit 1 2026-08-13T07:44:43Z
+=== OVERNIGHT CHAIN COMPLETE 2026-08-13T07:44:43Z ===
