@@ -15,9 +15,43 @@
   "bandbb_test_alone_resolved": 0,
   "cplbb_test_alone_resolved": 2,
   "near_misses": "blk0 (BandBB 7.58, kT 5.75+-1.36), blk6 (BandBB 7.86, kT 29.38+-1.67) - watch under the L27-fixed engine",
-  "kT_track_bandbb_blks0-9": [5.75, 6.29, 31.85, 42.41, 32.91, 22.22, 29.38, 24.29, 19.7, 3.8],
-  "aic_winners_blk-1_to_9": ["Band+BB", "Band+BB", "CPL", "SBPL", "SBPL", "SBPL", "CPL", "CPL", "SBPL", "SBPL", "SBPL"],
-  "band_ep_track_blks0-9_keV": [676.8, 376.7, 199.2, 303.5, 234.8, 182.3, 120.9, 76.4, 57.4, 30.0],
+  "kT_track_bandbb_blks0-9": [
+   5.75,
+   6.29,
+   31.85,
+   42.41,
+   32.91,
+   22.22,
+   29.38,
+   24.29,
+   19.7,
+   3.8
+  ],
+  "aic_winners_blk-1_to_9": [
+   "Band+BB",
+   "Band+BB",
+   "CPL",
+   "SBPL",
+   "SBPL",
+   "SBPL",
+   "CPL",
+   "CPL",
+   "SBPL",
+   "SBPL",
+   "SBPL"
+  ],
+  "band_ep_track_blks0-9_keV": [
+   676.8,
+   376.7,
+   199.2,
+   303.5,
+   234.8,
+   182.3,
+   120.9,
+   76.4,
+   57.4,
+   30.0
+  ],
   "caveat": "archival fits predate the L28/per-bin-coverage engine; two-break (DSBPL) results there are a lower limit per the L8/L9 doctrine"
  },
  "predictions": [
@@ -28,12 +62,32 @@
   "P-E (binning cross-check; Li&Zhang21 Ntot=13 in [-1,20] vs our archival 10 resolved in [-0.91,24.0]): the 27b re-block returns 9-14 resolved blocks; a count far outside that band flags a binning-regime difference to reconcile before any spectral diff."
  ],
  "harvest_snippets": {
-  "Iyyani2016": ["significant and strong blackbody component: GRB081224A, GRB090719A, GRB100707A, GRB110920A", "In bursts GRB081224A, GRB090719A and GRB100707A the two breaks [Esync and kT broken-PL] are consistent"],
-  "Li&Zhang2021": ["090719063 11.392+-0.896 (4.68+-0.02)e-5 n7(n8)b1 -1~20 [-20~-10,40~60] 13 7", "three cases (GRB 090719063, GRB 130305486, GRB 150213001) ... in the Phase I sample but not in the Phase II sample indeed do not satisfy the simple model predictions ... supporting that the cases are spurious", "090719063 ... 5.06 [s] 1.5e15 [cm]"],
-  "Li2026": ["090719063 ... 11.39+-0.47 CPL 11 5.61+-1.17 0.36+-0.36 -5.25+-1.22 -4.30 -0.72 0.00 1.00 0.00 -0.40 -0.41 0.64 II"],
-  "Tak2023": ["GRB 090719A -0.136 3.480 14.480 14 Weak - -"],
-  "Yu2019": ["090719063 n7(n8)b1 -1. to 25. ... K 15 11 ... h.t.s. to i.t."],
-  "Burgess2014a": ["GRB 090719A 26.52 30.09 [BB yes] [LLE no]", "F_BB/F_syn = 0.4; BB decay -0.1+-0.05 -> -2.0+-0.7"],
-  "Lu2018": ["GRB 090719A (bn090719063) -0.26 -1.51 ... 359.92+-23.02 -0.08+-0.08 -2.58+-0.22"]
- }
+  "Iyyani2016": [
+   "significant and strong blackbody component: GRB081224A, GRB090719A, GRB100707A, GRB110920A",
+   "In bursts GRB081224A, GRB090719A and GRB100707A the two breaks [Esync and kT broken-PL] are consistent"
+  ],
+  "Li&Zhang2021": [
+   "090719063 11.392+-0.896 (4.68+-0.02)e-5 n7(n8)b1 -1~20 [-20~-10,40~60] 13 7",
+   "three cases (GRB 090719063, GRB 130305486, GRB 150213001) ... in the Phase I sample but not in the Phase II sample indeed do not satisfy the simple model predictions ... supporting that the cases are spurious",
+   "090719063 ... 5.06 [s] 1.5e15 [cm]"
+  ],
+  "Li2026": [
+   "090719063 ... 11.39+-0.47 CPL 11 5.61+-1.17 0.36+-0.36 -5.25+-1.22 -4.30 -0.72 0.00 1.00 0.00 -0.40 -0.41 0.64 II"
+  ],
+  "Tak2023": [
+   "GRB 090719A -0.136 3.480 14.480 14 Weak - -"
+  ],
+  "Yu2019": [
+   "090719063 n7(n8)b1 -1. to 25. ... K 15 11 ... h.t.s. to i.t."
+  ],
+  "Burgess2014a": [
+   "GRB 090719A 26.52 30.09 [BB yes] [LLE no]",
+   "F_BB/F_syn = 0.4; BB decay -0.1+-0.05 -> -2.0+-0.7"
+  ],
+  "Lu2018": [
+   "GRB 090719A (bn090719063) -0.26 -1.51 ... 359.92+-23.02 -0.08+-0.08 -2.58+-0.22"
+  ]
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

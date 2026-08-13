@@ -318,5 +318,7 @@
   },
   "d2_note": "This burst ships single-matrix glg_cspec_<det>_v03.rsp for GBM, NOT .rsp2 - the D2 false-alarm class. The pipeline resolves these correctly.",
   "residual_concern": "The five GBM PASS verdicts rest on an interval-overlap test applied to single-matrix responses, which D1 says is the wrong primitive. Delta_theta over the window is the same 0.34 deg, so the conclusion holds - but the RECORDED reasoning in the ECSV is not the D1 reasoning. Recorded, not escalated."
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -903,5 +903,7 @@
  ],
  "barred_paths_confirmed_untouched": [
   "results/sweep106/ \u2014 never listed, never opened, never read by this worker"
- ]
+ ],
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

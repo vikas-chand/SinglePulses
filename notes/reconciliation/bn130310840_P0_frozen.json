@@ -14,7 +14,10 @@
  "window": {
   "src_start": 3.3610892055180557,
   "src_stop": 9.082704398970513,
-  "block_span": [4.0891, 6.2338],
+  "block_span": [
+   4.0891,
+   6.2338
+  ],
   "detectors": "n9, na, nb, b1, lle (5 plugins; PLUGIN_DETS='n9,na,nb,b1,lle', N_DETS=5 in every archival row)",
   "stamp": "human-approved 2026-07-19, Vikas Chand; SRC=[3.361, 9.083] in results/background_intervals.ecsv",
   "coverage_label_T9": "MAIN PULSE ONLY. Window OPENS at +3.361 s, inside the 3.65 s quiescent gap (Zhong+2019 T_quie) between the precursor and the main burst - so the precursor ([-0.66,+0.58] s Qin / [-0.18,+0.40] s Zhong / T90 ~1.3 s Zhang) is ENTIRELY EXCLUDED. Blocks cover the sharp peak ([4.108,4.135] s), the whole LLE-signal interval ([4.13,4.21] s), the QPO interval ([4.4,4.9] s) and ~1.2 s of soft tail. They truncate the remaining ~14 s of the catalog T90 tail and miss the LAT extended emission entirely (T_LAT,0 = 67.2 s).",
@@ -24,17 +27,100 @@
  "archival_prior": {
   "spectral_fits_ecsv": "results/clean_per_burst_human_final/bn130310840/spectral_fits.ecsv - PRESENT, 11 rows (BLOCK -1 = window-integrated [4.0891,6.2338] s, then 10 time-resolved blocks), PLUGIN_DETS='n9,na,nb,b1,lle' and N_DETS=5 throughout, model menu = 6 (BAND, BANDBB, CPL, CPLBB, DSBPL, SBPL)",
   "blocks": [
-   {"BLOCK": -1, "T": [4.0891, 6.2338], "note": "window-integrated"},
-   {"BLOCK": 0, "T": [4.0891, 4.0994], "width_ms": 10.3},
-   {"BLOCK": 1, "T": [4.0994, 4.1068], "width_ms": 7.4},
-   {"BLOCK": 2, "T": [4.1068, 4.1308], "width_ms": 24.0, "note": "THE SHARP PEAK - Zhang+2022's SP is [4.108,4.135] s; the 0.84 GeV LAT photon arrives at t = 4.12 s INSIDE this block"},
-   {"BLOCK": 3, "T": [4.1308, 4.1467], "width_ms": 15.9, "note": "LLE signal begins here (T_LLE,05 = 4.13 s)"},
-   {"BLOCK": 4, "T": [4.1467, 4.2241], "width_ms": 77.4, "note": "LLE signal ends inside this block (T_LLE,95 = 4.21 s)"},
-   {"BLOCK": 5, "T": [4.2241, 4.2628], "width_ms": 38.7},
-   {"BLOCK": 6, "T": [4.2628, 4.4832], "width_ms": 220.4},
-   {"BLOCK": 7, "T": [4.4832, 4.9303], "width_ms": 447.1, "note": "the QPO interval [4.4,4.9] s lies almost entirely inside blocks 6-7"},
-   {"BLOCK": 8, "T": [4.9303, 5.2678], "width_ms": 337.5, "note": "past Qin's last slice (5.0 s) and Lu's (5.004 s)"},
-   {"BLOCK": 9, "T": [5.2678, 6.2338], "width_ms": 966.0, "note": "past Zhang's last slice (5.25 s); only Zhong+2019's tail-inclusive CPL covers this"}
+   {
+    "BLOCK": -1,
+    "T": [
+     4.0891,
+     6.2338
+    ],
+    "note": "window-integrated"
+   },
+   {
+    "BLOCK": 0,
+    "T": [
+     4.0891,
+     4.0994
+    ],
+    "width_ms": 10.3
+   },
+   {
+    "BLOCK": 1,
+    "T": [
+     4.0994,
+     4.1068
+    ],
+    "width_ms": 7.4
+   },
+   {
+    "BLOCK": 2,
+    "T": [
+     4.1068,
+     4.1308
+    ],
+    "width_ms": 24.0,
+    "note": "THE SHARP PEAK - Zhang+2022's SP is [4.108,4.135] s; the 0.84 GeV LAT photon arrives at t = 4.12 s INSIDE this block"
+   },
+   {
+    "BLOCK": 3,
+    "T": [
+     4.1308,
+     4.1467
+    ],
+    "width_ms": 15.9,
+    "note": "LLE signal begins here (T_LLE,05 = 4.13 s)"
+   },
+   {
+    "BLOCK": 4,
+    "T": [
+     4.1467,
+     4.2241
+    ],
+    "width_ms": 77.4,
+    "note": "LLE signal ends inside this block (T_LLE,95 = 4.21 s)"
+   },
+   {
+    "BLOCK": 5,
+    "T": [
+     4.2241,
+     4.2628
+    ],
+    "width_ms": 38.7
+   },
+   {
+    "BLOCK": 6,
+    "T": [
+     4.2628,
+     4.4832
+    ],
+    "width_ms": 220.4
+   },
+   {
+    "BLOCK": 7,
+    "T": [
+     4.4832,
+     4.9303
+    ],
+    "width_ms": 447.1,
+    "note": "the QPO interval [4.4,4.9] s lies almost entirely inside blocks 6-7"
+   },
+   {
+    "BLOCK": 8,
+    "T": [
+     4.9303,
+     5.2678
+    ],
+    "width_ms": 337.5,
+    "note": "past Qin's last slice (5.0 s) and Lu's (5.004 s)"
+   },
+   {
+    "BLOCK": 9,
+    "T": [
+     5.2678,
+     6.2338
+    ],
+    "width_ms": 966.0,
+    "note": "past Zhang's last slice (5.25 s); only Zhong+2019's tail-inclusive CPL covers this"
+   }
   ],
   "union_rule_counts": {
    "rule": "(LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05) - both nested tests, union",
@@ -45,23 +131,155 @@
    "non_firing": "BLOCK 0 (0.391 / -0.000), BLOCK 1 (3.294 / 2.841), BLOCK 6 (7.316 / 1.527), BLOCK 7 (0.120 / 1.136), BLOCK 9 (1.844 / 0.737)",
    "T8_baseline_dependence_is_SEVERE_here": "3 of the 5 firing blocks fire against only ONE baseline, and in BLOCK 4 the two baselines return kT = 3.341 keV (vs Band) and kT = 105.174 keV (vs CPL) for the SAME data - a factor of 31. In BLOCK 5 only the CPL baseline fires, at kT = 58.300 keV. No BB margin from this burst may be quoted without naming its baseline."
   },
-  "LRT_BANDBB_BAND": [10.709, 0.391, 3.294, 52.910, 15.726, 14.002, 2.053, 7.316, 0.120, 9.570, 1.844],
-  "LRT_CPLBB_CPL": [3.195, -0.000, 2.841, 31.726, 7.198, 11.399, 11.150, 1.527, 1.136, 8.026, 0.737],
-  "LRT_DSBPL_SBPL": [-2.053, null, 0.902, 2.266, 0.753, 0.718, 5.425, 3.677, 1.297, 2.547, 2.130],
+  "LRT_BANDBB_BAND": [
+   10.709,
+   0.391,
+   3.294,
+   52.91,
+   15.726,
+   14.002,
+   2.053,
+   7.316,
+   0.12,
+   9.57,
+   1.844
+  ],
+  "LRT_CPLBB_CPL": [
+   3.195,
+   -0.0,
+   2.841,
+   31.726,
+   7.198,
+   11.399,
+   11.15,
+   1.527,
+   1.136,
+   8.026,
+   0.737
+  ],
+  "LRT_DSBPL_SBPL": [
+   -2.053,
+   null,
+   0.902,
+   2.266,
+   0.753,
+   0.718,
+   5.425,
+   3.677,
+   1.297,
+   2.547,
+   2.13
+  ],
   "kt_values_keV": {
-   "BANDBB_KT": [4.028, 4.203, 9.742, 5.900, 5.483, 3.341, 49.925, 63.757, 3.545, 8.861, 4.294],
-   "BANDBB_KT_ERR": [0.581, 1.625, 1.833, 0.682, 1.045, 0.528, 16.012, 29.118, 1.619, 1.084, 0.810],
-   "CPLBB_KT": [3.685, 1.259, 9.749, 5.641, 4.989, 105.174, 58.300, 3.345, 38.702, 96.315, 4.954],
-   "CPLBB_KT_ERR": [0.750, 6.043, 1.846, 0.772, 0.993, 17.369, 15.783, 0.058, 16.371, 0.000, 1.666],
+   "BANDBB_KT": [
+    4.028,
+    4.203,
+    9.742,
+    5.9,
+    5.483,
+    3.341,
+    49.925,
+    63.757,
+    3.545,
+    8.861,
+    4.294
+   ],
+   "BANDBB_KT_ERR": [
+    0.581,
+    1.625,
+    1.833,
+    0.682,
+    1.045,
+    0.528,
+    16.012,
+    29.118,
+    1.619,
+    1.084,
+    0.81
+   ],
+   "CPLBB_KT": [
+    3.685,
+    1.259,
+    9.749,
+    5.641,
+    4.989,
+    105.174,
+    58.3,
+    3.345,
+    38.702,
+    96.315,
+    4.954
+   ],
+   "CPLBB_KT_ERR": [
+    0.75,
+    6.043,
+    1.846,
+    0.772,
+    0.993,
+    17.369,
+    15.783,
+    0.058,
+    16.371,
+    0.0,
+    1.666
+   ],
    "order": "[BLOCK -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
   },
   "aic_winners": {
-   "BEST_AIC_MODEL": ["Band+BB", "CPL", "CPL", "CPL+BB", "Band+BB", "Band+BB", "CPL+BB", "Band+BB", "CPL", "Band+BB", "CPL"],
-   "BEST_BIC_MODEL": ["SBPL", "CPL", "CPL", "CPL+BB", "Band+BB", "SBPL", "SBPL", "SBPL", "CPL", "CPL", "CPL"],
-   "margin_over_next_VALID_model": [4.44, 1.70, 1.16, 27.72, 11.25, 7.93, 0.53, 0.83, 1.28, 0.51, 3.26],
+   "BEST_AIC_MODEL": [
+    "Band+BB",
+    "CPL",
+    "CPL",
+    "CPL+BB",
+    "Band+BB",
+    "Band+BB",
+    "CPL+BB",
+    "Band+BB",
+    "CPL",
+    "Band+BB",
+    "CPL"
+   ],
+   "BEST_BIC_MODEL": [
+    "SBPL",
+    "CPL",
+    "CPL",
+    "CPL+BB",
+    "Band+BB",
+    "SBPL",
+    "SBPL",
+    "SBPL",
+    "CPL",
+    "CPL",
+    "CPL"
+   ],
+   "margin_over_next_VALID_model": [
+    4.44,
+    1.7,
+    1.16,
+    27.72,
+    11.25,
+    7.93,
+    0.53,
+    0.83,
+    1.28,
+    0.51,
+    3.26
+   ],
    "verdict": "Only TWO rows clear the framework-locked dAIC >= 10 bar: BLOCK 2 (CPL+BB over CPL by 27.72) and BLOCK 3 (Band+BB over CPL+BB by 11.25). AIC and BIC disagree in 6 of 11 rows. CRITICAL CAVEAT: at BLOCK 2 the margin is a FORCED CHOICE - BAND, BANDBB, SBPL and DSBPL are ALL flagged VALID=False there, leaving only CPL and CPL+BB in contention, because BAND_EP and SBPL_EBREAK both rail at exactly 5000.0 keV. The same is true at BLOCK 1. At BLOCK 3, BAND, DSBPL and SBPL are invalid for the same reason."
   },
-  "band_Ep_evolution_keV": [2722.632, 2294.007, 5000.0, 5000.0, 5000.0, 1694.036, 815.512, 789.023, 927.512, 40.556, 149.093],
+  "band_Ep_evolution_keV": [
+   2722.632,
+   2294.007,
+   5000.0,
+   5000.0,
+   5000.0,
+   1694.036,
+   815.512,
+   789.023,
+   927.512,
+   40.556,
+   149.093
+  ],
   "engine_health_flags_in_the_archive": [
    "BAND_EP = EXACTLY 5000.000 keV in BLOCKS 1, 2 and 3 -> the pre-L9 5-MeV Ep cap, railed. BAND_VALID = False in all three. This is the SAME failure that made bn110721200's blk0 falsely INCONCLUSIVE (L9).",
    "SBPL_EBREAK = 5000.0 / 5000.0 / 4999.728 keV in BLOCKS 1, 2, 3 and 4994.885 / 4999.990 in BLOCKS 8, 9 - the same cap, on a second model, in five rows.",
@@ -161,5 +379,7 @@
    "Suvorov Table p.32: '130310A | 0.9 +/- 0.32 | 4.45 +/- 0.8 | ~2.15 | Debated spectra (Qin et al., 2021); Magnetar flare? QPOs'",
    "Greiner p.3: 'For 3 further GRBs (100225A, 110426A and 130310A), the original error boxes were much larger than the FOV of GROND ... This didn't happen for those three GRBs'; log p.21: '130310A1 | L | 0312-06:57:18 | 125256 | n' (no detection)"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -26,16 +26,62 @@
   "significant_bb_blocks_bandbb": 0,
   "significant_bb_blocks_cplbb": 0,
   "significant_bb_blocks_union": 0,
-  "bandbb_kt_values_all_blocks": [4.6, 8.45, 4.41, 5.3, 6.61, 19.53, 5.3],
-  "cplbb_kt_values_all_blocks": [26.38, 29.56, 4.33, 4.46, 1.0, 19.32, 26.54],
+  "bandbb_kt_values_all_blocks": [
+   4.6,
+   8.45,
+   4.41,
+   5.3,
+   6.61,
+   19.53,
+   5.3
+  ],
+  "cplbb_kt_values_all_blocks": [
+   26.38,
+   29.56,
+   4.33,
+   4.46,
+   1.0,
+   19.32,
+   26.54
+  ],
   "kt_note": "kT lists ordered blk-1,0,1,2,3,4,5; none attached to a passing LRT; CPLBB_KT=1.0 at blk3 is at/near the fit floor (railed, not physical)",
-  "max_LRT_BANDBB_BAND": {"block": 4, "value": 4.07, "kt": 19.53},
-  "max_LRT_CPLBB_CPL": {"block": -1, "value": 8.13, "kt": 26.38},
-  "LRT_CPLBB_CPL_runners": {"blk-1": 8.13, "blk0": 7.62, "blk4": 3.06},
-  "aic_winners": {"Band": 3, "CPL": 4},
-  "aic_winner_by_block": {"blk-1": "Band", "blk0": "Band", "blk1": "CPL", "blk2": "Band", "blk3": "CPL", "blk4": "CPL", "blk5": "CPL"},
-  "bic_winners": {"Band": 2, "CPL": 5},
-  "time_integrated_band": {"alpha": -0.822, "ep_keV": 160.25, "beta": -2.477},
+  "max_LRT_BANDBB_BAND": {
+   "block": 4,
+   "value": 4.07,
+   "kt": 19.53
+  },
+  "max_LRT_CPLBB_CPL": {
+   "block": -1,
+   "value": 8.13,
+   "kt": 26.38
+  },
+  "LRT_CPLBB_CPL_runners": {
+   "blk-1": 8.13,
+   "blk0": 7.62,
+   "blk4": 3.06
+  },
+  "aic_winners": {
+   "Band": 3,
+   "CPL": 4
+  },
+  "aic_winner_by_block": {
+   "blk-1": "Band",
+   "blk0": "Band",
+   "blk1": "CPL",
+   "blk2": "Band",
+   "blk3": "CPL",
+   "blk4": "CPL",
+   "blk5": "CPL"
+  },
+  "bic_winners": {
+   "Band": 2,
+   "CPL": 5
+  },
+  "time_integrated_band": {
+   "alpha": -0.822,
+   "ep_keV": 160.25,
+   "beta": -2.477
+  },
   "LRT_DSBPL_SBPL_max": 2.92,
   "dsbpl_valid_blocks": 3
  },
@@ -64,5 +110,7 @@
   "Atteia2017": [
    "p5: 'The largest differences reach 30% for GRB 081222 (Eiso = 2.4e53 erg for Fermi/GBM vs Eiso = 1.7e53 erg for Konus-Wind)' - the biggest GBM/KW spread in their sample; multi-instrument consensus Eiso ~ (2.0+/-0.4)e53 erg"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -1,101 +1,207 @@
 {
-  "burst": "bn111009282",
-  "grb_name": "GRB 111009A",
-  "tally": null,
-  "tally_note": "campaign doc-layer worker, not a numbered walkthrough burst; no tally assigned (same convention as bn100614498)",
-  "frozen_utc": "2026-08-12 — frozen at the close of Steps 0/0b/1, BEFORE any new fit output was opened. results/sweep106/ was NEVER read (blind fits in flight). The only fit numbers below come from the ARCHIVAL human-final era (results/clean_per_burst_human_final/bn111009282/spectral_fits.ecsv, an earlier binning/engine generation) plus public catalogs and refereed papers.",
-  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
-  "frozen_before_any_new_fit_output": true,
-
-  "external_frame": {
-    "circulars": "ZERO (tcat GCN_FLAG='No'; gcn archive 404 + search totalItems=0). No redshift, no afterglow, no follow-up of any kind.",
-    "identity": "GRB 111009A = bn111009282, trigger MET 339835542.17305 = 2011-10-09 06:45:40.17 UT; RA 183.04 Dec -56.82, GBM stat. error 1.08 deg. Only GRB catalogued that day (T1 clear).",
-    "catalog_durations": "bcat v02 / von Kienlin+2014: T90 = 20.7364 +/- 4.22133 s from T0-0.256046 s (50-300 keV, dets n0+n1); T50 = 6.14410 +/- 1.44818 s from T0+3.07202 s; fluence(10-1000) = 1.20325e-05 +/- 5.13e-08 erg/cm2; PF64 = 19.7039 at T0+6.464 s.",
-    "catalog_spectra": "scat v01, interval T0-1.024 -> T0+44.032 s (2.2x T90), dets BGO_00+NAI_00+NAI_01+NAI_03: Band Ep = 117.10 +5.34/-5.96 keV, alpha = -1.0329 +/- 0.037, beta = -2.2861 +0.083/-0.067, redchi2 1.3039 (481); Comp Ep = 142.47, index = -1.1332, redchi2 1.3233 (482); SBPL Ebreak = 84.04 (brkscale 0.3 fixed), lambda1 = -1.2063, lambda2 = -2.3439, redchi2 1.3041 (481) — Band and SBPL statistically TIED; PL redchi2 1.8557 (483), rejected. Peak slice T0+6.144 -> +7.168 s: Band Ep = 122.40, alpha = -0.7131, beta = -2.6585.",
-    "literature": "Lu+2018 (2018ApJ...865..153L) 9-bin RMFIT Band sequence T0-0.64 -> T0+20.16 s with Ep 207.6 -> 53.9 keV, class H (hard-to-soft), k_E = -0.83 +/- 0.15, tau-hat_31 = 0.95 +/- 0.14 s, W = 6.97 s, Kocevski pulse tm = 7.32 +/- 0.09 s, r = 2.50, d = 21.68. Shao+2017 (2017ApJ...844..126S) single-pulse sample: tau = 27.8 +/- 6.5 s (1-keV extrapolation), omega = 5.177 s, gamma = 0.105, dt_HR = 3.317 +/- 0.207 s (near-extreme of their 50-burst sample), their detector = n1 alone.",
-    "bgo_flag": "von Kienlin+2014 does NOT flag this burst as having significant BGO emission (footnote-a italics convention; our row is roman CMR9 while six other rows on the same page are italic CMTI9). The scat catalog nonetheless INCLUDES BGO_00 in the joint fit — inclusion is not detection.",
-    "our_stamped_window": "SRC (-1.6, +20.5) s, dets n0,n1,b0, APPROVED_BY 'Vikas Chand' 2026-07-19T22:18:36Z human_gui (results/background_intervals.ecsv lines 108-110). The window FULLY CONTAINS the catalog T90 span (-0.256 -> +20.480 s): no D4 pathology on this burst."
+ "burst": "bn111009282",
+ "grb_name": "GRB 111009A",
+ "tally": null,
+ "tally_note": "campaign doc-layer worker, not a numbered walkthrough burst; no tally assigned (same convention as bn100614498)",
+ "frozen_utc": "2026-08-12 \u2014 frozen at the close of Steps 0/0b/1, BEFORE any new fit output was opened. results/sweep106/ was NEVER read (blind fits in flight). The only fit numbers below come from the ARCHIVAL human-final era (results/clean_per_burst_human_final/bn111009282/spectral_fits.ecsv, an earlier binning/engine generation) plus public catalogs and refereed papers.",
+ "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
+ "frozen_before_any_new_fit_output": true,
+ "external_frame": {
+  "circulars": "ZERO (tcat GCN_FLAG='No'; gcn archive 404 + search totalItems=0). No redshift, no afterglow, no follow-up of any kind.",
+  "identity": "GRB 111009A = bn111009282, trigger MET 339835542.17305 = 2011-10-09 06:45:40.17 UT; RA 183.04 Dec -56.82, GBM stat. error 1.08 deg. Only GRB catalogued that day (T1 clear).",
+  "catalog_durations": "bcat v02 / von Kienlin+2014: T90 = 20.7364 +/- 4.22133 s from T0-0.256046 s (50-300 keV, dets n0+n1); T50 = 6.14410 +/- 1.44818 s from T0+3.07202 s; fluence(10-1000) = 1.20325e-05 +/- 5.13e-08 erg/cm2; PF64 = 19.7039 at T0+6.464 s.",
+  "catalog_spectra": "scat v01, interval T0-1.024 -> T0+44.032 s (2.2x T90), dets BGO_00+NAI_00+NAI_01+NAI_03: Band Ep = 117.10 +5.34/-5.96 keV, alpha = -1.0329 +/- 0.037, beta = -2.2861 +0.083/-0.067, redchi2 1.3039 (481); Comp Ep = 142.47, index = -1.1332, redchi2 1.3233 (482); SBPL Ebreak = 84.04 (brkscale 0.3 fixed), lambda1 = -1.2063, lambda2 = -2.3439, redchi2 1.3041 (481) \u2014 Band and SBPL statistically TIED; PL redchi2 1.8557 (483), rejected. Peak slice T0+6.144 -> +7.168 s: Band Ep = 122.40, alpha = -0.7131, beta = -2.6585.",
+  "literature": "Lu+2018 (2018ApJ...865..153L) 9-bin RMFIT Band sequence T0-0.64 -> T0+20.16 s with Ep 207.6 -> 53.9 keV, class H (hard-to-soft), k_E = -0.83 +/- 0.15, tau-hat_31 = 0.95 +/- 0.14 s, W = 6.97 s, Kocevski pulse tm = 7.32 +/- 0.09 s, r = 2.50, d = 21.68. Shao+2017 (2017ApJ...844..126S) single-pulse sample: tau = 27.8 +/- 6.5 s (1-keV extrapolation), omega = 5.177 s, gamma = 0.105, dt_HR = 3.317 +/- 0.207 s (near-extreme of their 50-burst sample), their detector = n1 alone.",
+  "bgo_flag": "von Kienlin+2014 does NOT flag this burst as having significant BGO emission (footnote-a italics convention; our row is roman CMR9 while six other rows on the same page are italic CMTI9). The scat catalog nonetheless INCLUDES BGO_00 in the joint fit \u2014 inclusion is not detection.",
+  "our_stamped_window": "SRC (-1.6, +20.5) s, dets n0,n1,b0, APPROVED_BY 'Vikas Chand' 2026-07-19T22:18:36Z human_gui (results/background_intervals.ecsv lines 108-110). The window FULLY CONTAINS the catalog T90 span (-0.256 -> +20.480 s): no D4 pathology on this burst."
+ },
+ "archival_prior": {
+  "source": "results/clean_per_burst_human_final/bn111009282/spectral_fits.ecsv (EXISTS; 8 rows)",
+  "layout": "blk-1 = time-integrated [-0.425, +18.739] s, then blk0..blk6 time-resolved with edges -0.425 / 3.908 / 5.490 / 8.975 / 10.550 / 12.485 / 16.483 / 18.739 s",
+  "plugin_dets": "n0,n1,b0 in every block",
+  "caveat": "this is an EARLIER binning generation. The current on-disk blocks (results/clean_blocks/bb_blocks_spectral_bn111009282.ecsv) have 9 intervals with different edges (-0.396 / 0.244 / 3.956 / 5.492 / 8.948 / 10.228 / 11.380 / 12.532 / 15.476 / 18.164 s). Block-index-to-block-index comparison against the new run is NOT valid; compare by time span.",
+  "union_rule": {
+   "criterion": "(LRT_BANDBB_BAND >= 9.2 AND kT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND kT > 1.05) \u2014 both nested tests, union",
+   "n_blocks_passing": 1,
+   "passing_blocks": [
+    {
+     "block": 2,
+     "span_s": [
+      5.49,
+      8.975
+     ],
+     "which_pair": "CPL+BB only",
+     "LRT_CPLBB_CPL": 10.957,
+     "CPLBB_KT_keV": 11.1748,
+     "LRT_BANDBB_BAND": 4.545,
+     "BANDBB_KT_keV": 8.7611,
+     "note": "this is also the highest-significance block of the burst (BB-block significance 51.3 sigma on n0) and the only block whose AIC winner is Band+BB"
+    }
+   ],
+   "kt_values_of_passing_blocks": [
+    11.1748
+   ],
+   "band_side_never_fires": "max LRT_BANDBB_BAND over all 8 rows = 4.800 (blk1). The Band+BB nested test NEVER reaches 9.2 anywhere in this burst.",
+   "cpl_side_full_list": {
+    "blk-1": 8.556,
+    "blk0": 2.408,
+    "blk1": 4.033,
+    "blk2": 10.957,
+    "blk3": 0.304,
+    "blk4": 4.401,
+    "blk5": 3.224,
+    "blk6": 6.163
+   },
+   "T8_baseline_note": "the BB verdict here is entirely baseline-dependent \u2014 the SAME block 2 gives 4.5 against Band and 11.0 against CPL. Any margin quoted for this burst must name its baseline."
   },
-
-  "archival_prior": {
-    "source": "results/clean_per_burst_human_final/bn111009282/spectral_fits.ecsv (EXISTS; 8 rows)",
-    "layout": "blk-1 = time-integrated [-0.425, +18.739] s, then blk0..blk6 time-resolved with edges -0.425 / 3.908 / 5.490 / 8.975 / 10.550 / 12.485 / 16.483 / 18.739 s",
-    "plugin_dets": "n0,n1,b0 in every block",
-    "caveat": "this is an EARLIER binning generation. The current on-disk blocks (results/clean_blocks/bb_blocks_spectral_bn111009282.ecsv) have 9 intervals with different edges (-0.396 / 0.244 / 3.956 / 5.492 / 8.948 / 10.228 / 11.380 / 12.532 / 15.476 / 18.164 s). Block-index-to-block-index comparison against the new run is NOT valid; compare by time span.",
-    "union_rule": {
-      "criterion": "(LRT_BANDBB_BAND >= 9.2 AND kT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND kT > 1.05) — both nested tests, union",
-      "n_blocks_passing": 1,
-      "passing_blocks": [
-        {"block": 2, "span_s": [5.490, 8.975], "which_pair": "CPL+BB only", "LRT_CPLBB_CPL": 10.957, "CPLBB_KT_keV": 11.1748, "LRT_BANDBB_BAND": 4.545, "BANDBB_KT_keV": 8.7611, "note": "this is also the highest-significance block of the burst (BB-block significance 51.3 sigma on n0) and the only block whose AIC winner is Band+BB"}
-      ],
-      "kt_values_of_passing_blocks": [11.1748],
-      "band_side_never_fires": "max LRT_BANDBB_BAND over all 8 rows = 4.800 (blk1). The Band+BB nested test NEVER reaches 9.2 anywhere in this burst.",
-      "cpl_side_full_list": {"blk-1": 8.556, "blk0": 2.408, "blk1": 4.033, "blk2": 10.957, "blk3": 0.304, "blk4": 4.401, "blk5": 3.224, "blk6": 6.163},
-      "T8_baseline_note": "the BB verdict here is entirely baseline-dependent — the SAME block 2 gives 4.5 against Band and 11.0 against CPL. Any margin quoted for this burst must name its baseline."
-    },
-    "aic_winners": {"Band": 5, "Band+BB": 1, "CPL": 1, "SBPL": 1},
-    "bic_winners": {"Band": 5, "CPL": 3},
-    "time_integrated_band": {"block": -1, "span_s": [-0.425, 18.739], "alpha": -0.877, "Ep_keV": 112.58, "Ep_curve_keV": 111.66, "beta": -2.519, "AIC": 4765.08, "AIC_CPL": 4785.04, "dAIC_CPL_minus_Band": 19.96},
-    "Ep_track_by_block": [
-      {"block": 0, "span_s": [-0.425, 3.908], "band_ep": 182.44, "epk_curve": 181.70},
-      {"block": 1, "span_s": [3.908, 5.490], "band_ep": 130.22, "epk_curve": 129.87},
-      {"block": 2, "span_s": [5.490, 8.975], "band_ep": 112.37, "epk_curve": 111.66},
-      {"block": 3, "span_s": [8.975, 10.550], "band_ep": 97.89, "epk_curve": 97.62},
-      {"block": 4, "span_s": [10.550, 12.485], "band_ep": 67.09, "epk_curve": 67.47},
-      {"block": 5, "span_s": [12.485, 16.483], "band_ep": 59.57, "epk_curve": 59.99},
-      {"block": 6, "span_s": [16.483, 18.739], "band_ep": 44.44, "epk_curve": 44.35}
+  "aic_winners": {
+   "Band": 5,
+   "Band+BB": 1,
+   "CPL": 1,
+   "SBPL": 1
+  },
+  "bic_winners": {
+   "Band": 5,
+   "CPL": 3
+  },
+  "time_integrated_band": {
+   "block": -1,
+   "span_s": [
+    -0.425,
+    18.739
+   ],
+   "alpha": -0.877,
+   "Ep_keV": 112.58,
+   "Ep_curve_keV": 111.66,
+   "beta": -2.519,
+   "AIC": 4765.08,
+   "AIC_CPL": 4785.04,
+   "dAIC_CPL_minus_Band": 19.96
+  },
+  "Ep_track_by_block": [
+   {
+    "block": 0,
+    "span_s": [
+     -0.425,
+     3.908
     ],
-    "two_break": {
-      "LRT_DSBPL_SBPL_max": 3.760,
-      "where": "blk2",
-      "full_list": {"blk-1": 3.375, "blk0": 2.326, "blk1": 1.071, "blk2": 3.760, "blk3": 0.411, "blk4": 0.166, "blk5": 3.411, "blk6": 0.262},
-      "dsbpl_valid_blocks": "4 of 8 (blk-1, blk2, blk3, blk4); DSBPL_VALID=False in blk0, blk1, blk5, blk6 where xb rails to 589 / 890 keV or xb > xp"
-    },
-    "frame_note": "our CPL_XC is the astromodels Cutoff_powerlaw e-folding energy: Ep = (2+index)*xc. Verified on blk-1: (2-0.959)*122.28 = 127.3 keV vs the table's CPL_EPK_CURVE = 127.71. NEVER diff xc against a catalog Epeak."
-  },
-
-  "predictions": [
-    "P-A (BB census, falsifiable). The union rule will fire in AT MOST 2 blocks of the new run, and wherever it fires it will be the CPL+BB side (LRT_CPLBB_CPL >= 9.2), NOT the Band+BB side, with kT in the 6-25 keV band — i.e. the HIGH-kT 'shoulder that Band's beta absorbs but CPL cannot' class, not the L28 edge-constrained (<~5 keV) class. Archival prior: 1/8 blocks (blk2, 5.49-8.98 s, LRT_CPLBB_CPL = 10.96, kT = 11.17); max Band-side LRT anywhere = 4.80. FALSIFIED if LRT_BANDBB_BAND >= 9.2 in any block, or if a passing block returns kT < 5 keV, or if >= 3 blocks pass.",
-    "P-A2 (BB is localized to the pulse peak, falsifiable). If the union rule fires at all, it will fire in the block(s) overlapping T0+5.5 to T0+9.0 s — the burst's brightest interval (BB-block significance 51.3 sigma on n0, catalog PF64 at T0+6.46 s, Lu+2018 pulse peak tm = 7.32 s). FALSIFIED if the only passing block lies entirely outside [4.5, 10.5] s.",
-    "P-B (time-integrated shape, falsifiable numbers). Over our stamped window (-1.6, +20.5) s with n0+n1+b0, the AIC winner will be a single-peak curved family (Band or SBPL, not CPL, not a +BB model) and the Band parameters will be alpha = -0.88 +/- 0.10, Ep = 113 +/- 15 keV, beta = -2.5 +/- 0.3. Anchors: archival blk-1 (alpha -0.877, Ep 112.6, beta -2.519) and catalog flnc Band (alpha -1.033, Ep 117.1, beta -2.286 over the WIDER 45-s interval). FALSIFIED if Ep falls outside [98, 128] keV, or alpha outside [-0.98, -0.78], or if CPL beats Band by dAIC >= 10 window-integrated.",
-    "P-B2 (a real high-energy tail exists window-integrated, falsifiable). Band will beat CPL by dAIC >= 10 in the time-integrated fit (archival dAIC = 19.96; catalog PL is rejected at redchi2 1.86 vs Band 1.30). BUT in individual short blocks the Band-over-CPL preference will be weak or absent: at least 2 resolved blocks will have CPL within dAIC 2 of Band, or CPL winning outright. Physical reason recorded in advance: von Kienlin+2014 does not credit this burst with significant BGO emission, so beta is carried by the NaI 200-900 keV band and degrades fast when the exposure is cut up.",
-    "P-C (hard-to-soft, falsifiable). The per-block Band Ep sequence will decrease MONOTONICALLY from the first to the last block, spanning roughly 180 keV -> 45 keV, and a fit of log Ep vs log(t + t0) will give a slope in [-1.3, -0.5], consistent with Lu+2018's k_E = -0.83 +/- 0.15 and their class 'H'. FALSIFIED if any block's Ep exceeds the preceding block's by more than 1 sigma, or if the fitted slope falls outside that interval. NOTE the binning dependence: Lu+2018's finer bins show a local dip (72.9 keV at 6.49-7.29 s, then back to 91.3 keV) that our coarser blocks are expected to average away — a re-appearance of that dip in our blocks would be an interesting, NOT a falsifying, result.",
-    "P-D (two-break, falsifiable). No block will reach LRT_DSBPL_SBPL >= 9.2 and DSBPL will not win by dAIC >= 10 anywhere; bn111009282 will NOT enter the two-break census. Archival max = 3.76 (blk2), and DSBPL_VALID fails in half the blocks with xb railing to 589-890 keV. A DSBPL win would therefore be a genuine unpublished-decision finding and must first survive the L8 default-seed restart check.",
-    "P-E (temporal, falsifiable). T90(50-300 keV) will reproduce 20.7 +/- 4.2 s; a single FRED-like pulse peaking at T0+7.3 +/- 0.5 s with a decay-to-rise asymmetry near d/r ~ 8.7 (Lu+2018 r = 2.50, d = 21.68); a POSITIVE spectral lag of order 1 s between 100-300 keV and 25-50 keV (Lu+2018 tau-hat_31 = 0.95 +/- 0.14 s, sign convention: high energy leads). FALSIFIED by a negative or consistent-with-zero lag in that band pair, or by a symmetric or multi-peaked pulse.",
-    "P-F (frame trap, procedural — not falsifiable, binding). Before any number is called a discrepancy: (i) re-align the interval — catalog flnc is T0-1.024 -> +44.032 s (2.2x T90) vs our -1.6 -> +20.5 s, which alone explains an alpha shift of ~0.15 and an Ep shift of ~5-10 keV; (ii) re-align the detector set — catalog scat used n0,n1,n3,b0, we use n0,n1,b0 because n3 sits at 51.83 deg, outside the project's <=50 deg NaI rule; (iii) convert conventions — our CPL_XC is an e-folding energy (Ep = (2+index)*xc), catalog SBPL PARAM3 is a BREAK energy not a nuFnu peak; (iv) never average Shao+2017's tau (27.8 s, 1-keV extrapolation) with Lu+2018's tau-hat_31 (0.95 s, measured band pair)."
+    "band_ep": 182.44,
+    "epk_curve": 181.7
+   },
+   {
+    "block": 1,
+    "span_s": [
+     3.908,
+     5.49
+    ],
+    "band_ep": 130.22,
+    "epk_curve": 129.87
+   },
+   {
+    "block": 2,
+    "span_s": [
+     5.49,
+     8.975
+    ],
+    "band_ep": 112.37,
+    "epk_curve": 111.66
+   },
+   {
+    "block": 3,
+    "span_s": [
+     8.975,
+     10.55
+    ],
+    "band_ep": 97.89,
+    "epk_curve": 97.62
+   },
+   {
+    "block": 4,
+    "span_s": [
+     10.55,
+     12.485
+    ],
+    "band_ep": 67.09,
+    "epk_curve": 67.47
+   },
+   {
+    "block": 5,
+    "span_s": [
+     12.485,
+     16.483
+    ],
+    "band_ep": 59.57,
+    "epk_curve": 59.99
+   },
+   {
+    "block": 6,
+    "span_s": [
+     16.483,
+     18.739
+    ],
+    "band_ep": 44.44,
+    "epk_curve": 44.35
+   }
   ],
-
-  "blind_first_hygiene": {
-    "prior_leakage_risk": "MODERATE-HIGH for the temporal step: two published papers agree this burst is hard-to-soft with an unusually long lag (Shao+2017 dt_HR = 3.32 s is near the top of a 50-burst sample). The fit and the lag measurement must be run before these numbers are consulted; they are frozen here precisely so the comparison is auditable.",
-    "prior_leakage_risk_spectral": "LOW. No published time-resolved BB/photosphere claim, no two-break claim, no redshift, no interpretive agenda of any kind exists for this burst. The literature wants nothing from this spectrum."
+  "two_break": {
+   "LRT_DSBPL_SBPL_max": 3.76,
+   "where": "blk2",
+   "full_list": {
+    "blk-1": 3.375,
+    "blk0": 2.326,
+    "blk1": 1.071,
+    "blk2": 3.76,
+    "blk3": 0.411,
+    "blk4": 0.166,
+    "blk5": 3.411,
+    "blk6": 0.262
+   },
+   "dsbpl_valid_blocks": "4 of 8 (blk-1, blk2, blk3, blk4); DSBPL_VALID=False in blk0, blk1, blk5, blk6 where xb rails to 589 / 890 keV or xb > xp"
   },
-
-  "harvest_snippets": {
-    "vonKienlin2014": [
-      "bn111009282 GRB 111009A 06:45:40.1731 183.0 -56.8 1.1 Fermi-GBM 10 512 47-291 K, IA, S, Me",
-      "bn111009282 0+1 20.736 ± 4.221 -0.256 6.144 ± 1.448 3.072",
-      "bn111009282 1.20E-05 ± 5.13E-08 19.70 ± 1.71 17.91 ± 0.84 16.86 ± 0.40",
-      "footnote a: 'Bursts with Trigger ID and GRB Name in italics have significant emission in at least one BGO detector' — our row is NOT italic"
-    ],
-    "Lu2018": [
-      "GRB 111009A -111009282 | -0.64 -4.32 | 0.02 ± 0.00 | 207.55 ± 54.58 | -0.95 ± 0.11 | -1.89 ± 0.23 | 8.80E-07 ± 6.06E-08 | 1.16",
-      "12.69 -20.16 | 0.03 ± 0.03 | 53.92 ± 10.10 | -0.66 ± 0.36 | -2.46 ± 0.33 | 1.76E-07 ± 2.34E-08 | 0.94",
-      "bn111009282 NaI 101.88 ± 1.99 7.32 ± 0.09 2.50 ± 0.11 21.68 ± 8.14 1.29 1.30",
-      "bn111009282 H 0.95 ± 0.14 6.97 1.33 ± 0.22 -0.83 ± 0.15",
-      "bn111009282 (0.0-20.0): ① 0.37 ± 0.12  ② 0.87 ± 0.13  ③ 1.33 ± 0.15  ⑤ 1.81 ± 0.27"
-    ],
-    "Shao2017": [
-      "111009282 20.74±4.22 1.04 -17.923+6.918/−1.835 27.799+6.463/−6.463 0.024+0.215/−0.007 5.177+0.686/−0.496 0.105+0.034/−0.027 n1 3.317±0.207"
-    ],
-    "Hurley2017_IPN": [
-      "2011 Oct 09 06:45:40   GRB111009282   INT,Kon,MES,Swi   e",
-      "table6: bn111009282 180.255 -62.152 ... a_GBM=595 deg2, a_IPN=8.230 deg2, ratio 72.3"
-    ],
-    "GBM_catalog_scat_flnc_band_v01": [
-      "interval -1.024..44.032 s, dets BGO_00/NAI_00/NAI_01/NAI_03: Ep = 117.10 +5.34/-5.96 keV, alpha = -1.0329 +0.0367/-0.0368, beta = -2.2861 +0.0825/-0.0666, REDCHSQ 1.3039 / 481 dof"
-    ],
-    "GCN_circulars": [
-      "absent — tcat GCN_FLAG='No'; 111009.gcn3 and 111009A.gcn3 both HTTP 404; gcn.nasa.gov archive search totalItems=0 for 111009A / 111009282 / 111009"
-    ]
-  }
+  "frame_note": "our CPL_XC is the astromodels Cutoff_powerlaw e-folding energy: Ep = (2+index)*xc. Verified on blk-1: (2-0.959)*122.28 = 127.3 keV vs the table's CPL_EPK_CURVE = 127.71. NEVER diff xc against a catalog Epeak."
+ },
+ "predictions": [
+  "P-A (BB census, falsifiable). The union rule will fire in AT MOST 2 blocks of the new run, and wherever it fires it will be the CPL+BB side (LRT_CPLBB_CPL >= 9.2), NOT the Band+BB side, with kT in the 6-25 keV band \u2014 i.e. the HIGH-kT 'shoulder that Band's beta absorbs but CPL cannot' class, not the L28 edge-constrained (<~5 keV) class. Archival prior: 1/8 blocks (blk2, 5.49-8.98 s, LRT_CPLBB_CPL = 10.96, kT = 11.17); max Band-side LRT anywhere = 4.80. FALSIFIED if LRT_BANDBB_BAND >= 9.2 in any block, or if a passing block returns kT < 5 keV, or if >= 3 blocks pass.",
+  "P-A2 (BB is localized to the pulse peak, falsifiable). If the union rule fires at all, it will fire in the block(s) overlapping T0+5.5 to T0+9.0 s \u2014 the burst's brightest interval (BB-block significance 51.3 sigma on n0, catalog PF64 at T0+6.46 s, Lu+2018 pulse peak tm = 7.32 s). FALSIFIED if the only passing block lies entirely outside [4.5, 10.5] s.",
+  "P-B (time-integrated shape, falsifiable numbers). Over our stamped window (-1.6, +20.5) s with n0+n1+b0, the AIC winner will be a single-peak curved family (Band or SBPL, not CPL, not a +BB model) and the Band parameters will be alpha = -0.88 +/- 0.10, Ep = 113 +/- 15 keV, beta = -2.5 +/- 0.3. Anchors: archival blk-1 (alpha -0.877, Ep 112.6, beta -2.519) and catalog flnc Band (alpha -1.033, Ep 117.1, beta -2.286 over the WIDER 45-s interval). FALSIFIED if Ep falls outside [98, 128] keV, or alpha outside [-0.98, -0.78], or if CPL beats Band by dAIC >= 10 window-integrated.",
+  "P-B2 (a real high-energy tail exists window-integrated, falsifiable). Band will beat CPL by dAIC >= 10 in the time-integrated fit (archival dAIC = 19.96; catalog PL is rejected at redchi2 1.86 vs Band 1.30). BUT in individual short blocks the Band-over-CPL preference will be weak or absent: at least 2 resolved blocks will have CPL within dAIC 2 of Band, or CPL winning outright. Physical reason recorded in advance: von Kienlin+2014 does not credit this burst with significant BGO emission, so beta is carried by the NaI 200-900 keV band and degrades fast when the exposure is cut up.",
+  "P-C (hard-to-soft, falsifiable). The per-block Band Ep sequence will decrease MONOTONICALLY from the first to the last block, spanning roughly 180 keV -> 45 keV, and a fit of log Ep vs log(t + t0) will give a slope in [-1.3, -0.5], consistent with Lu+2018's k_E = -0.83 +/- 0.15 and their class 'H'. FALSIFIED if any block's Ep exceeds the preceding block's by more than 1 sigma, or if the fitted slope falls outside that interval. NOTE the binning dependence: Lu+2018's finer bins show a local dip (72.9 keV at 6.49-7.29 s, then back to 91.3 keV) that our coarser blocks are expected to average away \u2014 a re-appearance of that dip in our blocks would be an interesting, NOT a falsifying, result.",
+  "P-D (two-break, falsifiable). No block will reach LRT_DSBPL_SBPL >= 9.2 and DSBPL will not win by dAIC >= 10 anywhere; bn111009282 will NOT enter the two-break census. Archival max = 3.76 (blk2), and DSBPL_VALID fails in half the blocks with xb railing to 589-890 keV. A DSBPL win would therefore be a genuine unpublished-decision finding and must first survive the L8 default-seed restart check.",
+  "P-E (temporal, falsifiable). T90(50-300 keV) will reproduce 20.7 +/- 4.2 s; a single FRED-like pulse peaking at T0+7.3 +/- 0.5 s with a decay-to-rise asymmetry near d/r ~ 8.7 (Lu+2018 r = 2.50, d = 21.68); a POSITIVE spectral lag of order 1 s between 100-300 keV and 25-50 keV (Lu+2018 tau-hat_31 = 0.95 +/- 0.14 s, sign convention: high energy leads). FALSIFIED by a negative or consistent-with-zero lag in that band pair, or by a symmetric or multi-peaked pulse.",
+  "P-F (frame trap, procedural \u2014 not falsifiable, binding). Before any number is called a discrepancy: (i) re-align the interval \u2014 catalog flnc is T0-1.024 -> +44.032 s (2.2x T90) vs our -1.6 -> +20.5 s, which alone explains an alpha shift of ~0.15 and an Ep shift of ~5-10 keV; (ii) re-align the detector set \u2014 catalog scat used n0,n1,n3,b0, we use n0,n1,b0 because n3 sits at 51.83 deg, outside the project's <=50 deg NaI rule; (iii) convert conventions \u2014 our CPL_XC is an e-folding energy (Ep = (2+index)*xc), catalog SBPL PARAM3 is a BREAK energy not a nuFnu peak; (iv) never average Shao+2017's tau (27.8 s, 1-keV extrapolation) with Lu+2018's tau-hat_31 (0.95 s, measured band pair)."
+ ],
+ "blind_first_hygiene": {
+  "prior_leakage_risk": "MODERATE-HIGH for the temporal step: two published papers agree this burst is hard-to-soft with an unusually long lag (Shao+2017 dt_HR = 3.32 s is near the top of a 50-burst sample). The fit and the lag measurement must be run before these numbers are consulted; they are frozen here precisely so the comparison is auditable.",
+  "prior_leakage_risk_spectral": "LOW. No published time-resolved BB/photosphere claim, no two-break claim, no redshift, no interpretive agenda of any kind exists for this burst. The literature wants nothing from this spectrum."
+ },
+ "harvest_snippets": {
+  "vonKienlin2014": [
+   "bn111009282 GRB 111009A 06:45:40.1731 183.0 -56.8 1.1 Fermi-GBM 10 512 47-291 K, IA, S, Me",
+   "bn111009282 0+1 20.736 \u00b1 4.221 -0.256 6.144 \u00b1 1.448 3.072",
+   "bn111009282 1.20E-05 \u00b1 5.13E-08 19.70 \u00b1 1.71 17.91 \u00b1 0.84 16.86 \u00b1 0.40",
+   "footnote a: 'Bursts with Trigger ID and GRB Name in italics have significant emission in at least one BGO detector' \u2014 our row is NOT italic"
+  ],
+  "Lu2018": [
+   "GRB 111009A -111009282 | -0.64 -4.32 | 0.02 \u00b1 0.00 | 207.55 \u00b1 54.58 | -0.95 \u00b1 0.11 | -1.89 \u00b1 0.23 | 8.80E-07 \u00b1 6.06E-08 | 1.16",
+   "12.69 -20.16 | 0.03 \u00b1 0.03 | 53.92 \u00b1 10.10 | -0.66 \u00b1 0.36 | -2.46 \u00b1 0.33 | 1.76E-07 \u00b1 2.34E-08 | 0.94",
+   "bn111009282 NaI 101.88 \u00b1 1.99 7.32 \u00b1 0.09 2.50 \u00b1 0.11 21.68 \u00b1 8.14 1.29 1.30",
+   "bn111009282 H 0.95 \u00b1 0.14 6.97 1.33 \u00b1 0.22 -0.83 \u00b1 0.15",
+   "bn111009282 (0.0-20.0): \u2460 0.37 \u00b1 0.12  \u2461 0.87 \u00b1 0.13  \u2462 1.33 \u00b1 0.15  \u2464 1.81 \u00b1 0.27"
+  ],
+  "Shao2017": [
+   "111009282 20.74\u00b14.22 1.04 -17.923+6.918/\u22121.835 27.799+6.463/\u22126.463 0.024+0.215/\u22120.007 5.177+0.686/\u22120.496 0.105+0.034/\u22120.027 n1 3.317\u00b10.207"
+  ],
+  "Hurley2017_IPN": [
+   "2011 Oct 09 06:45:40   GRB111009282   INT,Kon,MES,Swi   e",
+   "table6: bn111009282 180.255 -62.152 ... a_GBM=595 deg2, a_IPN=8.230 deg2, ratio 72.3"
+  ],
+  "GBM_catalog_scat_flnc_band_v01": [
+   "interval -1.024..44.032 s, dets BGO_00/NAI_00/NAI_01/NAI_03: Ep = 117.10 +5.34/-5.96 keV, alpha = -1.0329 +0.0367/-0.0368, beta = -2.2861 +0.0825/-0.0666, REDCHSQ 1.3039 / 481 dof"
+  ],
+  "GCN_circulars": [
+   "absent \u2014 tcat GCN_FLAG='No'; 111009.gcn3 and 111009A.gcn3 both HTTP 404; gcn.nasa.gov archive search totalItems=0 for 111009A / 111009282 / 111009"
+  ]
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -273,5 +273,7 @@
    "results/temporal_catalog_human.ecsv: REF_DET n2, 256 ms bins, T90 = 52.23 +/- 70.67 s (error PATHOLOGICAL - do not use), T90_START 8.02, T90_STOP 60.25, T50 = 18.24, MVT = 1.63 s (TYPE = limit), lag = -4.777 +/- 0.041 s with LAG_SIG = 110.3 and LAG_ACCEPTED = True (sign convention must be read from scripts/40_temporal_survey.py before use), BEST_PULSE = kocevski, PULSE_REDCHI = 1.488, GOWRI_PHI = 2.877",
    "results/single_pulse_grbs.ecsv: CLASSIFICATION = single, SCORE = 0.998333, FAILURES = 3, DETECTOR = n1 -> the burst is in the 106-burst single-pulse sample on morphology"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -13,17 +13,68 @@
   "significant_bb_blocks_union": 2,
   "significant_bb_blocks_resolved_only": 1,
   "union_pass_detail": {
-   "blk-1": {"LRT_BANDBB_BAND": 14.13, "BANDBB_KT": 26.50, "LRT_CPLBB_CPL": 7.45, "CPLBB_KT": 5.08, "passes_via": "Band+BB arm only; note kT is continuum-dependent (T7): 26.5 keV vs Band, 5.1 keV vs CPL"},
-   "blk3": {"interval_s": [2.714, 4.729], "LRT_BANDBB_BAND": 13.35, "BANDBB_KT": 4.68, "LRT_CPLBB_CPL": 12.46, "CPLBB_KT": 4.62, "passes_via": "BOTH arms; kT ~4.6-4.7 keV (low-kT class; L25 confusable with an SBPL break at xb~3.92kT~18 keV)"}
+   "blk-1": {
+    "LRT_BANDBB_BAND": 14.13,
+    "BANDBB_KT": 26.5,
+    "LRT_CPLBB_CPL": 7.45,
+    "CPLBB_KT": 5.08,
+    "passes_via": "Band+BB arm only; note kT is continuum-dependent (T7): 26.5 keV vs Band, 5.1 keV vs CPL"
+   },
+   "blk3": {
+    "interval_s": [
+     2.714,
+     4.729
+    ],
+    "LRT_BANDBB_BAND": 13.35,
+    "BANDBB_KT": 4.68,
+    "LRT_CPLBB_CPL": 12.46,
+    "CPLBB_KT": 4.62,
+    "passes_via": "BOTH arms; kT ~4.6-4.7 keV (low-kT class; L25 confusable with an SBPL break at xb~3.92kT~18 keV)"
+   }
   },
-  "significant_bb_kt_values": [26.50, 4.68],
-  "max_LRT_BANDBB_BAND_nonpassing": {"block": 6, "value": 8.29, "kt": 4.04},
-  "aic_winners": {"Band+BB": 4, "DSBPL": 2, "Band": 1, "SBPL": 1},
-  "aic_winner_by_block": {"blk-1": "Band+BB", "blk0": "DSBPL", "blk1": "Band", "blk2": "DSBPL", "blk3": "Band+BB", "blk4": "Band+BB", "blk5": "SBPL", "blk6": "Band+BB"},
-  "bic_winners": {"CPL": 3, "Band+BB": 2, "DSBPL": 1, "Band": 1, "SBPL": 1},
-  "LRT_DSBPL_SBPL_ge_9p2": {"blk-1": 16.15, "blk2": 11.84, "blk3": 13.07},
+  "significant_bb_kt_values": [
+   26.5,
+   4.68
+  ],
+  "max_LRT_BANDBB_BAND_nonpassing": {
+   "block": 6,
+   "value": 8.29,
+   "kt": 4.04
+  },
+  "aic_winners": {
+   "Band+BB": 4,
+   "DSBPL": 2,
+   "Band": 1,
+   "SBPL": 1
+  },
+  "aic_winner_by_block": {
+   "blk-1": "Band+BB",
+   "blk0": "DSBPL",
+   "blk1": "Band",
+   "blk2": "DSBPL",
+   "blk3": "Band+BB",
+   "blk4": "Band+BB",
+   "blk5": "SBPL",
+   "blk6": "Band+BB"
+  },
+  "bic_winners": {
+   "CPL": 3,
+   "Band+BB": 2,
+   "DSBPL": 1,
+   "Band": 1,
+   "SBPL": 1
+  },
+  "LRT_DSBPL_SBPL_ge_9p2": {
+   "blk-1": 16.15,
+   "blk2": 11.84,
+   "blk3": 13.07
+  },
   "dsbpl_valid_in_those_blocks": true,
-  "time_integrated_band": {"alpha": -0.569, "ep_keV": 95.76, "beta": -3.863},
+  "time_integrated_band": {
+   "alpha": -0.569,
+   "ep_keV": 95.76,
+   "beta": -3.863
+  },
   "caveat": "archival two-break and BB counts are LOWER LIMITS (L8 seed artifact, L9 Ep caps) - the L18-L28 engine may find MORE, not fewer"
  },
  "predictions": [
@@ -57,5 +108,7 @@
   "GCN": [
    "absent - zero circulars (classic archive 404 + new-site search totalItems=0); GBM-only burst, no redshift, no follow-up"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

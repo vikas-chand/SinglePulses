@@ -15,18 +15,85 @@
   "criterion": "UNION rule: (LRT_BANDBB_BAND >= 9.2 & BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 & CPLBB_KT > 1.05) - BOTH nested tests counted",
   "significant_bb_blocks_union": 3,
   "significant_bb_blocks_resolved_only": 2,
-  "bandbb_arm_pass": [{"block": -1, "LRT": 24.9, "kT": 4.114, "kT_err": 0.175}],
-  "cplbb_arm_pass": [
-   {"block": 17, "t": [46.78, 47.04], "LRT": 12.303, "kT": 24.583, "kT_err": 2.46, "note": "high-kT class; same block's BANDBB kT=4.98 with LRT 4.53 - the two arms disagree on the component's identity"},
-   {"block": 18, "t": [47.04, 47.75], "LRT": 38.482, "kT": 3.989, "kT_err": 1.181, "note": "BANDBB arm LRT 6.99, kT 4.21+/-0.46"}
+  "bandbb_arm_pass": [
+   {
+    "block": -1,
+    "LRT": 24.9,
+    "kT": 4.114,
+    "kT_err": 0.175
+   }
   ],
-  "near_misses": {"blk23_cpl": 9.19, "blk25_band": 8.85, "blk13_band": 8.34, "blk27_cpl": 8.01, "blk27_band": 7.93, "blk12_band": 7.41},
-  "significant_bb_kt_values": [4.114, 24.583, 3.989],
-  "aic_winners": {"CPL": 14, "Band+BB": 6, "Band": 6, "CPL+BB": 5, "SBPL": 3, "DSBPL": 1},
-  "bic_winners": {"CPL": 28, "Band": 3, "SBPL": 2, "Band+BB": 1, "CPL+BB": 1},
-  "time_integrated_band": {"alpha": -1.37, "ep_keV": 212.98, "beta": -2.424},
-  "time_integrated_bandbb": {"alpha": -1.127, "ep_keV": 164.83, "beta": -2.226, "kT_keV": 4.114, "aic_margin_vs_band": 20.9, "aic_margin_vs_sbpl": 20.2},
-  "LRT_DSBPL_SBPL_ge_9p2": {"blk12": 11.1, "blk23": 9.62, "blk29": 9.2, "blk31": 10.93},
+  "cplbb_arm_pass": [
+   {
+    "block": 17,
+    "t": [
+     46.78,
+     47.04
+    ],
+    "LRT": 12.303,
+    "kT": 24.583,
+    "kT_err": 2.46,
+    "note": "high-kT class; same block's BANDBB kT=4.98 with LRT 4.53 - the two arms disagree on the component's identity"
+   },
+   {
+    "block": 18,
+    "t": [
+     47.04,
+     47.75
+    ],
+    "LRT": 38.482,
+    "kT": 3.989,
+    "kT_err": 1.181,
+    "note": "BANDBB arm LRT 6.99, kT 4.21+/-0.46"
+   }
+  ],
+  "near_misses": {
+   "blk23_cpl": 9.19,
+   "blk25_band": 8.85,
+   "blk13_band": 8.34,
+   "blk27_cpl": 8.01,
+   "blk27_band": 7.93,
+   "blk12_band": 7.41
+  },
+  "significant_bb_kt_values": [
+   4.114,
+   24.583,
+   3.989
+  ],
+  "aic_winners": {
+   "CPL": 14,
+   "Band+BB": 6,
+   "Band": 6,
+   "CPL+BB": 5,
+   "SBPL": 3,
+   "DSBPL": 1
+  },
+  "bic_winners": {
+   "CPL": 28,
+   "Band": 3,
+   "SBPL": 2,
+   "Band+BB": 1,
+   "CPL+BB": 1
+  },
+  "time_integrated_band": {
+   "alpha": -1.37,
+   "ep_keV": 212.98,
+   "beta": -2.424
+  },
+  "time_integrated_bandbb": {
+   "alpha": -1.127,
+   "ep_keV": 164.83,
+   "beta": -2.226,
+   "kT_keV": 4.114,
+   "aic_margin_vs_band": 20.9,
+   "aic_margin_vs_sbpl": 20.2
+  },
+  "LRT_DSBPL_SBPL_ge_9p2": {
+   "blk12": 11.1,
+   "blk23": 9.62,
+   "blk29": 9.2,
+   "blk31": 10.93
+  },
   "dsbpl_validity_note": "ALL four LRT>=9.2 DSBPL fits are DSBPL_VALID=False with rising alpha1~+2.3..+2.5 (blk23 inverted -1.50/+0.50) and xb~10-12.6 keV ~ 3.92*kT(4.1)=16 keV - the L25 BB-mimic geometry; DSBPL_VALID in 11/35 blocks; census has NO valid two-break block",
   "engine_caveat": "census fits predate L18 default-seed DSBPL restart + L19/L27 rail handling; two-break count is a LOWER LIMIT by doctrine"
  },
@@ -69,5 +136,7 @@
    "scat FLNC Band (-3.072..115.712 s, b1/n6/n9/na, C-STAT): Ep=187.92 -10.60/+11.51, alpha=-1.4928+/-0.013, beta=-2.188 -0.078/+0.058, REDCHSQ 1.214/478",
    "scat PFLX Band (46.080..47.104 s): Ep=199.83 -17.45/+19.90, alpha=-1.0207+/-0.044, beta=-2.134 -0.096/+0.072"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

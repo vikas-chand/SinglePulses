@@ -6,7 +6,6 @@
  "tally_note": "campaign doc-layer worker, not a numbered walkthrough burst; no tally assigned",
  "frozen_utc": "2026-08-12; frozen BEFORE any NEW fit was run and before any sweep106 product was opened",
  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
-
  "freeze_hygiene": {
   "not_read": [
    "results/sweep106/** - NEVER touched (blind fits in progress; hard rule)",
@@ -23,7 +22,6 @@
    "data/bn150630223/* headers + glg_poshist_all_150630_v01.fit - Step-1 inventory and geometry (no science extraction)"
   ]
  },
-
  "stage1_stamp": {
   "detectors": "n4 (23.031 deg), n5 (56.453 deg), b0 (53.389 deg)",
   "source_window": "[-2.0, +23.0] s relative to TRIGTIME 457334449.760854",
@@ -33,34 +31,72 @@
   "detector_set_externally_corroborated": "the GBM catalog's own scat_detector_mask = 00001100000010 = n4+n5+b0, IDENTICAL to our approved set; bcat_detector_mask = n4+n5 for durations. Independent support that the selection is right.",
   "detector_set_is_FORCED": "only two NaIs are anywhere near the source: n4 at 23.05 deg and n5 at 56.45 deg. The third-nearest is n3 at 67.19 deg. n5 exceeds the <=50 deg NaI preference, but there is no alternative - a 2-NaI burst by geometry, not by choice."
  },
-
  "archival_prior": {
   "source": "results/clean_per_burst_human_final/bn150630223/spectral_fits.ecsv - 9 rows: BLOCK -1 (window-integrated, [-0.633,19.363] s) + BLOCKs 0-7 (time-resolved). All rows PLUGIN_DETS = n4,n5,b0.",
   "era_caveat": "PRE-L8/L9 ENGINE. This table shows the exact pathologies L8 (default-seed DSBPL restart) and L9 (widened Ep caps + BOUND_CAPPED diagnosis) were written to fix - see bound_pathologies below. Every count here is therefore a LOWER LIMIT on curvature/two-break content and an UPPER-uncertainty on the BB content.",
-
   "union_rule_counts": {
    "rule_as_specified": "a block counts if LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05, and/or LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05 - BOTH nested tests evaluated, reported as union and intersection separately (never as 'the' dAIC; T8 baseline rule)",
    "denominator": "8 time-resolved blocks (0-7). BLOCK -1 reported separately.",
    "band_bb_test_fires": "4 blocks - 3, 4, 5, 6",
    "cpl_bb_test_fires": "3 blocks - 3, 4, 5 (block 6 misses at LRT = 9.0948, just under the 9.2 threshold)",
    "UNION": 4,
-   "UNION_blocks": [3, 4, 5, 6],
+   "UNION_blocks": [
+    3,
+    4,
+    5,
+    6
+   ],
    "INTERSECTION": 3,
-   "INTERSECTION_blocks": [3, 4, 5],
+   "INTERSECTION_blocks": [
+    3,
+    4,
+    5
+   ],
    "marginal_block_disclosed": "BLOCK 6 is the whole difference between union and intersection: LRT_BANDBB_BAND = 9.4698 (fires) vs LRT_CPLBB_CPL = 9.0948 (misses) - a 0.375 spread straddling the threshold. Its BIC winner is CPL while its AIC winner is CPL+BB. Treat as UNDECIDED, not as a detection.",
    "block_minus1_integrated": "LRT_CPLBB_CPL = 47.5698 with CPLBB_KT = 55.155 keV fires the CPL+BB test, but (a) LRT_BANDBB_BAND is NaN because BAND_STATUS = FAIL on this row, so the Band pairing could not be evaluated at all, and (b) CPLBB_VALID = False. The integrated row is NOT counted in either number above and must not be quoted."
   },
-
   "kt_values_keV": {
-   "block_3": {"bandbb": 3.5521, "cplbb": 3.5439},
-   "block_4": {"bandbb": 2.6623, "cplbb": 2.6632},
-   "block_5": {"bandbb": 3.1582, "cplbb": 3.1594},
-   "block_6": {"bandbb": 2.2382, "cplbb": 2.2394},
+   "block_3": {
+    "bandbb": 3.5521,
+    "cplbb": 3.5439
+   },
+   "block_4": {
+    "bandbb": 2.6623,
+    "cplbb": 2.6632
+   },
+   "block_5": {
+    "bandbb": 3.1582,
+    "cplbb": 3.1594
+   },
+   "block_6": {
+    "bandbb": 2.2382,
+    "cplbb": 2.2394
+   },
    "consistency_note": "in every firing block the Band+BB and CPL+BB temperatures agree to <0.3% - the temperature is NOT an artifact of which continuum it rides on, which is the one internal check available here (T7).",
-   "non_firing_blocks_for_completeness": {"block_0": {"bandbb": 3.4159, "cplbb": 59.010}, "block_1": {"bandbb": 52.943, "cplbb": 80.016}, "block_2": {"bandbb": 4.8661, "cplbb": 5.0813}, "block_7": {"bandbb": 3.7888, "cplbb": 16.048}, "block_-1": {"bandbb": 3.1403, "cplbb": 55.155}},
+   "non_firing_blocks_for_completeness": {
+    "block_0": {
+     "bandbb": 3.4159,
+     "cplbb": 59.01
+    },
+    "block_1": {
+     "bandbb": 52.943,
+     "cplbb": 80.016
+    },
+    "block_2": {
+     "bandbb": 4.8661,
+     "cplbb": 5.0813
+    },
+    "block_7": {
+     "bandbb": 3.7888,
+     "cplbb": 16.048
+    },
+    "block_-1": {
+     "bandbb": 3.1403,
+     "cplbb": 55.155
+    }
+   },
    "L25_caution": "kT ~ 2.2-3.6 keV puts the BB nuFnu peak at ~3.92 kT = 9-14 keV - AT the NaI low-energy threshold (8 keV). This is a low-energy-EDGE component, exactly the class L25 warns about (xb ~ 3.92 kT, r = 0.87) and exactly the band the Earth-limb hazard (P-E) would corrupt. It must NOT be called a photosphere on these numbers."
   },
-
   "aic_winners": {
    "block_-1_integrated": "Band+BB (AIC 4324.63) - but BAND itself FAILED on this row (BAND_AIC = NaN), so the ladder is incomplete and the 'winner' is over an incomplete menu. DO NOT QUOTE.",
    "block_0": "SBPL (1783.45); CPL 1782.90 is actually lower - the two are tied within noise",
@@ -73,13 +109,21 @@
    "block_7": "CPL (2980.38)",
    "summary": "3 unambiguous CPL+BB blocks (3,4,5) covering t = 2.60-10.64 s, i.e. the peak and early decay; 1 undecided (6); CPL elsewhere; DSBPL never wins anywhere."
   },
-
   "two_break_content": {
    "dsbpl_wins": 0,
-   "lrt_dsbpl_sbpl": {"block_-1": -17.697, "block_0": -3.485, "block_1": 4.190, "block_2": 0.0867, "block_3": -4.157, "block_4": -12.597, "block_5": -9.568, "block_6": -0.981, "block_7": 0.595},
+   "lrt_dsbpl_sbpl": {
+    "block_-1": -17.697,
+    "block_0": -3.485,
+    "block_1": 4.19,
+    "block_2": 0.0867,
+    "block_3": -4.157,
+    "block_4": -12.597,
+    "block_5": -9.568,
+    "block_6": -0.981,
+    "block_7": 0.595
+   },
    "impossible_negatives": "6 of 9 blocks (-1, 0, 3, 4, 5, 6) return a NEGATIVE nested LRT for DSBPL vs SBPL. DSBPL contains SBPL, so a negative nested LRT is arithmetically impossible and diagnoses OPTIMIZER FAILURE, not physics. This is the L8 default-seed DSBPL pathology, manifest on six blocks."
   },
-
   "bound_pathologies": {
    "BAND_ALPHA railed at -1.9": "blocks 3 (-1.8999999994), 4 (-1.8999999996), 5 (-1.8999999771) - the low-energy index sits ON its hard bound in all three BB-firing blocks. An alpha pinned at a bound and an additive BB compete for the same low-energy curvature; this ALONE makes the archival BB significances untrustworthy as magnitudes.",
    "BAND_BETA railed at -5.0": "blocks 1 (-4.99962), 3 (-4.99291), 4 (-4.97086)",
@@ -89,7 +133,6 @@
    "BAND_STATUS = FAIL": "block -1 only"
   }
  },
-
  "external_frame": {
   "identity": "GRB 150630223 = GBM bn150630223, 2015-06-30 05:20:47 UT, RA 116.81 Dec -21.31 (1.46 deg statistical; GBM systematic ~3-4 deg NOT included), l=238.15 b=+1.96. Not bn150630958 (same day, 17.6 h later, 130 deg away, T90 39.2 s).",
   "component_structure_T9": "SINGLE EMISSION EPISODE. No precursor, no separate component anywhere in the record. Maccary+2025's MEPSA peak-finder returns Npeaks = 1. T90 = [+0.560, +23.344] s; our stamped window [-2.0, +23.0] s is essentially the whole burst (T95 falls 0.34 s after SRC_STOP). Component-coverage risk is therefore LOW - unlike bn110928180 - EXCEPT against the catalog's fluence-spectrum window (below).",
@@ -103,29 +146,18 @@
   "model_advocacy_in_literature": "NONE. No dedicated paper, no BB/photospheric claim, no synchrotron claim, no two-break claim, no time-resolved spectroscopy of any kind. Zero prior bias to disclose in P3 - and zero external validation of any per-block number we produce.",
   "internal_catalog_inconsistency_recorded_not_resolved": "The catalog's own two fluence numbers do not line up: the duration-interval fluence is 1.0775e-05 erg/cm2 (10-1000 keV, NaI 4+5, [+0.560,+23.344] s) while the model-integrated PL energy fluence is 1.2552e-05 erg/cm2 over the SHORTER flnc window [-1.024,+16.384] s with n4+n5+b0 - 17% LARGER over ~70% of the duration. Different detector sets, different estimators (counts-based vs model-integrated), possibly different band handling. Per T5/L26 this is RECORDED, not silently resolved, and BOTH must be frame-aligned before any fluence diff."
  },
-
  "predictions": [
   "P-A (curvature is UNCONSTRAINED; external-frame, falsifiable): every published curved model leaves the break unconstrained - CPL Ep = 814 +/- 365 keV (2.2 sigma), Band Ep = 757 +/- 710 (1.1 sigma), SBPL Ebreak = 2239 +/- 20084 (0.1 sigma) - while a bare PL with index -1.876 +/- 0.013 is declared best. PREDICT: in AT LEAST HALF our blocks the curvature parameter (Band Ep / CPL xc / SBPL Ebreak) is either unconstrained (fractional error >= 50%) or contacts a fit bound, i.e. the L9 BOUND_CAPPED diagnosis fires in >= 4 of 8 blocks. FALSIFIED if >= 50% of blocks return a curvature energy to better than 30% fractional error with no bound contact.",
-
   "P-A2 (low-energy index and the -1.9 bound; falsifiable, and it targets an UNPUBLISHED decision): published alpha = -1.85033 +/- 0.02246 (Band, integrated) and PL index = -1.876 +/- 0.013 - a soft spectrum far below the synchrotron line of death. PREDICT our window-integrated low-energy index lands in [-2.10, -1.60]. SEPARATELY PREDICT, from the archival prior's BAND_ALPHA sitting exactly on its -1.9 hard bound in all three BB-firing blocks: after the L9 widening, alpha in blocks 3-5 moves OFF the bound to a value softer than -1.9, and the Band+BB LRT in those blocks DROPS relative to the archival 44.2/37.9/42.5. FALSIFIED if alpha still rails at -1.9 post-L9, or if the Band+BB LRTs are unchanged to within 10%.",
-
   "P-B (the BB / union rule - the headline, falsifiable): NO blackbody claim exists anywhere in this burst's literature, and the GBM catalog never tested an additive component (T7: its 4-model menu has none), so its 'PL is best' is silent about a BB rather than evidence against one. The archival prior fires the union rule in 4 of 8 blocks (3,4,5,6) and the intersection in 3 (3,4,5), t = 2.60-10.64 s, with kT = 2.24-3.55 keV agreeing between the Band+BB and CPL+BB pairings to <0.3%. PREDICT the re-run reproduces a union-rule detection in AT LEAST blocks 3, 4 and 5, with kT staying inside [1.5, 5.0] keV. FALSIFIED if the union rule fires in zero blocks, if kT leaves that range in a reproducing block, or if the count rises above 6 of 8. WHICHEVER WAY IT LANDS THIS IS AN UNPUBLISHED-DECISION result to be scored against the expert band, NOT a literature reconciliation - there is nothing published to reconcile against.",
-
   "P-B2 (the BB is a low-energy-EDGE feature and must be adjudicated as one; procedural, falsifiable): kT ~ 2.2-3.6 keV puts the nuFnu peak at 3.92 kT = 9-14 keV, i.e. within ~1.5 keV of the NaI 8 keV threshold. PREDICT the BB's inferred flux fraction is strongly covariant with the low-energy index (|rho| > 0.7 between kT/F_BB and alpha across blocks) and that the component therefore CANNOT be promoted to a photosphere on this burst's data. FALSIFIED if the BB survives with the continuum index free and unrailed AND with a demonstrated per-NaI residual coherence (L28). CRITICAL LIMITATION TO CARRY: L28 coherence has almost NO leverage here - there are only TWO NaIs, and one (n5, 56.45 deg) is outside the <=50 deg preference. A two-detector coherence test is nearly vacuous, so the usual acquittal route for a low-energy component is unavailable on this burst. Say so in the write-up rather than quietly running L28 and reporting a pass.",
-
   "P-C (two-break; falsifiable, plus an engine-hardening prediction): no two-break claim is published, and the catalog's own one-break SBPL leaves Ebreak = 2239 +/- 20084 keV, i.e. undetermined. PREDICT DSBPL does NOT win by dAIC >= 10 in ANY block. SEPARATELY PREDICT, from the archival prior's SIX impossible negative nested LRTs (DSBPL vs SBPL: -17.70, -3.49, -4.16, -12.60, -9.57, -0.98 in blocks -1,0,3,4,5,6): after the L8 default-seed DSBPL restart hardening, ZERO blocks return a negative nested DSBPL-SBPL LRT. FALSIFIED if any negative nested LRT survives L8, or if DSBPL wins by dAIC >= 10 anywhere - the latter would be a genuine unpublished discovery candidate and must clear the L8 seed-artifact check FIRST.",
-
   "P-D (temporal; external-frame, falsifiable): Maccary+2025 give FWHM_min = 8.43 (-2.18/+2.94) s from MEPSA with Npeaks = 1, against T90 = 22.78 s - the narrowest structure is more than a third of the burst. PREDICT our block decomposition of [-2,+23] s yields a SINGLE dominant pulse (no second significant peak) resolved into >= 4 blocks, and that our MVT-equivalent lands in [2, 15] s. FALSIFIED by a multi-peak decomposition, by fewer than 4 blocks, or by an MVT < 1 s. NOTE the estimator trap (T3): Maccary's FWHM_min, Golkhou's wavelet dt_min and MEPSA's dt_det are three DIFFERENT quantities - do not diff across them.",
-
   "P-E (EARTH-LIMB GEOMETRY - the dominant hazard on this burst; falsifiable, NAMED ALTERNATIVE HYPOTHESIS): computed here from glg_poshist_all_150630_v01.fit at the GBM catalog position and verified with two independent primitives (astropy SkyCoord.separation and the project's own _angular_distance; spacecraft latitude reproduces poshist SC_LAT exactly), the source CROSSED THE EARTH'S GEOMETRIC LIMB AT T0-5.2 s and sits only 0.16-1.72 deg above it across the entire stamped window. Line-of-sight tangent height by archival block: b0 13.1 km, b1 18.9, b2 18.9, b3 24.7, b4 33.2, b5 38.9, b6 47.4, b7 61.3 km - rising monotonically. A systematic whose strength falls monotonically across exactly our source window can mimic BOTH a FRED rise and a hard-to-soft evolution, and it bites hardest below ~50 keV, which is precisely where the P-B blackbody lives. NOTE THE COINCIDENCE THAT MUST BE TESTED, NOT ASSUMED: the union rule fires in blocks 3-6 (tangent height 24.7-47.4 km, the partial-transmission regime) and NOT in blocks 0-2 (13-19 km) or block 7 (61 km). PREDICT this is a brightness coincidence, not a geometry effect: kT does NOT correlate with tangent height across the firing blocks. FALSIFIED - i.e. the atmosphere is CONVICTED and the BB must be withdrawn - if |Spearman rho(kT, tangent height)| > 0.8 at p < 0.05 across blocks 0-7, OR if the fitted low-energy index hardens monotonically with tangent height at fixed flux. COUNTER-EVIDENCE ALREADY IN HAND, recorded for balance: von Kienlin+2020 Table 5 leaves the f_Fermi flag BLANK for this burst although 171 rows in that table carry a flag and footnote 'c' reads 'Partial earth occultation is likely; durations are lower limits' - the GBM team positively judged no occultation caveat applies; and GBM plainly recorded a 24 ph/cm2/s pulse that a 13 km tangent height could not transmit. The most economical reconciliation is that THE TRUE POSITION IS SEVERAL DEGREES FURTHER FROM THE LIMB THAN THE CATALOG POSITION (systematic ~3-4 deg vs the quoted 1.46 deg statistical) - itself a falsifiable inference, testable if the Konus-Wind / INTEGRAL SPI-ACS / Mars Observer detections (vK+2020 'Other' = K, IA, Mo) are ever triangulated. DO NOT resolve this inside the fit; carry it as a disclosed alternative.",
-
   "P-F (background validity under the limb geometry; falsifiable): the source is BELOW the geometric limb for the ENTIRE pre-burst background window (tangent height -282 km at -91 s, -19 km at -11 s) and well above it for the whole post window (+136 km at +45 s, +314 km at +124 s). The polynomial therefore interpolates across a real, monotonic Earth-albedo gradient rather than across a flat baseline. PREDICT the fitted background shows NO coherent one-sided residual run at either inner edge. FALSIFIED if a coherent excess or deficit appears in the last ~10 s of any pre-window or the first ~10 s of any post-window, in which case the inner edges must be revisited before any block-level flux - and especially any BB flux fraction - is quoted. Note n5's windows were human-ADJUSTED away from the n4/b0 values (pre [-74.298,-15.298], post [34.702,120.702]), so n5 samples a slightly different stretch of that gradient than n4 and b0: check the three separately, not as one.",
-
   "P-G (2-NaI geometry and D5 blockage; falsifiable): the detector set is FORCED - n4 at 23.05 deg, n5 at 56.45 deg, next-nearest n3 at 67.19 deg - so n5 sits outside the <=50 deg NaI preference with no substitute available. PREDICT the EAC cross-normalisation of n5 against the n4 reference stays inside [0.80, 1.20] and does not rail at a bound in more than 25% of fits. FALSIFIED if n5 rails low (<=0.9 systematically, the D5 blockage signature) or rails at a bound in a majority of fits - which would simultaneously convict the detector AND gut P-B, since with only two NaIs there is no third detector to arbitrate. Whatever the outcome, the with/without pair is RETAINED and no detector is dropped from production (the data-dropping hierarchy: quality exclusion only, through the documented gate).",
-
   "P-H (component coverage and fluence frames; procedural, falsifiable): our stamped window [-2.0,+23.0] s is a strict SUPERSET of the catalog's fluence-spectrum window [-1.024,+16.384] s (which covers only ~70% of T90 and stops 7 s before T95), and is essentially co-extensive with T90 = [+0.560,+23.344] s. PREDICT our window-integrated 10-1000 keV energy fluence exceeds the catalog's flnc-window PL value of 1.2552e-05 erg/cm2. FALSIFIED if ours comes out lower - which would indicate a normalisation or band-handling difference rather than a coverage difference, and would have to be chased before any energetics statement. ALSO PREDICT that any 'our T90 disagrees with the catalog' statement is an artifact: re-align (i) the band (theirs 50-300 keV, ours 8 keV-40 MeV, with T90 ~ E^-0.20 per Qin+2013), (ii) the detector set (theirs NaI 4+5 only for durations, n4+n5+b0 for spectra), and (iii) the estimator, BEFORE calling anything a discrepancy. And carry forward the catalog's OWN unresolved 17% fluence inconsistency (1.0775e-05 duration-interval vs 1.2552e-05 model-integrated over a shorter window) as a systematic floor on any fluence comparison."
  ],
-
  "harvest_snippets": {
   "vonKienlin2020": [
    "table4 recno 1656: 'bn150630223 | [GRB name BLANK] | 2015-06-30T05:20:47 | 116.8 | -21.3 | 1.5 | Fermi-GBM | Al 9 | Time 256 | Energy 47-291 | Other = K, IA, Mo'   [VizieR J/ApJ/893/46]",
@@ -158,5 +190,7 @@
    "LAT boresight 112.3 deg at T0 - far outside the FoV, no slew; the absence of LLE/LAT products is correct, not a fetch gap",
    "TTE header RA_OBJ=30.0 DEC_OBJ=-15.0 ERR_RAD=3.0 is the known stale placeholder (2nd burst seen with it); verified inert - catalog position reproduces the stamped DET_ANGLE to <=0.018 deg"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

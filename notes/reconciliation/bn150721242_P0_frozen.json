@@ -8,5 +8,7 @@
  "predictions": [
   "P-A: archival census class carries to the refit (see census_prior)",
   "P-B: blocks 1-7 only; block 0 + T_INT RESPONSE_UNCOVERED (DRM starts +0.064 s vs approved edge -1.2 s) \u2014 a documented quality exclusion, not a choice"
- ]
+ ],
+ "P0_STATUS": "NONBLIND_CONTAMINATED",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

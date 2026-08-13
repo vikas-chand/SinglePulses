@@ -4,12 +4,12 @@
  "frozen_utc": "2026-08-11T16:40:30Z; BEFORE any new fit table opened (walkthrough_b2* never read)",
  "engine": "L18/L19/L20/L26/L27/L28 active",
  "predictions": [
-  "P-A (census prior, null-BB class): NO block will pass the BB gate — census prior has 0/10 time-resolved blocks (and 0/11 rows incl. integrated) with LRT_BANDBB_BAND >= 9.2; max was 6.98 (block 6). FALSIFIABLE: if >=1 new block passes LRT>=9.2 with kT>1.05, P-A is wrong.",
-  "P-A2 (kT regime if a BB does emerge): census kT values split bimodally — edge-low 2.2-4.5 keV in rise/tail blocks (0,1,2,7,8,9: 3.85/2.19/2.26/4.43/4.19/4.45 keV, the L28 edge-constrained class) vs loose 17-30 keV mid-burst (3,4,5,6). PREDICT: any newly significant BB lands in the low-kT (<5 keV) edge class, not the ~25 keV class.",
-  "P-A3 (break count): one-break-or-less spectrum — census AIC winners are CPL x6, SBPL x2, Band x2, CPL+BB x1; DSBPL never won and max LRT_DSBPL_SBPL = 7.31 (block 3) < 9.2. FALSIFIABLE: any new block with a decisive two-break (DSBPL) win breaks this.",
-  "P-B (literature/GCN 22974): time-integrated fit over [-1.7,16.0] s reproduces the GBM circular's Band alpha=-1.08+/-0.02, Epeak=260+/-15 keV, beta=-2.13+/-0.06 (T0 to T0+10 s, 10-1000 keV frame) to within the frame difference — census integrated Band gave alpha=-1.13, consistent. PREDICT: new integrated Ep in 230-290 keV, alpha in [-1.2,-1.0].",
+  "P-A (census prior, null-BB class): NO block will pass the BB gate \u2014 census prior has 0/10 time-resolved blocks (and 0/11 rows incl. integrated) with LRT_BANDBB_BAND >= 9.2; max was 6.98 (block 6). FALSIFIABLE: if >=1 new block passes LRT>=9.2 with kT>1.05, P-A is wrong.",
+  "P-A2 (kT regime if a BB does emerge): census kT values split bimodally \u2014 edge-low 2.2-4.5 keV in rise/tail blocks (0,1,2,7,8,9: 3.85/2.19/2.26/4.43/4.19/4.45 keV, the L28 edge-constrained class) vs loose 17-30 keV mid-burst (3,4,5,6). PREDICT: any newly significant BB lands in the low-kT (<5 keV) edge class, not the ~25 keV class.",
+  "P-A3 (break count): one-break-or-less spectrum \u2014 census AIC winners are CPL x6, SBPL x2, Band x2, CPL+BB x1; DSBPL never won and max LRT_DSBPL_SBPL = 7.31 (block 3) < 9.2. FALSIFIABLE: any new block with a decisive two-break (DSBPL) win breaks this.",
+  "P-B (literature/GCN 22974): time-integrated fit over [-1.7,16.0] s reproduces the GBM circular's Band alpha=-1.08+/-0.02, Epeak=260+/-15 keV, beta=-2.13+/-0.06 (T0 to T0+10 s, 10-1000 keV frame) to within the frame difference \u2014 census integrated Band gave alpha=-1.13, consistent. PREDICT: new integrated Ep in 230-290 keV, alpha in [-1.2,-1.0].",
   "P-B2 (paperless burst): zero refereed papers analyze this burst (all 3 ADS 'GRB 180720A' article hits are misnamings of GRB 180720B); the P3 diff frame is GCN 22974 + the AGILE MCAL circular ONLY. FALSIFIABLE by any genuine refereed row surfacing later.",
-  "P-B3 (temporal, GCN 22974 + GCN 22970): single FRED-like pulse, T90 ~9 s (50-300 keV); AGILE MCAL saw ~3.6 s at 0.4-100 MeV (single smooth peak) — hard emission concentrated near the peak. PREDICT: hard-to-soft evolution, census alpha track ~-0.7 (peak blocks) softening to ~-1.8 (tail block 9)."
+  "P-B3 (temporal, GCN 22974 + GCN 22970): single FRED-like pulse, T90 ~9 s (50-300 keV); AGILE MCAL saw ~3.6 s at 0.4-100 MeV (single smooth peak) \u2014 hard emission concentrated near the peak. PREDICT: hard-to-soft evolution, census alpha track ~-0.7 (peak blocks) softening to ~-1.8 (tail block 9)."
  ],
  "census_prior": {
   "source": "results/clean_per_burst_human_final/bn180720213/spectral_fits.ecsv",
@@ -24,11 +24,35 @@
    "max_LRT_BANDBB_BAND": 6.98,
    "max_LRT_block": 6
   },
-  "aic_winners_all_rows": {"CPL": 6, "SBPL": 2, "Band": 2, "CPL+BB": 1},
-  "aic_winners_time_resolved": {"CPL": 6, "SBPL": 1, "Band": 2, "CPL+BB": 1},
+  "aic_winners_all_rows": {
+   "CPL": 6,
+   "SBPL": 2,
+   "Band": 2,
+   "CPL+BB": 1
+  },
+  "aic_winners_time_resolved": {
+   "CPL": 6,
+   "SBPL": 1,
+   "Band": 2,
+   "CPL+BB": 1
+  },
   "integrated_winner": "SBPL (BLOCK=-1; Band-SBPL AIC gap 1.87)",
-  "bandbb_kT_all_blocks_keV": [3.85, 2.19, 2.26, 29.67, 27.75, 18.22, 28.49, 4.43, 4.19, 4.45],
-  "integrated_band": {"alpha": -1.127, "note": "BAND_AIC 5737.9 vs SBPL 5736.0"},
+  "bandbb_kT_all_blocks_keV": [
+   3.85,
+   2.19,
+   2.26,
+   29.67,
+   27.75,
+   18.22,
+   28.49,
+   4.43,
+   4.19,
+   4.45
+  ],
+  "integrated_band": {
+   "alpha": -1.127,
+   "note": "BAND_AIC 5737.9 vs SBPL 5736.0"
+  },
   "class": "null-BB / low-kT-edge-when-fit (L28 edge-constrained per rise+tail blocks)"
  },
  "harvest_snippets": {
@@ -47,14 +71,24 @@
    "CONTAMINATED (T1): their sample member is 180720B (table: '180720B 0.654 7.2 +/- 0.7 ...'); pp.5-6 '160625B, 171010A, and 180720A' is an internal typo for 180720B (Ep,i-Liso requires z; only B has one). NOT our burst."
   ],
   "Moradi2021_2021PhRvD.104f3043M": [
-   "CONTAMINATED (T1): 'the X-ray afterglow in GRB 130427A, GRB 160509A, GRB 160625B, GRB 180720A and GRB 190114C' — BdHN afterglow list; misnaming of 180720B. NOT our burst."
+   "CONTAMINATED (T1): 'the X-ray afterglow in GRB 130427A, GRB 160509A, GRB 160625B, GRB 180720A and GRB 190114C' \u2014 BdHN afterglow list; misnaming of 180720B. NOT our burst."
   ],
   "Wang2019_2019ApJ...874...39W": [
-   "CONTAMINATED (T1): 'We also predicted the SN appearance in GRB 140206A (Ruffini et al. 2014a) and GRB 180720A (Ruffini et al. 2018a)' — the Ruffini SN prediction was for 180720B (z=0.654, GCN quote: 'In GRB 180720B, which has redshift z = 0.654 (GCN 22996), being a BdHN, a supernova is expected'). NOT our burst."
+   "CONTAMINATED (T1): 'We also predicted the SN appearance in GRB 140206A (Ruffini et al. 2014a) and GRB 180720A (Ruffini et al. 2018a)' \u2014 the Ruffini SN prediction was for 180720B (z=0.654, GCN quote: 'In GRB 180720B, which has redshift z = 0.654 (GCN 22996), being a BdHN, a supernova is expected'). NOT our burst."
   ],
-  "Li&Zhang2021": ["absent"],
-  "Lu2018": ["absent"],
-  "Li2026": ["absent (all its 180720 hits are 180720B)"],
-  "Bordoloi2026": ["absent"]
- }
+  "Li&Zhang2021": [
+   "absent"
+  ],
+  "Lu2018": [
+   "absent"
+  ],
+  "Li2026": [
+   "absent (all its 180720 hits are 180720B)"
+  ],
+  "Bordoloi2026": [
+   "absent"
+  ]
+ },
+ "P0_STATUS": "BLIND_FROZEN",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -21,11 +21,33 @@
   "significant_bb_blocks": 0,
   "significant_bb_kt_values": [],
   "significant_bb_median_kt": null,
-  "max_LRT_BANDBB_BAND": {"block": 3, "value": 6.71, "kt": 7.81},
-  "LRT_CPLBB_CPL_ge_9p2": {"blk-1": 20.9, "blk1": 15.79, "blk2": 15.24},
-  "aic_winners": {"CPL": 3, "SBPL": 2, "Band+BB": 2, "CPL+BB": 1, "Band": 1},
-  "bic_winners": {"SBPL": 4, "CPL": 3, "Band": 2},
-  "time_integrated_band": {"alpha": -0.903, "ep_keV": 186.43, "beta": -2.05},
+  "max_LRT_BANDBB_BAND": {
+   "block": 3,
+   "value": 6.71,
+   "kt": 7.81
+  },
+  "LRT_CPLBB_CPL_ge_9p2": {
+   "blk-1": 20.9,
+   "blk1": 15.79,
+   "blk2": 15.24
+  },
+  "aic_winners": {
+   "CPL": 3,
+   "SBPL": 2,
+   "Band+BB": 2,
+   "CPL+BB": 1,
+   "Band": 1
+  },
+  "bic_winners": {
+   "SBPL": 4,
+   "CPL": 3,
+   "Band": 2
+  },
+  "time_integrated_band": {
+   "alpha": -0.903,
+   "ep_keV": 186.43,
+   "beta": -2.05
+  },
   "LRT_DSBPL_SBPL_max": 5.24,
   "dsbpl_valid_blocks": 1
  },
@@ -54,5 +76,7 @@
   "refereed_papers": [
    "absent - 0 refereed papers across six ADS full-text query forms (2026-08-11); paperless burst"
   ]
- }
+ },
+ "P0_STATUS": "BLIND_FROZEN",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

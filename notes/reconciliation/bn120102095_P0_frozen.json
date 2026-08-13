@@ -1,6 +1,6 @@
 {
  "burst": "bn120102095",
- "grb_name": "GRB 120102A (name↔trigger verified in GCN 12801)",
+ "grb_name": "GRB 120102A (name\u2194trigger verified in GCN 12801)",
  "tally": null,
  "tally_note": "walkthrough serial not assigned by this doc-layer worker",
  "frozen_utc": "2026-08-12; BEFORE any fresh/sweep106 fit table was opened (results/sweep106/ untouched per hard rule). The archival clean_per_burst_human_final table was read as the sanctioned prior only.",
@@ -9,83 +9,314 @@
   "source": "results/background_intervals.ecsv",
   "approved_by": "Vikas Chand, 2026-07-19T22:18:36Z, human_gui, accepted_suggestion",
   "detectors": "n3,n4,n5,b0",
-  "src_window_s": [-1.5, 15.0],
-  "bkg_neg_s": [-30.0, -8.0],
-  "bkg_pos_s": [22.0, 120.0],
-  "det_angles_deg": {"n3": 42.76, "n4": 21.06, "n5": 39.42, "b0": 36.10}
+  "src_window_s": [
+   -1.5,
+   15.0
+  ],
+  "bkg_neg_s": [
+   -30.0,
+   -8.0
+  ],
+  "bkg_pos_s": [
+   22.0,
+   120.0
+  ],
+  "det_angles_deg": {
+   "n3": 42.76,
+   "n4": 21.06,
+   "n5": 39.42,
+   "b0": 36.1
+  }
  },
  "archival_prior": {
-  "source": "results/clean_per_burst_human_final/bn120102095/spectral_fits.ecsv (pre-L18-era engine; production numbers provisional per AGENTS.md §6)",
+  "source": "results/clean_per_burst_human_final/bn120102095/spectral_fits.ecsv (pre-L18-era engine; production numbers provisional per AGENTS.md \u00a76)",
   "n_blocks": 5,
   "plus_integrated": true,
   "detectors": "n3,n4,n5,b0 (4, all blocks)",
-  "block_edges_s": [[-0.123, 4.548], [4.548, 5.598], [5.598, 6.317], [6.317, 7.531], [7.531, 11.166]],
-  "integrated_span_s": [-0.123, 11.166],
+  "block_edges_s": [
+   [
+    -0.123,
+    4.548
+   ],
+   [
+    4.548,
+    5.598
+   ],
+   [
+    5.598,
+    6.317
+   ],
+   [
+    6.317,
+    7.531
+   ],
+   [
+    7.531,
+    11.166
+   ]
+  ],
+  "integrated_span_s": [
+   -0.123,
+   11.166
+  ],
   "union_rule_bb_blocks": {
-   "rule": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05) — BOTH nested tests, union",
+   "rule": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05) \u2014 BOTH nested tests, union",
    "bandbb_pass": [],
-   "cplbb_pass": [1],
-   "union": [1],
+   "cplbb_pass": [
+    1
+   ],
+   "union": [
+    1
+   ],
    "count": 1,
    "detail": {
-    "blk1_[4.548,5.598]s": "CPL+BB pair ONLY: LRT_CPLBB_CPL=19.545, kT_CplBB=28.29 keV (CPLBB_VALID=True). Band+BB arm is a DEAD fit in the same block: LRT_BANDBB_BAND=-9.07e-5, kT_BandBB=1.0007 keV railed at the floor, BANDBB_VALID=False — the L8/L9 seed/bound-artifact signature, and a live baseline-dependence instance (T8 twin / the union-rule fix). AIC and BIC winner here = CPL+BB (AIC 2195.74) with DSBPL a near-tie (AIC 2195.17).",
-    "blk0_[-0.123,4.548]s": "both pairs fail: LRT_BANDBB=1.784, LRT_CPLBB=0.127 (kT 25.76 / 1.0004 — the CPL+BB kT is railed).",
+    "blk1_[4.548,5.598]s": "CPL+BB pair ONLY: LRT_CPLBB_CPL=19.545, kT_CplBB=28.29 keV (CPLBB_VALID=True). Band+BB arm is a DEAD fit in the same block: LRT_BANDBB_BAND=-9.07e-5, kT_BandBB=1.0007 keV railed at the floor, BANDBB_VALID=False \u2014 the L8/L9 seed/bound-artifact signature, and a live baseline-dependence instance (T8 twin / the union-rule fix). AIC and BIC winner here = CPL+BB (AIC 2195.74) with DSBPL a near-tie (AIC 2195.17).",
+    "blk0_[-0.123,4.548]s": "both pairs fail: LRT_BANDBB=1.784, LRT_CPLBB=0.127 (kT 25.76 / 1.0004 \u2014 the CPL+BB kT is railed).",
     "blk2_[5.598,6.317]s": "both fail (0.893 / 0.153).",
     "blk3_[6.317,7.531]s": "both fail but BOTH are non-trivial: LRT_BANDBB=6.391 (kT=4.90 keV), LRT_CPLBB=4.727 (kT=34.61 keV); AIC winner Band+BB, BIC winner CPL. The one sub-threshold BB candidate.",
     "blk4_[7.531,11.166]s": "both fail (0.759 / 0.104)."
    }
   },
   "integrated_block": "[-0.123,11.166]s: CPL+BB passes the union rule (LRT_CPLBB_CPL=12.182, kT=29.93 keV, CPLBB_VALID=True) while the Band+BB arm is dead (LRT=-4.3e-5, kT=49.45 keV, i.e. no improvement at all). AIC winner CPL+BB (5332.39), BIC winner SBPL.",
-  "aic_winners_by_block": {"-1": "CPL+BB", "0": "CPL", "1": "CPL+BB", "2": "Band", "3": "Band+BB", "4": "CPL"},
-  "bic_winners_by_block": {"-1": "SBPL", "0": "CPL", "1": "CPL+BB", "2": "CPL", "3": "CPL", "4": "CPL"},
-  "kT_keV_bandbb_by_block": {"-1": 49.45, "0": 25.76, "1": 1.0007, "2": 5.49, "3": 4.90, "4": 26.13},
-  "kT_keV_cplbb_by_block": {"-1": 29.93, "0": 1.0004, "1": 28.29, "2": 6.13, "3": 34.61, "4": 2.64},
-  "band_ep_keV_by_block": {"-1": 283.87, "0": 309.38, "1": 404.36, "2": 279.58, "3": 188.60, "4": 216.56},
-  "band_ep_err_by_block": {"-1": 38.92, "0": 47.95, "1": 101.83, "2": 64.79, "3": 29.77, "4": 54.08},
-  "band_alpha_by_block": {"-1": -1.091, "0": -1.176, "1": -0.956, "2": -1.080, "3": -0.991, "4": -1.223},
-  "band_beta_by_block": {"-1": -2.273, "0": -2.786, "1": -2.105, "2": -2.016, "3": -2.473, "4": -3.910},
-  "secondary_signals": "LRT_DSBPL_SBPL = 15.043 in blk1 (DSBPL_VALID=False, but DSBPL has the lowest AIC of any model there: 2195.17 vs SBPL 2206.21 vs Band 2210.29) and 2.820 integrated. blk2 is the lone Band AIC winner. So the SAME interval [4.548, 5.598] s carries BOTH the burst's only union-rule BB and its only break-structure signal — they compete for the same curvature."
+  "aic_winners_by_block": {
+   "-1": "CPL+BB",
+   "0": "CPL",
+   "1": "CPL+BB",
+   "2": "Band",
+   "3": "Band+BB",
+   "4": "CPL"
+  },
+  "bic_winners_by_block": {
+   "-1": "SBPL",
+   "0": "CPL",
+   "1": "CPL+BB",
+   "2": "CPL",
+   "3": "CPL",
+   "4": "CPL"
+  },
+  "kT_keV_bandbb_by_block": {
+   "-1": 49.45,
+   "0": 25.76,
+   "1": 1.0007,
+   "2": 5.49,
+   "3": 4.9,
+   "4": 26.13
+  },
+  "kT_keV_cplbb_by_block": {
+   "-1": 29.93,
+   "0": 1.0004,
+   "1": 28.29,
+   "2": 6.13,
+   "3": 34.61,
+   "4": 2.64
+  },
+  "band_ep_keV_by_block": {
+   "-1": 283.87,
+   "0": 309.38,
+   "1": 404.36,
+   "2": 279.58,
+   "3": 188.6,
+   "4": 216.56
+  },
+  "band_ep_err_by_block": {
+   "-1": 38.92,
+   "0": 47.95,
+   "1": 101.83,
+   "2": 64.79,
+   "3": 29.77,
+   "4": 54.08
+  },
+  "band_alpha_by_block": {
+   "-1": -1.091,
+   "0": -1.176,
+   "1": -0.956,
+   "2": -1.08,
+   "3": -0.991,
+   "4": -1.223
+  },
+  "band_beta_by_block": {
+   "-1": -2.273,
+   "0": -2.786,
+   "1": -2.105,
+   "2": -2.016,
+   "3": -2.473,
+   "4": -3.91
+  },
+  "secondary_signals": "LRT_DSBPL_SBPL = 15.043 in blk1 (DSBPL_VALID=False, but DSBPL has the lowest AIC of any model there: 2195.17 vs SBPL 2206.21 vs Band 2210.29) and 2.820 integrated. blk2 is the lone Band AIC winner. So the SAME interval [4.548, 5.598] s carries BOTH the burst's only union-rule BB and its only break-structure signal \u2014 they compete for the same curvature."
  },
  "published_anchors_for_the_diff": {
-  "gbm_catalog_flnc_[-1.024,19.456]s": {"best": "Comptonized", "comp_Ep_keV": [338.44, 27.59], "comp_index": [-1.1955, 0.0310], "band_Ep_keV": [274.65, 33.08], "band_alpha": [-1.1537, 0.0405], "band_beta": [-2.0613, 0.1605]},
-  "gbm_catalog_pflx_[5.120,6.144]s": {"best": "Band", "band_Ep_keV": [276.17, 42.86], "band_alpha": [-0.9625, 0.0677], "band_beta": [-1.9401, 0.1121]},
+  "gbm_catalog_flnc_[-1.024,19.456]s": {
+   "best": "Comptonized",
+   "comp_Ep_keV": [
+    338.44,
+    27.59
+   ],
+   "comp_index": [
+    -1.1955,
+    0.031
+   ],
+   "band_Ep_keV": [
+    274.65,
+    33.08
+   ],
+   "band_alpha": [
+    -1.1537,
+    0.0405
+   ],
+   "band_beta": [
+    -2.0613,
+    0.1605
+   ]
+  },
+  "gbm_catalog_pflx_[5.120,6.144]s": {
+   "best": "Band",
+   "band_Ep_keV": [
+    276.17,
+    42.86
+   ],
+   "band_alpha": [
+    -0.9625,
+    0.0677
+   ],
+   "band_beta": [
+    -1.9401,
+    0.1121
+   ]
+  },
   "Lu2018_timeresolved_band_GBMT0": [
-   {"bin_s": [-2.18, 3.54], "Ep_keV": [414.60, 155.43], "alpha": [-1.33, 0.07], "beta": [-2.26, 0.66], "chi2r": 1.04},
-   {"bin_s": [3.54, 5.16], "Ep_keV": [389.72, 63.13], "alpha": [-1.01, 0.06], "beta": [-2.05, 0.12], "chi2r": 1.43},
-   {"bin_s": [5.16, 6.13], "Ep_keV": [283.92, 67.09], "alpha": [-1.03, 0.09], "beta": [-1.81, 0.07], "chi2r": 0.89},
-   {"bin_s": [6.13, 12.35], "Ep_keV": [232.48, 64.40], "alpha": null, "beta": null, "chi2r": null}
+   {
+    "bin_s": [
+     -2.18,
+     3.54
+    ],
+    "Ep_keV": [
+     414.6,
+     155.43
+    ],
+    "alpha": [
+     -1.33,
+     0.07
+    ],
+    "beta": [
+     -2.26,
+     0.66
+    ],
+    "chi2r": 1.04
+   },
+   {
+    "bin_s": [
+     3.54,
+     5.16
+    ],
+    "Ep_keV": [
+     389.72,
+     63.13
+    ],
+    "alpha": [
+     -1.01,
+     0.06
+    ],
+    "beta": [
+     -2.05,
+     0.12
+    ],
+    "chi2r": 1.43
+   },
+   {
+    "bin_s": [
+     5.16,
+     6.13
+    ],
+    "Ep_keV": [
+     283.92,
+     67.09
+    ],
+    "alpha": [
+     -1.03,
+     0.09
+    ],
+    "beta": [
+     -1.81,
+     0.07
+    ],
+    "chi2r": 0.89
+   },
+   {
+    "bin_s": [
+     6.13,
+     12.35
+    ],
+    "Ep_keV": [
+     232.48,
+     64.4
+    ],
+    "alpha": null,
+    "beta": null,
+    "chi2r": null
+   }
   ],
-  "Lu2018_class": "H (hard-to-soft), k_E = -0.39 ± 0.23",
-  "Burgess2019_peakflux_interval": {"alpha_Band": [-1.06, 0.08, -0.09], "alpha_SBPL": [-1.08, 0.21, -0.19], "width_SBPL": [0.60, 0.45, -0.60], "p_B_Band": 0.902, "p_B_synchrotron": 0.900},
-  "konus_[-1.71,+14.93]s_GBMclock": {"model": "CPL, 20 keV-4 MeV", "Ep_keV": [805, -180, 288], "alpha": [-1.47, -0.07, 0.09], "band_beta": "< -2.04 (upper limit only)"},
-  "literature_BB_claims": "ABSENT — no paper fits or claims a thermal/photospheric component for this burst. The nearest physical-model statement is Burgess 2019's finding that an idealized SYNCHROTRON model is adequate at the peak (p_B = 0.900), which is the OPPOSITE prior to our archival CPL+BB peak-block detection. This burst is therefore a clean test of whether our BB is real or an engine artifact."
+  "Lu2018_class": "H (hard-to-soft), k_E = -0.39 \u00b1 0.23",
+  "Burgess2019_peakflux_interval": {
+   "alpha_Band": [
+    -1.06,
+    0.08,
+    -0.09
+   ],
+   "alpha_SBPL": [
+    -1.08,
+    0.21,
+    -0.19
+   ],
+   "width_SBPL": [
+    0.6,
+    0.45,
+    -0.6
+   ],
+   "p_B_Band": 0.902,
+   "p_B_synchrotron": 0.9
+  },
+  "konus_[-1.71,+14.93]s_GBMclock": {
+   "model": "CPL, 20 keV-4 MeV",
+   "Ep_keV": [
+    805,
+    -180,
+    288
+   ],
+   "alpha": [
+    -1.47,
+    -0.07,
+    0.09
+   ],
+   "band_beta": "< -2.04 (upper limit only)"
+  },
+  "literature_BB_claims": "ABSENT \u2014 no paper fits or claims a thermal/photospheric component for this burst. The nearest physical-model statement is Burgess 2019's finding that an idealized SYNCHROTRON model is adequate at the peak (p_B = 0.900), which is the OPPOSITE prior to our archival CPL+BB peak-block detection. This burst is therefore a clean test of whether our BB is real or an engine artifact."
  },
  "predictions": [
-  "P-A (Ep track / HTS): the fresh blind Ep(t) reproduces a hard-to-soft trend consistent with Lu+2018's k_E = -0.39 ± 0.23 after frame alignment (both use Band Ep = νFν peak, GBM T0). Concretely: the first block (covering ~0-4 s) lands at Ep = 300-420 keV, the pulse-peak region (~5-6 s) at Ep = 270-400 keV, and the decay (>6.3 s) at Ep <= 240 keV, with the GBM catalog's peak-flux anchor Ep = 276 ± 43 keV over [5.12, 6.14] s reproduced to within the inter-instrument spread. FALSIFIER: a monotonically RISING Ep, or a peak-block Ep outside 200-500 keV, contradicts both the archival prior and every published frame and must be reported as such, not smoothed. NOTE the archival non-monotonicity (309 -> 404 -> 280 keV) — if it survives L18/L19, it is a real intensity-tracking excursion at the pulse peak and should be labelled 'H2S-dominated tracking' in Lu's vocabulary, not silently called HTS.",
-  "P-B (BB / union rule): the L18+ engine reproduces a significant BB in the pulse-peak block [4.55, 5.60] s — union-rule pass with kT ~= 25-32 keV — and the detection stays BASELINE-DEPENDENT (CPL+BB yes; Band+BB either still dead or newly alive after the L8 default-seed DSBPL/BB restart fix). FALSIFIER 1: if the fresh union tally over the whole burst is 0, the archival single-block BB was a pre-L18 seed/bound artifact and the P3 diff must say so — this is the more likely outcome given that the archival Band+BB arm in that very block sat railed at kT = 1.0007 keV with LRT ~= 0. FALSIFIER 2: if >= 3 of 5 blocks pass, the BB is stronger than the archival prior and the burst becomes a photospheric candidate for #43 — which would then have to be reconciled against Burgess 2019's p_B(synchrotron) = 0.900 at the peak (a direct, published, contradicting claim).",
-  "P-C (shape / two-break): block [4.55, 5.60] s produces at least one VALID break-structure fit (SBPL or DSBPL) once L18/L19 lift the Ep caps — the archival run gave that block the burst's lowest AIC for DSBPL (2195.17, beating SBPL by 11.0) while flagging DSBPL_VALID=False, the classic bound-capped signature this engine generation was built to fix. FALSIFIER: if DSBPL remains invalid or its ΔAIC vs SBPL collapses below 10 with valid parameters, the archival break signal was a cap artifact. COMPETITION CLAUSE: P-B and P-C target the SAME interval; if both a valid BB and a valid second break appear in [4.55, 5.60] s, they are fitting the same curvature and the block must be reported as MODEL-DEGENERATE rather than as two detections.",
-  "P-D (component coverage / D4 control): our window [-1.5, 15.0] s covers the MAIN pulse only. BAT sees a weak first peak at GBM -28.2 -> -8.2 s and GBM's own catalog T90 starts at -11.52 s. Prediction: the fresh first block will NOT show an anomalously hard or discrepant spectrum attributable to that earlier component, because it is outside the window — but the pre-burst background [-30, -8] s may be contaminated by it, which would bias the first block's spectrum SOFT (over-subtracted background at low energy) and inflate its Ep error. FALSIFIER/DIAGNOSTIC: if the fresh first block's Ep or alpha departs from Lu+2018's [-2.18, 3.54] bin (Ep = 414.60 ± 155.43, alpha = -1.33 ± 0.07) by more than the frame-aligned uncertainty, check the background polynomial residual over [-30, -8] s BEFORE attributing it to physics."
+  "P-A (Ep track / HTS): the fresh blind Ep(t) reproduces a hard-to-soft trend consistent with Lu+2018's k_E = -0.39 \u00b1 0.23 after frame alignment (both use Band Ep = \u03bdF\u03bd peak, GBM T0). Concretely: the first block (covering ~0-4 s) lands at Ep = 300-420 keV, the pulse-peak region (~5-6 s) at Ep = 270-400 keV, and the decay (>6.3 s) at Ep <= 240 keV, with the GBM catalog's peak-flux anchor Ep = 276 \u00b1 43 keV over [5.12, 6.14] s reproduced to within the inter-instrument spread. FALSIFIER: a monotonically RISING Ep, or a peak-block Ep outside 200-500 keV, contradicts both the archival prior and every published frame and must be reported as such, not smoothed. NOTE the archival non-monotonicity (309 -> 404 -> 280 keV) \u2014 if it survives L18/L19, it is a real intensity-tracking excursion at the pulse peak and should be labelled 'H2S-dominated tracking' in Lu's vocabulary, not silently called HTS.",
+  "P-B (BB / union rule): the L18+ engine reproduces a significant BB in the pulse-peak block [4.55, 5.60] s \u2014 union-rule pass with kT ~= 25-32 keV \u2014 and the detection stays BASELINE-DEPENDENT (CPL+BB yes; Band+BB either still dead or newly alive after the L8 default-seed DSBPL/BB restart fix). FALSIFIER 1: if the fresh union tally over the whole burst is 0, the archival single-block BB was a pre-L18 seed/bound artifact and the P3 diff must say so \u2014 this is the more likely outcome given that the archival Band+BB arm in that very block sat railed at kT = 1.0007 keV with LRT ~= 0. FALSIFIER 2: if >= 3 of 5 blocks pass, the BB is stronger than the archival prior and the burst becomes a photospheric candidate for #43 \u2014 which would then have to be reconciled against Burgess 2019's p_B(synchrotron) = 0.900 at the peak (a direct, published, contradicting claim).",
+  "P-C (shape / two-break): block [4.55, 5.60] s produces at least one VALID break-structure fit (SBPL or DSBPL) once L18/L19 lift the Ep caps \u2014 the archival run gave that block the burst's lowest AIC for DSBPL (2195.17, beating SBPL by 11.0) while flagging DSBPL_VALID=False, the classic bound-capped signature this engine generation was built to fix. FALSIFIER: if DSBPL remains invalid or its \u0394AIC vs SBPL collapses below 10 with valid parameters, the archival break signal was a cap artifact. COMPETITION CLAUSE: P-B and P-C target the SAME interval; if both a valid BB and a valid second break appear in [4.55, 5.60] s, they are fitting the same curvature and the block must be reported as MODEL-DEGENERATE rather than as two detections.",
+  "P-D (component coverage / D4 control): our window [-1.5, 15.0] s covers the MAIN pulse only. BAT sees a weak first peak at GBM -28.2 -> -8.2 s and GBM's own catalog T90 starts at -11.52 s. Prediction: the fresh first block will NOT show an anomalously hard or discrepant spectrum attributable to that earlier component, because it is outside the window \u2014 but the pre-burst background [-30, -8] s may be contaminated by it, which would bias the first block's spectrum SOFT (over-subtracted background at low energy) and inflate its Ep error. FALSIFIER/DIAGNOSTIC: if the fresh first block's Ep or alpha departs from Lu+2018's [-2.18, 3.54] bin (Ep = 414.60 \u00b1 155.43, alpha = -1.33 \u00b1 0.07) by more than the frame-aligned uncertainty, check the background polynomial residual over [-30, -8] s BEFORE attributing it to physics."
  ],
  "harvest_snippets": {
   "Lu2018": [
-   "Table 2 (GRB 120102A / bn120102095): -2.18-3.54 | 0.01±0.00 | 414.60±155.43 | -1.33±0.07 | -2.26±0.66 | 6.26E-07±3.86E-08 | 1.04 ; 3.54-5.16 | 0.05±0.00 | 389.72±63.13 | -1.01±0.06 | -2.05±0.12 | 3.04E-06±9.04E-08 | 1.43 ; 5.16-6.13 | 0.06±0.01 | 283.92±67.09 | -1.03±0.09 | -1.81±0.07 | 2.93E-06±8.61E-08 | 0.89 ; 6.13-12.35 | 0.01±0.00 | 232.48±64.40 | [page break]",
-   "Table 1: bn120102095 NaI 108.65±3.63 | 5.14±0.04 | 3.48±0.29 | 3.75±0.41 | -2.71 | 1.33 ; N1 5.35±0.14 ; N2 5.22±0.09 ; N3 5.09±0.07 ; N4 4.94±0.05",
-   "Table 4: bn120102095 | H | tau31 0.11±0.08 | W 2.37 | k_tau 0.20±0.15 | k_E -0.39±0.23",
-   "§5: 'the spectral lag increases with increasing photon energy E (given the same reference band in 8-25 keV)'"
+   "Table 2 (GRB 120102A / bn120102095): -2.18-3.54 | 0.01\u00b10.00 | 414.60\u00b1155.43 | -1.33\u00b10.07 | -2.26\u00b10.66 | 6.26E-07\u00b13.86E-08 | 1.04 ; 3.54-5.16 | 0.05\u00b10.00 | 389.72\u00b163.13 | -1.01\u00b10.06 | -2.05\u00b10.12 | 3.04E-06\u00b19.04E-08 | 1.43 ; 5.16-6.13 | 0.06\u00b10.01 | 283.92\u00b167.09 | -1.03\u00b10.09 | -1.81\u00b10.07 | 2.93E-06\u00b18.61E-08 | 0.89 ; 6.13-12.35 | 0.01\u00b10.00 | 232.48\u00b164.40 | [page break]",
+   "Table 1: bn120102095 NaI 108.65\u00b13.63 | 5.14\u00b10.04 | 3.48\u00b10.29 | 3.75\u00b10.41 | -2.71 | 1.33 ; N1 5.35\u00b10.14 ; N2 5.22\u00b10.09 ; N3 5.09\u00b10.07 ; N4 4.94\u00b10.05",
+   "Table 4: bn120102095 | H | tau31 0.11\u00b10.08 | W 2.37 | k_tau 0.20\u00b10.15 | k_E -0.39\u00b10.23",
+   "\u00a75: 'the spectral lag increases with increasing photon energy E (given the same reference band in 8-25 keV)'"
   ],
   "Burgess2019": [
    "row 120102095: -1.06+0.08-0.09 | -1.08+0.21-0.19 | 0.60+0.45-0.60 | 9.97 | 3.38 | -4.15 | 0.902 | 0.900",
-   "§2: 'It was required that some background selections be modified as the ones specified in the online catalog occasionally contained on-source intervals.'"
+   "\u00a72: 'It was required that some background selections be modified as the ones specified in the online catalog occasionally contained on-source intervals.'"
   ],
   "vonKienlin2014": [
-   "Table 7: bn120102095 | 3+4+5 | 28.417 ± 8.204 | -11.520 | 4.032 ± 0.231 | 3.200",
+   "Table 7: bn120102095 | 3+4+5 | 28.417 \u00b1 8.204 | -11.520 | 4.032 \u00b1 0.231 | 3.200",
    "Table 6: bn120102095 | GRB 120102A | 02:16:23.2391 | 276.2 | 24.7 | 0.0 | Swift | 10 | 512 | 47-291 | K, R, IA, S, Me"
   ],
   "Golkhou2015": [
-   "Table 2: 120102095 | 120102A | 0.338 ± 0.023 | 0.092 ± 0.008 | 28.417 ± 8.204 | -25.674 | 29.990 | 0.47 | 0.13 | (no z)"
+   "Table 2: 120102095 | 120102A | 0.338 \u00b1 0.023 | 0.092 \u00b1 0.008 | 28.417 \u00b1 8.204 | -25.674 | 29.990 | 0.47 | 0.13 | (no z)"
   ],
   "Qu2025": [
-   "Table 2, 'GRBs without redshift' list contains 120102A — citable confirmation of no measured z as of 2025"
+   "Table 2, 'GRBs without redshift' list contains 120102A \u2014 citable confirmation of no measured z as of 2025"
   ],
   "GCN12799_BAT": [
    "'The mask-weighted light curve shows a weak peak starting at ~T_0 and returning to baseline at ~T+20 sec. The main emission starts at ~T+25 sec ... peak emission at ~T+33 sec ... At the 3- or 4-sigma level, there is a possible precursor peak at ~T-70 sec'",
@@ -99,6 +330,10 @@
    "'The GBM light curve consists of two main pulses with a duration (T90) of about 17 s (50-300 keV).'",
    "'power law index is -1.19 +/- 0.03 and the cutoff energy, parameterized as Epeak, is 380 +/- 33 keV. A Band function fits the spectrum equally well with Epeak = 291 +/- 33 keV, alpha = -1.13 +/- 0.04, and beta = -2.14 +/- 0.13.'"
   ],
-  "Lu2022": ["NOT OBTAINED — IOP captcha; module-future/afterglow"]
- }
+  "Lu2022": [
+   "NOT OBTAINED \u2014 IOP captcha; module-future/afterglow"
+  ]
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

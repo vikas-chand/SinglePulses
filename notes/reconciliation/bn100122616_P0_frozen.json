@@ -16,15 +16,52 @@
   "n_blocks": 11,
   "block_layout": "1 time-integrated (18.66 to 32.80 s, BLOCK=-1) + 10 time-resolved (18.66 to 32.80 s edges); note the archival span starts 2.1 s inside the stamped window 16.56-33.80 s",
   "dets_per_block": "n6,n9,na,b1 (4)",
-  "union_rule_blocks": [-1, 2, 3, 4, 7],
+  "union_rule_blocks": [
+   -1,
+   2,
+   3,
+   4,
+   7
+  ],
   "n_union_resolved": 4,
-  "bandbb_only_blocks": [-1, 2, 3],
-  "cplbb_only_extra_blocks": [4, 7],
-  "bandbb_kt_values_keV_union_blocks": {"-1": 4.35, "2": 4.71, "3": 4.96, "4": "11.3+/-56 (unconstrained; CPLBB kT 10.47+/-2.12)", "7": "4.32 (BANDBB LRT only 2.3; CPLBB kT 80.7+/-31.6 dubious)"},
+  "bandbb_only_blocks": [
+   -1,
+   2,
+   3
+  ],
+  "cplbb_only_extra_blocks": [
+   4,
+   7
+  ],
+  "bandbb_kt_values_keV_union_blocks": {
+   "-1": 4.35,
+   "2": 4.71,
+   "3": 4.96,
+   "4": "11.3+/-56 (unconstrained; CPLBB kT 10.47+/-2.12)",
+   "7": "4.32 (BANDBB LRT only 2.3; CPLBB kT 80.7+/-31.6 dubious)"
+  },
   "bandbb_kt_median_all_blocks_keV": 4.54,
-  "aic_winner_distribution": {"Band+BB": 3, "CPL+BB": 2, "SBPL": 2, "CPL": 1, "DSBPL": 1, "Band": 1, "INCONCLUSIVE": 1},
-  "lrt_dsbpl_sbpl_ge_9p2_blocks": {"-1": 13.14, "3": 11.94},
-  "integrated_key_numbers": {"BAND": "Ep=42.7, alpha=-0.93, beta=-2.30", "LRT_BANDBB_BAND": 29.2, "LRT_CPLBB_CPL": 61.21, "LRT_DSBPL_SBPL": 13.14, "AIC_winner": "Band+BB", "BANDBB_KT": "4.352+/-0.171"},
+  "aic_winner_distribution": {
+   "Band+BB": 3,
+   "CPL+BB": 2,
+   "SBPL": 2,
+   "CPL": 1,
+   "DSBPL": 1,
+   "Band": 1,
+   "INCONCLUSIVE": 1
+  },
+  "lrt_dsbpl_sbpl_ge_9p2_blocks": {
+   "-1": 13.14,
+   "3": 11.94
+  },
+  "integrated_key_numbers": {
+   "BAND": "Ep=42.7, alpha=-0.93, beta=-2.30",
+   "LRT_BANDBB_BAND": 29.2,
+   "LRT_CPLBB_CPL": 61.21,
+   "LRT_DSBPL_SBPL": 13.14,
+   "AIC_winner": "Band+BB",
+   "BANDBB_KT": "4.352+/-0.171"
+  },
   "class": "low-kT (~4.5 keV, edge-constrained per L28) BB-leader with two-break support integrated; caveat: archival run predates L8/L9 hardening (two-break support is a lower limit)"
  },
  "harvest_snippets": {
@@ -55,5 +92,7 @@
   "Li&Zhang2021": [
    "absent (not in that sample - no hit in the four-form queries or the local corpus scan)"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

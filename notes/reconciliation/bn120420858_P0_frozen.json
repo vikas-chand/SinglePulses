@@ -21,13 +21,42 @@
   "dets_per_block": "n4,n8,b0,b1 (4)",
   "union_rule_blocks": [],
   "n_union_resolved": 0,
-  "union_rule_detail": {"LRT_BANDBB_BAND": {"-1": 1.755, "0": 4.196, "1": 2.829}, "LRT_CPLBB_CPL": {"-1": 0.577, "0": 1.723, "1": 1.873}, "threshold": 9.2, "verdict": "NO block passes either leg; the union rule is unanimously negative"},
-  "bandbb_kt_values_keV": {"-1": "4.903 +/- 1.529", "0": "3.462 +/- 0.846", "1": "5.851 +/- 1.265"},
-  "cplbb_kt_values_keV": {"-1": "4.616 +/- 1.682", "0": "3.163 +/- 0.878", "1": "74.90 +/- 27.20 (unconstrained/dubious)"},
+  "union_rule_detail": {
+   "LRT_BANDBB_BAND": {
+    "-1": 1.755,
+    "0": 4.196,
+    "1": 2.829
+   },
+   "LRT_CPLBB_CPL": {
+    "-1": 0.577,
+    "0": 1.723,
+    "1": 1.873
+   },
+   "threshold": 9.2,
+   "verdict": "NO block passes either leg; the union rule is unanimously negative"
+  },
+  "bandbb_kt_values_keV": {
+   "-1": "4.903 +/- 1.529",
+   "0": "3.462 +/- 0.846",
+   "1": "5.851 +/- 1.265"
+  },
+  "cplbb_kt_values_keV": {
+   "-1": "4.616 +/- 1.682",
+   "0": "3.163 +/- 0.878",
+   "1": "74.90 +/- 27.20 (unconstrained/dubious)"
+  },
   "bandbb_kt_median_all_blocks_keV": 4.903,
-  "aic_winner_distribution": {"CPL": 3},
-  "bic_winner_distribution": {"CPL": 3},
-  "lrt_dsbpl_sbpl": {"-1": 0.228, "0": 2.147, "1": -0.010},
+  "aic_winner_distribution": {
+   "CPL": 3
+  },
+  "bic_winner_distribution": {
+   "CPL": 3
+  },
+  "lrt_dsbpl_sbpl": {
+   "-1": 0.228,
+   "0": 2.147,
+   "1": -0.01
+  },
   "lrt_dsbpl_sbpl_ge_9p2_blocks": {},
   "integrated_key_numbers": {
    "CPL (AIC winner)": "index = -1.2217, xc = 9695.2 keV -> derived Ep = (2+index)*xc = 7546 keV; AIC 7662.51",
@@ -38,7 +67,38 @@
    "CPLBB": "kT = 4.616 +/- 1.682 keV, CPLBB_VALID = True; AIC 7665.93",
    "AIC spread": "CPL 7662.51 < SBPL 7665.58 < CPLBB 7665.93 < BAND 7668.72 < DSBPL 7669.35 < BANDBB 7670.97 - CPL wins by dAIC = 3.06 over the runner-up, i.e. BELOW the dAIC>=10 doctrine threshold: the archival integrated model choice is NOT decisive"
   },
-  "validity_flags": {"BAND_VALID": {"-1": false, "0": false, "1": true}, "SBPL_VALID": {"-1": false, "0": false, "1": true}, "DSBPL_VALID": {"-1": false, "0": false, "1": false}, "BANDBB_VALID": {"-1": false, "0": false, "1": true}, "CPLBB_VALID": {"-1": true, "0": true, "1": true}, "CPL_VALID": {"-1": true, "0": true, "1": true}},
+  "validity_flags": {
+   "BAND_VALID": {
+    "-1": false,
+    "0": false,
+    "1": true
+   },
+   "SBPL_VALID": {
+    "-1": false,
+    "0": false,
+    "1": true
+   },
+   "DSBPL_VALID": {
+    "-1": false,
+    "0": false,
+    "1": false
+   },
+   "BANDBB_VALID": {
+    "-1": false,
+    "0": false,
+    "1": true
+   },
+   "CPLBB_VALID": {
+    "-1": true,
+    "0": true,
+    "1": true
+   },
+   "CPL_VALID": {
+    "-1": true,
+    "0": true,
+    "1": true
+   }
+  },
   "class": "HARD, Ep-ABOVE-BAND burst: no BB anywhere (0/3 union), no two-break anywhere, CPL wins on AIC in every block but only by dAIC ~ 3, and every curved model that carries a high-energy break RAILED at the old 5 MeV Ep cap. The archival run is therefore NOT a measurement of this burst's peak energy - it is a record of the cap being hit (the L9 failure mode). Two-break count for this burst is 0 and, unusually, that zero is trustworthy: the archival DSBPL LRTs are ~0-2, nowhere near threshold, so no L8/L9 hardening can plausibly promote it."
  },
  "harvest_snippets": {
@@ -71,5 +131,7 @@
   ]
  },
  "step1_qc_pointer": "results/qc/bn120420858_step1_response_coverage.ecsv (verdict PASS_WITH_WARN: all 4 responses valid; WARN-1 component coverage, WARN-2 background-on-tail, WARN-3 4.44 deg GBM-vs-LAT position offset, INFO LAT unusable / no LLE)",
- "dossier_pointer": "results/gcn/bn120420858/bn120420858_dossier.md"
+ "dossier_pointer": "results/gcn/bn120420858/bn120420858_dossier.md",
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

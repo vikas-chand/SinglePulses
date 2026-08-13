@@ -274,5 +274,7 @@
    "Ma+2024 (2024AN....34530179M) - no OA route",
    "Hurley+2017 IPN supplement (2017ApJS..229...31H) - IOP bot-block"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

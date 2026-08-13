@@ -6,15 +6,23 @@
  "frozen_utc": "2026-08-12; BEFORE any fresh/sweep106 fit table opened (results/sweep106/ untouched per hard rule). Archival clean_per_burst_human_final read as the sanctioned prior only.",
  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
  "archival_prior": {
-  "source": "results/clean_per_burst_human_final/bn100612726/spectral_fits.ecsv (pre-L18-era engine; production numbers provisional per AGENTS.md §6)",
+  "source": "results/clean_per_burst_human_final/bn100612726/spectral_fits.ecsv (pre-L18-era engine; production numbers provisional per AGENTS.md \u00a76)",
   "n_blocks": 8,
   "plus_integrated": true,
   "detectors": "n3,n4,n7,n8,b0,b1 (6, all blocks)",
   "union_rule_bb_blocks": {
    "rule": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05)",
-   "bandbb_pass": [3],
-   "cplbb_pass": [2, 3],
-   "union": [2, 3],
+   "bandbb_pass": [
+    3
+   ],
+   "cplbb_pass": [
+    2,
+    3
+   ],
+   "union": [
+    2,
+    3
+   ],
    "count": 2,
    "detail": {
     "blk2_[1.86,2.90]s": "CPL+BB pair ONLY: LRT_CPLBB_CPL=23.62, kT_CplBB=21.32 keV (CPLBB_VALID=True); Band+BB pair fails (LRT=5.53, BANDBB_VALID=False). Baseline-dependence live instance (T8 twin / union-rule fix). AIC+BIC winner here = SBPL.",
@@ -22,15 +30,55 @@
    }
   },
   "integrated_block": "[-0.29,15.00]s: AIC winner Band+BB but LRT_BANDBB=6.06 / LRT_CPLBB=6.14 both <9.2 (kT 5.59/21.95 keV) -> not counted; BIC winner Band",
-  "aic_winners_by_block": {"-1": "Band+BB", "0": "CPL", "1": "CPL+BB", "2": "SBPL", "3": "Band+BB", "4": "Band", "5": "CPL", "6": "CPL", "7": "CPL"},
-  "bic_winners_by_block": {"-1": "Band", "0": "CPL", "1": "CPL", "2": "SBPL", "3": "Band+BB", "4": "CPL", "5": "CPL", "6": "CPL", "7": "CPL"},
-  "kT_keV_bandbb_by_block": {"-1": 5.59, "0": 1.91, "1": 27.09, "2": 12.19, "3": 7.67, "4": 21.66, "5": 23.42, "6": 4.16, "7": 38.97},
-  "kT_keV_cplbb_by_block": {"-1": 21.95, "0": 32.73, "1": 27.05, "2": 21.32, "3": 8.88, "4": 18.65, "5": 5.14, "6": 4.22, "7": 32.68},
-  "secondary_signals": "LRT_DSBPL_SBPL=19.34 in blk3 (DSBPL_VALID=True) and 10.04 integrated (but DSBPL_VALID=False there); blk2 is the lone SBPL AIC winner — a possible break-structure block riding the same interval as the CPL+BB detection"
+  "aic_winners_by_block": {
+   "-1": "Band+BB",
+   "0": "CPL",
+   "1": "CPL+BB",
+   "2": "SBPL",
+   "3": "Band+BB",
+   "4": "Band",
+   "5": "CPL",
+   "6": "CPL",
+   "7": "CPL"
+  },
+  "bic_winners_by_block": {
+   "-1": "Band",
+   "0": "CPL",
+   "1": "CPL",
+   "2": "SBPL",
+   "3": "Band+BB",
+   "4": "CPL",
+   "5": "CPL",
+   "6": "CPL",
+   "7": "CPL"
+  },
+  "kT_keV_bandbb_by_block": {
+   "-1": 5.59,
+   "0": 1.91,
+   "1": 27.09,
+   "2": 12.19,
+   "3": 7.67,
+   "4": 21.66,
+   "5": 23.42,
+   "6": 4.16,
+   "7": 38.97
+  },
+  "kT_keV_cplbb_by_block": {
+   "-1": 21.95,
+   "0": 32.73,
+   "1": 27.05,
+   "2": 21.32,
+   "3": 8.88,
+   "4": 18.65,
+   "5": 5.14,
+   "6": 4.22,
+   "7": 32.68
+  },
+  "secondary_signals": "LRT_DSBPL_SBPL=19.34 in blk3 (DSBPL_VALID=True) and 10.04 integrated (but DSBPL_VALID=False there); blk2 is the lone SBPL AIC winner \u2014 a possible break-structure block riding the same interval as the CPL+BB detection"
  },
  "predictions": [
-  "P-A (Ep track): the fresh blind Ep(t) falls inside the three published time-resolved envelopes after frame alignment — first ~1 s bin Ep in 155-270 keV (binning-dependent: Lu12 173+-29 / Lu18 156+-18 / Yu19 264+28-42), pulse-peak (~3-5 s) Ep 105-125 keV, decaying monotonically to <=60 keV by ~8 s (HTS); a non-monotonic rise after 2 s would instead support Shao+2017's semi-HIT reading and must be reported as such, not smoothed away.",
-  "P-B (BB / union rule): the L18+ engine reproduces a significant BB in the pulse-peak region — specifically blk-3-equivalent coverage [2.9,5.2]s passes the union rule with kT ~= 7-9 keV, and the blk-2-equivalent [1.9,2.9]s BB remains BASELINE-DEPENDENT (CPL+BB yes, Band+BB no). FALSIFIER: if the fresh run's union tally over the pulse peak is 0, the archival 2-block BB count was a pre-L18 seed/cap artifact (L8/L9 class) and the P3 diff must say so; if >2 blocks pass, the literature-silent BB is stronger than the archival prior and Basak's Band/BBPL=0.73 comparison becomes the diff target.",
+  "P-A (Ep track): the fresh blind Ep(t) falls inside the three published time-resolved envelopes after frame alignment \u2014 first ~1 s bin Ep in 155-270 keV (binning-dependent: Lu12 173+-29 / Lu18 156+-18 / Yu19 264+28-42), pulse-peak (~3-5 s) Ep 105-125 keV, decaying monotonically to <=60 keV by ~8 s (HTS); a non-monotonic rise after 2 s would instead support Shao+2017's semi-HIT reading and must be reported as such, not smoothed away.",
+  "P-B (BB / union rule): the L18+ engine reproduces a significant BB in the pulse-peak region \u2014 specifically blk-3-equivalent coverage [2.9,5.2]s passes the union rule with kT ~= 7-9 keV, and the blk-2-equivalent [1.9,2.9]s BB remains BASELINE-DEPENDENT (CPL+BB yes, Band+BB no). FALSIFIER: if the fresh run's union tally over the pulse peak is 0, the archival 2-block BB count was a pre-L18 seed/cap artifact (L8/L9 class) and the P3 diff must say so; if >2 blocks pass, the literature-silent BB is stronger than the archival prior and Basak's Band/BBPL=0.73 comparison becomes the diff target.",
   "P-C (shape, secondary): blk2's SBPL AIC win + blk3's LRT_DSBPL_SBPL=19.3 predict at least one valid break-structure (SBPL/DSBPL) block in the 1.9-5.2 s core; zero such blocks falsifies the archival break signal as engine-era artifact."
  ],
  "harvest_snippets": {
@@ -49,8 +97,16 @@
    "Table 1: 100612726 | n3n4(n8)b0 | -2.-20. | -30.--5. | 25.-100. | ... | 12 | 6 | 1(0.05) | 1(0.03) | 1(0.92) | h.t.s.",
    "Table 15 peak bin 3.30-5.23: S=67.2, CPL alpha=-0.55+-0.04 Ep=125.4+6.1-6.6; Band alpha=-0.45 beta=-2.98+0.24-0.13 Ep=115.2; DeltaDIC=-12.49 (sign convention unverified, T8)"
   ],
-  "Preece2016": ["Table 2: 100612726 Ep,p=143+-10 Ep,f=111+-4 sigma-dev 2.7"],
-  "Acuner2018": ["Table B1 cluster 1 row: T90 8.58, Epk 104.53, alpha -0.46, beta -3.17, probability 0.97"],
-  "literature_BB_claims": ["absent — no paper fits or claims a thermal component for this burst; nearest is Basak's Band-vs-BBPL comparison (0.73)"]
- }
+  "Preece2016": [
+   "Table 2: 100612726 Ep,p=143+-10 Ep,f=111+-4 sigma-dev 2.7"
+  ],
+  "Acuner2018": [
+   "Table B1 cluster 1 row: T90 8.58, Epk 104.53, alpha -0.46, beta -3.17, probability 0.97"
+  ],
+  "literature_BB_claims": [
+   "absent \u2014 no paper fits or claims a thermal component for this burst; nearest is Basak's Band-vs-BBPL comparison (0.73)"
+  ]
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

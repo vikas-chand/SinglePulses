@@ -17,11 +17,18 @@
   "n_blocks": 8,
   "blocks": "blk-1 integrated 0.313-23.484 s + blk0..blk6 resolved (0.313-23.484 s)",
   "plugin_dets": "n6,n7,n8,b1,lle (5 dets, all 8 blocks)",
-  "aic_winners": {"SBPL": 4, "CPL": 1, "Band+BB": 2, "Band": 1},
+  "aic_winners": {
+   "SBPL": 4,
+   "CPL": 1,
+   "Band+BB": 2,
+   "Band": 1
+  },
   "integrated_winner": "SBPL (blk-1, AIC 5955.8 vs Band 5959.3, DSBPL 5957.0)",
   "significant_bb_blocks_LRT9.2_kT1.05": 1,
   "significant_bb_detail": "blk2 (2.944-5.074 s): LRT_BANDBB_BAND=19.57, kT=35.108 keV (MINOS errs NaN - fragile)",
-  "significant_kT_values_keV": [35.108],
+  "significant_kT_values_keV": [
+   35.108
+  ],
   "significant_kT_median_keV": 35.108,
   "class": "high-kT (~35 keV), single-block; NOT the low-kT (<5 keV) L28 edge class",
   "lrt_dsbpl_sbpl_max": 8.02,
@@ -63,5 +70,7 @@
   "Ahlgren2020_2020ApJ...897..178A": [
    "four GRBs in the sample selected for time-resolved spectral analysis that have reported positions from Swift (GRB 120119A, GRB 161004B, GRB 180703A and GRB 190720A) ... new response files ... best-fit parameters being consistent within 1 sigma"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

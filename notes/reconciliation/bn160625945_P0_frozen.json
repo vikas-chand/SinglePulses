@@ -1674,5 +1674,7 @@
   "T7 every 'BB required' / 'BB not required' verdict on this burst is continuum-relative: Ravasio measured against 2SBPL, Zhang against Band+synchrotron, Lu against CPL, Aldowma against DSBPL.",
   "T8 Aldowma report BIC; our engine reports AIC. Do not compare margins without recomputing.",
   "D1 the LLE DRM is single-matrix, built for T0+185.0-202.0 s while the source window is T0+182.644-225.884 s. It PASSES the off-axis test (Delta-theta 1.33 deg mean, 5.23 deg full span) but only because Fermi's ARR slew (42 deg -> 11 deg) FINISHED before both intervals. This is the closest a passing burst gets to the bn130427324 failure."
- ]
+ ],
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

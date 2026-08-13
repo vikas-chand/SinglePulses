@@ -5,29 +5,18 @@
  "tally_note": "106-burst campaign doc-layer worker (parallel sweep), not a numbered gated-walkthrough burst; no tally assigned.",
  "frozen_utc": "2026-08-12 (doc-layer pass). Frozen BEFORE any sweep106 fit table was opened - this worker is HARD-BARRED from results/sweep106/ and never listed or read that tree. The only fit tables read are the ARCHIVAL census run named below, which the task explicitly allows as prior.",
  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
-
  "archival_prior_source_note": "results/clean_per_burst_human_final/bn140608153/spectral_fits.ecsv EXISTS and was used. Its refit.log line 1 reads 'bn140608153: approved dets = [n0, n1, b0, n9, na]; fit dets = [n0, n1, n9, na, b0]' - i.e. the archival run used EXACTLY the currently stamped human selection (results/background_intervals.ecsv, APPROVED_BY Vikas Chand 2026-07-19T22:18:36Z, human_gui). ** THERE IS NO DETECTOR-SET CONFOUND ON THIS BURST ** (unlike bn110920546): prior-vs-new differences are ENGINE differences, plus any BINNING difference. THE BINNING IS THE CAVEAT: refit.log line 2 reads 'Canonical bins from det n0 (gbm_fine): 3 blocks spanning [3.82, 28.88] s; eff-area ref = n0'. The archival blocks cover only 3.82-28.88 s = 35% of T90 (-4.608 to +67.073 s) and 31% of the stamped source window (-4.0 to +78.0 s). Read every 'integrated' number below as PARTIAL (T9/D4). A separate, earlier archival binning product, results/clean_blocks/bb_blocks_spectral_bn140608153.ecsv, gives 3 blocks over 1.972-42.036 s (edges 1.972 / 9.716 / 22.260 / 42.036) - ALSO not the full window, and NOT identical to the edges the human_final refit used; the two archival runs disagree on the block edges, which is itself a prior worth knowing.",
-
  "predictions": [
   "P-A (BB union rule - a NULL prediction): NO block, resolved or integrated, will pass the union rule (LRT_BANDBB_BAND >= 9.2 AND kT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND kT > 1.05). Archival: 0 of 4 rows pass; the LARGEST likelihood-ratio anywhere in the burst is 4.32 (blk0, CPL+BB vs CPL), less than half the threshold. FALSIFIED IF any resolved block in the new sweep returns LRT >= 9.2 with a kT whose error is smaller than the value. NOTE THE ONE TRAP TO AVOID: the archival AIC winner in blk0 IS 'CPL+BB', but by a margin of ONLY dAIC = 0.32 (CPL 5328.294 vs CPL+BB 5327.978) - four orders of magnitude below the project's dAIC >= 10 doctrine and with LRT 4.32. If the new sweep again crowns CPL+BB in blk0 that is NOT a blackbody detection, and must not be reported as one; the BIC winner is CPL in every archival row including blk0.",
-
   "P-A2 (where the BB would appear IF it appears): the strongest thermal candidate stays in the FIRST block. Archival LRT_CPLBB_CPL by block: blk0 (3.82-10.17 s) = 4.32, blk1 (10.17-22.25 s) = 0.17, blk2 (22.25-28.88 s) = 0.24, integrated = 0.92; and blk0 also carries the LOWEST temperature, kT = 3.77 +/- 1.02 keV (Band+BB) / 3.77 +/- 1.02 keV (CPL+BB) - i.e. the L28 edge-constrained low-kT class, sitting at roughly half the ~8.1 keV NaI low-energy edge. PREDICT: max(LRT) again in the earliest block, and the fitted kT again in 2-6 keV there. FALSIFIED IF the maximum LRT moves to a late block, or if a well-constrained kT > 20 keV appears anywhere. (The other archival kT values - 9.06 +/- 3.86 keV in blk1, 6.73 +/- 2.51 keV in blk2 - all have LRT < 0.4, i.e. they are the unconstrained free parameter of a component the data do not want.)",
-
   "P-A3 (two-break - also a NULL prediction): LRT_DSBPL_SBPL < 9.2 in EVERY block including the integrated one. Archival: integrated 1.25, blk0 3.10, blk1 0.46, blk2 0.36. FALSIFIED IF the integrated LRT_DSBPL_SBPL >= 9.2 in the new sweep. Corroborating structure in the prior: blk0's DSBPL is INVERTED (xb = 141.40 keV ABOVE xp = 111.11 keV, with errors 132.3 and 104.4 - i.e. both breaks unconstrained and out of order) and DSBPL_VALID = 0 there; the fit is exploring a degenerate direction, not finding two breaks. This burst is a NEGATIVE control for the two-break census: if the hardened engine manufactures two-break significance HERE, the engine, not the burst, is the finding.",
-
   "P-B (integrated shape over the FULL stamped window): the new time-integrated fit over -4.0 -> +78.0 s will select a CURVED, EXPONENTIALLY-CUT model (CPL or its Band/SBPL equivalent with a railed high-energy index) with Ep in 130-175 keV and low-energy index in -1.15 .. -0.75. FALSIFIED IF the integrated Ep falls outside 110-220 keV, or if the AIC winner is a pure power law, or if a well-constrained beta > -3.5 appears (see P-B3). FRAMES TO DIFF AGAINST, each with its component coverage (T9): (i) GBM catalog flnc_comp over -3.072 -> +68.608 s with dets n0,n1,n9,b1 (TTE, Castor C-STAT): Ep = 146.86 +/- 7.92 keV, index = -0.9750 +/- 0.0516, redchisq 1.1162/474 - COVERAGE = TOTAL single pulse; (ii) GBM catalog flnc_band, same window/dets: Ep = 149.67 +/- 11.13, alpha = -0.98645 +/- 0.04286, beta = -8.154 +/- 1586.3 UNCONSTRAINED, redchisq 1.1184/473; (iii) archival prior over 3.82 -> 28.88 s with our own 5 detectors: Band Ep = 153.79 +/- 7.58 keV, alpha = -0.6029 +/- 0.0684, beta = -5.000 RAILED; CPL index = -0.6032, Ec = 110.24 keV -> Ep = (2+alpha)*Ec = 154.0 keV - COVERAGE = 35% of T90, the BRIGHT MIDDLE ONLY. *** COVERAGE PREDICTION, the sharpest falsifiable item here: our new window ADDS the soft rise (-4 -> 3.8 s) and the entire soft decay (28.9 -> 67 s) that the archival window omitted. Our integrated low-energy index must therefore come out SOFTER than the archival -0.603 and land near the catalog's -0.975 +/- 0.052. If the new integrated alpha comes back at -0.60 again, the cause is NOT physics: either the binning again failed to reach past ~29 s, or the background model is wrong. ***",
-
   "P-B2 (evolution class - hard-to-soft, but WEAK): block-resolved Ep will be monotonically non-increasing with time and the low-energy index monotonically softening, with a SMALL total swing. Archival: Ep(Band) 158.2 -> 154.4 -> 141.1 keV (a mere -11% over 25 s) while alpha runs -0.373 -> -0.593 -> -0.838 (a much larger swing than Ep). PREDICT the same ordering and predict that ALPHA, not Ep, carries the spectral evolution: |dEp/Ep| < 40% across the blocks that overlap 3.8-29 s, while alpha changes by > 0.3. FALSIFIED IF Ep peaks in a middle block by more than its error (intensity tracking), or if alpha HARDENS with time. CAVEAT PUBLISHED IN ADVANCE: with only 3 archival blocks the 'monotonic' claim rests on 3 points and 2 of the 3 Ep values agree within errors (158.2 +/- 14.7 vs 154.4 +/- 9.2) - the honest prior is 'no significant Ep evolution detected', and the monotonic ordering is a weak, easily-falsified pattern, flagged as weak here rather than after the fact.",
-
   "P-B3 (NO high-energy power law - the burst's defining published feature): the Band beta will be UNCONSTRAINED or railed in the majority of blocks and in the integrated fit. Every independent era agrees: catalog flnc_band beta = -8.154 +/- 1586.3; catalog pflx_band beta = -11.944 +/- 281262; catalog flnc_sbpl lam2 = -4.843 +/- 5.489 and pflx_sbpl lam2 = -8.184 +/- 20.912; archival Band beta = -5.000 RAILED at the engine floor in the integrated fit and in blk0 and blk1 (with BAND_VALID = 0 in all three), the ONE exception being blk2 where beta = -2.829 +/- 0.944 with BAND_VALID = 1. PREDICT: >= 3 of 4 new rows return beta railed/unconstrained, and the AIC comparison of Band vs CPL favours CPL (fewer parameters, same fit) in the integrated spectrum. FALSIFIED IF the integrated beta is well constrained (error < 0.5) and shallower than -3.5. EXPECT a BOUND_CAPPED diagnosis on beta - this burst should exercise that flag.",
-
   "P-C (identity and data provenance - NOT a fit target): ZERO GCN circulars (gcn.gsfc.nasa.gov 404 x3 with 110721A -> 200 control; gcn.nasa.gov archive API totalItems 0 x6 with 110721A -> 9, 140606A -> 8, 140610A -> 10, 140611A -> 4 controls). ZERO refereed papers (15 ADS full-text forms, all numFound = 0, with GRB 110721A -> 160 / 110920546 -> 5 / 140606A -> 17 controls; plus an attempted-and-empty Scholar-proxy channel). NO redshift, NO counterpart, NO name. NO LAT and NO LLE - the FSSC LAT trigger directory for bn140608153 returns HTTP 404, no gll_* file exists locally, HAS_LAT = False; the D1 off-axis check does not apply. GBM-only, 5 approved detectors n0/n1/n9/na/b0. The ENTIRE P3 diff frame is the GBM catalog itself (tcat/bcat/scat v01 + fermigbrst + the Bhat+2016 table row). ** THIS IS THE BURST'S SCIENTIFIC VALUE TO THE PROGRAM: a memorization-free test case. There is no published analysis for a language model to have memorized, so whatever the engine produces here is produced from the data. **",
-
   "P-D (data-quality prediction, falsifiable at the binning/geometry stage - THE SPACECRAFT SLEWED THROUGH THE BURST): verified locally in this pass from data/bn140608153/glg_poshist_all_140608_v01.fit quaternions using the production primitive scripts/00::get_detector_angle (validated against the tcat's independently recorded THETA = 57.6919 deg, which my code reproduces as 57.63 deg at the trigger sample). The +z axis moved at 0.331 deg/s sustained from t-T0 = -90 s to +150 s (versus 0.040 deg/s just before - the survey/orbital rate), then decelerated to 0.0003 deg/s by +240 s: an accelerate/coast/decelerate profile ending in an inertial hold, starting ~140 s BEFORE the trigger (therefore NOT an ARR for this burst). Source-to-boresight angle runs 58.8 -> 36.1 deg across our source window. Per-detector: na 38.8 -> 64.1 deg (leaves the <=50 deg NaI preference at t ~ +35 s), n0 48.6 -> 22.7 deg, n1 44.4 -> 25.6 deg, n9 30.5 -> 34.9 deg, b0 98.5 -> 85.5 deg. PREDICTIONS: (a) the new binning's canonical/effective-area reference detector will again be an EARLY-time detector - archival per-block significances have na highest in every block (16.4 / 26.6 / 19.8) with n9 second (13.9 / 25.8 / 20.3) and n0 LAST (7.2 / 18.3 / 12.8) - even though n0 is the best-placed detector by the end of the window and is the ONLY detector the GBM catalog used for T90; (b) the per-detector effective-area cross-normalisations will DRIFT with time rather than sit constant, with late blocks favouring n0/n1 over na. FALSIFIED IF the cross-norms are time-stationary within their errors. RELATED STANDING RISK (recorded, not a new flag): the approved BGO is b0 (98.0 deg at T0) while the GBM catalog used b1 (82.0 deg), the BGO on the same side as the dominant NaIs n9/na; b1's TTE/CSPEC/rsp2 are on disk and unused. The archival prior already shows cons_b0 railing at its 0.800 floor and cons_n1 at its 1.200 ceiling in blk2 - a D5-adjacent cross-norm signature that the new sweep should be checked against. This is a human Stage-1 decision (Stage-1 flags ARE decisions) and is NOT re-flagged, only recorded.",
-
   "P-E (response validity - PASS, stated in advance so a later surprise is detectable): all five approved detectors resolve through the production glob glg_cspec_<det>_*.rsp* to 20-matrix .rsp2 files spanning -40.9607 -> +98.3056 s relative to TRIGTIME, bracketing the stamped source window -4.0 -> +78.0 s on both sides with margin. The multi-matrix response is what makes the slew tractable (~2.3 deg of motion per matrix). PREDICT no response-related pathology in the source window. HOWEVER: the rsp2 span does NOT cover the stamped BACKGROUND windows (-115 -> -15 s and +95 -> +180 s). That is fine for a count-space polynomial background, but ANY response-folded quantity computed outside [-40.96, +98.31] s would be invalid. FALSIFIED IF the sweep reports a folded/flux quantity for a bin outside that span."
  ],
-
  "census_prior": {
   "source": "results/clean_per_burst_human_final/bn140608153/spectral_fits.ecsv (4 rows x 171 cols) + refit.log, read 2026-08-12. SAME detector set as the current stamped selection (see archival_prior_source_note).",
   "n_rows": 4,
@@ -35,39 +24,191 @@
   "dets_per_block": "n0,n1,n9,na,b0 (5) in every row - IDENTICAL to the current stamped human selection",
   "union_rule_blocks": [],
   "n_union_resolved": 0,
-  "union_rule_max_anywhere": {"LRT_BANDBB_BAND": 4.2732, "LRT_CPLBB_CPL": 4.3169, "block": 0, "verdict": "less than half the 9.2 threshold - NO blackbody"},
+  "union_rule_max_anywhere": {
+   "LRT_BANDBB_BAND": 4.2732,
+   "LRT_CPLBB_CPL": 4.3169,
+   "block": 0,
+   "verdict": "less than half the 9.2 threshold - NO blackbody"
+  },
   "bandbb_and_cplbb_agree_in_every_block": true,
-  "lrt_bandbb_band": {"-1": 0.9103, "0": 4.2732, "1": 0.1563, "2": 0.3598},
-  "lrt_cplbb_cpl": {"-1": 0.9214, "0": 4.3169, "1": 0.167, "2": 0.2401},
-  "bandbb_kt_values_keV": {"-1": 4.525, "0": 3.7619, "1": 9.0606, "2": 6.7302},
-  "bandbb_kt_errors_keV": {"-1": 1.5833, "0": 1.2483, "1": 3.8579, "2": 2.5052},
-  "cplbb_kt_values_keV": {"-1": 4.5383, "0": 3.7696, "1": 8.8756, "2": 7.1888},
-  "cplbb_kt_errors_keV": {"-1": 1.5781, "0": 1.0156, "1": 3.8618, "2": 2.848},
+  "lrt_bandbb_band": {
+   "-1": 0.9103,
+   "0": 4.2732,
+   "1": 0.1563,
+   "2": 0.3598
+  },
+  "lrt_cplbb_cpl": {
+   "-1": 0.9214,
+   "0": 4.3169,
+   "1": 0.167,
+   "2": 0.2401
+  },
+  "bandbb_kt_values_keV": {
+   "-1": 4.525,
+   "0": 3.7619,
+   "1": 9.0606,
+   "2": 6.7302
+  },
+  "bandbb_kt_errors_keV": {
+   "-1": 1.5833,
+   "0": 1.2483,
+   "1": 3.8579,
+   "2": 2.5052
+  },
+  "cplbb_kt_values_keV": {
+   "-1": 4.5383,
+   "0": 3.7696,
+   "1": 8.8756,
+   "2": 7.1888
+  },
+  "cplbb_kt_errors_keV": {
+   "-1": 1.5781,
+   "0": 1.0156,
+   "1": 3.8618,
+   "2": 2.848
+  },
   "bandbb_kt_median_all_rows_keV": 5.6276,
   "kt_caveat": "Every kT above belongs to a component the LRT REJECTS (max LRT 4.32). They are the unconstrained free parameters of an unwanted component and must NOT enter any kT population statistic (L25/#43 discipline: a fitted kT is not a photosphere).",
-  "lrt_dsbpl_sbpl": {"-1": 1.2461, "0": 3.1036, "1": 0.4601, "2": 0.3643},
-  "aic_winner_distribution": {"CPL": 3, "CPL+BB": 1},
-  "bic_winner_distribution": {"CPL": 4},
+  "lrt_dsbpl_sbpl": {
+   "-1": 1.2461,
+   "0": 3.1036,
+   "1": 0.4601,
+   "2": 0.3643
+  },
+  "aic_winner_distribution": {
+   "CPL": 3,
+   "CPL+BB": 1
+  },
+  "bic_winner_distribution": {
+   "CPL": 4
+  },
   "aic_margins_that_matter": {
    "blk0_CPL_vs_CPLBB": "CPL 5328.2944 vs CPL+BB 5327.9775 -> dAIC = 0.32 in favour of CPL+BB. TRIVIAL. Doctrine threshold is dAIC >= 10. Report as 'no preference', never as a BB detection.",
    "integrated_CPL_vs_BAND": "CPL 7814.7296 vs Band 7816.8403 -> dAIC = 2.11 for CPL (Band buys nothing because its beta is railed)",
    "integrated_CPL_vs_SBPL": "CPL 7814.7296 vs SBPL 7817.0211 -> dAIC = 2.29 for CPL",
    "integrated_CPL_vs_DSBPL": "CPL 7814.7296 vs DSBPL 7819.7750 -> dAIC = 5.05 for CPL"
   },
-  "band_ep_track_keV": {"-1": 153.7867, "0": 158.2101, "1": 154.4399, "2": 141.0983},
-  "band_ep_err_keV": {"-1": 7.5812, "0": 14.6618, "1": 9.2303, "2": 25.6495},
-  "band_alpha_track": {"-1": -0.6029, "0": -0.3734, "1": -0.5929, "2": -0.8378},
-  "band_alpha_err": {"-1": 0.0684, "0": 0.1729, "1": 0.0868, "2": 0.1751},
-  "band_beta_track": {"-1": -4.9999, "0": -5.0, "1": -5.0, "2": -2.8285},
-  "band_beta_err": {"-1": 0.033, "0": 0.0001, "1": 0.0075, "2": 0.9442},
-  "band_valid": {"-1": 0, "0": 0, "1": 0, "2": 1},
-  "cpl_index_and_Ec_keV": {"-1": [-0.6032, 110.2399], "0": [-0.3748, 97.4658], "1": [-0.5926, 109.8028], "2": [-0.8704, 131.7555]},
-  "cpl_Ep_derived_keV": {"note": "Ep = (2+index)*Ec, L21 convention", "-1": 154.0, "0": 158.4, "1": 154.5, "2": 148.8},
-  "sbpl_ebreak_keV": {"-1": 250.1763, "0": 239.3572, "1": 247.8248, "2": 272.9251},
-  "sbpl_valid": {"-1": 0, "0": 0, "1": 0, "2": 0},
-  "dsbpl_breaks_keV_xb_xp": {"-1": [82.6156, 134.9328], "0": [141.396, 111.1128], "1": [44.3197, 150.4877], "2": [19.8597, 142.9566]},
-  "dsbpl_break_errors_keV": {"-1": [16.054, 25.66], "0": [132.265, 104.4062], "1": [11.1201, 17.1339], "2": [9.1321, 25.0718]},
-  "dsbpl_valid": {"-1": 1, "0": 0, "1": 1, "2": 1},
+  "band_ep_track_keV": {
+   "-1": 153.7867,
+   "0": 158.2101,
+   "1": 154.4399,
+   "2": 141.0983
+  },
+  "band_ep_err_keV": {
+   "-1": 7.5812,
+   "0": 14.6618,
+   "1": 9.2303,
+   "2": 25.6495
+  },
+  "band_alpha_track": {
+   "-1": -0.6029,
+   "0": -0.3734,
+   "1": -0.5929,
+   "2": -0.8378
+  },
+  "band_alpha_err": {
+   "-1": 0.0684,
+   "0": 0.1729,
+   "1": 0.0868,
+   "2": 0.1751
+  },
+  "band_beta_track": {
+   "-1": -4.9999,
+   "0": -5.0,
+   "1": -5.0,
+   "2": -2.8285
+  },
+  "band_beta_err": {
+   "-1": 0.033,
+   "0": 0.0001,
+   "1": 0.0075,
+   "2": 0.9442
+  },
+  "band_valid": {
+   "-1": 0,
+   "0": 0,
+   "1": 0,
+   "2": 1
+  },
+  "cpl_index_and_Ec_keV": {
+   "-1": [
+    -0.6032,
+    110.2399
+   ],
+   "0": [
+    -0.3748,
+    97.4658
+   ],
+   "1": [
+    -0.5926,
+    109.8028
+   ],
+   "2": [
+    -0.8704,
+    131.7555
+   ]
+  },
+  "cpl_Ep_derived_keV": {
+   "note": "Ep = (2+index)*Ec, L21 convention",
+   "-1": 154.0,
+   "0": 158.4,
+   "1": 154.5,
+   "2": 148.8
+  },
+  "sbpl_ebreak_keV": {
+   "-1": 250.1763,
+   "0": 239.3572,
+   "1": 247.8248,
+   "2": 272.9251
+  },
+  "sbpl_valid": {
+   "-1": 0,
+   "0": 0,
+   "1": 0,
+   "2": 0
+  },
+  "dsbpl_breaks_keV_xb_xp": {
+   "-1": [
+    82.6156,
+    134.9328
+   ],
+   "0": [
+    141.396,
+    111.1128
+   ],
+   "1": [
+    44.3197,
+    150.4877
+   ],
+   "2": [
+    19.8597,
+    142.9566
+   ]
+  },
+  "dsbpl_break_errors_keV": {
+   "-1": [
+    16.054,
+    25.66
+   ],
+   "0": [
+    132.265,
+    104.4062
+   ],
+   "1": [
+    11.1201,
+    17.1339
+   ],
+   "2": [
+    9.1321,
+    25.0718
+   ]
+  },
+  "dsbpl_valid": {
+   "-1": 1,
+   "0": 0,
+   "1": 1,
+   "2": 1
+  },
   "integrated_key_numbers": {
    "BAND": "Ep = 153.79 +/- 7.58 keV, alpha = -0.6029 +/- 0.0684, beta = -5.000 RAILED (VALID = 0)",
    "CPL": "index = -0.6032, Ec = 110.24 keV -> Ep = 154.0 keV (AIC and BIC winner)",
@@ -85,7 +226,6 @@
    "results/clean_blocks/bb_blocks_spectral_bn140608153.ecsv": "an EARLIER binning product: 3 blocks per detector over 1.972 / 9.716 / 22.260 / 42.036 s, POLY_ORDER 2, no merges. Per-block significance by detector - na 16.43 / 26.60 / 19.82, n9 13.95 / 25.76 / 20.33, n1 10.58 / 21.09 / 16.51, n0 7.18 / 18.27 / 12.81. Its edges do NOT match the edges the human_final refit used (3.820 / 10.173 / 22.250 / 28.882), and it reaches 13 s further into the tail. The disagreement between two archival binnings on the SAME burst is itself a prior worth diffing against."
   }
  },
-
  "harvest_snippets": {
   "GCN": [
    "n_circulars = 0. Verified by TWO endpoints with FOUR positive controls: gcn.gsfc.nasa.gov/other/{140608A,140608,140608B}.gcn3 -> 404/404/404 while 110721A.gcn3 -> 200 (16519 bytes); gcn.nasa.gov archive search API -> totalItems 0 for 140608A / 140608 / 140608153 / bn140608153 / GRB140608A / \"GRB 140608A\" while 110721A -> 9, 140606A -> 8, 140610A -> 10, 140611A -> 4 in the same session.",
@@ -136,5 +276,7 @@
   "TTE_FILE_QUALITY": [
    "All six local TTE files carry the 3ML warning 'contains duplicate time tags and is thus invalid' followed by 'was not sorted in time but contains no duplicate events. We will sort the times, but use caution'. VERIFIED INDEPENDENTLY: each file has EXACTLY ONE out-of-order step, at t-T0 = +352.02 -> +351.92 s (a -0.099 s backward jump), plus 0-5 exact duplicate timestamps (b0 5, n0 3, b1 2, n9 1, n1 0, na 0). The defect is at the SAME instant in all six detectors -> one out-of-order telemetry packet, not per-detector corruption. It sits +274 s outside the stamped source window and +172 s outside the last background window, so it CANNOT affect this analysis. The 3ML warning is real and correctly ignored."
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

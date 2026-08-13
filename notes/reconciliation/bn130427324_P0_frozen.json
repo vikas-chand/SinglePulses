@@ -25,15 +25,71 @@
   "CRITICAL_CAVEAT": "EVERY archival row includes the LLE plugin with a response that is INVALID for this window (D1: single matrix built for [+5.017, +34.916] s at theta=48.1 deg, our window at theta 36.5->23.0 deg, Delta-theta = 19.9 deg; verdict INVALID_DRM_SLEW in results/qc/bn130427324_step1_response_coverage.ecsv). The archival high-energy effective area is therefore WRONG BY AN UNKNOWN FACTOR, and every model whose shape is anchored above ~10 MeV (DSBPL beta, CPL cutoff, Band beta) inherits that error. Treat all archival numbers below as a pattern to predict against, never as a measurement.",
   "block_coverage_gap": "blocks span [121.473, 173.108] s = 51.6 s of the 59.3 s stamped window; 2.37 s at the start and 5.33 s at the end carry no block.",
   "blocks": [
-   {"BLOCK": -1, "T": [121.473, 173.108], "note": "window-integrated"},
-   {"BLOCK": 0, "T": [121.473, 122.580]},
-   {"BLOCK": 1, "T": [122.580, 126.321]},
-   {"BLOCK": 2, "T": [126.321, 129.735]},
-   {"BLOCK": 3, "T": [129.735, 142.992], "note": "this block crosses T95 = 142.338 s"},
-   {"BLOCK": 4, "T": [142.992, 149.677]},
-   {"BLOCK": 5, "T": [149.677, 156.317]},
-   {"BLOCK": 6, "T": [156.317, 166.435]},
-   {"BLOCK": 7, "T": [166.435, 173.108]}
+   {
+    "BLOCK": -1,
+    "T": [
+     121.473,
+     173.108
+    ],
+    "note": "window-integrated"
+   },
+   {
+    "BLOCK": 0,
+    "T": [
+     121.473,
+     122.58
+    ]
+   },
+   {
+    "BLOCK": 1,
+    "T": [
+     122.58,
+     126.321
+    ]
+   },
+   {
+    "BLOCK": 2,
+    "T": [
+     126.321,
+     129.735
+    ]
+   },
+   {
+    "BLOCK": 3,
+    "T": [
+     129.735,
+     142.992
+    ],
+    "note": "this block crosses T95 = 142.338 s"
+   },
+   {
+    "BLOCK": 4,
+    "T": [
+     142.992,
+     149.677
+    ]
+   },
+   {
+    "BLOCK": 5,
+    "T": [
+     149.677,
+     156.317
+    ]
+   },
+   {
+    "BLOCK": 6,
+    "T": [
+     156.317,
+     166.435
+    ]
+   },
+   {
+    "BLOCK": 7,
+    "T": [
+     166.435,
+     173.108
+    ]
+   }
   ],
   "union_rule_counts": {
    "rule": "(LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05) - both nested tests, union",
@@ -44,24 +100,134 @@
    "integrated_row": "BLOCK -1 fires on BOTH pairs and enormously: LRT_BANDBB_BAND = 83.32 (kT 22.04, but BANDBB_VALID False) and LRT_CPLBB_CPL = 102.9 (kT 22.00, CPLBB_VALID True). CPL+BB is the AIC and BIC winner with a margin of 66.7 over the next VALID model.",
    "T8_baseline_dependence_is_extreme_here": "in 4 of the 6 firing blocks only ONE of the two nested pairs fires, and in BLOCK 4 the two pairs disagree in opposite directions (Band+BB fires, CPL+BB is degenerate with CPL). Any BB margin quoted for this burst MUST name its baseline."
   },
-  "LRT_BANDBB_BAND": [83.32, 0.3223, 1.256, 2.032, -0.0001891, 10.97, 10.23, 26.45, 1.858],
-  "LRT_CPLBB_CPL": [102.9, 15.43, -0.0001652, 18.53, 37.64, 2.583e-05, 32.33, 0.09499, -1.03e-05],
-  "LRT_DSBPL_SBPL": [69.06, 0.5495, 1.373, 7.016, 19.15, 15.26, 1.065, 1.485, 1.302],
+  "LRT_BANDBB_BAND": [
+   83.32,
+   0.3223,
+   1.256,
+   2.032,
+   -0.0001891,
+   10.97,
+   10.23,
+   26.45,
+   1.858
+  ],
+  "LRT_CPLBB_CPL": [
+   102.9,
+   15.43,
+   -0.0001652,
+   18.53,
+   37.64,
+   2.583e-05,
+   32.33,
+   0.09499,
+   -1.03e-05
+  ],
+  "LRT_DSBPL_SBPL": [
+   69.06,
+   0.5495,
+   1.373,
+   7.016,
+   19.15,
+   15.26,
+   1.065,
+   1.485,
+   1.302
+  ],
   "kt_values_keV": {
-   "BANDBB_KT": [22.04, 27.96, 9.32, 6.037, 1.234, 8.351, 22.46, 11.46, 27.13],
-   "BANDBB_KT_ERR": [1.933, 11.58, 2.904, 1.231, 81.31, 1.372, 2.376, 1.462, 11.06],
-   "CPLBB_KT": [22.00, 27.48, 72.85, 20.03, 20.50, 1.001, 22.47, 1.454, 4.184],
-   "CPLBB_KT_ERR": [2.587, 9.281, 0.0, 0.8514, 1.047, 0.0, 2.367, 0.2356, 24.42],
+   "BANDBB_KT": [
+    22.04,
+    27.96,
+    9.32,
+    6.037,
+    1.234,
+    8.351,
+    22.46,
+    11.46,
+    27.13
+   ],
+   "BANDBB_KT_ERR": [
+    1.933,
+    11.58,
+    2.904,
+    1.231,
+    81.31,
+    1.372,
+    2.376,
+    1.462,
+    11.06
+   ],
+   "CPLBB_KT": [
+    22.0,
+    27.48,
+    72.85,
+    20.03,
+    20.5,
+    1.001,
+    22.47,
+    1.454,
+    4.184
+   ],
+   "CPLBB_KT_ERR": [
+    2.587,
+    9.281,
+    0.0,
+    0.8514,
+    1.047,
+    0.0,
+    2.367,
+    0.2356,
+    24.42
+   ],
    "order": "[BLOCK -1, 0, 1, 2, 3, 4, 5, 6, 7]",
    "note": "three kT errors are exactly 0.0 (BLOCK 1 CPLBB, BLOCK 4 CPLBB) or absurd (BLOCK 3 BANDBB_KT_ERR = 81.31 on kT = 1.234) - railed/degenerate BB components, i.e. the fit found no blackbody and parked the parameter."
   },
   "aic_winners": {
-   "BEST_AIC_MODEL": ["CPL+BB", "Band", "SBPL", "SBPL", "SBPL", "Band+BB", "CPL+BB", "CPL", "CPL"],
-   "BEST_BIC_MODEL": ["CPL+BB", "Band", "CPL", "SBPL", "SBPL", "SBPL", "CPL+BB", "CPL", "CPL"],
-   "margin_over_next_VALID_model": [66.66, 0.68, 0.23, 3.20, 5.53, 4.70, 1.94, 3.91, 4.00],
+   "BEST_AIC_MODEL": [
+    "CPL+BB",
+    "Band",
+    "SBPL",
+    "SBPL",
+    "SBPL",
+    "Band+BB",
+    "CPL+BB",
+    "CPL",
+    "CPL"
+   ],
+   "BEST_BIC_MODEL": [
+    "CPL+BB",
+    "Band",
+    "CPL",
+    "SBPL",
+    "SBPL",
+    "SBPL",
+    "CPL+BB",
+    "CPL",
+    "CPL"
+   ],
+   "margin_over_next_VALID_model": [
+    66.66,
+    0.68,
+    0.23,
+    3.2,
+    5.53,
+    4.7,
+    1.94,
+    3.91,
+    4.0
+   ],
    "verdict": "the window-integrated row clears the framework-locked dAIC >= 10 bar spectacularly (66.7 for CPL+BB) while NOT ONE time-resolved block does (max 5.53). AIC and BIC disagree in 2 of 9 rows. The integrated-vs-resolved gap is itself suspicious: 51.6 s of integration with a mis-normalised LLE plugin is exactly the configuration in which a systematic masquerades as a component."
   },
-  "band_Ep_evolution_keV": [202.9, 163.8, 219.7, 161.1, 185.9, 170.0, 120.7, 159.0, 4436.0],
+  "band_Ep_evolution_keV": [
+   202.9,
+   163.8,
+   219.7,
+   161.1,
+   185.9,
+   170.0,
+   120.7,
+   159.0,
+   4436.0
+  ],
   "band_Ep_note": "order [BLOCK -1, 0..7]. NOT monotonic: 163.8 -> 219.7 -> 161.1 -> 185.9 -> 170.0 -> 120.7 -> 159.0, then BLOCK 7's 4436 keV with BAND_VALID = False (railed, meaningless). Range over the valid blocks is a factor 1.8 - this looks FLAT / mildly tracking, NOT the classic hard-to-soft decay.",
   "engine_health_flags_in_the_archive": [
    "DSBPL_VALID is False in 6 of 9 rows (-1, 0, 2, 3, 4, 6, 7); DSBPL_XP railed at or near the 5000 keV cap in rows -1, 0, 3, 6, 7 and DSBPL_BETA railed at -5 in rows -1(no, -4.263), 0, 2, 4 -> L19 BOUND_CAPPED territory and exactly the L9 'Ep cap' failure mode.",
@@ -155,5 +321,7 @@
    "lle: gll_cspec_bn130427324_v02.rsp, SINGLE matrix, TSTART/TSTOP = [+5.017, +34.916] s -> built on the FIRST pulse; D1 verdict INVALID_DRM_SLEW (theta 48.1 deg vs 36.5->23.0 deg, Delta-theta 19.9 deg)",
    "re-derived independently 2026-08-12 from data/bn130427324/; matches the pre-existing results/qc/bn130427324_step1_response_coverage.ecsv (2026-07-31) to 3 decimals. That file was NOT rewritten."
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

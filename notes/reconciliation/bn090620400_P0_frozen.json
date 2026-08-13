@@ -8,5 +8,7 @@
   "P-D (soft-regime guard): Ep~156 keV -> partially in the OLD L27 dead zone; with the fix, simple models must compete fairly; watch VALID counts.",
   "P-E (binning): our 27b blocks should be ~consistent with Li&Zhang Ntot=11 given same src window; ours is [-0.9,18.3] vs their [-1,30] (tail difference expected)."
  ],
- "engine": "L18/L19/L20/L26/L27 active"
+ "engine": "L18/L19/L20/L26/L27 active",
+ "P0_STATUS": "BLIND_FROZEN",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

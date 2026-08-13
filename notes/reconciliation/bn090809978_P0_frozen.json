@@ -3,47 +3,166 @@
  "grb_name": "GRB 090809B",
  "tally": null,
  "tally_note": "walkthrough tally number assigned by coordinator; this freeze was produced by a doc-layer worker",
- "frozen_utc": "2026-08-12; BEFORE any new fit table opened (results/sweep106/ NEVER read — blind fits in progress; only the archival clean_per_burst_human_final run consulted, which is the allowed prior)",
+ "frozen_utc": "2026-08-12; BEFORE any new fit table opened (results/sweep106/ NEVER read \u2014 blind fits in progress; only the archival clean_per_burst_human_final run consulted, which is the allowed prior)",
  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
  "predictions": [
-  "P-A1 (BB channel asymmetry — the union rule's two channels disagree by construction here): archival BB significance lives ENTIRELY in the CPL+BB nested test (blk3 LRT_CPLBB_CPL=15.03, blk4=12.40, integrated=17.43; all kT>1.05) while the Band+BB channel is null EVERYWHERE (max LRT_BANDBB_BAND=5.41, blk6). Prediction: the new fits reproduce this — 2 resolved blocks pass the union rule, both via CPL+BB only, zero via Band+BB. FALSIFIED IF any resolved block shows LRT_BANDBB_BAND>=9.2 with BANDBB_KT>1.05, or the CPL+BB passes vanish.",
-  "P-A2 (kT class = high-kT curvature-fixer, not low-kT photosphere edge): passing-block CPLBB_KT is high (30.27, 19.63 keV; integrated 23.92) — L25 pattern: a BB with xb~3.92kT ~ 77-119 keV sits BELOW Ep inside the band, supplying the curvature Band's beta absorbs (which is exactly why the Band+BB channel is null). Prediction: new-run kT for passing blocks stays in ~15-40 keV; no coherent kT<5 keV low-energy BB track appears. FALSIFIED IF a significant BB with kT<5 keV appears in >=2 consecutive blocks.",
-  "P-A3 (AIC winners stay simple-continuum): archival resolved winners SBPL x5, CPL x4; integrated SBPL; no +BB model ever wins AIC. Prediction: reproduced — no resolved block's AIC winner is Band+BB or CPL+BB. FALSIFIED IF any +BB model wins a resolved block by AIC.",
-  "P-A4 (no two-break): max archival LRT_DSBPL_SBPL = 4.29 (integrated) / 3.48 (resolved, blk5) — nowhere near the DeltaAIC>=10 criterion. Prediction: zero CONFIRMED two-break blocks. CAVEAT (census lower-limit doctrine): until the L8 default-seed DSBPL restart lands, the likeliest failure spot is the hard early blocks blk0-blk2 (alpha -0.17 to -0.40, Ep 260-360 keV), where a seed-rescued DSBPL could surface a low break.",
-  "P-A5 (hard-to-soft monotone + final-block bound cap): archival Band Ep track 356 -> 333 -> 259 -> 246 -> 160 -> 145 -> 93 -> 74 -> 30 keV is strictly monotonic (the published HTS classification: Lu+2012 one of 5 founding HTS bursts; Basak&Rao 2014 'mild delay and lingering'). Final block BAND_EP=30.0 sits EXACTLY at the fit bound (BOUND_CAPPED expected, L9 class) with CPL going steep-PL-like (index -1.745, xc ~979 keV). Prediction: new fits reproduce a monotonic HTS Ep decay and the last soft block is diagnosed BOUND_CAPPED/steep-PL rather than given a trusted Ep. FALSIFIED IF the Ep track turns intensity-tracking (rises toward the ~3.1 s peak; note Shao+2017 explicitly re-examined and questioned the HTS label for THIS burst — this prediction takes the archival+Lu+2012 side and is genuinely at risk).",
+  "P-A1 (BB channel asymmetry \u2014 the union rule's two channels disagree by construction here): archival BB significance lives ENTIRELY in the CPL+BB nested test (blk3 LRT_CPLBB_CPL=15.03, blk4=12.40, integrated=17.43; all kT>1.05) while the Band+BB channel is null EVERYWHERE (max LRT_BANDBB_BAND=5.41, blk6). Prediction: the new fits reproduce this \u2014 2 resolved blocks pass the union rule, both via CPL+BB only, zero via Band+BB. FALSIFIED IF any resolved block shows LRT_BANDBB_BAND>=9.2 with BANDBB_KT>1.05, or the CPL+BB passes vanish.",
+  "P-A2 (kT class = high-kT curvature-fixer, not low-kT photosphere edge): passing-block CPLBB_KT is high (30.27, 19.63 keV; integrated 23.92) \u2014 L25 pattern: a BB with xb~3.92kT ~ 77-119 keV sits BELOW Ep inside the band, supplying the curvature Band's beta absorbs (which is exactly why the Band+BB channel is null). Prediction: new-run kT for passing blocks stays in ~15-40 keV; no coherent kT<5 keV low-energy BB track appears. FALSIFIED IF a significant BB with kT<5 keV appears in >=2 consecutive blocks.",
+  "P-A3 (AIC winners stay simple-continuum): archival resolved winners SBPL x5, CPL x4; integrated SBPL; no +BB model ever wins AIC. Prediction: reproduced \u2014 no resolved block's AIC winner is Band+BB or CPL+BB. FALSIFIED IF any +BB model wins a resolved block by AIC.",
+  "P-A4 (no two-break): max archival LRT_DSBPL_SBPL = 4.29 (integrated) / 3.48 (resolved, blk5) \u2014 nowhere near the DeltaAIC>=10 criterion. Prediction: zero CONFIRMED two-break blocks. CAVEAT (census lower-limit doctrine): until the L8 default-seed DSBPL restart lands, the likeliest failure spot is the hard early blocks blk0-blk2 (alpha -0.17 to -0.40, Ep 260-360 keV), where a seed-rescued DSBPL could surface a low break.",
+  "P-A5 (hard-to-soft monotone + final-block bound cap): archival Band Ep track 356 -> 333 -> 259 -> 246 -> 160 -> 145 -> 93 -> 74 -> 30 keV is strictly monotonic (the published HTS classification: Lu+2012 one of 5 founding HTS bursts; Basak&Rao 2014 'mild delay and lingering'). Final block BAND_EP=30.0 sits EXACTLY at the fit bound (BOUND_CAPPED expected, L9 class) with CPL going steep-PL-like (index -1.745, xc ~979 keV). Prediction: new fits reproduce a monotonic HTS Ep decay and the last soft block is diagnosed BOUND_CAPPED/steep-PL rather than given a trusted Ep. FALSIFIED IF the Ep track turns intensity-tracking (rises toward the ~3.1 s peak; note Shao+2017 explicitly re-examined and questioned the HTS label for THIS burst \u2014 this prediction takes the archival+Lu+2012 side and is genuinely at risk).",
   "P-B1 (external integrated anchor): GCN 9760 Band Ep=198+-13, alpha=-0.85+-0.04, beta=-2.02+-0.06 (T0->T0+14.3 s, 8-1000 keV, chi2); GBM catalog fluence-spectrum Band Ep=187.29+-10.89, alpha=-0.812, beta=-2.053 (-2.048->17.408 s); archival integrated Band Ep=205.1, alpha=-0.861, beta=-2.161 (0.881->15.175 s). Prediction: new integrated-block Band fit lands at Ep in 175-215 keV, alpha in [-0.90,-0.78], beta in [-2.3,-1.95] after frame alignment. FALSIFIED IF outside these bands once the interval difference is accounted.",
   "P-B2 (time-resolved literature frame): matched-interval comparison against Lu+2012 (bin1 0.003-2.048 s Ep=300.5+-62.4; bin2 286.4+-39.4; bin3 197.9+-28.1), Shao+2017 RMFIT re-analysis (255.8+-50.3 at 1.02-1.98 s; 209.9+-15.8 at 1.98-4.86 s; 131.4+-13.2 at 4.86-8.13 s), and Lu+2018 (385.5+-42.2 at 0.91-2.91 s). Prediction: our per-block Band Ep agrees with these tracks within ~2-3 sigma at overlapping intervals (archival already does: blk0-1 ~333-356 keV vs Lu+2018's 385+-42; blk3 246 vs Shao's 210+-16 at the overlap). FALSIFIED IF a systematic >3-sigma offset appears across >=3 matched intervals.",
   "P-B3 (the Burgess+2014 no-BB verdict, T7 continuum-relative): Burgess+2014 Table 1 records NO blackbody component for GRB 090809B against their slow-cooled synchrotron continuum. Combined with P-A1/P-A2 this predicts the CPL+BB-channel BB is continuum mimicry, not a photosphere detection; the new run should NOT produce a stable, coolable kT(t) track. FALSIFIED IF a monotonic kT cooling track emerges across >=3 consecutive blocks.",
-  "P-B4 (wrong-z guard, not a fit prediction): Jiang+2021 attach z=2.7371 to 090809978 — that redshift belongs to GRB 090809 (Swift burst, X-shooter GCN 9761, different burst ~130 deg away). OUR burst has NO redshift. Any P3 diff against Jiang+2021 rest-frame/photospheric quantities must first record their z as contaminated (T1 in the published literature); no rest-frame number from that paper may be inherited."
+  "P-B4 (wrong-z guard, not a fit prediction): Jiang+2021 attach z=2.7371 to 090809978 \u2014 that redshift belongs to GRB 090809 (Swift burst, X-shooter GCN 9761, different burst ~130 deg away). OUR burst has NO redshift. Any P3 diff against Jiang+2021 rest-frame/photospheric quantities must first record their z as contaminated (T1 in the published literature); no rest-frame number from that paper may be inherited."
  ],
  "census_prior": {
   "source": "results/clean_per_burst_human_final/bn090809978/spectral_fits.ecsv (PREVIOUS production run; allowed as prior; sweep106 untouched)",
   "n_blocks_total_rows": 10,
   "n_blocks_resolved": 9,
-  "integrated_block": {"BLOCK": -1, "t": [0.881, 15.175], "BEST_AIC_MODEL": "SBPL", "BEST_BIC_MODEL": "SBPL", "LRT_BANDBB_BAND": -0.0, "LRT_CPLBB_CPL": 17.431, "CPLBB_KT_keV": 23.924, "BANDBB_KT_keV": 1.514, "BAND_EP_keV": 205.119, "BAND_ALPHA": -0.861, "BAND_BETA": -2.161, "LRT_DSBPL_SBPL": 4.292},
-  "resolved_span_s": [0.881, 15.175],
+  "integrated_block": {
+   "BLOCK": -1,
+   "t": [
+    0.881,
+    15.175
+   ],
+   "BEST_AIC_MODEL": "SBPL",
+   "BEST_BIC_MODEL": "SBPL",
+   "LRT_BANDBB_BAND": -0.0,
+   "LRT_CPLBB_CPL": 17.431,
+   "CPLBB_KT_keV": 23.924,
+   "BANDBB_KT_keV": 1.514,
+   "BAND_EP_keV": 205.119,
+   "BAND_ALPHA": -0.861,
+   "BAND_BETA": -2.161,
+   "LRT_DSBPL_SBPL": 4.292
+  },
+  "resolved_span_s": [
+   0.881,
+   15.175
+  ],
   "bb_significant_union": {
-   "criterion": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05) — BOTH nested tests, the union rule",
+   "criterion": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05) \u2014 BOTH nested tests, the union rule",
    "count_resolved": 2,
    "blocks": [
-    {"BLOCK": 3, "t": [2.738, 3.783], "channel": "CPL+BB only", "LRT_CPLBB_CPL": 15.034, "CPLBB_KT_keV": 30.267, "LRT_BANDBB_BAND": 0.412},
-    {"BLOCK": 4, "t": [3.783, 5.353], "channel": "CPL+BB only", "LRT_CPLBB_CPL": 12.404, "CPLBB_KT_keV": 19.633, "LRT_BANDBB_BAND": 0.796}
+    {
+     "BLOCK": 3,
+     "t": [
+      2.738,
+      3.783
+     ],
+     "channel": "CPL+BB only",
+     "LRT_CPLBB_CPL": 15.034,
+     "CPLBB_KT_keV": 30.267,
+     "LRT_BANDBB_BAND": 0.412
+    },
+    {
+     "BLOCK": 4,
+     "t": [
+      3.783,
+      5.353
+     ],
+     "channel": "CPL+BB only",
+     "LRT_CPLBB_CPL": 12.404,
+     "CPLBB_KT_keV": 19.633,
+     "LRT_BANDBB_BAND": 0.796
+    }
    ],
-   "integrated_also_passes": {"channel": "CPL+BB only", "LRT_CPLBB_CPL": 17.431, "CPLBB_KT_keV": 23.924},
+   "integrated_also_passes": {
+    "channel": "CPL+BB only",
+    "LRT_CPLBB_CPL": 17.431,
+    "CPLBB_KT_keV": 23.924
+   },
    "band_bb_channel_count": 0,
-   "band_bb_channel_max": {"BLOCK": 6, "LRT_BANDBB_BAND": 5.412},
-   "kT_values_passing_keV": [30.267, 19.633],
+   "band_bb_channel_max": {
+    "BLOCK": 6,
+    "LRT_BANDBB_BAND": 5.412
+   },
+   "kT_values_passing_keV": [
+    30.267,
+    19.633
+   ],
    "median_kT_passing_keV": 24.95
   },
-  "aic_winners_resolved": {"SBPL": 5, "CPL": 4},
-  "aic_winners_all_rows": {"SBPL": 6, "CPL": 4},
-  "ep_track_keV_blk0_to_blk8": [356.28, 332.88, 259.28, 246.17, 160.43, 144.77, 92.6, 74.25, 30.0],
-  "ep_blk8_note": "BAND_EP=30.0 exactly at bound — BOUND_CAPPED (L9 class); blk8 CPL: index=-1.745, xc=979 keV (steep-PL-like tail)",
-  "alpha_track_blk0_to_blk8": [-0.169, -0.403, -0.296, -0.545, -0.619, -0.875, -1.077, -0.961, -0.684],
-  "bandbb_kt_track_keV_blk0_to_blk8": [1.025, 1.0, 3.402, 11.801, 10.445, 41.339, 4.203, 4.727, 4.352],
-  "cplbb_kt_track_keV_blk0_to_blk8": [36.225, 26.362, 2.104, 30.267, 19.633, 5.761, 2.053, 4.211, 8.397],
-  "lrt_dsbpl_sbpl_rows_m1_0_to_8": [4.292, 0.608, 1.46, 0.412, 2.629, 2.963, 3.477, 0.25, 0.639, 2.136],
-  "stamped_window": {"SRC_START": -0.3, "SRC_STOP": 15.5, "detectors": ["n3", "n4", "n5", "b0"], "approved_by": "Vikas Chand", "approved_utc": "2026-07-19T22:18:36Z", "mode": "human_gui", "window_source": "accepted_suggestion"}
+  "aic_winners_resolved": {
+   "SBPL": 5,
+   "CPL": 4
+  },
+  "aic_winners_all_rows": {
+   "SBPL": 6,
+   "CPL": 4
+  },
+  "ep_track_keV_blk0_to_blk8": [
+   356.28,
+   332.88,
+   259.28,
+   246.17,
+   160.43,
+   144.77,
+   92.6,
+   74.25,
+   30.0
+  ],
+  "ep_blk8_note": "BAND_EP=30.0 exactly at bound \u2014 BOUND_CAPPED (L9 class); blk8 CPL: index=-1.745, xc=979 keV (steep-PL-like tail)",
+  "alpha_track_blk0_to_blk8": [
+   -0.169,
+   -0.403,
+   -0.296,
+   -0.545,
+   -0.619,
+   -0.875,
+   -1.077,
+   -0.961,
+   -0.684
+  ],
+  "bandbb_kt_track_keV_blk0_to_blk8": [
+   1.025,
+   1.0,
+   3.402,
+   11.801,
+   10.445,
+   41.339,
+   4.203,
+   4.727,
+   4.352
+  ],
+  "cplbb_kt_track_keV_blk0_to_blk8": [
+   36.225,
+   26.362,
+   2.104,
+   30.267,
+   19.633,
+   5.761,
+   2.053,
+   4.211,
+   8.397
+  ],
+  "lrt_dsbpl_sbpl_rows_m1_0_to_8": [
+   4.292,
+   0.608,
+   1.46,
+   0.412,
+   2.629,
+   2.963,
+   3.477,
+   0.25,
+   0.639,
+   2.136
+  ],
+  "stamped_window": {
+   "SRC_START": -0.3,
+   "SRC_STOP": 15.5,
+   "detectors": [
+    "n3",
+    "n4",
+    "n5",
+    "b0"
+   ],
+   "approved_by": "Vikas Chand",
+   "approved_utc": "2026-07-19T22:18:36Z",
+   "mode": "human_gui",
+   "window_source": "accepted_suggestion"
+  }
  },
  "harvest_snippets": {
   "GCN_9760_FermiGBM": [
@@ -57,11 +176,11 @@
    "090809B 1 0.003 2.048 300.5 +- 62.4 -0.43 +- 0.16 -1.90 +- 0.12 3.61 +- 0.18 0.99 (p37, time-resolved Band bin 1)"
   ],
   "BasakRao2014": [
-   "090809B ... -4.0, 19.3 15 n3, n4, n5, b0 (Table 1, p3 — same detector set as our approved selection)",
+   "090809B ... -4.0, 19.3 15 n3, n4, n5, b0 (Table 1, p3 \u2014 same detector set as our approved selection)",
    "090809B HTS Mild delay and lingering -0.64 +- 0.06 14.3sigma (13.5) 8/15 0.74 (0.15) No (Table 2, p5)"
   ],
   "Burgess2014": [
-   "GRB 090809B 18.36 14.64 X X (Table 1, p23 — Blackbody Component: NO, LLE: NO)"
+   "GRB 090809B 18.36 14.64 X X (Table 1, p23 \u2014 Blackbody Component: NO, LLE: NO)"
   ],
   "Shao2017": [
    "GRBs 081224887, 090809978, 100612726, and 110817191 were categorized as HTS pattern based on ... Lu et al. 2012. However ... (p5, their re-examination)",
@@ -74,10 +193,12 @@
    "single-pulse GRBs (GRB 081224, GRB 090809B and GRB 110817A) ... The observed spectral evolution for each is similar to that for GRB 081224, thus the case of thetac*Gamma0 = 10 and p = 4. (p10-11)"
   ],
   "Jiang2021_WRONG_Z": [
-   "090809978 2.7371 198 +- 13 ... (Table 1, p3 — z=2.7371 is GRB 090809's/Swift, NOT ours; contamination recorded)"
+   "090809978 2.7371 198 +- 13 ... (Table 1, p3 \u2014 z=2.7371 is GRB 090809's/Swift, NOT ours; contamination recorded)"
   ],
   "Bianchin2011": [
    "090809B 8330036 23:28:17 9 +- 1 3399 +- 257 1501 +- 203 260-1196 F, K IA (PICsIT table: T90=9+-1 s in 260-1196 keV)"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -14,14 +14,45 @@
   "n_rows": 4,
   "structure": "1 integrated row (BLOCK=-1, 3.53-28.32 s) + 3 time-resolved blocks (3.53-10.82, 10.82-19.96, 19.96-28.32 s)",
   "detectors": "n2,n5,b0 (N_DETS=3, all rows)",
-  "bb_gate_LRT_ge_9p2_and_kT_gt_1p05": {"count": 0, "kT_values": [], "median_kT": null},
-  "LRT_BANDBB_BAND_per_row": [3.88, 2.43, 0.75, 0.0],
-  "BANDBB_KT_per_row": [24.58, 1.0000000, 2.70, 6.98],
-  "aic_winners": {"SBPL": 2, "CPL": 1, "CPL+BB": 1},
-  "bic_winners": {"CPL": 3, "CPL+BB": 1},
+  "bb_gate_LRT_ge_9p2_and_kT_gt_1p05": {
+   "count": 0,
+   "kT_values": [],
+   "median_kT": null
+  },
+  "LRT_BANDBB_BAND_per_row": [
+   3.88,
+   2.43,
+   0.75,
+   0.0
+  ],
+  "BANDBB_KT_per_row": [
+   24.58,
+   1.0,
+   2.7,
+   6.98
+  ],
+  "aic_winners": {
+   "SBPL": 2,
+   "CPL": 1,
+   "CPL+BB": 1
+  },
+  "bic_winners": {
+   "CPL": 3,
+   "CPL+BB": 1
+  },
   "note_blk2_aic_cplbb": "blk2 AIC picks CPL+BB despite LRT_CPLBB_CPL = 0.98 and BANDBB_KT_ERR = 32.5 (unconstrained) - a weak-preference artifact, not a significant BB",
-  "band_ep_evolution_keV": [228.3, 350.1, 199.4, 72.5],
-  "band_alpha_per_row": [-0.232, -0.258, -0.108, 1.897],
+  "band_ep_evolution_keV": [
+   228.3,
+   350.1,
+   199.4,
+   72.5
+  ],
+  "band_alpha_per_row": [
+   -0.232,
+   -0.258,
+   -0.108,
+   1.897
+  ],
   "band_beta_blk0_railed": -5.0
  },
  "harvest_snippets": {
@@ -47,5 +78,7 @@
   "refereed_literature": [
    "absent - 0 refereed papers in ADS full-text for 'GRB 191017A' / 'GRB191017A' / 'bn191017391' / '191017391' / '592997024' (queried 2026-08-11); only the 2 GCN circulars index. 0/92 local corpus PDFs mention 191017 (fitz scan); Busby_2024_ApJ_972_83.pdf (sample parent) has no per-trigger text mention."
   ]
- }
+ },
+ "P0_STATUS": "BLIND_FROZEN",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

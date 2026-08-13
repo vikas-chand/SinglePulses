@@ -20,5 +20,7 @@
    "\u2026zation by FWHMF . At the other extreme, GRB 150902733 represents the most unambiguous Type III burst, with PIII = 0.97, while GRB 180728728 occupies the same positive-lag regime with lower significance. The aligned Type I sub- class is correspondingly well-concentrated\u2026",
    "\u20260902733 Ep 10 7 10 6 10 5 10 4 F (erg cm 2 s 1) F 10 5 0 5 10 15 20 25 30 Time since trigger (s) 10 1 10 2 10 3 10 4 Ep (keV) GRB 180728728 Ep 10 7 10 6 10 5 10 4 F (erg cm 2 s 1) F Figure 5. Same as Fig. 3 but for all the Type III bursts. Type I Type II Type III 1.50\u2026"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

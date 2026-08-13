@@ -15,20 +15,45 @@
   "source": "results/clean_per_burst_human_final/bn180724807/spectral_fits.ecsv (previous production run; allowed prior)",
   "n_rows": 9,
   "n_sub_blocks": 8,
-  "block_span_s": [-0.23, 41.64],
+  "block_span_s": [
+   -0.23,
+   41.64
+  ],
   "bb_criterion": "LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05",
   "n_bb_significant_blocks": 0,
   "bb_significant_kT_keV": [],
   "median_bb_significant_kT_keV": null,
   "class": "null-BB (neither low-kT nor high-kT; no block passes the gate)",
-  "max_LRT_BANDBB_BAND": {"total_block": 5.85, "sub_blocks": 4.42},
-  "aic_winners_sub_blocks": {"SBPL": 3, "CPL": 3, "Band+BB": 1, "Band": 1},
+  "max_LRT_BANDBB_BAND": {
+   "total_block": 5.85,
+   "sub_blocks": 4.42
+  },
+  "aic_winners_sub_blocks": {
+   "SBPL": 3,
+   "CPL": 3,
+   "Band+BB": 1,
+   "Band": 1
+  },
   "aic_winner_total_block": "SBPL",
   "bic_winner_total_block": "SBPL",
   "note_block3": "block 3 (8.70-12.23 s) BEST_AIC = Band+BB but LRT_BANDBB_BAND = 4.35 < 9.2 gate (AIC-vs-LRT disagreement recorded, not resolved)",
-  "LRT_CPLBB_CPL_by_row": [-0.0, 0.3, 7.3, 36.53, 27.62, 2.15, 1.23, 0.99, 1.97],
+  "LRT_CPLBB_CPL_by_row": [
+   -0.0,
+   0.3,
+   7.3,
+   36.53,
+   27.62,
+   2.15,
+   1.23,
+   0.99,
+   1.97
+  ],
   "LRT_DSBPL_SBPL_max": 4.32,
-  "total_block_band_frame": {"alpha": -0.975, "Ep_keV": 438.8, "beta": -1.992}
+  "total_block_band_frame": {
+   "alpha": -0.975,
+   "Ep_keV": 438.8,
+   "beta": -1.992
+  }
  },
  "harvest_snippets": {
   "GCN23038_InsightHXMT": [
@@ -40,12 +65,28 @@
    "The source was clearly detected in the 40-200 keV energy range. The light curve shows a single peak of emission with peak at 19:22:37.5 UT.",
    "Using cumulative rates, we measure a T90 of 30.3 s. In preliminary analysis, we find that 786 compton events are associated with this event."
   ],
-  "Li&Zhang2021": ["absent (PyMuPDF search '180724' over Skills_training/Li_2021_2021ApJS253_43L_PUB.pdf: 0 pages)"],
-  "Lu2018": ["absent (Skills_training/Lu_2018_2018ApJ865153L_PUB.pdf: 0 pages)"],
-  "Li2026": ["absent (Skills_training/Li_2026_2026ApJS28318L.pdf: 0 pages)"],
-  "Bordoloi2026": ["absent (Skills_training/Bordoloi_2026_2026ApJ1003_58B_PUB.pdf: 0 pages)"],
-  "Li2019": ["absent (Skills_training/Li_2019_2019ApJS2457L.pdf: 0 pages)"],
-  "Gowri2025": ["absent (Skills_training/Gowri_2025_2025ApJ991230G.pdf: 0 pages)"],
-  "ADS_four_form": ["numFound: name=2 (both GCN newsletters), bn-trigger=0, day-fraction=0, trigger-number=0, GRB180724807=0, GRB180724A(nospace)=0 -- PAPERLESS BURST"]
- }
+  "Li&Zhang2021": [
+   "absent (PyMuPDF search '180724' over Skills_training/Li_2021_2021ApJS253_43L_PUB.pdf: 0 pages)"
+  ],
+  "Lu2018": [
+   "absent (Skills_training/Lu_2018_2018ApJ865153L_PUB.pdf: 0 pages)"
+  ],
+  "Li2026": [
+   "absent (Skills_training/Li_2026_2026ApJS28318L.pdf: 0 pages)"
+  ],
+  "Bordoloi2026": [
+   "absent (Skills_training/Bordoloi_2026_2026ApJ1003_58B_PUB.pdf: 0 pages)"
+  ],
+  "Li2019": [
+   "absent (Skills_training/Li_2019_2019ApJS2457L.pdf: 0 pages)"
+  ],
+  "Gowri2025": [
+   "absent (Skills_training/Gowri_2025_2025ApJ991230G.pdf: 0 pages)"
+  ],
+  "ADS_four_form": [
+   "numFound: name=2 (both GCN newsletters), bn-trigger=0, day-fraction=0, trigger-number=0, GRB180724807=0, GRB180724A(nospace)=0 -- PAPERLESS BURST"
+  ]
+ },
+ "P0_STATUS": "BLIND_FROZEN",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

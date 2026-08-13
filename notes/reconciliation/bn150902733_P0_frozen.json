@@ -20,23 +20,68 @@
  },
  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
  "stamped_window": {
-  "src": [-2.199317482517415, 27.403949650349745],
-  "detectors": ["n0", "n1", "n3", "b0", "lle"],
-  "bkg_pre": [-88.216, -8.216],
-  "bkg_post": {"n0_n1_b0": [48.0, 124.248], "n3_lle": [60.0, 140.0]},
+  "src": [
+   -2.199317482517415,
+   27.403949650349745
+  ],
+  "detectors": [
+   "n0",
+   "n1",
+   "n3",
+   "b0",
+   "lle"
+  ],
+  "bkg_pre": [
+   -88.216,
+   -8.216
+  ],
+  "bkg_post": {
+   "n0_n1_b0": [
+    48.0,
+    124.248
+   ],
+   "n3_lle": [
+    60.0,
+    140.0
+   ]
+  },
   "approval": "Vikas Chand / human_gui / 2026-07-19T22:18:36Z / accepted_suggestion",
-  "det_angles_deg": {"n0": 30.10, "n1": 36.14, "n3": 24.38, "b0": 53.35, "lle": "37.25 (LAT boresight, computed in Step-1 QC; 2FLGC quotes 37.3)"}
+  "det_angles_deg": {
+   "n0": 30.1,
+   "n1": 36.14,
+   "n3": 24.38,
+   "b0": 53.35,
+   "lle": "37.25 (LAT boresight, computed in Step-1 QC; 2FLGC quotes 37.3)"
+  }
  },
  "archival_prior": {
   "file": "results/clean_per_burst_human_final/bn150902733/spectral_fits.ecsv (19 rows = 1 window-integrated BLOCK=-1 + 18 time-resolved blocks 0..17)",
   "window_integrated_block": {
-   "span_s": [-1.3839899582862714, 27.288010041713754],
+   "span_s": [
+    -1.3839899582862714,
+    27.288010041713754
+   ],
    "plugins": "n0,n1,n3,b0,lle (5)",
    "best_aic_model": "DSBPL",
    "best_bic_model": "DSBPL",
-   "AIC": {"Band": 6834.56, "CPL": 7041.08, "SBPL": 6774.94, "DSBPL": 6765.13, "Band+BB": 6837.44, "CPL+BB": 6856.31},
-   "Band": {"Ep": 340.92, "alpha": -0.5323, "beta": -2.5378},
-   "DSBPL": {"xb": 144.62, "xp": 339.40, "LRT_DSBPL_SBPL": 13.81},
+   "AIC": {
+    "Band": 6834.56,
+    "CPL": 7041.08,
+    "SBPL": 6774.94,
+    "DSBPL": 6765.13,
+    "Band+BB": 6837.44,
+    "CPL+BB": 6856.31
+   },
+   "Band": {
+    "Ep": 340.92,
+    "alpha": -0.5323,
+    "beta": -2.5378
+   },
+   "DSBPL": {
+    "xb": 144.62,
+    "xp": 339.4,
+    "LRT_DSBPL_SBPL": 13.81
+   },
    "LRT_BANDBB_BAND": 1.12,
    "LRT_CPLBB_CPL": 188.77,
    "BANDBB_KT": "1.0000 +/- 0.013 - RAILED at the BB temperature floor, BANDBB_VALID=False (an L8-class default-seed artifact, NOT a null result)",
@@ -45,16 +90,105 @@
   "union_rule_counts": {
    "rule_as_specified": "LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 AND LRT_CPLBB_CPL >= 9.2 (BOTH nested tests)",
    "n_blocks_evaluated": 18,
-   "BOTH_nested_tests_fire": {"n": 6, "blocks": [1, 4, 7, 9, 10, 11]},
-   "band_side_only_LRT_BANDBB_BAND>=9.2_and_kT>1.05": {"n": 7, "blocks": [1, 3, 4, 7, 9, 10, 11], "all_BANDBB_VALID": true},
-   "cpl_side_only_LRT_CPLBB_CPL>=9.2_and_kT>1.05": {"n": 8, "blocks": [1, 2, 4, 6, 7, 9, 10, 11], "note": "block 6 has CPLBB_VALID=False with kT railed at the 200 keV cap - excluding it leaves 7 valid: [1,2,4,7,9,10,11]"},
-   "either_side": {"n": 9, "blocks": [1, 2, 3, 4, 6, 7, 9, 10, 11], "n_valid_only": 8, "blocks_valid_only": [1, 2, 3, 4, 7, 9, 10, 11]},
+   "BOTH_nested_tests_fire": {
+    "n": 6,
+    "blocks": [
+     1,
+     4,
+     7,
+     9,
+     10,
+     11
+    ]
+   },
+   "band_side_only_LRT_BANDBB_BAND>=9.2_and_kT>1.05": {
+    "n": 7,
+    "blocks": [
+     1,
+     3,
+     4,
+     7,
+     9,
+     10,
+     11
+    ],
+    "all_BANDBB_VALID": true
+   },
+   "cpl_side_only_LRT_CPLBB_CPL>=9.2_and_kT>1.05": {
+    "n": 8,
+    "blocks": [
+     1,
+     2,
+     4,
+     6,
+     7,
+     9,
+     10,
+     11
+    ],
+    "note": "block 6 has CPLBB_VALID=False with kT railed at the 200 keV cap - excluding it leaves 7 valid: [1,2,4,7,9,10,11]"
+   },
+   "either_side": {
+    "n": 9,
+    "blocks": [
+     1,
+     2,
+     3,
+     4,
+     6,
+     7,
+     9,
+     10,
+     11
+    ],
+    "n_valid_only": 8,
+    "blocks_valid_only": [
+     1,
+     2,
+     3,
+     4,
+     7,
+     9,
+     10,
+     11
+    ]
+   },
    "discordant_blocks": "3 (Band+BB fires 29.09, CPL+BB ~0 with kT 1.75 +/- 34 = failed fit) and 2 (CPL+BB fires 26.80, Band+BB -0.0002 with kT 5.2 +/- 68 = failed fit) - in BOTH cases the non-firing side is a FAILED/railed BB fit, not a physical null. This is exactly the asymmetry the union rule exists to expose."
   },
-  "kt_values_keV_bandbb_firing_and_valid": {"blk1": 56.36, "blk3": 43.90, "blk4": 37.64, "blk7": 36.82, "blk9": 39.80, "blk10": 35.42, "blk11": 31.02, "trend": "monotone-ish DECLINE from ~56 keV (t~2-3.6 s) to ~31 keV (t~12-12.7 s)"},
-  "kt_values_keV_cplbb_firing_and_valid": {"blk1": 55.90, "blk2": 39.58, "blk4": 38.43, "blk7": 39.24, "blk9": 40.98, "blk10": 38.16, "blk11": 31.13},
-  "aic_winners_18_blocks": {"Band+BB": 6, "SBPL": 4, "Band": 3, "CPL+BB": 2, "CPL": 2, "DSBPL": 1},
-  "bic_winners_18_blocks": {"SBPL": 8, "CPL": 5, "Band": 3, "Band+BB": 1, "CPL+BB": 1},
+  "kt_values_keV_bandbb_firing_and_valid": {
+   "blk1": 56.36,
+   "blk3": 43.9,
+   "blk4": 37.64,
+   "blk7": 36.82,
+   "blk9": 39.8,
+   "blk10": 35.42,
+   "blk11": 31.02,
+   "trend": "monotone-ish DECLINE from ~56 keV (t~2-3.6 s) to ~31 keV (t~12-12.7 s)"
+  },
+  "kt_values_keV_cplbb_firing_and_valid": {
+   "blk1": 55.9,
+   "blk2": 39.58,
+   "blk4": 38.43,
+   "blk7": 39.24,
+   "blk9": 40.98,
+   "blk10": 38.16,
+   "blk11": 31.13
+  },
+  "aic_winners_18_blocks": {
+   "Band+BB": 6,
+   "SBPL": 4,
+   "Band": 3,
+   "CPL+BB": 2,
+   "CPL": 2,
+   "DSBPL": 1
+  },
+  "bic_winners_18_blocks": {
+   "SBPL": 8,
+   "CPL": 5,
+   "Band": 3,
+   "Band+BB": 1,
+   "CPL+BB": 1
+  },
   "dsbpl_signal": "block 2 wins on AIC; LRT_DSBPL_SBPL >= 8 in blocks 3 (8.37), 7 (7.81), 9 (12.02), 10 (10.91) and 13.81 window-integrated",
   "caveat": "these are HUMAN-FINAL-ERA numbers (2026-07-19), produced before the L18-L28 engine hardening. They are the P0 prior, NOT the answer; the blind sweep may legitimately differ."
  },
@@ -136,5 +270,7 @@
    "Sect. 2.4 prompt re-analysis: 'Only GRB 090902B, GRB 130427A and GRB 190114C show significant prompt emission' - 150902A is NOT among them, so nothing there constrains our prompt high-energy shape"
   ]
  },
- "step1_qc_pointer": "results/qc/bn150902733_step1_response_coverage.ecsv - all 5 approved detectors PASS. GBM ships SINGLE-MATRIX .rsp v02 (no .rsp2): interval -136.2 to +478.2 s brackets the window, and the detector angles move by <= 1.3 deg across it. LLE DRM interval is -4.99 to +15.11 s (12.3 s SHORTER than our window) but the D1 off-axis test gives Dtheta = 0.11 deg (theta 37.14-37.28 deg over the window vs 37.25 deg over the DRM interval) -> VALID. The ARR slew happened AFTER our window closed."
+ "step1_qc_pointer": "results/qc/bn150902733_step1_response_coverage.ecsv - all 5 approved detectors PASS. GBM ships SINGLE-MATRIX .rsp v02 (no .rsp2): interval -136.2 to +478.2 s brackets the window, and the detector angles move by <= 1.3 deg across it. LLE DRM interval is -4.99 to +15.11 s (12.3 s SHORTER than our window) but the D1 off-axis test gives Dtheta = 0.11 deg (theta 37.14-37.28 deg over the window vs 37.25 deg over the DRM interval) -> VALID. The ARR slew happened AFTER our window closed.",
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

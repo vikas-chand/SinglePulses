@@ -16,17 +16,107 @@
   "significant_bb_blocks": 0,
   "significant_bb_kt_values": [],
   "significant_bb_median_kt": null,
-  "max_LRT_BANDBB_BAND": {"block": -1, "value": 3.7, "kt": 1.8, "resolved_max": {"block": 5, "value": 3.4, "kt": 38.88}},
-  "max_LRT_CPLBB_CPL": {"block": -1, "value": 7.46, "kt": 27.58, "resolved_max": {"block": 2, "value": 7.11, "kt": 46.69}},
-  "LRT_BANDBB_BAND_all": {"blk-1": 3.7, "blk0": 1.78, "blk1": 2.15, "blk2": 3.35, "blk3": 0.86, "blk4": 2.27, "blk5": 3.4, "blk6": 1.58, "blk7": 0.94, "blk8": 0.83},
-  "LRT_CPLBB_CPL_all": {"blk-1": 7.46, "blk0": 1.82, "blk1": 2.51, "blk2": 7.11, "blk3": 1.13, "blk4": 0.16, "blk5": 1.07, "blk6": 0.97, "blk7": 0.89, "blk8": 0.16},
-  "cplbb_kt_keV_blk0_to_blk8": [17.7, 30.1, 46.69, 91.15, 52.97, 29.72, 3.32, 15.53, 1.0],
-  "bandbb_kt_keV_blk0_to_blk8": [19.31, 29.74, 45.42, 23.67, 1.75, 38.88, 3.52, 15.61, 10.27],
+  "max_LRT_BANDBB_BAND": {
+   "block": -1,
+   "value": 3.7,
+   "kt": 1.8,
+   "resolved_max": {
+    "block": 5,
+    "value": 3.4,
+    "kt": 38.88
+   }
+  },
+  "max_LRT_CPLBB_CPL": {
+   "block": -1,
+   "value": 7.46,
+   "kt": 27.58,
+   "resolved_max": {
+    "block": 2,
+    "value": 7.11,
+    "kt": 46.69
+   }
+  },
+  "LRT_BANDBB_BAND_all": {
+   "blk-1": 3.7,
+   "blk0": 1.78,
+   "blk1": 2.15,
+   "blk2": 3.35,
+   "blk3": 0.86,
+   "blk4": 2.27,
+   "blk5": 3.4,
+   "blk6": 1.58,
+   "blk7": 0.94,
+   "blk8": 0.83
+  },
+  "LRT_CPLBB_CPL_all": {
+   "blk-1": 7.46,
+   "blk0": 1.82,
+   "blk1": 2.51,
+   "blk2": 7.11,
+   "blk3": 1.13,
+   "blk4": 0.16,
+   "blk5": 1.07,
+   "blk6": 0.97,
+   "blk7": 0.89,
+   "blk8": 0.16
+  },
+  "cplbb_kt_keV_blk0_to_blk8": [
+   17.7,
+   30.1,
+   46.69,
+   91.15,
+   52.97,
+   29.72,
+   3.32,
+   15.53,
+   1.0
+  ],
+  "bandbb_kt_keV_blk0_to_blk8": [
+   19.31,
+   29.74,
+   45.42,
+   23.67,
+   1.75,
+   38.88,
+   3.52,
+   15.61,
+   10.27
+  ],
   "kt_rail_notes": "blk8 CPLBB kT = 1.000 keV = railed at the floor (err 0.001, +127.7); blk-1 BANDBB kT = 1.80 and blk4 BANDBB kT = 1.75 sit near the 1.05 floor region - the L8 default-seed artifact family; none of these accompany a significant LRT anyway",
-  "aic_winners": {"integrated": "SBPL", "resolved": {"CPL": 5, "Band": 2, "CPL+BB": 1, "SBPL": 1}, "resolved_detail": "blk0 CPL, blk1 CPL, blk2 CPL+BB (margin <1 AIC unit; LRT_CPLBB_CPL=7.11 sub-threshold), blk3 CPL, blk4 CPL, blk5 Band, blk6 CPL, blk7 SBPL, blk8 Band"},
-  "bic_winners": {"integrated": "SBPL", "resolved": {"CPL": 7, "SBPL": 1, "Band": 1}},
-  "time_integrated_band": {"alpha": -0.488, "alpha_err": 0.057, "ep_keV": 177.7, "ep_err": 9.9, "beta": -2.652, "beta_err": 0.218, "window_s": [-1.7, 10.65]},
-  "LRT_DSBPL_SBPL_max": {"block": 2, "value": 2.73},
+  "aic_winners": {
+   "integrated": "SBPL",
+   "resolved": {
+    "CPL": 5,
+    "Band": 2,
+    "CPL+BB": 1,
+    "SBPL": 1
+   },
+   "resolved_detail": "blk0 CPL, blk1 CPL, blk2 CPL+BB (margin <1 AIC unit; LRT_CPLBB_CPL=7.11 sub-threshold), blk3 CPL, blk4 CPL, blk5 Band, blk6 CPL, blk7 SBPL, blk8 Band"
+  },
+  "bic_winners": {
+   "integrated": "SBPL",
+   "resolved": {
+    "CPL": 7,
+    "SBPL": 1,
+    "Band": 1
+   }
+  },
+  "time_integrated_band": {
+   "alpha": -0.488,
+   "alpha_err": 0.057,
+   "ep_keV": 177.7,
+   "ep_err": 9.9,
+   "beta": -2.652,
+   "beta_err": 0.218,
+   "window_s": [
+    -1.7,
+    10.65
+   ]
+  },
+  "LRT_DSBPL_SBPL_max": {
+   "block": 2,
+   "value": 2.73
+  },
   "dsbpl_valid_blocks": "1/10 (blk2 only)"
  },
  "predictions": [
@@ -65,5 +155,7 @@
   "Meng2019": [
    "SS3.4.1: neither of the three empirical models (Band/COMP/PL) fits 4.3-5.3 and 5.3-6.3 s well -> PL+COMP with FIXED cutoff (their footnote 5); multi-pulse label is model-driven - NOT verified at Lu+2012 (T6 check, 2026-08-12)"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

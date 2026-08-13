@@ -4,33 +4,215 @@
  "frozen_utc": "2026-08-11T16:43:40Z; BEFORE any new fit table opened (walkthrough_b2* untouched, forbidden)",
  "engine": "L18/L19/L20/L26/L27/L28 active",
  "predictions": [
-  "Census-prior class: HIGH-kT BB (archival blk4 kT=6.81 +1.22/-0.96 keV, integrated kT=5.81 +0.85/-0.64 keV — both above the ~5 keV L28 edge-constrained boundary), riding on a DSBPL-vs-Band+BB shape ambiguity at the integrated level.",
+  "Census-prior class: HIGH-kT BB (archival blk4 kT=6.81 +1.22/-0.96 keV, integrated kT=5.81 +0.85/-0.64 keV \u2014 both above the ~5 keV L28 edge-constrained boundary), riding on a DSBPL-vs-Band+BB shape ambiguity at the integrated level.",
   "P-A1 (peak-block BB): the new fits will find >=1 RESOLVED block passing LRT_BANDBB_BAND>=9.2 & kT>1.05, and it will overlap the pulse peak (archival blk4, 1.847-2.737 s; the GBM circular's 1-s peak flux starts T0+1.9 s), with kT in the 5-9 keV HIGH-kT class. Archival blk4 LRT=220.6 (plain Band fails catastrophically there: dAIC(Band-Band+BB)=216.6). FALSIFIED IF no resolved block passes the criterion, or the passing block's kT<5 keV.",
   "P-A2 (integrated shape ambiguity, L12): the integrated block will again be DSBPL-vs-Band+BB degenerate: archival AIC DSBPL=4536.8 vs Band+BB=4540.6 (dAIC 3.78, both VALID), LRT_DSBPL_SBPL=14.6, LRT_BANDBB_BAND=20.3, with the DSBPL low break EDGE-ADJACENT (xb=11.6 keV; alpha1=+0.01, alpha2=-1.71, xp=139.5 keV, beta=-2.55). Prediction: new integrated fit keeps |dAIC(DSBPL,Band+BB)|<10 and xb<25 keV. FALSIFIED IF one family wins by >=10 or xb lands >=50 keV.",
   "P-A3 (no resolved two-break): no resolved block reaches CONFIRMED two-break (archival max resolved LRT_DSBPL_SBPL=5.28, only the integrated row hits 14.6). CAVEAT: lower limit until L8 default-seed DSBPL restart lands. FALSIFIED IF any resolved block wins DSBPL with dAIC>=10 over all one-break models.",
   "P-A4 (AIC/BIC criterion tension): AIC winners will again scatter into +BB models (~half of resolved blocks; archival: CPL+BB x5 + Band+BB x2 of 13) while BIC collapses to simple continua (archival: CPL x6, SBPL x4, Band x2, CPL+BB x1) and the STRICT criterion (LRT>=9.2 & kT>1.05) stays at 1-2 blocks. FALSIFIED IF >=4 resolved blocks pass the strict criterion.",
   "P-A5 (Ep track, D4-aligned): Ep rises from ~80 to ~200 keV at ~1.5 s then decays monotonically to ~30 keV by ~10 s (intensity-tracking then hard-to-soft); the max-Ep block lies inside the Insight-HXMT hard-pulse interval [T0+0.72, T0+6.20] s (GCN 23541). FALSIFIED IF max-Ep lands outside that interval or the post-peak track is non-monotonic (>1 significant reversal).",
-  "P-B1 (Luo+2020 NaI-vs-BGO tension, D5 class): the only refereed paper (2020JHEAp..27....1L) published a ~40% NaI-vs-BGO amplitude split for THIS burst (A_FN=6.40 +0.31/-0.55 vs A_FB=10.71 +0.70/-1.06 in the joint Band fit; deviation persists in GBM-only fits, p.14 verbatim in harvest_snippets). Prediction: our new fits' EAC cross-norms will show a same-direction NaI-vs-BGO tension (>~10% from unity on n2/n5 vs b0), and it must be adjudicated (blockage? response? real low-E component?) BEFORE any BB/low-break claim is graded — an L28/D5 confound check is mandatory in P3. FALSIFIED IF all EACs sit within ~5% of unity.",
-  "P-B2 (frame): our stamped window [-1.401, +14.454] s covers the bright pulse only, NOT the ~58 s (GBM, 50-300 keV) / ~66 s (KW, 80-1300 keV) T90 — circular time-integrated spectra are cross-frame; the KW peak spectrum (T0_KW..+6.912 s: Band alpha=-1.55, Ep=158 -20/+47, beta=-2.38) is the closest external frame and should bracket our early-block Band fits. FALSIFIED IF our peak-region Band Ep (frame-aligned) departs from 158 -20/+47 keV by >3 sigma combined.",
+  "P-B1 (Luo+2020 NaI-vs-BGO tension, D5 class): the only refereed paper (2020JHEAp..27....1L) published a ~40% NaI-vs-BGO amplitude split for THIS burst (A_FN=6.40 +0.31/-0.55 vs A_FB=10.71 +0.70/-1.06 in the joint Band fit; deviation persists in GBM-only fits, p.14 verbatim in harvest_snippets). Prediction: our new fits' EAC cross-norms will show a same-direction NaI-vs-BGO tension (>~10% from unity on n2/n5 vs b0), and it must be adjudicated (blockage? response? real low-E component?) BEFORE any BB/low-break claim is graded \u2014 an L28/D5 confound check is mandatory in P3. FALSIFIED IF all EACs sit within ~5% of unity.",
+  "P-B2 (frame): our stamped window [-1.401, +14.454] s covers the bright pulse only, NOT the ~58 s (GBM, 50-300 keV) / ~66 s (KW, 80-1300 keV) T90 \u2014 circular time-integrated spectra are cross-frame; the KW peak spectrum (T0_KW..+6.912 s: Band alpha=-1.55, Ep=158 -20/+47, beta=-2.38) is the closest external frame and should bracket our early-block Band fits. FALSIFIED IF our peak-region Band Ep (frame-aligned) departs from 158 -20/+47 keV by >3 sigma combined.",
   "P-B3 (near-paperless): no dedicated analysis paper exists; P3 diff = census prior + 4 circulars + Luo Table 4 row only."
  ],
  "census_prior": {
   "source": "results/clean_per_burst_human_final/bn181212693/spectral_fits.ecsv (PREVIOUS production run; allowed as prior)",
   "n_blocks_total_rows": 14,
   "n_blocks_resolved": 13,
-  "integrated_block": {"BLOCK": -1, "t": [-0.227, 12.538], "BEST_AIC_MODEL": "DSBPL", "BEST_BIC_MODEL": "DSBPL", "LRT_BANDBB_BAND": 20.34, "BANDBB_KT_keV": 5.81, "BAND_EP_keV": 94.55, "BAND_ALPHA": -1.364, "BAND_BETA": -2.165, "DSBPL": {"alpha1": 0.006, "xb_keV": 11.61, "alpha2": -1.707, "xp_keV": 139.5, "beta": -2.55}, "dAIC_DSBPL_vs_BANDBB": 3.78, "dAIC_DSBPL_vs_SBPL": 10.6, "LRT_DSBPL_SBPL": 14.6, "LRT_CPLBB_CPL": 31.66},
-  "resolved_span_s": [-0.227, 12.538],
-  "bb_significant": {"criterion": "LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05", "count_resolved": 1, "kT_values_resolved": [6.81], "median_kT_resolved": 6.81, "count_all_rows": 2, "kT_values_all_rows": [5.81, 6.81], "median_kT_all_rows": 6.31, "detail_blk4": {"t": [1.847, 2.737], "LRT": 220.59, "kT": 6.81, "kT_err": [-0.96, 1.22], "BEST_AIC_MODEL": "Band+BB", "dAIC_BANDBB_vs_DSBPL": 3.10, "dAIC_BANDBB_vs_SBPL": 3.88, "BANDBB_params": {"kT": 6.81, "Ep": 156.0, "alpha": -1.206, "beta": -2.38}, "note": "huge LRT vs plain Band mostly says Band alone fails at the peak; BB-vs-break stays L12-degenerate (DSBPL only +3.1)"}},
-  "aic_winners_resolved": {"CPL+BB": 5, "Band+BB": 2, "SBPL": 2, "Band": 1, "CPL": 3},
-  "aic_winners_all_rows": {"DSBPL": 1, "CPL+BB": 5, "Band+BB": 2, "SBPL": 2, "Band": 1, "CPL": 3},
-  "bic_winners_resolved": {"CPL": 6, "SBPL": 4, "Band": 2, "CPL+BB": 1},
-  "ep_track_keV_blk0_to_blk12": [77.6, 126.6, 198.2, 185.3, 50.3, 62.3, 60.1, 35.8, 59.0, 60.4, 32.0, 30.0, 30.0],
-  "alpha_track_blk0_to_blk12": [0.198, -1.146, -1.218, -1.103, -1.742, -1.035, -1.236, -1.008, -1.657, -1.611, -1.191, -0.258, 1.462],
-  "bandbb_kt_track_keV_blk0_to_blk12": [16.02, 4.72, 6.43, 5.9, 6.81, 27.24, 3.96, 6.74, 5.03, 4.39, 48.21, 7.49, 6.44],
-  "lrt_bandbb_band_resolved": [5.33, 2.11, 5.47, 6.85, 220.59, 1.37, 5.05, 0.1, 0.2, 6.22, 1.58, 0.61, 0.14],
-  "lrt_cplbb_cpl_rows_m1_then_0_to_12": [31.66, 7.99, 6.01, 4.34, -0.0, 10.47, 12.12, 13.88, 16.09, 0.21, 2.45, 3.11, 2.71, 3.12],
-  "lrt_dsbpl_sbpl_rows_m1_then_0_to_12": [14.6, 3.59, 0.62, 2.32, 5.28, 4.78, 0.11, 0.06, 0.21, 0.21, 2.43, 0.09, 0.33, 1.95],
-  "stamped_window": {"SRC_START": -1.4008, "SRC_STOP": 14.4538, "detectors": ["n2", "n5", "b0"], "det_angles_deg": {"n2": 33.7, "n5": 38.4, "b0": 40.8}, "approved_by": "Vikas Chand", "approved_utc": "2026-07-19T22:18:36Z", "mode": "human_gui"}
+  "integrated_block": {
+   "BLOCK": -1,
+   "t": [
+    -0.227,
+    12.538
+   ],
+   "BEST_AIC_MODEL": "DSBPL",
+   "BEST_BIC_MODEL": "DSBPL",
+   "LRT_BANDBB_BAND": 20.34,
+   "BANDBB_KT_keV": 5.81,
+   "BAND_EP_keV": 94.55,
+   "BAND_ALPHA": -1.364,
+   "BAND_BETA": -2.165,
+   "DSBPL": {
+    "alpha1": 0.006,
+    "xb_keV": 11.61,
+    "alpha2": -1.707,
+    "xp_keV": 139.5,
+    "beta": -2.55
+   },
+   "dAIC_DSBPL_vs_BANDBB": 3.78,
+   "dAIC_DSBPL_vs_SBPL": 10.6,
+   "LRT_DSBPL_SBPL": 14.6,
+   "LRT_CPLBB_CPL": 31.66
+  },
+  "resolved_span_s": [
+   -0.227,
+   12.538
+  ],
+  "bb_significant": {
+   "criterion": "LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05",
+   "count_resolved": 1,
+   "kT_values_resolved": [
+    6.81
+   ],
+   "median_kT_resolved": 6.81,
+   "count_all_rows": 2,
+   "kT_values_all_rows": [
+    5.81,
+    6.81
+   ],
+   "median_kT_all_rows": 6.31,
+   "detail_blk4": {
+    "t": [
+     1.847,
+     2.737
+    ],
+    "LRT": 220.59,
+    "kT": 6.81,
+    "kT_err": [
+     -0.96,
+     1.22
+    ],
+    "BEST_AIC_MODEL": "Band+BB",
+    "dAIC_BANDBB_vs_DSBPL": 3.1,
+    "dAIC_BANDBB_vs_SBPL": 3.88,
+    "BANDBB_params": {
+     "kT": 6.81,
+     "Ep": 156.0,
+     "alpha": -1.206,
+     "beta": -2.38
+    },
+    "note": "huge LRT vs plain Band mostly says Band alone fails at the peak; BB-vs-break stays L12-degenerate (DSBPL only +3.1)"
+   }
+  },
+  "aic_winners_resolved": {
+   "CPL+BB": 5,
+   "Band+BB": 2,
+   "SBPL": 2,
+   "Band": 1,
+   "CPL": 3
+  },
+  "aic_winners_all_rows": {
+   "DSBPL": 1,
+   "CPL+BB": 5,
+   "Band+BB": 2,
+   "SBPL": 2,
+   "Band": 1,
+   "CPL": 3
+  },
+  "bic_winners_resolved": {
+   "CPL": 6,
+   "SBPL": 4,
+   "Band": 2,
+   "CPL+BB": 1
+  },
+  "ep_track_keV_blk0_to_blk12": [
+   77.6,
+   126.6,
+   198.2,
+   185.3,
+   50.3,
+   62.3,
+   60.1,
+   35.8,
+   59.0,
+   60.4,
+   32.0,
+   30.0,
+   30.0
+  ],
+  "alpha_track_blk0_to_blk12": [
+   0.198,
+   -1.146,
+   -1.218,
+   -1.103,
+   -1.742,
+   -1.035,
+   -1.236,
+   -1.008,
+   -1.657,
+   -1.611,
+   -1.191,
+   -0.258,
+   1.462
+  ],
+  "bandbb_kt_track_keV_blk0_to_blk12": [
+   16.02,
+   4.72,
+   6.43,
+   5.9,
+   6.81,
+   27.24,
+   3.96,
+   6.74,
+   5.03,
+   4.39,
+   48.21,
+   7.49,
+   6.44
+  ],
+  "lrt_bandbb_band_resolved": [
+   5.33,
+   2.11,
+   5.47,
+   6.85,
+   220.59,
+   1.37,
+   5.05,
+   0.1,
+   0.2,
+   6.22,
+   1.58,
+   0.61,
+   0.14
+  ],
+  "lrt_cplbb_cpl_rows_m1_then_0_to_12": [
+   31.66,
+   7.99,
+   6.01,
+   4.34,
+   -0.0,
+   10.47,
+   12.12,
+   13.88,
+   16.09,
+   0.21,
+   2.45,
+   3.11,
+   2.71,
+   3.12
+  ],
+  "lrt_dsbpl_sbpl_rows_m1_then_0_to_12": [
+   14.6,
+   3.59,
+   0.62,
+   2.32,
+   5.28,
+   4.78,
+   0.11,
+   0.06,
+   0.21,
+   0.21,
+   2.43,
+   0.09,
+   0.33,
+   1.95
+  ],
+  "stamped_window": {
+   "SRC_START": -1.4008,
+   "SRC_STOP": 14.4538,
+   "detectors": [
+    "n2",
+    "n5",
+    "b0"
+   ],
+   "det_angles_deg": {
+    "n2": 33.7,
+    "n5": 38.4,
+    "b0": 40.8
+   },
+   "approved_by": "Vikas Chand",
+   "approved_utc": "2026-07-19T22:18:36Z",
+   "mode": "human_gui"
+  }
  },
  "harvest_snippets": {
   "GCN_23524_FermiGBM": [
@@ -54,5 +236,7 @@
   "refereed_papers": [
    "ONE refereed paper only (2020JHEAp..27....1L, calibration sample member); 0 hits on bn181212693 / 181212693 / 566325471 / GRB181212A forms, 2026-08-11"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -22,5 +22,7 @@
    "\u202610 6 10 5 10 4 F (erg cm 2 s 1) F 5.0 2.5 0.0 2.5 5.0 7.5 10.0 12.5 15.0 Time since trigger (s) 10 1 10 2 10 3 10 4 Ep (keV) GRB 150213001 Ep 10 7 10 6 10 5 10 4 F (erg cm 2 s 1) F Figure 3. All Type I bursts in the sample. In each panel, the red points show Ep(t) and\u2026",
    "\u2026(keV) 10 7 10 6 10 5 F (erg cm 2s 1) GRB 130614997 Rising Decaying 10 1 10 2 10 3 10 4 Ep(keV) 10 7 10 6 10 5 F (erg cm 2s 1) GRB 150213001 Rising Decaying Figure 7. Representative Ep-F relations for selected Type I bursts. In each panel, the time-resolved spectral bin\u2026"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

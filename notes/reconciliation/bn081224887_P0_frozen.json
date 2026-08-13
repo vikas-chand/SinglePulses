@@ -18,34 +18,188 @@
   "source": "results/clean_per_burst_human_final/bn081224887/spectral_fits.ecsv (archival production run; allowed as prior). Also known to analyst: notes/reconciliation/bn081224887.md (2026-08-08 blind-rerun numbers, slightly different: blk3 LRT 7.7, kT 44.8).",
   "n_rows_total": 10,
   "n_blocks_resolved": 9,
-  "integrated_block": {"BLOCK": -1, "t": [-0.161, 20.164], "BEST_AIC_MODEL": "Band", "BEST_BIC_MODEL": "CPL", "BAND_ALPHA": -0.751, "BAND_EP_keV": 402.4, "BAND_BETA": -3.02, "LRT_BANDBB_BAND": 3.99, "LRT_CPLBB_CPL": 4.51, "BANDBB_KT_keV": 40.28, "CPLBB_KT_keV": 40.31},
-  "detectors": ["n6", "n7", "n9", "b1", "lle"],
-  "block_edges_s": [-0.161, 0.25, 0.864, 1.896, 4.382, 5.424, 7.462, 10.783, 12.502, 20.164],
+  "integrated_block": {
+   "BLOCK": -1,
+   "t": [
+    -0.161,
+    20.164
+   ],
+   "BEST_AIC_MODEL": "Band",
+   "BEST_BIC_MODEL": "CPL",
+   "BAND_ALPHA": -0.751,
+   "BAND_EP_keV": 402.4,
+   "BAND_BETA": -3.02,
+   "LRT_BANDBB_BAND": 3.99,
+   "LRT_CPLBB_CPL": 4.51,
+   "BANDBB_KT_keV": 40.28,
+   "CPLBB_KT_keV": 40.31
+  },
+  "detectors": [
+   "n6",
+   "n7",
+   "n9",
+   "b1",
+   "lle"
+  ],
+  "block_edges_s": [
+   -0.161,
+   0.25,
+   0.864,
+   1.896,
+   4.382,
+   5.424,
+   7.462,
+   10.783,
+   12.502,
+   20.164
+  ],
   "bb_significant_union": {
    "criterion": "(LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05) OR (LRT_CPLBB_CPL>=9.2 & CPLBB_KT>1.05) - BOTH nested pairs, union rule",
    "count": 1,
-   "blocks": [{"BLOCK": 3, "t": [1.896, 4.382], "passing_pair": "CPL+BB only", "LRT_CPLBB_CPL": 9.576, "CPLBB_KT_keV": 45.47, "CPLBB_MINOS_OK": false, "LRT_BANDBB_BAND": 7.946, "BANDBB_KT_keV": 45.5, "BANDBB_VALID": false, "note": "marginal (9.58 vs 9.2); the 2026-08-08 blind rerun of this block gave LRT=7.7 => sub-threshold; co-located with Li 2019's strongest thermal bin (3.69-4.65 s, kT=26.9 keV) and Burgess 2014's photosphere (L17)"}],
-   "kT_values_keV": [45.47],
+   "blocks": [
+    {
+     "BLOCK": 3,
+     "t": [
+      1.896,
+      4.382
+     ],
+     "passing_pair": "CPL+BB only",
+     "LRT_CPLBB_CPL": 9.576,
+     "CPLBB_KT_keV": 45.47,
+     "CPLBB_MINOS_OK": false,
+     "LRT_BANDBB_BAND": 7.946,
+     "BANDBB_KT_keV": 45.5,
+     "BANDBB_VALID": false,
+     "note": "marginal (9.58 vs 9.2); the 2026-08-08 blind rerun of this block gave LRT=7.7 => sub-threshold; co-located with Li 2019's strongest thermal bin (3.69-4.65 s, kT=26.9 keV) and Burgess 2014's photosphere (L17)"
+    }
+   ],
+   "kT_values_keV": [
+    45.47
+   ],
    "band_bb_pair_count": 0,
    "cpl_bb_pair_count": 1
   },
-  "aic_winners_resolved": {"CPL": 4, "Band": 2, "SBPL": 1, "Band+BB": 1, "CPL+BB": 1},
-  "aic_winners_all_rows": {"CPL": 4, "Band": 3, "SBPL": 1, "Band+BB": 1, "CPL+BB": 1},
-  "bic_winners_all_rows": {"CPL": 9, "Band": 1},
-  "ep_track_keV_blk0_to_8": [2235.45, 724.95, 582.05, 372.18, 249.04, 212.71, 163.15, 174.59, 137.17],
-  "alpha_track_blk0_to_8": [-0.795, -0.13, -0.189, -0.423, -0.625, -0.648, -0.77, -0.966, -1.125],
-  "beta_track_blk0_to_8": [-3.195, -3.118, -3.408, -3.234, -4.627, -2.768, -2.794, -2.852, -2.401],
-  "bandbb_kt_track_keV_blk0_to_8": [3.28, 4.62, 3.55, 45.5, 8.97, 10.07, 54.26, 1.54, 1.02],
-  "cplbb_kt_track_keV_blk0_to_8": [2.85, 4.57, 3.56, 45.47, 49.37, 28.02, 74.57, 26.13, 46.35],
-  "lrt_dsbpl_sbpl_rows_m1_0_to_8": [1.61, 1.16, 5.44, 4.03, 5.22, 1.11, 1.5, 0.44, 0.42, 5.9],
-  "archival_engine_artifacts": {"negative_LRT_CPLBB_CPL": {"blk4": -39.56, "blk5": -64.3, "blk7": -11.48, "blk8": -2.22}, "cpl_fail_blocks": [2], "note": "pre-L4/L5 cutoff local minima; basis of P-A3"},
-  "stamped_window": {"SRC_START": -1.280221, "SRC_STOP": 20.164881, "approved_by": "Vikas Chand", "approved_utc": "2026-07-19T22:18:36Z", "mode": "human_gui", "window_source": "accepted_suggestion"}
+  "aic_winners_resolved": {
+   "CPL": 4,
+   "Band": 2,
+   "SBPL": 1,
+   "Band+BB": 1,
+   "CPL+BB": 1
+  },
+  "aic_winners_all_rows": {
+   "CPL": 4,
+   "Band": 3,
+   "SBPL": 1,
+   "Band+BB": 1,
+   "CPL+BB": 1
+  },
+  "bic_winners_all_rows": {
+   "CPL": 9,
+   "Band": 1
+  },
+  "ep_track_keV_blk0_to_8": [
+   2235.45,
+   724.95,
+   582.05,
+   372.18,
+   249.04,
+   212.71,
+   163.15,
+   174.59,
+   137.17
+  ],
+  "alpha_track_blk0_to_8": [
+   -0.795,
+   -0.13,
+   -0.189,
+   -0.423,
+   -0.625,
+   -0.648,
+   -0.77,
+   -0.966,
+   -1.125
+  ],
+  "beta_track_blk0_to_8": [
+   -3.195,
+   -3.118,
+   -3.408,
+   -3.234,
+   -4.627,
+   -2.768,
+   -2.794,
+   -2.852,
+   -2.401
+  ],
+  "bandbb_kt_track_keV_blk0_to_8": [
+   3.28,
+   4.62,
+   3.55,
+   45.5,
+   8.97,
+   10.07,
+   54.26,
+   1.54,
+   1.02
+  ],
+  "cplbb_kt_track_keV_blk0_to_8": [
+   2.85,
+   4.57,
+   3.56,
+   45.47,
+   49.37,
+   28.02,
+   74.57,
+   26.13,
+   46.35
+  ],
+  "lrt_dsbpl_sbpl_rows_m1_0_to_8": [
+   1.61,
+   1.16,
+   5.44,
+   4.03,
+   5.22,
+   1.11,
+   1.5,
+   0.44,
+   0.42,
+   5.9
+  ],
+  "archival_engine_artifacts": {
+   "negative_LRT_CPLBB_CPL": {
+    "blk4": -39.56,
+    "blk5": -64.3,
+    "blk7": -11.48,
+    "blk8": -2.22
+   },
+   "cpl_fail_blocks": [
+    2
+   ],
+   "note": "pre-L4/L5 cutoff local minima; basis of P-A3"
+  },
+  "stamped_window": {
+   "SRC_START": -1.280221,
+   "SRC_STOP": 20.164881,
+   "approved_by": "Vikas Chand",
+   "approved_utc": "2026-07-19T22:18:36Z",
+   "mode": "human_gui",
+   "window_source": "accepted_suggestion"
+  }
  },
  "harvest_snippets": {
   "pointer": "full published-value table with T9 component-coverage labels: results/gcn/bn081224887/bn081224887_dossier.md 'PUBLISHED VALUES (for the P3 diff)'; verbatim snippets: notes/reconciliation/bn081224887.md P1; manifest: notes/reconciliation/bn081224887_harvest.json (24 refereed)",
-  "LiZhang2021": ["081224887 | 16.448+-1.159 | (3.76+-0.02)e-5 | (n6)n7n9b1 | -1~20 | [-20~-10,40~60] | 9 | 5 (Ntot=9 blocks; edges 1.896/5.424/12.502 s = P-B1 anchor)"],
-  "Yu2019": ["Table 6: dDIC = +22.64,+5.46,+1.89,+2.13,+0.29,+1.78,+2.38,+1.09 (8 clean bins, ALL positive => CPL); 2 pathological bins pDIC_BAND=-109.20,-240404.34"],
-  "Bissaldi2011": ["081224.887 | Comp | 0.0378+-0.0007 | 380+-11 | -0.73+-0.02 | 0.87 | 442/358 (0.002-16.544 s)"],
-  "GCN8739_WAM": ["CPL alpha 0.83(+0.27,-0.28) [dN/dE~E^-alpha], Epeak 447(+57,-40) keV, chi2/dof=19/22, T0-0.2s..T0+19.8s (PRELIMINARY by own statement)"]
- }
+  "LiZhang2021": [
+   "081224887 | 16.448+-1.159 | (3.76+-0.02)e-5 | (n6)n7n9b1 | -1~20 | [-20~-10,40~60] | 9 | 5 (Ntot=9 blocks; edges 1.896/5.424/12.502 s = P-B1 anchor)"
+  ],
+  "Yu2019": [
+   "Table 6: dDIC = +22.64,+5.46,+1.89,+2.13,+0.29,+1.78,+2.38,+1.09 (8 clean bins, ALL positive => CPL); 2 pathological bins pDIC_BAND=-109.20,-240404.34"
+  ],
+  "Bissaldi2011": [
+   "081224.887 | Comp | 0.0378+-0.0007 | 380+-11 | -0.73+-0.02 | 0.87 | 442/358 (0.002-16.544 s)"
+  ],
+  "GCN8739_WAM": [
+   "CPL alpha 0.83(+0.27,-0.28) [dN/dE~E^-alpha], Epeak 447(+57,-40) keV, chi2/dof=19/22, T0-0.2s..T0+19.8s (PRELIMINARY by own statement)"
+  ]
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

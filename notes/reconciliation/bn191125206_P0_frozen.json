@@ -1,26 +1,51 @@
 {
  "burst": "bn191125206",
  "tally": 22,
- "frozen_utc": "2026-08-11T16:43:04Z (day shift; BEFORE any walkthrough_b2* fit table opened — worker is barred from that tree)",
+ "frozen_utc": "2026-08-11T16:43:04Z (day shift; BEFORE any walkthrough_b2* fit table opened \u2014 worker is barred from that tree)",
  "engine": "L18/L19/L20/L26/L27/L28 active",
  "predictions": [
   "Census-prior class: LOW-kT BB-leader (archival run: 8/13 blocks LRT_BANDBB_BAND>=9.2 with kT>1.05, kT median 4.33 keV; CPL+BB wins AIC in 12/13 blocks).",
-  "P-A: the new fits will prefer a BB-added model (CPL+BB or Band+BB) by AIC in the majority (>=6) of time-resolved blocks, with kT in the 3-8 keV band and median kT 4.0-5.5 keV — the L28 edge-constrained low-kT class (NaI fit floor 8 keV; implied xb ~ 3.9*kT ~ 16-20 keV per L25). FALSIFIED IF: BB preference collapses to <=2 blocks, or the preferred kT population sits >20 keV.",
-  "P-A2: two-break support will persist where it was strongest archivally — LRT_DSBPL_SBPL >= 9.2 in the integrated spectrum and in at least one bright early block (archival: integrated 23.8, blk3 [2.7-6.2 s] 27.5, blk4 [6.2-9.0 s] 18.3). Per L25 (xb ~ 3.92 kT, r=0.87) the DSBPL low break and the low-kT BB are rival descriptions of the SAME low-energy feature; expect L12-style degeneracy, not two independent components. FALSIFIED IF: no block reaches LRT_DSBPL_SBPL >= 9.2.",
-  "P-B: literature frame (GBM online catalog scat/bcat, FITS files — no refereed spectral paper exists): time-integrated (-1.024 to 115.712 s) Comp Ep = 915.6 -83/+97 keV, index -1.4625+/-0.012; Band fit rails beta at -2.0001 (err 8.0) in BOTH flnc and pflx fits => predict our new integrated fits will show a poorly-constrained/soft-limit beta and AIC preference for cutoff-family over Band on the time-integrated block, with Ep(integrated) in the 600-950 keV range. FALSIFIED IF: beta is well-constrained (|err| < 0.3) and Band beats CPL by dAIC >= 10 integrated.",
-  "P-B2: hard-to-soft evolution — catalog peak-flux slice (4.096-5.12 s) has alpha=-1.20, Ep~620-675 keV vs flnc alpha=-1.46 => predict CPL index hardening toward the 4-5 s peak and monotonic-ish Ep decay after ~5 s (archival CPL_INDEX runs -0.85 early -> -1.48 late; BAND_EP 1823 -> 283 keV). FALSIFIED IF: Ep tracks flux (intensity-tracking) rather than decaying hard-to-soft.",
+  "P-A: the new fits will prefer a BB-added model (CPL+BB or Band+BB) by AIC in the majority (>=6) of time-resolved blocks, with kT in the 3-8 keV band and median kT 4.0-5.5 keV \u2014 the L28 edge-constrained low-kT class (NaI fit floor 8 keV; implied xb ~ 3.9*kT ~ 16-20 keV per L25). FALSIFIED IF: BB preference collapses to <=2 blocks, or the preferred kT population sits >20 keV.",
+  "P-A2: two-break support will persist where it was strongest archivally \u2014 LRT_DSBPL_SBPL >= 9.2 in the integrated spectrum and in at least one bright early block (archival: integrated 23.8, blk3 [2.7-6.2 s] 27.5, blk4 [6.2-9.0 s] 18.3). Per L25 (xb ~ 3.92 kT, r=0.87) the DSBPL low break and the low-kT BB are rival descriptions of the SAME low-energy feature; expect L12-style degeneracy, not two independent components. FALSIFIED IF: no block reaches LRT_DSBPL_SBPL >= 9.2.",
+  "P-B: literature frame (GBM online catalog scat/bcat, FITS files \u2014 no refereed spectral paper exists): time-integrated (-1.024 to 115.712 s) Comp Ep = 915.6 -83/+97 keV, index -1.4625+/-0.012; Band fit rails beta at -2.0001 (err 8.0) in BOTH flnc and pflx fits => predict our new integrated fits will show a poorly-constrained/soft-limit beta and AIC preference for cutoff-family over Band on the time-integrated block, with Ep(integrated) in the 600-950 keV range. FALSIFIED IF: beta is well-constrained (|err| < 0.3) and Band beats CPL by dAIC >= 10 integrated.",
+  "P-B2: hard-to-soft evolution \u2014 catalog peak-flux slice (4.096-5.12 s) has alpha=-1.20, Ep~620-675 keV vs flnc alpha=-1.46 => predict CPL index hardening toward the 4-5 s peak and monotonic-ish Ep decay after ~5 s (archival CPL_INDEX runs -0.85 early -> -1.48 late; BAND_EP 1823 -> 283 keV). FALSIFIED IF: Ep tracks flux (intensity-tracking) rather than decaying hard-to-soft.",
   "P-C (identity, not a fit target): NO redshift exists (single auto-generated GCN 26292; zero follow-up circulars); the only refereed appearance is an instrument-demo light curve in the BepiColombo cruise paper (MGNS/IPN detection). The P3 diff frame is therefore the GBM online catalog, not a paper."
  ],
  "census_prior": {
-  "source": "results/clean_per_burst_human_final/bn191125206/spectral_fits.ecsv (previous production run — allowed as prior)",
+  "source": "results/clean_per_burst_human_final/bn191125206/spectral_fits.ecsv (previous production run \u2014 allowed as prior)",
   "n_blocks": 13,
   "block_layout": "1 time-integrated (-0.28 to 42.0 s, BLOCK=-1) + 12 time-resolved (0.51 s to 42.0 s edges)",
   "n_blocks_lrt_bandbb_ge_9p2_and_kt_gt_1p05": 8,
-  "bb_kt_values_keV": [4.35, 7.43, 4.82, 4.32, 4.35, 4.12, 4.05, 4.2],
+  "bb_kt_values_keV": [
+   4.35,
+   7.43,
+   4.82,
+   4.32,
+   4.35,
+   4.12,
+   4.05,
+   4.2
+  ],
   "bb_kt_median_keV": 4.33,
-  "bb_blocks": [-1, 2, 3, 4, 5, 7, 8, 9],
-  "aic_winner_distribution": {"CPL+BB": 12, "CPL": 1},
-  "lrt_dsbpl_sbpl_ge_9p2_blocks": {"-1": 23.79, "3": 27.46, "4": 18.28},
+  "bb_blocks": [
+   -1,
+   2,
+   3,
+   4,
+   5,
+   7,
+   8,
+   9
+  ],
+  "aic_winner_distribution": {
+   "CPL+BB": 12,
+   "CPL": 1
+  },
+  "lrt_dsbpl_sbpl_ge_9p2_blocks": {
+   "-1": 23.79,
+   "3": 27.46,
+   "4": 18.28
+  },
   "n_dets_per_block": 5,
   "class": "low-kT (<~5 keV, edge-constrained per L28)"
  },
@@ -41,7 +66,13 @@
    "flnc_band (-1.024..115.712 s, dets n1 n3 n5 b0, PSTAT): Ep=823.7 +85/-101 keV, alpha=-1.4624+/-0.014, beta=-2.0001 err 8.0 (RAILED/unconstrained)",
    "flnc_comp: Ep=915.6 -83/+97 keV, index=-1.4625+/-0.012; pflx_comp (4.096..5.12 s): Ep=674.5 +/-~80 keV, index=-1.2009+/-0.037"
   ],
-  "Li&Zhang2021": ["absent (not in sample — checked ADS four-form queries, 0 refereed analysis papers)"],
-  "Lu2018": ["absent"]
- }
+  "Li&Zhang2021": [
+   "absent (not in sample \u2014 checked ADS four-form queries, 0 refereed analysis papers)"
+  ],
+  "Lu2018": [
+   "absent"
+  ]
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

@@ -24,18 +24,73 @@
   "significant_bb_blocks": 0,
   "significant_bb_kt_values": [],
   "significant_bb_median_kt": null,
-  "LRT_BANDBB_BAND_per_block": {"blk-1": 2.885, "blk0": -2.1e-05, "blk1": 0.884, "blk2": 0.774, "blk3": 0.547},
-  "BANDBB_KT_per_block": {"blk-1": 16.09, "blk0": 13.98, "blk1": 19.01, "blk2": 13.59, "blk3": 7.88},
-  "LRT_CPLBB_CPL_per_block": {"blk-1": 0.309, "blk0": 2.362, "blk1": 0.779, "blk2": 0.474, "blk3": "nan (CPL_STATUS=FAIL in blk3)"},
-  "CPLBB_KT_per_block": {"blk-1": 19.48, "blk0": 20.64, "blk1": 18.5, "blk2": 13.58, "blk3": 7.84},
-  "max_LRT_BANDBB_BAND": {"block": -1, "value": 2.885, "kt": 16.09},
-  "max_LRT_CPLBB_CPL": {"block": 0, "value": 2.362, "kt": 20.64},
-  "aic_winners": {"Band": 1, "DSBPL": 1, "Band+BB": 1, "INCONCLUSIVE": 2},
-  "bic_winners": {"Band": 1, "CPL+BB": 1, "Band+BB": 1, "INCONCLUSIVE": 2},
+  "LRT_BANDBB_BAND_per_block": {
+   "blk-1": 2.885,
+   "blk0": -2.1e-05,
+   "blk1": 0.884,
+   "blk2": 0.774,
+   "blk3": 0.547
+  },
+  "BANDBB_KT_per_block": {
+   "blk-1": 16.09,
+   "blk0": 13.98,
+   "blk1": 19.01,
+   "blk2": 13.59,
+   "blk3": 7.88
+  },
+  "LRT_CPLBB_CPL_per_block": {
+   "blk-1": 0.309,
+   "blk0": 2.362,
+   "blk1": 0.779,
+   "blk2": 0.474,
+   "blk3": "nan (CPL_STATUS=FAIL in blk3)"
+  },
+  "CPLBB_KT_per_block": {
+   "blk-1": 19.48,
+   "blk0": 20.64,
+   "blk1": 18.5,
+   "blk2": 13.58,
+   "blk3": 7.84
+  },
+  "max_LRT_BANDBB_BAND": {
+   "block": -1,
+   "value": 2.885,
+   "kt": 16.09
+  },
+  "max_LRT_CPLBB_CPL": {
+   "block": 0,
+   "value": 2.362,
+   "kt": 20.64
+  },
+  "aic_winners": {
+   "Band": 1,
+   "DSBPL": 1,
+   "Band+BB": 1,
+   "INCONCLUSIVE": 2
+  },
+  "bic_winners": {
+   "Band": 1,
+   "CPL+BB": 1,
+   "Band+BB": 1,
+   "INCONCLUSIVE": 2
+  },
   "aic_winner_caveat": "blk0 AIC winner DSBPL and blk1 AIC winner Band+BB are small-margin picks whose own nested LRTs are non-significant (2.11 and 0.88) - winner-by-AIC-label without LRT support, the L16 graded-evidence situation",
-  "time_integrated_band": {"alpha": 0.536, "alpha_err": "+0.214/-0.201", "ep_keV": 65.2, "ep_err": "+2.45/-2.30", "beta": -4.82, "beta_note": "near the -5 bound; Band collapses toward CPL"},
+  "time_integrated_band": {
+   "alpha": 0.536,
+   "alpha_err": "+0.214/-0.201",
+   "ep_keV": 65.2,
+   "ep_err": "+2.45/-2.30",
+   "beta": -4.82,
+   "beta_note": "near the -5 bound; Band collapses toward CPL"
+  },
   "LRT_DSBPL_SBPL_max": 3.212,
-  "LRT_DSBPL_SBPL_per_block": {"blk-1": 3.212, "blk0": 2.112, "blk1": 2.988, "blk2": 2.491, "blk3": 1.838},
+  "LRT_DSBPL_SBPL_per_block": {
+   "blk-1": 3.212,
+   "blk0": 2.112,
+   "blk1": 2.988,
+   "blk2": 2.491,
+   "blk3": 1.838
+  },
   "dsbpl_valid_blocks": 2
  },
  "harvest_snippets": {
@@ -57,5 +112,7 @@
   "refereed_papers": [
    "exactly 1 refereed paper across six ADS full-text query forms (2026-08-12): Bordoloi, Mittal & Iyyani 2026, ApJ 1003, 58 (2026ApJ..1003...58B) - found ONLY by the bare-digit form '091209001' via its machine-readable Table 2"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

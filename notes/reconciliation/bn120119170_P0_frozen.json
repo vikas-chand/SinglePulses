@@ -6,91 +6,421 @@
  "blind_discipline": "results/sweep106/ was NEVER read by this worker (hard rule). The prior below comes ONLY from the archival human-final run results/clean_per_burst_human_final/bn120119170/spectral_fits.ecsv, from the HEASARC fermigbrst catalog row, and from the published literature harvested in notes/reconciliation/bn120119170_harvest.json.",
  "engine": "L18/L19/L20/L26/L27/L28 + per-bin-coverage",
  "engine_note": "The archival prior below was produced by an EARLIER engine, before the L8 default-seed DSBPL restart, the L9 widened Ep caps / BOUND_CAPPED diagnosis, and the L28 residual-coherence acquittal. Its two-break and BB counts are therefore LOWER LIMITS by construction, and the predictions are written to be falsifiable in that direction.",
-
  "archival_prior": {
   "source": "results/clean_per_burst_human_final/bn120119170/spectral_fits.ecsv",
   "n_rows": 11,
   "layout": "blk-1 = time-integrated [-0.999, 46.999] s + blk0..blk9 time-resolved",
   "plugin_dets": "n9,na,nb,b1 (all 11 rows, N_DETS = 4)",
-  "stamped_window": {"src_start": -1.0, "src_stop": 47.0, "approved_by": "Vikas Chand", "approved_utc": "2026-07-19T22:18:36Z", "mode": "human_gui", "window_source": "accepted_suggestion"},
-  "block_edges_s": [-0.999, 4.557, 7.470, 13.876, 15.559, 16.798, 17.438, 19.948, 23.060, 34.958, 46.999],
-
+  "stamped_window": {
+   "src_start": -1.0,
+   "src_stop": 47.0,
+   "approved_by": "Vikas Chand",
+   "approved_utc": "2026-07-19T22:18:36Z",
+   "mode": "human_gui",
+   "window_source": "accepted_suggestion"
+  },
+  "block_edges_s": [
+   -0.999,
+   4.557,
+   7.47,
+   13.876,
+   15.559,
+   16.798,
+   17.438,
+   19.948,
+   23.06,
+   34.958,
+   46.999
+  ],
   "bb_union_rule": {
    "definition": "a block counts as BB-significant if (LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 keV) OR (LRT_CPLBB_CPL >= 9.2 AND CPLBB_KT > 1.05 keV) - BOTH nested tests, union",
    "n_blocks_passing": 1,
    "passing_blocks": [
-    {"block": -1, "side": "CPL+BB only", "LRT_CPLBB_CPL": 9.773, "CPLBB_KT_keV": 21.260, "CPLBB_KT_err": 3.460, "LRT_BANDBB_BAND": 5.644, "BANDBB_KT_keV": 6.309}
+    {
+     "block": -1,
+     "side": "CPL+BB only",
+     "LRT_CPLBB_CPL": 9.773,
+     "CPLBB_KT_keV": 21.26,
+     "CPLBB_KT_err": 3.46,
+     "LRT_BANDBB_BAND": 5.644,
+     "BANDBB_KT_keV": 6.309
+    }
    ],
    "n_time_resolved_blocks_passing": 0,
-   "significant_bb_kt_values_keV": [21.260],
-   "significant_bb_median_kt_keV": 21.260,
-   "max_LRT_BANDBB_BAND": {"block": -1, "value": 5.644, "kt": 6.309},
-   "max_LRT_CPLBB_CPL": {"block": -1, "value": 9.773, "kt": 21.260},
-   "runner_up_CPLBB": {"block": 0, "value": 8.010, "kt": 17.942},
+   "significant_bb_kt_values_keV": [
+    21.26
+   ],
+   "significant_bb_median_kt_keV": 21.26,
+   "max_LRT_BANDBB_BAND": {
+    "block": -1,
+    "value": 5.644,
+    "kt": 6.309
+   },
+   "max_LRT_CPLBB_CPL": {
+    "block": -1,
+    "value": 9.773,
+    "kt": 21.26
+   },
+   "runner_up_CPLBB": {
+    "block": 0,
+    "value": 8.01,
+    "kt": 17.942
+   },
    "class": "CPL-side-only, high-kT shoulder in the time-integrated block; NOT the L28 edge-constrained (<~5 keV) class, and NOT a Band-side detection anywhere",
    "T8_baseline_discipline": "the two nested margins disagree by 4.1 in the SAME block (Band baseline 5.64 vs CPL baseline 9.77). Any BB verdict for this burst MUST name its baseline - this is the published twin of Wang+2019's Band-vs-CPL baseline split."
   },
-
   "per_block": [
-   {"blk": -1, "t": [-0.999, 46.999], "aic_winner": "Band+BB", "bic_winner": "SBPL", "LRT_BANDBB_BAND": 5.644, "BANDBB_KT": 6.309, "LRT_CPLBB_CPL": 9.773, "CPLBB_KT": 21.260, "LRT_DSBPL_SBPL": 14.812, "DSBPL_VALID": false},
-   {"blk": 0, "t": [-0.999, 4.557], "aic_winner": "SBPL", "bic_winner": "SBPL", "LRT_BANDBB_BAND": 2.314, "BANDBB_KT": 17.856, "LRT_CPLBB_CPL": 8.010, "CPLBB_KT": 17.942, "LRT_DSBPL_SBPL": 2.350, "DSBPL_VALID": false},
-   {"blk": 1, "t": [4.557, 7.470], "aic_winner": "CPL", "bic_winner": "CPL", "LRT_BANDBB_BAND": -0.0, "BANDBB_KT": 1.002, "LRT_CPLBB_CPL": 2.999, "CPLBB_KT": 7.740, "LRT_DSBPL_SBPL": 5.438, "DSBPL_VALID": false},
-   {"blk": 2, "t": [7.470, 13.876], "aic_winner": "Band", "bic_winner": "Band", "LRT_BANDBB_BAND": 2.674, "BANDBB_KT": 51.234, "LRT_CPLBB_CPL": 4.568, "CPLBB_KT": 34.579, "LRT_DSBPL_SBPL": 5.345, "DSBPL_VALID": false},
-   {"blk": 3, "t": [13.876, 15.559], "aic_winner": "SBPL", "bic_winner": "SBPL", "LRT_BANDBB_BAND": -0.0, "BANDBB_KT": 21.944, "LRT_CPLBB_CPL": -0.0, "CPLBB_KT": 1.015, "LRT_DSBPL_SBPL": 0.407, "DSBPL_VALID": true},
-   {"blk": 4, "t": [15.559, 16.798], "aic_winner": "SBPL", "bic_winner": "CPL", "LRT_BANDBB_BAND": 1.317, "BANDBB_KT": 33.686, "LRT_CPLBB_CPL": -0.0, "CPLBB_KT": 2.938, "LRT_DSBPL_SBPL": 0.959, "DSBPL_VALID": false},
-   {"blk": 5, "t": [16.798, 17.438], "aic_winner": "Band", "bic_winner": "CPL", "LRT_BANDBB_BAND": 4.398, "BANDBB_KT": 7.398, "LRT_CPLBB_CPL": 5.824, "CPLBB_KT": 28.890, "LRT_DSBPL_SBPL": 1.637, "DSBPL_VALID": false},
-   {"blk": 6, "t": [17.438, 19.948], "aic_winner": "Band", "bic_winner": "Band", "LRT_BANDBB_BAND": 2.987, "BANDBB_KT": 6.081, "LRT_CPLBB_CPL": 6.662, "CPLBB_KT": 24.783, "LRT_DSBPL_SBPL": 4.819, "DSBPL_VALID": false},
-   {"blk": 7, "t": [19.948, 23.060], "aic_winner": "SBPL", "bic_winner": "SBPL", "LRT_BANDBB_BAND": 0.129, "BANDBB_KT": 13.651, "LRT_CPLBB_CPL": 6.426, "CPLBB_KT": 13.385, "LRT_DSBPL_SBPL": 3.898, "DSBPL_VALID": false},
-   {"blk": 8, "t": [23.060, 34.958], "aic_winner": "SBPL", "bic_winner": "SBPL", "LRT_BANDBB_BAND": 2.403, "BANDBB_KT": 9.377, "LRT_CPLBB_CPL": 6.517, "CPLBB_KT": 11.654, "LRT_DSBPL_SBPL": 3.056, "DSBPL_VALID": true},
-   {"blk": 9, "t": [34.958, 46.999], "aic_winner": "Band", "bic_winner": "CPL", "LRT_BANDBB_BAND": 4.635, "BANDBB_KT": 27.481, "LRT_CPLBB_CPL": 3.028, "CPLBB_KT": 8.950, "LRT_DSBPL_SBPL": 5.777, "DSBPL_VALID": false}
+   {
+    "blk": -1,
+    "t": [
+     -0.999,
+     46.999
+    ],
+    "aic_winner": "Band+BB",
+    "bic_winner": "SBPL",
+    "LRT_BANDBB_BAND": 5.644,
+    "BANDBB_KT": 6.309,
+    "LRT_CPLBB_CPL": 9.773,
+    "CPLBB_KT": 21.26,
+    "LRT_DSBPL_SBPL": 14.812,
+    "DSBPL_VALID": false
+   },
+   {
+    "blk": 0,
+    "t": [
+     -0.999,
+     4.557
+    ],
+    "aic_winner": "SBPL",
+    "bic_winner": "SBPL",
+    "LRT_BANDBB_BAND": 2.314,
+    "BANDBB_KT": 17.856,
+    "LRT_CPLBB_CPL": 8.01,
+    "CPLBB_KT": 17.942,
+    "LRT_DSBPL_SBPL": 2.35,
+    "DSBPL_VALID": false
+   },
+   {
+    "blk": 1,
+    "t": [
+     4.557,
+     7.47
+    ],
+    "aic_winner": "CPL",
+    "bic_winner": "CPL",
+    "LRT_BANDBB_BAND": -0.0,
+    "BANDBB_KT": 1.002,
+    "LRT_CPLBB_CPL": 2.999,
+    "CPLBB_KT": 7.74,
+    "LRT_DSBPL_SBPL": 5.438,
+    "DSBPL_VALID": false
+   },
+   {
+    "blk": 2,
+    "t": [
+     7.47,
+     13.876
+    ],
+    "aic_winner": "Band",
+    "bic_winner": "Band",
+    "LRT_BANDBB_BAND": 2.674,
+    "BANDBB_KT": 51.234,
+    "LRT_CPLBB_CPL": 4.568,
+    "CPLBB_KT": 34.579,
+    "LRT_DSBPL_SBPL": 5.345,
+    "DSBPL_VALID": false
+   },
+   {
+    "blk": 3,
+    "t": [
+     13.876,
+     15.559
+    ],
+    "aic_winner": "SBPL",
+    "bic_winner": "SBPL",
+    "LRT_BANDBB_BAND": -0.0,
+    "BANDBB_KT": 21.944,
+    "LRT_CPLBB_CPL": -0.0,
+    "CPLBB_KT": 1.015,
+    "LRT_DSBPL_SBPL": 0.407,
+    "DSBPL_VALID": true
+   },
+   {
+    "blk": 4,
+    "t": [
+     15.559,
+     16.798
+    ],
+    "aic_winner": "SBPL",
+    "bic_winner": "CPL",
+    "LRT_BANDBB_BAND": 1.317,
+    "BANDBB_KT": 33.686,
+    "LRT_CPLBB_CPL": -0.0,
+    "CPLBB_KT": 2.938,
+    "LRT_DSBPL_SBPL": 0.959,
+    "DSBPL_VALID": false
+   },
+   {
+    "blk": 5,
+    "t": [
+     16.798,
+     17.438
+    ],
+    "aic_winner": "Band",
+    "bic_winner": "CPL",
+    "LRT_BANDBB_BAND": 4.398,
+    "BANDBB_KT": 7.398,
+    "LRT_CPLBB_CPL": 5.824,
+    "CPLBB_KT": 28.89,
+    "LRT_DSBPL_SBPL": 1.637,
+    "DSBPL_VALID": false
+   },
+   {
+    "blk": 6,
+    "t": [
+     17.438,
+     19.948
+    ],
+    "aic_winner": "Band",
+    "bic_winner": "Band",
+    "LRT_BANDBB_BAND": 2.987,
+    "BANDBB_KT": 6.081,
+    "LRT_CPLBB_CPL": 6.662,
+    "CPLBB_KT": 24.783,
+    "LRT_DSBPL_SBPL": 4.819,
+    "DSBPL_VALID": false
+   },
+   {
+    "blk": 7,
+    "t": [
+     19.948,
+     23.06
+    ],
+    "aic_winner": "SBPL",
+    "bic_winner": "SBPL",
+    "LRT_BANDBB_BAND": 0.129,
+    "BANDBB_KT": 13.651,
+    "LRT_CPLBB_CPL": 6.426,
+    "CPLBB_KT": 13.385,
+    "LRT_DSBPL_SBPL": 3.898,
+    "DSBPL_VALID": false
+   },
+   {
+    "blk": 8,
+    "t": [
+     23.06,
+     34.958
+    ],
+    "aic_winner": "SBPL",
+    "bic_winner": "SBPL",
+    "LRT_BANDBB_BAND": 2.403,
+    "BANDBB_KT": 9.377,
+    "LRT_CPLBB_CPL": 6.517,
+    "CPLBB_KT": 11.654,
+    "LRT_DSBPL_SBPL": 3.056,
+    "DSBPL_VALID": true
+   },
+   {
+    "blk": 9,
+    "t": [
+     34.958,
+     46.999
+    ],
+    "aic_winner": "Band",
+    "bic_winner": "CPL",
+    "LRT_BANDBB_BAND": 4.635,
+    "BANDBB_KT": 27.481,
+    "LRT_CPLBB_CPL": 3.028,
+    "CPLBB_KT": 8.95,
+    "LRT_DSBPL_SBPL": 5.777,
+    "DSBPL_VALID": false
+   }
   ],
-
-  "aic_winners": {"SBPL": 5, "Band": 4, "Band+BB": 1, "CPL": 1},
-  "bic_winners": {"SBPL": 5, "CPL": 4, "Band": 2},
-
+  "aic_winners": {
+   "SBPL": 5,
+   "Band": 4,
+   "Band+BB": 1,
+   "CPL": 1
+  },
+  "bic_winners": {
+   "SBPL": 5,
+   "CPL": 4,
+   "Band": 2
+  },
   "time_integrated_blk_minus1": {
-   "band": {"alpha": -0.8819, "alpha_err": 0.0567, "ep_keV": 178.19, "ep_err": 15.64, "beta": -2.2801, "beta_err": 0.1376},
-   "cpl": {"index": -0.9939, "xc_keV": 222.82, "note": "xc is an E-FOLDING energy; Ep = (2+index)*xc = 224 keV"},
-   "sbpl": {"alpha": -0.9340, "ebreak_keV": 125.64, "beta": -2.4765},
-   "aic": {"Band": 7757.917, "CPL": 7774.076, "SBPL": 7756.967, "DSBPL": 7746.155, "Band+BB": 7756.274, "CPL+BB": 7768.303},
-   "bic": {"Band": 7774.871, "CPL": 7786.791, "SBPL": 7773.920, "DSBPL": 7771.585, "Band+BB": 7781.703, "CPL+BB": 7789.495},
+   "band": {
+    "alpha": -0.8819,
+    "alpha_err": 0.0567,
+    "ep_keV": 178.19,
+    "ep_err": 15.64,
+    "beta": -2.2801,
+    "beta_err": 0.1376
+   },
+   "cpl": {
+    "index": -0.9939,
+    "xc_keV": 222.82,
+    "note": "xc is an E-FOLDING energy; Ep = (2+index)*xc = 224 keV"
+   },
+   "sbpl": {
+    "alpha": -0.934,
+    "ebreak_keV": 125.64,
+    "beta": -2.4765
+   },
+   "aic": {
+    "Band": 7757.917,
+    "CPL": 7774.076,
+    "SBPL": 7756.967,
+    "DSBPL": 7746.155,
+    "Band+BB": 7756.274,
+    "CPL+BB": 7768.303
+   },
+   "bic": {
+    "Band": 7774.871,
+    "CPL": 7786.791,
+    "SBPL": 7773.92,
+    "DSBPL": 7771.585,
+    "Band+BB": 7781.703,
+    "CPL+BB": 7789.495
+   },
    "aic_winner_margin": "Band+BB beats SBPL by only 0.69 AIC and Band by 1.64 - far below the project's dAIC>=10 framework threshold. The 'winner' here is a coin-flip among Band/SBPL/Band+BB.",
    "dsbpl_flag": "DSBPL has the LOWEST AIC of all six (7746.155, i.e. 10.8 below Band+BB) and LRT_DSBPL_SBPL = 14.81 >= 9.2, but DSBPL_VALID = False, so it was excluded from the winner selection. Its parameters: alpha1 = +2.500, xb = 11.82 keV, alpha2 = -1.154, xp = 190.74 keV, beta = -2.444. alpha1 = +2.5 with a break at 11.8 keV places the first segment essentially below the NaI threshold - the classic unconstrained-low-break failure mode that the validity gate is there to catch. THIS IS THE SINGLE MOST IMPORTANT ITEM TO RE-EXAMINE with the current engine."
   },
-
   "dsbpl_summary": {
-   "max_LRT_DSBPL_SBPL": {"block": -1, "value": 14.812, "valid": false},
+   "max_LRT_DSBPL_SBPL": {
+    "block": -1,
+    "value": 14.812,
+    "valid": false
+   },
    "n_blocks_LRT_ge_9p2": 1,
    "n_blocks_DSBPL_VALID": 2,
-   "valid_blocks": [3, 8],
-   "valid_block_LRT": {"3": 0.407, "8": 3.056},
+   "valid_blocks": [
+    3,
+    8
+   ],
+   "valid_block_LRT": {
+    "3": 0.407,
+    "8": 3.056
+   },
    "class": "no VALID two-break block; the only block clearing the LRT threshold is the time-integrated one and it fails validity"
   }
  },
-
  "external_prior": {
   "gbm_catalog": {
    "source": "HEASARC fermigbrst, row GRB120119170",
-   "flnc_interval_s": [-2.048, 57.344],
+   "flnc_interval_s": [
+    -2.048,
+    57.344
+   ],
    "dets": "n9,na,nb,b1 (scat_detector_mask 00000000011101) - IDENTICAL to our stamped detector set",
    "best_fitting_model": "Band",
-   "band": {"ep_keV": 182.76, "ep_err": 10.45, "alpha": -0.955, "alpha_err": 0.0324, "beta": -2.366, "beta_err": 0.160, "redchisq": 1.3689, "dof": 478, "statistic": "Castor C-STAT"},
-   "comp": {"epeak_keV": 214.63, "epeak_err": 6.07, "index": -1.023, "index_err": 0.019, "redchisq": 1.3891},
-   "sbpl": {"indx1": -1.113, "brken_keV": 123.68, "brken_err": 9.11, "brksc_fixed": 0.30, "indx2": -2.360, "redchisq": 1.3767},
-   "plaw": {"index": -1.567, "redchisq": 3.219},
-   "pflx_interval_s": [14.336, 15.360],
-   "pflx_best": {"model": "Comptonized", "epeak_keV": 328.38, "epeak_err": 25.38, "index": -0.913, "index_err": 0.049},
-   "t90_s": 55.297, "t90_err": 6.229, "t90_start_s": 3.072, "t90_band": "50-300 keV",
-   "t50_s": 16.384, "t50_err": 1.448, "t50_start_s": 11.264,
+   "band": {
+    "ep_keV": 182.76,
+    "ep_err": 10.45,
+    "alpha": -0.955,
+    "alpha_err": 0.0324,
+    "beta": -2.366,
+    "beta_err": 0.16,
+    "redchisq": 1.3689,
+    "dof": 478,
+    "statistic": "Castor C-STAT"
+   },
+   "comp": {
+    "epeak_keV": 214.63,
+    "epeak_err": 6.07,
+    "index": -1.023,
+    "index_err": 0.019,
+    "redchisq": 1.3891
+   },
+   "sbpl": {
+    "indx1": -1.113,
+    "brken_keV": 123.68,
+    "brken_err": 9.11,
+    "brksc_fixed": 0.3,
+    "indx2": -2.36,
+    "redchisq": 1.3767
+   },
+   "plaw": {
+    "index": -1.567,
+    "redchisq": 3.219
+   },
+   "pflx_interval_s": [
+    14.336,
+    15.36
+   ],
+   "pflx_best": {
+    "model": "Comptonized",
+    "epeak_keV": 328.38,
+    "epeak_err": 25.38,
+    "index": -0.913,
+    "index_err": 0.049
+   },
+   "t90_s": 55.297,
+   "t90_err": 6.229,
+   "t90_start_s": 3.072,
+   "t90_band": "50-300 keV",
+   "t50_s": 16.384,
+   "t50_err": 1.448,
+   "t50_start_s": 11.264,
    "fluence_10_1000_erg_cm2": 3.86733e-05
   },
-  "konus_wind_GCN12872": {"t0_offset_from_gbm_s": 9.81, "integrated": {"interval_s_own_t0": [0, 49.152], "alpha": -0.85, "beta": -2.34, "ep_keV": 153, "errors": "90%", "band": "20 keV - 10 MeV", "chi2": "73.5/84"}, "initial_pulse": {"interval_s_own_t0": [0, 16.384], "alpha": -0.92, "beta": -2.41, "ep_keV": 192}},
-  "redshift": {"z": 1.728, "method": "absorption", "sources": ["GCN 12865 Gemini-S GMOS", "GCN 12866 Lick 3m Kast", "GCN 12867 MMT Blue Channel"], "refined": 1.7282},
-  "published_temporal": {"MVT_Golkhou2015_table": "< 0.463 s (upper limit)", "MVT_Golkhou2015_figure3": "0.20 s (INCONSISTENT with the table - unresolved)", "T100_Golkhou2015_s": [-15.904, 85.811], "lag_Shao2017": {"tau_s": 22.122, "beta": 0.100, "omega_s": 16.617, "gamma": 0.193, "dt_HR_s": 3.775, "detector": "nb only"}, "lag_Jiang2021": {"t12_s": 3.32, "t12_err": 1.79, "E2_keV": 172}},
+  "konus_wind_GCN12872": {
+   "t0_offset_from_gbm_s": 9.81,
+   "integrated": {
+    "interval_s_own_t0": [
+     0,
+     49.152
+    ],
+    "alpha": -0.85,
+    "beta": -2.34,
+    "ep_keV": 153,
+    "errors": "90%",
+    "band": "20 keV - 10 MeV",
+    "chi2": "73.5/84"
+   },
+   "initial_pulse": {
+    "interval_s_own_t0": [
+     0,
+     16.384
+    ],
+    "alpha": -0.92,
+    "beta": -2.41,
+    "ep_keV": 192
+   }
+  },
+  "redshift": {
+   "z": 1.728,
+   "method": "absorption",
+   "sources": [
+    "GCN 12865 Gemini-S GMOS",
+    "GCN 12866 Lick 3m Kast",
+    "GCN 12867 MMT Blue Channel"
+   ],
+   "refined": 1.7282
+  },
+  "published_temporal": {
+   "MVT_Golkhou2015_table": "< 0.463 s (upper limit)",
+   "MVT_Golkhou2015_figure3": "0.20 s (INCONSISTENT with the table - unresolved)",
+   "T100_Golkhou2015_s": [
+    -15.904,
+    85.811
+   ],
+   "lag_Shao2017": {
+    "tau_s": 22.122,
+    "beta": 0.1,
+    "omega_s": 16.617,
+    "gamma": 0.193,
+    "dt_HR_s": 3.775,
+    "detector": "nb only"
+   },
+   "lag_Jiang2021": {
+    "t12_s": 3.32,
+    "t12_err": 1.79,
+    "E2_keV": 172
+   }
+  },
   "morphology_dispute": "four contemporaneous circulars (GCN 12859, 12872, 12874, 12884) call the light curve multi-peaked (three overlapping peaks); two refereed samples classify it single-pulse (Shao+2017/Jiang+2021 'bright single-pulse'; Moss+2022 'Simple-pulse'/'Symmetric-like'). UNRESOLVED.",
   "no_prior_spectral_component_claim": "NO paper in the 41-paper harvest claims a blackbody, a low-energy break, or a two-break spectrum for this burst. The only physical prompt model applied to it is Jiang+2021's photospheric lag interpretation, which rests on a lag with ~5x uncertainty. The two-break question is UNCONSTRAINED by prior literature here - the good case for a blind test."
  },
-
  "predictions": [
   "P-A1 (BB, Band side - falsifiable): NO block will pass LRT_BANDBB_BAND >= 9.2 AND BANDBB_KT > 1.05 keV. Archival max = 5.644 at blk-1; the highest time-resolved value is 4.635 at blk9. FALSIFIED if any block reaches 9.2 on the Band baseline.",
   "P-A2 (BB, CPL side - falsifiable): LRT_CPLBB_CPL >= 9.2 will recur in the time-integrated block (archival 9.773) and in AT MOST one time-resolved block; the runner-up blk0 sits at 8.010, so a second passing block would be a new result. The CPL+BB kT will land in the 15-30 keV range (archival 21.26 +/- 3.46 keV at blk-1, 17.94 at blk0) - the HIGH-kT shoulder class, NOT the L28 edge-constrained (<~5 keV) class. FALSIFIED if the recovered kT is <5 keV or if >=3 blocks pass.",
@@ -103,10 +433,11 @@
   "P-B5 (temporal, Step 7): T90 will reproduce 55.3 +/- 6.2 s (50-300 keV) ONLY if the fit window is extended; our stamped window ends at +47 s while the catalog T90 ends at +58.4 s, so any T90 measured inside our window is a LOWER LIMIT and must be reported as such. MVT will land at or below 0.463 s (Golkhou+2015 upper limit) and plausibly near 0.20 s (their Figure 3).",
   "P-C (identity / coverage, non-spectral but falsifiable): the burst has a ~100 s dim tail (Moss+2022 Sec 5.2) that our window excludes entirely. PREDICTION: extending the source window to +85 s (Golkhou's T100 stop) would add >= 2 additional Bayesian blocks with Ep < 70 keV and would NOT change the two-break verdict of the bright complex. Testable whenever a window-sensitivity run is done; it is NOT an argument for changing the approved window."
  ],
-
  "known_risks_to_this_freeze": [
   "The archival prior predates the L8/L9 engine fixes; its BB and two-break counts are lower limits. P-A1/P-A2/P-A4 are therefore predictions that the new engine will find MORE, not less - if they hold exactly, that is weak evidence the fixes did not bite on this burst.",
   "LLE/LAT data are absent from data/bn120119170/ although the burst was 31.4 deg off the LAT boresight (GCN 12874). Every prediction above is GBM-only. If the LAT/LLE arm is later acquired, the high-energy predictions (beta, DSBPL upper segment) must be re-frozen - a joint fit is a different experiment.",
   "The fermigbrst row carries dec = -9.803 while the true (XRT) position is -9.08177. Our responses were generated from whichever position the pipeline used; Ahlgren+2020 measured the effect of exactly this substitution on exactly this burst and found <1 sigma, so it is bounded but not zero."
- ]
+ ],
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }

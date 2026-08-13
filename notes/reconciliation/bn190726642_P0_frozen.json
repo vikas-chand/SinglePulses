@@ -4,29 +4,99 @@
  "frozen_utc": "2026-08-11T16:39:32Z; BEFORE any new fit table opened (walkthrough_b2* untouched, forbidden)",
  "engine": "L18/L19/L20/L26/L27/L28 active",
  "predictions": [
-  "Census-prior class: NULL (no BB) — archival run (results/clean_per_burst_human_final/bn190726642/spectral_fits.ecsv) has 0/7 blocks with LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05.",
+  "Census-prior class: NULL (no BB) \u2014 archival run (results/clean_per_burst_human_final/bn190726642/spectral_fits.ecsv) has 0/7 blocks with LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05.",
   "P-A1 (null streak): the new fits will again find ZERO blocks passing LRT_BANDBB_BAND>=9.2 & kT>1.05. FALSIFIED IF any resolved block shows a significant BB.",
   "P-A2 (if a BB emerges anywhere, it will be in the TIME-INTEGRATED block, not a resolved one): archival integrated blk-1 had the only near-miss (LRT=7.55, kT=6.51 keV, AIC winner Band+BB but BIC winner Band). If the new integrated fit crosses LRT>=9.2 its kT will be in the HIGH-kT class (~5-10 keV), NOT the <~5 keV edge-constrained low-kT class of L28. FALSIFIED IF a significant BB appears with kT<5 keV.",
-  "P-A3 (kT instability as null signature): archival per-block BANDBB_KT scatters wildly (1.00 to 37.5 keV, no track) — an unconstrained-component signature. Prediction: new per-block kT values will NOT form a monotonic cooling track. FALSIFIED IF a coherent kT(t) track appears across >=3 consecutive blocks.",
+  "P-A3 (kT instability as null signature): archival per-block BANDBB_KT scatters wildly (1.00 to 37.5 keV, no track) \u2014 an unconstrained-component signature. Prediction: new per-block kT values will NOT form a monotonic cooling track. FALSIFIED IF a coherent kT(t) track appears across >=3 consecutive blocks.",
   "P-A4 (AIC winner distribution): resolved-block winners will remain simple-continuum dominated (archival: CPL x3, Band x2, DSBPL x1). No resolved block will prefer Band+BB or CPL+BB by AIC. FALSIFIED IF any resolved block's AIC winner is a +BB model.",
   "P-A5 (two-break): archival DSBPL win in blk0 is sub-threshold (LRT_DSBPL_SBPL=7.0, and only vs SBPL); no block reaches the DeltaAIC>=10 two-break criterion. Prediction: no CONFIRMED two-break block. CAVEAT: census two-break count is a lower limit until L8 default-seed DSBPL restart lands, so an L8-rescued DSBPL in blk0 (2.45-3.62 s, the hardest-alpha block, BAND_ALPHA=-0.385) is the single most likely place for this prediction to fail.",
-  "P-B1 (from GCN 25305, Insight-HXMT — the only hard-band external measurement; NO refereed papers exist): the HXMT >200 keV single pulse spans GBM-frame +3.40 to +6.34 s (T0_HXMT=15:24:59.20 UT = GBM TRIGTIME+5.59 s; T90=2.94 s from T0_HXMT-2.19 s). Prediction: the new fits' maximum-Ep block will be the one overlapping [3.4, 6.3] s (archival blk1 3.615-6.271 s, Ep=224 keV, agrees), and Ep will decay monotonically (hard-to-soft) afterwards, reaching <50 keV in the final block (archival: 33 keV). FALSIFIED IF max Ep lands outside the HXMT interval or the post-peak Ep track is non-monotonic.",
-  "P-B2 (paperless burst): zero refereed papers across six ADS query forms — there is no literature frame beyond circulars; the P3 diff for this burst is census-prior-vs-new-fit only, plus circular-level identity checks."
+  "P-B1 (from GCN 25305, Insight-HXMT \u2014 the only hard-band external measurement; NO refereed papers exist): the HXMT >200 keV single pulse spans GBM-frame +3.40 to +6.34 s (T0_HXMT=15:24:59.20 UT = GBM TRIGTIME+5.59 s; T90=2.94 s from T0_HXMT-2.19 s). Prediction: the new fits' maximum-Ep block will be the one overlapping [3.4, 6.3] s (archival blk1 3.615-6.271 s, Ep=224 keV, agrees), and Ep will decay monotonically (hard-to-soft) afterwards, reaching <50 keV in the final block (archival: 33 keV). FALSIFIED IF max Ep lands outside the HXMT interval or the post-peak Ep track is non-monotonic.",
+  "P-B2 (paperless burst): zero refereed papers across six ADS query forms \u2014 there is no literature frame beyond circulars; the P3 diff for this burst is census-prior-vs-new-fit only, plus circular-level identity checks."
  ],
  "census_prior": {
   "source": "results/clean_per_burst_human_final/bn190726642/spectral_fits.ecsv (PREVIOUS production run; allowed as prior)",
   "n_blocks_total_rows": 7,
   "n_blocks_resolved": 6,
-  "integrated_block": {"BLOCK": -1, "t": [2.449, 14.275], "BEST_AIC_MODEL": "Band+BB", "BEST_BIC_MODEL": "Band", "LRT_BANDBB_BAND": 7.545, "BANDBB_KT_keV": 6.510, "BAND_EP_keV": 184.49, "BAND_ALPHA": -0.841},
-  "resolved_span_s": [2.449, 14.275],
-  "bb_significant": {"criterion": "LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05", "count": 0, "kT_values": [], "median_kT": null},
-  "aic_winners_resolved": {"CPL": 3, "Band": 2, "DSBPL": 1},
-  "aic_winners_all_rows": {"Band+BB": 1, "DSBPL": 1, "Band": 2, "CPL": 3},
-  "ep_track_keV_blk0_to_blk5": [206.48, 224.22, 130.51, 112.47, 73.66, 33.12],
-  "alpha_track_blk0_to_blk5": [-0.385, -0.661, -0.474, -0.691, -1.010, -0.646],
-  "bandbb_kt_track_keV_blk0_to_blk5": [1.003, 1.157, 32.583, 6.549, 20.549, 37.537],
-  "lrt_dsbpl_sbpl_rows_m1_0_to_5": [6.91, 7.0, 1.54, 4.5, 1.5, 0.33, 0.03],
-  "stamped_window": {"SRC_START": -1.0936, "SRC_STOP": 31.3844, "detectors": ["n9", "na", "nb", "b1"], "approved_by": "Vikas Chand", "approved_utc": "2026-07-19T22:18:36Z", "mode": "human_gui"}
+  "integrated_block": {
+   "BLOCK": -1,
+   "t": [
+    2.449,
+    14.275
+   ],
+   "BEST_AIC_MODEL": "Band+BB",
+   "BEST_BIC_MODEL": "Band",
+   "LRT_BANDBB_BAND": 7.545,
+   "BANDBB_KT_keV": 6.51,
+   "BAND_EP_keV": 184.49,
+   "BAND_ALPHA": -0.841
+  },
+  "resolved_span_s": [
+   2.449,
+   14.275
+  ],
+  "bb_significant": {
+   "criterion": "LRT_BANDBB_BAND>=9.2 & BANDBB_KT>1.05",
+   "count": 0,
+   "kT_values": [],
+   "median_kT": null
+  },
+  "aic_winners_resolved": {
+   "CPL": 3,
+   "Band": 2,
+   "DSBPL": 1
+  },
+  "aic_winners_all_rows": {
+   "Band+BB": 1,
+   "DSBPL": 1,
+   "Band": 2,
+   "CPL": 3
+  },
+  "ep_track_keV_blk0_to_blk5": [
+   206.48,
+   224.22,
+   130.51,
+   112.47,
+   73.66,
+   33.12
+  ],
+  "alpha_track_blk0_to_blk5": [
+   -0.385,
+   -0.661,
+   -0.474,
+   -0.691,
+   -1.01,
+   -0.646
+  ],
+  "bandbb_kt_track_keV_blk0_to_blk5": [
+   1.003,
+   1.157,
+   32.583,
+   6.549,
+   20.549,
+   37.537
+  ],
+  "lrt_dsbpl_sbpl_rows_m1_0_to_5": [
+   6.91,
+   7.0,
+   1.54,
+   4.5,
+   1.5,
+   0.33,
+   0.03
+  ],
+  "stamped_window": {
+   "SRC_START": -1.0936,
+   "SRC_STOP": 31.3844,
+   "detectors": [
+    "n9",
+    "na",
+    "nb",
+    "b1"
+   ],
+   "approved_by": "Vikas Chand",
+   "approved_utc": "2026-07-19T22:18:36Z",
+   "mode": "human_gui"
+  }
  },
  "harvest_snippets": {
   "GCN_25154_FermiGBM": [
@@ -46,7 +116,9 @@
    "the CsI detectors operating in the regular mode with the energy range of about 80-800 keV (deposited energy). Only gamma-rays with energy greater than about 200 keV can penetrate"
   ],
   "refereed_papers": [
-   "absent — 0 refereed hits across six ADS full-text query forms (GRB 190726A / GRB190726A / bn190726642 / 190726642 / 585847498 / HEB190726642), 2026-08-11"
+   "absent \u2014 0 refereed hits across six ADS full-text query forms (GRB 190726A / GRB190726A / bn190726642 / 190726642 / 585847498 / HEB190726642), 2026-08-11"
   ]
- }
+ },
+ "P0_STATUS": "ARCHIVAL_POSTFIT",
+ "P0_STATUS_RULE": "Codex audit 2026-08-13 D1: blind-prediction scoring MUST accept only BLIND_FROZEN. ARCHIVAL_POSTFIT = predictions rest on a PREVIOUS production run (allowed as prior, disclosed). NONBLIND_CONTAMINATED = this burst's own new fit values were visible at freeze time."
 }
