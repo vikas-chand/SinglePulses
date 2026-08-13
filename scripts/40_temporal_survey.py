@@ -63,6 +63,74 @@ def _poly_bkg(tc, rate, pre, post, deg=2):
     return np.polyval(c, tc)
 
 
+def _tx_core(tc, net_counts, frac):
+    """T_x from a cumulative net-count curve with an EXPLICIT first-crossing
+    convention (the curve is NOT monotonic -- background-subtracted bins go
+    negative -- so np.interp is invalid here).  Returns (tx, t_lo, t_hi)."""
+    cs = np.cumsum(np.asarray(net_counts, float))
+    tot = cs[-1]
+    if not np.isfinite(tot) or tot <= 0:
+        return np.nan, np.nan, np.nan
+    y = cs / tot
+    lo_f, hi_f = 0.5 * (1.0 - frac), 1.0 - 0.5 * (1.0 - frac)
+
+    def cross(f):
+        hit = np.flatnonzero(y >= f)
+        if hit.size == 0:
+            return tc[-1]
+        i = hit[0]
+        if i == 0:
+            return tc[0]
+        y0, y1 = y[i - 1], y[i]
+        if y1 == y0:
+            return tc[i]
+        return tc[i - 1] + (f - y0) * (tc[i] - tc[i - 1]) / (y1 - y0)
+
+    a, b = cross(lo_f), cross(hi_f)
+    return b - a, a, b
+
+
+def _tx_with_mc(tc, raw_counts, bkg_counts, src, frac=0.90, n_mc=1000, seed=0):
+    """Point estimate AND uncertainty from the SAME estimator (Codex audit
+    2026-08-13, item A4).
+
+    The previous implementation computed the point value from SIGNED net counts
+    but sampled the MC from RECTIFIED counts (max(net,0)) -- a different,
+    positively biased estimator: on bn081224887 the point value was 18.9 s while
+    the MC distribution sat at 116.6 s, so the quoted sigma described something
+    that was not T90.  Here:
+      * the search window is the APPROVED SOURCE WINDOW (declared, not implicit);
+      * realizations are Poisson draws of the RAW counts (non-negative by
+        construction), from which the SAME fitted background is subtracted --
+        no rectification of a residual anywhere;
+      * point and MC call the identical `_tx_core`.
+    Background-model uncertainty is NOT propagated (the polynomial is held
+    fixed); that is a stated limitation, not a hidden one.
+    """
+    m = (tc >= src[0]) & (tc <= src[1])
+    if m.sum() < 8:
+        return np.nan, np.nan, np.nan, np.nan
+    tcw = tc[m]
+    raw_w = np.asarray(raw_counts, float)[m]
+    bkg_w = np.asarray(bkg_counts, float)[m]
+    tx, a, b = _tx_core(tcw, raw_w - bkg_w, frac)
+    # WINDOW-TRUNCATION flag: t5/t95 landing within one bin of the search-window
+    # edge means the duration is bounded by our approved window, not by the
+    # burst -- a LOWER LIMIT, and not comparable to a catalog T90 (T9/D4).
+    _dtb = float(np.median(np.diff(tcw))) if len(tcw) > 1 else 0.0
+    truncated = bool(np.isfinite(a) and np.isfinite(b) and
+                     ((a - tcw[0]) <= _dtb or (tcw[-1] - b) <= _dtb))
+    rng = np.random.default_rng(int(seed) & 0xFFFFFFFF)
+    lam = np.maximum(raw_w, 0.0)          # RAW rate is >= 0 by construction
+    vals = []
+    for _ in range(int(n_mc)):
+        v, _a, _b = _tx_core(tcw, rng.poisson(lam) - bkg_w, frac)
+        if np.isfinite(v):
+            vals.append(v)
+    err = float(np.std(vals)) if len(vals) >= 50 else np.nan
+    return tx, err, a, b, truncated
+
+
 def survey_one(row):
     trig = row["trigger"]
     tt, en = row["_ev"]
@@ -94,6 +162,17 @@ def survey_one(row):
                                data_type="fermi")
     t90 = out.get("t90") or (np.nan,) * 4
     t50 = out.get("t50") or (np.nan,) * 4
+    # --- A4 (Codex 2026-08-13): recompute T90/T50 with the audited estimator.
+    # `tot` is the RAW rate and `bkg` the fitted background rate, both on `tc`;
+    # counts = rate * dt.  Deterministic per-trigger seed (not one global seed).
+    _seed = abs(hash(trig)) % (2 ** 32)
+    _raw_c, _bkg_c = tot * dt, bkg * dt
+    _t90, _t90e, _a90, _b90, _trunc90 = _tx_with_mc(tc, _raw_c, _bkg_c, src, 0.90, 1000, _seed)
+    _t50, _t50e, _a50, _b50, _trunc50 = _tx_with_mc(tc, _raw_c, _bkg_c, src, 0.50, 1000, _seed + 1)
+    if np.isfinite(_t90):
+        t90 = (_t90, _t90e, _a90, _b90)
+    if np.isfinite(_t50):
+        t50 = (_t50, _t50e, _a50, _b50)
     mvt = out.get("mvt") or {}
     lag = out.get("lag")                     # SpectralLagResult or None
     lag_s = float(lag.lag) if lag is not None else np.nan
@@ -111,6 +190,7 @@ def survey_one(row):
     return {
         "TRIGGER_NAME": trig, "REF_DET": row["ref"], "BIN_MS": dt * 1000,
         "T90": float(t90[0]), "T90_ERR": float(t90[1]),
+        "T90_WINDOW_TRUNCATED": bool(_trunc90),
         "T90_START": float(t90[2]), "T90_STOP": float(t90[3]),
         "T50": float(t50[0]),
         "MVT_S": mvt.get("mvt_s", np.nan), "MVT_ERR_S": mvt.get("mvt_err_s", np.nan),

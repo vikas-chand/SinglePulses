@@ -25,8 +25,10 @@ Gowri pulse parameters (A, s_l, s_r, r_l, r_r), φ = s_l/s_r, R², class.
 
 ## The four measurements
 1. **T90/T50** — cumulative background-subtracted counts between 5%/95% (25%/75%);
-   errors by **Poisson mock light curves (n=200, time order preserved; T90 formed per
-   realization so the t5/t95 covariance is included)** — fixed 2026-08-13, see defect ledger.
+   errors from **Poisson realizations of the RAW counts minus the fitted background, the
+   same estimator as the point value, inside the approved source window** (n=1000,
+   per-trigger seed, explicit first-crossing convention) — `scripts/40::_tx_with_mc`,
+   audited 2026-08-13; see the defect ledger for the two earlier broken versions.
 2. **MVT** — Haar-wavelet cross-check in this chain; the CANONICAL MVT is Bala's
    `mvt_runner` run separately (the upstream Bala code was NOT adoptable unmodified —
    repaired fork; the old classifier is quarantined; LATBright-era MVT MC numbers are
@@ -112,7 +114,7 @@ OWN internal consistency (trend statement vs prose vs table sign) rather than as
 ## 🔴 Defect ledger (check BEFORE quoting any number)
 | defect | evidence | state |
 |---|---|---|
-| **T90 bootstrap errors broken** | `T90_ERR > T90` in **84/89** rows | ✅ **FIXED 2026-08-13** — root cause: the estimator resampled BIN INDICES with replacement and interpolated against `lc.time[idx]`, destroying time order (np.interp on a non-monotonic y). Replaced with Poisson mock light curves in place, `T90 = t95 − t5` formed PER realization (Qin+2013's method, minus their quadrature/covariance error). Post-fix: bn090530760 143.47 ± 0.65 s, bn081224887 19.04 ± 0.95 s. Found by auditing OUR code against Vikas's Qin reading package. |
+| **T90/T50 errors** | `T90_ERR > T90` in 84/89 (orig); then a WRONG FIX | ✅ **FIXED PROPERLY 2026-08-13** after the Codex whole-project audit (item A4). History worth keeping: the original estimator resampled BIN INDICES, destroying time order. My first repair replaced it with Poisson draws of **rectified** counts `max(net,0)` while the point value still came from **signed** net — two different estimators: on bn081224887 the point value was 18.9 s and the MC distribution sat at **116.6 s**, so the quoted σ described something that was not T90. That is more dangerous than the original bug, which at least looked broken. **The real fix (`scripts/40::_tx_core` + `_tx_with_mc`):** search window = the approved SOURCE window (declared); point and MC call the SAME estimator; realizations are Poisson draws of the **RAW** counts (non-negative by construction) minus the same fitted background — no rectification of a residual; explicit first-crossing convention because the cumulative net curve is NOT monotonic (so `np.interp` was invalid); n_mc=1000; deterministic PER-TRIGGER seed. Adds `T90_WINDOW_TRUNCATED` when t5/t95 land on the window edge (then T90 is a LOWER LIMIT, not comparable to a catalog T90). Validation vs frame-matched external values: bn081224887 14.84±0.39 (ext 17.40±1.31, 1.9σ); bn110721200 13.24±0.36 (ext 14.11±2.19, 0.4σ). ⚠ NOT propagated: background-model uncertainty (polynomial held fixed) — stated, not hidden. |
 | **bn130310840 committed row is a FAILED fit** | T90 = 17.91 ± 68.24 s vs 2.09 s blind re-run and ~2.4 s published | OPEN — refit + replace row |
 | **Lag sign inverted** | handbook lag sign convention opposite to the standard (positive = soft lags hard) | OPEN — fix at source, then re-survey |
 | MVT: only the Haar cross-check is in the catalog | canonical Bala MVT runs separately | by design — label which MVT you quote |
