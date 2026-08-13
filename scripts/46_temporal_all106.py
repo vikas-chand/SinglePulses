@@ -21,10 +21,29 @@ import numpy as np
 from astropy.table import Table
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-_s = importlib.util.spec_from_file_location(
-    "t40", os.path.join(ROOT, "scripts", "40_temporal_survey.py"))
-t40 = importlib.util.module_from_spec(_s)
-_s.loader.exec_module(t40)
+_T40_PATH = os.path.join(ROOT, "scripts", "40_temporal_survey.py")
+
+
+def _load_t40():
+    """Load scripts/40 and REGISTER it in sys.modules, so that worker processes
+    (spawn start method on macOS) can unpickle functions that belong to it.
+    Without the registration the pool dies with
+    "Can't pickle <function survey_one>: import of module 't40' failed"."""
+    if "t40mod" in sys.modules:
+        return sys.modules["t40mod"]
+    sp = importlib.util.spec_from_file_location("t40mod", _T40_PATH)
+    m = importlib.util.module_from_spec(sp)
+    sys.modules["t40mod"] = m
+    sp.loader.exec_module(m)
+    return m
+
+
+t40 = _load_t40()
+
+
+def _work(row):
+    """Top-level worker: picklable, and re-loads the engine inside the child."""
+    return _load_t40().survey_one(row)
 
 OUT = os.path.join(ROOT, "results", "temporal_catalog_all106.ecsv")
 
@@ -61,7 +80,7 @@ def main():
     print(f"temporal over {len(rows)} bursts ({len(skipped)} skipped) ...")
     res = []
     with ProcessPoolExecutor(max_workers=a.workers) as ex:
-        futs = {ex.submit(t40.survey_one, r): r["trigger"] for r in rows}
+        futs = {ex.submit(_work, r): r["trigger"] for r in rows}
         for i, f in enumerate(futs, 1):
             pass
         for f, trig in futs.items():
