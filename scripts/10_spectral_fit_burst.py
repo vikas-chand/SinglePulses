@@ -858,6 +858,26 @@ def model_columns(spec, result, n_data):
             out[f'{p}_{col_suffix}_ERR']     = d['err']
             out[f'{p}_{col_suffix}_NEG_ERR'] = d['neg']
             out[f'{p}_{col_suffix}_POS_ERR'] = d['pos']
+    # ---- EAC nuisance constants (2026-08-13) -------------------------------
+    # These are FITTED free parameters of the joint likelihood — they enter k,
+    # and therefore AIC — but until now only EAC_DETS (WHICH detectors) was
+    # stored, never the values. Consequences, all measured (Codex display-layer
+    # rescue + notes/CODEX_DISPLAY_20260813.md):
+    #   * the stored table cannot replay its own AIC. Holding every stored
+    #     SOURCE parameter fixed and leaving the two EAC constants at unity
+    #     mis-states AIC by +2.2 to +12.6 on bn081125496 blocks 2 and 5;
+    #     profiling ONLY those two constants recovers all six stored AICs to
+    #     8.6e-5. So the engine's AIC is right; the table was not self-sufficient.
+    #   * a display cannot fold the model through a non-reference detector, so
+    #     scripts/41b dropped NB and B1 entirely rather than draw them wrong —
+    #     losing the whole high-energy constraint to save a <=20% normalisation.
+    # They are per MODEL, not per row: each fit re-optimises them.
+    for short, d in (result.get('params') or {}).items():
+        if not str(short).startswith('cons_'):
+            continue
+        det = str(short)[5:].split('_interval')[0].upper()
+        out[f'{p}_EAC_{det}']     = d['val']
+        out[f'{p}_EAC_{det}_ERR'] = d['err']
     return out
 
 
