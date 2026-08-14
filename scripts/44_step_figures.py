@@ -17,6 +17,14 @@ each stage of the pipeline decided:
   step9_qc.png          winner + margins + L28 edge class per block (the scorecard,
                         drawn)
 
+PRECURSORS (credit + provenance): steps 3/4 descend from
+`scripts/approved_selection_png.py` (2026-07-16) and step 5 from
+`scripts/block_plots.py` (2026-07-17), which produced the complete approval-era sets in
+`plots/approved_selections/` (106) and `plots/block_plots/` (103). Those are now
+ARCHIVAL; this file is canonical. It should have been written by extending them —
+writing it fresh cost an afternoon rediscovering bugs they had already fixed
+(AGENTS.md now requires an inventory pass before building).
+
 LIGHT TIER: numpy/astropy/matplotlib only -- no threeML, so it can run alongside
 the fits.  Every panel that cannot be built is SKIPPED LOUDLY (a stamped "missing
 input" note on the figure), never silently omitted (Shipping Gate).
@@ -55,7 +63,7 @@ def dcol(det, trig=None):
 
 def _note(ax, msg):
     ax.text(0.5, 0.5, msg, ha="center", va="center", transform=ax.transAxes,
-            fontsize=9, color="crimson", wrap=True)
+            fontsize=PUB["tick_size"] - 5, color="crimson", wrap=True)
     ax.set_xticks([]); ax.set_yticks([])
 
 
@@ -311,7 +319,7 @@ def fig_step345(trig, out, blocks_file=None):
         ylim_from_data(ax, rate[_m])
         if src[0] < gap_lo or src[1] > gap_hi:
             ax.text(0.02, 0.92, "source overruns the gap — ADJUDICATED (see QC ledger)",
-                    transform=ax.transAxes, fontsize=9, color="crimson")
+                    transform=ax.transAxes, fontsize=PUB["tick_size"] - 5, color="crimson")
         ax.legend(loc="upper right")
         ax.set_xlabel("time since trigger (s)")
         ax.set_ylabel(r"rate (cts s$^{-1}$)")
@@ -482,7 +490,10 @@ def fig_step7(trig, out):
                 ax.axvspan(t5, t95, color=c_, alpha=0.13, lw=0, zorder=1)
                 for x_ in (t5, t95):
                     ax.axvline(x_, color=c_, lw=1.1, ls="--", alpha=0.8, zorder=3)
-                t90s.append((0.5 * (e1 + e2), t90v, t90e))
+                # GEOMETRIC band centre: the bands are log-spaced and the relation is
+                # a power law, so sqrt(e1*e2) is the representative energy; the
+                # arithmetic mean biases every point toward the band's upper edge.
+                t90s.append((float(np.sqrt(e1 * e2)), t90v, t90e))
                 txt = rf"{e1}–{e2} keV   $T_{{90}}$ = {t90v:.1f} $\pm$ {t90e:.1f} s"
             else:
                 excluded.append(f"{e1}–{e2}")
@@ -504,9 +515,15 @@ def fig_step7(trig, out):
             # weighted fit in log-log, with the slope's own uncertainty from the
             # covariance (a slope quoted without one is not a measurement)
             _w = 1.0 / np.maximum(S_ / (T_ * np.log(10)), 1e-6)
-            _cf, _cov = np.polyfit(np.log10(E_), np.log10(T_), 1, w=_w, cov=True)
+            # cov="unscaled": our weights ARE 1/sigma from the MC, so the slope error
+            # must come from those measurement errors, not be rescaled by the fit's own
+            # residual scatter (numpy's cov=True multiplies by chi2/dof, which quietly
+            # shrinks the error when few points happen to lie close to the line).
+            _cf, _cov = np.polyfit(np.log10(E_), np.log10(T_), 1, w=_w, cov="unscaled")
             k, b0 = _cf
             k_err = float(np.sqrt(_cov[0, 0]))
+            _res = np.log10(T_) - (b0 + k * np.log10(E_))
+            _chi2 = float(np.sum((_res * _w) ** 2)) / max(len(E_) - 2, 1)
             xx = np.logspace(np.log10(E_.min()), np.log10(E_.max()), 24)
             axE.plot(xx, 10 ** (b0 + k * np.log10(xx)), color="0.35", lw=1.4,
                      zorder=2, label=rf"fit: $E^{{{k:+.2f}\pm{k_err:.2f}}}$")
@@ -521,8 +538,8 @@ def fig_step7(trig, out):
             axE.set_xscale("log"); axE.set_yscale("log")
             axE.set_xlabel("band centre (keV)")
             axE.set_ylabel(r"$T_{90}$ (s)")
-            axE.set_title(rf"$T_{{90}}(E)$: slope {k:+.2f} $\pm$ {k_err:.2f}"
-                          rf"  ({len(E_)} bands)",
+            axE.set_title(rf"$T_{{90}}\propto E^{{{k:+.2f}\pm{k_err:.2f}}}$   "
+                          rf"$\chi^2$/dof = {_chi2:.2f}  ({len(E_)} bands)",
                           fontsize=PUB["label_size"] - 3, loc="left")
             axE.legend(loc="lower left", fontsize=PUB["legend_size"] - 3)
             axE.set_ylim(0.90 * (T_ - S_).min(), 1.10 * (T_ + S_).max())
@@ -542,69 +559,113 @@ SIMPLE = {"BAND", "CPL", "SBPL", "SBPLF"}
 
 
 def fig_step9(trig, out):
+    """Step 9 — the scorecard: per-block evidence for extra structure, and the L28
+    edge class of any significant blackbody.
+
+    Rebuilt 2026-08-13 after the figure-review agent refused to ship the old one:
+    overprinted y-labels, an empty lower panel with both threshold lines welded to
+    the frame and no explanation, and the decision-critical bar (dAIC 5.954 against a
+    6.0 threshold) carrying no number."""
     ft = os.path.join(out, trig, "spectral_fits.ecsv")
-    fig, axes = plt.subplots(2, 1, figsize=(10, 6.2), sharex=True,
-                             gridspec_kw={"height_ratios": [2, 1]})
+    fig, axes = plt.subplots(2, 1, figsize=(12.5, 7.4), sharex=True,
+                             gridspec_kw={"height_ratios": [2.15, 1.0], "hspace": 0.07})
     ax, ax2 = axes
     if not os.path.exists(ft):
-        _note(ax, f"no fit table: {ft}"); _note(ax2, "")
+        _note(ax, f"no fit table: {os.path.relpath(ft, ROOT)}")
+        _note(ax2, "")
     else:
         t = Table.read(ft, format="ascii.ecsv")
         pre = sorted({c[:-4] for c in t.colnames if c.endswith("_AIC")})
-        blocks, dsimp, winners, edge = [], [], [], []
+        blocks, dsimp, winners, edge, edge_lab = [], [], [], [], []
         for r in t:
             k = int(r["BLOCK"])
             if k < 0:
                 continue
             va = {}
-            for p in pre:
+            for p_ in pre:
                 try:
-                    if bool(r[f"{p}_VALID"]) and np.isfinite(float(r[f"{p}_AIC"])):
-                        va[p] = float(r[f"{p}_AIC"])
+                    if bool(r[f"{p_}_VALID"]) and np.isfinite(float(r[f"{p_}_AIC"])):
+                        va[p_] = float(r[f"{p_}_AIC"])
                 except Exception:
                     pass
-            s = [v for p, v in va.items() if p in SIMPLE]
-            x = [v for p, v in va.items() if p not in SIMPLE]
+            s_ = [v for p_, v in va.items() if p_ in SIMPLE]
+            x_ = [v for p_, v in va.items() if p_ not in SIMPLE]
             blocks.append(k)
-            dsimp.append(min(s) - min(x) if s and x else np.nan)
+            dsimp.append(min(s_) - min(x_) if s_ and x_ else np.nan)
             winners.append(str(r["BEST_AIC_MODEL"]) if "BEST_AIC_MODEL" in t.colnames else "?")
-            # only a SIGNIFICANT, off-rail, VALID-child BB counts — the same
-            # gate the scorecard uses (nested LRT >= 9.2, kT > 1.0544, union of
-            # the Band+BB and CPL+BB pairs). Plotting every fitted kT would
-            # stamp EDGE_CONSTRAINED on non-detections (Shipping Gate catch #2,
-            # 2026-08-13).
-            kt = np.nan
-            for ktc, lrtc, vc in (("BANDBB_KT", "LRT_BANDBB_BAND", "BANDBB_VALID"),
-                                  ("CPLBB_KT", "LRT_CPLBB_CPL", "CPLBB_VALID")):
+            kt = np.nan; lab = ""
+            for ktc, lrtc, vc, nm in (("BANDBB_KT", "LRT_BANDBB_BAND", "BANDBB_VALID", "B"),
+                                      ("CPLBB_KT", "LRT_CPLBB_CPL", "CPLBB_VALID", "C")):
                 try:
-                    v, l = float(r[ktc]), float(r[lrtc])
-                    if np.isfinite(v) and v > 1.0544 and np.isfinite(l) and l >= 9.2 \
+                    v_, l_ = float(r[ktc]), float(r[lrtc])
+                    if np.isfinite(v_) and v_ > 1.0544 and np.isfinite(l_) and l_ >= 9.2 \
                        and bool(r[vc]):
-                        kt = v; break
+                        kt = v_; lab = nm; break
                 except Exception:
                     pass
-            edge.append(3.92 * kt if np.isfinite(kt) else np.nan)
-        ax.bar(blocks, dsimp, color=["#b3216a" if d >= 10 else "#f08c4b" if d >= 6 else "0.7"
-                                     for d in dsimp])
-        ax.axhline(10, color="#b3216a", ls="--", lw=1, label="DECISIVE (ΔAIC≥10)")
-        ax.axhline(6, color="#f08c4b", ls="--", lw=1, label="STRONG (ΔAIC≥6)")
+            edge.append(3.9207 * kt if np.isfinite(kt) else np.nan)
+            edge_lab.append(lab)
+
+        cols = [PUB["c_decisive"] if d >= 10 else PUB["c_strong"] if d >= 6
+                else PUB["c_none"] for d in dsimp]
+        ax.bar(blocks, dsimp, color=cols, edgecolor="0.35", linewidth=0.8, zorder=3)
+        ax.axhline(10, color=PUB["c_decisive"], ls="--", lw=1.4, zorder=2,
+                   label=r"DECISIVE  $\Delta$AIC $\geq$ 10")
+        ax.axhline(6, color=PUB["c_strong"], ls="--", lw=1.4, zorder=2,
+                   label=r"STRONG  $\Delta$AIC $\geq$ 6")
+        ax.axhline(0, color="0.7", lw=0.8, zorder=1)
+        # EVERY bar carries its number: the review agent's point is that a bar 0.05
+        # below a decision line, unlabelled, invites the reader to call it STRONG.
         for b, d, w in zip(blocks, dsimp, winners):
-            ax.text(b, (d if np.isfinite(d) else 0) + 0.4, w, rotation=90, fontsize=6.5,
-                    ha="center", va="bottom", color="0.25")
-        ax.set_ylabel("ΔAIC  (best simple − best extra)")
-        ax.legend(fontsize=8, framealpha=0.9, edgecolor="0.6")
-        ax.set_title(f"{trig}  ·  step 9: per-block evidence + winner (labels), "
-                     f"L28 edge class below", fontsize=10, loc="left")
+            if not np.isfinite(d):
+                continue
+            up = d >= 0
+            ax.annotate(f"{d:+.2f}", xy=(b, d), xytext=(0, 4 if up else -6),
+                        textcoords="offset points", ha="center",
+                        va="bottom" if up else "top",
+                        fontsize=PUB["tick_size"] - 3, color="0.15", zorder=4)
+            ax.annotate(w, xy=(b, 0), xytext=(0, 6 if not up else -6),
+                        textcoords="offset points", ha="center",
+                        va="bottom" if not up else "top",
+                        fontsize=PUB["tick_size"] - 3, color="0.35", zorder=4)
+        fin = [d for d in dsimp if np.isfinite(d)]
+        if fin:
+            lo, hi = min(fin + [0.0]), max(fin + [11.0])
+            ax.set_ylim(lo - 0.18 * (hi - lo), hi + 0.22 * (hi - lo))
+        ax.set_ylabel(r"$\Delta$AIC  (simple $-$ extra)")
+        ax.legend(loc="upper left", ncol=2)
+        ax.set_title(f"{trig} — step 9: evidence for extra spectral structure, per block "
+                     f"(model name below each bar)", fontsize=PUB["label_size"], loc="left")
+
         ok = np.isfinite(edge)
-        if ok.any():
-            ax2.scatter(np.array(blocks)[ok], np.array(edge)[ok],
-                        c=["crimson" if e < 20 else "#f08c4b" if e < 30 else "#3aa6a0"
-                           for e in np.array(edge)[ok]], s=34, zorder=4)
-        ax2.axhline(20, color="crimson", ls="--", lw=1, label="EDGE_CONSTRAINED < 20 keV")
-        ax2.axhline(30, color="#f08c4b", ls=":", lw=1, label="EDGE_MARGINAL < 30 keV")
-        ax2.set_ylabel("3.92·kT (keV)\nSIGNIFICANT BB only"); ax2.set_xlabel("block")
-        ax2.legend(fontsize=7.5, framealpha=0.9, edgecolor="0.6")
-    fig.tight_layout()
+        if np.any(ok):
+            for b, e_, l_ in zip(blocks, edge, edge_lab):
+                if not np.isfinite(e_):
+                    continue
+                c_ = (PUB["c_decisive"] if e_ < 20 else PUB["c_strong"] if e_ < 30
+                      else PUB["c_nai_b"])
+                ax2.plot(b, e_, "o", ms=9, color=c_, zorder=4)
+                ax2.annotate(l_, xy=(b, e_), xytext=(7, 0), textcoords="offset points",
+                             va="center", fontsize=PUB["tick_size"] - 4, color="0.35")
+            ax2.set_ylim(0, max(40.0, 1.25 * np.nanmax(edge)))
+        else:
+            # F8: say WHY it is empty, and give the axis a sane range so the
+            # threshold lines are not welded to the frame.
+            ax2.set_ylim(0, 40)
+            ax2.text(0.5, 0.62, "no block has a significant blackbody "
+                     r"(nested LRT $<$ 9.2 in every block) — panel intentionally empty",
+                     transform=ax2.transAxes, ha="center", va="center",
+                     fontsize=PUB["tick_size"] - 1, color="0.35")
+        ax2.axhline(20, color=PUB["c_decisive"], ls="--", lw=1.4,
+                    label="edge-constrained  $<$ 20 keV")
+        ax2.axhline(30, color=PUB["c_strong"], ls=":", lw=1.4,
+                    label="edge-marginal  $<$ 30 keV")
+        ax2.set_xlabel("block")
+        ax2.set_xticks(blocks)
+        ax2.legend(loc="upper right", ncol=2, fontsize=PUB["legend_size"] - 2)
+        # the qualifier belongs in the axis label, not a title that collides with the
+        # panel above (shared-x subplots have no room for a second title)
+        ax2.set_ylabel("$3.92\\,kT$ (keV)\nsignificant BB only")
     f = os.path.join(out, f"{trig}_step9_qc.png")
     fig.savefig(f, bbox_inches="tight"); plt.close(fig)
     return [f]

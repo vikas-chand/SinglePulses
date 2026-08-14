@@ -92,6 +92,20 @@ def main():
                 print(f"  {trig} FAILED: {e}", flush=True)
     if res:
         t = Table(rows=res)
+        # MERGE, never replace: a per-burst run (`--only`) must not destroy the rest
+        # of the catalog. Found the hard way 2026-08-13 -- one --only run overwrote
+        # 106 rows with 1.
+        if os.path.exists(OUT):
+            old = Table.read(OUT, format="ascii.ecsv")
+            keep = old[[str(x).strip() not in {str(r["TRIGGER_NAME"]).strip() for r in t}
+                        for x in old["TRIGGER_NAME"]]]
+            if len(keep):
+                try:
+                    from astropy.table import vstack
+                    t = vstack([keep, t], join_type="outer")
+                except Exception as e:
+                    print(f"   [WARN] merge failed ({e}); writing new rows only")
+            t.sort("TRIGGER_NAME")
         t.write(OUT, format="ascii.ecsv", overwrite=True)
         bad = sum(1 for r in t if np.isfinite(float(r["T90_ERR"]))
                   and float(r["T90_ERR"]) > float(r["T90"]))

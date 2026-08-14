@@ -1,5 +1,20 @@
 """Nice Bayesian-block plot: fine net LC (grey) + BB blocks as a bold adaptive step
-   (mean net rate per block) + edges, significance-shaded. use_background=True blocks."""
+   (mean net rate per block) + edges, significance-shaded. use_background=True blocks.
+
+STATUS (2026-08-13): **ARCHIVAL — the approval-era record.** This script produced the
+complete 103-burst set in plots/block_plots/ and is kept exactly as it ran, so those
+figures remain reproducible by the code that made them. Do not "improve" it.
+
+CANONICAL for new work: `scripts/44_step_figures.py` (per-burst, `--trig/--out`,
+project style via `scripts/plot_style.py`, and the fixes this script predates: bins
+outside the data coverage masked instead of drawn at zero, y-limits from the data
+spread rather than anchored at zero, the background polynomial solid only where it is
+constrained and dotted where extrapolated, light curves as filled step histograms).
+
+⚠ This file and scripts/44 are TWO IMPLEMENTATIONS OF ONE JOB — tolerated only because
+this one is frozen. If you change how a background/source/block figure looks, change
+scripts/44. AGENTS.md: inventory before you build.
+"""
 import os, glob, sys
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np

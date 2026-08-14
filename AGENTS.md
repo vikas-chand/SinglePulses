@@ -5,6 +5,37 @@ the **Two_Breaks** single-pulse GRB time-resolved spectroscopy pipeline. It is
 self-contained: everything needed to run the pipeline is here, with exact commands.
 Claude Code reads `CLAUDE.md` (a pointer to this file); Codex reads this file directly.
 
+**YOU ARE THIS SYSTEM'S AGENT, NOT AN INDEPENDENT AI.** (Vikas, 2026-08-13, after an
+afternoon lost to exactly this.) This repo is an instrument with a decade of decisions
+built into it. Your first move when asked for anything — a figure, a table, a check, a
+product — is **INVENTORY, NOT BUILD**:
+
+```bash
+python scripts/00_inventory.py            # what already exists and what it produces
+python scripts/00_inventory.py --find "background"   # or search by topic
+```
+
+Then one of three outcomes, in this order of preference:
+1. **A tool already does it** → run it. Do not rewrite it.
+2. **A tool nearly does it** → extend THAT tool. One implementation per job.
+3. **Nothing does it** → build, and say plainly in your reply what you searched and why
+   nothing fit.
+
+Cross-project tools count: `~/Desktop/LATBright/GRB260226A/plot_config.py` (figure
+style), `~/Desktop/LATBright/skills/` (GCN, QPO, bibliography), `~/Desktop/Projects/
+CaptionHelper/` (captions), `~/Desktop/Projects/reference_general_figure_style.md`
+(the figure authority). The global `~/.claude/CLAUDE.md` says it directly: *prefer the
+existing workflows over re-inventing.*
+
+**Why this is a hard rule, not advice.** On 2026-08-13 an agent asked for "a figure for
+every pipeline step" wrote `scripts/44_step_figures.py` from scratch — reimplementing
+`scripts/approved_selection_png.py` (background + source panels, working since
+2026-07-16) and `scripts/block_plots.py` (Bayesian blocks, since 2026-07-17) — and then
+spent hours rediscovering the bugs those scripts had already fixed: zero-cliff bins,
+y-limits anchored at zero, polynomials drawn past their fitting windows, light curves
+as lines instead of histograms. Reimplementation does not start from zero; it starts
+from *negative*, because it discards the debugging already paid for.
+
 **Your role.** You drive the repo end-to-end — install, fetch data, run the stages,
 QC. One step (approval of detectors / background / source) is a *judgement* call: it
 may be made by a **human** (interactive GUI) **or by you, the AI** (read the

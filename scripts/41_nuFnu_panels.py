@@ -35,11 +35,33 @@ eng = importlib.util.module_from_spec(_spec); sys.modules["engine10"] = eng; _sp
 from threeML import Model, PointSource, JointLikelihood, DataList
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from plot_style import apply_pub_style, PUB   # noqa: E402
+from plot_style import apply_pub_style, PUB, det_color   # noqa: E402
 apply_pub_style()
 
-COLORS = {"na": "#b3216a", "n0": "#b3216a", "n1": "#f08c4b", "n3": "#f5c518", "nb": "#f08c4b",
-          "b0": "#3aa6a0", "b1": "#3aa6a0", "lle": "#5b3fa0", "lat": "#5b8fd6"}
+# Detector colour comes from the SHARED style so a colour means the same detector in
+# every figure of the burst. The old local dict inverted the convention: it painted
+# NaI in the BGO magenta and BGO in a NaI teal, the exact opposite of steps 1/3
+# (figure-review agent, 2026-08-13 -- F2).
+_DET_SEEN = {}
+
+
+def _dcol(det):
+    d = str(det).strip()
+    if d not in _DET_SEEN:
+        n = sum(1 for k in _DET_SEEN if not k.startswith(("b", "l")))
+        _DET_SEEN[d] = n
+    return det_color(d, _DET_SEEN[d])
+
+
+class _ColorProxy(dict):
+    def get(self, k, default=None):
+        return _dcol(k)
+
+    def __getitem__(self, k):
+        return _dcol(k)
+
+
+COLORS = _ColorProxy()
 def detlabel(d): return {"lle": "LLE", "lat": "LAT"}.get(d, d.upper())
 
 ALL_SPECS = list(eng.MODEL_SPECS) + list(eng.SHAPE_MODEL_SPECS) + list(eng.HIGHE_MODEL_SPECS)
@@ -291,7 +313,7 @@ def draw_panel(fig, gs_cell, plugins, names, jl, comp, title, ok, rebin, show_co
     ax = fig.add_subplot(inner[0]); axr = fig.add_subplot(inner[1], sharex=ax)
     if not ok or not plugins:
         ax.text(0.5, 0.5, "FIT FAILED", ha="center", va="center", transform=ax.transAxes, color="red")
-        ax.set_title(title, fontsize=9, loc="left"); return
+        ax.set_title(title, fontsize=PUB["tick_size"] - 5, loc="left"); return
     sig_floor, max_group = rebin
     dlo, dhi = data_range(plugins)
     if not (np.isfinite(dlo) and np.isfinite(dhi)) or dhi <= dlo: dlo, dhi = 8.0, 4.0e4
@@ -310,9 +332,10 @@ def draw_panel(fig, gs_cell, plugins, names, jl, comp, title, ok, rebin, show_co
     if band is not None:
         ax.fill_between(E, band[0], band[1], color="0.55", alpha=0.32, lw=0, zorder=2, label="68% band")
     else:
-        ax.text(0.02, 0.02, "no 68% band (railed/unavailable)", transform=ax.transAxes, fontsize=6, color="0.4")
+        ax.text(0.02, 0.02, "no 68% band (railed/unavailable)", transform=ax.transAxes, fontsize=PUB["tick_size"] - 8, color="0.4")
     med = E**2 * _ev(comp, E)
     ax.loglog(E, med, color="0.15", lw=1.8, zorder=5, label="Model")
+    ax.set_xlim(0.85 * dlo, 1.18 * dhi)   # the ACTIVE channel range, not the model's
     data_max = 0.0                        # y-limits are set by the DATA, not the model:
     for pl, det in zip(plugins, names):   # a railed fit then shoots off-scale (honest) instead of hiding the data
         ud = unfold_detector(pl, nufnu_fn, sig_floor, max_group)
@@ -344,8 +367,8 @@ def draw_panel(fig, gs_cell, plugins, names, jl, comp, title, ok, rebin, show_co
     axr.axhline(0, color="k", lw=0.7); axr.set_ylim(-5, 5); axr.set_xscale("log")
     axr.set_xlim(dlo*0.9, dhi*1.1); axr.set_yticks([-4, 0, 4])
     plt.setp(ax.get_xticklabels(), visible=False)
-    ax.set_title(title, fontsize=9, loc="left")
-    if comp_h: ax.legend(handles=comp_h, fontsize=6.5, loc="lower left", framealpha=0.9, edgecolor="0.7")
+    ax.set_title(title, fontsize=PUB["tick_size"] - 5, loc="left")
+    if comp_h: ax.legend(handles=comp_h, fontsize=PUB["tick_size"] - 7, loc="lower left", framealpha=0.9, edgecolor="0.7")
 
 # ---------------- modes --------------------------------------------------------
 def _grid_shape(n):
@@ -355,6 +378,7 @@ def run(trig, dets, ref, mode, which, out, rebin):
     appr, starts, stops, sigs = load_ctx(trig)
     dets = [d for d in dets if d in appr]; os.makedirs(out, exist_ok=True)
 
+    erows_all = load_engine_rows(trig, out)
     if mode == "bin":
         # --bin tint (Khushboo, same PR): T_INT = the block union — the row most
         # quoted against literature must be plottable.
@@ -363,14 +387,46 @@ def run(trig, dets, ref, mode, which, out, rebin):
         else:
             b = int(which); t1, t2 = starts[b], stops[b]
         plugins, names = build_plugins(trig, dets, ref, t1, t2, appr)
+        # AUTHORITY: the engine's stored row, exactly as modes best/binall do. This
+        # branch used to COLD-REFIT every model from default seeds and print that
+        # refit's AIC -- on bn081125496 bin2 five panels landed 137-172 AIC units
+        # from the stored fit (the L8 default-seed artifact) and the figure inverted
+        # the science. Refuse to draw rather than show numbers we did not read.
+        row = erows_all.get((round(t1, 2), round(t2, 2)))
+        if row is None:
+            raise SystemExit(f"mode bin: no engine row for [{t1:.2f},{t2:.2f}] -- "
+                             f"refusing to draw un-verified panels")
+        wname = str(row["BEST_AIC_MODEL"]) if "BEST_AIC_MODEL" in row.colnames else ""
         specs = ALL_SPECS; nrow, ncol = _grid_shape(len(specs))
         fig = plt.figure(figsize=(4.2*ncol, 3.6*nrow))
         gs = fig.add_gridspec(nrow, ncol, hspace=0.42, wspace=0.26, top=0.93, bottom=0.06, left=0.06, right=0.99)
+        _eb = min([engine_aic(row, sp) for sp in specs
+                   if engine_aic(row, sp) is not None] or [np.nan])
         for i, spec in enumerate(specs):
-            jl, comp, aic, ok = fit_spec(spec, plugins)
+            jl, comp, aic, ok = fit_spec(spec, plugins, row=row)
+            ea = engine_aic(row, spec)
+            try:
+                eng_ok = bool(row["%s_STATUS" % spec['prefix']] == "OK")
+            except Exception:
+                eng_ok = ea is not None
+            valid = bool(row.get("%s_VALID" % spec['prefix'], False))
+            if ea is None or not eng_ok:
+                # the ENGINE failed this model -- that is a fit statement
+                title = "%s — engine: no fit" % spec['name']
+            else:
+                # dAIC vs the engine's winner is what the decision uses; raw AIC
+                # manufactures ties at this precision
+                d = ea - _eb
+                title = "%s%s   dAIC=%+.1f%s%s" % (
+                    "[BEST] " if spec['name'] == wname else "", spec['name'], d,
+                    "" if valid else "  [INVALID]", aic_stamp(aic, ea))
             draw_panel(fig, gs[i // ncol, i % ncol], plugins, names, jl, comp,
-                       "%s   AIC=%.0f" % (spec['name'], aic) if ok else "%s (failed)" % spec['name'], ok, rebin)
-        fig.suptitle("%s  bin %d  [%.2f,%.2f]s  S=%.0f  -- ALL models (diagnostic)" % (trig, b, t1, t2, sigs[b]), fontsize=13)
+                       title, ok, rebin)
+            if spec['name'] == wname:
+                _ax = fig.axes[-2] if len(fig.axes) >= 2 else fig.axes[-1]
+                for _sp in _ax.spines.values():
+                    _sp.set_linewidth(3.0); _sp.set_color(PUB["c_bgo"])
+        fig.suptitle("%s  bin %d  [%.2f,%.2f]s  S=%.0f  -- ALL models (diagnostic)" % (trig, b, t1, t2, sigs[b]), fontsize=PUB["label_size"] - 4)
         fname = os.path.join(out, "%s_nuFnu_bin%d_allmodels.png" % (trig, b))
 
     elif mode == "model":
@@ -381,10 +437,11 @@ def run(trig, dets, ref, mode, which, out, rebin):
         gs = fig.add_gridspec(nrow, ncol, hspace=0.42, wspace=0.26, top=0.93, bottom=0.06, left=0.06, right=0.99)
         for i, (t1, t2) in enumerate(zip(starts, stops)):
             plugins, names = build_plugins(trig, dets, ref, t1, t2, appr)
-            jl, comp, aic, ok = fit_spec(spec, plugins)
+            _row = erows_all.get((round(t1, 2), round(t2, 2)))
+            jl, comp, aic, ok = fit_spec(spec, plugins, row=_row)
             draw_panel(fig, gs[i // ncol, i % ncol], plugins, names, jl, comp,
                        "bin%d [%.2f,%.2f] S=%.0f AIC=%.0f" % (i, t1, t2, sigs[i], aic), ok, rebin)
-        fig.suptitle("%s  -- model %s across ALL bins" % (trig, spec['name']), fontsize=13)
+        fig.suptitle("%s  -- model %s across ALL bins" % (trig, spec['name']), fontsize=PUB["label_size"] - 4)
         fname = os.path.join(out, "%s_nuFnu_%s_allbins.png" % (trig, spec['prefix']))
 
     elif mode == "best":
@@ -411,7 +468,7 @@ def run(trig, dets, ref, mode, which, out, rebin):
                 jl = comp = None; ok = False
                 title = "bin%d [%.2f,%.2f] S=%.0f  [NO ENGINE ROW]" % (i, t1, t2, sigs[i])
             draw_panel(fig, gs[i // ncol, i % ncol], plugins, names, jl, comp, title, ok, rebin)
-        fig.suptitle("%s  -- engine winner per bin (display of stored fits)" % trig, fontsize=13)
+        fig.suptitle("%s  -- engine winner per bin (display of stored fits)" % trig, fontsize=PUB["label_size"] - 4)
         fname = os.path.join(out, "%s_nuFnu_best_montage.png" % trig)
 
     elif mode == "binall":
@@ -460,6 +517,7 @@ def run(trig, dets, ref, mode, which, out, rebin):
         dlo, dhi = data_range(plugins)
         if not (np.isfinite(dlo) and np.isfinite(dhi)) or dhi <= dlo: dlo, dhi = 8.0, 4.0e4
         E = np.logspace(np.log10(dlo), np.log10(dhi), 200)
+        ax.set_xlim(0.85 * dlo, 1.18 * dhi)
         cyc = plt.cm.viridis(np.linspace(0.15, 0.85, max(1, len(shown) - 1)))
         # winner fitted LAST: plugins share model state, and the data unfold /
         # residuals below must read the WINNER's predicted counts.
@@ -482,7 +540,7 @@ def run(trig, dets, ref, mode, which, out, rebin):
                 ax.fill_between(E, band[0], band[1], color="0.55", alpha=0.28, lw=0, zorder=2)
             else:
                 ax.text(0.02, 0.02, "68% band suppressed (railed/unavailable)", transform=ax.transAxes,
-                        fontsize=7, color="0.4")
+                        fontsize=PUB["tick_size"] - 7, color="0.4")
             nufnu_fn = lambda ee: np.asarray(ee, float)**2 * _ev(wcomp, np.asarray(ee, float))
             data_max = 0.0
             for pl, det in zip(plugins, names):
@@ -513,16 +571,16 @@ def run(trig, dets, ref, mode, which, out, rebin):
         axr.axhline(0, color="k", lw=0.8)
         axr.set_ylim(-4, 4); axr.set_ylabel("resid (σ)"); axr.set_xlabel("Energy (keV)")
         ax.set_ylabel(r"$\nu F_\nu$ (keV$^2$ s$^{-1}$ cm$^{-2}$ keV$^{-1}$)")
-        ax.legend(fontsize=7.5, loc="lower center", ncol=2, framealpha=0.9, edgecolor="0.6")
+        ax.legend(fontsize=PUB["tick_size"] - 6, loc="lower center", ncol=2, framealpha=0.9, edgecolor="0.6")
         _lab = "T_INT (block union)" if is_tint else "bin %d" % b
         fig.suptitle("%s  %s  [%.2f,%.2f] s  -- top %d of %d VALID models by engine AIC, winner marked (data unfolded under winner; full set in table)"
-                     % (trig, _lab, t1, t2, len(shown), len(ranked)), fontsize=10)
+                     % (trig, _lab, t1, t2, len(shown), len(ranked)), fontsize=PUB["label_size"] - 6)
         fname = os.path.join(out, "%s_nuFnu_%s_allmodels_overlay.png" % (trig, "TINT" if is_tint else "bin%d" % b))
     else:
         raise SystemExit("mode must be bin|model|best|binall")
 
     fig.text(0.99, 0.004, "nuFnu data ratio-unfolded (model-dependent); residuals count-space; XSPEC rebin %g,%g; inference is count-space"
-             % (rebin[0], rebin[1]), ha="right", fontsize=7, color="0.45")
+             % (rebin[0], rebin[1]), ha="right", fontsize=PUB["tick_size"] - 7, color="0.45")
     fig.savefig(fname, bbox_inches="tight"); plt.close(fig)
     print("WROTE %s" % fname, flush=True)
     return fname
