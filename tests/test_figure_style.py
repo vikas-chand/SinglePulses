@@ -116,6 +116,61 @@ def test_style_module_matches_the_reference_guide():
     assert rc["axes.grid"] is False               # §8
 
 
+def test_style_survives_a_hostile_stylesheet():
+    """apply_pub_style() must be AUTHORITATIVE, not merely applied.
+
+    2026-08-13: the νFν montage rendered with no top/right spine and a grey
+    #3D3D3D frame even though the script called apply_pub_style(). threeML runs
+    plt.style.use('threeml.mplstyle') at MODULE SCOPE in seven modules, so
+    importing the fit engine rewrites 29 rcParams. Our style named 17 of them and
+    inherited the rest from matplotlib's defaults — which were no longer
+    matplotlib's defaults. The font came back (we set it); the frame did not.
+
+    This test does NOT import threeML: a test that skips when a heavy dependency
+    is absent reports green while checking nothing (audit C1, the L18–L28 suite
+    parametrizing over an empty list on CI). Instead it applies threeML's actual
+    stylesheet if it is on disk, and otherwise an equivalent hostile one inline,
+    so the invariant is exercised on every machine.
+    """
+    import glob
+    import importlib.util
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    hostile = {
+        "axes.spines.top": False, "axes.spines.right": False,
+        "axes.spines.left": False, "axes.spines.bottom": False,
+        "axes.edgecolor": "#3D3D3D", "axes.labelcolor": "#3D3D3D",
+        "xtick.color": "#3D3D3D", "ytick.color": "#3D3D3D",
+        "font.size": 12, "axes.labelsize": 14, "legend.fontsize": 8,
+        "xtick.labelsize": 12, "ytick.labelsize": 12, "lines.linewidth": 2,
+    }
+    real = glob.glob(os.path.expanduser(
+        "~/anaconda3/envs/*/lib/python*/site-packages/threeML/data/threeml.mplstyle"))
+    plt.rcParams.update(hostile)
+    if real:                       # prefer the genuine article when present
+        plt.style.use(real[0])
+    assert plt.rcParams["axes.spines.top"] is False, "the hostile state did not take"
+
+    p = os.path.join(SCRIPTS, "plot_style.py")
+    spec = importlib.util.spec_from_file_location("plot_style_hostile", p)
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    m.apply_pub_style()
+
+    rc = plt.rcParams
+    for side in ("top", "right", "left", "bottom"):
+        assert rc[f"axes.spines.{side}"] is True, (
+            f"axes.spines.{side} not reclaimed — a figure drawn after importing "
+            f"threeML would lose that spine (reference guide §3 needs all four)")
+    for key in ("axes.edgecolor", "axes.labelcolor", "xtick.color", "ytick.color"):
+        assert matplotlib.colors.to_hex(rc[key]) == "#000000", (
+            f"{key} is {rc[key]!r}, not black — threeML's #3D3D3D leaked through")
+    assert rc["font.size"] == 16 and rc["axes.labelsize"] == 18
+    assert rc["xtick.direction"] == "in" and rc["xtick.top"]
+
+
 def test_detector_colour_is_identity_not_order():
     """F2: a detector's colour must not depend on how many others are plotted."""
     import importlib.util

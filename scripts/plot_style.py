@@ -69,6 +69,29 @@ for _k, _v in (("lw_primary", 1.8), ("lw_secondary", 1.0), ("lw_reference", 0.7)
                ("tick_minor", 3), ("panel_label_size", 18), ("figwidth", 10)):
     PUB.setdefault(_k, _v)
 
+
+# --- RECLAIM: keys we used to leave at matplotlib's defaults -------------------
+# 2026-08-13. The νFν montage came out with no top/right spine and a grey #3D3D3D
+# frame despite calling apply_pub_style(). Cause: threeML runs
+#   plt.style.use(".../threeml.mplstyle")
+# at MODULE SCOPE in seven of its modules (SpectrumLike, joint_likelihood,
+# analysis_results, likelihood_ratio_test, XYLike, FermiLATLike, io.plotting.
+# model_plot), so merely importing the fit engine rewrites 29 rcParams. Our style
+# set 17 of them and INHERITED the other 12 from matplotlib's defaults — which by
+# then were no longer matplotlib's defaults. Font size was restored (we set it);
+# the spines were not (we never did).
+#
+# The lesson is general: a style is only authoritative over the keys it names.
+# Anything left implicit belongs to whoever imported last. So name them.
+_RECLAIM = {
+    "axes.spines.top": True, "axes.spines.right": True,      # §3 needs 4 spines
+    "axes.spines.left": True, "axes.spines.bottom": True,
+    "axes.edgecolor": "black", "axes.labelcolor": "black",
+    "xtick.color": "black", "ytick.color": "black",
+    "grid.color": "0.85", "grid.linewidth": 0.5,
+    "patch.edgecolor": "black", "hist.bins": 25,
+}
+
 # stable per-detector colours (identity, not order)
 _NAI_CYCLE = [PUB["c_nai_a"], PUB["c_nai_b"], PUB["c_nai_c"], PUB["c_nai_d"]]
 
@@ -85,13 +108,20 @@ def det_color(det, idx=0):
 def apply_pub_style():
     """Publication rcParams. Delegates to LATBright's implementation when available
     (one implementation of the style, per AGENTS.md), then applies the few keys this
-    project pins that the reference guide states explicitly."""
+    project pins that the reference guide states explicitly.
+
+    AUTHORITATIVE: every key in _RECLAIM is set unconditionally, so the result does
+    not depend on what was imported first. Call this AFTER importing threeML/the fit
+    engine if you can, but it is now correct either way — see _RECLAIM's note and
+    tests/test_figure_style.py::test_style_survives_a_hostile_stylesheet.
+    """
     if _lb is not None and hasattr(_lb, "apply_pub_style"):
         _lb.apply_pub_style()
         plt.rcParams.update({
             "savefig.dpi": PUB["dpi"], "savefig.bbox": "tight",
             "savefig.pad_inches": 0.03, "axes.grid": False,
         })
+        plt.rcParams.update(_RECLAIM)
         return
     plt.rcParams.update({
         "font.family": PUB["font_family"],
@@ -128,3 +158,4 @@ def apply_pub_style():
         "savefig.bbox": "tight",
         "savefig.pad_inches": 0.03,
     })
+    plt.rcParams.update(_RECLAIM)
