@@ -156,6 +156,22 @@ Two independent instances, one ours and one published:
 
 Two instances make it a class, not a slip. Sign errors survive refereeing because both conventions
 are "obvious" to their users and neither is usually written down.
+
+**ROOT CAUSE FOUND (2026-08-15, prompted by Vikas: "did you follow the tool we developed
+ourselves?"):** the handbook lag is a PORT of LATBright's `s02c_spectral_lag.py` (provenance
+comments at temporal.py:1372,1402,1428 admit it) — but the DCCF was re-implemented from
+s02c's DOCSTRING, whose formula is sign-flipped relative to the code (LATBright's own review
+flagged this: LAG-10 "docstring CCF formula sign-flipped (code correct)"). temporal.py:1060
+computes `Σ soft[i]·hard[i+k]`; s02c's code computes `Σ soft[n+τ]·hard[n]`. Numeric proof:
+synthetic hard-peaks-at-1.0s / soft-at-1.2s gives +0.192 s (s02c) vs −0.192 s (handbook).
+The port also degrades the estimator: AG-μ-on-observed + symmetric MC std (handbook) vs
+MC MEDIAN + asymmetric 16/84 (s02c); no restricted peak search; mean-rate background.
+**Lesson: a port must copy the CODE, never the documentation — documentation is a bug
+vector (this is the false-corroboration principle applied to lineage).**
+**FIX PATH:** correct temporal.py:1060-1062 to the s02c code formula (or call s02c
+directly), adopt MC-median + 16/84, then re-survey all 106 LAG columns. Until then the
+per-burst validated number comes from `scripts/47c_lag_latbright.py` (imports s02c
+unmodified; convention POSITIVE = soft lags hard, Norris+1996).
 **RULE:** (a) every quoted lag carries its convention explicitly — *positive lag = low-energy
 photons arrive LATER* is ours; (b) validate the pipeline's sign on a burst with an unambiguous
 published direction before any lag science; (c) when diffing a published lag, check the paper's
@@ -167,7 +183,7 @@ OWN internal consistency (trend statement vs prose vs table sign) rather than as
 |---|---|---|
 | **T90/T50 errors** | `T90_ERR > T90` in 84/89 (orig); then a WRONG FIX | ✅ **FIXED PROPERLY 2026-08-13** after the Codex whole-project audit (item A4). History worth keeping: the original estimator resampled BIN INDICES, destroying time order. My first repair replaced it with Poisson draws of **rectified** counts `max(net,0)` while the point value still came from **signed** net — two different estimators: on bn081224887 the point value was 18.9 s and the MC distribution sat at **116.6 s**, so the quoted σ described something that was not T90. That is more dangerous than the original bug, which at least looked broken. **The real fix (`scripts/40::_tx_core` + `_tx_with_mc`):** search window = the approved SOURCE window (declared); point and MC call the SAME estimator; realizations are Poisson draws of the **RAW** counts (non-negative by construction) minus the same fitted background — no rectification of a residual; explicit first-crossing convention because the cumulative net curve is NOT monotonic (so `np.interp` was invalid); n_mc=1000; deterministic PER-TRIGGER seed. Adds `T90_WINDOW_TRUNCATED` when t5/t95 land on the window edge (then T90 is a LOWER LIMIT, not comparable to a catalog T90). Validation vs frame-matched external values: bn081224887 14.84±0.39 (ext 17.40±1.31, 1.9σ); bn110721200 13.24±0.36 (ext 14.11±2.19, 0.4σ). ⚠ NOT propagated: background-model uncertainty (polynomial held fixed) — stated, not hidden. |
 | **bn130310840 committed row is a FAILED fit** | T90 = 17.91 ± 68.24 s vs 2.09 s blind re-run and ~2.4 s published | OPEN — refit + replace row |
-| **Lag sign inverted** | handbook lag sign convention opposite to the standard (positive = soft lags hard) | OPEN — fix at source, then re-survey |
+| **Lag sign inverted** | handbook lag sign convention opposite to the standard (positive = soft lags hard) | **ROOT-CAUSED 2026-08-15** (see L26): DCCF ported from s02c's sign-flipped DOCSTRING (LAG-10), not its correct code; numeric proof ±0.192 s on synthetic pair. Fix specified (temporal.py:1060 → s02c code formula + MC-median/16-84), re-survey pending; interim validated tool = scripts/47c (imports s02c unmodified) |
 | MVT: only the Haar cross-check is in the catalog | canonical Bala MVT runs separately | by design — label which MVT you quote |
 
 **Rule:** any use of `temporal_catalog_human.ecsv` states which columns it used and which

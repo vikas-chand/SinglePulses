@@ -70,10 +70,21 @@ PER_BURST_DIR = os.path.join(RESULTS_DIR, 'per_burst')
 # whole channels and keeps BOTH boundary channels, so the channel containing
 # the K-edge stayed active (Codex 3ML audit 2026-07-24, SpectrumLike.py:1196).
 # exclude= drops every channel containing 33-40 keV (native semantics).
+# CONVENTION (adopted 2026-08-14, Vikas: "use that") — the PI's PUBLISHED ranges,
+# Chand et al. 2020, ApJ 903, 9 (GRB 190114C), p.3 verbatim: "The energy range
+# 8-900 keV was used for NaI detectors, ~0.2-38 MeV was used for the BGO
+# detectors, 20-100 MeV was used from LLE ... We neglected ~30-40 keV ... to
+# exclude the 33.17 keV K-edge feature." Replaces the previously UNDOCUMENTED
+# 300-40000 / 33-40 / 30-100 MeV. Takes effect for NEW fits only: every row
+# fitted before this date used the old constants (recorded in the sidecar
+# NAI_RANGES/BGO_RANGES; scripts/41b refuses to replay a row whose recorded
+# ranges differ from the live constants). The BGO 200-300 keV band also widens
+# the NaI/BGO overlap that constrains the EAC constants (the b1-rail finding,
+# VISION_QC bn081125496 2026-08-14).
 NAI_RANGES = ('8.1-900',)
-NAI_EXCLUDE = ('33-40',)               # iodine K-edge, native exclusion
-BGO_RANGES = ('300-40000',)
-LLE_RANGES = ('30000-100000',)         # 30 MeV - 100 MeV (LLE native band)
+NAI_EXCLUDE = ('30-40',)               # iodine K-edge (33.17 keV), native exclusion
+BGO_RANGES = ('200-38000',)
+LLE_RANGES = ('20000-100000',)         # 20 MeV - 100 MeV
 EFFAREA_BOUNDS = (0.8, 1.2)
 
 DEFAULT_PARAMS = dict(
@@ -197,7 +208,7 @@ def get_canonical_bins(trigger, bb_spectral_path, single_path, approved_dets):
 def build_spectrumlike_per_block(trigger, det, pre, post, bin_starts, bin_stops):
     from threeML import TimeSeriesBuilder
     if det == 'lle':
-        # LAT LLE — 30-100 MeV native; uses separate event/FT2/RSP triplet
+        # LAT LLE — 20-100 MeV (Chand2020 convention); separate event/FT2/RSP triplet
         lle_file, ft2_file, rsp_file = find_lle_files(trigger)
         if lle_file is None:
             return None
@@ -1815,7 +1826,10 @@ def _run(args, trigger, out_dir, lat_ctx=None):
             'fit_dets': list(sl_by_det.keys()),
             'n_blocks': n_bins,
             'NAI_RANGES': list(NAI_RANGES),
+            'NAI_EXCLUDE': list(NAI_EXCLUDE),      # serialized 2026-08-14 (convention change)
             'BGO_RANGES': list(BGO_RANGES),
+            'LLE_RANGES': list(LLE_RANGES),
+            'RANGES_CONVENTION': 'Chand2020_ApJ903_9',   # provenance of the choice
             'models': [s['name'] for s in ACTIVE_SPECS
                        if include_dsbpl or s['name'] != 'DSBPL'],
             'bin_starts': list(map(float, bin_starts)),

@@ -29,6 +29,12 @@ Your branch predates these, and two of them change results you already looked at
   suppressed and *says so on the figure*, instead of drawing a band displaced off its curve.
 - **T90 errors were broken in 84/89 rows** (the estimator shuffled time-bin order). Fixed in
   the handbook `temporal.py`; T90 uncertainties are now meaningful.
+- **`scripts/10` — energy-range convention changed 2026-08-14** (Vikas's decision, citing his
+  own Chand et al. 2020, ApJ 903, 9 convention): BGO 300→**200–38000 keV**, LLE 30→**20–100
+  MeV**, K-edge exclusion 33→**30–40 keV**. Any fit YOU run after pulling uses the new
+  ranges — so your numbers will legitimately differ from our pre-change sweep values for
+  the same burst. `scripts/41b` refuses to render a fit whose recorded ranges mismatch the
+  live constants, so you cannot mix conventions by accident.
 
 ---
 
@@ -115,7 +121,7 @@ whole comparison rests on.
 | `step1_inventory` | every approved detector's DRM must bracket the source window (PASS/FAIL bars); angles under 60° |
 | `step3_background` | does the polynomial track the pre/post windows *and* extrapolate sanely under the burst? A drifting or curved extrapolation is the usual cause of a bad net rate |
 | `step4_source` | the source window inside the common background gap. If it overruns, the figure says so — those are **adjudicated, accepted decisions** (`results/human_review_qc_flags.txt`), not defects |
-| `step5_binning` | blocks should track real structure; the number on each block is its significance |
+| `step5_binning` | blocks should track real structure; significance is the block COLOUR read against the σ colorbar (project standard — no per-block numbers); the dotted verticals mark the ANALYSED span, which is tightened inside the stamped source window |
 | `<trig>/spectral_evolution.png`, `ep_kt_correlation.png` | parameter tracks across blocks — look for jumps that no emission mechanism can make |
 | `nuFnu_bin<N>_allmodels_overlay` | **all models in one bin, engine winner in bold black.** If several curves sit on top of each other, the winner's identity is undetermined even if its AIC is lowest |
 | `nuFnu_best_montage` | winner per bin. **Any `[! PANEL!=ENGINE]` stamp = trust the table, not the curve** |

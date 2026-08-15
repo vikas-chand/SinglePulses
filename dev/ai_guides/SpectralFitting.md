@@ -751,3 +751,22 @@ classifier; wiring into scorecards/population products is the enforcement point 
 item: serialize the class into fit tables).
 **TEST:** `test_L28_edge_feature_class` (unit-level; includes the L25 consistency property —
 kt and xb = 3.92·kt must classify identically).
+
+### L30 — The energy-range convention is the PI's PUBLISHED convention, cited, not an inherited default  *(Vikas, 2026-08-14: "use that")*
+The engine ran 106 bursts with `BGO 300–40000 / LLE 30–100 MeV / K-edge 33–40` — three
+low-edge choices carrying NO comment, citation, or date, while the NaI line above them
+documented its K-edge lesson properly. Vikas's question ("did we not use the recommended
+BGO range?") exposed it: the instrument nominal is 200 keV–40 MeV (Meegan+09), our own
+Stage-1 picker LCs showed 250+, and HIS OWN paper — Chand et al. 2020, ApJ 903, 9
+(GRB 190114C), p.3 verbatim — used **NaI 8–900 keV, BGO ∼0.2–38 MeV, LLE 20–100 MeV,
+K-edge 30–40 keV (33.17 keV feature)**. ADOPTED as the engine convention 2026-08-14
+(`scripts/10` constants now cite it; sidecar serializes NAI_EXCLUDE/LLE_RANGES/
+RANGES_CONVENTION). Consequences: (1) NEW fits only — every pre-change row carries its
+fit-time ranges in the sidecar, and `scripts/41b::_assert_range_convention` REFUSES to
+replay a row under mismatched live constants (forensic override env, never shippable);
+(2) the frozen full-sample re-run inherits the new convention — walkthrough-era numbers
+were provisional by doctrine anyway; (3) prediction to check at the first new-convention
+fit: the added BGO 200–300 keV overlap should better constrain the EAC constants — watch
+whether bn081125496's EAC_B1 comes off its 1.2 rail. The transferable rule: **every
+selection constant in the engine carries a citation or a dated decision — an
+undocumented constant is a latent audit finding.**

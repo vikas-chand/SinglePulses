@@ -13,6 +13,12 @@ dev→freeze→production discipline the external architecture reviews demanded
 **Roles:** the AI runs each step and NARRATES it; **Vikas approves every single
 step** before the next one runs (autonomy dial = gated_steps). Nothing advances
 on silence.
+**Fully-AI mode (Vikas, 2026-08-14, at the bn081125496 step-0b gate):** when a
+burst report is produced end-to-end by AI, the gate is held by an **independent
+AI approver — a different agent or platform (e.g. Codex) — never the producer
+itself** (same producer≠verifier rule as ShippingGate.md), and the approver's
+stamp is recorded like any gate stamp. In both modes the final deliverable is
+the per-burst REPORT (`REPORT_<trig>.md/.pdf`).
 
 ## Per-burst loop (for burst B)
 For each step S in the ledger below:

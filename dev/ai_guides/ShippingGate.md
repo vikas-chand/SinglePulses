@@ -29,7 +29,9 @@ A verifier that inherits the producer's context inherits its blind spots.
       (the bin7 incident; wire as `PANEL_AIC vs ENGINE_AIC` stamps in scripts/41)
 - [ ] **VISION (fresh-context agent):** bands bracket their curves; residual panels show no
       coherent |run| ≥ 3σ on a "good" fit; axes/limits sane; no overlapping/clipped text
-      (the Fig-1 TikZ incident); winner labels legible and consistent across panels
+      (the Fig-1 TikZ incident); winner labels legible and consistent across panels.
+      **The runnable brief + recording rule: `FigureVisionQC.md`** — verdict lands in
+      `<products>/VISION_QC.md`; `scripts/45` stamps it into PRODUCTS.md (PENDING if absent)
 - [ ] error-band sampling did not rail (>1% sample loss ⇒ band suppressed + stated)
 - [ ] figure style conforms to the reference guide (serif/STIX, ticks in, 300 dpi)
 

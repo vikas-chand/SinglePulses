@@ -31,6 +31,13 @@ EXTERNAL = [
      "caption-suggest: retrieval over ~8k published figure captions"),
     ("~/Desktop/Projects/GRB_Handbook_Project/grb_pipeline/",
      "the vendored analysis package (temporal.py, lightcurve, statistics)"),
+    ("~/Desktop/Projects/Gor_GRBs_Beta/scripts/plot_190114C_with_data.py",
+     "WORKING nuFnu-with-DATA plotter WE built: forward-folded unfolding "
+     "(nuFnu_data = nuFnu_model*(obs-bkg)/pred), significance rebin (3 sigma / "
+     "<=10 ch), per-detector cross-norm, delchi panels. READ THIS BEFORE "
+     "touching scripts/41*"),
+    ("~/Desktop/Projects/Gor_GRBs_Beta/mev_absorption/",
+     "absorbed-Band fitting + GOR_FIG2/FIG_A3 replicas (RA-4)"),
 ]
 
 GROUPS = [

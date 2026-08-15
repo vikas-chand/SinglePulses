@@ -116,7 +116,9 @@ def build(trig, out):
     fig(f"{trig}_step1_inventory.png", out,
         "Step 1–2. Left: each approved detector's response (DRM) coverage against the stamped "
         "source window — a bar must bracket the window for the effective area to be valid. "
-        "Right: off-axis angles against the 60° selection rule.", L)
+        "Right: off-axis angles against the NaI selection rule — ≤50° keep; 50–60° kept "
+        "only via the BCAT rescue (the detector triggered); >60° drop. BGOs are exempt "
+        "(companion rule) and appear for completeness.", L)
 
     # ---------------- 3 background + source
     L += ["## 3 · Background and source intervals", ""]

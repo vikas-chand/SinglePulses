@@ -6,6 +6,9 @@ setup, data acquisition, the Stage 1→2→3 run order with exact commands, the
 human-or-AI approval gate, products, gotchas, and audit items).
 
 Quick orientation (full detail in `AGENTS.md`):
+- **Burst-by-burst sessions:** the operating protocol is `dev/ai_guides/BurstWalkthrough.md`
+  (step ledger 0b,0,1–9; PRESENT→GATE every step; Stage-1 steps 2–5 in ADOPT mode; burst
+  order in `notes/REVIEW_INDEX_106.md`; read the burst's `REPORT_<trig>.md` first).
 - **Pipeline:** Approve (detectors + background + source, gated & stamped) → Bin
   (`scripts/27b_reblock_3ml.py`, 3ML Bayesian-Blocks + significance hybrid) → Fit
   (`scripts/29_refit_clean.py` → `scripts/10`, 6 models, AIC selection) → Products

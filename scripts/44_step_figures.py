@@ -8,7 +8,9 @@ each stage of the pipeline decided:
 
   step1_inventory.png   response (DRM) coverage bars vs the stamped source window
                         + per-detector off-axis angle -- the D1/D2 checks, visible
-  step2_detectors.png   approved detector angles against the 60-deg rule
+  step2_detectors.png   approved detector angles vs the REAL NaI rule
+                        (<=50 keep; 50-60 only via BCAT rescue; >60 drop;
+                        BGOs exempt -- companion rule)
   step3_background.png  per-detector LC + fitted background polynomial through the
                         approved pre/post windows + residual strip
   step4_source.png      LC with the background gap and the stamped source window
@@ -153,12 +155,29 @@ def polyfit_bkg(tc, rate, pre, post, maxdeg=3):
     return best, m
 
 
+def bcat_nais(trig):
+    """NaIs in the BCAT detector mask (results/grb_sample.ecsv NAI_DETECTORS) —
+    the 50–60° rescue condition. Same source scripts/39 uses for `in_bcat`."""
+    try:
+        s = Table.read(os.path.join(ROOT, "results", "grb_sample.ecsv"),
+                       format="ascii.ecsv")
+        row = s[s["TRIGGER_NAME"] == trig]
+        if len(row):
+            return {d.strip() for d in str(row["NAI_DETECTORS"][0]).split(",")
+                    if d.strip()}
+    except Exception:
+        pass
+    return set()
+
+
 # ---------------------------------------------------------------- step 1 + 2
 def fig_step1_2(trig, out):
     rs = rows_for(trig)
     if not len(rs):
         return []
     made = []
+    bcat = bcat_nais(trig)
+    lo_all = []   # coverage-bar starts, so the left limit can clear them (vision-QC nit)
     # --- step 1: response coverage + angle
     fig, axes = plt.subplots(1, 2, figsize=(13, 0.62 * len(rs) + 3.0))
     ax, ax2 = axes
@@ -184,6 +203,7 @@ def fig_step1_2(trig, out):
             except Exception:
                 pass
         if np.isfinite(lo):
+            lo_all.append(lo)
             ok = (lo <= src1) and (hi >= src2)
             # FILL = detector identity (same colour as the right panel);
             # EDGE = the verdict. One colour must mean one detector everywhere.
@@ -196,14 +216,36 @@ def fig_step1_2(trig, out):
         else:
             ax.text(src1, i, "  no response found", va="center",
                     fontsize=PUB["tick_size"] - 3, color=PUB["c_bgo"])
-        ax2.barh(i, float(r["DET_ANGLE"]) if str(r["DET_ANGLE"]) not in ("nan", "--") else 0,
-                 height=0.55, color=dcol(det, trig), alpha=0.85)
+        ang = float(r["DET_ANGLE"]) if str(r["DET_ANGLE"]) not in ("nan", "--") else 0.0
+        ax2.barh(i, ang, height=0.55, color=dcol(det, trig), alpha=0.85)
+        # The REAL selection rule (detector_selection.md:20-30): NaI <=50 keep;
+        # 50-60 keep ONLY if in the BCAT mask (rescue); >60 drop. The NaI cut
+        # NEVER applies to BGOs (companion rule). A lone 60-deg line rendered a
+        # 57-deg BCAT rescue as an unconditional pass (bn081125496, 2026-08-14).
+        if det.startswith("n"):
+            in_b = det in bcat
+            tag = "BCAT" if in_b else "not in BCAT"
+            if 50.0 < ang <= 60.0:
+                tag += " rescue" if in_b else " (should be DROPPED)"
+            # white bbox keeps the tag legible across the 50/60° dashed lines;
+            # the +1° offset keeps the bbox pad off the bar tip (vision-QC
+            # rounds 1+2, bn081125496 2026-08-14)
+            ax2.text(ang + 1.0, i, tag, va="center", ha="left",
+                     fontsize=PUB["tick_size"] - 3,
+                     color=("#1a7d3a" if in_b else PUB["c_bgo"]),
+                     bbox=dict(facecolor="white", alpha=0.8, edgecolor="none", pad=1.2))
+        else:
+            ax2.text(ang + 1.0, i, "BGO: companion rule", va="center", ha="left",
+                     fontsize=PUB["tick_size"] - 3, color="0.35",
+                     bbox=dict(facecolor="white", alpha=0.8, edgecolor="none", pad=1.2))
     ax.axvspan(src1, src2, color=PUB["c_src_win"], alpha=0.18, lw=0, zorder=1)
     for _x in (src1, src2):
         ax.axvline(_x, color=PUB["c_src_win"], lw=1.0, alpha=0.8, zorder=3)
     ax.set_yticks(range(len(rs)))
     ax.set_yticklabels([str(r["DETECTOR"]).strip() for r in rs])
-    _xl = ax.get_xlim(); ax.set_xlim(_xl[0], _xl[1] + 0.16 * (_xl[1] - _xl[0]))
+    _xl = ax.get_xlim(); _sp = _xl[1] - _xl[0]
+    _x0 = min([_xl[0]] + [v - 0.02 * _sp for v in lo_all])   # bars clear of the frame
+    ax.set_xlim(_x0, _xl[1] + 0.16 * _sp)
     # label the band directly (reference §5: never place a legend over data)
     ax.set_ylim(-0.7, len(rs) - 0.05)
     ax.annotate("source\nwindow", xy=(src2, 0.985), xycoords=("data", "axes fraction"),
@@ -211,10 +253,14 @@ def fig_step1_2(trig, out):
                 fontsize=PUB["tick_size"] - 3, color=PUB["c_src_win"], linespacing=1.1)
     ax.set_xlabel("time since trigger (s)")
     ax.set_title("response (DRM) coverage", loc="left")
-    ax2.axvline(60, color=PUB["c_bgo"], ls="--", lw=1.4, label=r"$60^\circ$ rule")
+    ax2.axvline(50, color="#1a7d3a", ls="--", lw=1.4, label=r"$50^\circ$ NaI keep")
+    ax2.axvline(60, color=PUB["c_bgo"], ls="--", lw=1.4, label=r"$60^\circ$ NaI drop")
     ax2.set_yticks(range(len(rs)))
     ax2.set_yticklabels([str(r["DETECTOR"]).strip() for r in rs])
     ax2.set_xlabel(r"off-axis angle (deg)")
+    _amax = max([float(r["DET_ANGLE"]) for r in rs
+                 if str(r["DET_ANGLE"]) not in ("nan", "--")] + [60.0])
+    ax2.set_xlim(0, (_amax + 2) * 1.45)   # room for the per-bar rule tags
     ax2.legend(loc="lower right")
     ax2.set_title("approved detectors", loc="left")
     fig.suptitle(f"{trig} — steps 1–2: data inventory and detector selection",
@@ -369,8 +415,11 @@ def fig_step345(trig, out, blocks_file=None):
             # horizontal bars ONLY -- no vertical connectors (Vikas, 2026-08-13).
             ax.hlines(lvl, t1, t2, color=col, lw=PUB["lw_primary"] + 1.6, zorder=5)
         # bracket the analysed span: dotted verticals at the FIRST block start and
-        # the LAST block stop (Vikas, 2026-08-13)
-        ax.axvline(float(bt["T_START"][0]), color="0.55", lw=0.9, ls=":", zorder=1)
+        # the LAST block stop (Vikas, 2026-08-13). Labelled in the legend so a
+        # reader cannot mistake it for the stamped source window, which may end
+        # later (vision-QC round 5 nit, 2026-08-14).
+        ax.axvline(float(bt["T_START"][0]), color="0.55", lw=0.9, ls=":", zorder=1,
+                   label="analysed span")
         ax.axvline(float(bt["T_STOP"][-1]), color="0.55", lw=0.9, ls=":", zorder=1)
         ax.set_xlim(src[0] - 3, src[1] + 3)
         inwin = (tc >= src[0] - 3) & (tc <= src[1] + 3)

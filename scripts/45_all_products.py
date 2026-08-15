@@ -134,6 +134,18 @@ def main():
         else:
             missing.append(f"{rel} ({what})"); lines.append(f"- [ ] **MISSING** `{rel}` — {what}")
     lines += ["", f"**{len(made)} present / {len(want)} expected**"]
+    # ---- vision QC stamp (Shipping Gate: a figure set without a fresh-context
+    # vision pass is UNGATED, and that state must be STATED, never silent.
+    # Vikas, 2026-08-14: the plot-quality agent is part of the workflow.)
+    vqc = os.path.join(out, "VISION_QC.md")
+    if os.path.exists(vqc):
+        with open(vqc) as fh:
+            head = [l for l in fh.read().splitlines() if l.startswith("VERDICT:")]
+        lines += ["", f"**VISION QC:** {head[0] if head else 'ledger present (no VERDICT line!)'} "
+                      f"— see `VISION_QC.md`"]
+    else:
+        lines += ["", "**VISION QC: PENDING — figures NOT yet vision-gated** "
+                      "(run the fresh-context pass per `dev/ai_guides/FigureVisionQC.md`)"]
     if missing:
         lines += ["", "## Missing (stated, not hidden — Shipping Gate)"] + \
                  [f"- {m}" for m in missing]

@@ -521,6 +521,32 @@ def load_fit_product(trig: str, out_dir: Path) -> FitProduct:
     )
 
 
+def _assert_range_convention(product: FitProduct) -> None:
+    """Refuse to replay a fit whose recorded energy ranges differ from the LIVE
+    engine constants. The rebuilt plugins take their masks from the live
+    constants, so a mismatch would fold stored parameters through a mask the
+    fit never used (convention change 2026-08-14: BGO 300→200 keV, LLE 30→20
+    MeV, K-edge 33→30 keV; rows fitted earlier carry the old ranges in their
+    sidecar). Forensic override: TB_ALLOW_CONVENTION_MISMATCH=1 (figures then
+    carry current-mask diagnostics for an old fit — never ship those)."""
+    meta = product.metadata
+    pairs = (("NAI_RANGES", tuple(eng.NAI_RANGES)),
+             ("BGO_RANGES", tuple(eng.BGO_RANGES)))
+    mismatches = []
+    for key, live in pairs:
+        recorded = meta.get(key)
+        if recorded is not None and tuple(recorded) != live:
+            mismatches.append(f"{key}: fit-time {list(recorded)} vs live {list(live)}")
+    if mismatches and os.environ.get("TB_ALLOW_CONVENTION_MISMATCH") != "1":
+        raise DisplayInvariantError(
+            "energy-range convention mismatch — this row was fitted under different "
+            "active-measurement ranges than the live engine would rebuild: "
+            + "; ".join(mismatches)
+            + ". Re-fit the burst under the current convention, or set "
+            "TB_ALLOW_CONVENTION_MISMATCH=1 for a forensic (non-shippable) render."
+        )
+
+
 def _load_backgrounds(product: FitProduct, trig: str) -> Mapping[str, Tuple[Tuple[float, float], Tuple[float, float]]]:
     table = Table.read(product.background_path, format="ascii.ecsv")
     subset = table[np.asarray(table["TRIGGER_NAME"]).astype(str) == trig]
@@ -1344,10 +1370,67 @@ def _set_residual_limits(ax, values: Sequence[float]) -> None:
     ax.set_ylim(-span, span)
 
 
+_CLASS_TINTS = {"nai": "#e8985e", "bgo": "#8172b3", "lle": "#8c8c8c"}
+
+
+def _det_class(name: str) -> str:
+    n = str(name).strip().lower()
+    if n.startswith("b"):
+        return "bgo"
+    if n.startswith("l") or n.startswith("gll"):
+        return "lle"
+    return "nai"
+
+
+def _fit_energy_intervals(block: BlockDisplay) -> Dict[str, List[Tuple[float, float]]]:
+    """The energy ranges USED FOR THE FITTING, per detector class, derived from the
+    rebuilt plugins' own channel masks (so the K-edge gap and any per-bin exclusion
+    appear exactly as fitted — Vikas, 2026-08-14: 'shade the energy ranges used for
+    the fitting'). Sidecar NAI_RANGES/BGO_RANGES are NOT used: they carry only the
+    outer envelope, without the mask structure."""
+    out: Dict[str, List[Tuple[float, float]]] = {}
+    for det, plugin in zip(block.detector_names, block.plugins):
+        try:
+            eb = np.asarray(plugin.response.ebounds, float)
+            mask = np.asarray(plugin.mask, bool)
+        except Exception:
+            continue
+        if mask.size != eb.size - 1 or not mask.any():
+            continue
+        cls = _det_class(det)
+        runs = out.setdefault(cls, [])
+        idx = np.flatnonzero(mask)
+        splits = np.flatnonzero(np.diff(idx) > 1)
+        for seg in np.split(idx, splits + 1):
+            runs.append((float(eb[seg[0]]), float(eb[seg[-1] + 1])))
+    # union overlapping runs per class so two NaIs shade once
+    for cls, runs in out.items():
+        runs.sort()
+        merged = [list(runs[0])]
+        for lo, hi in runs[1:]:
+            if lo <= merged[-1][1]:
+                merged[-1][1] = max(merged[-1][1], hi)
+            else:
+                merged.append([lo, hi])
+        out[cls] = [(lo, hi) for lo, hi in merged]
+    return out
+
+
+def _shade_fit_ranges(ax, residual_ax, block: BlockDisplay) -> None:
+    """Tint the fitted energy ranges on BOTH panels (Vikas, 2026-08-14: 'shade it in
+    both panels, E^2 N(E) and the residuals as well'), GRB260226A-figure idiom."""
+    for cls, runs in _fit_energy_intervals(block).items():
+        tint = _CLASS_TINTS.get(cls, "0.8")
+        for lo, hi in runs:
+            for axis in (ax, residual_ax):
+                axis.axvspan(lo, hi, color=tint, alpha=0.06, lw=0, zorder=0)
+
+
 def _draw_panel(fig, grid_cell, panel: PanelDisplay):
     inner = grid_cell.subgridspec(2, 1, height_ratios=[3, 1], hspace=0.0)
     ax = fig.add_subplot(inner[0])
     residual_ax = fig.add_subplot(inner[1], sharex=ax)
+    _shade_fit_ranges(ax, residual_ax, panel.block)
 
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -1474,7 +1557,9 @@ def _footer(blocks: Sequence[BlockDisplay], extra: Optional[str] = None) -> str:
     )
     line2 = (
         f"Axis: detected non-upper-limit domains + {DETECTED_PAD_DEX:.2f}-dex outer pad; "
-        "curves are solid only in those domains and dotted elsewhere."
+        "curves are solid only in those domains and dotted elsewhere. "
+        "Shaded bands: energy ranges used in the fit, per detector class "
+        "(channel-mask derived; warm = NaI, violet = BGO)."
     )
     if omitted:
         line2 += " Folded diagnostics omitted (EAC not stored): " + ", ".join(
@@ -1669,6 +1754,7 @@ def _render_overlay(
     inner = grid[0, 0].subgridspec(2, 1, height_ratios=[3, 1], hspace=0.0)
     ax = fig.add_subplot(inner[0])
     residual_ax = fig.add_subplot(inner[1], sharex=ax)
+    _shade_fit_ranges(ax, residual_ax, block)
     ax.set_xscale("log")
     ax.set_yscale("log")
     residual_ax.set_xscale("log")
@@ -1879,6 +1965,7 @@ def run(
     rebin = _validated_rebin(rebin)
     out_dir = Path(out).expanduser()
     product = load_fit_product(trig, out_dir)
+    _assert_range_convention(product)
     detector_names = _validate_requested_detectors(product, dets, ref)
     _set_source_position(trig)
     backgrounds = _load_backgrounds(product, trig)

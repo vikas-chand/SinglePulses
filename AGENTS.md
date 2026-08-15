@@ -43,6 +43,30 @@ light-curve PNGs and decide). Either way the decision is **recorded with a gate
 stamp** (who approved, when, how) so it is auditable. **Never fabricate an approval
 silently** — if you approve, stamp it as AI-approved; if a human must decide, say so.
 
+**THE OPERATING PROTOCOL for the burst-by-burst campaign.** Any per-burst request —
+"next burst", "step by step", a review, a walkthrough — is governed by
+**`dev/ai_guides/BurstWalkthrough.md`. Read it BEFORE running the first step.** In brief:
+
+> **Agent roster:** `dev/ai_guides/AgentArchitecture.md` — the deliberate
+> per-step agent design (producer/verifier/approver/auditor/distiller +
+> mechanical enforcement), born 2026-08-15. Every step declares its agents
+> and their single purpose; contracts derive from PI rulings.
+- Step ledger **0b, 0, 1–9** (literature harvest → identity/GCN → data inventory →
+  detectors → background → source → binning → spectral fitting → temporal → νFν → QC),
+  each step bound to its skill file in `dev/ai_guides/`.
+- Per step: **RUN → PRESENT** (what the step does / what actually ran / conclusions with
+  honest flags / anomalies) **→ GATE** (Vikas approves EVERY step; nothing advances on
+  silence) **→ LITERATURE** diff **→ DISTILL** lessons into the step's skill file.
+- **Steps 2–5 are ADOPT mode**: Stage-1 selections and blocks are recorded human
+  decisions — present their provenance stamps, never re-pick or re-adjudicate; they
+  re-open only if a downstream check implicates them.
+- Burst order + per-burst product locations: `notes/REVIEW_INDEX_106.md`. Read the
+  burst's `REPORT_<trig>.md` + `PRODUCTS.md` (in its products dir) **before** deriving
+  anything by hand — the generated report already carries the literature, the frozen
+  P0 predictions, and every figure.
+- One command rebuilds a burst's complete product set + manifest:
+  `python scripts/45_all_products.py --trig <trig> --out <dir>`.
+
 ---
 
 ## 1. What this pipeline does

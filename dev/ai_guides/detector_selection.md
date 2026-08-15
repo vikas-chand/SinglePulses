@@ -74,3 +74,14 @@ Compare the AI's approved SET against the human (`mode: human_gui`) approved SET
 - **Missed detectors** = in human, not AI; **Extra detectors** = in AI, not human (precision/recall view).
 - **Angle of disagreements** = the `DET_ANGLE` of every detector in the symmetric difference — establishes whether disputes are borderline (~50–60°, expected) or egregious (a clearly on-axis detector missed). Disagreements clustered near the threshold are tolerable; low-angle misses are not.
 - Inter-human scatter (if multiple experts) is the denominator: the AI is "good" if its Jaccard with each human is comparable to human-vs-human. Downstream-impact check then propagates the set difference through Stages 2–3 to confirm Ep/α/kT and the thermal-vs-double-break class survive the human→AI swap.
+
+## Display lesson (bn081125496, 2026-08-14 — walkthrough step 1 DISTILL)
+- **Any figure showing detector angles must render THE RULE, not a proxy.** The step-1
+  panel (`scripts/44`) drew a lone 60° line, which displayed nb (57.0°, BCAT rescue) as an
+  unconditional pass and drew the NaI cut across a BGO. Fixed 2026-08-14: both the 50°
+  (keep) and 60° (drop) lines are drawn, every NaI bar carries its BCAT status
+  ("BCAT" / "BCAT rescue" / "not in BCAT (should be DROPPED)"), and BGO bars are tagged
+  "companion rule". BCAT source = `results/grb_sample.ecsv` NAI_DETECTORS (same source
+  `scripts/39` stamps into `in_bcat`). Report caption (`scripts/48:119`) fixed to match.
+  ⚠ Same misstatement survives in `scripts/37_build_full_notebook.py` prose (lines
+  10/44/160) — fix when that template is next touched.
