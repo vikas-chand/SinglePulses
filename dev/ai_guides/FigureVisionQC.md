@@ -95,3 +95,12 @@ misread), NOT our style contract — their layout is their layout; remediation i
 caption/caveat, never restyling their output. The retroactive gate on the Bala MVT
 figure proved the point: it surfaced a sub-3-sigma z-score (2.49) on the headline
 number that the producer had presented without qualification.
+
+
+## NO-MODEL-DROPPED RULE (Vikas, 2026-08-16: "we are not dropping any models ok")
+Every (model, bin) pair in the engine table gets a PANEL: live-verified
+(|dAIC|<=0.1), or FROZEN REPLAY (stored solution evaluated exactly, stamped, no
+band), or — only for a STRUCTURAL mismatch where even the frozen replay cannot
+reproduce the stored likelihood — a labeled refusal cell that is simultaneously
+a bug report (data/mask difference requiring investigation). Guard-drift alone
+never empties a cell again.

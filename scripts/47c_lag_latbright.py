@@ -45,6 +45,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--trig", required=True)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--search-half", type=float, default=None,
+                    help="CCF peak-search half-window (s); default auto = max(2, span/4)")
+    ap.add_argument("--fit-half", type=float, default=None,
+                    help="AG fit half-window (s); default auto = max(0.5, span/8) — "
+                         "windows must SCALE with the pulse (burst-1 lesson)")
     a = ap.parse_args()
     out_dir = a.out or os.path.join(ROOT, "results", "sweep106", a.trig)
 
@@ -95,10 +100,13 @@ def main():
     h_net, h_err = net_band(HARD)
     w = (tc >= src[0] - PAD) & (tc <= src[1] + PAD)
 
+    span_src = src[1] - src[0]
+    search_half = a.search_half if a.search_half is not None else max(2.0, span_src / 4.0)
+    fit_half = a.fit_half if a.fit_half is not None else max(0.5, span_src / 8.0)
     np.random.seed(20260815)   # s02c MC step 2 is unseeded (their LAG-11)
     res = s02c.compute_lag_dccf(s_net[w], h_net[w], tc[w], s_err[w], h_err[w],
                                 n_simul_ccf=10000, n_simul_lag=1000,
-                                search_half=2.0, fit_half_width=0.5)
+                                search_half=search_half, fit_half_width=fit_half)
     tau = float(res["tau"])
     sl, sr = float(res["sigma_l"]), float(res["sigma_r"])
     sig = float(res.get("peak_sig", np.nan))
@@ -130,11 +138,22 @@ def main():
     ax.set_ylabel("DCCF")
     ax.set_title(f"{a.trig} — spectral lag, LATBright s02c engine ({det})", loc="left")
     ax.legend(loc="upper right", fontsize=PUB["tick_size"] - 2)
-    ax.text(0.02, 0.03, ("POSITIVE lag = soft lags hard (hard leads);\n"
-                         "Norris+1996 — the tool's validated convention.\n"
-                         "Handbook port measured $-$1.09 s: sign-flipped DCCF\n"
-                         "(LAG-10 docstring port) AND $\\pm$0.006 s error\n"
-                         "$\\sim$40$\\times$ underestimated vs this MC."),
+    # per-burst handbook comparison (gate finding 2026-08-16: burst-1 numbers
+    # were HARDCODED here — the cross-era class; now read from this burst's
+    # own step7_figs sidecar when present)
+    cav = ["POSITIVE lag = soft lags hard (hard leads);",
+           "Norris+1996 — the tool's validated convention."]
+    try:
+        hbj = json.load(open(os.path.join(out_dir, f"{a.trig}_step7_figs.json")))
+        hl, he = hbj.get("lag_s"), hbj.get("lag_err_s")
+        if hl is not None:
+            cav.append(f"Handbook port (sign-flipped DCCF, L26): {hl:+.3f} s;")
+            if he:
+                ratio = 0.5 * (sl + sr) / abs(he)
+                cav.append(f"its $\\pm${abs(he):.3f} s error $\\sim${ratio:.0f}$\\times$ underestimated vs this MC.")
+    except Exception:
+        cav.append("(handbook-port comparison unavailable for this burst)")
+    ax.text(0.02, 0.03, "\n".join(cav),
             transform=ax.transAxes, fontsize=PUB["tick_size"] - 4, color="0.35",
             va="bottom", zorder=3,
             bbox=dict(facecolor="white", alpha=0.85, edgecolor="none", pad=1.5))
@@ -157,6 +176,9 @@ def main():
                 convention="POSITIVE = soft lags hard (Norris+1996; s02c:2160)",
                 engine="LATBright GRB260226A/s02c_spectral_lag.py compute_lag_dccf, "
                        "unmodified import",
+                windows=dict(search_half_s=search_half, fit_half_s=fit_half,
+                             basis="auto: max(2, span/4) / max(0.5, span/8) from the "
+                                   "approved source window — pulse-scaled (burst-1 lesson)"),
                 mc=dict(n_ccf=10000, n_lag=1000, seed=20260815,
                         note="s02c step-2 MC unseeded upstream (their LAG-11); "
                              "seeded here at script level"),

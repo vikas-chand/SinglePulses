@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GRID = os.path.join(ROOT, "results", "convention_check", "sed_grid")
 OUT = os.path.join(GRID, "montage")
-TRIG = "bn081125496"
+TRIG = None  # set from --trig
 
 COLS, CELL_W = 5, 700
 CAP_H, TITLE_H, PAD = 46, 84, 8
@@ -39,14 +39,25 @@ def _font(size):
     return ImageFont.load_default()
 
 
+ALIAS = {"DSBPLFREE": "DSBPLF", "SBPLFREE": "SBPLF",
+         "BANDXCUT": "BANDCUT", "SBPLXCUT": "SBPLCUT"}   # spec NAME vs PREFIX canon
+
+
 def canon(s):
-    return re.sub(r"[^A-Z0-9]", "", s.upper())
+    c = re.sub(r"[^A-Z0-9]", "", s.upper())
+    return ALIAS.get(c, c)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tags", nargs="*", default=None)
+    ap.add_argument("--trig", default="bn081125496")
     a = ap.parse_args()
+    global TRIG, GRID, OUT
+    TRIG = a.trig
+    GRID = os.path.join(ROOT, "results", "convention_check", "sed_grid_" + TRIG if TRIG != "bn081125496" else "sed_grid")
+    GRID = os.path.join(ROOT, "results", "convention_check", "sed_grid") if TRIG == "bn081125496" else os.path.join(ROOT, "results", "convention_check", f"sed_grid_{TRIG}")
+    OUT = os.path.join(GRID, "montage")
 
     t = Table.read(os.path.join(ROOT, "results", "convention_check", TRIG,
                                 "spectral_fits.ecsv"))

@@ -116,7 +116,11 @@ purposes is two rows.
 | model-selection reporting | NR-3 TIE-REPORTER: dAIC<2 heads reported as ties, never single winners (bin8's dAIC<1 hides 10x 30-MeV spread) | PROPOSED |
 | catalog writes | NR-4 ADMISSION GATE: no row enters a committed catalog without sanity screens (bn130310840 bad row sat for weeks) | PROPOSED |
 | figure text layout | NR-5 PIXEL-COLLISION CHECK in gates (descender-graze class needed pixel maps to catch) | DEPLOYED (verifier practice) |
-| sweep refusals | NR-6 REFUSAL TRIAGE: refusals with diagnostic value (TINT CPLBB) get a one-off render path, not just a ledger line | PROPOSED |
+| sweep refusals | NR-6 REFUSAL TRIAGE | CLOSED 2026-08-16: superseded by the NO-MODEL-DROPPED rule — three-tier panel provenance (live-verified / frozen replay / structural-refusal-as-bug-report) in 41c; burst-2 = 168/168 panels |
+| every producer run | NR-7 INVOCATION RECORDER: every producer stores its full argv + env in the product sidecar (41c does; scripts/29 does NOT — its burst-1 invocation had to be reverse-engineered and the --models flag was misread, costing a partial refit) | PROPOSED (fix queued: argv into 29's sidecar) |
+| SED display fits | NR-9 STORED-REF BINDING: display fits read reference_det/fit_dets from the ENGINE sidecar, never recompute (Codex #2 queued 08-14, MATERIALIZED 08-16 on the first multi-NaI burst: 152/168 systematic refusals; fixed in 41c same-session) | DEPLOYED |
+| model name mapping | NR-10 NAME-CANON AUTHORITY: prefix<->figure-name mapping read from the ENGINE spec table only (regex canon missed DSBPLfree/SBPLfree/BandxCut/SBPLxCut -> stale panels survived purges AND montages showed phantom-missing cells, burst-2 2026-08-16) | PROPOSED (alias map deployed as interim) |
+| engine family merge | NR-8 MERGE-INTEGRITY GUARD: scripts/10's per-family save is ORDER-FRAGILE — the threecomp save dropped previously merged families AND a default-family model (burst-2, 2026-08-15: 976→742 cols, 6 models lost incl DSBPL; burst-1 dodged it by run order). Frozen refit workflow must run families in ONE process or via explicit column-merge, and a post-save model-count assert (==24) must fail loudly | PROPOSED (repair path used: scratch refit + explicit astropy column merge) |
 
 ## Freeze plan (Vikas, 2026-08-15): discovery through burst #10, then codify
 

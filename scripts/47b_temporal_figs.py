@@ -160,10 +160,11 @@ def main():
                 label=f"{name} $\\chi^2_r$={rc:.2f}" + (" (best)" if name == best else ""))
     g = pf.get("gowri") if isinstance(pf.get("gowri"), dict) else {}
     if g and np.isfinite(g.get("phi", np.nan)):
-        ax.text(0.02, 0.97, (f"Gowri: $\\varphi$={g['phi']:.3f}$\\pm${g.get('phi_err', np.nan):.3f}"
+        # bottom-left (gate finding: top-left box collided with the legend)
+        ax.text(0.02, 0.03, (f"Gowri: $\\varphi$={g['phi']:.3f}$\\pm${g.get('phi_err', np.nan):.3f}"
                              f" ({g.get('phi_class', '?')}), $R^2$={g.get('r2', np.nan):.3f}"
                              f" ({'passes' if g.get('r2_pass') else 'FAILS'} $\\geq$0.7)"),
-                transform=ax.transAxes, va="top", fontsize=PUB["tick_size"] - 2,
+                transform=ax.transAxes, va="bottom", fontsize=PUB["tick_size"] - 2,
                 bbox=dict(facecolor="white", alpha=0.85, edgecolor="none", pad=1.5), zorder=3)
     for x, ls in ((src[0], ":"), (src[1], ":")):
         ax.axvline(x, color="0.6", ls=ls, lw=1.0)
@@ -240,13 +241,41 @@ def main():
     ax.fill_between(nsc, noise[0.5], noise[99.5], color="0.85", lw=0,
                     label="noise 0.5–99.5% (2000-sim display; measurement used 10000)")
     ax.plot(scales, obs_p, color="black", lw=2.0, label="observed CWT power")
-    for val, err, lab, c in ((0.0339, 0.0029, "Bala (CANONICAL) 33.9$\\pm$2.9 ms", "#c44e52"),
-                             (cw["mvt_cwt_s"], cw["mvt_cwt_err_s"],
-                              f"CWT {cw['mvt_cwt_s']*1e3:.0f}$\\pm${cw['mvt_cwt_err_s']*1e3:.0f} ms", "#4878a8"),
-                             (0.5461, 0.0688, "Haar 546$\\pm$69 ms", "#3d8f6e")):
-        ax.axvline(val, color=c, lw=1.6, ls="--")
-        ax.axvspan(val - err, val + err, color=c, alpha=0.15, lw=0)
-        ax.plot([], [], color=c, ls="--", label=lab)
+    # per-burst estimator values (gate finding 2026-08-16: burst-1 numbers
+    # were HARDCODED — now read from each burst's own products)
+    est = []
+    try:
+        bres = json.load(open(os.path.join(ROOT, "results", "mvt_upstream", "run_step7",
+                                           a.trig, "result.json")))
+        bret = bres.get("return") or []
+        if len(bret) >= 4 and bret[2]:
+            est.append((float(bret[2]), float(bret[3]),
+                        f"Bala (CANONICAL) {float(bret[2])*1e3:.1f}$\\pm${float(bret[3])*1e3:.1f} ms",
+                        "#c44e52", False))
+    except Exception:
+        pass
+    est.append((cw["mvt_cwt_s"], cw["mvt_cwt_err_s"],
+                f"CWT {cw['mvt_cwt_s']*1e3:.0f}$\\pm${cw['mvt_cwt_err_s']*1e3:.0f} ms (grid-quantized)",
+                "#4878a8", False))
+    try:
+        from astropy.table import Table as _T
+        _tc = _T.read(os.path.join(ROOT, "results", "temporal_catalog_all106.ecsv"))
+        _r = _tc[[str(x).strip() == a.trig for x in _tc["TRIGGER_NAME"]]][0]
+        _hv, _he, _ht = float(_r["MVT_S"]), float(_r["MVT_ERR_S"]), str(_r["MVT_TYPE"])
+        if _ht == "limit":
+            est.append((_hv, None, f"Haar $<$ {_hv*1e3:.0f} ms (UPPER LIMIT)", "#3d8f6e", True))
+        else:
+            est.append((_hv, _he, f"Haar {_hv*1e3:.0f}$\\pm${_he*1e3:.0f} ms", "#3d8f6e", False))
+    except Exception:
+        pass
+    for val, err, lab, c, is_lim in est:
+        ax.axvline(val, color=c, lw=1.6, ls=":" if is_lim else "--")
+        if err and not is_lim:
+            ax.axvspan(val - err, val + err, color=c, alpha=0.15, lw=0)
+        if is_lim:
+            ax.annotate("", xy=(val * 0.6, 2e-1), xytext=(val, 2e-1),
+                        arrowprops=dict(arrowstyle="->", color=c, lw=1.4))
+        ax.plot([], [], color=c, ls=":" if is_lim else "--", label=lab)
     ax.set_xscale("log"); ax.set_yscale("log")
     ax.set_xlabel("Timescale (s)")
     ax.set_ylabel("Global wavelet power / scale")

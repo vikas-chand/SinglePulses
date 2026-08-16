@@ -203,7 +203,24 @@ def main():
     dets = [str(r["DETECTOR"]).strip() for r in rows if str(r["DETECTOR"]).strip() != "lle"]
     nais = [d for d in dets if d.startswith("n")]
     ang = {str(r["DETECTOR"]).strip(): float(r["DET_ANGLE"]) for r in rows}
-    ref = min(nais, key=lambda d: ang.get(d, 999))
+    # reference detector: ALWAYS the ENGINE'S stored choice when available.
+    # Codex independent finding #2, materialized on burst 2 (2026-08-16):
+    # engine ref n0 vs min-angle n1 reshuffles which detectors carry free
+    # EACs -> a different likelihood parameterization -> systematic
+    # |dAIC| ~ 0.1-0.5 guard refusals across ALL 168 pairs.
+    ref = None
+    _meta_p = os.path.join(a.fit_root or a.out, a.trig, "spectral_fits.json")
+    if os.path.exists(_meta_p):
+        try:
+            _m = json.load(open(_meta_p))
+            ref = _m.get("reference_det") or _m.get("canonical_det")
+            _fd = _m.get("fit_dets")
+            if _fd:
+                dets = [d for d in dets if d in _fd]
+        except Exception:
+            ref = None
+    if ref is None or ref not in dets:
+        ref = min(nais, key=lambda d: ang.get(d, 999))
     blocks = Table.read(os.path.join(ROOT, "results", "sweep106", a.trig, "blocks",
                                      f"bb_blocks_spectral_{a.trig}.ecsv"))
     bt = blocks[[str(x).strip() == ref for x in blocks["DETECTOR"]]]
@@ -282,17 +299,56 @@ def main():
     # RNG — unseeded, the band-suppression percentage jittered between
     # renders (round-11: 52%->50%, 46%->43%). Seed = deterministic figure.
     np.random.seed(20260814)
-    jl.fit(quiet=True)
-    n2ll = float(jl.results.get_statistic_frame()["-log(likelihood)"]["total"]) * 2.0
+    fit_error = None
+    try:
+        jl.fit(quiet=True)
+        n2ll = float(jl.results.get_statistic_frame()["-log(likelihood)"]["total"]) * 2.0
+    except Exception as exc:
+        # Class-B: deeply railed fits crash threeML's own error propagation
+        # INSIDE jl.fit (empty variates -> percentile IndexError). Route to
+        # frozen replay instead of dying (NO-MODEL-DROPPED rule).
+        fit_error = f"{type(exc).__name__}: {str(exc)[:60]}"
+        n2ll = np.nan
     kfree = len(model.free_parameters)
     aic = n2ll + 2.0 * kfree
 
-    # STORED-SOLUTION GUARD (Codex item 9 step 5): hard-fail, never warn — a
-    # polished figure of a DIFFERENT likelihood must be impossible.
-    if stored_aic is not None and abs(aic - stored_aic) > 0.1:
-        raise RuntimeError(f"live AIC {aic:.4f} != stored {stored_aic:.4f} "
-                           f"(|d|={abs(aic - stored_aic):.4f} > 0.1) — the live fit "
-                           "found a different solution; figure refused")
+    # STORED-SOLUTION GUARD (Codex item 9 step 5) + PI RULING (Vikas,
+    # 2026-08-16: "we are not dropping any models"): a drifted live fit does
+    # NOT exile the model — fall back to a FROZEN REPLAY of the stored
+    # solution (params set exactly, NO minimization), which must reproduce
+    # the stored AIC or the figure is refused as a STRUCTURAL mismatch.
+    fit_mode = "live"
+    if fit_error is not None and stored_aic is None:
+        raise RuntimeError(f"fit crashed ({fit_error}) and no stored reference exists")
+    if (fit_error is not None) or (stored_aic is not None and abs(aic - stored_aic) > 0.1):
+        if srow is not None and spec.get("pmap"):
+            for colsuf, pshort in spec["pmap"].items():
+                col = f"{spec['prefix']}_{colsuf}"
+                if col in srow.colnames and np.isfinite(float(srow[col])):
+                    for pk, pp in shape.free_parameters.items():
+                        if pk.split(".")[-1] == pshort:
+                            v = float(srow[col])
+                            if pp.min_value is not None: v = max(v, float(pp.min_value))
+                            if pp.max_value is not None: v = min(v, float(pp.max_value))
+                            pp.value = v
+        for d in live_dets:
+            col = f"{spec['prefix']}_EAC_{d.upper()}"
+            if srow is not None and col in srow.colnames and np.isfinite(float(srow[col])):
+                for pk, pp in model.free_parameters.items():
+                    if f"cons_{d}" in pk.lower() and pp.free:
+                        pp.value = min(max(float(srow[col]), float(pp.min_value)),
+                                       float(pp.max_value))
+        n2ll = -2.0 * sum(float(p.get_log_like()) for p in live)
+        aic_frozen = n2ll + 2.0 * kfree
+        if abs(aic_frozen - stored_aic) <= 0.1:
+            fit_mode = "frozen_replay"
+            aic = aic_frozen
+        else:
+            raise RuntimeError(
+                f"STRUCTURAL mismatch: frozen replay AIC {aic_frozen:.4f} != "
+                f"stored {stored_aic:.4f} (live: "
+                f"{'crashed ' + fit_error if fit_error else f'drift {abs(aic - stored_aic):.4f}'}) "
+                "— data/mask difference, refused")
 
     comp = shape
     nufnu = lambda E: np.asarray(E, float) ** 2 * np.asarray(comp(np.asarray(E, float)), float)
@@ -308,7 +364,8 @@ def main():
     fit_hi = max(hi for _, _, hi in ivals)
     shade_ranges([ax, rax], ivals)
 
-    DET_COL = {"na": "#1b7a8c", "nb": "#e2a13d", "b1": "#b23a6b"}
+    DET_COL = {"na": "#1b7a8c", "nb": "#e2a13d", "b1": "#b23a6b",
+               "n0": "#1b7a8c", "n1": "#2f6b9e", "n2": "#e2a13d", "b0": "#b23a6b"}
     e_all, y_all, ks, group_counts = [], [], {}, {}
     for d, p in zip(live_dets, live):
         # each plugin's own EAC constant (1 for the reference, fitted otherwise)
@@ -324,7 +381,7 @@ def main():
         # k onto the k=1 frame. The plain ratio nfm*net/pred does exactly
         # this automatically (pred contains k, the numerator does not).
         # k values are disclosed in the legend labels.
-        col = DET_COL.get(d, det_color(d) if callable(det_color) else "0.4")
+        col = DET_COL.get(d) or (det_color(d) if callable(det_color) else None) or "0.4"
         pts = u["good"] if not a.ul_arrows else (u["good"] & ~u["is_ul"])
         lab = d if d == ref else f"{d} (k={k:.3f})"
         ax.errorbar(u["emid"][pts], u["nf"][pts], yerr=u["nfe"][pts],
@@ -348,7 +405,10 @@ def main():
     # the likelihood, so every fitted channel is on the figure; nothing beyond
     # either fitted edge (Vikas, 2026-08-14, both directions)
     E = np.geomspace(fit_lo, fit_hi, 400)
-    band, note, band_frac = native_band(jl, model, a.trig, E)
+    if fit_mode == "frozen_replay":
+        band, note, band_frac = None, "68% band n/a: frozen replay of the stored solution", None
+    else:
+        band, note, band_frac = native_band(jl, model, a.trig, E)
     band_out_frac = None
     if band is not None:
         # F3 guard (Vikas, 2026-08-15: "the shaded band ... is nowhere close to
@@ -408,7 +468,17 @@ def main():
     # backing box eventually hides a data point near the floor — occlusion is
     # impossible by construction out here, and no bbox is needed).
     # plain text, not U+2713: round-10 B2 — STIX serif has no checkmark glyph
-    guard = ("matches stored" if stored_aic is not None else "no stored ref (diagnostic)")
+    guard = ("FROZEN REPLAY of stored solution" if fit_mode == "frozen_replay"
+             else "matches stored" if stored_aic is not None
+             else "no stored ref (diagnostic)")
+    # F1 (burst-2 notes): near-degenerate EAC plateaus — live EACs can differ
+    # from the engine's railed values at |dAIC|<0.1; disclose, never hide
+    if srow is not None:
+        for d in live_dets:
+            col = f"{spec['prefix']}_EAC_{d.upper()}"
+            if col in srow.colnames and np.isfinite(float(srow[col]))                and abs(ks.get(d, 1.0) - float(srow[col])) > 0.01:
+                guard += " | EAC plateau (live≠stored, dAIC<0.1)"
+                break
     # y=1.07: own row ABOVE the title line (round-14 B1: same-row right
     # alignment overprinted the title's trailing "(Model)").
     # PGstat/dof printed with AIC (Vikas, 2026-08-15: the statistic is read as
@@ -432,6 +502,7 @@ def main():
                 argv=sys.argv[1:], trig=a.trig, bin=str(a.bin),
                 model=spec["name"], detectors=list(live_dets), reference=ref,
                 interval_s=[t1, t2], eac=ks, groups=group_counts,
+                fit_mode=fit_mode, live_fit_error=fit_error,
                 aic_live=aic, aic_stored=stored_aic, n2ll_live=n2ll,
                 pgstat=n2ll, dof=dof, n_active_channels=nchan,
                 band=("drawn" if band is not None else (note or "none")),
