@@ -27,7 +27,7 @@ $T_{90} \propto E^{-0.14 \pm 0.02}$. The minimum variability timescale depends
 on the estimator by design: a windowed method finds $33.9 \pm 2.9$~ms on the
 pulse rise, while global wavelet methods return $215 \pm 17$~ms (CWT) and
 $546 \pm 69$~ms (Haar) for the same data. The spectral lag between 25--50 and
-100--300~keV is $\tau = 0.705^{+0.291}_{-0.205}$~s (soft lagging hard), which
+100--300~keV is $\tau = 0.725^{+0.070}_{-0.094} \pm 0.139_{\rm win}$~s (soft lagging hard), which
 for a single broad pulse we interpret as envelope evolution: $\tau/T_{90}
 \approx 0.08$. We then fit 24 spectral models in nine Bayesian-block time bins
 and in the time-integrated spectrum, selecting by the Akaike Information
@@ -236,7 +236,9 @@ We measure the 25--50 vs.\ 100--300~keV lag with the discrete
 cross-correlation function \citep{1997ApJ...486..928B}, an asymmetric-Gaussian
 peak model \citep{2015MNRAS.446.1129B}, and flux-randomization Monte Carlo
 errors \citep{1998PASP..110..660P}, taking the MC median with 16/84-percentile
-uncertainties: $\tau = 0.705^{+0.291}_{-0.205}$~s, soft lagging hard
+uncertainties, scanning the fit window around the peak so the window
+spread enters as a quoted systematic: $\tau = 0.725^{+0.070}_{-0.094}
+\pm 0.139_{\rm win}$~s, soft lagging hard
 (positive lag in the standard convention;
 \citealt{1996ApJ...459..393N,2010ApJ...711.1073U}), with a $39\sigma$ CCF
 peak (Figure~\ref{fig:lag}).\footnote{An earlier in-house lag product was
@@ -248,7 +250,7 @@ For a single broad pulse this number requires interpretation. The soft and
 hard light curves are near-copies of one envelope, so the CCF is a broad
 function whose width is set by the pulse duration; its peak offset measures
 the soft--hard shift of the envelope --- the FRED's hard-to-soft evolution
---- not a photon arrival delay. Consistently, $\tau/T_{90} \approx 0.08$,
+--- not a photon arrival delay. Consistently, $\tau/T_{90} \approx 0.085$,
 in line with lag--width scaling within the pulse paradigm
 \citep{1996ApJ...459..393N,2012MNRAS.419..614U}. This has a population
 consequence: in lag--variability correlations
@@ -520,7 +522,7 @@ FRED-like asymmetry $\varphi = 0.317 \pm 0.026$ (Kocevski profile best).
 \item MVT $= 33.9 \pm 2.9$~ms (windowed, on the pulse rise; $z = 2.5$
 caveat), versus 215~ms (global CWT) and 546~ms (global Haar) --- estimator
 labels are part of the measurement.
-\item Lag $= 0.705^{+0.291}_{-0.205}$~s (soft lags hard) $\approx 8\%$ of the
+\item Lag $= 0.725^{+0.070}_{-0.094} \pm 0.139_{\rm win}$~s (soft lags hard) $\approx 8.5\%$ of the
 pulse width: envelope evolution, with direct implications for population
 lag--variability correlations.
 \item CPL suffices in 7/9 bins ($\Gamma \simeq -0.3$, $E_{\rm c}$ declining

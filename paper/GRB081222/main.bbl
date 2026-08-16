@@ -1,0 +1,131 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\href{#1}{#1}}
+\providecommand{\dodoi}[1]{doi:~\href{http://doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\doeprint}[1]{\href{http://ascl.net/#1}{\nolinkurl{http://ascl.net/#1}}}
+\providecommand{\doarXiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{https://arxiv.org/abs/#1}}}
+
+\bibitem[{{Akaike}(1974)}]{1974ITAC...19..716A}
+{Akaike}, H. 1974, IEEE Transactions on Automatic Control, 19, 716,
+  \dodoi{10.1109/TAC.1974.1100705}
+
+\bibitem[{{Bala} {et~al.}(2026){Bala}, {Veres}, {Goldstein}, {Sonawane},
+  {Samanta}, \& {Iyyani}}]{2026ApJ...999...51B}
+{Bala}, S., {Veres}, P., {Goldstein}, A., {et~al.} 2026, \apj, 999, 51,
+  \dodoi{10.3847/1538-4357/ae3d31}
+
+\bibitem[{{Band} {et~al.}(1993){Band}, {Matteson}, {Ford}, {Schaefer},
+  {Palmer}, {Teegarden}, {Cline}, {Briggs}, {Paciesas}, {Pendleton}, {Fishman},
+  {Kouveliotou}, {Meegan}, {Wilson}, \& {Lestrade}}]{1993ApJ...413..281B}
+{Band}, D., {Matteson}, J., {Ford}, L., {et~al.} 1993, \apj, 413, 281,
+  \dodoi{10.1086/172995}
+
+\bibitem[{{Band}(1997)}]{1997ApJ...486..928B}
+{Band}, D.~L. 1997, \apj, 486, 928, \dodoi{10.1086/304566}
+
+\bibitem[{{Bernardini} {et~al.}(2015){Bernardini}, {Ghirlanda}, {Campana},
+  {Covino}, {Salvaterra}, {Atteia}, {Burlon}, {Calderone}, {D'Avanzo},
+  {D'Elia}, {Ghisellini}, {Heussaff}, {Lazzati}, {Melandri}, {Nava}, {Vergani},
+  \& {Tagliaferri}}]{2015MNRAS.446.1129B}
+{Bernardini}, M.~G., {Ghirlanda}, G., {Campana}, S., {et~al.} 2015, \mnras,
+  446, 1129, \dodoi{10.1093/mnras/stu2153}
+
+\bibitem[{{Chand} {et~al.}(2020){Chand}, {Pal}, {Banerjee}, {Sharma}, {Tam}, \&
+  {He}}]{2020ApJ...903....9C}
+{Chand}, V., {Pal}, P.~S., {Banerjee}, A., {et~al.} 2020, \apj, 903, 9,
+  \dodoi{10.3847/1538-4357/abb5fc}
+
+\bibitem[{{Cucchiara} {et~al.}(2008){Cucchiara}, {Fox}, {Cenko}, \&
+  {Berger}}]{2008GCN..8713....1C}
+{Cucchiara}, A., {Fox}, D.~B., {Cenko}, S.~B., \& {Berger}, E. 2008, GRB
+  Coordinates Network, 8713, 1
+
+\bibitem[{{G{\"o}kta{\textcommabelow s}}
+  {et~al.}(2025){G{\"o}kta{\textcommabelow s}}, {Nas{\i}ro{\u{g}}lu}, \&
+  {Sonba{\textcommabelow s}}}]{2025JARNA..11...27G}
+{G{\"o}kta{\textcommabelow s}}, D., {Nas{\i}ro{\u{g}}lu}, {\.I}., \&
+  {Sonba{\textcommabelow s}}, E. 2025, Journal of Advanced Research in Natural
+  and Applied Sciences, 11, 27, \dodoi{10.28979/jarnas.1612952}
+
+\bibitem[{{Golenetskii} {et~al.}(2008){Golenetskii}, {Aptekar}, {Mazets},
+  {Pal'Shin}, {Frederiks}, {Oleynik}, {Ulanov}, {Svinkin}, \&
+  {Cline}}]{2008GCN..8721....1G}
+{Golenetskii}, S., {Aptekar}, R., {Mazets}, E., {et~al.} 2008, GRB Coordinates
+  Network, 8721, 1
+
+\bibitem[{{Golkhou} \& {Butler}(2014)}]{2014ApJ...787...90G}
+{Golkhou}, V.~Z., \& {Butler}, N.~R. 2014, \apj, 787, 90,
+  \dodoi{10.1088/0004-637X/787/1/90}
+
+\bibitem[{{Gowri} {et~al.}(2025){Gowri}, {Pe'er}, {Ryde}, \&
+  {Dereli-B{\'e}gu{\'e}}}]{2025ApJ...991..230G}
+{Gowri}, A., {Pe'er}, A., {Ryde}, F., \& {Dereli-B{\'e}gu{\'e}}, H. 2025, \apj,
+  991, 230, \dodoi{10.3847/1538-4357/adec81}
+
+\bibitem[{{Graham} {et~al.}(2008){Graham}, {Tanvir}, {Fruchter}, {Wiersema}, \&
+  {Levan}}]{2008GCN..8718....1G}
+{Graham}, J.~F., {Tanvir}, N.~R., {Fruchter}, A.~S., {Wiersema}, K., \&
+  {Levan}, A.~J. 2008, GRB Coordinates Network, 8718, 1
+
+\bibitem[{{Kocevski} {et~al.}(2003){Kocevski}, {Ryde}, \&
+  {Liang}}]{2003ApJ...596..389K}
+{Kocevski}, D., {Ryde}, F., \& {Liang}, E. 2003, \apj, 596, 389,
+  \dodoi{10.1086/377707}
+
+\bibitem[{{Meegan} {et~al.}(2009){Meegan}, {Lichti}, {Bhat}, {Bissaldi},
+  {Briggs}, {Connaughton}, {Diehl}, {Fishman}, {Greiner}, {Hoover}, {van der
+  Horst}, {von Kienlin}, {Kippen}, {Kouveliotou}, {McBreen}, {Paciesas},
+  {Preece}, {Steinle}, {Wallace}, {Wilson}, \&
+  {Wilson-Hodge}}]{2009ApJ...702..791M}
+{Meegan}, C., {Lichti}, G., {Bhat}, P.~N., {et~al.} 2009, \apj, 702, 791,
+  \dodoi{10.1088/0004-637X/702/1/791}
+
+\bibitem[{{Norris} {et~al.}(1996){Norris}, {Nemiroff}, {Bonnell}, {Scargle},
+  {Kouveliotou}, {Paciesas}, {Meegan}, \& {Fishman}}]{1996ApJ...459..393N}
+{Norris}, J.~P., {Nemiroff}, R.~J., {Bonnell}, J.~T., {et~al.} 1996, \apj, 459,
+  393, \dodoi{10.1086/176902}
+
+\bibitem[{{Peterson} {et~al.}(1998){Peterson}, {Wanders}, {Horne}, {Collier},
+  {Alexander}, {Kaspi}, \& {Maoz}}]{1998PASP..110..660P}
+{Peterson}, B.~M., {Wanders}, I., {Horne}, K., {et~al.} 1998, \pasp, 110, 660,
+  \dodoi{10.1086/316177}
+
+\bibitem[{{Qin} {et~al.}(2013){Qin}, {Liang}, {Liang}, {Yi}, {Lin}, {Zhang},
+  {Zhang}, {L{\"u}}, {Lu}, {L{\"u}}, \& {Zhang}}]{2013ApJ...763...15Q}
+{Qin}, Y., {Liang}, E.-W., {Liang}, Y.-F., {et~al.} 2013, \apj, 763, 15,
+  \dodoi{10.1088/0004-637X/763/1/15}
+
+\bibitem[{{Scargle} {et~al.}(2013){Scargle}, {Norris}, {Jackson}, \&
+  {Chiang}}]{2013ApJ...764..167S}
+{Scargle}, J.~D., {Norris}, J.~P., {Jackson}, B., \& {Chiang}, J. 2013, \apj,
+  764, 167, \dodoi{10.1088/0004-637X/764/2/167}
+
+\bibitem[{{Shenoy} {et~al.}(2013){Shenoy}, {Sonbas}, {Dermer}, {Maximon},
+  {Dhuga}, {Bhat}, {Hakkila}, {Parke}, {Maclachlan}, {Eskandarian}, \&
+  {Ukwatta}}]{2013ApJ...778....3S}
+{Shenoy}, A., {Sonbas}, E., {Dermer}, C., {et~al.} 2013, \apj, 778, 3,
+  \dodoi{10.1088/0004-637X/778/1/3}
+
+\bibitem[{{Ukwatta} {et~al.}(2010){Ukwatta}, {Stamatikos}, {Dhuga}, {Sakamoto},
+  {Barthelmy}, {Eskandarian}, {Gehrels}, {Maximon}, {Norris}, \&
+  {Parke}}]{2010ApJ...711.1073U}
+{Ukwatta}, T.~N., {Stamatikos}, M., {Dhuga}, K.~S., {et~al.} 2010, \apj, 711,
+  1073, \dodoi{10.1088/0004-637X/711/2/1073}
+
+\bibitem[{{Vianello} {et~al.}(2018){Vianello}, {Gill}, {Granot}, {Omodei},
+  {Cohen-Tanugi}, \& {Longo}}]{2018ApJ...864..163V}
+{Vianello}, G., {Gill}, R., {Granot}, J., {et~al.} 2018, \apj, 864, 163,
+  \dodoi{10.3847/1538-4357/aad6ea}
+
+\bibitem[{{Vianello} {et~al.}(2015){Vianello}, {Lauer}, {Younk}, {Tibaldo},
+  {Burgess}, {Ayala}, {Harding}, {Hui}, {Omodei}, \&
+  {Zhou}}]{2015arXiv150708343V}
+{Vianello}, G., {Lauer}, R.~J., {Younk}, P., {et~al.} 2015, arXiv e-prints,
+  arXiv:1507.08343, \dodoi{10.48550/arXiv.1507.08343}
+
+\bibitem[{{Yu} {et~al.}(2019){Yu}, {Dereli-B{\'e}gu{\'e}}, \&
+  {Ryde}}]{2019ApJ...886...20Y}
+{Yu}, H.-F., {Dereli-B{\'e}gu{\'e}}, H., \& {Ryde}, F. 2019, \apj, 886, 20,
+  \dodoi{10.3847/1538-4357/ab488a}
+
+\end{thebibliography}

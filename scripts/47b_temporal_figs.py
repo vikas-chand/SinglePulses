@@ -244,16 +244,19 @@ def main():
     # per-burst estimator values (gate finding 2026-08-16: burst-1 numbers
     # were HARDCODED — now read from each burst's own products)
     est = []
-    try:
-        bres = json.load(open(os.path.join(ROOT, "results", "mvt_upstream", "run_step7",
-                                           a.trig, "result.json")))
-        bret = bres.get("return") or []
-        if len(bret) >= 4 and bret[2]:
-            est.append((float(bret[2]), float(bret[3]),
-                        f"Bala (CANONICAL) {float(bret[2])*1e3:.1f}$\\pm${float(bret[3])*1e3:.1f} ms",
-                        "#c44e52", False))
-    except Exception:
-        pass
+    bres_p = os.path.join(ROOT, "results", "mvt_upstream", "run_step7",
+                          a.trig, "result.json")
+    if os.path.exists(bres_p):
+        bres = json.load(open(bres_p))
+        bmvt, berr = bres.get("mvt_s"), bres.get("mvt_err_s")
+        bst, bdelt = str(bres.get("status", "?")), bres.get("delta_s")
+        if bmvt is None:
+            raise RuntimeError(f"{bres_p}: no mvt_s — refuse to draw a partial "
+                               "estimator set (the silent-skip class)")
+        est.append((float(bmvt), float(berr) if berr else None,
+                    f"Bala (CANONICAL, {bst}, $\\Delta$t={bdelt}s) "
+                    f"{float(bmvt)*1e3:.1f}$\\pm${float(berr)*1e3:.1f} ms",
+                    "#c44e52", False))
     est.append((cw["mvt_cwt_s"], cw["mvt_cwt_err_s"],
                 f"CWT {cw['mvt_cwt_s']*1e3:.0f}$\\pm${cw['mvt_cwt_err_s']*1e3:.0f} ms (grid-quantized)",
                 "#4878a8", False))
@@ -268,19 +271,24 @@ def main():
             est.append((_hv, _he, f"Haar {_hv*1e3:.0f}$\\pm${_he*1e3:.0f} ms", "#3d8f6e", False))
     except Exception:
         pass
+    _lim_arrows = []
     for val, err, lab, c, is_lim in est:
         ax.axvline(val, color=c, lw=1.6, ls=":" if is_lim else "--")
         if err and not is_lim:
             ax.axvspan(val - err, val + err, color=c, alpha=0.15, lw=0)
         if is_lim:
-            ax.annotate("", xy=(val * 0.6, 2e-1), xytext=(val, 2e-1),
-                        arrowprops=dict(arrowstyle="->", color=c, lw=1.4))
+            _lim_arrows.append((val, c))   # drawn AFTER scales/limits finalize
         ax.plot([], [], color=c, ls=":" if is_lim else "--", label=lab)
     ax.set_xscale("log"); ax.set_yscale("log")
     ax.set_xlabel("Timescale (s)")
     ax.set_ylabel("Global wavelet power / scale")
     ax.set_title(f"{a.trig} — MVT, three primitives ({det}, 8–900 keV)", loc="left")
     ax.legend(loc="upper left", fontsize=PUB["tick_size"] - 3)
+    for _lv, _lc in _lim_arrows:
+        _yl = ax.get_ylim()
+        _ya = float((max(_yl[0], 1e-30) * _yl[1]) ** 0.5)
+        ax.annotate("", xy=(_lv * 0.55, _ya), xytext=(_lv, _ya),
+                    arrowprops=dict(arrowstyle="->", color=_lc, lw=1.8), zorder=6)
     foot_stamp(fig, "windowed (Bala) vs global (CWT/Haar) scope explains the ordering; "
                "quote ONLY with estimator labels")
     p3 = os.path.join(out_dir, f"{a.trig}_step7_mvt.png")
@@ -298,9 +306,8 @@ def main():
                 gowri=dict(phi=g.get("phi"), phi_err=g.get("phi_err"),
                            phi_class=g.get("phi_class"), r2=g.get("r2"),
                            r2_pass=g.get("r2_pass")),
-                mvt=dict(bala_canonical_s=0.0339, bala_err_s=0.0029,
-                         cwt_s=cw["mvt_cwt_s"], cwt_err_s=cw["mvt_cwt_err_s"],
-                         haar_s=0.5461, haar_err_s=0.0688),
+                mvt=dict(estimators=[dict(value_s=v, err_s=e, label=l, upper_limit=lim)
+                                     for v, e, l, _, lim in est]),
                 source="engine primitives: scripts/40 preamble verbatim + handbook "
                        "analyze_single_pulse; CWT verbatim scripts/47")
     with open(os.path.join(out_dir, f"{a.trig}_step7_figs.json"), "w") as fh:

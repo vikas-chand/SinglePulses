@@ -434,6 +434,20 @@ def main():
                 bbox=dict(facecolor="white", alpha=0.85, edgecolor="none", pad=1.5))
     ax.plot(E, nufnu(E), color="black", lw=2.4, zorder=5,
             label=f"{spec['name']} fit")
+    # MODEL COMPONENTS, XSPEC-style dotted (Vikas, 2026-08-16: "plot the model
+    # components also ... like XSPEC does / my GRB 190114C figure" — threeML's
+    # plot_spectra has no native component mode; astromodels' CompositeFunction
+    # .functions supplies the additive terms directly)
+    _comps = getattr(shape, "functions", None)
+    if _comps and len(_comps) > 1:
+        _ccol = ["#7a5195", "#3d8f6e", "#b07714"]
+        for _i, _fn in enumerate(_comps):
+            try:
+                _cy = np.asarray(E, float) ** 2 * np.asarray(_fn(np.asarray(E, float)), float)
+                ax.plot(E, _cy, ls=":", lw=1.5, color=_ccol[_i % 3], zorder=4,
+                        label=getattr(_fn, "name", f"component {_i+1}"))
+            except Exception as _ce:
+                print(f"  [warn] component {_i}: {_ce}")
     # cross-normalization disclosure (Codex item 7): short, left, stamp-row —
     # vertically separated from the band note at y=0.085 (round-10 N1)
     ax.text(0.02, 0.02, f"{', '.join(d for d in live_dets if d != ref)} points / k "

@@ -102,14 +102,36 @@ def main():
 
     span_src = src[1] - src[0]
     search_half = a.search_half if a.search_half is not None else max(2.0, span_src / 4.0)
-    fit_half = a.fit_half if a.fit_half is not None else max(0.5, span_src / 8.0)
+    # PI instruction (Vikas, 2026-08-16): "try fitting various ranges around
+    # the peak ... we want to determine the peak of the curve." Scan several
+    # fit half-widths; the PEAK POSITION is the deliverable; the window
+    # spread becomes a quoted systematic.
+    if a.fit_half is not None:
+        scan_halves = [a.fit_half]
+    else:
+        scan_halves = sorted({round(max(0.5, span_src / d), 2) for d in (16, 8, 6, 4)})
+        scan_halves = [h for h in scan_halves if h <= search_half] or [max(0.5, span_src / 8.0)]
     np.random.seed(20260815)   # s02c MC step 2 is unseeded (their LAG-11)
-    res = s02c.compute_lag_dccf(s_net[w], h_net[w], tc[w], s_err[w], h_err[w],
-                                n_simul_ccf=10000, n_simul_lag=1000,
-                                search_half=search_half, fit_half_width=fit_half)
+    scan = []
+    for fh in scan_halves:
+        r = s02c.compute_lag_dccf(s_net[w], h_net[w], tc[w], s_err[w], h_err[w],
+                                  n_simul_ccf=10000, n_simul_lag=1000,
+                                  search_half=search_half, fit_half_width=fh)
+        scan.append((fh, r))
+        print(f"  scan fit_half={fh:5.2f} s -> tau {float(r['tau']):+.4f} "
+              f"-{float(r['sigma_l']):.4f}/+{float(r['sigma_r']):.4f}", flush=True)
+    taus = np.array([float(r["tau"]) for _, r in scan])
+    med = float(np.median(taus))
+    # primary = member closest to the scan median AMONG pulse-scaled windows
+    # (the narrowest window is scan-only: its apex-hugging fit is exactly what
+    # the PI flagged; it informs the systematic, never the drawn fit)
+    cand = [i for i, (fh, _) in enumerate(scan) if fh >= max(0.5, span_src / 8.0)] or list(range(len(scan)))
+    best = min(cand, key=lambda i: abs(taus[i] - med))
+    fit_half, res = scan[best]
     tau = float(res["tau"])
     sl, sr = float(res["sigma_l"]), float(res["sigma_r"])
     sig = float(res.get("peak_sig", np.nan))
+    win_sys = 0.5 * (taus.max() - taus.min())
     print(f"LATBright s02c lag ({a.trig}, {det}, {SOFT}->{HARD} keV, {DT*1e3:.0f} ms): "
           f"tau = {tau:+.4f} -{sl:.4f}/+{sr:.4f} s (peak {sig:.1f} sigma) — "
           f"POSITIVE = soft lags hard (Norris+1996)", flush=True)
@@ -132,7 +154,8 @@ def main():
     except Exception:
         pass
     ax.axvline(tau, color="#c44e52", lw=1.8,
-               label=f"$\\tau$ = {tau:+.3f} $-${sl:.3f}/$+${sr:.3f} s")
+               label=(f"$\\tau$ = {tau:+.3f} $-${sl:.3f}/$+${sr:.3f} s"
+                      + (f" ($\\pm${win_sys:.3f} win)" if len(scan_halves) > 1 else "")))
     ax.axvspan(tau - sl, tau + sr, color="#c44e52", alpha=0.18, lw=0)
     ax.set_xlabel("Offset (s)")
     ax.set_ylabel("DCCF")
@@ -177,6 +200,9 @@ def main():
                 engine="LATBright GRB260226A/s02c_spectral_lag.py compute_lag_dccf, "
                        "unmodified import",
                 windows=dict(search_half_s=search_half, fit_half_s=fit_half,
+                             scan_halves_s=scan_halves,
+                             scan_taus_s=[float(x) for x in taus],
+                             window_systematic_s=float(win_sys),
                              basis="auto: max(2, span/4) / max(0.5, span/8) from the "
                                    "approved source window — pulse-scaled (burst-1 lesson)"),
                 mc=dict(n_ccf=10000, n_lag=1000, seed=20260815,
