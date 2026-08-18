@@ -93,7 +93,15 @@ def cwt_background_spectrum(mean_rate, dt, N, n_simulations=10000, dj=0.25,
     n_scales = len(scales)
     worker_fn = functools.partial(_bg_worker, lam=lam, N=N, dt=dt,
                                   dj=dj, max_scale_sec=max_scale_sec)
-    n_cpus = min(12, max(1, multiprocessing.cpu_count() - 2))
+    # RAM-BUDGET RULE (PI 2026-08-17, after the 140 GB shutdown): this pool
+    # is NESTED inside the products driver, which itself runs N bursts at
+    # once -- 5 drivers x 12 workers = 60 processes was a real state on
+    # 2026-08-17. Concurrency is budgeted in GB machine-wide, so the
+    # default is small and the arbiter (dev/ram_slots.sh) raises it.
+    # Results are seed-per-sim (_bg_worker: default_rng(42+i)), so the
+    # worker count changes speed/memory ONLY -- never the numbers.
+    n_cpus = int(os.environ.get('TB_CWT_WORKERS',
+                                min(4, max(1, multiprocessing.cpu_count() - 2))))
     print(f"  {n_simulations} MC sims on {n_cpus} cores...", flush=True)
     all_power = np.zeros((n_simulations, n_scales))
     with multiprocessing.Pool(n_cpus) as pool:
