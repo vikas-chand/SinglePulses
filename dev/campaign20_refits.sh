@@ -31,7 +31,6 @@ if [ -f "$PIDFILE" ] && kill -0 "$(cat $PIDFILE)" 2>/dev/null; then
 fi
 echo $$ > $PIDFILE
 trap 'rm -f $PIDFILE' EXIT INT TERM
-i=0
 for TRIG in $(python3 -c "
 from astropy.table import Table
 import os
@@ -46,14 +45,13 @@ for b in sorted({str(x).strip() for x in t['TRIGGER_NAME']}):
   mkdir -p $OUT
   ram_admit $TB_FIT_SLOT_GB || { echo 'RAM ABORT — machine is paging'; break; }
   MY=(${TB_MY_SLOTS[@]})
-  ( trap 'for t in ${MY[@]}; do rmdir $t 2>/dev/null; done' EXIT
+  ( trap 'for t in ${MY[@]}; do rm -f $t/pid 2>/dev/null; rmdir $t 2>/dev/null; done' EXIT
     python scripts/10_spectral_fit_burst.py --trigger $TRIG --include-bgo --no-log \
       --blocks-file results/sweep106/$TRIG/blocks/bb_blocks_spectral_${TRIG}.ecsv \
       --bkg-file results/background_intervals.ecsv \
       --out-dir $OUT $EXTRA --models highe 2>&1 | python3 dev/logfilter.py > logs/campaign20/${TRIG}_highe.log \
     && echo "OK $TRIG highe" >> logs/campaign20/status.txt \
     || echo "FAIL $TRIG highe" >> logs/campaign20/status.txt ) &
-  i=$((i+1))   # pacing is the arbiter's job now, not a modulo
 done
 wait
 echo "REFITS v2 PASS COMPLETE"

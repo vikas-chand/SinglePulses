@@ -52,7 +52,7 @@ run_burst() {
   # in zsh an EXIT trap set inside a function fires when the FUNCTION returns.
   # The RETURN form silently never ran, so claim dirs leaked and every
   # already-processed burst silently no-op'd on re-run (mkdir claim fails).
-  trap 'rmdir "$CLAIMDIR/$TRIG" 2>/dev/null; for t in ${MYSLOTS[@]}; do rmdir $t 2>/dev/null; done' EXIT
+  trap 'rmdir "$CLAIMDIR/$TRIG" 2>/dev/null; for t in ${MYSLOTS[@]}; do rm -f $t/pid 2>/dev/null; rmdir $t 2>/dev/null; done' EXIT
   local PH=logs/campaign20/products/${TRIG}
   echo "== $TRIG products start $(date -u +%H:%M:%SZ)" >> $LOG
 
@@ -74,9 +74,21 @@ run_burst() {
   # oversized share from the machine-wide budget, so at a 32 GB budget only
   # ONE burst can be in this step at a time.
   if [ ! -f "$PH.bala" ]; then
-    local KEEP=(${TB_MY_SLOTS[@]})
-    ram_admit ${TB_MVT_SLOT_GB:-16}
-    local MVTSLOTS=(${TB_MY_SLOTS[@]})
+    # Release the burst slots BEFORE asking for the bigger MVT claim. Holding
+    # 6 GB while waiting for 16 GB is hold-and-wait: 3 drivers = 18 held + 16
+    # needed > 32 budget, and nothing ever releases (ultrareview bug_009).
+    for t in ${MYSLOTS[@]}; do rm -f $t/pid 2>/dev/null; rmdir $t 2>/dev/null; done
+    MYSLOTS=()
+    # The return value MUST be checked: ram_admit returns 2 when the machine
+    # is already paging, and ignoring it launched the single largest job on
+    # the box holding NO slots at all, precisely when it was in trouble
+    # (ultrareview bug_001).
+    ram_admit ${TB_MVT_SLOT_GB:-16} || { echo "  RAM ABORT before MVT — machine is paging" >> $LOG; return 1; }
+    # Assign into MYSLOTS, not a separate array: the EXIT trap expands
+    # ${MYSLOTS[@]} lazily, so the MVT slots are now covered on Ctrl-C,
+    # SIGTERM or any early return (ultrareview bug_002 — two leaks of 16 GB
+    # exhausted the whole budget and deadlocked the arbiter).
+    MYSLOTS=(${TB_MY_SLOTS[@]})
     ( cd /Users/salim/Desktop/Projects/GRB_Handbook_Project && \
       python -m grb_pipeline.pipeline.mvt_runner \
         --catalog /Users/salim/Desktop/Projects/SingleRest/Two_Breaks/results/background_intervals.ecsv \
@@ -84,8 +96,11 @@ run_burst() {
         --output-root /Users/salim/Desktop/Projects/SingleRest/Two_Breaks/results/mvt_upstream/run_step7 \
         --mvt-python /Users/salim/anaconda3/envs/mvt/bin/python \
         --workers 1 --triggers $TRIG ) >> $LOG 2>&1 && touch "$PH.bala"
-    for t in ${MVTSLOTS[@]}; do rmdir $t 2>/dev/null; done
-    TB_MY_SLOTS=(${KEEP[@]})
+    # hand the 16 GB back, then re-take the ordinary burst claim
+    for t in ${MYSLOTS[@]}; do rm -f $t/pid 2>/dev/null; rmdir $t 2>/dev/null; done
+    MYSLOTS=()
+    ram_admit $TB_BURST_SLOT_GB || { echo "  RAM ABORT after MVT — machine is paging" >> $LOG; return 1; }
+    MYSLOTS=(${TB_MY_SLOTS[@]})
   fi
   step t47b python scripts/47b_temporal_figs.py --trig $TRIG
   step t47c python scripts/47c_lag_latbright.py --trig $TRIG
@@ -199,7 +214,10 @@ else
       b=$(basename $d _highe)
       case "$b" in bn081125496|bn081222204) continue;; esac
       [ -f "results/campaign20_products_done/$b" ] && continue
-      run_burst "$b"; launched=1
+      # `;` made launched=1 fire even when run_burst failed, so one
+      # persistently failing burst pinned it forever and the queue never
+      # drained (ultrareview bug_010). Progress = a DONE marker appeared.
+      run_burst "$b"; [ -f "results/campaign20_products_done/$b" ] && launched=1
     done
     nfits=$(pgrep -f "10_spectral_fit_burst" | wc -l | tr -d ' ')
     ndone=$(ls results/campaign20_products_done 2>/dev/null | wc -l | tr -d ' ')

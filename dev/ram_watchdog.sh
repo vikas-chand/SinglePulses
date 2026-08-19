@@ -3,7 +3,10 @@
 # change; sets the HOLD brake the moment the machine starts paging, so no
 # NEW job is admitted while we are in trouble. Never kills running science.
 SLOT=${TB_SLOTDIR:-/tmp/two_breaks_ram_slots}
-mkdir -p $SLOT
+# tokens live in slots/, control files (HOLD) at the top level, so the
+# held count needs no HOLD exclusion any more (ultrareview bug_003)
+SLOTS=$SLOT/slots
+mkdir -p $SLOTS
 FLOOR=${TB_RAM_FLOOR_GB:-8}
 base=$(vm_stat | awk '/Swapouts/ {gsub(/\./,"",$2); print $2}')
 last=""
@@ -26,7 +29,7 @@ while true; do
   fi
   if [ "$state" != "OK" ]; then touch $SLOT/HOLD; else rm -f $SLOT/HOLD; fi
   if [ "$state$nproc" != "$last" ]; then
-    echo "$(date -u +%H:%M:%SZ) $state free=${free}GB compressor=${comp}GB swapouts=$((swo-base)) jobs=$nproc held=$(ls $SLOT 2>/dev/null | grep -vc HOLD)GB"
+    echo "$(date -u +%H:%M:%SZ) $state free=${free}GB compressor=${comp}GB swapouts=$((swo-base)) jobs=$nproc held=$(ls $SLOTS 2>/dev/null | wc -l | tr -d " ")GB"
     last="$state$nproc"
   fi
   sleep 15

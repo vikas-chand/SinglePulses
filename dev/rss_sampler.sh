@@ -5,7 +5,6 @@ PID=$1; OUT=$2
 echo "elapsed_s tree_rss_GB nproc sys_free_GB compressor_GB swapouts" > $OUT
 T0=$(date +%s)
 while kill -0 $PID 2>/dev/null; do
-  KIDS=$(pgrep -P $PID 2>/dev/null; echo $PID)
   ALL=$(ps -A -o pid=,ppid=,rss= | awk -v r=$PID '
     { rss[$1]=$3; par[$1]=$2 }
     END { for (p in rss) { q=p; d=0; while (q!="" && q!=0 && d<12) { if (q==r) { s+=rss[p]; n++; break } q=par[q]; d++ } } printf "%.3f %d", s/1048576, n }')
