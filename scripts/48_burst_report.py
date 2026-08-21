@@ -65,7 +65,11 @@ def build(trig, out):
     harvest = _jload(os.path.join(ROOT, "notes", "reconciliation", f"{trig}_harvest.json"))
     p0 = _jload(os.path.join(ROOT, "notes", "reconciliation", f"{trig}_P0_frozen.json"))
     grb = harvest.get("grb_name") or p0.get("grb_name") or ""
-    ftab = os.path.join(out, trig, "spectral_fits.ecsv")
+    # Codex 2026-08-21: prefer the PROMOTED convention_check table (the one the
+    # SED products are built from) so the report's numbers and its figures come
+    # from the SAME fits; fall back to the nested sweep table only if absent.
+    cc = os.path.join(ROOT, "results", "convention_check", trig, "spectral_fits.ecsv")
+    ftab = cc if os.path.exists(cc) else os.path.join(out, trig, "spectral_fits.ecsv")
     t = Table.read(ftab, format="ascii.ecsv") if os.path.exists(ftab) else None
 
     # ---------------- header

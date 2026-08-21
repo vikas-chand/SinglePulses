@@ -1,4 +1,4 @@
-# The GRB Agent — Operating Design v2 (flowchart + step discussion)
+# The GRB Agent — Operating Design v3 (flowchart + step discussion)
 
 **Provenance.** Born 2026-08-15 from the burst-1 discovery run (bn081125496:
 28 gate rounds, ~105 mined failure entries → 17 classes, `BURST1_LESSONS.md`),
@@ -11,6 +11,10 @@ scoped tools, permission modes, and PreToolUse hooks). Supersedes
 `docs/architecture_flowchart.md` (v1) for the AI-Agent-for-GRBs draft.
 **Freeze plan:** bursts #1–#10 discover; at #10 this design freezes into
 committed agent files + saved workflows + hooks; #11–#106 run frozen.
+**v3 (2026-08-21):** dispatcher (NR-17), approval rail — live report (NR-18) +
+invalidation cascade (NR-19), resource plane (NR-12 RAM arbiter; NR-13/14/15
+from the 2026-08-17 shutdown post-mortem), 10 agent files in `.claude/agents/`,
+register at 29 rows. Saved workflows remain the open freeze item.
 
 ---
 
@@ -20,10 +24,11 @@ committed agent files + saved workflows + hooks; #11–#106 run frozen.
 flowchart TD
   subgraph BOOT["LAYER 0 — BOOT (how the agent starts)"]
     B1[Session opens] --> B2[SKILL-READER agent<br/>reads AGENTS.md, AgentArchitecture.md,<br/>position memory, REVIEW_INDEX queue]
-    B2 --> B3{Mode}
+    B2 --> B2D[DISPATCHER agent NR-17<br/>task → required roster + gate plan<br/>surfaces UNGUARDED DEBT<br/>register rows still PROPOSED]
+    B2D --> B3{Mode}
     B3 -->|walkthrough| B4[Approver = PI<br/>gates are questions]
     B3 -->|fully-AI| B5[Approver = independent agent<br/>Codex/agy or fresh Claude<br/>PI receives REPORT + gate trail]
-    B4 --> B6[Arm MECHANICAL ENFORCER<br/>PreToolUse hooks: no un-gated delivery,<br/>no unguarded catalog write]
+    B4 --> B6[Arm enforcement<br/>PreToolUse hook: no un-gated figure delivery ARMED<br/>catalog-write gate PROPOSED not yet armed<br/>+ RAM arbiter NR-12: admission in GB<br/>vs measured peak RSS, never cores]
     B5 --> B6
   end
 
@@ -37,7 +42,15 @@ flowchart TD
   end
 
   subgraph RAIL["ENFORCEMENT RAIL (crosses every step)"]
-    G1[code guards<br/>fail closed] --- G2[FIGURE VERIFIER<br/>fresh-context, sha-bound] --- G3[NUMBERS VERIFIER<br/>sidecar-bound] --- G4[hooks<br/>block, not forbid] --- G5[EXTERNAL AUDITOR<br/>Codex ultra, adjudicated] --- G6[DISTILLER<br/>incident → lesson layer + register row]
+    G1[code guards<br/>fail closed] --- G2[FIGURE VERIFIER<br/>fresh-context, sha-bound] --- G3[NUMBERS VERIFIER<br/>sidecar-bound] --- G4[hooks<br/>block, not forbid] --- G5[EXTERNAL AUDITOR<br/>Codex ultra + cloud multi-agent<br/>review, adjudicated] --- G6[DISTILLER<br/>incident → lesson layer + register row]
+  end
+
+  subgraph APR["APPROVAL RAIL (NR-18 + NR-19, crosses every step)"]
+    H1[LIVE REPORT<br/>assembled per step —<br/>links evidence, never asserts] --> H2{PI gate<br/>stamp requires<br/>approver identity}
+    H2 -->|approve| H3[APPROVALS.json<br/>step stamped]
+    H2 -->|feedback| H4[feedback ROUTES same session:<br/>prose rule / contract item /<br/>L-series / code / register row]
+    H4 --> H5[NR-19 CASCADE<br/>downstream approvals → STALE,<br/>build markers cleared,<br/>driver regenerates]
+    H5 --> H1
   end
 
   subgraph ACC["LAYER 2 — CAMPAIGN ACCUMULATORS"]
@@ -65,6 +78,7 @@ flowchart TD
   ACC --> CTX
   CTX --> SCI
   RAIL -.enforces.- PIPE
+  APR -.gates.- PIPE
   G6 -.new register rows.-> BOOT
 ```
 
@@ -79,14 +93,47 @@ the architecture roster, the position memory, and the burst queue, and returns
 a *binding checklist*: current burst, current step, the step's skill file, the
 defect-ledger caveats that must travel with every number, and the
 parameter-scaling rules for this burst (the s02c-defaults lesson: constants
-tuned to one burst's pulse width do not transfer). Mode selection then fixes
+tuned to one burst's pulse width do not transfer). The DISPATCHER (NR-17) then turns the task into a
+roster: it classifies the artifact classes at stake, returns the required
+agents in gate order, and surfaces every register row whose trigger matches
+but whose guard is still PROPOSED — *unguarded debt*, named before work
+starts, so the session cannot silently rely on a guard that does not exist.
+Mode selection then fixes
 the approver: the PI in walkthrough mode; in fully-AI mode an independent
 custom agent — defined identically on Claude Code and Antigravity (`agy`),
 so approval is platform-independent — that produced nothing in the burst.
-Last act of boot: the hooks arm. Delivery of any figure whose sha256 is not
-in a VISION_QC ledger, or any catalog write without an admission gate, is
-*blocked*, not merely forbidden — the only enforcement layer that never broke
-in the discovery run.
+Last act of boot: the hooks arm. Delivery of any **.png** figure whose sha256 is not
+in a VISION_QC ledger is *blocked*, not merely forbidden (the SendUserFile hook,
+armed in `.claude/settings.json`; PDFs carry their own trail). The parallel
+catalog-write admission gate (NR-4) is designed but **not yet armed** — the
+flowchart shows it as the next hook, not a live one. Blocking beats forbidding:
+it is the only enforcement layer that never broke in the discovery run. Boot also opens the machine-wide RAM arbiter (NR-12,
+`dev/ram_slots.sh`): every heavy job admits in gigabytes against measured
+peak RSS, never in cores. Priced by the 2026-08-17 shutdown — five product
+chains each reaching a 15 GB MVT step, ~140 GB demanded of a 64 GB machine,
+12.75 h of fits lost to an end-of-run-only write.
+
+**The rail, stress-tested on itself (2026-08-18).** The arbiter — rail
+infrastructure, written and tested by its own producer — went through the
+gauntlet it enforces. An external multi-agent cloud review found two real
+bugs and one broken invariant in it ("one burst in MVT at a time" was not
+enforced: uniquely-named lock tokens meant the mkdir mutex never contended).
+Testing the *fix* found a deeper flaw the review missed: zsh defers signal
+traps while a foreground child runs, and no trap runs under SIGKILL or a
+machine shutdown — the exact failure the guard exists to survive. Release is
+now self-healing (owner-PID reaping, verified by killing the process). The
+episode is NR-13/NR-14/NR-15 and the strongest evidence yet for the design's
+central claim: none of it was caught by the failing agent itself.
+
+**The approval loop (NR-18/NR-19).** Every step's evidence lands in a
+per-burst live report (`dev/live_report.py`) the moment it exists; the PI or
+the independent approver stamps it there (`APPROVALS.json`; a stamp without
+an approver identity is rejected, and test stamps are purged the session
+they are written). Feedback must route to an enforcement layer before the
+session closes; if the amended step had approved descendants, the cascade
+(`dev/invalidate_downstream.py`) demotes them to STALE and clears exactly
+the build markers that must regenerate — accommodation is mechanical, not
+remembered.
 
 ## Layer 1 — The per-burst pipeline
 
@@ -211,6 +258,9 @@ agent: curiosity with a conscience.
 ## Governance
 
 Everything provisional-flagged until the campaign freeze; contracts amend
-only with the PI's quoted words; register rows land same-session; the PI's
+only with the PI's quoted words; register rows land same-session (the
+register table stands at 33 rows — NR-1–NR-10 and NR-12–NR-23, NR-11 retired
+to an operations audit, plus unnumbered — beside the 8-agent roster (NR-20…NR-23
+from the 2026-08-21 Codex ultra review of this build)); the PI's
 catches are, by standing rule, missing-agent debts — the design goal is to
 run them to zero.
