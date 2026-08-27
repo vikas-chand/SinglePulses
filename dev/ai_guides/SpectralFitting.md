@@ -770,3 +770,14 @@ fit: the added BGO 200–300 keV overlap should better constrain the EAC constan
 whether bn081125496's EAC_B1 comes off its 1.2 rail. The transferable rule: **every
 selection constant in the engine carries a citation or a dated decision — an
 undocumented constant is a latent audit finding.**
+
+## PREFERENCE vs BEST-AIC — the tracking rule (PI ruling, 2026-08-26)
+best_AIC is the argmin; PREFERENCE is a separate claim. PI, verbatim: "best_AIC
+model is one thing, but if it is preferred over others or not is another thing"
+and "keep delta AIC more than 6 at least in 1 or 2 bins and then we can track
+them". Operational rule: a model enters a burst's TRACKED set when it is the
+bin winner with margin ΔAIC > 6 over the runner-up in ≥1 bin (STRONG tier;
+≥2 bins = the stricter tier). Everything else is reported as argmin-only or a
+tie (NR-3). The census follows TRACKED models, not bin argmins. Tool:
+dev/model_preference.py → results/campaign/model_preference.ecsv. WHERE a
+preference lives in energy: dev/model_discrimination.py (Basak&Rao-style).

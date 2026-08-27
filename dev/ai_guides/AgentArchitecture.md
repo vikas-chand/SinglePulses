@@ -41,6 +41,19 @@ P8. **Prose instructions to the ACTOR are the weakest layer and will be ignored
     on the actor. Any rule found living only as actor-prose is a defect: push
     it down the hierarchy.
 
+### P9 — Respect for the design (PI, 2026-08-26, verbatim: "it should have respect for the design")
+The running system must BE the designed system. Running the pipeline's machinery
+without its roster — no dispatcher at intake, no skill-reader at step opens, no
+gates on produced figures, no stamps — is a DEFECT, not a shortcut, even when
+the products come out correct. Caught live during the paper-recovery run: the
+session executed retries/receipts/P2 under momentum with zero roster
+invocations while the agent files sat deployed on disk. Enforcement: dispatcher
+at task intake and skill-reader at step opens are MANDATORY protocol for any
+pipeline-running session; produced figures/papers are UNGATED-PRODUCER-ARTIFACTS
+until their verifiers run; a session that discovers itself mid-run without the
+roster invokes it retroactively and says so. P8 named prose-to-actor the weakest
+layer; P9 is its consequence for the RUNNER, not just the author.
+
 ## The agent roster (cross-cutting)
 
 | agent | single purpose | binding contract | trigger |
@@ -112,9 +125,9 @@ purposes is two rows.
 | step 9 literature | blind-first harvester + P3 diff attributor (frame/method/band before "discrepancy") | DEPLOYED (protocol; agent per burst at step 9) |
 | before any root-cause / redo | PRIOR-ART READER: sweep the PROJECT FAMILY's notes (SinglePulse_Temporal, LATBright, PulsewiseLag…) for existing proofs before re-deriving — the lag-sign inversion was PROVEN in LAG_SIGN_VERIFICATION.md (2026-07-31, two-skeptic) and re-derived from scratch on 2026-08-15 | PROPOSED (added same-session) |
 | SED band drawing | NR-1 BAND-VALIDITY GUARD: containment + railed-fraction checks before any band ships (landed in 41c 2026-08-15; keep as frozen code) | DEPLOYED |
-| any MC product | NR-2 SEED AUDITOR: verify every stochastic product records + honors a seed (caught: temporal MC wobble, Bala runner --seed non-propagation) | PROPOSED |
-| model-selection reporting | NR-3 TIE-REPORTER: dAIC<2 heads reported as ties, never single winners (bin8's dAIC<1 hides 10x 30-MeV spread) | PROPOSED |
-| catalog writes | NR-4 ADMISSION GATE: no row enters a committed catalog without sanity screens (bn130310840 bad row sat for weeks) | PROPOSED |
+| any MC product | NR-2 SEED AUDITOR: verify every stochastic product records + honors a seed (caught: temporal MC wobble, Bala runner --seed non-propagation) | DEPLOYED (.claude/agents/seed-auditor.md, 2026-08-21) |
+| model-selection reporting | NR-3 TIE-REPORTER: dAIC<2 heads reported as ties, never single winners (bin8's dAIC<1 hides 10x 30-MeV spread) | DEPLOYED (.claude/agents/tie-reporter.md; tracking rule = SpectralFitting.md PREFERENCE section, PI 2026-08-26) |
+| catalog writes | NR-4 ADMISSION GATE: no row enters a committed catalog without sanity screens (bn130310840 bad row sat for weeks) | DEPLOYED (.claude/agents/admission-gate.md, 2026-08-21) |
 | figure text layout | NR-5 PIXEL-COLLISION CHECK in gates (descender-graze class needed pixel maps to catch) | DEPLOYED (verifier practice) |
 | sweep refusals | NR-6 REFUSAL TRIAGE | CLOSED 2026-08-16: superseded by the NO-MODEL-DROPPED rule — three-tier panel provenance (live-verified / frozen replay / structural-refusal-as-bug-report) in 41c; burst-2 = 168/168 panels |
 | every producer run | NR-7 INVOCATION RECORDER: every producer stores its full argv + env in the product sidecar (41c does; scripts/29 does NOT — its burst-1 invocation had to be reverse-engineered and the --models flag was misread, costing a partial refit) | PROPOSED (fix queued: argv into 29's sidecar) |
@@ -126,9 +139,10 @@ purposes is two rows.
 | any cleanup path | NR-14 CLEANUP-PATH TESTER: cleanup must be verified by KILLING the process, never by reading the code (zsh `trap RETURN` never fired -> claim dirs leaked silently on every burst; found only under test, 2026-08-18) | PRACTICE (proved 2026-08-18); regression test PROPOSED |
 | any shared-resource release | NR-15 SELF-HEALING RELEASE: release must survive SIGKILL/shutdown -- traps are deferred by zsh during a foreground child and never run under SIGKILL; slots record owner PID and admission reaps dead owners (ultrareview bug_002 fix was necessary but NOT sufficient) | DEPLOYED (ram_slots.sh reaper, verified under SIGKILL 2026-08-18) |
 | every declared product | NR-16 PRODUCT-ABSENCE = STEP FAILURE: a step whose declared product is missing must FAIL, not warn into a log (pandoc off PATH -> 4 md-only reports shipped as success, 2026-08-18) | PROPOSED (PATH fixed; general assert queued for 48 + driver) |
-| task intake | NR-17 DISPATCHER: on-the-fly assessment -- read the task + register, return the agent roster and gate plan REQUIRED for this task (PI directive 2026-08-21: dynamic assignment, not static prose) | DEPLOYED (.claude/agents/dispatcher.md, 2026-08-21) |
+| task intake | NR-17 DISPATCHER: on-the-fly assessment -- read the task + register, return the agent roster and gate plan REQUIRED for this task (PI directive 2026-08-21: dynamic assignment, not static prose) | DEPLOYED; INVOCATION GAP found 2026-08-26 (recovery run started without it -> P9); enforcement = mandatory protocol line, P9 |
 | every burst, continuously | NR-18 LIVE REPORT: per-burst live document assembled after every step -- gate status, stamps, evidence links; PI approves/feeds back on the document, feedback routes via distiller, approvals propagate via the invalidation cascade | DEPLOYED (dev/live_report.py + APPROVALS.json, 2026-08-21) |
 | any upstream approval change | NR-19 INVALIDATION CASCADE: when an approved step changes, downstream phase markers are cleared and products regenerate -- accommodation is mechanical, not remembered (PI directive 2026-08-21) | DEPLOYED (dev/invalidate_downstream.py, 2026-08-21) |
+| every report/paper delivery | NR-24 REPORT-CONFORMANCE GATE: verify the assembled deliverable against dev/ai_guides/ReportSpec.md R1-R5 (one generator+commit, exemplar structure, no raw nan, tie language, gates logged) — born from the PI catch 2026-08-26 'not all reports alike and top quality'; figures had a contract, the deliverable containing them did not | PROPOSED (spec written; gate agent next) |
 | approval/cascade tools | NR-20 INPUT-AS-TRUST-BOUNDARY: the trig reaches os paths + a subprocess; validate against a trig grammar and fail loud, never os.system a raw arg (Codex 2026-08-21: a crafted trig turned a "markers only" tool into arbitrary-path removal + command exec) | DEPLOYED (validator in live_report.py + invalidate_downstream.py; os.system->argv) |
 | any safety check | NR-21 NO-ASSERT-FOR-SAFETY: a security/authorization check must be a runtime check, never `assert` -- `python -O` strips asserts and the --by guard wrote by:null (Codex 2026-08-21) | DEPLOYED (live_report.py) |
 | any doc→product claim | NR-22 SKIP-BY-EXISTENCE IS NOT SKIP-BY-CURRENCY: a marker/PNG/24-model no-op certifies existence, not which inputs it was built from; resume decisions on existence alone leave stale products (Codex 2026-08-21: bn090530760 canonical vs highe tables differ by hash yet promotion no-ops) | PROPOSED (provenance-hash generations) |
