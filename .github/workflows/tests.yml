@@ -14,13 +14,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install numpy scipy astropy matplotlib pytest
           pip install --no-deps "git+https://github.com/vikas-chand/GRB-Handbook.git@main#egg=grb-pipeline" || true
-      # WHAT THIS CI CAN AND CANNOT CHECK (2026-08-13)
-      # results/ is gitignored, so the runner has NO fit tables: every
-      # parametrized lesson test would parametrize over an empty list and
-      # report green while checking nothing. tests/test_lessons.py
-      # ::test_guarded_tables_are_present is the deliberate alarm for that and
-      # is EXPECTED TO FAIL here -- a red CI on that test means "unverified in
-      # this environment", not "the science is broken".
+      # WHAT THIS CI CAN AND CANNOT CHECK (2026-08-13; taxonomy fix 2026-08-27)
+      # results/ is gitignored, so the runner has NO fit tables. The lesson
+      # suite is therefore VACUOUS here; test_guarded_tables_are_present
+      # SKIPS with a loud UNVERIFIED-IN-CI label (F-STRUCTURAL: label +
+      # continue) instead of failing -- so a red CI now always means a REAL,
+      # checkable failure (catalog QC, imports, style). A green CI still does
+      # NOT certify the science; only a local run over the products does.
       # What CI genuinely guards: the tracked catalogs
       # (results/background_intervals.ecsv joined against
       #  results/human_review_qc_flags.txt) and every import/collection error.
