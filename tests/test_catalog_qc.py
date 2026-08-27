@@ -102,7 +102,19 @@ def test_margin_band(cat, adjudicated):
             assert 5.0 <= g_post <= 40.0, f"{r['TRIGGER_NAME']} g_post={g_post:.1f}"
 
 
+# Rows the PI KNOWS are awaiting human review (whole-project audit item:
+# the bn120624933 lle row). PENDING is a legal, honest tier -- but ONLY for
+# rows on this list: any new pending row must fail this test loudly rather
+# than ride in silently (no-fabricated-approvals rule).
+KNOWN_PENDING_HUMAN = {'bn120624933'}
+
+
 def test_approval_stamps(cat):
     for r in cat:
         assert str(r['APPROVED_BY']).strip() not in ('', 'unknown')
-        assert str(r['APPROVAL_MODE']).strip() in ('human_gui', 'ai_vision')
+        mode = str(r['APPROVAL_MODE']).strip()
+        if mode == 'ai_inherited_PENDING_HUMAN':
+            assert str(r['TRIGGER_NAME']).strip() in KNOWN_PENDING_HUMAN, \
+                (r['TRIGGER_NAME'], 'un-adjudicated PENDING row -- not on the PI-known list')
+        else:
+            assert mode in ('human_gui', 'ai_vision'), (r['TRIGGER_NAME'], mode)
