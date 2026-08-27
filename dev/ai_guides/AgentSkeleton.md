@@ -148,3 +148,28 @@ manifest; commit + PR; design page synced to the frozen skeleton.
 Definition of DONE: a fresh session (or the engineer) runs one burst
 S2->S12 with ZERO improvised decisions — every failure lands in a declared
 class, every product is gated, every stamp is real.
+
+## 8. Deployment modes (PI, 2026-08-28)
+
+PI ruling (after the community-structure paper completes): GRBs Agent ships in
+TWO modes over ONE skeleton —
+
+**Mode A — API-coded agents.** The roster is code: agents implemented on the
+model API (Claude Agent SDK), entering workflows either dynamically
+(dispatcher-selected) or hardcoded (frozen wf-* set). Deterministic,
+deployable, per-token billing; the queue manager IS the application.
+
+**Mode B — subscription harness.** A subscription AI coding harness (today:
+Claude Code) acts as the harness and PLAYS the agents: the .claude/agents/*
+definitions, hooks, and skills are consumed natively; humans gate in-session.
+This is the mode the discovery campaign runs in.
+
+INVARIANT that makes both possible: everything that defines the agent —
+skills, contracts, registers, state machine, failure taxonomy, verifier
+definitions (markdown-as-system-prompt), hooks — is TEXT AND CODE IN THE
+REPO, never harness state. A mode is an execution substrate, not a fork of
+the design; the same burst must reach S12 with the same gates in either.
+Mode A is the natural Zenodo/community artifact; Mode B is the natural
+PI-supervised research instrument. The engineer's build target is Mode A's
+queue manager + workflow set; the campaign keeps validating the design in
+Mode B meanwhile.
