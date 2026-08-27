@@ -72,6 +72,30 @@ $ python3 dev/invalidate_downstream.py --trig bn081222204 --from-step 7 --execut
    demote approval: step 8 -> STALE (was APPROVED on old state)
 ```
 
+## Usage — three ways
+
+- **Walkthrough session** — the gated per-burst protocol
+  (`dev/ai_guides/BurstWalkthrough.md`): the agent runs a step, PRESENTS the
+  evidence, and STOPS at your gate. The mode for discovery and review.
+- **Autonomous chain** — the queue runs bursts through the skeleton's
+  workflows unattended; every product still passes its verifiers, and
+  approvals wait for you in the live report. The mode for campaigns.
+- **Board & stamps CLI** — `dev/agent_state.py` (where is everything),
+  `dev/live_report.py` (approve / feed back), `dev/invalidate_downstream.py`
+  (propagate a changed decision). The mode for supervision.
+
+<details>
+<summary><b>Environment setup</b> (click to expand)</summary>
+
+```bash
+conda activate threeML            # 3ML + fermitools environment
+export FERMI_DIR=$CONDA_PREFIX/share/fermitools
+export CALDB=$FERMI_DIR/data/caldb   # + CALDBCONFIG/CALDBALIAS/CALDBROOT
+# run from the repo root; AGENTS.md carries full setup, data acquisition,
+# and the gotchas.
+```
+</details>
+
 ## Table of contents
 
 - [How it works: the campaign loop](#how-it-works-the-campaign-loop)
@@ -191,6 +215,13 @@ learned object is inspectable text, not opaque weights.
 
 ## Architecture
 
+The full capability inventory — interfaces at the top, the engine at the
+bottom, the rails crossing everything:
+
+<p align="center"><img src="docs/assets/architecture.svg" width="980" alt="GRBs Agent architecture"/></p>
+
+The five layers as a flow:
+
 ```mermaid
 flowchart TD
   BOOT["LAYER 0 · BOOT<br/>skill-reader → dispatcher (roster + unguarded debt) →<br/>arm enforcement: no-ship hook · RAM arbiter"]
@@ -258,6 +289,12 @@ a broken invariant — fixed, then *re-verified by kill-testing*, which found a
 deeper flaw the review itself had missed. None of it was caught by the
 failing agent itself. That sentence is the design.
 
+## Contribution overview
+
+Who built what — and where the human hand stays mandatory:
+
+<p align="center"><img src="docs/assets/contribution.svg" width="900" alt="contribution overview"/></p>
+
 ## Roadmap
 
 Skeleton freeze (state machine + saved workflows) → the campaign runs frozen
@@ -272,7 +309,8 @@ contributions**. Three kinds, three destinations: a run failure (→ code fix +
 regression test), a scientific disagreement with a convention (→ the
 assumption/gap registries — these are the most valuable), a method request
 (→ the science menu). See `dev/ai_guides/PI_REVIEW_PROTOCOL.md` for how
-feedback becomes enforcement.
+feedback becomes enforcement. Private questions: Vikas Chand —
+vikas.chand.physics@gmail.com.
 
 ## Authors
 
@@ -280,6 +318,13 @@ feedback becomes enforcement.
 **Jagdish C. Joshi** (ARIES) · Agentic engineering: Claude (Anthropic), under
 PI gates. Two papers in preparation: the science survey (Sharma et al.) and
 the agentic-methods paper (Chand et al.); citation via Zenodo DOI on release.
+
+## Citation
+
+Until the Zenodo DOI lands with the open release, cite the two papers in
+preparation (Sharma et al., the science survey; Chand et al., the agentic
+methods). BibTeX will appear here ADS-exported, per project rule — hand-written
+entries are forbidden in this repo.
 
 ## License
 
