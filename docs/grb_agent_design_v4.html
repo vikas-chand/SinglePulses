@@ -1,4 +1,4 @@
-<title>The GRB Agent — Operating Design</title>
+<title>GRBs Agent — Operating Design</title>
 <style>
   :root{
     --ink:#1c2126; --paper:#f8f7f4; --muted:#5c6670; --line:#d8d5cd;
@@ -57,8 +57,8 @@
   .foot{color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); margin-top:3rem; padding-top:1rem; max-width:66ch;}
 </style>
 <main>
-<p class="eyebrow">Two_Breaks · single-pulse campaign · agent architecture</p>
-<h1>The GRB Agent — Operating Design v3</h1>
+<p class="eyebrow">GRBs Agent · named by the PI 2026-08-27 · single-pulse campaign · agent architecture</p>
+<h1>GRBs Agent — Operating Design v4</h1>
 <p class="prov">Born from the burst-1 discovery run (bn081125496: 28 gate rounds, ~105 mined
 failure entries → 17 classes) and the agent-requirements register. Two industry posts supply
 the containers — Anthropic's <em>dynamic workflows</em> (the harness layer) and Antigravity's
@@ -295,11 +295,53 @@ free; execution is gated; publication passes the PI. That is the whole agent: cu
 with a conscience.</p>
 </div>
 
+<div class="layer boot prose">
+<h2><span class="chip c-boot">The Skeleton</span>Freeze candidate v1.1 — the machine that ends the surprises</h2>
+<p>PI directive (2026-08-27, verbatim): <em>"we have to finalize the skeleton of the
+Agent and then make it concretely doing things so that it doesn't do unexpected and
+buggy things again and again"</em> — with three days to build it strong. The skeleton
+(<span class="mono">dev/ai_guides/AgentSkeleton.md</span>) makes every state, transition,
+and failure a <strong>declared</strong> thing: a burst is always in exactly one
+evidence-backed state, and an error message is never a behavior.</p>
+</div>
+
+<div class="diagram"><div class="cap">The per-burst state machine — evidence-backed, non-monotonic</div>
+<pre class="mermaid">
+flowchart LR
+  S1["S1 stage-1<br/>approved"] --> S2["S2 binned"] --> S3["S3 fit<br/>24 models"] --> S4["S4 retried<br/>(mandated)"] --> S5["S5 promoted<br/>hash-current"] --> S6["S6 temporal"] --> S7["S7 products"] --> S8["S8 assembled"] --> S9["S9 GATED<br/>3 verifiers"] --> S10["S10 presented"] --> S11["S11 APPROVED<br/>(PI)"] --> S12["S12 bundled"]
+  S9 -. "NR-19: upstream change<br/>DEMOTES to last<br/>hash-current state" .-> S5
+  SX["SX structural exclusion<br/>(reasoned, e.g. RESPONSE_UNCOVERED)"]
+  S2 -.-> SX
+  classDef g fill:#dff0f3,stroke:#1b7a8c,color:#123c45;
+  classDef r fill:#eceff1,stroke:#6b7280,color:#374151;
+  class S1,S2,S3,S4,S5,S6,S7,S8,S10,S12 g; class S9,S11,SX r;
+</pre></div>
+
+<div class="prose">
+<p><strong>The six failure classes</strong> — every failure lands in one, each with a
+declared behavior executed by the queue manager (the sole classification authority):
+<strong>F-TRANSIENT</strong> → hold + resume (never self-terminate);
+<strong>F-STRUCTURAL</strong> → label + continue (refusals are results);
+<strong>F-CONTRACT</strong> → stop the burst + register row, same session;
+<strong>F-ORDER</strong> → wait, the manager reorders;
+<strong>F-SILENT</strong> (a defect found <em>after</em> acceptance — the register's
+dominant born-from class) → demote + cascade + a guard that makes it loud forever;
+<strong>F-GUARD</strong> (the checker itself is wrong) → fix at the primitive and
+re-run every gate it judged. Every class ends in DISTILL. The skeleton passed a
+two-agent fresh-context coverage verification (register sweep + a replay of this
+month's twelve real incidents); the 32 gaps found — including that v1's state machine
+was strictly forward, which would have made the invalidation cascade illegal — are
+folded into v1.1. The live campaign board
+(<span class="mono">results/campaign/burst_state/</span>) derives every burst's state
+from disk evidence; its first run exposed a campaign-wide finding: 74 bursts carry
+unretried FAIL cells — a PI decision at freeze review.</p>
+</div>
+
 <h2 class="prose">Governance</h2>
 <p class="prose">Everything provisional-flagged until the campaign freeze; contracts amend only with the
 PI's quoted words; register rows land same-session; a PI catch is, by standing rule, a
 missing-agent debt — the design goal is to run them to zero. The register table stands at
-33 rows (NR-1–NR-10 and NR-12–NR-23 — NR-11 retired to an operations audit — plus
+34 rows (NR-1–NR-10 and NR-12–NR-23 — NR-11 retired to an operations audit — plus
 unnumbered rows), beside the 8-agent cross-cutting roster; four of these (NR-20…NR-23)
 were added the same day from an independent Codex ultra review that found real
 security and integrity defects in this very build;
@@ -308,6 +350,6 @@ every PROPOSED row is surfaced as unguarded debt by the dispatcher at task intak
 
 <p class="foot">Source of record: <span class="mono">docs/GRB_AGENT_FLOWCHART.md</span> ·
 lessons: <span class="mono">dev/ai_guides/BURST1_LESSONS.md</span> · roster &amp; register:
-<span class="mono">dev/ai_guides/AgentArchitecture.md</span> · v3, 2026-08-21 (v2: 2026-08-15) ·
-Agentic AI program — Chand, Sharma &amp; Joshi.</p>
+<span class="mono">dev/ai_guides/AgentArchitecture.md</span> · v4, 2026-08-27 (v3: 2026-08-21 · v2: 2026-08-15) · skeleton: AgentSkeleton.md ·
+GRBs Agent — Agentic AI program — Chand, Sharma &amp; Joshi.</p>
 </main>
