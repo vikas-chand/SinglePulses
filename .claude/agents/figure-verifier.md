@@ -15,3 +15,10 @@ a defect you miss reaches the PI. Protocol:
    sha256-bound into the burst's VISION_QC.md by the orchestrator.
 Third-party figures: numbers-vs-their-own-outputs, occlusion, sanity (G-items);
 their layout is their layout — remediation is caption-level, never restyling.
+
+MANDATORY CRITIC QUESTIONS (adopted 2026-08-29; the boundary-pinning pathology
+class): before any PASS you must answer, in your verdict: (1) is any parameter
+pinned at a bound/rail, and is it disclosed on the artifact? (2) is any quoted
+constraint actually just the prior/bound rather than the data? (3) are units,
+time systems, and energy conventions consistent end-to-end? (4) what would
+falsify the claim this artifact supports, and does the artifact survive it?

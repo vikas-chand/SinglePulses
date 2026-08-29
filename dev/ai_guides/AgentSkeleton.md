@@ -169,6 +169,8 @@ skills, contracts, registers, state machine, failure taxonomy, verifier
 definitions (markdown-as-system-prompt), hooks — is TEXT AND CODE IN THE
 REPO, never harness state. A mode is an execution substrate, not a fork of
 the design; the same burst must reach S12 with the same gates in either.
+Mode A REQUIRES sandboxed execution (container/isolated env) — it runs
+generated code outside the harness's permission model (adopted 2026-08-29).
 Mode A is the natural Zenodo/community artifact; Mode B is the natural
 PI-supervised research instrument. The engineer's build target is Mode A's
 queue manager + workflow set; the campaign keeps validating the design in
