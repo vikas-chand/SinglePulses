@@ -613,3 +613,31 @@ canonical.
 19. Queue manager v1 build approval; queue-order authority.
 20. The 74-burst retry debt (campaign-wide mandate vs report-bursts-only).
 21. The 21 never-human-reviewed bursts: census eligibility (open Q4).
+
+## ADDENDUM 2026-08-29 — adjudication of the second external review
+
+Their status table accepted with ONE correction: items 5 and 6 were adopted
+hours before their read (NR-25 + Mode-A sandbox + critic questions + MET
+tests) — "Absent" was stale on arrival. Their five "you have what nobody
+has" items (taxonomy+distiller, mechanical enforcement, seed-auditor/
+tie-reporter/board, blind-first attribution) are confirmed differentiators
+for the paper. ADOPTED from their four leverage items:
+- A19 TRUTH-GROUNDING GATE (new actor, spec in NR-25's sharpened row):
+  verifiers certify CONSISTENCY, A19 certifies TRUTH — full-engine synthetic
+  recovery + published-burst fixtures, at freeze + on engine-hash change.
+- Admission-gate FAILURE-TRANSPARENCY SCREENS (boundary-e, width=range,
+  pathological stat, undisclosed multimodality) — now in its contract.
+- TRUTH METRIC for the agent per release: recovery rate on held-out
+  published bursts + self-flagged-pathology rate (extends the catch-ledger,
+  which measures verifier ACTIVITY, not pipeline ACCURACY). Feeds A16:
+  no fully-AI approver approval without an accuracy number.
+- CROSS-MODEL QUORUM at the load-bearing gate (S10->S11 numbers pass,
+  Codex or second model) — PENDING PI (Codex quota is paid; cost per burst
+  must be priced first). Their A16 read: different-model quorum beats any
+  single-model approver.
+- Raw-data PreToolUse guard ARMED (.claude/hooks/protect_rawdata.py) as
+  minimal Mode-B sandboxing; the real sandbox stays Mode A's.
+Their caution accepted verbatim: build the queue manager BEFORE adding
+actors — A19 is the LAST actor admitted before freeze.
+DECISION SHEET updates: items 1 (strip Bash) and 2 (checklist-compliance at
+wf-gate) now carry supporting evidence from both external reviews.

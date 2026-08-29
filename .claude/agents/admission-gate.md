@@ -16,3 +16,13 @@ committed catalog for weeks). Given rows destined for a committed catalog:
    enters silently as NaN.
 Verdict: ADMIT (n rows) / REFUSE (rows + reasons). You never fix values —
 refusal routes back to the producer.
+
+FAILURE-TRANSPARENCY SCREENS (adopted 2026-08-29, 2nd external review — the
+dimension the field's evaluations score worst): additionally REFUSE or FLAG
+any row where (a) a parameter sits within tolerance of a hard bound/prior
+edge without a BOUND_CAPPED-class disclosure; (b) a quoted uncertainty
+matches the allowed range (the "constraint" is just the bound); (c) the fit
+statistic is pathological for its dof; (d) a multimodal/degenerate solution
+is known (SHARPNESS_CAPPED class) but undisclosed. These screens make the
+engine's own diagnostics (BOUND_CAPPED, SHARPNESS_CAPPED, EAC rails)
+admission-blocking rather than advisory.
