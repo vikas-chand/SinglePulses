@@ -1,0 +1,25 @@
+{
+ "figure": "docs/figures/fig3_collaboration.png",
+ "sha256": "4e77cc5218255b9a786ed4c364524c1a6f86b90b3a0bb25a586ae86fbe327fb2",
+ "generator": "dev/gen_paper_figures.py",
+ "commit": "77924ab",
+ "claims": {
+  "break_preferring_tracked": "4/104",
+  "two_break_tracked": "3/104",
+  "strict": "bn110928180 literal 6.05/7.2 bins 0,3; feature 24.0/9.2 there; 9-39 over 4 bins",
+  "thermal_examples_keV": [
+   16.5,
+   22.4,
+   25.1
+  ],
+  "edge_artifact_kT_keV": 1.55,
+  "primitives": [
+   "results/campaign/model_preference.ecsv",
+   "paper/GRB081125496/main.tex",
+   "results/convention_check/bn110928180/spectral_fits.ecsv",
+   "results/campaign/bb_census.ecsv",
+   "paper/GRB090530/main.tex",
+   "paper/GRB090804/main.tex"
+  ]
+ }
+}
