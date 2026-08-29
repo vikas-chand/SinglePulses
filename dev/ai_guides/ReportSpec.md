@@ -35,3 +35,15 @@ A collaborator bundle contains, per burst: paper PDF + source, REPORT md+pdf,
 REPRODUCTION record, executed notebook — and a manifest row per burst stating
 which of these exist, with absences REASONED, never silent (the Khushboo
 bundle shipped reports while 7 finished papers sat unbundled).
+
+
+## R3a — CLAIM TYPING (adopted 2026-08-29, 3rd external review; aligns with our
+S0-S3 wildness grades and estimator labels)
+Every claim in a deliverable carries its epistemic type — observed /
+estimated / causal / mechanistic / speculative — and prose may not silently
+upgrade a type (an estimated quantity does not become an observation; a
+correlation does not become a mechanism). The conformance gate checks for
+type-consistent language. CI test to build with A19: CLAIM REPLAY — pick a
+sentence from a report and mechanically reconstruct claim -> result object ->
+run -> workflow -> code -> data snapshot; failure at any link = not
+publication-grade (this is NR-23 + NR-7 + NR-22 exercised end-to-end).

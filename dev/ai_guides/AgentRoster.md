@@ -641,3 +641,20 @@ Their caution accepted verbatim: build the queue manager BEFORE adding
 actors — A19 is the LAST actor admitted before freeze.
 DECISION SHEET updates: items 1 (strip Bash) and 2 (checklist-compliance at
 wf-gate) now carry supporting evidence from both external reviews.
+
+## ADDENDUM 2 (2026-08-29) — third external package (systems-engineering)
+Triangulation complete: three independent external designs now converge on
+our architecture. Third package's distinctive convergences: "dynamic outside,
+deterministic inside" = Mode A dispatcher+frozen workflows; TWO ENGINES
+(durable agent state machine + scientific workflow engine) = queue manager +
+wf-* — third independent derivation of the §3/§4 split; "failure is allowed
+everywhere except in provenance" = our F-taxonomy + NR-7/22 in one sentence.
+ADOPTED (terms/fields into existing rows, NO new machinery per the pkg-2
+caution): tool-contract fields + autonomy ladder (Skeleton §8); claim typing
++ CLAIM-REPLAY CI test (ReportSpec R3a); clean-room challenge +
+reproducibility envelope + property-based tests as A19's acceptance
+(register). PARKED for Mode-A engineering: W3C PROV/RO-Crate/Arrow/Nextflow
+stack choices (engineer's call); typed claim-evidence GRAPH as the Mode-A
+north star (our figure sidecars are the embryo); U_science metric + ablation
+studies -> agentic-paper material. REJECTED: nothing (no root-file proposals;
+citations as always unverified until ADS).

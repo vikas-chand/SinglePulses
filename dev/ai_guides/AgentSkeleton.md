@@ -169,6 +169,13 @@ skills, contracts, registers, state machine, failure taxonomy, verifier
 definitions (markdown-as-system-prompt), hooks — is TEXT AND CODE IN THE
 REPO, never harness state. A mode is an execution substrate, not a fork of
 the design; the same burst must reach S12 with the same gates in either.
+Mode A tool contracts are STRICTER than function-calling schemas (adopted
+2026-08-29, 3rd external review): every tool declares input/output schema,
+units, determinism, seed_behavior, side_effect_class (read-only -> sandboxed
+compute -> durable internal write -> external write -> costly action),
+known_failure_modes, and typed errors — never vague text. The dispatcher's
+artifact classes map onto this autonomy ladder; authorization strengthens
+left to right.
 Mode A REQUIRES sandboxed execution (container/isolated env) — it runs
 generated code outside the harness's permission model (adopted 2026-08-29).
 Mode A is the natural Zenodo/community artifact; Mode B is the natural
