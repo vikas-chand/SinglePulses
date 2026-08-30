@@ -59,7 +59,13 @@ outside the plan.
 
 - **Dispatcher at intake.** A fresh dispatch plan (<24 h) must exist in
   `results/campaign/DISPATCH_PLAN_*.md`; a PreToolUse hook blocks producer
-  launches without one. Run the dispatcher agent for YOUR task, don't inherit.
+  launches without one. **You may READ an existing fresh plan as evidence
+  (§6), but the plan binding YOUR run must be issued for YOUR task** — if the
+  task differs in scope, mode, or burst set from the plan on disk, run the
+  dispatcher yourself. *(Corrected 2026-08-30: §2 previously said "don't
+  inherit" while §6 said "read the existing plan" — a self-contradiction in
+  the law, found by the first fresh session. Inheriting a plan issued for a
+  different task is the defect; reading it is not.)*
 - **The producer never verifies.** Every figure → figure-verifier; every
   number → numbers-verifier; every assembled deliverable → the NR-24
   conformance check. Fresh context each time. You drive the queue; you do not
