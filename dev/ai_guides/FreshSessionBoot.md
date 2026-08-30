@@ -234,3 +234,29 @@ The PI may always reply in plain language; translating his words into the
 machinery is the session's job, never his. If the PI says he does not
 understand, re-present in simpler words — that costs nothing and is always
 the correct move.
+
+## 9. GATES AS STRUCTURED CHOICES (PI ruling, 2026-08-30)
+
+Present every gate the way Claude Code presents its own questions: use the
+AskUserQuestion tool — a small set of options, one marked "(Recommended)"
+where a recommendation is honest (see below), and the PI can always pick
+"Other" and type in plain words. The four plain sentences (§8) form the
+question text; each option's description says in one line what choosing it
+does. Multi-select where choices are independent.
+
+WHO may recommend — the one safeguard:
+- At DECISION gates (rulings, orderings, conventions — e.g. "which numbering
+  is official?"): the session may recommend, with its reason in the option
+  description.
+- At APPROVAL gates (approve this step's own products): the recommendation
+  must come from the VERIFIER VERDICTS, never from the producer's own
+  preference — "Approve (all three gates passed)" is honest; a producer
+  recommending approval of its own work is the self-approval pressure the
+  axiom forbids. If any gate failed or was skipped, NO option carries
+  "(Recommended)".
+
+EVERY choice the PI clicks still becomes a real identity-bound stamp
+(dev/live_report.py --by VIKAS ...) — the click is the interface, the stamp
+is the record. "Other" answers in plain language are translated into the
+machinery by the session, then read back to the PI in one sentence for
+confirmation before stamping.
