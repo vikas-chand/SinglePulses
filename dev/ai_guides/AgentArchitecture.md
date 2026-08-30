@@ -120,10 +120,10 @@ purposes is two rows.
 | every incident | root-cause to primitive; lesson to correct layer; register upkeep | DEPLOYED (distiller practice) |
 | each step opening | SKILL-READER: read the step's skill/ledger, return the binding checklist + parameter-scaling rules for THIS burst (kills the ignored-prose class AND the s02c-defaults class) | DEPLOYED (.claude/agents/skill-reader.md, 2026-08-16) |
 | SendUserFile | MECHANICAL ENFORCER: block any figure whose sha256 is not in a VISION_QC ledger | DEPLOYED — hook ARMED in .claude/settings.json (2026-08-16) |
-| any code port | PORT-VERIFIER: numeric equivalence vs the SOURCE'S CODE on a synthetic case before the port is trusted (L26: the docstring is a bug vector) | PROPOSED |
+| any code port | PORT-VERIFIER: numeric equivalence vs the SOURCE'S CODE on a synthetic case before the port is trusted (L26: the docstring is a bug vector) | DEPLOYED (.claude/agents/port-verifier.md, 2026-08-21) |
 | fully-AI mode gates | APPROVER: independent non-producer (Codex / fresh Claude / both) | IDENTITY PENDING PI |
 | step 9 literature | blind-first harvester + P3 diff attributor (frame/method/band before "discrepancy") | DEPLOYED (protocol; agent per burst at step 9) |
-| before any root-cause / redo | PRIOR-ART READER: sweep the PROJECT FAMILY's notes (SinglePulse_Temporal, LATBright, PulsewiseLag…) for existing proofs before re-deriving — the lag-sign inversion was PROVEN in LAG_SIGN_VERIFICATION.md (2026-07-31, two-skeptic) and re-derived from scratch on 2026-08-15 | PROPOSED (added same-session) |
+| before any root-cause / redo | PRIOR-ART READER: sweep the PROJECT FAMILY's notes (SinglePulse_Temporal, LATBright, PulsewiseLag…) for existing proofs before re-deriving — the lag-sign inversion was PROVEN in LAG_SIGN_VERIFICATION.md (2026-07-31, two-skeptic) and re-derived from scratch on 2026-08-15 | DEPLOYED (.claude/agents/prior-art-reader.md, 2026-08-21) |
 | SED band drawing | NR-1 BAND-VALIDITY GUARD: containment + railed-fraction checks before any band ships (landed in 41c 2026-08-15; keep as frozen code) | DEPLOYED |
 | any MC product | NR-2 SEED AUDITOR: verify every stochastic product records + honors a seed (caught: temporal MC wobble, Bala runner --seed non-propagation) | DEPLOYED (.claude/agents/seed-auditor.md, 2026-08-21) |
 | model-selection reporting | NR-3 TIE-REPORTER: dAIC<2 heads reported as ties, never single winners (bin8's dAIC<1 hides 10x 30-MeV spread) | DEPLOYED (.claude/agents/tie-reporter.md; tracking rule = SpectralFitting.md PREFERENCE section, PI 2026-08-26) |
