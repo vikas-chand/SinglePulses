@@ -116,6 +116,27 @@ Holds (F-TRANSIENT) live in the state file, not in dying processes. The
 16 GB temporal claim serializes THROUGH the manager, not through racing
 ram_admit loops. Kill -9 the manager: states are on disk; restart resumes.
 
+## 4b. Session hygiene (Mode B ops — adopted 2026-08-30, context-engineering talk)
+
+- **The smart zone.** Quality degrades well before the context window fills
+  (~40% utilization is a working heuristic). Fan-outs return SUMMARIES, never
+  transcripts; heavy reading happens in subagents; the driving session stays
+  lean. Subagents exist for CONTEXT CONTROL — in our roster their names
+  encode CONTRACTS (what evidence they may see), not personas; the fresh
+  context is the mechanism, independence is the purpose.
+- **Trajectory hygiene.** A thread that accumulates failure-scolding predicts
+  more failure ("I did wrong, was corrected, did wrong…"). After repeated
+  FAIL rounds on one artifact, restart the PRODUCER from a compacted state
+  (the findings list, not the argument history). Verifiers already get
+  evidence-only for this reason.
+- **Status is derived, never stored as prose.** Static status text rots into
+  F-SILENT bait — the "8 DECISIVE" REVIEW_INDEX line contradicting the table
+  and the stale dispatch-plan git claims were both this class. The board
+  (dev/agent_state.py) derives from disk on demand; any status sentence in a
+  document is a cache, and caches carry staleness risk the reader cannot see.
+  LAW files (skills, contracts) are the exception: maintained, distiller-
+  disciplined, read end-to-end.
+
 ## 5. What stays human
 Stage-1 approvals; APPROVED stamps; contract amendments (PI's quoted words);
 the freeze itself. Everything else is the machine's, through the skeleton.
