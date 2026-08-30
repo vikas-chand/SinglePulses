@@ -468,6 +468,18 @@ less, >10 essentially none. ⚠ verify the exact wording against the source befo
 verdict. This reclassifies bn130310840 as blk2 DECISIVE (26.0, 4.4e5:1), blk4 VERY STRONG (9.0,
 91:1), blk3 STRONG (8.0, 54:1) — not "one success, two failures".
 
+**⚠ CONFLICT-1 (NR-27 first instance, found 2026-08-30 on #21 bn110920546): the line above
+never named the REFERENCE model.** The PREFERENCE section below measured vs the runner-up;
+ReportSpec R3's tie rule implied runner-up; the shipped #21 report and REVIEW_INDEX_106
+("8 DECISIVE") measured vs the best simple model — the same table read "8 DECISIVE" or
+"3 TRACKED / 5 ties" depending on the reader. **RESOLVED by PI ruling 3 (2026-08-30,
+gate 1 of the #21 walkthrough), verbatim:** "ΔAIC reference: BOTH constructs stay, with
+mandatory labels — "DECISIVE" = chain-gate vs best simpler ancestor (structure claims,
+ΔAIC≥10); "TRACKED" = vs runner-up (preference, ΔAIC>6 in 1–2 bins). Never print either
+word without its reference." So the grades in this table are the CHAIN-GATE construct:
+ΔAIC of a model vs its best simpler ANCESTOR in the nesting chain. Every printed
+"DECISIVE"/"STRONG" names that ancestor.
+
 **⚠ DOCTRINE BUG this exposed:** our `+BB` gate `LRT ≥ 9.2` is p=0.010 (~2.6σ) for 2 extra
 parameters ⇒ **equivalent to ΔAIC ≈ 5.2**, while we simultaneously demanded **ΔAIC ≥ 10**
 (⇒ LRT = 14). The two gates disagree by ~5 AIC, so a component can pass one and fail the other on
@@ -781,3 +793,26 @@ bin winner with margin ΔAIC > 6 over the runner-up in ≥1 bin (STRONG tier;
 tie (NR-3). The census follows TRACKED models, not bin argmins. Tool:
 dev/model_preference.py → results/campaign/model_preference.ecsv. WHERE a
 preference lives in energy: dev/model_discrimination.py (Basak&Rao-style).
+
+### Amendment — the two ΔAIC constructs and their mandatory labels (PI ruling 3, 2026-08-30, gate 1 of the Lane-A #21 bn110920546 walkthrough)
+Verbatim: "ΔAIC reference: BOTH constructs stay, with mandatory labels — "DECISIVE" =
+chain-gate vs best simpler ancestor (structure claims, ΔAIC≥10); "TRACKED" = vs runner-up
+(preference, ΔAIC>6 in 1–2 bins). Never print either word without its reference. Fix
+model_preference.py's validity gate before its output is quoted for THIS burst."
+
+| word | construct | reference model | threshold | claim type |
+|---|---|---|---|---|
+| **DECISIVE** (and STRONG per L16) | chain-gate | the best SIMPLER ANCESTOR in the nesting chain | ΔAIC ≥ 10 (STRONG ≥ 6) | STRUCTURE — "an extra component is required" |
+| **TRACKED** | preference | the RUNNER-UP (whatever it is) | ΔAIC > 6 in 1–2 bins | PREFERENCE — "this model is tracked through the burst" |
+
+Rules that follow: (1) neither word is ever printed without its reference model beside
+it (ReportSpec R3); (2) a bin can be DECISIVE and a tie at once — DECISIVE vs the
+ancestor, tie vs the runner-up (NR-3) — both are stated, neither replaces the other;
+(3) the feature-level margin (decision-sheet item 8) is NOT addressed by the ruling: it
+stays a computed-alongside diagnostic, never a census construct; (4) NR-26: the validity
+gate was applied to dev/model_preference.py on 2026-08-30 (engine *_VALID + *_STATUS
+gate every argmin; name map from scripts/10's spec tables via ast; refuses to write on
+any mismatch vs BEST_AIC_MODEL) — per-burst use only, the campaign-wide table is NOT
+rerun under the no-sweep preamble ("one burst at a time, repairs included: each burst
+fixes its own rows as it's walked, no campaign-wide sweeps."), so
+results/campaign/model_preference.ecsv stays SUSPECT for every un-walked burst.

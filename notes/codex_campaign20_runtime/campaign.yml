@@ -1,0 +1,6 @@
+logging:
+  path: /private/tmp/codex_campaign20_threeml_logs
+  developer: false
+  usr: false
+  console: false
+  startup_warnings: true

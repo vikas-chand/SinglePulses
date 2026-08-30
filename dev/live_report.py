@@ -51,6 +51,22 @@ def evidence(trig, step):
     d = os.path.join(ROOT,'results','sweep106',trig)
     cc = os.path.join(ROOT,'results','convention_check')
     e = []
+    # 2026-08-30 (first fresh session): steps 0b,0,2,3,4,5 had NO evidence rule, so
+    # PRESENTED was mechanically impossible for them (NR-18 gap). Links only — real
+    # on-disk products, never claims. Step keys follow THIS file's STEP_NAMES; the
+    # numbering offset vs BurstWalkthrough.md/scripts/44 is an open NR-27 conflict.
+    def _ex(*ps): return [x for x in ps if os.path.exists(x)]
+    decision = os.path.join(ROOT,'results','approval',f'{trig}_decision.json')
+    if step=='0b': e += _ex(f'{ROOT}/results/gcn/{trig}/{trig}_dossier.md',
+                            f'{ROOT}/notes/reconciliation/{trig}_harvest.json',
+                            f'{ROOT}/notes/reconciliation/{trig}_P0_frozen.json')
+    if step=='0':  e += _ex(f'{ROOT}/results/qc/{trig}_step1_response_coverage.ecsv',
+                            f'{ROOT}/data/{trig}')
+    if step in ('1','2','3','5'): e += _ex(decision)
+    if step=='2':  e += sorted(glob.glob(f'{d}/{trig}_step3_background*.png'))
+    if step=='3':  e += sorted(glob.glob(f'{d}/{trig}_step4_source*.png'))
+    if step=='4':  e += _ex(f'{d}/blocks/bb_blocks_spectral_{trig}.ecsv') + sorted(glob.glob(f'{d}/{trig}_step5_binning*.png'))
+    if step=='5':  e += _ex(f'{ROOT}/results/human_review_qc_flags.txt')
     if step=='1': e += glob.glob(f'{d}/{trig}_step1_*.png')
     if step=='6':
         for c in (f'{cc}/{trig}/spectral_fits.ecsv',

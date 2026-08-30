@@ -150,6 +150,11 @@ plan); Mode B interim: wf-gate cross-checks agents-that-ran vs plan;
 task-id; (3) unguarded debt is surfaced, not blocking — probably correct
 (else PROPOSED rows freeze all work) but a policy call: should some debt
 classes hard-block (e.g., missing seed-audit on an MC product)?
+(4) [2026-08-30, NR-35] a plan's per-burst FAIL/exposure list must be
+DERIVED from that burst's fit table at plan time, never pooled across the
+bursts in the plan — DISPATCH_PLAN_campaign21plus.md scoped NR-10 exposure
+to "DSBPLF / BANDRCPL / SBPLCPL / CPLCPL", a #21∪#22 union; #21's actual
+FAIL families are DSBPL/DSBPLF/BANDRCPL and SBPLCPL is its T_INT winner.
 
 **DECISIONS:** (a) strip Bash? (b) candidate-register-row drafting?
 (c) adopt plan-compliance-via-queue-manager as the Mode A design?
@@ -534,6 +539,14 @@ roster seat only the PI can fill.
 already standing: never a producer; stamps identity-bound (a stamp without
 identity is rejected by code; test stamps are purged same-session —
 fabricated approval is the cardinal sin).
+**Clarification pending the PI's word (2026-08-30, I-13):** the gate-1
+instruction read "stamping each step PRESENTED via dev/live_report.py --by
+VIKAS". In the tool, `--by` on `--present` is the PRESENTER's identity
+(live_report.py:136-141: "PRESENTED must carry identity + real evidence");
+a stamp bearing an identity that did not act is a fabricated stamp under
+the rule above. The session therefore stamps PRESENTED under its own
+identity and leaves APPROVED `--by VIKAS` to the PI, reporting the
+deviation. Decision sheet item 24.
 
 **DECISIONS (all PI's):** (a) fully-AI approver identity (Codex? fresh
 Claude? both-quorum?); (b) which steps may EVER be AI-approved vs
@@ -600,6 +613,15 @@ canonical.
 6. Admission-gate REFUSE semantics (STOP vs LABEL by row class).
 7. Seed-auditor spot-check tier per-run + full replay at milestones.
 8. Tie census: literal vs feature-level TRACKED; ΔAIC∈[2,6) language.
+   → RESOLVED 2026-08-30 (gate 1, Lane-A #21 bn110920546), PI verbatim:
+   "ΔAIC reference: BOTH constructs stay, with mandatory labels — "DECISIVE"
+   = chain-gate vs best simpler ancestor (structure claims, ΔAIC≥10);
+   "TRACKED" = vs runner-up (preference, ΔAIC>6 in 1–2 bins). Never print
+   either word without its reference. Fix model_preference.py's validity
+   gate before its output is quoted for THIS burst." The feature-level
+   margin is NOT addressed by the ruling — it stays a computed-alongside
+   diagnostic, never a census construct. Law: SpectralFitting.md PREFERENCE
+   section, ReportSpec R3; NR-26 status FIX APPLIED; NR-27 first instance.
 9. Notes-reviewers: freeze the per-bin brief; reviewer cap for 100+ bins.
 10. Figure-verifier: S-item contract freeze; F-GUARD adjudication path.
 11. Numbers-verifier: exact-at-printed-precision tolerance; manifest pass.
@@ -611,8 +633,35 @@ canonical.
 17. External audit cadence + budget for the frozen campaign.
 18. APPROVER identity in fully-AI mode; PI-only-forever steps.
 19. Queue manager v1 build approval; queue-order authority.
+   → DEFERRED 2026-08-30 (gate 1, #21), PI verbatim: "Tooling: prototype
+   chains for #21, under the dispatch plan's gates. State so in every
+   stamp." No queue-manager build for #21; every #21 stamp states
+   "prototype chains under the dispatch plan's gates".
 20. The 74-burst retry debt (campaign-wide mandate vs report-bursts-only).
+   → RESOLVED 2026-08-30 as PER-WALKED-BURST REPAIR, no campaign-wide sweep.
+   PI preamble, verbatim: "one burst at a time, repairs included: each burst
+   fixes its own rows as it's walked, no campaign-wide sweeps." and "Gate
+   decisions — we work ONE burst at a time; nothing campaign-wide:". For
+   #21, verbatim: "Promote the 08-27 retry table (newer, terminal, winners
+   identical). Its tier-3 cell list governs downstream." Temporal rows
+   likewise (ruling 5, NR-31): each burst regenerates and REPLACES its own
+   rows as it is walked; un-walked rows stay STALE-PENDING-REWALK.
 21. The 21 never-human-reviewed bursts: census eligibility (open Q4).
+22. [NEW 2026-08-30, NR-27 instance I-12] STEP NUMBERING: dev/live_report.py
+   STEP_NAMES + AgentArchitecture's per-step roster (0b identity/boot, 0
+   inventory, 1 detectors, 2 background, 3 source, 4 binning, 5 stage-1
+   adopt) vs BurstWalkthrough.md's ledger + scripts/44 PNG names (0b
+   literature, 0 identity/GCN, 1 inventory, 2 detectors, 3 background, 4
+   source, 5 binning) — shifted by one for 0b–5, 6–9 agree. Which numbering
+   is law? (The distiller picked none.)
+23. [NEW 2026-08-30, NR-29] PIN LOCATION: ruling 4 ordered a re-pin but no
+   designated location existed; results/campaign/CAMPAIGN_COMMIT_PIN.json
+   was improvised by the operating session. Bless or relocate.
+24. [NEW 2026-08-30, NR-18/A16] `--by` SEMANTICS: on `--present` the tool
+   records the PRESENTER; the instruction "stamping each step PRESENTED …
+   --by VIKAS" would put the PI's identity on an act he did not perform.
+   Session stamps PRESENTED as itself, APPROVED --by VIKAS stays the PI's.
+   Confirm or overrule.
 
 ## ADDENDUM 2026-08-29 — adjudication of the second external review
 
