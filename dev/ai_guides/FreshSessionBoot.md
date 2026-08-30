@@ -162,3 +162,43 @@ is a PI call too.
 calls whose command TEXT merely named producer scripts. A command-position
 fix is drafted but unapplied. Strip Bash from the dispatcher/readers and this
 class disappears.
+
+---
+
+## 7. TWO LANES — both ends of the mission (PI, 2026-08-30)
+
+The queue is chronological, so **every lesson the agent has learned so far
+came from 2008–2011 bursts** (#1–#22). The PI's instruction: also run a batch
+of recent bursts *"so that we have skills on both ends, new and old."* This
+is a skill-transfer test, and the project has already been bitten once by the
+cross-era hardcode class (constants tuned on one era's burst silently applied
+to another — the per-burst parameterized temporal figures exist because of
+it).
+
+**LANE A — walkthrough, old era.** #21 `bn110920546` → #22 `bn110928180` →
+onward, one burst at a time, PI reading each step, both deliverables.
+
+**LANE B — batch, recent era: queue #80–#100 (2021–2025).** Same gates, less
+step-by-step narration; the PI reads the finished deliverables rather than
+each step. Composition to expect:
+
+| | |
+|---|---|
+| era | 2021, 2022, 2023, 2024, 2025 |
+| states | mostly **S3_FIT** — they need `wf-retry` first, so this lane also pays down the 333-cell debt |
+| size range | 2 blocks (#81) to 108 (#92 `bn230812790`) and 96 (#100) |
+| claim-bearing members | **#100 `bn250313607`** — one of only three two-break TRACKED bursts; **#91 `bn230802285`** — a thermal candidate (2 bins, ΔAIC 48.9/25.3) currently flagged EDGE-SUSPECT |
+
+**What Lane B is actually testing.** Any skill, constant, or contract that
+works on Lane A and fails on Lane B is a **cross-era defect**, and that
+finding is worth more than the burst itself — route it to the distiller as a
+register row, not as a one-off fix. Specifically watch: detector
+configurations and EAC behavior on modern multi-NaI sets, response
+(`rsp2`) versions and slew handling, LAT availability, background-window
+conventions across the mission, and whether pulse-scaled parameters
+(lag windows, MVT settings) transfer.
+
+**Ordering:** run Lane A first far enough to know the path works (the PI's
+"see if it works"), then interleave Lane B rather than serializing — the
+16 GB temporal claim means only one burst occupies that transition at a time
+anyway, so a second lane costs little wall-clock and doubles the evidence.
