@@ -27,19 +27,33 @@ building session's transcript. Everything binding is in this repository.
 6. The current board: `python3 dev/agent_state.py` (never trust a remembered
    state; the board is derived from evidence on disk).
 
-## 1. The task
+## 1. The task — WALKTHROUGH MODE, one burst at a time
 
-Advance the campaign from **queue position #21** onward
-(`notes/REVIEW_INDEX_106.md` order; #21 = `bn110920546`), through the state
-machine, using the queue manager — not by hand-running scripts.
+The PI's instruction (2026-08-30): *walk through burst #21, see whether it
+works, then #22, and keep going — reading in detail.* **This is not an
+autonomous queue drain.** It is the gated per-burst protocol of
+`dev/ai_guides/BurstWalkthrough.md`: RUN → **PRESENT** → **GATE (the PI)** →
+LITERATURE → DISTILL, at every step. You stop at each gate. He reads. He
+approves or feeds back. Only then does the next step run.
 
-```
-python3 dev/queue_manager.py --from 21            # DRY RUN (default): shows transitions + gates
-python3 dev/queue_manager.py --from 21 --execute --max 1   # run ONE transition, then look
-```
+Start at **#21 `bn110920546`** (`notes/REVIEW_INDEX_106.md` order), currently
+S4_RETRIED. Advance it through the state machine one transition at a time,
+presenting evidence at each stop.
 
-Dry-run first, always. Read the proposed transitions, confirm they match the
-skeleton, then execute in small `--max` increments.
+**DELIVERABLES PER BURST — both, per the PI (2026-08-30): "create reports
+too."**
+1. the **REPORT** (`REPORT_<trig>.md` + PDF) — the per-burst analysis record;
+2. the **aastex paper** (`paper/GRB<name>/`) — assembled at the pinned
+   campaign commit with a staging manifest (R1).
+Both are UNGATED PRODUCER ARTIFACTS until figure-verifier + numbers-verifier
++ the NR-24 conformance check have returned sha-bound verdicts (R4). Neither
+reaches the PI, a bundle, or a collaborator before that.
+
+**On tooling:** `dev/queue_manager.py` (A17) does **not exist yet**. Either
+build it first to `AgentSkeleton.md` §4 (the sanctioned first move — ask the
+PI), or advance the burst on the §3 prototype chains under the dispatch
+plan's gates. Whichever you choose, say which, and never launch a producer
+outside the plan.
 
 ## 2. Non-negotiables (mechanically enforced where possible)
 
