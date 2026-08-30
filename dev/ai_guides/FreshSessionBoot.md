@@ -208,3 +208,29 @@ conventions across the mission, and whether pulse-scaled parameters
 "see if it works"), then interleave Lane B rather than serializing — the
 16 GB temporal claim means only one burst occupies that transition at a time
 anyway, so a second lane costs little wall-clock and doubles the evidence.
+
+---
+
+## 8. PLAIN LANGUAGE AT EVERY GATE (PI catch, 2026-08-30 — binding)
+
+The PI could not understand a gate presentation ("everything has suddenly
+become a complicated language"). That is a presentation FAILURE, never a
+reader failure. Standing project rule (audience = first-year PhD student;
+every concept gets one plain-language explanation) applies to gate
+presentations, not just manuscripts.
+
+EVERY presentation to the PI MUST open with exactly four plain sentences,
+before any technical content, codes, or file paths:
+
+  WHAT I DID:            (one sentence, no jargon)
+  WHAT I FOUND:          (one sentence; the single most important thing)
+  WHAT I NEED FROM YOU:  (one sentence; a yes/no or a choice, stated simply)
+  WHAT HAPPENS NEXT:     (one sentence; after your answer)
+
+Rules: no register numbers, no state codes, no acronyms in these four lines
+(spell things out: "the list of failed fits", not "FAIL cells"). The
+technical detail follows BELOW the four lines for when the PI wants depth.
+The PI may always reply in plain language; translating his words into the
+machinery is the session's job, never his. If the PI says he does not
+understand, re-present in simpler words — that costs nothing and is always
+the correct move.
