@@ -94,3 +94,57 @@ failed and in which class, and what is now waiting on his approval. Present
 evidence, not conclusions. If you improvised anything, say so explicitly —
 that is a finding about the design, and it is the most valuable thing this
 run can produce.
+
+---
+
+## 6. Dispatch findings you inherit (2026-08-30, from the dispatcher agent)
+
+**Your dispatch plan already exists**: `results/campaign/DISPATCH_PLAN_campaign21plus.md`
+— read it. It names the roster per transition for #21–#23, the unguarded
+debt, and the producer/verifier separation rules for a session driving the
+queue. It is <24 h old, so the P9 hook will pass; if it ages out, run the
+dispatcher yourself rather than reusing a stale plan.
+
+**RESOLVED before hand-off:** the R1 hard blocker. `scripts/41e_sed_montage.py`
+and `results/temporal_catalog_all106.ecsv` were modified-uncommitted, which
+would have made every paper from this run carry "no commit". Both are now
+committed; **the campaign commit is pinned. Do not edit a producer mid-run —
+that is F-CONTRACT: stop, then regenerate whatever was already assembled.**
+
+**BLOCKED — no census sentence may ship from this run.** 333 unretried FAIL
+cells across 79 S3 bursts are NOT randomly distributed: BANDRCPL 121 cells /
+59 bursts, DSBPLF 53/28, BANDCPL 45/27, SBPLCPL 31/20. They concentrate in
+the two-component and free-break families that carry the two-break and
+hard-tail claims, and `results/campaign/model_preference.ecsv` (104 trigs,
+518 rows) is built on those incomplete sets. Per-burst rows may be written.
+**Any cross-burst census statement is blocked until the retry debt is
+terminal and a missing-cell companion census exists.** The direction of the
+bias is NOT established — do not assume "lower limit"; measure it.
+
+**Retro-gating exposure (highest-priority backlog, does not block #21+):**
+21 REPORT PDFs shipped but only ~9 VISION_QC ledgers exist, and
+`handoff_background_approval/KHUSHBOO_REPORTS_20260817.zip` sits in the tree.
+Those are delivered-ungated artifacts. Per R1 they are regenerated, never
+hand-patched. Run them in a RETRO lane at low RAM priority between #21+
+transitions; `bn081224887` (the only manifest-stamped paper) is also the
+queue's only available regression test.
+
+**Run-order question for the PI — do not decide alone.** REVIEW_INDEX order
+(canonical) puts #21 `bn110920546` first: 11 blocks, 8 DECISIVE, 10 BB
+blocks, 3 residual FAILs, and an existing report to reconcile — the hardest
+of the three through an unvalidated path. Engineering argues #23
+`bn111009282` first as the control (7 blocks, 0 FAIL cells, no prior report),
+then #21, then #22 (12 residual FAILs; manifest already 15/16 — the
+NO-MODEL-DROPPED and NR-16 stress case). Ask the PI; canonical order stands
+unless he grants the exception.
+
+**Not built yet:** `dev/queue_manager.py` (A17) and `.claude/workflows/`.
+Every transition therefore runs on the §3 PROTOTYPE chains under the dispatch
+plan's gates. Building the queue manager to `AgentSkeleton.md` §4 is the
+sanctioned first move if you prefer the machinery before the mileage — that
+is a PI call too.
+
+**Live evidence for decision-sheet item 1:** the P9 hook blocked read-only
+calls whose command TEXT merely named producer scripts. A command-position
+fix is drafted but unapplied. Strip Bash from the dispatcher/readers and this
+class disappears.
