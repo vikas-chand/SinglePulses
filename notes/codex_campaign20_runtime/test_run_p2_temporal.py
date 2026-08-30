@@ -33,17 +33,20 @@ class P2ControllerTests(unittest.TestCase):
             ["bn081224887", "bn100130729", "bn110928180"],
         )
 
-    def test_six_primary_phases_and_shim_scope(self):
+    def test_seven_primary_phases_and_shim_scope(self):
+        # 7 phases since 2026-08-30 (PI ruling 5 + repair-step choice):
+        # phase 7 row_repair REPLACES the handbook LAG_*/MVT_* row values
+        # with the validated 47c lag and canonical Bala MVT.
         phases = P2.phases("bn081224887")
-        self.assertEqual([p.number for p in phases], [1, 2, 3, 4, 5, 6])
+        self.assertEqual([p.number for p in phases], [1, 2, 3, 4, 5, 6, 7])
         self.assertEqual([p.name for p in phases], [
             "temporal_catalog", "step_figures", "cwt", "bala",
-            "temporal_figures", "lag",
+            "temporal_figures", "lag", "row_repair",
         ])
         self.assertEqual([p.thread_shim for p in phases],
-                         [True, False, False, True, False, False])
+                         [True, False, False, True, False, False, False])
 
-    def test_six_commands_are_exact_and_ordered(self):
+    def test_seven_commands_are_exact_and_ordered(self):
         trig = "bn081224887"
         phases = P2.phases(trig)
         self.assertEqual(list(phases[0].command), [
@@ -66,8 +69,12 @@ class P2ControllerTests(unittest.TestCase):
             str(P2.PYTHON), str(P2.REPO / "scripts" / "47c_lag_latbright.py"),
             "--trig", trig,
         ])
+        self.assertEqual(list(phases[6].command), [
+            str(P2.PYTHON), str(P2.RUNTIME / "run_p2_temporal.py"),
+            "repair-row", "--triggers", trig,
+        ])
         self.assertEqual([phase.cwd for phase in phases], [
-            P2.REPO, P2.REPO, P2.REPO, P2.HANDBOOK, P2.REPO, P2.REPO,
+            P2.REPO, P2.REPO, P2.REPO, P2.HANDBOOK, P2.REPO, P2.REPO, P2.REPO,
         ])
 
     def test_bala_command_is_frozen(self):
@@ -91,6 +98,18 @@ class P2ControllerTests(unittest.TestCase):
         self.assertIn(P2.LATBRIGHT_LAG,
                       P2.phase_dependency_paths(phase_map["lag"]))
         self.assertEqual(len(P2.phase_implementation_sha(phase_map["lag"])), 64)
+        self.assertIn(P2.RUNTIME / "run_p2_temporal.py",
+                      P2.phase_dependency_paths(phase_map["row_repair"]))
+        self.assertIn(P2.REPO / "scripts" / "47c_lag_latbright.py",
+                      P2.phase_dependency_paths(phase_map["row_repair"]))
+
+    def test_row_repair_labels_encode_contract(self):
+        lag = {"window_systematic_s": 0.387}
+        text = P2._lag_convention_text(lag)
+        self.assertIn("POSITIVE = soft", text)
+        self.assertIn("NOT folded in", text)
+        self.assertIn("Bala", P2._mvt_estimator_text({}))
+        self.assertIn("MVT_HAAR_S", P2._mvt_estimator_text({}))
 
     def test_step44_receipt_refuses_files_not_made_by_invocation(self):
         with tempfile.TemporaryDirectory() as directory, \
@@ -226,13 +245,16 @@ class P2ControllerTests(unittest.TestCase):
              patch.object(P2, "validate_step44",
                           side_effect=P2.ValidationError("current fit missing")), \
              patch.object(P2, "validate_step44_nonspectral",
-                          return_value=[fake_artifact]):
+                          return_value=[fake_artifact]), \
+             patch.object(P2, "validate_row_repair",
+                          return_value={"lag_s": 0.05, "mvt_s": 0.2}):
             summary = P2.collect_summary("bn100130729")
         self.assertFalse(summary["complete"])
         self.assertTrue(summary["temporal_values_complete"])
         self.assertEqual(summary["t90"]["t90_s"], 1.2)
         self.assertEqual(summary["mvt"]["canonical_bala"]["mvt_s"], 0.2)
         self.assertEqual(summary["lag"]["tau_s"], 0.05)
+        self.assertEqual(summary["catalog_row_canonical"]["lag_s"], 0.05)
         self.assertIn("current fit missing", summary["validation_errors"][0])
 
 

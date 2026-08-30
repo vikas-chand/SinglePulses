@@ -395,6 +395,7 @@ def temporal_row(
     trig: str, *, require_receipt: bool = True
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     from astropy.table import Table
+    import numpy as np
 
     path = TEMPORAL_CATALOG
     require_file(path, "temporal catalog")
@@ -473,14 +474,24 @@ def temporal_row(
             src["src_stop_s"], src["bkg_pos_start_s"]
         ],
     }
-    mvt_type = str(row["MVT_TYPE"]).strip().lower()
+    # Repair-aware (phase 7, PI ruling 5): once row_repair has run, MVT_S/
+    # MVT_ERR_S/MVT_TYPE carry the CANONICAL (Bala) values and the original
+    # in-chain Haar is preserved in MVT_HAAR_*.  The haar block below must
+    # keep describing the HAAR estimator (the 47b figure cross-check depends
+    # on it), so read from the preserved columns when the row is repaired.
+    repaired = ("MVT_ESTIMATOR" in table.colnames
+                and str(row["MVT_ESTIMATOR"]).strip() != ""
+                and not np.ma.is_masked(row["MVT_ESTIMATOR"]))
+    h_s, h_e, h_t = (("MVT_HAAR_S", "MVT_HAAR_ERR_S", "MVT_HAAR_TYPE")
+                     if repaired else ("MVT_S", "MVT_ERR_S", "MVT_TYPE"))
+    mvt_type = str(row[h_t]).strip().lower()
     if mvt_type not in {"detection", "limit"}:
         raise ValidationError(f"{trig}: invalid Haar MVT type {mvt_type!r}")
-    haar_value = optional_float(row["MVT_S"])
+    haar_value = optional_float(row[h_s])
     if haar_value is None or haar_value <= 0:
         raise ValidationError(f"{trig}: invalid Haar MVT")
     is_limit = mvt_type == "limit"
-    haar_err = None if is_limit else optional_float(row["MVT_ERR_S"])
+    haar_err = None if is_limit else optional_float(row[h_e])
     if not is_limit and (haar_err is None or haar_err <= 0):
         raise ValidationError(f"{trig}: Haar detection lacks positive uncertainty")
     haar = {
@@ -765,6 +776,216 @@ def validate_lag(trig: str) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     return out, [artifact(path), artifact(figure)]
 
 
+ROW_REPAIR_SCHEMA = "codex_campaign20.temporal_row_repair.v1"
+ROW_REPAIR_COLUMNS = ("LAG_CONVENTION", "MVT_ESTIMATOR", "MVT_HAAR_TYPE",
+                      "LAG_WINDOW_SYS_S", "MVT_HAAR_S", "MVT_HAAR_ERR_S")
+
+
+def row_repair_sidecar_path(trig: str) -> Path:
+    return SWEEP / trig / f"{trig}_row_repair.json"
+
+
+def _lag_convention_text(lag: dict[str, Any]) -> str:
+    return (
+        "scripts/47c (LATBright s02c DCCF, unmodified import): POSITIVE = soft "
+        "25-50 keV lags hard 100-300 keV (Norris+1996); LAG_ERR_S = max of the "
+        "asymmetric MC errors (stat only); window systematic "
+        f"{lag['window_systematic_s']:.6g} s in LAG_WINDOW_SYS_S, NOT folded in; "
+        "full detail in the step7_lag_latbright.json sidecar"
+    )
+
+
+def _mvt_estimator_text(bala: dict[str, Any]) -> str:
+    return (
+        BALA_LABEL + "; seed 20260718; original in-chain Haar preserved in "
+        "MVT_HAAR_S/MVT_HAAR_ERR_S/MVT_HAAR_TYPE"
+    )
+
+
+def repair_row(trig: str) -> dict[str, Any]:
+    """Phase 7 (PI ruling 5 + repair-step choice, 2026-08-30): REPLACE the
+    catalog row's handbook LAG_*/MVT_* with the validated phase-4/6 estimators.
+
+    Fail-closed: values come ONLY through validate_lag / validate_bala.  A Bala
+    structural refusal is a TYPED refusal here (the fallback policy for
+    Bala-refused bursts is an OPEN PI decision; do not improvise one)."""
+    from astropy.table import Table
+    import numpy as np
+
+    lag, _lag_sources = validate_lag(trig)
+    try:
+        bala, _bala_sources = validate_bala(trig)
+    except ValidationError as exc:
+        raise ValidationError(
+            f"{trig}: row_repair requires the canonical Bala result "
+            f"(F-STRUCTURAL if Bala refused; fallback policy is an open PI "
+            f"decision): {exc}"
+        )
+    bala_err = optional_float(bala.get("mvt_err_s"))
+    bala_status = str(bala.get("status", "")).strip().lower()
+    if bala_status == "detection" and (bala_err is None or bala_err <= 0):
+        raise ValidationError(f"{trig}: Bala detection lacks positive mvt_err_s")
+
+    require_file(TEMPORAL_CATALOG, "temporal catalog")
+    table = Table.read(TEMPORAL_CATALOG, format="ascii.ecsv")
+    meta = table.meta.get("stale_pending_rewalk")
+    if not isinstance(meta, dict) or "rewalked_triggers" not in meta:
+        raise ValidationError(
+            "temporal catalog lacks the stale_pending_rewalk header "
+            "(PI ruling 5 precondition; see Temporal.md banner)"
+        )
+    mask = [str(v).strip() == trig for v in table["TRIGGER_NAME"]]
+    if sum(mask) != 1:
+        raise ValidationError(f"expected one temporal row for {trig}; found {sum(mask)}")
+    index = mask.index(True)
+
+    def _set_str(name: str, value: str) -> None:
+        # a numpy U<n> column silently TRUNCATES longer assignments; rebuild
+        # the column from python strings so the full text survives
+        if name in table.colnames:
+            values = ["" if np.ma.is_masked(item) else str(item)
+                      for item in table[name]]
+        else:
+            values = [""] * len(table)
+        values[index] = value
+        if name in table.colnames:
+            table.replace_column(name, values)   # keeps column ORDER stable
+        else:
+            table[name] = values
+
+    for name in ("LAG_WINDOW_SYS_S", "MVT_HAAR_S", "MVT_HAAR_ERR_S"):
+        if name not in table.colnames:
+            table[name] = np.full(len(table), np.nan)
+
+    row = table[index]
+    before = {name: (None if np.ma.is_masked(row[name]) else
+                     (row[name].item() if hasattr(row[name], "item") else row[name]))
+              for name in ("LAG_S", "LAG_ERR_S", "LAG_SIG", "LAG_ACCEPTED",
+                           "MVT_S", "MVT_ERR_S", "MVT_TYPE")}
+    already = ("MVT_ESTIMATOR" in table.colnames
+               and not np.ma.is_masked(row["MVT_ESTIMATOR"])
+               and str(row["MVT_ESTIMATOR"]).strip() != "")
+    if not already:
+        # first repair: preserve the in-chain Haar before overwriting
+        table["MVT_HAAR_S"][index] = float(row["MVT_S"])
+        table["MVT_HAAR_ERR_S"][index] = float(row["MVT_ERR_S"])
+        _set_str("MVT_HAAR_TYPE", str(row["MVT_TYPE"]).strip())
+
+    table["LAG_S"][index] = float(lag["tau_s"])
+    table["LAG_ERR_S"][index] = max(float(lag["sigma_l_s"]), float(lag["sigma_r_s"]))
+    peak = optional_float(lag.get("peak_significance_sigma"))
+    table["LAG_SIG"][index] = peak if peak is not None else np.nan
+    table["LAG_ACCEPTED"][index] = True
+    table["LAG_WINDOW_SYS_S"][index] = float(lag["window_systematic_s"])
+    _set_str("LAG_CONVENTION", _lag_convention_text(lag))
+    table["MVT_S"][index] = float(bala["mvt_s"])
+    table["MVT_ERR_S"][index] = bala_err if bala_err is not None else np.nan
+    _set_str("MVT_TYPE", bala_status)
+    _set_str("MVT_ESTIMATOR", _mvt_estimator_text(bala))
+
+    rewalked = list(meta.get("rewalked_triggers") or [])
+    if trig not in rewalked:
+        rewalked.append(trig)
+    meta["rewalked_triggers"] = sorted(rewalked)
+    table.meta["stale_pending_rewalk"] = meta
+
+    temporary = TEMPORAL_CATALOG.with_suffix(".ecsv.tmp")
+    table.write(temporary, format="ascii.ecsv", overwrite=True)
+    os.replace(temporary, TEMPORAL_CATALOG)
+
+    check = Table.read(TEMPORAL_CATALOG, format="ascii.ecsv")
+    if len(check) != len(table) or trig not in (
+        check.meta.get("stale_pending_rewalk", {}).get("rewalked_triggers", [])
+    ):
+        raise ValidationError(f"{trig}: post-repair catalog readback failed")
+
+    after = {name: (table[name][index].item()
+                    if hasattr(table[name][index], "item") else table[name][index])
+             for name in ("LAG_S", "LAG_ERR_S", "LAG_SIG", "LAG_ACCEPTED",
+                          "LAG_WINDOW_SYS_S", "LAG_CONVENTION",
+                          "MVT_S", "MVT_ERR_S", "MVT_TYPE", "MVT_ESTIMATOR",
+                          "MVT_HAAR_S", "MVT_HAAR_ERR_S", "MVT_HAAR_TYPE")}
+    sidecar = {
+        "schema_version": ROW_REPAIR_SCHEMA,
+        "trigger": trig,
+        "generated_utc": utcnow(),
+        "argv": list(sys.argv),
+        "script": str(Path(__file__).resolve()),
+        "script_sha256": sha256(Path(__file__).resolve()),
+        "ruling": ("PI 2026-08-30 ruling 5 + repair-step choice: REPLACE the "
+                   "handbook lag (sign-inverted, L26) and Haar MVT with the "
+                   "validated scripts/47c lag and canonical Bala MVT, labelled"),
+        "before": before,
+        "after": after,
+        "lag_source": input_artifact(
+            SWEEP / trig / f"{trig}_step7_lag_latbright.json", "validated lag"),
+        "bala_source": input_artifact(MVT_ROOT / trig / "result.json", "Bala result"),
+        "catalog_sha256_after": sha256(TEMPORAL_CATALOG),
+        "rewalked_triggers": meta["rewalked_triggers"],
+    }
+    atomic_json(row_repair_sidecar_path(trig), sidecar)
+    return sidecar
+
+
+def validate_row_repair(trig: str) -> dict[str, Any]:
+    from astropy.table import Table
+    import numpy as np
+
+    lag, _ = validate_lag(trig)
+    bala, _ = validate_bala(trig)
+    sidecar = read_json(row_repair_sidecar_path(trig), "row-repair sidecar")
+    if sidecar.get("trigger") != trig \
+            or sidecar.get("schema_version") != ROW_REPAIR_SCHEMA:
+        raise ValidationError(f"{trig}: row-repair sidecar is malformed")
+    if sidecar.get("script_sha256") != sha256(Path(__file__).resolve()):
+        raise ValidationError(f"{trig}: row-repair sidecar was made by a stale controller")
+    table = Table.read(TEMPORAL_CATALOG, format="ascii.ecsv")
+    meta = table.meta.get("stale_pending_rewalk")
+    if not isinstance(meta, dict) or trig not in (meta.get("rewalked_triggers") or []):
+        raise ValidationError(f"{trig}: not listed in stale_pending_rewalk.rewalked_triggers")
+    rows = table[[str(v).strip() == trig for v in table["TRIGGER_NAME"]]]
+    if len(rows) != 1:
+        raise ValidationError(f"expected one temporal row for {trig}; found {len(rows)}")
+    row = rows[0]
+    if "POSITIVE = soft" not in str(row["LAG_CONVENTION"]) \
+            or "Bala" not in str(row["MVT_ESTIMATOR"]):
+        raise ValidationError(f"{trig}: repaired row lacks estimator labels")
+    if not math.isclose(float(row["LAG_S"]), float(lag["tau_s"]),
+                        rel_tol=0.0, abs_tol=1e-9):
+        raise ValidationError(f"{trig}: row LAG_S differs from the validated 47c lag")
+    expected_err = max(float(lag["sigma_l_s"]), float(lag["sigma_r_s"]))
+    if not math.isclose(float(row["LAG_ERR_S"]), expected_err,
+                        rel_tol=0.0, abs_tol=1e-9):
+        raise ValidationError(f"{trig}: row LAG_ERR_S differs from max(sigma_l, sigma_r)")
+    if not math.isclose(float(row["LAG_WINDOW_SYS_S"]),
+                        float(lag["window_systematic_s"]),
+                        rel_tol=0.0, abs_tol=1e-9):
+        raise ValidationError(f"{trig}: row LAG_WINDOW_SYS_S differs from the 47c scan")
+    if not math.isclose(float(row["MVT_S"]), float(bala["mvt_s"]),
+                        rel_tol=0.0, abs_tol=1e-9):
+        raise ValidationError(f"{trig}: row MVT_S differs from the canonical Bala value")
+    if str(row["MVT_TYPE"]).strip().lower() != str(bala.get("status", "")).strip().lower():
+        raise ValidationError(f"{trig}: row MVT_TYPE differs from the Bala status")
+    haar_type = str(row["MVT_HAAR_TYPE"]).strip().lower()
+    haar_value = optional_float(row["MVT_HAAR_S"])
+    if haar_type not in {"detection", "limit"} or haar_value is None or haar_value <= 0:
+        raise ValidationError(f"{trig}: preserved Haar columns are invalid")
+    validate_temporal_row_receipt(trig)
+    return {
+        "lag_s": float(row["LAG_S"]),
+        "lag_err_s": float(row["LAG_ERR_S"]),
+        "lag_window_sys_s": float(row["LAG_WINDOW_SYS_S"]),
+        "lag_convention": str(row["LAG_CONVENTION"]),
+        "mvt_s": float(row["MVT_S"]),
+        "mvt_type": str(row["MVT_TYPE"]),
+        "mvt_estimator": str(row["MVT_ESTIMATOR"]),
+        "haar_preserved": {"mvt_s": haar_value,
+                           "mvt_err_s": optional_float(row["MVT_HAAR_ERR_S"]),
+                           "type": haar_type},
+        "sidecar": artifact(row_repair_sidecar_path(trig)),
+    }
+
+
 def _close(left: Any, right: Any, tolerance: float = 1e-9) -> bool:
     return finite(left) and finite(right) and math.isclose(
         float(left), float(right), rel_tol=0.0, abs_tol=tolerance
@@ -1009,7 +1230,9 @@ def validate_phase_statuses(
             raise ValidationError(
                 f"{trig}: phase {phase.number} is {status.get('state')}, not COMPLETE"
             )
-        if phase.name == "temporal_catalog":
+        if phase.name == "row_repair":
+            # phase 7 is the last row writer; the standing receipt must carry
+            # ITS input fingerprint (phase 1's receipt is superseded).
             receipt = read_json(
                 temporal_row_receipt_path(trig), "temporal-row source receipt"
             )
@@ -1026,6 +1249,7 @@ def collect_summary(trig: str) -> dict[str, Any]:
     cwt, cwt_source = validate_cwt(trig)
     bala, bala_sources = validate_bala(trig)
     lag, lag_sources = validate_lag(trig)
+    repaired_row = validate_row_repair(trig)
     pulse, fig_sources = validate_temporal_figures(
         trig, bala=bala, cwt=cwt, haar=temporal["haar"]
     )
@@ -1067,6 +1291,7 @@ def collect_summary(trig: str) -> dict[str, Any]:
             "noncanonical_haar": temporal["haar"],
         },
         "lag": lag,
+        "catalog_row_canonical": repaired_row,
         "pulse": pulse,
         "artifacts": sources,
         "reporting_rules": [
@@ -1077,6 +1302,10 @@ def collect_summary(trig: str) -> dict[str, Any]:
             "Lag must carry both asymmetric statistical errors and the fit-window systematic.",
             "Positive lag means 25–50 keV photons arrive after 100–300 keV photons.",
             "No figure is verified by this producer-side controller.",
+            "Catalog LAG_*/MVT_* for this burst were REPLACED by phase 7 "
+            "(row_repair) with the validated 47c lag and canonical Bala MVT; "
+            "the header's rewalked_triggers lists this trigger (PI ruling 5, "
+            "2026-08-30).",
         ],
     }
 
@@ -1163,6 +1392,11 @@ def phase_dependency_paths(phase: Phase) -> tuple[Path, ...]:
             scripts / "47_mvt_cwt_crosscheck.py", HANDBOOK_TEMPORAL,
         ),
         "lag": (scripts / "47c_lag_latbright.py", LATBRIGHT_LAG),
+        "row_repair": (
+            RUNTIME / "run_p2_temporal.py",
+            scripts / "47c_lag_latbright.py", LATBRIGHT_LAG,
+            HANDBOOK / "grb_pipeline" / "analysis" / "mvt_engine.py",
+        ),
     }
     return mapping[phase.name]
 
@@ -1241,6 +1475,10 @@ def fresh_output_paths(trig: str, phase: Phase) -> tuple[Path, ...]:
             root / f"{trig}_step7_lag_latbright.json",
             root / f"{trig}_step7_lag_latbright.png",
         ),
+        "row_repair": (
+            TEMPORAL_CATALOG,
+            root / f"{trig}_row_repair.json",
+        ),
     }
     return tuple(mapping.get(phase.name, ()))
 
@@ -1280,6 +1518,15 @@ def phases(trig: str) -> list[Phase]:
         Phase(6, "lag", (
             str(PYTHON), str(REPO / "scripts" / "47c_lag_latbright.py"),
             "--trig", trig), REPO, False, validate_lag),
+        # Phase 7 (PI ruling 5 + repair choice, 2026-08-30): the catalog row's
+        # LAG_*/MVT_* came from scripts/40's handbook estimators (inverted lag,
+        # L26; Haar MVT). This phase REPLACES them with the validated phase-4/6
+        # values (Bala canonical MVT; scripts/47c s02c lag, standard convention),
+        # adds label columns, appends the trigger to the catalog header's
+        # stale_pending_rewalk.rewalked_triggers, and re-records the row receipt.
+        Phase(7, "row_repair", (
+            str(PYTHON), str(RUNTIME / "run_p2_temporal.py"),
+            "repair-row", "--triggers", trig), REPO, False, validate_row_repair),
     ]
 
 
@@ -1421,10 +1668,12 @@ def run_phase(trig: str, phase: Phase, force: bool) -> dict[str, Any]:
     elif result.returncode == 0:
         try:
             validate_fresh_outputs(trig, phase, started_wall_ns)
-            if phase.name == "temporal_catalog":
-                # scripts/46 updates one row in a shared 106-row catalog.  Bind
-                # the row now so later bursts may rewrite the shared file
-                # without invalidating this burst's provenance.
+            if phase.name in ("temporal_catalog", "row_repair"):
+                # scripts/46 (phase 1) and repair-row (phase 7) each update one
+                # row in a shared 106-row catalog.  Bind the row now so later
+                # bursts may rewrite the shared file without invalidating this
+                # burst's provenance.  Phase 7 is the LAST writer: its receipt
+                # supersedes phase 1's and is the one the summary validates.
                 temporal_row(trig, require_receipt=False)
                 temporal_receipt = record_temporal_row_receipt(
                     trig, started_wall_ns, input_fingerprint
@@ -1525,7 +1774,7 @@ def run_one(trig: str, force: bool) -> bool:
 
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=__doc__)
-    result.add_argument("mode", choices=("run", "validate", "plan"))
+    result.add_argument("mode", choices=("run", "validate", "plan", "repair-row"))
     result.add_argument("--triggers", nargs="*", default=None)
     result.add_argument("--force", action="store_true",
                         help="rerun phases whose prior status and products validate")
@@ -1544,6 +1793,17 @@ def main(argv: list[str] | None = None) -> int:
     if args.mode == "plan":
         plan(triggers)
         return 0
+    if args.mode == "repair-row":
+        outcomes = []
+        for trig in triggers:
+            try:
+                repair_row(trig)
+                outcomes.append(True)
+                print(f"{trig}: ROW REPAIRED")
+            except ValidationError as exc:
+                outcomes.append(False)
+                print(f"{trig}: ROW REPAIR REFUSED: {exc}", file=sys.stderr)
+        return 0 if all(outcomes) else 1
     if args.mode == "validate":
         outcomes = []
         for trig in triggers:
