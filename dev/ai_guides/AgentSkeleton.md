@@ -185,6 +185,18 @@ Claude Code) acts as the harness and PLAYS the agents: the .claude/agents/*
 definitions, hooks, and skills are consumed natively; humans gate in-session.
 This is the mode the discovery campaign runs in.
 
+HARNESS PORTABILITY + CALIBRATION (adopted 2026-08-30): open-source harnesses
+now exist where every capability is a plugin, and markdown-defined skills/
+agents demonstrably port across harnesses unchanged — empirical support for
+our invariant below. But the same model in different harnesses produces
+DIFFERENT EPISTEMIC CHARACTER (observed in the wild: one harness conservative
+with 26 sources, another "too confident" on identical model+skill — the
+overconfident case is our F-SILENT enemy). Therefore: a harness is a
+scientific instrument. ANY substrate change (new harness, new harness
+version, Mode B -> Mode B') requires the same acceptance test as the freeze —
+fresh-session boot, full gates, truth-metric comparison on a known burst —
+before science runs on it. Third-party harness plugins are supply chain:
+port-verifier discipline applies.
 INVARIANT that makes both possible: everything that defines the agent —
 skills, contracts, registers, state machine, failure taxonomy, verifier
 definitions (markdown-as-system-prompt), hooks — is TEXT AND CODE IN THE
