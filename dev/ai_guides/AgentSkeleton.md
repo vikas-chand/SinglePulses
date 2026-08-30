@@ -176,6 +176,15 @@ compute -> durable internal write -> external write -> costly action),
 known_failure_modes, and typed errors — never vague text. The dispatcher's
 artifact classes map onto this autonomy ladder; authorization strengthens
 left to right.
+Mode A CLAIM-EVIDENCE GRAPH (design ruling 2026-08-30): the claim graph is
+a KNOWLEDGE GRAPH, not a graph DATABASE — a typed semantic layer (claims,
+artifacts, runs, sources; edges = derived-from / verified-by / cites) built
+as views OVER the existing storage (sidecars, receipts, VISION_QC ledgers,
+git), never a second copy of the data in a graph engine. Zero-ETL: the
+files stay canonical; the graph is schema-on-read. This keeps R1/NR-22
+provenance in ONE place and avoids the pipeline-maintenance tax of a
+duplicated store. If traversal ever needs speed, layer a query engine over
+the same files — do not migrate the truth into it.
 Mode A LOOP DISCIPLINE (adopted 2026-08-30, CCA field-guide talk): the agent
 loop must BRANCH ON stop_reason — the model never executes tools, it only
 returns parameters your code runs; and a max_tokens stop means the answer in
