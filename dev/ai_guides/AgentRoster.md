@@ -654,6 +654,14 @@ canonical.
    literature, 0 identity/GCN, 1 inventory, 2 detectors, 3 background, 4
    source, 5 binning) — shifted by one for 0b–5, 6–9 agree. Which numbering
    is law? (The distiller picked none.)
+   **RESOLVED 2026-08-30 (PI, verbatim):** "The BurstWalkthrough ledger numbering is official: 0b = literature harvest, 0 = identity & GCN, 1 = data inventory, and so on. Fix the live-report tool's step names to match; existing figure filenames keep their names — record the mapping once, do not rename products mid-campaign."
+   THE CANONICAL MAPPING RECORD: old live_report keys -> official ledger:
+   '0b' identity/boot -> 0b literature harvest (+ 0 identity/GCN, separate);
+   '0' inventory -> 1 data inventory; '1' detectors -> 2; '2' background -> 3;
+   '3' source -> 4; '4' binning -> 5; '5' stage-1 adopt -> folded into 2–5
+   (ADOPT); 6–9 unchanged. scripts/44 PNG names already match the official
+   ledger and KEEP their names. live_report.py fixed same day; the one
+   pre-ruling stamp ('0b' PRESENTED 05:22:05Z) is identical in meaning.
 23. [NEW 2026-08-30, NR-29] PIN LOCATION: ruling 4 ordered a re-pin but no
    designated location existed; results/campaign/CAMPAIGN_COMMIT_PIN.json
    was improvised by the operating session. Bless or relocate.

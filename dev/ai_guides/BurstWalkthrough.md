@@ -49,12 +49,9 @@ BOUND_CAPPED tracing to a window, a residual anomaly pointing at background).
 
 ## The step ledger (each step = its skill file; ✎ = to be created on first use)
 
-> ⚠ NR-27 CONFLICT (2026-08-30, I-12, PENDING the PI — this ledger is UNCHANGED): `dev/live_report.py`
-> STEP_NAMES and AgentArchitecture.md's per-step roster number 0b–5 as (0b identity/boot, 0 inventory,
-> 1 detectors, 2 background, 3 source, 4 binning, 5 stage-1 adopt), shifted by one from the table
-> below and from `scripts/44_step_figures.py`'s PNG names (step1_inventory … step5_binning); 6–9 agree.
-> A stamp or a PNG name is read against ITS OWN file's numbering until the PI picks one
-> (AgentRoster decision sheet item 22).
+> ✔ RESOLVED 2026-08-30 — THIS LEDGER'S NUMBERING IS OFFICIAL (PI, verbatim): "The BurstWalkthrough ledger numbering is official: 0b = literature harvest, 0 = identity & GCN, 1 = data inventory, and so on. Fix the live-report tool's step names to match; existing figure filenames keep their names — record the mapping once, do not rename products mid-campaign."
+> dev/live_report.py and AgentArchitecture's per-step roster were fixed the same day; figure
+> filenames keep their names; canonical mapping record: AgentRoster.md decision sheet item 22.
 | # | step | what the pipeline does | skill file |
 |---|---|---|---|
 | 0b | **Literature harvest** | find/fetch/mine the REFEREED papers for this burst (ADS 4-form query, published version, frame-align, file to the dossier) — the step that must become automatic by burst #20 | `LiteratureHarvest.md` |

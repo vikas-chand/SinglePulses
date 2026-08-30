@@ -69,20 +69,17 @@ layer; P9 is its consequence for the RUNNER, not just the author.
 
 ## Per-step roster (walkthrough ledger 0b, 0, 1–9)
 
-> ⚠ NR-27 CONFLICT raised 2026-08-30 (I-12), PENDING the PI's word — nothing below is
-> changed: the numbering here (0b/0 = identity+inventory, 1 = detector, 2–5 = Stage-1)
-> matches dev/live_report.py STEP_NAMES but is SHIFTED BY ONE from BurstWalkthrough.md's
-> ledger (0b literature, 0 identity/GCN, 1 data inventory, 2 detectors, 3 background,
-> 4 source, 5 binning) and from scripts/44_step_figures.py's PNG names (step1_inventory,
-> step2_detectors, step3_background, step4_source, step5_binning). Steps 6–9 agree in all
-> four places. The distiller does NOT pick a numbering (AgentRoster decision sheet item 22).
+> ✔ NR-27 numbering conflict RESOLVED 2026-08-30 (PI, verbatim): "The BurstWalkthrough ledger numbering is official: 0b = literature harvest, 0 = identity & GCN, 1 = data inventory, and so on. Fix the live-report tool's step names to match; existing figure filenames keep their names — record the mapping once, do not rename products mid-campaign."
+> The roster below now follows the OFFICIAL BurstWalkthrough ledger (0b literature, 0 identity/GCN,
+> 1 data inventory, 2 detectors, 3 background, 4 source, 5 binning; 6–9 unchanged). Canonical
+> mapping record: AgentRoster.md decision sheet item 22. Figure filenames keep their names.
 
-- **0b/0 (identity, inventory):** producer = session (reads REPORT/PRODUCTS
+- **0b/0 (literature harvest; identity & GCN):** producer = session (reads REPORT/PRODUCTS
   first — never re-derives); approver = PI. No figures, no verifier.
-- **1 (detector/BCAT):** producer scripts/44 step-1 panel; FIGURE VERIFIER;
+- **1 (data inventory; the scripts/44 step-1 panel incl. BCAT):** producer scripts/44 step-1 panel; FIGURE VERIFIER;
   NUMBERS VERIFIER vs grb_sample.ecsv (the BCAT mask lives there — the false
   "not checkable" claim class); approver = PI.
-- **2–5 (Stage-1, ADOPT mode):** PRESENTER only — the PI's recorded human_gui
+- **2–5 (detectors, background, source, binning — Stage-1 + blocks, ADOPT mode):** PRESENTER only — the PI's recorded human_gui
   decisions are presented, never re-adjudicated. Flags in
   human_review_qc_flags.txt ARE decisions. Approver = PI.
 - **6 (spectral fits):** producer = engine (scripts/10 via 29); artifact

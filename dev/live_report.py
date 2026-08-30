@@ -28,10 +28,24 @@ def _clean(x):
     # markdown table cell / prose safety: kill pipes and newlines that break the table
     return str(x).replace('|','\u2223').replace('\n',' ').replace('\r',' ').strip()
 STEPS = ['0b','0','1','2','3','4','5','6','7','8','9']
-STEP_NAMES = {'0b':'identity/boot','0':'inventory','1':'detector selection',
-  '2':'background windows','3':'source window','4':'binning check','5':'stage-1 adopt',
-  '6':'spectral fits','7':'temporal suite','8':'products (SED/evolution/montage)',
-  '9':'report + literature + distill'}
+# STEP NUMBERING — OFFICIAL (PI ruling 2026-08-30, verbatim): "The BurstWalkthrough
+# ledger numbering is official: 0b = literature harvest, 0 = identity & GCN,
+# 1 = data inventory, and so on. Fix the live-report tool's step names to match;
+# existing figure filenames keep their names — record the mapping once, do not
+# rename products mid-campaign."
+# THE MAPPING RECORD (canonical copy: AgentRoster.md decision sheet item 22):
+#   old live_report keys -> official ledger:  '0b' identity/boot -> 0b literature
+#   harvest (+ 0 identity/GCN, now separate) | '0' inventory -> 1 data inventory |
+#   '1' detectors -> 2 | '2' background -> 3 | '3' source -> 4 | '4' binning -> 5 |
+#   '5' stage-1 adopt -> folded into 2-5 (ADOPT mode) | 6-9 unchanged.
+#   scripts/44 PNG names (step1_inventory, step3_background, step4_source,
+#   step5_binning, step7_*, step9_qc) already match the official ledger — KEEP.
+#   The one pre-ruling stamp ('0b' PRESENTED 2026-08-30T05:22:05Z, bn110920546)
+#   presented the literature harvest and is identical in meaning under official '0b'.
+STEP_NAMES = {'0b':'literature harvest','0':'identity & GCN','1':'data inventory',
+  '2':'detector selection','3':'background','4':'source interval','5':'binning',
+  '6':'spectral fitting','7':'temporal','8':'nuFnu panels & products',
+  '9':'QC & flags (report, literature, distill)'}
 
 def paths(trig):
     d = os.path.join(ROOT,'results','sweep106',trig)
@@ -51,23 +65,22 @@ def evidence(trig, step):
     d = os.path.join(ROOT,'results','sweep106',trig)
     cc = os.path.join(ROOT,'results','convention_check')
     e = []
-    # 2026-08-30 (first fresh session): steps 0b,0,2,3,4,5 had NO evidence rule, so
-    # PRESENTED was mechanically impossible for them (NR-18 gap). Links only — real
-    # on-disk products, never claims. Step keys follow THIS file's STEP_NAMES; the
-    # numbering offset vs BurstWalkthrough.md/scripts/44 is an open NR-27 conflict.
+    # evidence per OFFICIAL ledger numbering (PI ruling 2026-08-30; see STEP_NAMES).
     def _ex(*ps): return [x for x in ps if os.path.exists(x)]
     decision = os.path.join(ROOT,'results','approval',f'{trig}_decision.json')
-    if step=='0b': e += _ex(f'{ROOT}/results/gcn/{trig}/{trig}_dossier.md',
-                            f'{ROOT}/notes/reconciliation/{trig}_harvest.json',
-                            f'{ROOT}/notes/reconciliation/{trig}_P0_frozen.json')
-    if step=='0':  e += _ex(f'{ROOT}/results/qc/{trig}_step1_response_coverage.ecsv',
-                            f'{ROOT}/data/{trig}')
-    if step in ('1','2','3','5'): e += _ex(decision)
-    if step=='2':  e += sorted(glob.glob(f'{d}/{trig}_step3_background*.png'))
-    if step=='3':  e += sorted(glob.glob(f'{d}/{trig}_step4_source*.png'))
-    if step=='4':  e += _ex(f'{d}/blocks/bb_blocks_spectral_{trig}.ecsv') + sorted(glob.glob(f'{d}/{trig}_step5_binning*.png'))
-    if step=='5':  e += _ex(f'{ROOT}/results/human_review_qc_flags.txt')
+    if step=='0b': e += _ex(f'{ROOT}/notes/reconciliation/{trig}_harvest.json',
+                            f'{ROOT}/notes/reconciliation/{trig}_P0_frozen.json',
+                            f'{ROOT}/results/gcn/{trig}/{trig}_dossier.md')
+    if step=='0':  e += _ex(f'{ROOT}/results/gcn/{trig}/{trig}_dossier.md',
+                            f'{ROOT}/results/gcn/{trig}/{trig}_gcn_raw.txt')
+    if step=='1':  e += _ex(f'{ROOT}/data/{trig}',
+                            f'{ROOT}/results/qc/{trig}_step1_response_coverage.ecsv')
     if step=='1': e += glob.glob(f'{d}/{trig}_step1_*.png')
+    if step in ('2','3','4'): e += _ex(decision)
+    if step=='3':  e += _ex(f'{ROOT}/results/human_review_qc_flags.txt') + sorted(glob.glob(f'{d}/{trig}_step3_background*.png'))
+    if step=='4':  e += sorted(glob.glob(f'{d}/{trig}_step4_source*.png'))
+    if step=='5':  e += _ex(f'{d}/blocks/bb_blocks_spectral_{trig}.ecsv') + sorted(glob.glob(f'{d}/{trig}_step5_binning*.png'))
+    if step=='9':  e += sorted(glob.glob(f'{d}/{trig}_step9_qc*.png'))
     if step=='6':
         for c in (f'{cc}/{trig}/spectral_fits.ecsv',
                   f'{ROOT}/results/campaign20_fam/{trig}_highe/spectral_fits.ecsv'):
@@ -81,7 +94,7 @@ def evidence(trig, step):
         for c in (f'{d}/REPORT_{trig}.pdf', f'{d}/REPORT_{trig}.md'):
             if os.path.exists(c): e.append(c)
     vq = os.path.join(d,'VISION_QC.md')
-    if step in ('1','6','7','8') and os.path.exists(vq): e.append(vq)
+    if step in ('1','3','4','5','7','8') and os.path.exists(vq): e.append(vq)
     return [os.path.relpath(x, ROOT) if os.path.isabs(x) else x for x in e]
 
 def build(trig):
