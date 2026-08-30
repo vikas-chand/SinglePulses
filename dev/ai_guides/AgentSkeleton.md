@@ -176,6 +176,14 @@ compute -> durable internal write -> external write -> costly action),
 known_failure_modes, and typed errors — never vague text. The dispatcher's
 artifact classes map onto this autonomy ladder; authorization strengthens
 left to right.
+Mode A LOOP DISCIPLINE (adopted 2026-08-30, CCA field-guide talk): the agent
+loop must BRANCH ON stop_reason — the model never executes tools, it only
+returns parameters your code runs; and a max_tokens stop means the answer in
+hand is PARTIAL (an F-SILENT vector: confident, truncated, wrong) — it must
+be treated as a typed failure, never consumed. Mode A ECONOMICS: the Batches
+API runs latency-tolerant work at ~50% token cost (24 h window) — verifier
+sweeps, notes-reviewer fan-outs, retro-gating are batch-shaped; interactive
+gates are not. Price both paths in the queue manager.
 Mode A REQUIRES sandboxed execution (container/isolated env) — it runs
 generated code outside the harness's permission model (adopted 2026-08-29).
 Mode A is the natural Zenodo/community artifact; Mode B is the natural
