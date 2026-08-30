@@ -1,5 +1,11 @@
 # AGENTS.md — operating guide for an AI agent running this repo
 
+> **Running the pipeline in ANY session (yours, a collaborator's, another
+> AI's): boot from `dev/ai_guides/FreshSessionBoot.md` first.** It carries the
+> walkthrough protocol, the plain-language + structured-choice gate format
+> (§8–§9), and everything binding. Sessions that skip it are running blind.
+
+
 This file orients an AI coding agent (Codex or Claude Code, in a local terminal) to
 the **Two_Breaks** single-pulse GRB time-resolved spectroscopy pipeline. It is
 self-contained: everything needed to run the pipeline is here, with exact commands.
