@@ -84,7 +84,11 @@ def main():
             continue
         aics = {p: float(row[f"{p}_AIC"]) for p in prefixes
                 if np.isfinite(row[f"{p}_AIC"])}
-        order = sorted(aics, key=aics.get)
+        # NO-MODEL-DROPPED: engine-FAIL models (NaN AIC) get refusal cells at
+        # the end of the AIC ordering — they were invisible before 2026-08-17
+        # (the loop skipped non-finite AICs entirely; verifier HARD FAIL).
+        order = sorted(aics, key=aics.get) + [p for p in prefixes
+                                              if p not in aics]
         win = order[0]
         figs = {canon(os.path.basename(f).rsplit("_", 1)[-1][:-4]): f
                 for f in glob.glob(os.path.join(GRID, f"{TRIG}_SED_{tag}_*.png"))}
@@ -101,11 +105,17 @@ def main():
                 f"{len(order)} models, AIC-ordered — winner {win}",
                 fill="black", font=f_title)
         n_missing = 0
+        n_enginefail = 0
+        n_ef_missing = 0
         for i, p in enumerate(order):
             r, c = divmod(i, COLS)
             x = PAD + c * (CELL_W + PAD)
             y = TITLE_H + r * (cell_h + CAP_H + PAD)
             valid = bool(row[f"{p}_VALID"]) if f"{p}_VALID" in t.colnames else True
+            stat_top = str(row[f"{p}_STATUS"]).strip() \
+                if f"{p}_STATUS" in t.colnames else ""
+            if p not in aics or stat_top == "FAIL":
+                n_enginefail += 1
             if p in figs:
                 im = Image.open(figs[p]).convert("RGB").resize(
                     (CELL_W, cell_h), Image.LANCZOS)
@@ -114,15 +124,23 @@ def main():
                 n_missing += 1
                 dr.rectangle([x, y, x + CELL_W, y + cell_h], fill=GRAY_BG,
                              outline=(180, 180, 180), width=2)
-                why = refusals.get((p, bin_arg), "?")
-                msg = ("REFUSED (guard):\nlive fit did not reproduce\nthe stored solution"
-                       if why == "guard" else
-                       "UNAVAILABLE (crash):\nall native draws railed;\nfit sits in a bound corner")
+                stat = str(row[f"{p}_STATUS"]).strip() \
+                    if f"{p}_STATUS" in t.colnames else ""
+                if p not in aics or stat == "FAIL":
+                    n_ef_missing += 1
+                    msg = ("ENGINE FAIL:\nfit did not converge\n"
+                           "(STATUS=FAIL in table)")
+                else:
+                    why = refusals.get((p, bin_arg), "?")
+                    msg = ("REFUSED (guard):\nlive fit did not reproduce\nthe stored solution"
+                           if why == "guard" else
+                           "UNAVAILABLE (crash):\nall native draws railed;\nfit sits in a bound corner")
                 dr.multiline_text((x + CELL_W // 2, y + cell_h // 2), msg,
                                   fill=(120, 120, 120), font=f_cap, anchor="mm",
                                   align="center", spacing=6)
             cap = (f"#{i+1}  {p}  dAIC={aics[p]-aics[win]:.2f}"
-                   + ("" if valid else "  [INVALID]"))
+                   if p in aics else f"#{i+1}  {p}  ENGINE FAIL")
+            cap += "" if valid else "  [INVALID]"
             dr.text((x + 6, y + cell_h + 8), cap, fill="black", font=f_cap)
             if p == win:
                 for wpx in range(5):
@@ -131,15 +149,19 @@ def main():
                 dr.text((x + CELL_W - 6, y + cell_h + 8), "WINNER", fill=RED,
                         font=f_cap, anchor="ra")
         dr.text((W - PAD - 4, TITLE_H - 26),
-                f"panels = guard-passed 41c figures | {n_missing} refused cells labeled",
+                f"panels = guard-passed 41c figures | "
+                f"{n_missing - n_ef_missing} refused cells labeled | "
+                f"{n_enginefail} engine-fail cells",
                 fill=(90, 90, 90), font=f_small, anchor="ra")
         stem = os.path.join(OUT, f"{TRIG}_montage_{tag}")
         canvas.save(stem + ".png")
         prov = dict(script="41e_sed_montage.py", script_sha256=src_sha,
                     tag=tag, interval_s=[float(row["T_START"]), float(row["T_STOP"])],
                     winner=win, order=order,
-                    daic={p: aics[p] - aics[win] for p in order},
+                    daic={p: (aics[p] - aics[win] if p in aics else None)
+                          for p in order},
                     n_panels=len(order), n_missing=n_missing,
+                    n_enginefail=n_enginefail,
                     compositing_only=True)
         with open(stem + ".json", "w") as fh:
             json.dump(prov, fh, indent=1)
