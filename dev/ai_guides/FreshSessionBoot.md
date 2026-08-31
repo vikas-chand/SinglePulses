@@ -260,3 +260,38 @@ EVERY choice the PI clicks still becomes a real identity-bound stamp
 is the record. "Other" answers in plain language are translated into the
 machinery by the session, then read back to the PI in one sentence for
 confirmation before stamping.
+
+## 10. DIVERGENCE LEARNING — when the human and the AI disagree and neither failed
+(PI directive, 2026-08-31: "there must be a mechanism where, after validation
+of the reason where AI and human were diverging, what makes them converge is
+added as a skill and taken forward.")
+
+Failures feed the distiller; PI feedback feeds the routing protocol. This is
+the THIRD learning trigger: a recorded human choice differs from what the
+pipeline/AI passes recommended, and no one is in error — the human knew
+something unwritten. The step-2 detector case of bn110920546 is the founding
+instance (human kept 4 of the recommended 7; reason: the TRIGGERED set plus
+the same-side BGO; validated against the BCAT mask and the side rule).
+
+The protocol, exactly as the founding instance ran it:
+1. DETECT — any presentation of a recorded human decision must compare it
+   against what the machinery recommended at the time; an unexplained
+   divergence is surfaced, never smoothed over.
+2. ELICIT — ask the human for the reason, in their words. NEVER write a
+   guessed reason into a record ("I won't put words in the record you didn't
+   say" is the standard). A candidate reason may be OFFERED for confirmation,
+   clearly labeled as the machine's guess.
+3. VALIDATE — check the stated reason against the data. A reason that checks
+   out is knowledge; one that doesn't is a discussion to have with the human,
+   not a silent correction in either direction.
+4. GENERALIZE — test whether the reason is a RULE: run a read-only census
+   across other bursts. One-off preference → record locally and stop.
+   Pattern → write it into the OWNING SKILL as a decision rule, so future AI
+   passes converge with the human by default.
+5. LEDGER — every case, one row in results/campaign/divergence_ledger.md:
+   what diverged, the human's validated reason, one-off or rule, where the
+   rule now lives. The ledger's CONVERGENCE RATE over time (how often AI
+   passes now match the human first try) is a first-class campaign metric —
+   and it is the readiness measure for the fully-AI approver question (A16):
+   an AI may hold a gate alone only where its convergence with the human is
+   demonstrated, never before.
