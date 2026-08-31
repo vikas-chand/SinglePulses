@@ -17,12 +17,17 @@ STEPS = ['0b','0','1','2','3','4','5','6','7','8','9']
 # What each step's change invalidates, expressed as the driver's own phase
 # markers (logs/campaign20/products/<trig>.<phase>) + the DONE marker + the
 # approval stamps of later steps. Products are NEVER deleted here.
+# Step numbers follow the OFFICIAL BurstWalkthrough ledger (PI ruling 2026-08-30:
+# "The BurstWalkthrough ledger numbering is official: 0b = literature harvest,
+# 0 = identity & GCN, 1 = data inventory, and so on."). Corrected 2026-08-31 —
+# these notes previously used the old live_report numbering (its '3' said
+# "source window"); the ACTIONS were and remain identical for steps 2-5.
 CASCADE = {
-  # stage-1 change: everything spectral+temporal is stale, and blocks must be re-derived
-  '2': {'phases':'ALL','note':'Stage-1 changed: re-bin (27b) then refit (scripts/10) required; block reuse (PI ruling 5) no longer applies to this burst'},
-  '3': {'phases':'ALL','note':'source window changed: re-bin + refit required'},
-  '4': {'phases':'ALL','note':'binning changed: refit required'},
-  '5': {'phases':'ALL','note':'stage-1 adoption changed: re-bin + refit required'},
+  # any Stage-1 or binning change: everything spectral+temporal is stale
+  '2': {'phases':'ALL','note':'detector set changed: re-bin then refit required; block reuse no longer applies to this burst'},
+  '3': {'phases':'ALL','note':'background window(s) changed: refit required (and re-bin whenever a NaI background moved — 27b derives block significance from the background)'},
+  '4': {'phases':'ALL','note':'source window changed: re-bin + refit required'},
+  '5': {'phases':'ALL','note':'binning changed: refit required'},
   '6': {'phases':['t44b'],'note':'fits changed: promotion + SED grids + montages + param evolution + report must regenerate (driver reruns them; grids re-render per sweep_status)'},
   '7': {'phases':['t46','t44','t44b','t47','bala','t47b','t47c'],'note':'temporal changed: temporal suite + report must regenerate'},
   '8': {'phases':[],'note':'products changed: report must regenerate'},
