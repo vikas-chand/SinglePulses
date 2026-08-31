@@ -39,7 +39,10 @@ forms** (Yu+2019, Preece+2016, Yu+2015, Hakkila+2015, Qin+2013). Causes: the dot
 `100707.032` spelling, tables indexed as images, and machine-readable-table-only membership.
 Recovery channels that DID work and are now part of the step: the dotted form above; grepping
 the LOCAL corpus PDFs for the 6-digit fragment (`fitz` over `Skills_training/*.pdf`);
-following the citation graph of any dedicated paper; and Phase 1b (Scholar). **A burst is not
+following the citation graph of any dedicated paper; Phase 1b (Scholar); and — since the
+Golkhou miss (T10, 2026-08-30) — a **VizieR MEMBERSHIP SWEEP**: query the CDS TAP/vizquery
+GRB catalog tables (`J/*`) for the trigger number and both name forms, because a population
+paper's burst membership often lives ONLY in its machine-readable table. **A burst is not
 "paperless" until the recovery channels have also run.**
 Keep only `doctype` ∈ {article, eprint}; circulars are Step 0a's job.
 **Series check:** if a hit belongs to a numbered series (e.g. *Comprehensive Analysis I–IV*),
@@ -174,9 +177,23 @@ table row; update `corpus_index.csv` (`read=N` until Vikas confirms he has read 
   its window. **Label every harvested number with its component coverage** (precursor / main /
   total) in the dossier's PUBLISHED VALUES table — a T90 or Ep diffed across mismatched
   component coverage is a manufactured discrepancy (D4's sharper sibling).
+- **T10 TABLE-ONLY MEMBERSHIP (bn110920546, 2026-08-30 — caught by the PI at the step-0b
+  gate).** Golkhou+2015 (`2015ApJ...811...93G`) carries a **published MVT upper limit
+  dt_min < 2.096 s for THIS burst** in its machine-readable Table 2 — and was missed by all
+  four ADS forms + extras because the paper's TEXT names no individual triggers. It was
+  LOAD-BEARING: our catalog Haar MVT (5.342 s, "detection") violates the limit by 2.5×.
+  **A population/catalog paper's membership must be checked in VizieR (TAP over `J/*` GRB
+  tables, by trigger number + both name forms), not only in ADS full text.** The recovery
+  channel is now in Phase 1's floor list.
+- **T11 CROSS-BURST PDF TAGS DEFEAT FILENAME DEDUP (same incident).** The Golkhou PDF was
+  ALREADY ON DISK as `Golkhou_2015_2015ApJ81193G_bn120119170.pdf` — filed under another
+  burst's tag — while the bn110920546 harvest recorded the paper as absent. **De-duplicate
+  and search the local corpus by BIBCODE (corpus_index + on-disk filename fragment), never
+  by the trigger-suffixed filename alone.**
 
 ## Quality checklist
 - [ ] All four query forms run; identity verified by trigger, not name.
+- [ ] VizieR membership sweep run for population/catalog papers (T10).
 - [ ] Published version fetched where `PUB_OPENACCESS`; both versions kept.
 - [ ] Every harvested number carries convention + band + interval + T0 + detector set.
 - [ ] Parsed table row count matches the paper's stated N.
