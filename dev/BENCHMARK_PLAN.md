@@ -18,11 +18,48 @@ the agent merely runs (no judgement to score, but still get a run-guide).
 | # | Task | AI judgement? | AI-guide `.md` | Benchmark metric (AI vs human) |
 |---|------|---------------|----------------|--------------------------------|
 | 1 | Detector selection | yes | `dev/ai_guides/detector_selection.md` | approved-set Jaccard; missed/extra dets; angle of disagreements |
-| 2 | Background windows | yes | `dev/ai_guides/background_selection.md` | pre/post edge Δ (s); window IoU; polynomial-fit residual χ²/dof; baseline-flatness |
+| 2 | Background windows | yes | `dev/ai_guides/background_selection.md` | pre/post edge Δ (s); window IoU; polynomial-fit residual χ²/dof; baseline-flatness — **CONCORDANCE only, NOT accuracy; see the ⚖ caveat below** |
 | 3 | Source / emission interval | yes | `dev/ai_guides/source_selection.md` | source edge Δ (s); IoU; fractional duration error |
 | 4 | Binning (3ML BB + sig) | no (deterministic given source) | covered by `AGENTS.md` | induced block-count & edge agreement (consequence of #3) |
 | 5 | Spectral fitting + model selection | no (deterministic AIC) | covered by `AGENTS.md` | n/a directly; see downstream-impact |
 | 6 | QC / bad-fit flagging (optional) | yes | `dev/ai_guides/qc_flagging.md` | agreement on flagged-bad bins/bursts (precision/recall vs human) |
+
+### ⚖ Scoring caveat — task #2 has NO GROUND TRUTH (PI ruling 2026-08-31)
+
+At the step-3/background gate of the Lane-A walkthrough on bn110920546 the PI ruled,
+verbatim:
+
+> "you will never know where the emission ends, we have to judge it based on the nature of GBM physical background we added as skills until we someday decided to use a physical model, and tail is not an interesting part in this project as we are mainly concerned about the pulse is in or not (so this is project specific but until we have a physical background, all choices of background selection are subjective to the user)."
+
+Consequence for THIS document: while the background model is polynomial, a background
+window has **no key** — the human catalog is a SECOND RATER, not the answer. Therefore
+
+- **edge Δ and window IoU are CONCORDANCE statistics**, and an AI-vs-human divergence on
+  a background window **is not an error**. No table, abstract, or talk slide may report
+  them as an AI accuracy, error rate, or failure count. State the framing next to the
+  number, every time.
+- **truth-bearing dimensions survive inside the same task** and should be reported
+  separately: (i) **rule-compliance** against `dev/ai_guides/background_selection.md`
+  (width 50–150 s, hug-the-burst margin band, no gap/SAA-exit anchor, source-in-gap
+  invariant) — a window either satisfies the written skill or it does not; and (ii) the
+  **downstream-impact metric** below, which asks whether the physics survives the swap.
+  Those two carry the benchmark's weight for task #2.
+- **polynomial-fit residual χ²/dof and baseline-flatness** are properties of the chosen
+  window, not comparisons to the human — they stay valid as quality measures, and they
+  are the closest thing task #2 has to an objective score today.
+- the same logic applies wherever else a Stage-1 dimension turns out to have no key;
+  task #1 (detector selection) is the DIFFERENT case — there a rule exists but the
+  written one does not match recorded practice (NR-38), which is a spec defect, not an
+  absence of truth.
+- **expiry:** adopting a PHYSICAL GBM background model would create the missing key and
+  make task #2 genuinely scoreable. Banked as project **#47** in
+  `notes/PROJECTS_registry.md` (banked ≠ started).
+
+Register row: `dev/ai_guides/AgentArchitecture.md` **NR-40** (missing agent:
+METRIC-VALIDITY AUDITOR — label every benchmark dimension truth-bearing vs
+concordance-bearing in `scripts/40_benchmark.py`'s own output and refuse an
+accuracy framing for the latter). Full ruling + evidence:
+`dev/ai_guides/background_selection.md`.
 
 ## Downstream-impact metric (the decisive test, shared by all tasks)
 Run the identical Stage 2--3 on the human-mode and AI-mode catalogs and compare, per

@@ -13,6 +13,81 @@
 - `plots/approval_lc/<trigger>_<det>.png` — the LC you JUDGE FROM. 1.024-s bins, linear y, counts s⁻¹, x = time since trigger. NaI shows 8-900 keV; BGO shows 250-40000 keV. **No T90 shading is drawn on purpose** — infer the burst region from the data alone; do not anchor on any catalog duration.
 - Read EVERY approved detector's PNG. Windows are per-detector (a feature may sit at a different time/height in each), but pre/post edges are usually similar across detectors of the same GRB.
 
+## ⚖ PI RULING 2026-08-31 — the burst-tail/background boundary is NOT determinable (read this BEFORE the criteria below)
+
+*Given by the PI at the step-3/background gate of the Lane-A walkthrough on
+bn110920546. Recorded verbatim; do not paraphrase it in downstream documents.*
+
+> "you will never know where the emission ends, we have to judge it based on the nature of GBM physical background we added as skills until we someday decided to use a physical model, and tail is not an interesting part in this project as we are mainly concerned about the pulse is in or not (so this is project specific but until we have a physical background, all choices of background selection are subjective to the user)."
+
+**The ruling settles four DISTINCT things. Keep them distinct — they have different
+scopes and different expiry conditions.**
+
+1. **EPISTEMIC — where the emission ends cannot be located with a polynomial
+   background.** It is not that we have not yet measured it carefully enough; with this
+   background model the quantity is not identified. See the measured evidence below.
+2. **METHOD — judgement follows the WRITTEN GBM-background skills** (this guide's
+   criteria + the physics reference at the end of it) **until a PHYSICAL background
+   model is adopted.** The skills, not an attempt to find the true tail end, are the
+   standard a window is judged against.
+3. **SCOPE — project-specific, and stated as such.** In *this* project the tail is not
+   of interest; the operative criterion for a window is **whether the PULSE is inside
+   the window or not**. This is a scoping decision for the Two_Breaks census, NOT a
+   general truth about GRB tails — do not export it to another project as physics.
+4. **STATUS OF EVERY BACKGROUND CHOICE —** verbatim, *"all choices of background
+   selection are subjective to the user"* until a physical background model exists.
+
+**The evidence that forced it (measured on this burst the same day, 2026-08-31).**
+Extrapolating b0's post-burst decay from two EQUALLY DEFENSIBLE uncontaminated
+baselines — a fit on 111.3–266 s versus a fit on 200–266 s — gave inferred excesses in
+the SAME interval of **+68 vs +481 cts s⁻¹, a factor ≈ 7**. Every variant tried was
+POSITIVE, so the excess is REAL; its MAGNITUDE is not a measurement. That asymmetry is
+the whole ruling in one line: *presence* is robust, *extent* is not.
+
+**Independent corroboration (published; verified in the local PDF, not from memory).**
+Biltzinger et al. 2020, A&A 640, A8 (`2020A&A...640A...8B`) use THIS burst as the
+showcase for exactly this failure — §4 intro, p. 9, verbatim: *"we show how the model
+can be used to fit the background for the GRB 110920A for which the classical approach
+of using polynomial fits can give ambiguous answers"*; §4.1 + Fig. 15 show four
+polynomial background selections that *"all look equally valid in a short time around
+the GRB event (± 50 seconds)"* yet differ under the burst, *"which makes a random choice
+of one of them necessary"*. Their stated cause: *"GRB 110920A was a bright, single pulse
+GRB that occurred only about 100 seconds after an SAA exit of GBM"*, so the background
+carries the activation decay a polynomial cannot represent. Local PDF:
+`Skills_training/Biltzinger_2020_2020AA640A8B_bn110920546.pdf`. Verified locally at the
+primitive on the same day: the SAA FLAGS bit-1 transition sits at **t−T0 = −120.07 s**
+in `data/bn110920546/glg_poshist_all_110920_v01.fit` — consistent with their "~100 s".
+
+**OPERATIVE CONSEQUENCE (what actually changes in practice).**
+- A background window is judged by **(i) whether the PULSE is in or out, and (ii) the
+  written skills** — **NOT** by trying to locate where the emission ends. Do not spend a
+  gate arguing the tail's endpoint; that argument has no resolvable answer here.
+- **Residual burst tail inside a background window is a DISCLOSED SYSTEMATIC, never a
+  defect to re-adjudicate.** Disclose it (report + QC note) and move on. Re-opening it
+  at a later gate is re-litigating an undecidable question, not quality control.
+- **Subjectivity is NOT licence.** Every rule below still binds — the 50–150 s width, the
+  HUG-THE-BURST inner edge, the 5–20 s margin band, "never anchor on a gap/SAA-exit
+  edge", the source-in-gap invariant. The ruling removes ONE demand (locate the tail
+  end); it removes no rule. What is subjective is the *choice among rule-compliant
+  windows*, not compliance with the rules.
+- **Scoring consequence (reaches Part 1):** because the choice is subjective, an
+  AI-vs-human DIVERGENCE ON BACKGROUND WINDOWS IS NOT AN ERROR and must never be scored
+  as one — background-window agreement is a **CONCORDANCE** measure, not an accuracy
+  measure. See `dev/ai_guides/AgentArchitecture.md` **NR-40** and the caveat in
+  `dev/BENCHMARK_PLAN.md` §"Which tasks carry real AI judgement".
+- **Expiry condition:** points 1–4 hold *until a physical background model is adopted*.
+  That module is banked as **#47** in `notes/PROJECTS_registry.md` (banked ≠ started).
+
+**What this CLOSES.** The open question raised at this same gate — whether to push b0's
+post-window further out, past the ~165.9 s catalog T90, to escape the residual tail — is
+closed. The PI already answered *"Stop here — overlap cleared"*; this ruling supplies the
+REASON: the further push chases a boundary that cannot be located, so it buys no
+correctness, only a different subjective window.
+
+**Mirror.** The same ruling + quote is recorded in the authoritative ruleset
+`BACKGROUND_SELECTION_PROCESS.md` §"Step 3". If the two ever disagree, that is an NR-27
+LAW-CONFLICT — raise it, do not pick one.
+
 ## Decision criteria (the heart)
 Read the PNG. The burst is the obvious excess above a roughly flat floor. You are picking baseline ON EITHER SIDE of it.
 
@@ -121,6 +196,18 @@ Add one entry per approved detector to `"windows"`:
 If the burst has `gll_lle_*.fit*`, the human GUI now adds an **LLE 30–100 MeV** background step after the NaI/BGO windows: the LLE light curve is shown seeded with the brightest-NaI pre/post windows, and the rater confirms those epochs are clean in LLE (particle backgrounds differ from NaI — watch for a spike absent in the NaI LC) or nudges them. An accepted window becomes an `lle` row in the catalog; the fit engine (`scripts/10`) prefers it over NaI inheritance. The **source stays the shared per-burst emission window** (marked on NaI). *AI-vision parity is an OPEN item (R-LLE-5): there is no LLE render for the AI path yet, so AI catalogs inherit the NaI windows for LLE — do not fabricate an LLE selection in `ai_vision` mode.*
 
 ## How this is scored vs humans (BENCHMARK_PLAN.md, task #2)
+
+> **⚖ 2026-08-31 — read the four metrics below as CONCORDANCE, not accuracy.** Under the
+> PI ruling at the top of this guide, *"all choices of background selection are subjective
+> to the user"* while the background is polynomial. There is therefore NO ground truth for
+> a window edge: the human catalog is a second rater, not a key. Edge Δ and IoU measure
+> **how similarly two raters chose among rule-compliant windows**; they do not measure
+> whether the AI was right, and no benchmark number may present them as an AI error rate.
+> The two metrics that DO carry a truth value are the rule-compliance checks (does the
+> window satisfy the criteria above — width, margin band, no gap anchor, source-in-gap)
+> and the downstream-impact test (do the physics conclusions survive the swap).
+> Register row: `dev/ai_guides/AgentArchitecture.md` NR-40.
+
 Run Stage 1 in `human_gui` and `ai_vision` mode on the benchmark subset → two stamped catalogs; `scripts/40_benchmark.py` compares per (trigger, detector):
 - **pre/post edge Δ (s)** — absolute difference of each of the four edges vs the human.
 - **window IoU** — intersection-over-union of the AI vs human pre+post intervals.

@@ -6,7 +6,8 @@ established. Read this before changing the selection code in
 `scripts/00_prototype_one_burst.py`, `scripts/00_select_backgrounds.py`,
 or any successor script.
 
-Last updated: 2026-05-20.
+Last updated: 2026-05-20.  
+**Last amended: 2026-08-31 — PI ruling on the tail/background boundary, recorded in Step 3 below (mirror of `dev/ai_guides/background_selection.md`).**
 
 ---
 
@@ -101,6 +102,50 @@ For each user-approved detector, render a single PNG to
 ---
 
 ## Step 3 — Background interval selection (AI vision)
+
+### ⚖ PI RULING 2026-08-31 — binding on every rule in this Step (mirror; primary home = `dev/ai_guides/background_selection.md`)
+
+Given at the step-3/background gate of the Lane-A walkthrough on bn110920546. **Verbatim
+— preserve these words wherever this ruling is quoted:**
+
+> "you will never know where the emission ends, we have to judge it based on the nature of GBM physical background we added as skills until we someday decided to use a physical model, and tail is not an interesting part in this project as we are mainly concerned about the pulse is in or not (so this is project specific but until we have a physical background, all choices of background selection are subjective to the user)."
+
+Four distinct settlements: **(1) EPISTEMIC** — with a polynomial background the
+tail/background boundary is not determinable, not merely unmeasured; **(2) METHOD** —
+judgement follows the written GBM-background skills until a PHYSICAL background model is
+adopted; **(3) SCOPE (project-specific, not a general GRB truth)** — the tail is not of
+interest here, the operative criterion is *whether the PULSE is in the window or not*;
+**(4) STATUS** — *"all choices of background selection are subjective to the user"* until
+a physical model exists.
+
+Evidence (measured 2026-08-31 on this burst): two equally defensible uncontaminated
+baselines for b0 — fits on 111.3–266 s vs 200–266 s — implied excesses in the SAME
+interval of +68 vs +481 cts s⁻¹ (≈7×); all variants positive, so the excess is real but
+its magnitude is not a measurement. Published corroboration: Biltzinger et al. 2020,
+A&A 640, A8 (`2020A&A...640A...8B`) §4/§4.1 + Fig. 15 use THIS burst to show that *"the
+classical approach of using polynomial fits can give ambiguous answers"*, because it
+occurred *"only about 100 seconds after an SAA exit of GBM"* (local PDF
+`Skills_training/Biltzinger_2020_2020AA640A8B_bn110920546.pdf`; SAA FLAGS bit-1
+transition verified locally at t−T0 = −120.07 s in
+`data/bn110920546/glg_poshist_all_110920_v01.fit`).
+
+Consequences that bind the tables below: a window is judged by **whether the PULSE is in
+or out** and by **the written skills** — never by attempting to locate where emission
+ends; **residual tail inside a background window is a DISCLOSED SYSTEMATIC, not a defect
+to re-adjudicate**; the rules in this Step still bind in full (subjectivity is licence to
+choose among rule-compliant windows, not to break a rule); and an **AI-vs-human
+divergence on background windows is NOT an error** — see `dev/ai_guides/AgentArchitecture.md`
+**NR-40** and the caveat in `dev/BENCHMARK_PLAN.md`. Expiry: a physical GBM background
+model, banked as **#47** in `notes/PROJECTS_registry.md`.
+
+*Drift guard:* this text mirrors `dev/ai_guides/background_selection.md`. If the two ever
+disagree, raise an NR-27 LAW-CONFLICT rather than following either.
+
+*(Note the pre-existing "Buffer ≥ T90/5 from T90 edge" criterion in the SELECT table
+below: it is superseded in practice by the guide's HUG-THE-BURST margin band (g ≈ 5–20 s,
+judged from the LC, never from a catalog T90) — a known divergence between these two
+documents, flagged here 2026-08-31 rather than silently rewritten.)*
+
 
 For each PNG, the AI (Claude vision via `Read` tool, or via embedded
 `anthropic` SDK call) emits one pre-burst and one post-burst window as JSON:
