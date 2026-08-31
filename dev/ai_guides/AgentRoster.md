@@ -670,6 +670,30 @@ canonical.
    --by VIKAS" would put the PI's identity on an act he did not perform.
    Session stamps PRESENTED as itself, APPROVED --by VIKAS stays the PI's.
    Confirm or overrule.
+25. [NEW 2026-08-31, NR-38 instance I-14] DETECTOR RULE vs YOUR PRACTICE:
+   dev/ai_guides/detector_selection.md says "NaI theta <= 50 deg -> KEEP",
+   with BCAT membership mattering only in the 50-60 deg rescue band. Measured
+   over the 105 human_gui bursts: your kept-NaI set equals the BCAT-TRIGGERED
+   set in 82/105 (78%) and the geometry(<=50 deg) set in 50/105 (48%); in
+   19/105 you DROPPED a NaI that passes <=50 deg. At the #21 gate your reason
+   was, VERBATIM (one line, unedited):
+   "I must have selected the ones those are on same side and probaly the triggered ones too"
+   — a recollection, stated with uncertainty ("must have", "probaly"), which
+   the session verified holds exactly for bn110920546. QUESTION: should
+   BCAT membership gate NaI selection BELOW 50 deg too, or is the geometry
+   rule right as written and the 19 drops are per-burst visual judgements?
+   Until you rule, the written rule STANDS and the divergence is presented,
+   not normalized. Benchmark consequence either way: an arm that obeyed the
+   written rule is scored as a SPECIFICATION defect, never an arm error.
+26. [NEW 2026-08-31, NR-39 instance I-15] RATIONALE CAPTURE: the human GUI
+   path writes no `reasoning` at all (scripts/39_approve_all.py:817-819; the
+   docstring at :52 calls it "optional free text"), so 1 of 105 human_gui
+   decisions carries a reason — and that one was back-filled 6 weeks late.
+   Proposed as dev/GUI_REQUIREMENTS.md R-GL-8: the GUI asks for one line at
+   decision time and ingest refuses a blank `reasoning`. Approve the
+   requirement (it touches the frozen approval instrument, so it is yours to
+   allow), and confirm the standing rule that the 104 historical blanks are
+   NEVER back-filled.
 
 ## ADDENDUM 2026-08-29 — adjudication of the second external review
 

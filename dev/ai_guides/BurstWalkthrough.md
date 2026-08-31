@@ -47,6 +47,33 @@ Steps 2–5 are ALREADY DONE for the sample (human-reviewed Stage-1 selections +
 re-open only if a downstream check implicates them (e.g. response coverage,
 BOUND_CAPPED tracing to a window, a residual anomaly pointing at background).
 
+**ADOPT-1 — DIVERGENCE IS PRESENTED, NEVER NORMALIZED** *(2026-08-31, born at the
+step-2 gate of #21 bn110920546; register row NR-38).* When the recorded human
+decision DIVERGES from what the step's written rule would have produced, the
+presenter must NAME the divergence in the PRESENT block — the rule as written, the
+decision as recorded, the detectors/windows/blocks in the difference, and the
+primitive that shows it (e.g. `_pending.json` `in_bcat` + angles). Three
+prohibitions, each paid for:
+1. **Never restate the human decision as if the rule produced it.** Writing "n0, n1,
+   n3 kept per the ≤50° cut" when n6 (25.33°) and n7 (47.68°) also passed ≤50° and
+   were dropped is a fabricated rationale — it launders a spec defect into apparent
+   compliance and makes the divergence permanently invisible.
+2. **Never re-adjudicate it into agreement with the rule** (ADOPT mode forbids
+   re-deciding steps 2–5 at all) — and never quietly amend the rule to match the
+   decision. The rule changes only by a PI ruling in his own words (P2/P4).
+3. **Never present a reconstructed reason as a contemporaneous one.** If the PI
+   supplies the reason at the gate, it is recorded VERBATIM, dated, stamped
+   RETROACTIVE with its uncertainty preserved, and verified against the primitives
+   before it is relied on. bn110920546's `decision.json` `reasoning_provenance` is
+   the worked example.
+A divergence found this way enters the DIVERGENCE LEARNER protocol
+(`FreshSessionBoot.md` §10 / NR-37: detect → elicit → validate → generalize → ledger) AND goes to the
+DISTILLER the same session, gets a register row, and — where it is a class, not a one-off — a
+read-only census over the recorded decisions that measures how often each candidate
+rule reproduces the expert (for #21: BCAT 78%, geometry 48%, neither 100%). This is
+a benchmark project: an arm that obeyed a written rule which does not describe the
+expert's practice is a SPECIFICATION defect, never an arm error.
+
 ## The step ledger (each step = its skill file; ✎ = to be created on first use)
 
 > ✔ RESOLVED 2026-08-30 — THIS LEDGER'S NUMBERING IS OFFICIAL (PI, verbatim): "The BurstWalkthrough ledger numbering is official: 0b = literature harvest, 0 = identity & GCN, 1 = data inventory, and so on. Fix the live-report tool's step names to match; existing figure filenames keep their names — record the mapping once, do not rename products mid-campaign."

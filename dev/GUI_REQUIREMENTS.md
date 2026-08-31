@@ -35,6 +35,7 @@ after both raters have finished or the tool-commit split is recorded (§6).
 | R-GL-5 | If RA/DEC is known but angle computation fails (POSHIST download/network): loud boxed warning, picker skipped, continue with seeded pre-ticks. Offline ≠ stale clone. | [DECISION] P1 (done) |
 | R-GL-6 | Each gui decision.json additionally records `"tool_commit"` (short git hash) so the benchmark can verify all raters used the same instrument. Additive; ingest ignores unknown keys (verified). | [NEW] P3 |
 | R-GL-7 | Re-running gui on a burst that already has a decision.json: overwrite silently, or prompt? | **[OPEN — Khushboo]** |
+| R-GL-8 | **Every written decision.json carries a NON-EMPTY `reasoning` string, captured AT DECISION TIME.** The GUI asks the rater for it (one line is enough) before writing, and `scripts/39` ingest REFUSES a decision.json whose `reasoning` is missing or blank. Rationale is REQUIRED, not "optional free text": today `scripts/39_approve_all.py:817-819` builds the `human_gui` dict with no `reasoning` key at all (the docstring at `:52` calls it optional), so as measured 2026-08-31 only **1 of 105** human_gui decisions carries a reason — and that one was back-filled retroactively 6 weeks late. Born 2026-08-31 (NR-39): bn110920546's human decision overrode BOTH the tool's pre-ticks and two independent AI passes and sat unexplained on disk, which is how a rule-vs-practice divergence (NR-38) went undetected across the whole benchmark. Minimum ask when the set differs from `pre_ticked`: name each added/removed detector and why. Historical blanks are NEVER back-filled — a reconstructed reason is not a contemporaneous record and these files are the benchmark's ground truth. | [NEW] P3 — **PROPOSED (NR-39)** |
 
 ## 2. Detector picker (R-DP)
 | # | Req | Tag/Phase |
@@ -115,6 +116,7 @@ machine-checkable.
 | R-GL-7 re-run/overwrite policy | Khushboo |
 | R-DP-7 no-angle picker variant vs hard-stop-only | Khushboo |
 | R-BG-18 width rule: warn vs block at Accept | Vikas |
+| R-GL-8 rationale capture: GUI prompt + ingest refusal (NR-39) — approve the requirement, then implement | Vikas |
 | R-BG-19 residual y-scale policy | Khushboo |
 | R-SM-3 third-click semantics | Khushboo |
 | R-SM-6 source-pick bin snapping | Khushboo |
