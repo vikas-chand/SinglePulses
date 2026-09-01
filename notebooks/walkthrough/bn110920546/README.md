@@ -14,18 +14,22 @@ So: **one notebook per finalized step**, numbered by the official BurstWalkthrou
 
 | step | notebook | status |
 |---|---|---|
-| 0b literature harvest | `step0b_literature.ipynb` | FINALIZED |
-| 0 identity & GCN | `step0_identity.ipynb` | FINALIZED |
-| 1 data inventory | `step1_inventory.ipynb` | FINALIZED |
-| 2 detector selection | `step2_detectors.ipynb` | FINALIZED |
-| 3 background | `step3_background.ipynb` | FINALIZED |
-| 4 source window | `step4_source.ipynb` | FINALIZED |
-| 5 binning | `step5_binning.ipynb` | FINALIZED |
+| 0b literature harvest | `bn110920546_step0b_literature.ipynb` | FINALIZED |
+| 0 identity & GCN | `bn110920546_step0_identity.ipynb` | FINALIZED |
+| 1 data inventory | `bn110920546_step1_inventory.ipynb` | FINALIZED |
+| 2 detector selection | `bn110920546_step2_detectors.ipynb` | FINALIZED |
+| 3 background | `bn110920546_step3_background.ipynb` | FINALIZED |
+| 4 source window | `bn110920546_step4_source.ipynb` | FINALIZED |
+| 5 binning | `bn110920546_step5_binning.ipynb` | FINALIZED |
 | 6 spectral fitting | — | refit done, gate pending |
 | 7 temporal · 8 products · 9 report | — | not reached |
 | ALL | `bn110920546_combined.ipynb` | built at step 9 |
 
 ## Conventions
+- **Filenames carry the trigger ID** (lesson G1, `BurstWalkthrough.md`): every per-burst
+  product is `<trigger>_<content>.ext`. Directories organise; filenames are the search
+  surface, and 106 identical basenames are unfindable. Corrected 2026-09-01 after the PI
+  caught these notebooks shipped without the prefix.
 - A notebook is written when its step is **finalized** (PI-approved), not before.
 - Every figure's sha256 is checked **inside the notebook** against the recorded gate verdict;
   the cell prints `matches the verified artifact? True`. If a figure is regenerated without
