@@ -36,7 +36,10 @@ replicated for every approved NaI. Filenames carry the trigger (lesson G1).
    (`li_and_ma_equivalent_for_gaussian_background`, Vianello 2018 — the modeled-background
    case, exactly what `bin_by_significance` uses).
 5. **Trim then merge** (the BB+significance hybrid): drop leading/trailing blocks below
-   `SIG_TRIM = 4.5σ` (pure-background edges), then merge any INTERIOR block below
+   **`SIGMA_FLOOR = 5.0σ`** (pure-background edges — CORRECTED 2026-08-31 per the PI's
+   ruling "5.0σ is right — fix the docs"; the constant named `SIG_TRIM = 4.5` in
+   `scripts/27b:45` is a PEAK-DETECTION threshold and was never the edge-trim value),
+   then merge any INTERIOR block below
    `SIGMA_FLOOR = 5σ` into its neighbour until every survivor clears the floor
    (floor user-set 2026-06-24; cf. Burgess ≥3σ, 3ML default `sigma_level=10`).
 
@@ -80,7 +83,7 @@ was trimming it, which would have started the analysed span at +0.779 s instead 
    DISCLOSED as near-threshold at the step-5 gate. Silence about it is the defect, not the
    block.
 
-**Open, NOT resolved by this ruling — SIG_TRIM is dead as documented.** `Binning.md` (this
+**RESOLVED 2026-08-31 (PI: "5.0σ is right — fix the docs").** Docs corrected above; code behaviour UNCHANGED (no re-bin — blocks already reflect 5.0σ). Original finding: `Binning.md` (this
 file, above) and `scripts/27b_reblock_3ml.py:45` both document `SIG_TRIM = 4.5` as the
 "leading/trailing-edge drop threshold", but `trim_edges` is called with `SIGMA_FLOOR` (5.0)
 at `:235`; `SIG_TRIM` is used only for peak detection at `:78`. The APPLIED rule is stricter
@@ -92,7 +95,7 @@ this file's text nor the code has been changed pending it.
 - [ ] Reference detector is a NaI, never LLE (an LLE-driven grid would free every GBM
       cross-norm — normalization degeneracy).
 - [ ] Emission-window tightening REPORTED (original approved window vs tightened window).
-- [ ] Every surviving block ≥ SIGMA_FLOOR; edge blocks ≥ SIG_TRIM.
+- [ ] Every surviving block ≥ SIGMA_FLOOR (5.0σ); edge blocks are trimmed at the SAME 5.0σ — NOT at SIG_TRIM (peak detection only).
 - [ ] Newest TTE version used (`find_tte` sorts; audit #19).
 - [ ] **External validation where published edges exist:** Li & Zhang 2021 publish BB counts +
       edges for many of our bursts; bn081224887 reproduces their 9 blocks and edges
