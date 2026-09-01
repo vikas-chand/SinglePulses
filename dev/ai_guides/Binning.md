@@ -59,6 +59,35 @@ bins you fit it in.**
 - **GATE:** peak block < 3σ ⇒ NO LLE grid — the burst uses fine GBM blocks only. The gate
   withholds a *grid*, never the *data*: LLE still enters the joint fit (L17) on the GBM grid.
 
+## PI RULING 2026-08-31 — a near-threshold edge block is KEPT (bn110920546 block 0)
+
+**PI, VERBATIM:** "it's ok to have block 0 of that 5.38 sigma value"
+
+**Context.** Block 0 of #21 clears the edge-trim threshold ACTUALLY APPLIED (5.0 sigma,
+see the SIG_TRIM note below) by only **+0.382 sigma (7.6%)**; it is also **below the L6
+adequacy floor of 10**, and it hosts 2 of the burst's 3 failed model fits. The alternative
+was trimming it, which would have started the analysed span at +0.779 s instead of
+-2.076 s. The PI ruled it KEPT.
+
+**Operative consequences.**
+1. A retained edge block is NOT thereby an adequate block. Block 0 stays in the analysis and
+   stays flagged under L6/L6b: report per-block statistics BOTH ways (all blocks / S>=10
+   subset), and never let a near-threshold block carry a claim on its own.
+2. The quoted significance is the REFERENCE detector's (here n0), replicated across the
+   approved-NaI rows by scripts/27b — it is not a combined-detector value and, per L6b,
+   understates constraining power (~x2 for 4 plugins). Label it as such wherever quoted.
+3. Presentation duty: a block whose margin over the applied trim threshold is < 1 sigma is
+   DISCLOSED as near-threshold at the step-5 gate. Silence about it is the defect, not the
+   block.
+
+**Open, NOT resolved by this ruling — SIG_TRIM is dead as documented.** `Binning.md` (this
+file, above) and `scripts/27b_reblock_3ml.py:45` both document `SIG_TRIM = 4.5` as the
+"leading/trailing-edge drop threshold", but `trim_edges` is called with `SIGMA_FLOOR` (5.0)
+at `:235`; `SIG_TRIM` is used only for peak detection at `:78`. The APPLIED rule is stricter
+than the DOCUMENTED one. Verified 2026-08-31. Block 0's margin is +0.382 sigma against what
+runs and +0.882 sigma against what is written. Which is intended is a PI decision; neither
+this file's text nor the code has been changed pending it.
+
 ## Quality checklist
 - [ ] Reference detector is a NaI, never LLE (an LLE-driven grid would free every GBM
       cross-norm — normalization degeneracy).
