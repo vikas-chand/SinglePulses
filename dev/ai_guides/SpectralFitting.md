@@ -480,6 +480,41 @@ word without its reference." So the grades in this table are the CHAIN-GATE cons
 ΔAIC of a model vs its best simpler ANCESTOR in the nesting chain. Every printed
 "DECISIVE"/"STRONG" names that ancestor.
 
+### Amendment — TIE ADOPTION and the GATE PAIRING (PI rulings, 2026-09-01, #21 step-6 gate)
+
+**RULING A — what to report when a bin is a TIE.** PI, VERBATIM:
+> "yes, in case of tie the simplest model say Band or SBPL with fixed smoothness can be tracked"
+
+RULE: within a tie set (ΔAIC < 2 from the best VALID model), the ADOPTED model is the one
+with the FEWEST FREE PARAMETERS; equal-complexity ties break on LOWEST AIC (data-driven —
+an earlier alphabetical break was arbitrary and picked CPL+BB over CPL+PL on spelling
+alone). `n_params` is read from the ENGINE spec tables (NR-10 name authority), never
+hardcoded. The engine's `BEST_AIC_MODEL` column is UNCHANGED — it remains a bare
+validity-gated argmin; adoption is a REPORTING layer on top of it, and both are printed.
+
+WHY: a bare argmin over a tie set is noise. On #21 post-amendment, 9 of 12 bins are ties
+and NONE is TRACKED; the argmin sequence wandered over 7 models, the adopted sequence uses
+5 and three models cover 10 of 12 bins. INDEPENDENT SUPPORT: BIC — which penalises
+complexity more heavily (k·ln n vs 2k) and was computed by the engine all along — agrees
+with the simplest-in-tie choice in 9 of 12 bins, having arrived there by a different route.
+
+**RULING B — the two gates are paired.** PI chose "Adopt ΔAIC≥6 ↔ LRT≈10", closing the
+doctrine bug recorded immediately below (the +BB gate LRT ≥ 9.2 ≈ ΔAIC 5.2 versus a
+simultaneous demand of ΔAIC ≥ 10 — the two disagreed by ~5 AIC on identical data).
+IMPLEMENTATION NOTE: the engine applies LRT ≥ 9.2 internally (scripts/10:1289) but STORES
+the LRT per row (`LRT_BANDBB_BAND`, `LRT_CPLBB_CPL`, `LRT_DSBPL_SBPL`), so re-thresholding
+at 10 is a REPORTING-layer operation — no refit is required to apply this ruling.
+MEASURED EFFECT on #21: 2 of 12 blocks flip, both in `LRT_DSBPL_SBPL` (T_INT 9.70, blk 9
+9.45) — i.e. the ruling removes two MARGINAL TWO-BREAK cells and touches no thermal
+component (every BB LRT on this burst is 11–168, far above both thresholds).
+
+**UNCHANGED by either ruling — the calibration caveat still binds** (see below): at an
+additive component's zero-normalisation boundary the LRT is not asymptotically chi-square,
+so neither AIC, BIC nor LRT yields a calibrated false-alarm probability. BIC does NOT fix
+this — it swaps the penalty, not the reference distribution; it is merely stricter. A
+"component required at Nσ" claim needs the null-simulation battery (Type I) plus an
+injection test at the observed strength (power / Type II) — the NR-25 / A19 gate.
+
 **⚠ DOCTRINE BUG this exposed:** our `+BB` gate `LRT ≥ 9.2` is p=0.010 (~2.6σ) for 2 extra
 parameters ⇒ **equivalent to ΔAIC ≈ 5.2**, while we simultaneously demanded **ΔAIC ≥ 10**
 (⇒ LRT = 14). The two gates disagree by ~5 AIC, so a component can pass one and fail the other on
