@@ -25,7 +25,14 @@ STEPS = ['0b','0','1','2','3','4','5','6','7','8','9']
 CASCADE = {
   # any Stage-1 or binning change: everything spectral+temporal is stale
   '2': {'phases':'ALL','note':'detector set changed: re-bin then refit required; block reuse no longer applies to this burst'},
-  '3': {'phases':'ALL','note':'background window(s) changed: refit required (and re-bin whenever a NaI background moved — 27b derives block significance from the background)'},
+  # SHARPENED 2026-09-01 (PI: "Reinstate — blocks provably unchanged"): a background
+  # change ALWAYS invalidates the fits, but it invalidates the BLOCKS only when the
+  # REFERENCE NaI moved. scripts/27b builds the grid on the reference detector alone
+  # (catalog-brightest if approved, else the approved NaI with most counts in its own
+  # background gap) using THAT detector's own windows; the per-detector rows in the
+  # block table are replicas, not independent computations. So a change to a
+  # non-reference NaI, or to any BGO, requires REFIT ONLY — step 5 stays valid.
+  '3': {'phases':'ALL','note':'background window(s) changed: refit required. RE-BIN (and step-5 demotion) ONLY if the REFERENCE NaI background moved — see the note above; a non-reference NaI or BGO change leaves the blocks valid'},
   '4': {'phases':'ALL','note':'source window changed: re-bin + refit required'},
   '5': {'phases':'ALL','note':'binning changed: refit required'},
   '6': {'phases':['t44b'],'note':'fits changed: promotion + SED grids + montages + param evolution + report must regenerate (driver reruns them; grids re-render per sweep_status)'},
@@ -60,6 +67,11 @@ def main():
     print(f'   {spec["note"]}')
     for t in targets: print(f'   clear marker: {t}')
     for s in stale:   print(f'   demote approval: step {s} -> STALE (was APPROVED on old state)')
+    if a.from_step == '3' and '5' in stale:
+        print('   NOTE: step 5 (binning) was demoted. If ONLY a non-reference NaI or a BGO\n'
+              '         background moved, the block grid is provably unaffected (27b builds it\n'
+              '         on the reference NaI alone) — verify the block-table sha and reinstate\n'
+              '         with that evidence rather than re-binning.')
     if not targets and not stale: print('   nothing to do (no markers, no later approvals)')
     if not a.execute:
         print('DRY RUN — add --execute to apply'); return
