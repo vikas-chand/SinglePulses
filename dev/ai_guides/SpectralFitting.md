@@ -537,6 +537,58 @@ this — it swaps the penalty, not the reference distribution; it is merely stri
 "component required at Nσ" claim needs the null-simulation battery (Type I) plus an
 injection test at the observed strength (power / Type II) — the NR-25 / A19 gate.
 
+### Amendment — THE EVOLUTION TRACK IS A SINGLE SIMPLE CONTINUUM (PI ruling, 2026-09-02)
+
+**PI, VERBATIM:**
+> "where all model are tied, then simplest model either CPL or Band is the one to get the
+> parameter evolutions"
+
+**RULE.** Where the model comparison does not discriminate, the PARAMETER EVOLUTION is
+tracked with ONE simple continuum — **CPL, or Band where CPL is inadequate** — held fixed
+across every bin of the burst. It is chosen ONCE per burst, not per bin.
+
+**Why this is not the same as the tie-adoption rule (2026-09-01).** Tie adoption picks the
+simplest member OF EACH BIN'S TIE SET, which on #21 yields CPL+BB in one bin, SBPL+PL in the
+next, CPL+PL in a third. Those composites do not share a parameter space, so an "Ep vs time"
+curve built from them splices together quantities that are not the same quantity. **An
+evolution track must be the same model in every bin or it is not a track.** Tie adoption
+answers "what does this bin prefer?"; this rule answers "what do we plot across bins?".
+Both are reported; they are different questions.
+
+**Selection test (measured on #21, bn110920546, post-amendment table sha 368aa01e…):**
+choose the simplest continuum that is VALID IN EVERY BIN.
+- **CPL valid in 12/12 bins** -> CPL carries the burst.
+- Band valid in only 7/12 (fails blk0, 1, 5, 6, 7) -> Band CANNOT carry this burst.
+Report the validity count with the choice; if no simple continuum is valid everywhere, say so
+and do not manufacture a track.
+
+**The resulting CPL track on #21 — monotonic, and far more legible than the winners:**
+Ec 2333 -> 1100 -> 429 -> 295 -> 235 -> 197 -> 153 -> 126 -> 87 -> 69 -> 55 keV; index
+-0.75 -> -0.55 -> -0.34 -> -0.20 -> -0.21 -> -0.22 -> -0.18 -> -0.14 -> +0.05 -> +0.13 ->
++0.13. A clean hard-to-soft decay with a hardening low-energy index — a physically readable
+evolution where the bin-by-bin argmin sequence was a random walk across seven models.
+
+**THE CAVEAT THAT MUST RIDE EVERY SUCH TRACK.** On #21 the CPL is NOT in the tie set: its
+dAIC above the best valid model runs **8.5 to 177**. So the track is a **DESCRIPTION chosen
+for coherence, NOT the AIC-preferred model**, and every figure and table carrying it says so,
+with the per-bin dAIC printed. Presenting it as the best fit would be exactly the
+counterfactual-as-outcome class (NR-39). Labels required: "CPL evolution track (fixed
+continuum; dAIC above best valid model = X per bin)".
+
+**OPEN — the PI's condition, not yet resolved (NR-27, do not resolve by acting).** The ruling
+says "where all model are tied". On #21 the COMPOSITES are mutually tied (8 robust ties of 12)
+but CPL is NOT tied with them. So it is undecided whether the rule fires (a) only when the
+whole menu including the simple continua is tied, or (b) whenever the discrimination is
+between mutually-indistinguishable COMPOSITES, in which case the simple continuum is the
+fallback track regardless of its own dAIC. Case (b) is what was applied above. This matters
+campaign-wide: it decides whether most bursts get a track at all.
+
+**Converges with L12** (`extra_lowE_curvature` degeneracy class): over the GBM band alone,
+Band+BB / CPL+BB / SBPL+BB / DSBPL / DSBPLfree are one class and an intra-class winner is "an
+intra-class non-statement" — the class breaks only with data outside the GBM band. #21 has no
+LLE and no LAT. This ruling is the operational consequence: when the class cannot be broken,
+do not track a member of it — track the continuum.
+
 **⚠ DOCTRINE BUG this exposed:** our `+BB` gate `LRT ≥ 9.2` is p=0.010 (~2.6σ) for 2 extra
 parameters ⇒ **equivalent to ΔAIC ≈ 5.2**, while we simultaneously demanded **ΔAIC ≥ 10**
 (⇒ LRT = 14). The two gates disagree by ~5 AIC, so a component can pass one and fail the other on
