@@ -106,6 +106,22 @@ one of:
 - Scoring a defended approximation as an error (type-3 protection).
 - Auto-relaunch on a failed/hung invocation (standing quota law).
 
+## Machinery (created 2026-09-01)
+- Role briefs: `dev/referee/BRIEF_T0.md`, `BRIEF_T1.md`, `BRIEF_T2.md` —
+  each opens with the blindness contract (report the breach if material
+  outside the working directory is reachable) and closes with a fixed
+  report format.
+- Clean-room launcher: `dev/referee/fire_referee.sh <product> <T0|T1|T2>
+  [response_letter diff]` — stages a temp directory holding ONLY the
+  product (+ letter and diff on round 2), runs the referee with that
+  directory as its whole workspace, and saves the report to
+  `notes/referee/` with the product's sha256 in the header, so the verdict
+  expires if the product changes. It warns, waits 10 s, and never
+  relaunches on failure (quota law). Firing remains the PI's call.
+- Honest limit: staging + the brief's self-report clause enforce blindness
+  by construction and by contract, but a sandboxed filesystem guarantee is
+  the platform's, not ours — a breach report from the referee is a STOP.
+
 ## Hand-off
 Feeds the PI gate (BurstWalkthrough / paper gate). Supervisor duty remains
 the codex-review skill; this file governs the referee duty and the loop.
