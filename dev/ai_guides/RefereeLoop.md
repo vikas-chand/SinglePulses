@@ -22,29 +22,42 @@ propose ideas beyond the brief. Output contract: VERDICT / per-item
 CONFIRMED-NOT CONFIRMED / DISCREPANCIES with exact fixes / COULD-NOT-VERIFY
 / independent judgment.
 
-**DUTY 2 — BLIND REFEREE (cold, temperature adjustable).** Gets ONLY what a
-journal referee gets: the manuscript/product and its data-availability
-statement. NO internal reasoning docs, NO architecture files, NO claims
-list, NO conversation history. Severity dial set per firing by the PI:
-- **T0 constructive** — notes and suggestions, no verdict pressure;
-- **T1 standard** — journal-style report, findings classed MAJOR/MINOR;
-- **T2 adversarial** — briefed to refute the central claims, must attempt
-  demonstrations, not arguments. (Default T1.)
+**DUTY 2 — BLIND REFEREE PANEL (three referees, fixed temperaments).**
+Each referee gets ONLY what a journal referee gets: the manuscript/product
+and its data-availability statement. NO internal reasoning docs, NO
+architecture files, NO claims list, NO conversation history, and NO sight
+of each other's reports in round 1 (independent reviews, as journals
+require). The panel is three SEPARATE invocations, one per role
+(PI amendment 2026-09-01: "we can infact keep 3 reviewer with these
+roles"):
+- **Referee T0, the constructive one** — notes and suggestions, no verdict
+  pressure; reads for what would make the work better;
+- **Referee T1, the standard one** — journal-style report, findings
+  classed MAJOR/MINOR, recommendation attached;
+- **Referee T2, the adversary** — briefed to refute the central claims,
+  must attempt demonstrations, not arguments.
+Default firing = the full panel in parallel; the PI may fire any subset
+(cost control — each referee is a PAID invocation). The PI is the EDITOR:
+where referees conflict (T0 suggests what T2 refutes), the editor rules,
+exactly as in publication.
 The two hats never mix: a supervisor invocation is disqualified from
 refereeing the same product version, and vice versa — context contamination
 is the thing blindness exists to prevent.
 
 ## The loop (bounded by construction)
 
-- **Round 1:** referee report on the product.
-- **Revision + RESPONSE LETTER:** the operating session adjudicates every
-  referee point at the primitive and writes a point-by-point response —
+- **Round 1:** the panel reports, independently and in parallel.
+- **Revision + RESPONSE LETTER:** the operating session dedupes overlapping
+  points across the three reports, adjudicates every point at the
+  primitive, and writes ONE point-by-point response letter answering all
+  referees —
   the publication artifact humans mastered. Every point gets exactly one
   type (below) and, where contested, a DEMONSTRATION (recompute, re-render,
   diff), never an argument.
-- **Round 2 (delta):** referee receives the revised product + the response
-  letter + the diff — exactly as journals do — and rules on the responses
-  only; it does not re-derive what it already confirmed.
+- **Round 2 (delta):** only the referees with unresolved points re-fire;
+  each receives the revised product + the response letter + the diff —
+  exactly as journals do — and rules on the responses only; nothing
+  already confirmed is re-derived.
 - **HARD CAP: 2 referee rounds.** A third round is a new PI decision, never
   an automatic continuation. Round budget is pre-declared in the brief.
 
@@ -76,7 +89,8 @@ one of:
 ## Quality checklist
 - [ ] hat declared in the brief's first line; blind brief contains no
       internal file, no claims list, no reasoning
-- [ ] severity T set by the PI for this firing
+- [ ] panel composition set by the PI for this firing (full T0+T1+T2
+      default; any subset allowed); round-1 referees blind to each other
 - [ ] round budget pre-declared; cap 2
 - [ ] response letter typed point-by-point, demonstrations attached
 - [ ] OPEN items registered and presented at the PI gate

@@ -529,8 +529,9 @@ per-release?); (b) budget ceiling per audit.
 **AMENDMENT 2026-09-01 (PI ruling, two hats + the referee loop):** A15 now
 carries TWO duties, never mixed in one invocation — DUTY 1 SUPERVISOR
 (auditor + brainstormer, full-context brief; the existing codex-review
-pattern) and DUTY 2 BLIND REFEREE (cold, manuscript-only, severity
-T0/T1/T2 set by the PI), run as a bounded reviewer→revision→reviewer loop
+pattern) and DUTY 2 BLIND REFEREE PANEL (cold, manuscript-only; PI amendment
+2026-09-01: THREE referees with fixed roles T0-constructive /
+T1-standard / T2-adversarial, independent in round 1, PI as editor), run as a bounded reviewer→revision→reviewer loop
 (hard cap 2 rounds, point-by-point response letter with demonstrations,
 convergence by demonstration never by agreement, disagreement types
 MATH-ERROR / RIGOR-GAP / DEFENDED-PHYSICAL-APPROXIMATION). Full protocol:
