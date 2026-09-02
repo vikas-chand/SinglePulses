@@ -205,3 +205,71 @@ The register names the incident behind each row (good), not the sensor that woul
 6. **Human input where irreplaceable**: classify the 11 gates into PI-only (Stage-1 judgement, rulings, contract amendments) and sensor-closable with an independent approver — the A16 design, now with her criterion.
 7. **A minimal maintainability harness** for `scripts/`: ruff + complexity threshold + a legacy quarantine off the import path.
 8. **Model pinning + retest + eval set** (Part 1) stay the top three.
+
+---
+
+# PART 3 — vs Palantir's ONTOLOGY (platform page + Foundry docs, fetched 2026-09-02)
+
+**Sources:** https://www.palantir.com/platforms/ontology/ (page text read through Chrome; the
+fetcher only saw the shell) and the Foundry docs (Ontology overview; core concepts; action types;
+AIP chatbot studio). The page's claim, verbatim: *"The Ontology System encodes the data, logic,
+action, and security of the enterprise to automate decisions across your operations."* Its
+language has four parts: **encode the data** (objects, properties, links); **capture the logic**
+(functions, "built to evolve as that reasoning changes"); **model the actions** ("real-world
+actions as first-class primitives", multi-step workflows that write back); **govern the
+human-agent labor force** ("granular controls across data, logic, and action simultaneously,
+whether the actor is a human or an agent"). The engine: "millions of reads, millions of writes,
+one unified reality"; continuous sync so decisions "are reflected where actions take effect".
+The toolchain: the Ontology as a backend; a **"tool factory"** for humans and agents; **Ontology
+MCP** exposing primitives to external agents under the same security; "turn specialized expertise
+into shared infrastructure". Docs add: object type / property / link type / action type (with
+rules, validations, submission criteria, side effects, a writeback dataset, "actions capture user
+decisions and insights as Ontology edits"); functions; interfaces (polymorphism); roles;
+branching and change-proposal review of the ontology itself; schema migration.
+
+## §14 Their primitives, our counterparts
+
+| primitive | ours (evidence) | verdict |
+|---|---|---|
+| Object types + properties (the data) | typed on disk: bursts (`grb_sample`, `single_pulse_grbs`), selections (`background_intervals.ecsv`, 13 cols, meta `amendments`), blocks (`bb_blocks_*.ecsv`), fits (`spectral_fits.ecsv`, 976 cols), temporal rows (26 cols, meta `stale_pending_rewalk`), redshifts, harvest paper records (14 keys), P0 predictions, approval stamps (`{by, feedback, status, utc}`), promotion receipts (14 keys incl. sha and input fingerprint), fit sidecars, burst state (`{trig, state, evidence, derived_utc}`) | HAVE the objects; **no schema file for any of them** (zero on disk); the fit table is one 976-column row per block, not normalised into fit objects |
+| Links (relations) | by convention only: `TRIGGER_NAME` keys, sha256 binding verdict→figure and product→generator, commit pin | PARTIAL: links exist as keys and hashes, never declared |
+| Actions as first-class primitives, with rules, validations, submission criteria, side effects, writeback, decision capture | `dev/live_report.py --present/--approve` (identity required, evidence linked, feedback routed = side effect); `dev/invalidate_downstream.py` (the cascade = a rule); promote / quarantine (receipts); hooks as submission criteria for two actions (ship a PNG; launch a producer). Everything else that changes state is a script run — not declared, not validated, not captured | PARTIAL: two or three actions are first-class; ~all producer runs and file writes are not. Codex r2's ACTION_EVENT envelope (intent → preflight → commit → finalize) is exactly the missing action primitive |
+| Functions (logic that evolves) | scripts, `dev/model_preference.py`, `dev/agent_state.py`, the engine; the PI's rulings as prose in skills; the register as the "why" | HAVE the logic; the rulings that determine actions live in markdown, not as callable rules |
+| Interfaces (polymorphism) | none: each product type has its own ad-hoc shape; the 24 models share column suffixes by naming convention (NR-10 name canon PROPOSED) | MISSING |
+| Roles / security across data, logic, action, for humans AND agents | `APPROVED_BY` + `APPROVAL_MODE` (human_gui / ai_vision / ai_auto) on Stage-1 rows; stamps carry identity; producer ≠ verifier ≠ approver; the fully-AI approver identity (A16) pending; permission modes and three hooks | PARTIAL: the human/agent actor distinction exists on decisions, not on every action |
+| "One unified reality", continuous sync | NOT one: products live in TWO roots (`sweep106` vs `convention_check`) resolved by `REVIEW_INDEX_106.md`; stale copies on read paths (NR-22/46); state is re-derived from disk on demand, not kept in sync | MISSING as a property; HAVE the resolver |
+| Branching / change review of the ontology itself; schema migration | git for generators; superseded/quarantine dirs for products; the register's ID guard; no branch or migration for a table schema (columns grew by suffix; the R1 amendment forbids silent generations) | PARTIAL |
+| Tool factory: tools for any human or any agent | the scripts + agent tool grants + skills; no tool that lets an agent QUERY our objects (an agent reads files) | PARTIAL |
+| Ontology MCP: external agents read objects and execute predefined actions under the same controls | none: Codex gets a clean-room COPY of files (`dev/referee/`); no MCP over our catalogs, verdicts, register | MISSING — and the cleanest fit: an MCP server exposing burst / selection / block / fit / verdict / stamp / register objects and the few declared actions (present, approve, promote, invalidate) to Codex, referees, and Mode-A agents |
+| Specialized expertise as shared infrastructure | the skills, the register, the lessons-as-tests, the PI rulings quoted verbatim | HAVE — this is what the whole project is |
+| Decisions captured as edits | stamps + rulings + instances I-nn in the register; not a decision object with its inputs' hashes and the rule it discharged | PARTIAL |
+
+## §15 What this adds to the two harness articles
+Bowne-Anderson asked for telemetry; Böckeler for a view of guides and sensors as a system; the
+Ontology page names the missing layer: **a typed object-and-action model of our own campaign**,
+with actions as first-class, permissioned, captured primitives, and one reality that agents read
+through tools rather than through file paths. Codex r2 already reached the same design from the
+failures ("a relational action-rule registry rendered as schema-on-read views over canonical
+files", typed edges applies-when / requires-before / verified-by / derived-from / invalidates).
+So three independent sources point at one build: **the campaign ontology** = schemas for the
+objects we already write, declared links, a handful of first-class actions with preflight and
+receipts, roles on every action for human and agent actors, and an MCP over it for external
+agents. It is the substrate the queue manager (A17) and the eval harness both need, and it is what
+"turn specialized expertise into shared infrastructure" means for a physics pipeline.
+
+## §16 Actions (PROPOSALS, in order)
+1. **Schemas for what exists**: one JSON schema per object type we already write (selection,
+   block, fit row, temporal row, stamp, receipt, sidecar, state, harvest paper, P0 item); a test
+   that every file on disk validates (computational sensor, Böckeler).
+2. **Declared links**: trigger, sha, commit — written as fields, not inferred; the state board
+   reads them.
+3. **First-class actions**: present, approve, promote, quarantine, invalidate, launch-producer,
+   deliver — each with intent → preflight → commit → finalize, an actor (human | agent, model id),
+   and a receipt (the ACTION_EVENT). This is also the telemetry (Part 1) and the did-it-fire ledger
+   (Part 2).
+4. **One reality**: retire the two-root split behind a single resolver object; stale copies become
+   impossible by construction (NR-22/46).
+5. **Ontology MCP for us**: expose objects + the declared actions to Codex, referees and Mode-A
+   agents; the clean-room copy becomes a query.
+6. **Roles on actions**: who may present, approve, promote — human or agent — the A16 decision
+   made concrete.
