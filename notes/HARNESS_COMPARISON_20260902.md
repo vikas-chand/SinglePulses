@@ -273,3 +273,121 @@ agents. It is the substrate the queue manager (A17) and the eval harness both ne
    agents; the clean-room copy becomes a query.
 6. **Roles on actions**: who may present, approve, promote — human or agent — the A16 decision
    made concrete.
+
+---
+
+# PART 4 — vs "Agent Harness: What It Is and How to Build One" (Sa Wang, PuppyGraph, 2026-07-01)
+
+**Source:** https://www.puppygraph.com/blog/agent-harness (a graph-database vendor; the graph
+claims are product positioning, noted as such). Its spine: the harness is "the software layer
+around a large language model that turns it into a working agent"; five components that are
+"not a menu" — context management (compaction, scoping, retrieval), tool execution in a sandbox,
+filesystem/durable state, memory and search, guardrails/hooks/human-in-the-loop ("the strongest
+guardrail of all"); four failure modes of long runs — error compounding (answer: verification
+after consequential steps against an external signal), state loss (persist plans), no access to
+ground truth ("treat a claim of success as a hypothesis to test, not a fact to accept"),
+invisibility ("structured traces of every decision, tool call, and result"); the data layer:
+relational questions are graph traversals, an ontology is "the schema the agent queries against"
+AND "a grounding contract" — queries validated against it fail with "structured, machine-readable
+feedback" the agent can repair; design backwards from "done"; an eval set with checkable outcomes
+run on every change, "regressions as bugs rather than noise".
+
+## §17 Their five components and four failure modes, ours
+
+| item | ours | verdict |
+|---|---|---|
+| context management | compaction, scoping by skill-reader checklist, retrieval by reading the product first | HAVE |
+| tool execution in a SANDBOX | producers run on the host; containment = permission modes + the raw-data hook; the Skeleton reserves "the real sandbox" for Mode A | PARTIAL |
+| filesystem / durable state | the disk IS the state; state board derived from evidence | HAVE |
+| memory and search | MEMORY.md + memsync, notes, grep, the prior-art-reader; corpus index by bibcode + theme; no vector store, no graph | HAVE for facts; relational questions ("which products derive from table X after amendment Y", "which rule has which sensor") are answered by grep and inventory agents | PARTIAL |
+| guardrails, hooks, human-in-the-loop | three hooks; the PI at every gate; no fabricated approvals | HAVE |
+| error compounding → verify consequential steps | verifier gates, sha-bound verdicts, the count-triple rule | HAVE |
+| state loss → persist plans | dispatch plans, live report, stamps, receipts | HAVE |
+| no ground truth → success is a hypothesis | our doctrine verbatim: never "I think it ran"; fresh-context verification; the anti-"I think it ran" state board | HAVE, stronger |
+| invisibility → structured traces | none per decision/tool call/agent invocation | MISSING (fourth source to say so) |
+| ontology as grounding contract with machine-readable validation | no schemas; contracts are prose (S-items, R-items) validated by humans or fresh agents, not by a validator | MISSING (= Part 3) |
+| graph database / Graph RAG | Codex r1/r2 ruled tables + typed edges suffice at our scale (106 bursts, 47 rows, ~100 rules); a graph engine is the vendor's pitch, not our need. The one place the "connective structure, not similar passages" point is right for us is the LITERATURE (AstroGraph, Scholar bridging), not the pipeline | NOT NEEDED for the pipeline |
+| design backwards from "done" | PRESENT→GATE per step; acceptance tests; ReportSpec | HAVE |
+| eval set on every change, regressions as bugs | lessons-as-tests exist; not run as a unit on every change | PARTIAL |
+
+# PART 5 — vs "How to Build a Custom Agent Harness" (Sydney Runkle, LangChain, 2026-06-03)
+
+**Source:** https://www.langchain.com/blog/how-to-build-a-custom-agent-harness (product post
+for `create_agent`; the middleware catalogue is marketing, the capability matrix is generic).
+Spine: agent = model + harness; "the job of a harness is to provide context to the model at every
+step"; product harnesses (Deep Agents, the Claude Agent SDK) vs a minimal loop + MIDDLEWARE at
+six interception points (before/after model call, before/after tool call, startup, teardown);
+four levers (deterministic logic at loop points, tool lifecycle, custom state, stream handlers
+for audit logs/monitoring); a capability matrix (context overflow, memory read/writeback, act in
+the environment, delegate + todo list, transient-failure retries/fallbacks, policies on every
+call, steer/HITL, cost control: call limits + prompt caching); task-harness fit; reuse
+battle-tested middleware across agents.
+
+## §18 Their levers and matrix, ours
+
+| item | ours | verdict |
+|---|---|---|
+| product harness + custom layer | Mode B = Claude Code (product) + our skills/agents/hooks on top; Mode A = the custom harness on the SDK, planned | HAVE (B), PLANNED (A) |
+| middleware at six interception points | we use ONE: PreToolUse on Bash and SendUserFile; nothing after a tool call, around a model call, at startup or teardown | PARTIAL |
+| deterministic logic at loop points | hooks only; the rest is prose | PARTIAL |
+| tool lifecycle | per-agent tool grants; scripts | HAVE |
+| custom state across hooks | burst state on disk; nothing in-loop | PARTIAL |
+| stream handlers → audit log of tool calls, latency monitoring | none | MISSING (= telemetry, fifth source) |
+| context overflow | compaction (harness) | HAVE |
+| memory load at start, writeback at end | MEMORY.md at boot; memsync; skills | HAVE |
+| act in the environment | shell + filesystem | HAVE |
+| delegate + todo list | fresh-context sub-agents; the live report / state board as the todo list | HAVE |
+| transient failures: retries, backoff, fallbacks | engine multistarts, the fit retry pool; no harness-level model retry/fallback (harness-provided) | PARTIAL |
+| policies on every call | three hooks; PI approval; nothing for the other transitions | PARTIAL |
+| steer / HITL | heavily | HAVE |
+| cost control: call limits, tool-call limits, caching | none: unbounded verifier rounds; the paid Codex quota protected by a prose rule after a $100 burn | MISSING |
+| task-harness fit | the harness is the walkthrough's shape | HAVE |
+| reuse across agents/projects | skills + hooks copied to siblings; the FBOT copy inherited three pre-audit bugs | PARTIAL (copies, not versioned packages) |
+
+---
+
+# SYNTHESIS — across all five sources
+
+## §19 What we ABSOLUTELY need and do not have (ranked by how many sources demand it and how cheap it is)
+
+| # | need | asked by | our state | first move |
+|---|---|---|---|---|
+| 1 | **Structured traces per action and per agent invocation** (actor, model id, inputs' hashes, decision, verdict, tokens, wall time, cost) | all 5 (telemetry; did-it-fire; decision capture; invisibility; audit stream) | none on disk | the ACTION_EVENT record Codex specified: one line per invocation, appended by the session, later by the queue manager |
+| 2 | **Model identity on every product + retest on model change** | Bowne-Anderson explicitly; implied by the other four ("the model is a fixed artifact you call") | no product names its model | `MODEL_ID` + harness version in stamps, sidecars, manifests; a keep-condition column in the register |
+| 3 | **One eval battery run on every harness change and every model change** | 4 of 5 | tests + benchmark + known-results exist, never as one unit | one command over lessons-as-tests + known-results + the case-study cases; results sha-bound |
+| 4 | **The campaign ontology**: schemas for the objects we already write, declared links, first-class actions with preflight → commit → receipt, roles for human and agent actors | Palantir, PuppyGraph (grounding contract), Böckeler (computational sensors), Codex r2 | objects typed, no schema; 2–3 actions first-class | JSON schema per object + a validation test; then the seven actions |
+| 5 | **Caps and cost limits on every loop** | Bowne-Anderson, LangChain, PuppyGraph | only the referee loop is capped; Codex quota is prose | retry cap + escalation on figure/numbers rounds; a spend ledger for paid calls |
+| 6 | **Computational sensors before inferential agents; a pre-commit gate; a drift janitor** | Böckeler, PuppyGraph | growth is inferential-heavy; no pre-commit; drift by hand | code the four countable step-6 auditors; pre-commit runs the 6-s suite; scheduled 36+43+read-path scan |
+| 7 | **A sandbox for producers** | PuppyGraph, LangChain | host execution + raw-data hook | Mode A's container; until then, the raw-data hook stays the only containment |
+| 8 | **Interception points beyond PreToolUse** | LangChain, Böckeler | one of six | PostToolUse for the audit line (= #1), Stop for the state board refresh |
+
+Not needed at our scale, despite the sources: a graph database or Graph RAG for the pipeline
+(Codex ruled; 106 bursts), a vector store (239 PDFs indexed by bibcode and theme), a managed
+runtime. The graph point stands only for the literature side (AstroGraph).
+
+## §20 What we have that is BETTER than any of the five
+
+1. **Blind-first with reconciliation as a scientific method**: predictions frozen before the
+   literature is read; every difference explained by ONE changed analysis choice; "the deliverable
+   is a tested explanation, not an agreement score". No article has an equivalent.
+2. **Verdicts bound to the artifact's hash and expiring on edit**, from a fresh-context verifier
+   that never produced the thing it judges. The articles have verification loops and HITL; none
+   binds the verdict to a sha.
+3. **The human's words as the contract, quoted and dated**: S-items, R-items, rulings verbatim.
+   Böckeler says correctness needs a human specification; we do it per step, systematically.
+4. **The register**: every guard and agent carries the incident that bore it; distillation the
+   same session; "a lesson is not learned until it exists as a claim and a test". Their steering
+   loop, with provenance for every control — and 47 rows from 21 real bursts.
+5. **Disk-derived state and identity-stamped approvals**: never "I think it ran"; a chat-only
+   approval is recorded as a defect; approvals are never fabricated. Stricter than any HITL text.
+6. **The blind three-referee panel with fixed temperaments and the two-hat separation**
+   (supervisor with context vs cold referee without). Beyond "LLM as judge".
+7. **A numbers discipline the articles do not know**: count coordinates (denominator, basis set,
+   model), margins never absolutes, rails disclosed, four symbols (detection / estimate / upper
+   limit / unconstrained), ties reported as ties. This is the science-specific behaviour harness.
+8. **Honest limits stated on every gate**: UNVERIFIED-IN-CI, "consistency not truth", provisional
+   by definition, the NO-EXCEPTION delivery rule, the register's PROPOSED vs DEPLOYED status.
+9. **A mechanical no-ship gate at delivery** on top of the product harness's permission modes
+   (PuppyGraph cites Claude Code's modes as the example; we added the product-specific gate).
+10. **Design from 21 bursts of observed failure** rather than from a component list — the thing
+    every one of the five articles says to do, done at scale.
