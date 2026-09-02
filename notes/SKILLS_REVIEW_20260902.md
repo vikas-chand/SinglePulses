@@ -25,7 +25,7 @@ R = PI ruling inline, — = none.
 
 | file | KB | last commit | step | in ledger? | structure | health signal |
 |---|---|---|---|---|---|---|
-| LiteratureHarvest.md | 14.5 | 08-30 | 0b | yes | phases, D (traps, unnumbered), C | traps have no IDs → uncountable, unciteable |
+| LiteratureHarvest.md | 14.5 | 08-30 | 0b | yes | phases, D (traps T1–T11 as bold bullets), C | traps are numbered but not headers, so the header census and the guard test do not see them; phases out of order (3, 3c, 3b, 4); "Step 0a" naming stale |
 | GCNIntelligence.md | 5.2 | 07-31 | 0 | yes, **still marked ✎** | C, L (G1–G2, out of order) | ledger stale: file exists since 07-31 |
 | DataInventory.md | 10.1 | 08-12 | 1 | yes, **still marked ✎** | C, L (D1–D5) | ledger stale |
 | detector_selection.md | 16.6 | 08-31 | 2 | yes | criteria, contract, C, pitfalls | carries a live rule-vs-practice divergence (:43, NR-38) |
@@ -168,7 +168,7 @@ No new file, no new actor.
 
 ---
 
-## §6 Proposed discussion order (file by file)
+## §6 Proposed discussion order (file by file) — SUPERSEDED 2026-09-02 by decisions 4–5: existing files stay as they are; rounds later. The live agenda is the INTERPRETATION skill family (see the plan document).
 
 1. §5.1–5.2 (ledger + IDs) — two decisions, unlock everything.
 2. Per-step, in step order: LiteratureHarvest → GCNIntelligence → DataInventory →
@@ -188,3 +188,5 @@ edit is made and a one-line entry lands in this document's log (§7) before the 
 | 2026-09-02 | BurstWalkthrough.md ledger | "Yes, one index" (decision 1) | ledger: ✎ marks cleared on steps 0/1; step 6 L1–L33; cross-cutting band (FigureVisionQC, ReportSpec, ShippingGate, RefereeLoop, register); precedence over AUTHORITATIVE_PIPELINE stated |
 | 2026-09-02 | all skill files | lesson IDs "it should be specific to the skills" (decision 2) | L stays SpectralFitting's; Temporal L29/L33/L26/L31/L32 → TM1–TM5 (file order, tombstoned); prefix table in the ledger; live citations updated (AgentArchitecture, AgentSkeleton, port-verifier); frozen records, logs, memory notes and the figure-rendering scripts (47b/47c/40/run_p2) left as-is — tombstone resolves them; tests/test_lesson_ids.py guards |
 | 2026-09-02 | step 8 | "νFν panels + residual reading" (decision 3) | ledger step-8 row → ✎ SEDPanels.md (N1); AgentArchitecture per-step roster row 8 re-titled; tables and report assembly = step 9 |
+| 2026-09-02 | LiteratureHarvest.md (decision 4) | REDIRECT, verbatim: "We look at the literature, keep it to the end where if there is literature on the event we are doing we then compare our results with them and reconcile any differences and at the same time there is different thing I guess which is literature in general and that is required to build skill files to intrepret and put our analysis to use like Amati correlation, or calculations from all the things we got, basically some physics, whether it goes even into unsupervised learning those people did on some of the properties of GRBs, we should be able to provide any number for any kind of analysis people want to perform on our GRB" | no shape pass applied. Two consequences recorded: (i) per-EVENT literature = an END step (compare + reconcile), not step 0b — ledger re-order to be confirmed before applying (the 0b numbering was the PI's own 2026-08-30 ruling and live_report.py keys on it); (ii) the NEW skills to write are INTERPRETATION skills built from the GENERAL literature (energetics, correlations, physics estimates, population/unsupervised analyses) → plan in notes/INTERPRETATION_SKILLS_PLAN_20260902.md |
+| 2026-09-02 | all existing skill files (decision 5) | verbatim: "this was that if we keep doing burst #1, #2, #3... then by #20 our skill files will probably have not much to add, but we didn't do that... so skill files stays as they are, and we will do rounds to improve them and consolidate them" | existing skill files are NOT restructured now; §4 N1–N9 and §5.3–5.6 become ROUND items for later; the harvester tool is not built now |
