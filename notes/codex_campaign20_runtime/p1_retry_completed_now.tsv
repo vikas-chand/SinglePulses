@@ -1,0 +1,18 @@
+# trigger	model_family	output_label
+bn081224887	shape	shape_retry
+bn081224887	highe	highe_retry
+bn081224887	threecomp	threecomp_retry
+bn090530760	threecomp	threecomp_retry
+bn090620400	highe	highe_retry
+bn090620400	threecomp	threecomp_retry
+bn090719063	shape	shape_retry
+bn090719063	highe	highe_retry
+bn090804940	highe	highe_retry
+bn090809978	highe	highe_retry
+bn090809978	threecomp	threecomp_retry
+bn091209001	highe	highe_retry
+bn100122616	highe	highe_retry
+bn100122616	threecomp	threecomp_retry
+bn100614498	highe	highe_retry
+bn100614498	threecomp	threecomp_retry
+bn100707032	highe	highe_retry

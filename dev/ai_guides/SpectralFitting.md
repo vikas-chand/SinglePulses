@@ -284,6 +284,19 @@ pure overfitting; model AICs spread by ~280 on a near-empty bin. **Rule:** a
 decisive winner requires a minimally-populated bin; add a bin-adequacy floor
 (counts / N2LL scale) to the census before quoting any per-block verdict.
 
+⚠ **L6 AND L6b ARE TWO DIFFERENT GATES — DO NOT MERGE THEM** *(I-20c, 2026-09-01,
+NR-45; the session told the PI "S=10 is the adequacy floor", which is false).*
+| | L6 BIN ADEQUACY | L6b SIGNIFICANCE |
+|---|---|---|
+| quantity | counts / N2LL scale in the bin | joint-fit (or single-det stand-in) S |
+| numeric value | **NONE — this lesson has never carried a number**; the floor is still unbuilt ("add a bin-adequacy floor") | S ≥ 10 single-detector ≈ combined S ≥ 20 |
+| force | gates a per-block DECISIVE verdict | **a QUALITY FLAG, explicitly "not a hard exclusion"** — fit every bin, report every bin |
+Quoting "S ≥ 10" as *the adequacy floor* imports L6b's number into L6's role and
+converts a flag into an EXCLUSION the PI never ruled — on #21 it would have dropped
+block 0, which he had just ruled RETAINED at the same gate. L6 remains numberless
+until a floor is built and the PI adopts it; until then no bin is excluded on adequacy
+grounds, and any sentence containing both "S" and "adequacy" is a defect.
+
 ### L6b — Significance is the JOINT-fit quantity, a QUALITY FLAG not a hard cut; floor S≥10 (single-det) ≈ Yu's combined S≥20  *(Vikas, 2026-07-30, from Yu+2019)*
 Two facts settled against Yu+2019 + installed threeML: (1) Yu compute S over the
 COMBINED joint fit (all fitted detectors, Vianello 2018), blocks on the single
@@ -496,7 +509,12 @@ WHY: a bare argmin over a tie set is noise. On #21 post-amendment, 9 of 12 bins 
 and NONE is TRACKED; the argmin sequence wandered over 7 models, the adopted sequence uses
 5 and three models cover 10 of 12 bins. INDEPENDENT SUPPORT: BIC — which penalises
 complexity more heavily (k·ln n vs 2k) and was computed by the engine all along — agrees
-with the simplest-in-tie choice in 9 of 12 bins, having arrived there by a different route.
+with the simplest-in-tie choice in **10 of 12 blocks (all blocks, T_INT included) = 9 of 11
+time-resolved blocks**, having arrived there by a different route; it differs at blocks 7 and 9.
+⚠ CORRECTED 2026-09-01 (I-20d, NR-45): this line first read “9 of 12”, which is right under
+NEITHER denominator — the error was conservative, and it is exactly the count-without-its-
+denominator class. Recomputed from sha256 368aa01e…a2bd74f92 by comparing `BEST_BIC_MODEL`
+to the RULING-A adopted model row by row.
 
 **RULING B — the two gates are paired.** PI chose "Adopt ΔAIC≥6 ↔ LRT≈10", closing the
 doctrine bug recorded immediately below (the +BB gate LRT ≥ 9.2 ≈ ΔAIC 5.2 versus a
@@ -507,6 +525,10 @@ at 10 is a REPORTING-layer operation — no refit is required to apply this ruli
 MEASURED EFFECT on #21: 2 of 12 blocks flip, both in `LRT_DSBPL_SBPL` (T_INT 9.70, blk 9
 9.45) — i.e. the ruling removes two MARGINAL TWO-BREAK cells and touches no thermal
 component (every BB LRT on this burst is 11–168, far above both thresholds).
+⚠ BASIS (added 2026-09-01, I-20e, NR-45): **one of those two cells is BLOCK −1 (T_INT)**,
+which the tie and TRACKED counts explicitly EXCLUDE. Among the 11 time-resolved blocks the
+flip count is **exactly 1** (blk 9). Quote it as “2/12 all blocks, 1/11 time-resolved” —
+never as a bare “2 cells”, because a T_INT cell is not a member of the set the census counts.
 
 **UNCHANGED by either ruling — the calibration caveat still binds** (see below): at an
 additive component's zero-normalisation boundary the LRT is not asymptotically chi-square,
@@ -814,9 +836,106 @@ replay a row under mismatched live constants (forensic override env, never shipp
 (2) the frozen full-sample re-run inherits the new convention — walkthrough-era numbers
 were provisional by doctrine anyway; (3) prediction to check at the first new-convention
 fit: the added BGO 200–300 keV overlap should better constrain the EAC constants — watch
-whether bn081125496's EAC_B1 comes off its 1.2 rail. The transferable rule: **every
+whether bn081125496's EAC_B1 comes off its 1.2 rail. ⚠ FIRST TEST, 2026-09-01 (#21
+bn110920546, L32/NR-43): on the first new-convention burst the rails did NOT relieve —
+11/12 adopted fits still carry a railed EAC (B0 on the 0.800 floor 9/12, N1 on the 1.200
+ceiling 9/12). The named bn081125496 EAC_B1 check remains unrun; do not restate the
+prediction as an expectation without this counter-example beside it. The transferable rule: **every
 selection constant in the engine carries a citation or a dated decision — an
 undocumented constant is a latent audit finding.**
+
+### L31 — THE CHAIN-GATE HAS NO ANCESTOR FOR THE TWO-BREAK MODEL: `DECISIVE` is UNDEFINED for 4 of 24 models  *(I-22, 2026-09-01, #21 bn110920546 step-6 gate; register row NR-41)*
+PI ruling 3 (2026-08-30) defines **DECISIVE** as the chain-gate: ΔAIC ≥ 10 vs *the best
+simpler ANCESTOR in the nesting chain*. The chain lives in ONE place — `NESTED_PARENTS`,
+`scripts/10_spectral_fit_burst.py:966-978` — and it lists **17 children**. The engine fits
+**24 models**. Three are roots (Band, CPL, SBPL). **Four appear as children NOWHERE:
+`DSBPL`, `DSBPLfree`, `SBPLfree`, `BandR+CPL`.** For a bin whose winner is one of those
+four there is no ancestor to gate against, so the construct the PI assigned to STRUCTURE
+claims returns nothing — not "not decisive", but *undefined*.
+**`DSBPL` IS the two-break model** (`scripts/10_*.py:13` — "Ravasio+2018; THE Two_Breaks
+namesake model"). Consequence, campaign-wide and by construction: **no two-break detection
+can be labelled DECISIVE in the construct the PI assigned to structure claims.** The
+project's headline claim is unreachable in its own grading scheme.
+
+**Cross-check performed before writing this (the omission is NOT uniformly justified):**
+| pair | nested? | primitive |
+|---|---|---|
+| DSBPL ⊃ SBPL | **only APPROXIMATELY** | different functional forms *and* different smoothness conventions: SBPL fixes astromodels `break_scale` (`powerlaws.py:609-615`, default 0.5); DSBPL fixes `n1=n2` (`powerlaws.py:1150-1174`, default 2.0). This is exactly L19's finding (LRT_DSBPL_SBPL is not χ²-distributed; demo/b4 blk0 gave −1.66/−1.12) |
+| SBPLfree ⊃ SBPL | **EXACTLY** | `_setup_sbpl_free` = `_setup_sbpl` + `break_scale.free`, bounds (0.01, 2.0) which CONTAIN the fixed default 0.5 (`scripts/10_*.py:388-393`) |
+| DSBPLfree ⊃ DSBPL | **EXACTLY** | `_setup_dsbpl_free` = `_setup_dsbpl` + `n1,n2` free on (0.5, 10.0), which CONTAIN the fixed default 2.0 (`scripts/10_*.py:395-403`) |
+| BandR+CPL | **no candidate in the menu** | built from `_setup_band_ep2mev` + extra CPL; the natural ancestor "BandR" is not a fitted model |
+So the approximate-nesting argument covers **one** of the four omissions. For DSBPL the
+defect is that a deliberate, defensible omission is **undocumented at the map and its
+consequence unstated**; for SBPLfree and DSBPLfree the same argument does **not** apply —
+their parents are exactly nested and simply absent; for BandR+CPL no ancestor exists at all.
+
+**MEASURED on #21 (`results/convention_check/bn110920546/spectral_fits.ecsv`,
+sha256 368aa01e…a2bd74f92, 12 blocks):** on the argmin basis **5 of the 11 time-resolved
+bins carry NO DECISIVE verdict** — blocks 3, 5, 6, 9 because their ancestor `SBPL`
+gate-fails (L32), block 10 because its winner `SBPLfree` has no ancestor entry at all.
+
+**RULE (reporting layer, today):** a chain-gate verdict is printed as one of three states,
+never two — `DECISIVE vs <ancestor>` / `not decisive vs <ancestor>` / **`UNDEFINED —
+no ancestor in NESTED_PARENTS`**. Silence is forbidden: the absence of a DECISIVE label
+must never be readable as evidence against structure.
+**RULE (code layer, PROPOSED — NR-41):** the chain-gate reporter FAILS CLOSED on a winner
+with no ancestor entry; it emits `UNDEFINED_NO_ANCESTOR` and refuses to fold that bin into
+any DECISIVE count in either direction.
+**OPEN — PI DECISION, NOT RESOLVED HERE:** (a) may a two-break structure claim be gated
+against SBPL at all, given that the pair is only approximately nested and its LRT is not
+χ²-distributed? (b) if not, what IS the reference construct for a two-break structure claim
+— DSBPL vs SBPLfree, DSBPLfree vs DSBPL, or the calibrated null battery (NR-25/A19) instead
+of any ΔAIC? (c) should SBPLfree/DSBPLfree simply be entered in `NESTED_PARENTS` (they are
+exactly nested), leaving only DSBPL and BandR+CPL genuinely ancestor-less? Until he rules,
+every two-break statement in this project is a PREFERENCE statement (TRACKED, vs runner-up),
+never a STRUCTURE statement — and must say so in those words.
+
+### L32 — A RAILED NUISANCE PARAMETER IS INVISIBLE TO THE VALIDITY GATE, and a constraint at its bound is a constraint from the BOUND  *(I-18, 2026-09-01, #21 bn110920546; register row NR-43)*
+`_fit_is_physical` (`scripts/10_*.py:1024-1067`) tests railing by looping over
+`PARAM_BOUNDS.get(prefix, {})` — a dict of SHAPE parameters only. The effective-area
+cross-normalisation constants are activated separately at `EFFAREA_BOUNDS = (0.8, 1.2)`
+(`scripts/10_*.py:88`, applied at :1184) and appear in NO `PARAM_BOUNDS` entry and in no
+`pmap`. **They are therefore never tested, and a fit pinned to an EAC bound is stamped
+`VALID = True`.**
+**MEASURED on the post-amendment #21 table (sha 368aa01e…, 12 adopted fits under the tie
+rule):** `EAC_B0` sits on the **0.800 LOWER rail with `EAC_B0_ERR = 0.0000` in 9/12**;
+`EAC_N1` sits on the **1.200 UPPER rail in 9/12**; **11 of 12 adopted fits carry at least
+one railed EAC — every one `VALID = True`.** `BOUND_CAPPED` is empty (`--`) in all 12 rows:
+the L9 BOUND_CAPPED diagnosis did not fire, because it too reads only shape parameters.
+**A rail on the SHAPE side then propagates into L31's territory:** `SBPL_BETA` is at the
+−5.0 floor (|β+5| < 5e−5; OUR floor, tighter than XSPEC's ~−10 — L15) in **10/12** rows,
+which sets `SBPL_VALID = False` in **10/12** and thereby MANUFACTURES **4 of the 5** bins
+where the chain-gate verdict is undefined. A gate that removes the ancestor removes the
+grading of the child.
+**RULE:** (1) the validity gate tests **every FREE parameter of the joint likelihood**,
+nuisances included — a parameter that enters `k` enters the rail test (code layer, NR-43);
+(2) a railed nuisance is DISCLOSED on every number that inherits it — the fit row, the SED
+sidecar, the report line — in the form `EAC_B0 = 0.800 (LOWER RAIL, err 0.000)`; (3) two
+rails pointing in OPPOSITE directions (B0 down, N1 up) are the signature of a
+cross-calibration the data cannot satisfy inside (0.8, 1.2), and are read as a widening
+question (L9's BOUND_CAPPED logic applied to nuisances), never as a converged calibration;
+(4) never quote one rail and omit the other — see NR-45.
+⚠ Pairs with L30's standing prediction that the added BGO 200–300 keV overlap "should
+better constrain the EAC constants". First new-convention burst walked (#21): it did NOT —
+11/12 adopted fits still rail, two of them in opposite directions. The prediction is not
+refuted in general (it names bn081125496's `EAC_B1`, a detector absent from #21, and that
+check is still unrun) but it is no longer an expectation that may be restated unqualified:
+on the one burst where it could be tested, the rails stayed.
+
+### L33 — ABSOLUTE AIC/BIC ARE NOT REPORTABLE ON THIS ENGINE; MARGINS ARE  *(I-19, 2026-09-01, #21 bn110920546; register row NR-44)*
+`model_columns` computes `nk = result.get('n_params_total') or result['n_params']`
+(`scripts/10_*.py:850-853`), so the EAC nuisances are counted as free parameters **even
+when they are pinned to a rail** (L32) — where they are not free at all. Measured on the
+#21 table: `AIC − (N2LL + 2·n_params) = +6.0000` in **all 287 finite cells** (three EAC
+constants × 2). Two consequences, and they differ:
+- **SAFE:** the offset is CONSTANT across every model and every block, so every ΔAIC — the
+  chain-gate margin, the TRACKED margin, the tie width — is **unaffected**. Nothing that
+  this project actually claims rests on the absolute value.
+- **NOT REPORTABLE:** the absolute AIC/BIC overstate the effective parameter count by up to
+  2·(number of railed EAC constants) and are not comparable to any externally computed AIC.
+**RULE:** quote MARGINS, never absolute AIC/BIC. If an absolute is unavoidable (a table
+column, an appendix), it carries `k_eff` and the sentence "includes N effective-area
+nuisance constants, of which M are at a bound" — otherwise it does not ship.
 
 ## PREFERENCE vs BEST-AIC — the tracking rule (PI ruling, 2026-08-26)
 best_AIC is the argmin; PREFERENCE is a separate claim. PI, verbatim: "best_AIC
@@ -851,3 +970,25 @@ any mismatch vs BEST_AIC_MODEL) — per-burst use only, the campaign-wide table 
 rerun under the no-sweep preamble ("one burst at a time, repairs included: each burst
 fixes its own rows as it's walked, no campaign-wide sweeps."), so
 results/campaign/model_preference.ecsv stays SUSPECT for every un-walked burst.
+
+**Amendment — EVERY PREFERENCE COUNT DECLARES ITS BASIS SET, not only its reference model**
+*(I-17, 2026-09-01, #21 step-6 gate; register row NR-42).* Ruling 3 mandates the REFERENCE
+MODEL ("never print either word without its reference") and says nothing about the BASIS
+SET — *which model per bin the verdict was computed on*. Since the tie-adoption ruling
+(RULING A above) there are TWO legitimate bases and they disagree:
+| basis set | what it is | DECISIVE count on #21, blocks 0–10 |
+|---|---|---|
+| **argmin** | the engine's bare validity-gated `BEST_AIC_MODEL` | **2** (blocks 0, 8) |
+| **adopted** | the simplest model in the tie set, per RULING A | **5** (blocks 0, 2, 4, 6, 8) |
+The two bases select a DIFFERENT model in **4 of the 11 time-resolved bins** (blocks 2, 4,
+6, 8). Neither count is wrong; **a count without its basis is meaningless**, because the
+same table, the same ruling and the same threshold yield 2 or 5 depending on an unstated
+choice. (Recomputed 2026-09-01 from
+`results/convention_check/bn110920546/spectral_fits.ecsv`, sha256 368aa01e…a2bd74f92,
+model `n_params` read from the engine spec tables per NR-10.)
+**RULE:** every printed preference/structure count carries **both** coordinates —
+`<k>/<N> DECISIVE vs <ancestor> (basis: adopted | argmin; blocks <range>)`. A count that
+names its reference model but not its basis set fails the NR-24 conformance gate exactly as
+a bare "DECISIVE" does. The two bases are printed TOGETHER whenever they disagree; picking
+the larger one silently is the failure this amendment exists to prevent.
+

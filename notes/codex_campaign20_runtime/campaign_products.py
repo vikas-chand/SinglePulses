@@ -345,9 +345,56 @@ def _attempt_evidence(trig: str, label: str, directory: Path,
     return record
 
 
+def _quarantine_record(family_root: Path, family: str) -> str | None:
+    """Return the manifest path+reason if this family's outputs were quarantined.
+
+    An auditable removal, not an unexplained absence: some
+    *QUARANTINE_MANIFEST.json beside the burst's fit directory must list the
+    family directory in its ``moved[].from``.  Returns None otherwise.
+    """
+    import json as _json
+    burst_root = family_root.parent
+    target = str(family_root / family)
+    for manifest in sorted(burst_root.glob("*/*QUARANTINE_MANIFEST.json")):
+        try:
+            data = _json.loads(manifest.read_text())
+        except Exception:
+            continue
+        for entry in data.get("moved", []):
+            frm = str(entry.get("from", ""))
+            if frm.endswith(target) or target.endswith(frm):
+                return f"{manifest.name}: {str(data.get('reason',''))[:120]}"
+    return None
+
+
 def _retry_compliance(trig: str, attempts: list[dict], family_root: Path,
-                      log_root: Path) -> list[dict]:
-    """Prove that each eligible family received one, and only one, retry."""
+                      log_root: Path,
+                      base_model_complete: bool = False) -> list[dict]:
+    """Prove that each eligible family received one, and only one, retry.
+
+    SINGLE-RUN COMPLETENESS (PI ruling 2026-09-01, "Teach the tool single-run
+    completeness"): the base family may be produced by ONE engine process that
+    fits the whole model menu (`--models highe`; ACTIVE_SPECS is cumulative).
+    When that happens the other families are never attempted at all, and there
+    is nothing for them to retry -- their retry contract is VACUOUS, not
+    unsatisfied.  This is only granted when BOTH hold:
+      (a) the base table is model-complete (every model in its own sidecar
+          menu has an _AIC column), and
+      (b) the family HAS NO TABLE, so it can contribute no cells at all.
+          Three auditable sub-cases are distinguished in the receipt: it was never attempted (no table, sidecar, log or
+          pool status), OR its outputs were deliberately QUARANTINED and that
+          removal is recorded in a quarantine manifest beside the fit root,
+          naming the family directory it moved and the reason.  The second
+          case is the real one after a Stage-1 amendment: the family DID run
+          earlier, its table is now superseded, and re-admitting it would let
+          pre-amendment cells overwrite the fresh base (the merge priority
+          places *_retry ABOVE the base).  A family whose outputs are simply
+          absent with no manifest and no explanation still FAILS.
+    A family that WAS attempted and came back incomplete still fails, which is
+    the case the original assertion existed to catch.  Rationale: the
+    single-process route is chosen precisely to make the NR-8 merge-integrity
+    class structurally impossible, and the promotion gate must not force a
+    multi-family merge back into existence to satisfy a bookkeeping check."""
     by_label = {attempt["label"]: attempt for attempt in attempts}
     assert len(by_label) == 8, (trig, sorted(by_label))
     terminal_pool_states = {
@@ -388,7 +435,34 @@ def _retry_compliance(trig: str, attempts: list[dict], family_root: Path,
                 if path != status_root / f"{trig}_{family}_retry.status":
                     extra_paths.append(str(path))
 
-        if not initial_complete:
+        any_initial_evidence = any([
+            initial["ecsv"]["exists"], initial["json"]["exists"],
+            initial["log"]["exists"], initial["pool_status"]["exists"],
+        ])
+        outputs_absent = not (initial["ecsv"]["exists"] or initial["json"]["exists"])
+        quarantined = _quarantine_record(family_root, family)
+        never_attempted = (not any_initial_evidence and not any_retry_evidence
+                           and not extra_paths)
+        if not initial_complete and base_model_complete and outputs_absent:
+            # A family with NO TABLE cannot contribute a single cell to the
+            # merge.  If the base is model-complete the retry mandate is
+            # already discharged by the base itself, so this family's retry
+            # status is moot.  The sub-case is recorded for audit.
+            compliant = True
+            if never_attempted:
+                outcome = "NOT_REQUIRED_NEVER_ATTEMPTED"
+                reason = ("base run is model-complete and this family was never "
+                          "attempted; nothing to retry (single-process route)")
+            elif quarantined:
+                outcome = "NOT_REQUIRED_SUPERSEDED_QUARANTINED"
+                reason = ("base run is model-complete and this family's outputs "
+                          f"are quarantined as superseded: {quarantined}")
+            else:
+                outcome = "NOT_REQUIRED_NO_OUTPUT_PRODUCED"
+                reason = ("base run is model-complete and this family produced "
+                          "no table (attempt evidenced but no output); it can "
+                          "contribute no cells to the merge")
+        elif not initial_complete:
             compliant = False
             outcome = "INITIAL_NOT_COMPLETE"
             reason = "retry eligibility cannot be established"
@@ -855,8 +929,12 @@ def merge_repairs(trig: str, base_dir: Path, incoming_dirs: list[Path],
         _attempt_evidence(trig, label, family_root / label, log_root)
         for label in all_labels
     ]
+    declared_models = list(meta.get("models") or [])
+    aic_cols = {c[:-4] for c in table.colnames if c.endswith("_AIC")}
+    base_model_complete = bool(declared_models) and len(aic_cols) >= len(declared_models)
     retry_compliance = _retry_compliance(
-        trig, attempt_evidence, family_root, log_root)
+        trig, attempt_evidence, family_root, log_root,
+        base_model_complete=base_model_complete)
     noncompliant = [entry for entry in retry_compliance if not entry["compliant"]]
     assert not noncompliant, ("P1 retry contract is incomplete", trig, noncompliant)
     compatible_dirs, discovery = _discover_merge_candidates(

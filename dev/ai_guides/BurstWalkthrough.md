@@ -40,6 +40,26 @@ For each step S in the ledger below:
    Code-hardenable lessons get implemented + verified before the next burst uses them.
 6. Next step; at burst end, write `notes/reconciliation/<trig>.md` (the record).
 
+**PRESENT-1 — NO COUNT WITHOUT ITS THREE COORDINATES** *(2026-09-01, born at the step-6
+gate of #21 bn110920546; register row NR-45).* Every count in a PRESENT block carries
+DENOMINATOR (`k/N`, and N is the set the census counts - BLOCK -1 / T_INT is not a member
+of the time-resolved set), BASIS SET (argmin vs the RULING-A adopted model), and MODEL
+(which model row a per-parameter count was read from). Contract text: ReportSpec.md R3
+"count-coordinates amendment". Paid for by five refuted counts in one gate: "11 of 12
+blocks have 3.92*kT < 20 keV" (true only of Band+BB+PL; 12/12 for the two-component BB
+flavours; only 5/12 argmin winners carry a BB at all), "EAC_B0 rails 12/12" (9/12 after
+the amendment, and the opposite-direction EAC_N1 rail was never mentioned), "S=10 is the
+adequacy floor" (merges L6 with L6b and manufactures an exclusion the PI never ruled),
+"BIC agrees 9/12" (10/12 all blocks = 9/11 time-resolved), "2 cells flipped" (one of them
+is T_INT; 1/11 time-resolved). Common primitive: **a count quoted without its denominator,
+its basis set, or its model.**
+⚠ This is ACTOR PROSE and therefore the WEAKEST layer (P8) - it is written here so the
+skill-reader returns it at every step open, but the binding layer is the COUNT-TRIPLE
+VERIFIER named in NR-45: a fresh-context agent that re-derives every count in the PRESENT
+block from the sha-bound product BEFORE the gate, and returns each one with its three
+coordinates or a REFUSAL. Until that agent exists, treat every count in a PRESENT block as
+UNVERIFIED and say so in the block.
+
 ## ADOPT mode (Vikas 2026-07-29)
 Steps 2–5 are ALREADY DONE for the sample (human-reviewed Stage-1 selections +
 27b/27c blocks). In the walkthrough they are **ADOPTED**: presented briefly

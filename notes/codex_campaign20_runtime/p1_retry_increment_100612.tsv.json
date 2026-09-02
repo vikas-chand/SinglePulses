@@ -1,0 +1,74 @@
+{
+  "generated_utc": "2026-08-17T02:26:13Z",
+  "policy": "one retry iff the complete initial family has literal STATUS=FAIL",
+  "triggers": [
+    "bn100612726"
+  ],
+  "entries": [
+    {
+      "trigger": "bn100612726",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn100612726",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    }
+  ],
+  "decisions": [
+    {
+      "trigger": "bn100612726",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100612726",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100612726",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": 1,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn100612726",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 2,
+      "failed_cells": [
+        {
+          "block": 1,
+          "model": "CPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 2,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        }
+      ]
+    }
+  ],
+  "worklist": {
+    "path": "notes/codex_campaign20_runtime/p1_retry_increment_100612.tsv",
+    "exists": true,
+    "sha256": "9e10ae315955114d5c0831390009a42c5e1fcb8dcbb52dc985b845463d5aa79a",
+    "bytes": 104
+  },
+  "matrix_sha256": "d1c7369d198dd07e7474b4e34bdec7a599e6ff47c8038fbdb7edebc490307fa1",
+  "provisional": true
+}

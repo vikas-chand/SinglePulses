@@ -1,0 +1,660 @@
+{
+  "generated_utc": "2026-08-17T02:00:24Z",
+  "policy": "one retry iff the complete initial family has literal STATUS=FAIL",
+  "triggers": [
+    "bn081224887",
+    "bn090530760",
+    "bn090620400",
+    "bn090719063",
+    "bn090804940",
+    "bn090809978",
+    "bn091209001",
+    "bn100122616",
+    "bn100130729",
+    "bn100614498",
+    "bn100707032",
+    "bn101225377",
+    "bn110618366"
+  ],
+  "entries": [
+    {
+      "trigger": "bn081224887",
+      "family": "shape",
+      "label": "shape_retry"
+    },
+    {
+      "trigger": "bn081224887",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn081224887",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    },
+    {
+      "trigger": "bn090530760",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    },
+    {
+      "trigger": "bn090620400",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn090620400",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    },
+    {
+      "trigger": "bn090719063",
+      "family": "shape",
+      "label": "shape_retry"
+    },
+    {
+      "trigger": "bn090719063",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn090804940",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn090809978",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn090809978",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    },
+    {
+      "trigger": "bn091209001",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn100122616",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn100122616",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    },
+    {
+      "trigger": "bn100614498",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn100614498",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    },
+    {
+      "trigger": "bn100707032",
+      "family": "highe",
+      "label": "highe_retry"
+    }
+  ],
+  "decisions": [
+    {
+      "trigger": "bn081224887",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn081224887",
+      "family": "shape",
+      "decision": "RETRY_ONCE",
+      "label": "shape_retry",
+      "literal_fail_count": 3,
+      "failed_cells": [
+        {
+          "block": 0,
+          "model": "DSBPLF",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "DSBPLF",
+          "status": "FAIL"
+        },
+        {
+          "block": 5,
+          "model": "DSBPLF",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn081224887",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 7,
+      "failed_cells": [
+        {
+          "block": 0,
+          "model": "DSBPLF",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "DSBPLF",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "CPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "SBPLPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 5,
+          "model": "DSBPLF",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn081224887",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 5,
+      "failed_cells": [
+        {
+          "block": -1,
+          "model": "BANDPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "BANDPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 7,
+          "model": "CPLPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn090530760",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090530760",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090530760",
+      "family": "highe",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090530760",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": 4,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn090620400",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090620400",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090620400",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 2,
+      "failed_cells": [
+        {
+          "block": -1,
+          "model": "BANDPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 1,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn090620400",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": 6,
+          "model": "SBPLPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn090719063",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090719063",
+      "family": "shape",
+      "decision": "RETRY_ONCE",
+      "label": "shape_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": 9,
+          "model": "DSBPLF",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn090719063",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 2,
+      "failed_cells": [
+        {
+          "block": 4,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 9,
+          "model": "DSBPLF",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn090719063",
+      "family": "threecomp",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090804940",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090804940",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090804940",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": -1,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn090804940",
+      "family": "threecomp",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090809978",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090809978",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn090809978",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 2,
+      "failed_cells": [
+        {
+          "block": -1,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 8,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn090809978",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 2,
+      "failed_cells": [
+        {
+          "block": -1,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 6,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn091209001",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn091209001",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn091209001",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 3,
+      "failed_cells": [
+        {
+          "block": 3,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 3,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 3,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn091209001",
+      "family": "threecomp",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100122616",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100122616",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100122616",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 5,
+      "failed_cells": [
+        {
+          "block": 0,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 2,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 4,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 5,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 6,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn100122616",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": 5,
+          "model": "SBPLPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn100130729",
+      "decision": "RESPONSE_BLOCKED",
+      "reason": "RESPONSE_UNCOVERED: adopted source/blocks precede every available RSP2 matrix; no spectral family may be retried or promoted"
+    },
+    {
+      "trigger": "bn100614498",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100614498",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100614498",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": -1,
+          "model": "BANDPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn100614498",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": 0,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn100707032",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100707032",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn100707032",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 2,
+      "failed_cells": [
+        {
+          "block": 0,
+          "model": "SBPLPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 1,
+          "model": "BANDPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn100707032",
+      "family": "threecomp",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn101225377",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn101225377",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn101225377",
+      "family": "highe",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn101225377",
+      "family": "threecomp",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110618366",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110618366",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110618366",
+      "family": "highe",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110618366",
+      "family": "threecomp",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    }
+  ],
+  "worklist": {
+    "path": "notes/codex_campaign20_runtime/p1_retry_completed_now.tsv",
+    "exists": true,
+    "sha256": "5791c2bde33ad05df99c26f1f41639b5abcf769b2b23b27256ebf53cce9c20a8",
+    "bytes": 594
+  },
+  "matrix_sha256": "cba389e49242bb84e71c6bae8ef2a3d71f1ac560d85ab327495065c96a4dead7",
+  "provisional": true
+}

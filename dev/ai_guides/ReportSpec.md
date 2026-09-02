@@ -34,7 +34,11 @@ ADS-exported bibliography only (hand BibTeX forbidden); provenance block
 
 ## R3 — NUMBERS DISCIPLINE
 Every number from the promoted convention_check table or the temporal catalog
-(NR-23 same-source rule). No literal `nan` may render — a missing value prints
+(NR-23 same-source rule). If that canonical path is ABSENT, the deliverable does not
+fall back and does not build: an empty canonical read path is a STOP, never a silent
+resolution to whichever copy a fallback finds (NR-46; scripts/48 falls back to
+`<out-root>/<trig>/spectral_fits.ecsv`, which is the I-1 stale-copy failure whenever
+that copy exists). No literal `nan` may render — a missing value prints
 an em-dash + a stated reason (found in 3/21 reports). Estimator labels ride
 every temporal quantity. dAIC<2 heads are reported as TIES (NR-3); the words
 "robust", "strong candidate", "quasi-stable" appear only with a number.
@@ -70,6 +74,36 @@ recomputes 13 mixed-category bugs over 8 rows) and
 notes/CODEX_WHOLE_PROJECT_20260813.md:381 had ALREADY ruled it unsupported on
 2026-08-13 — the repo knew; the flag rode for 22 days. Register instance:
 NR-29 (AgentArchitecture.md).
+
+**Count-coordinates amendment 2026-09-01 (distiller entry, NOT PI-blessed — flagged
+for the next gate; catching gate: the #21 step-6 gate, where five of the session's own
+counts were refuted by the PI or by re-derivation).** Every count in a deliverable or a
+gate presentation carries **three coordinates**, and the conformance gate fails a count
+missing any of them:
+1. **DENOMINATOR** — `k/N`, never a bare `k`, and N is the set the census actually
+   counts (BLOCK -1 / T_INT is NOT a member of the time-resolved set; say "2/12 all
+   blocks, 1/11 time-resolved" when the two differ).
+2. **BASIS SET** — for any model-preference or structure count, whether it was computed
+   on the engine `BEST_AIC_MODEL` (argmin) or on the RULING-A adopted model. On #21 the
+   DECISIVE count is 2 on argmin and 5 on adopted over the same 11 bins (NR-42).
+3. **MODEL / FLAVOUR** — for any per-parameter count, WHICH model row it was read from.
+   A derived-quantity count is model-dependent until the model is named: "11 of 12 blocks
+   have 3.92*kT < 20 keV" was true only of `Band+BB+PL`; the two-component BB flavours
+   give 12/12, `Band+BB+CPL` and `CPL+BB+PL` give 10/12, and only 5 of the 12 argmin
+   winners carry a blackbody at all.
+Also binding (NR-44): **quote dAIC MARGINS, never absolute AIC/BIC** — this engine's
+absolutes carry a constant `+2*n_EAC` offset (measured +6.0000 in all 287 finite cells of
+the #21 table) because railed nuisance constants are counted as free. Margins are
+unaffected and safe. An absolute that must ship carries `k_eff` and the count of
+bound-pinned nuisances (SpectralFitting.md L33).
+Also binding (NR-43): any number inheriting a parameter pinned to its bound — shape OR
+nuisance — is printed with that disclosure attached (`EAC_B0 = 0.800 (LOWER RAIL)`), and
+a `VALID = True` stamp is NOT evidence that no parameter is railed: the engine's validity
+gate tests shape parameters only (SpectralFitting.md L32).
+Also binding (NR-41): a chain-gate verdict prints as `DECISIVE vs <ancestor>` /
+`not decisive vs <ancestor>` / `UNDEFINED - no ancestor`; the absence of a DECISIVE label
+is never rendered as evidence against structure, and no DSBPL/DSBPLfree/SBPLfree/BandR+CPL
+bin may be folded into a DECISIVE count in either direction (SpectralFitting.md L31).
 
 ## R4 — GATES BEFORE DELIVERY
 figure-verifier on every figure (existing rule), numbers-verifier on the
