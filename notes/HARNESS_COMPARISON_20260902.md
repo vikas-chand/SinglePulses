@@ -122,3 +122,86 @@ PARTIAL: deterministic spine as code · bounded loops (no retry caps) · hook co
 eval set as one unit · one-hypothesis commits.
 MISSING: model identity on products · retest-on-model-change · per-invocation telemetry
 (tokens, latency, cost, decisions).
+
+---
+
+# PART 2 — vs "Harness Engineering for Coding Agent Users" (Böckeler, martinfowler.com, 2026-04-02)
+
+**Source:** https://martinfowler.com/articles/harness-engineering.html (fetched 2026-09-02; the PI's
+second article). Her frame: the harness is everything except the model, built by the USER around
+the agent; controls are GUIDES (feedforward, steer before the act) and SENSORS (feedback, observe
+after); each is COMPUTATIONAL (deterministic, fast, reliable) or INFERENTIAL (LLM judgement, slow,
+probabilistic); humans run a STEERING LOOP (an issue that recurs → improve a guide or a sensor);
+keep quality LEFT (fast sensors pre-commit, expensive ones post-integration, drift monitored
+continuously); regulate three things separately (maintainability, architecture fitness,
+behaviour); HARNESSABILITY is a property of the codebase (ambient affordances); harness
+TEMPLATES per topology; Ashby's law (commit to a topology = variety reduction; the regulator must
+have a model of the system); the human's job is what the agent cannot do (accountability,
+aesthetic judgement, "we don't do it that way here", knowing which convention is load-bearing);
+open questions: coherence as guides and sensors grow, conflicting guide vs sensor, "if sensors
+never fire, is that quality or blindness", harness coverage testing, tooling to reason about the
+controls as a system. Closing advice: computational sensors first; inferential guides where
+prediction matters; steering loops from repeated failures; design for harnessability early.
+
+## §9 Guides and sensors, computational and inferential — our census
+
+| kind | ours (evidence) | count |
+|---|---|---|
+| GUIDES, inferential | CLAUDE.md/AGENTS.md; 27 skill files; skill-reader checklist at every step open; dispatcher plan; FreshSessionBoot ritual; standing contracts (FigureVisionQC S-items, ReportSpec R-items, count coordinates) | ~30 files, ~100 rules |
+| GUIDES, computational | fixed model menu (24); fixed ledger (11 steps); engine constants block (PI convention cited); `PARAM_BOUNDS`; `NESTED_PARENTS`; the three notebook templates | a handful, inside code |
+| SENSORS, computational | 33 tests in 8 files (lessons-as-tests on real fit tables, figure-style structural test = the ArchUnit analogue, catalog QC, compile); 3 PreToolUse hooks (no-ship sha check, dispatch, raw data); engine guards (validity gate, LRT guard, band-validity NR-1, stored-ref binding NR-9, gate-before-argmin NR-26, stored-AIC hard guard in 41b); `scripts/43` catalog validator, `scripts/36` progress/invariants; `tests/test_register_ids.py`, `tests/test_lesson_ids.py` (today) | ~50 checks |
+| SENSORS, inferential | figure-verifier, numbers-verifier, tie-reporter, seed-auditor, admission-gate, prior-art-reader, port-verifier (fresh context); Codex supervisor audits; the blind referee panel; the PI at every gate | 7 agents + Codex + PI |
+| PROPOSED but unbuilt, would be computational | NR-7 run record, NR-8 merge integrity, NR-16 product-absence assert, NR-22 hash currency, NR-30 hook coverage, NR-31/32/33 screens, NR-39 rationale guard, NR-46 read-path vacancy; and four of the five step-6 auditors born on #21 (basis-set label, rail stamps, margins-only lint, count triple) | ≥ 12 |
+
+**Finding 1 (her closing advice, "computational sensors first"): our growth is inferential-heavy.**
+Incidents land as prose rules and agent duties; the code-layer guards they call for stay PROPOSED.
+Of the five auditors born at the #21 step-6 gate, four are countable from the fit table and need no
+judgement. **Verdict: PARTIAL, and the direction is wrong.**
+
+**Finding 2 (feedforward-only "encodes rules never tested for effectiveness"):** ~100 skill rules
+have no sensor that would fire on a recurrence and no measure that the guide changed behaviour.
+The register names the incident behind each row (good), not the sensor that would catch it again.
+**Verdict: PARTIAL.**
+
+## §10 The steering loop, timing, drift
+
+| her item | ours | verdict |
+|---|---|---|
+| steering loop: recurring issue → better guide or sensor | the distiller + register, same session; doctrine "a lesson is not learned until it exists as a CLAIM and a TEST" (`tests/test_lessons.py` docstring); AI writes the tests and skills; Codex audits | HAVE — but it closes into prose ~4 times out of 5 |
+| pre-commit sensors (Stripe "shift feedback left") | none: no pre-commit hook; CI runs only on push/PR to main; `results/` is gitignored so the science tests are VACUOUS in CI (labelled UNVERIFIED-IN-CI, honestly) | MISSING |
+| in-session self-correction loop | skill-reader → produce → verify before the PI sees anything; the no-ship hook sits left of delivery | HAVE |
+| post-integration expensive sensors | Codex whole-project audits, referee panel, ultrareview on milestones | HAVE |
+| continuous drift monitoring (OpenAI "garbage collection") | `scripts/36` and `43` exist but run "anytime" by hand; stale artefacts on read paths (NR-22/28: 12 overlays + a REPORT from August still where a reader looks) were found by an inventory agent, not a monitor; no scheduler | MISSING |
+| runtime feedback | n/a (no service); the analogue = campaign accumulators + the disk state board | HAVE in kind |
+
+## §11 Regulation categories, harnessability, templates, Ashby, the human
+
+| her category | ours | verdict |
+|---|---|---|
+| MAINTAINABILITY harness (code quality) | no linter, no type checker, no complexity/duplication sensor; 3,444-line assembler and 1,821-line runtime scripts unguarded; `scripts/legacy/` beside live code; only `test_scripts_compile` | MISSING — the one category with nothing |
+| ARCHITECTURE FITNESS (fitness functions) | invariants that ARE fitness functions: fail-closed orchestrator, same-source rule (NR-23), sha binding (NR-28), no-fallback read paths (NR-46), every figure through `plot_style` (structural test) | PARTIAL (several still prose) |
+| BEHAVIOUR harness (does it do the right thing) | the science sensors: verifiers; the known-results battery (Burgess 130427A, Ravasio 160625B, 110721A); the **approved-fixture pattern** in her exact sense: the assembler's output for bn081125496 is diffed against the hand-built exemplar the PI graded; "correctness needs a human spec" = PI rulings quoted verbatim into the S- and R-contracts | HAVE, stronger than typical because the PI defines "good" per step |
+| HARNESSABILITY / ambient affordances | trigger-in-filename (G1); ECSV headers with meta + amendment trails; sidecar JSON per product; sha-bound verdicts; state derivable from disk. Weak: untyped Python; a 976-column table with per-model suffixes and no schema file (numbers-verifier transcribed n_params by hand, NR-10); the two legacy roots | PARTIAL |
+| harness TEMPLATES per topology | the walkthrough (11 steps × roster) + dispatch plan per lane + per-step notebooks; sibling projects re-instantiate it — and her versioning risk already bit us: the FBOT port inherited three pre-audit bugs by copying files (memory) | HAVE the pattern and its failure mode |
+| Ashby: commit to a topology; the regulator needs a model of the system | one topology (single-pulse, GBM, fixed menu, fixed ledger); the register + per-step roster + state machine ARE the regulator's model | HAVE |
+| the human where the agent cannot substitute | 11 PI gates per burst (every step) — more supervision than her criterion asks; NR-38 (the expert does not follow the written rule) is her "which convention is load-bearing" found empirically; the fully-AI approver identity (A16) is exactly her question, pending | PARTIAL: gates are everywhere, not yet only where judgement is irreplaceable |
+
+## §12 Her open questions, our state
+
+| open question | ours |
+|---|---|
+| coherence as guides and sensors grow | live: two step-8 definitions, L31–L33 collisions, NR-41 minted twice (all today); NR-27 law-conflict flag unimplemented; two id tests now guard part of it | PARTIAL |
+| guide vs sensor disagree — how far to trust the agent | CONFLICT-n items go to the PI gate; RefereeLoop OPEN-DISAGREEMENT class | HAVE a rule |
+| sensors that never fire | the instance: `BOUND_CAPPED` never fired on the −5 rail (L9 guard silent) while it manufactured 4 of 5 undefined rows; no "last fired" ledger for any guard | MISSING |
+| harness coverage testing (mutation testing for the harness) | none; Codex r2 proposed mutation-testing the action detector | MISSING |
+| tooling to reason about the controls as a system | the register + ledger + two id tests are the seed; no single view of guides, sensors, and which rule has which sensor | PARTIAL |
+
+## §13 Actions the two articles point at together (PROPOSALS)
+1. **Computational first**: turn the four countable step-6 auditors (basis label, rail stamps as columns, margins-only lint, count triple) into code over the fit table; keep agents for judgement only. Same for the ≥12 PROPOSED code-layer rows.
+2. **Pre-commit sensor**: the fast suite (6 s) as a pre-commit hook; CI stays for catalogs and imports; a LOCAL run over products is the science gate.
+3. **"Did it fire" ledger**: for every guard, hook, test and agent duty, last-fired date and count; a never-fired sensor after N bursts is a review item (the BOUND_CAPPED lesson). This is also Bowne-Anderson's telemetry.
+4. **Drift janitor**: scheduled `36 + 43 + read-path currency scan` (NR-22), computational.
+5. **Sensor-for-every-rule**: each register row names the sensor that catches a recurrence; rows with none are the untested-feedforward class, counted (Codex's coverage lint).
+6. **Human input where irreplaceable**: classify the 11 gates into PI-only (Stage-1 judgement, rulings, contract amendments) and sensor-closable with an independent approver — the A16 design, now with her criterion.
+7. **A minimal maintainability harness** for `scripts/`: ruff + complexity threshold + a legacy quarantine off the import path.
+8. **Model pinning + retest + eval set** (Part 1) stay the top three.
