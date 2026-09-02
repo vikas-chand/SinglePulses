@@ -316,7 +316,8 @@ def render_md(a):
         cga, cgd = r['chain_gate_argmin'], r['chain_gate_adopted']
         f = lambda cg: f"{cg['verdict']}" + (f" vs {cg['ancestor']} ({cg['dAIC']:+.2f})" if cg['ancestor'] else '')
         rails = '; '.join(f"{x['param']}={x['value']:.4g} ({x['bound']})" for x in r['rails_adopted']) or '—'
-        L.append(f"| {r['block']} | {r['argmin']} ({'✓' if r['argmin_matches_engine'] else '✗ MISMATCH'}) | {len(r['tie_set'])} | {r['adopted']} ({r['adopted_n_params']}) | {r['runner_up_margin']:.3f} | {f(cga)} | {f(cgd)} | {rails} | {r['fail_cells'] or '—'} |")
+        mg = '—' if r['runner_up_margin'] is None else f"{r['runner_up_margin']:.3f}"
+        L.append(f"| {r['block']} | {r['argmin']} ({'✓' if r['argmin_matches_engine'] else '✗ MISMATCH vs ' + str(r['engine_best_aic'])}) | {len(r['tie_set'])} | {r['adopted']} ({r['adopted_n_params']}) | {mg} | {f(cga)} | {f(cgd)} | {rails} | {r['fail_cells'] or '—'} |")
     return '\n'.join(L) + '\n'
 
 

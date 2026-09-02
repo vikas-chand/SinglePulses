@@ -1,0 +1,165 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:action_event",
+ "title": "ACTION_EVENT \u2014 one record per regulated action / agent invocation (PROPOSED 2026-09-02)",
+ "type": "object",
+ "required": [
+  "event_id",
+  "utc",
+  "primitive",
+  "actor",
+  "trigger_scope",
+  "phase"
+ ],
+ "properties": {
+  "event_id": {
+   "type": "string"
+  },
+  "utc": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
+  },
+  "primitive": {
+   "enum": [
+    "present",
+    "approve",
+    "feedback",
+    "promote",
+    "quarantine",
+    "invalidate",
+    "launch_producer",
+    "deliver",
+    "verify",
+    "distill",
+    "refer",
+    "stamp",
+    "write",
+    "other"
+   ]
+  },
+  "phase": {
+   "enum": [
+    "intent",
+    "preflight",
+    "commit",
+    "finalize",
+    "refused"
+   ]
+  },
+  "actor": {
+   "type": "object",
+   "required": [
+    "kind",
+    "identity"
+   ],
+   "properties": {
+    "kind": {
+     "enum": [
+      "human",
+      "agent",
+      "hook",
+      "script"
+     ]
+    },
+    "identity": {
+     "type": "string"
+    },
+    "model_id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "harness": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "trigger_scope": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "step": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "inputs": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "path": {
+      "type": "string"
+     },
+     "sha256": {
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    }
+   }
+  },
+  "outputs": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "path": {
+      "type": "string"
+     },
+     "sha256": {
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    }
+   }
+  },
+  "verdict": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "rules_discharged": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "tokens": {
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "wall_s": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "cost_usd": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "note": {
+   "type": [
+    "string",
+    "null"
+   ]
+  }
+ },
+ "additionalProperties": true
+}

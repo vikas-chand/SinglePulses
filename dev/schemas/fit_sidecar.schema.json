@@ -1,0 +1,93 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:fit_sidecar",
+ "title": "Fit-table sidecar (engine provenance beside spectral_fits.ecsv)",
+ "type": "object",
+ "required": [
+  "trigger",
+  "fit_dets",
+  "reference_det",
+  "models",
+  "n_blocks",
+  "bin_starts",
+  "bin_stops",
+  "blocks_file",
+  "RANGES_CONVENTION",
+  "NAI_RANGES",
+  "BGO_RANGES",
+  "NAI_EXCLUDE"
+ ],
+ "properties": {
+  "trigger": {
+   "type": "string",
+   "pattern": "^bn\\d{9}$"
+  },
+  "fit_dets": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "reference_det": {
+   "type": "string"
+  },
+  "canonical_det": {
+   "type": "string"
+  },
+  "models": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "minItems": 1
+  },
+  "n_blocks": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "bin_starts": {
+   "type": "array",
+   "items": {
+    "type": "number"
+   }
+  },
+  "bin_stops": {
+   "type": "array",
+   "items": {
+    "type": "number"
+   }
+  },
+  "blocks_file": {
+   "type": "string"
+  },
+  "grid_type": {
+   "type": "string"
+  },
+  "RANGES_CONVENTION": {
+   "type": "string"
+  },
+  "NAI_RANGES": {},
+  "BGO_RANGES": {},
+  "LLE_RANGES": {},
+  "NAI_EXCLUDE": {},
+  "campaign_merge": {},
+  "lat_blocks": {
+   "type": "array"
+  },
+  "model_id": {
+   "type": "string",
+   "description": "PROPOSED 2026-09-02"
+  },
+  "engine_sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "run_argv": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ },
+ "additionalProperties": true
+}

@@ -1,0 +1,98 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:harvest_manifest",
+ "title": "Literature-harvest manifest (LiteratureHarvest.md output; step 0b)",
+ "type": "object",
+ "required": [
+  "burst"
+ ],
+ "properties": {
+  "burst": {
+   "type": "string",
+   "pattern": "^bn\\d{9}$"
+  },
+  "grb_name": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "generated_utc": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "generated_by": {
+   "type": "string"
+  },
+  "ads_queries": {},
+  "n_papers": {
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "n_papers_refereed": {
+   "type": "integer"
+  },
+  "papers": {
+   "type": "array",
+   "items": {
+    "$ref": "urn:two_breaks:harvest_paper"
+   }
+  },
+  "model_id": {
+   "type": "string",
+   "description": "PROPOSED 2026-09-02"
+  },
+  "harvest_utc": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "papers_newest_first": {
+   "type": "array",
+   "items": {
+    "$ref": "urn:two_breaks:harvest_paper"
+   }
+  },
+  "papers_latest_first": {
+   "type": "array",
+   "items": {
+    "$ref": "urn:two_breaks:harvest_paper"
+   }
+  },
+  "refereed_papers": {
+   "type": "array",
+   "items": {
+    "$ref": "urn:two_breaks:harvest_paper"
+   }
+  }
+ },
+ "additionalProperties": true,
+ "description": "Two generations on disk (measured 2026-09-02): 50/54 manifests from the 2026-08-12 doc-layer pass carry only burst + papers; the walkthrough-era manifests (e.g. bn110920546) add generated_utc/generated_by/ads_queries/n_papers/identity_verification_T1. The required set is the COMMON contract; the rich fields are the target for new records. The paper list itself has FOUR key spellings on disk (2026-09-02 census: papers \u00d750, papers_latest_first \u00d72, papers_newest_first \u00d71, refereed_papers \u00d71) \u2014 vocabulary drift with no schema; new records use `papers`.",
+ "anyOf": [
+  {
+   "required": [
+    "papers"
+   ]
+  },
+  {
+   "required": [
+    "papers_newest_first"
+   ]
+  },
+  {
+   "required": [
+    "papers_latest_first"
+   ]
+  },
+  {
+   "required": [
+    "refereed_papers"
+   ]
+  }
+ ]
+}

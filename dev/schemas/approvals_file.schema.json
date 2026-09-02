@@ -1,0 +1,12 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:approvals_file",
+ "title": "APPROVALS.json \u2014 step -> stamp record",
+ "type": "object",
+ "patternProperties": {
+  "^(0b|0|[1-9])$": {
+   "$ref": "urn:two_breaks:approval_stamp"
+  }
+ },
+ "additionalProperties": true
+}

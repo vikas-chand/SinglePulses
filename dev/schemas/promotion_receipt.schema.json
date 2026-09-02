@@ -1,0 +1,134 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:promotion_receipt",
+ "title": "Promotion receipt (stage -> promote of a fit table)",
+ "type": "object",
+ "required": [
+  "trigger",
+  "status",
+  "promoted_utc",
+  "stage_dir",
+  "input_fingerprint",
+  "target",
+  "ecsv_sha256",
+  "json_sha256",
+  "validation"
+ ],
+ "properties": {
+  "trigger": {
+   "type": "string",
+   "pattern": "^bn\\d{9}$"
+  },
+  "status": {
+   "enum": [
+    "PROMOTED",
+    "REFUSED",
+    "QUARANTINED"
+   ]
+  },
+  "promoted_utc": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
+  },
+  "stage_dir": {
+   "type": "string"
+  },
+  "input_fingerprint": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "target": {
+   "type": "string"
+  },
+  "backup_dir": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "previous": {
+   "type": [
+    "string",
+    "null",
+    "object"
+   ]
+  },
+  "ecsv_sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "json_sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "provisional": {
+   "type": "boolean"
+  },
+  "broadband_degradation": {},
+  "broadband_degradation_reason": {},
+  "validation": {
+   "type": "object",
+   "required": [
+    "trigger",
+    "rows",
+    "models",
+    "prefixes",
+    "failures",
+    "fit_dets"
+   ],
+   "properties": {
+    "trigger": {
+     "type": "string",
+     "pattern": "^bn\\d{9}$"
+    },
+    "rows": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "models": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "prefixes": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "failures": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "block",
+       "model",
+       "status"
+      ],
+      "properties": {
+       "block": {
+        "type": "integer"
+       },
+       "model": {
+        "type": "string"
+       },
+       "status": {
+        "type": "string"
+       }
+      }
+     }
+    },
+    "fit_dets": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "lat_blocks": {
+     "type": "array"
+    }
+   },
+   "additionalProperties": true
+  }
+ },
+ "additionalProperties": true
+}

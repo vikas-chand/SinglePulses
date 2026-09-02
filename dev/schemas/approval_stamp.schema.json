@@ -1,0 +1,68 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:approval_stamp",
+ "title": "Approval stamp record (dev/live_report.py, NR-18)",
+ "type": "object",
+ "required": [
+  "status",
+  "by",
+  "utc"
+ ],
+ "properties": {
+  "status": {
+   "enum": [
+    "PRESENTED",
+    "APPROVED",
+    "FEEDBACK",
+    "DEMOTED",
+    "REINSTATED"
+   ]
+  },
+  "by": {
+   "type": "string",
+   "minLength": 2
+  },
+  "utc": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
+  },
+  "feedback": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "text",
+     "by",
+     "utc"
+    ],
+    "properties": {
+     "text": {
+      "type": "string"
+     },
+     "by": {
+      "type": "string"
+     },
+     "utc": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
+     },
+     "routed": {
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    },
+    "additionalProperties": true
+   }
+  },
+  "model_id": {
+   "type": "string",
+   "description": "PROPOSED 2026-09-02: the model that produced the presentation/approval (harness comparison \u00a719 #2)"
+  },
+  "harness": {
+   "type": "string"
+  }
+ },
+ "additionalProperties": true
+}

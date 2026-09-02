@@ -1,0 +1,38 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:p0_frozen",
+ "title": "P0 frozen blind predictions (SpectralFitting.md Phase 0)",
+ "type": "object",
+ "required": [
+  "burst",
+  "frozen_utc",
+  "predictions",
+  "P0_STATUS"
+ ],
+ "properties": {
+  "burst": {
+   "type": "string",
+   "pattern": "^bn\\d{9}$"
+  },
+  "grb_name": {
+   "type": "string",
+   "description": "absent in some 2026-08-12 records (pre-identity rule); required for new records by LiteratureHarvest/GCNIntelligence"
+  },
+  "frozen_utc": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}",
+   "description": "historical records carry prose after the date (doc-layer pass 2026-08-12); new records: ISO UTC"
+  },
+  "engine": {},
+  "predictions": {},
+  "census_prior": {},
+  "harvest_snippets": {},
+  "P0_STATUS": {
+   "type": "string"
+  },
+  "P0_STATUS_RULE": {},
+  "tally": {},
+  "tally_note": {}
+ },
+ "additionalProperties": true
+}
