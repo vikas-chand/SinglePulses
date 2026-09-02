@@ -1,6 +1,6 @@
 #!/bin/bash
 # fire_referee.sh — clean-room launcher for the blind referee panel
-# (RefereeLoop.md, NR-41). PAID Codex quota: PI-TRIGGERED ONLY, never
+# (RefereeLoop.md, NR-47 — was NR-41 until 2026-09-02). PAID Codex quota: PI-TRIGGERED ONLY, never
 # auto-relaunched. Blindness by construction: the referee's workspace is a
 # staged directory holding ONLY the product (+ optional response letter and
 # diff for round 2). Report comes back sha-bound to the product.
