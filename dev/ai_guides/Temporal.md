@@ -1,5 +1,10 @@
 # Skill: Temporal (Step 7) — T90/T50, MVT, lag, pulse fits
 
+**Lesson IDs in this file are TM1–TM5** *(PI ruling 2026-09-02, verbatim: lesson IDs "should be
+specific to the skills"; before that date these five carried L-numbers that collided with
+SpectralFitting.md — each header keeps its old number as "(was Lnn)", and any record dated
+before 2026-09-02 that cites L26/L29/L31/L32/L33 in a temporal context means the TM lesson).*
+
 **Purpose:** the per-burst temporal measurements (durations, minimum variability timescale,
 spectral lag, pulse morphology) from the SAME approved Stage-1 selections that drive the
 spectroscopy. **Audience:** anyone running `scripts/40_temporal_survey.py` or reading
@@ -44,7 +49,7 @@ Gowri pulse parameters (A, s_l, s_r, r_l, r_r), φ = s_l/s_r, R², class.
    same estimator as the point value, inside the approved source window** (n=1000,
    per-trigger seed, explicit first-crossing convention) — `scripts/40::_tx_with_mc`,
    audited 2026-08-13; see the defect ledger for the two earlier broken versions.
-2. **MVT** — THREE estimators exist and are named on every quote (L32, 2026-08-30):
+2. **MVT** — THREE estimators exist and are named on every quote (TM5, 2026-08-30):
    (i) **Bala** `mvt_runner`, run separately — the CANONICAL value (the upstream Bala code
    was NOT adoptable unmodified — repaired fork; the old classifier is quarantined;
    LATBright-era MVT MC numbers are unsafe. Memory: `project_mvt_audit_2026-07-18`);
@@ -116,7 +121,7 @@ measured).
    directly (covariance included by construction). Check `scripts/40`'s estimator against this
    before quoting any T90 error.
 
-## L29 — T90 is measured INSIDE the approved source window, by decision; where emission continues past it, T90 is a LOWER LIMIT  *(bn081125496, 2026-08-13)*
+## TM1 (was L29) — T90 is measured INSIDE the approved source window, by decision; where emission continues past it, T90 is a LOWER LIMIT  *(bn081125496, 2026-08-13)*
 
 **Vikas asked** whether t5/t95 should come from the background-subtracted rates
 "without marking tstart or tstop by ourselves". Testing that produced a finding, and
@@ -167,7 +172,7 @@ between the edges. bn081125496: ρ = +0.083, so quadrature (0.188 s) and the
 covariance-correct value (0.182 s) differ by 1% — Qin's approximation is mild here,
 but ρ is now measured per burst instead of assumed.
 
-## L33 — THE CATALOG T90 IS NOT A GROUND TRUTH: it is detector-specific and carries its own subjective choices  *(PI ruling, #21 bn110920546, 2026-08-31)*
+## TM2 (was L33) — THE CATALOG T90 IS NOT A GROUND TRUTH: it is detector-specific and carries its own subjective choices  *(PI ruling, #21 bn110920546, 2026-08-31)*
 
 **PI, VERBATIM** (asked whether the catalog T90 end at 165.9 s should be marked on the
 step-4 panel, given that 58.7% of b0's amended background window lies inside it):
@@ -177,7 +182,7 @@ step-4 panel, given that 58.7% of b0's amended background window lies inside it)
 > ok to jsut take what it is, by selecting visually and that is subjective (so the catalog
 > people might have done so by selecting some part by themselves)."
 
-**What this settles.** L29 already says OUR T90 is a windowed LOWER LIMIT. L33 says the
+**What this settles.** TM1 already says OUR T90 is a windowed LOWER LIMIT. TM2 says the
 thing it is usually compared against is not an absolute either: a catalog T90 is computed
 on a chosen detector set, in a chosen band, over a chosen background — the same class of
 subjective choices this project makes at Stage 1 (see `background_selection.md`, PI ruling
@@ -199,12 +204,12 @@ team "might have done so by selecting some part by themselves."
    correctly" and make BOTH the background boundary and T90 objective — registry entry #47
    (see `background_selection.md` ruling block and `notes/PROJECTS_registry.md`).
 
-**Standing on #21:** windowed T90 = 88.67 ± 0.82 s (LOWER LIMIT, L29; 11.95σ of net emission
-outside the window) vs GBM catalog 160.771 ± 5.221 s (50–300 keV). Under L33 these are two
+**Standing on #21:** windowed T90 = 88.67 ± 0.82 s (LOWER LIMIT, TM1; 11.95σ of net emission
+outside the window) vs GBM catalog 160.771 ± 5.221 s (50–300 keV). Under TM2 these are two
 differently-framed, differently-chosen quantities — the gap is DEFINITIONAL. Report both with
 their frames; claim neither as the burst's duration.
 
-## L26 — LAG SIGN is a systematic trap: state the convention, verify against a known burst  *(2026-08-10)*
+## TM3 (was L26) — LAG SIGN is a systematic trap: state the convention, verify against a known burst  *(2026-08-10)*
 Two independent instances, one ours and one published:
 1. **Ours:** the handbook lag sign is INVERTED (defect ledger above) — caught only by cross-check.
 2. **Lu+2018 (`2018ApJ...865..153L`), published ApJ, verified in the PDF:** the text states t_p is
@@ -250,19 +255,19 @@ handbook value is the μ of a split-normal fitted over the full offset grid, not
 irreparable by sign flip and is STALE-PENDING-REWALK (banner; NR-31). #21's own rows are
 replaced by its wf-temporal (ruling 5); no other row is touched.
 
-## L31 — Two truncation flags, ONE rule: lower-limit language fires on their UNION  *(CONFLICT-4 / NR-33, #21 bn110920546, 2026-08-30 — PROPOSED pending PI)*
+## TM4 (was L31) — Two truncation flags, ONE rule: lower-limit language fires on their UNION  *(CONFLICT-4 / NR-33, #21 bn110920546, 2026-08-30 — PROPOSED pending PI)*
 This file carried two truncation signals with no stated precedence: `T90_WINDOW_TRUNCATED`
-(ledger row 1: t5/t95 land on the window edge) and `TAIL_OUTSIDE_WINDOW_SIG ≥ 3σ` (L29 item 3:
+(ledger row 1: t5/t95 land on the window edge) and `TAIL_OUTSIDE_WINDOW_SIG ≥ 3σ` (TM1 item 3:
 net emission in the region belonging to no fit). They are different tests and disagree on real
 bursts — #21 has `T90_WINDOW_TRUNCATED = False` and `TAIL_OUTSIDE_WINDOW_SIG = 11.95σ`
 (2444 net counts), so a consumer that reads only the first quotes 88.67 ± 0.82 s as a
-measurement when L29 says it is a LOWER LIMIT. **PROPOSED RULE:** `T90 is a lower limit` ⇔
+measurement when TM1 says it is a LOWER LIMIT. **PROPOSED RULE:** `T90 is a lower limit` ⇔
 `T90_WINDOW_TRUNCATED OR TAIL_OUTSIDE_WINDOW_SIG ≥ 3`; scripts/40 emits a derived
 `T90_IS_LOWER_LIMIT` column and every consumer keys on that single column (code layer, NR-33),
 never on either flag alone. Pending the PI's word; until then quote #21's T90 as "≥ 88.7 s
 (windowed; tail 11.9σ outside the window)".
 
-## L32 — MVT has three estimators; name them, order them, and screen a DETECTION against the published limit  *(CONFLICT-3 / NR-32, #21 bn110920546, 2026-08-30)*
+## TM5 (was L32) — MVT has three estimators; name them, order them, and screen a DETECTION against the published limit  *(CONFLICT-3 / NR-32, #21 bn110920546, 2026-08-30)*
 **What was found:** this file described only Haar (in-catalog) and Bala (canonical), yet the
 products shipped a third value — CWT, `results/mvt_cwt/bn110920546_mvt_cwt.json`,
 0.724 ± 0.058 s, "verbatim CWT from LATBright s02g", role "EXTENSION cross-check" — and
@@ -292,10 +297,10 @@ estimators run and labelled.
 |---|---|---|
 | **T90/T50 errors** | `T90_ERR > T90` in 84/89 (orig); then a WRONG FIX | ✅ **FIXED PROPERLY 2026-08-13** after the Codex whole-project audit (item A4). History worth keeping: the original estimator resampled BIN INDICES, destroying time order. My first repair replaced it with Poisson draws of **rectified** counts `max(net,0)` while the point value still came from **signed** net — two different estimators: on bn081224887 the point value was 18.9 s and the MC distribution sat at **116.6 s**, so the quoted σ described something that was not T90. That is more dangerous than the original bug, which at least looked broken. **The real fix (`scripts/40::_tx_core` + `_tx_with_mc`):** search window = the approved SOURCE window (declared); point and MC call the SAME estimator; realizations are Poisson draws of the **RAW** counts (non-negative by construction) minus the same fitted background — no rectification of a residual; explicit first-crossing convention because the cumulative net curve is NOT monotonic (so `np.interp` was invalid); n_mc=1000; deterministic PER-TRIGGER seed. Adds `T90_WINDOW_TRUNCATED` when t5/t95 land on the window edge (then T90 is a LOWER LIMIT, not comparable to a catalog T90). Validation vs frame-matched external values: bn081224887 14.84±0.39 (ext 17.40±1.31, 1.9σ); bn110721200 13.24±0.36 (ext 14.11±2.19, 0.4σ). ⚠ NOT propagated: background-model uncertainty (polynomial held fixed) — stated, not hidden. |
 | **bn130310840 committed row is a FAILED fit** | T90 = 17.91 ± 68.24 s vs 2.09 s blind re-run and ~2.4 s published | OPEN — refit + replace row |
-| **Lag sign inverted** | handbook lag sign convention opposite to the standard (positive = soft lags hard) | **ROOT-CAUSED 2026-08-15** (see L26): DCCF ported from s02c's sign-flipped DOCSTRING (LAG-10), not its correct code; numeric proof ±0.192 s on synthetic pair. Fix specified (temporal.py:1060 → s02c code formula + MC-median/16-84); interim validated tool = scripts/47c (imports s02c unmodified). **2026-08-30: NO re-survey — PI ruling 5 (banner): the LAG_* columns are STALE-PENDING-REWALK in `temporal_catalog_all106.ecsv`; each burst replaces its own rows as it is walked (NR-31 consumer guard). Sign flip does NOT repair the column (split-normal μ over the full grid, not the CCF peak). #21 = the L26 validation case: catalog −5.250 vs 47c +0.715 vs Lu+2018 +1.22 ± 1.27 s; shipped report mislabelled the stale value with the standard-convention text** |
-| MVT: only the Haar cross-check is in the catalog | canonical Bala MVT runs separately; CWT (scripts/47) ships as a sidecar | by design — label which MVT you quote. **2026-08-30 (L32): MVT_* columns are STALE-PENDING-REWALK (ruling 5); #21 Haar 5.342 s > Golkhou+2015 limit < 2.096 s (2.5×) while CWT 0.724 s is consistent and Bala was never run → NR-32 published-limit screen at admission; scripts/47 sha drift vs its sidecar (NR-22)** |
-| **Catalog T90 treated as ground truth** | a windowed-vs-catalog T90 diff read as an error; percentages quoted against a catalog T90 as if measured | **RULED 2026-08-31** → L33: catalog T90 is detector-specific and carries its own subjective choices; the diff is a FRAME comparison, never an error (NR-40 concordance) |
-| **Truncation flags without precedence** (CONFLICT-4) | `T90_WINDOW_TRUNCATED` (edge test) vs `TAIL_OUTSIDE_WINDOW_SIG ≥ 3σ` (L29) disagree on #21 (False vs 11.95σ) | **RAISED 2026-08-30** → L31 / NR-33: lower-limit language on the UNION; derived `T90_IS_LOWER_LIMIT` column PROPOSED pending PI |
+| **Lag sign inverted** | handbook lag sign convention opposite to the standard (positive = soft lags hard) | **ROOT-CAUSED 2026-08-15** (see TM3): DCCF ported from s02c's sign-flipped DOCSTRING (LAG-10), not its correct code; numeric proof ±0.192 s on synthetic pair. Fix specified (temporal.py:1060 → s02c code formula + MC-median/16-84); interim validated tool = scripts/47c (imports s02c unmodified). **2026-08-30: NO re-survey — PI ruling 5 (banner): the LAG_* columns are STALE-PENDING-REWALK in `temporal_catalog_all106.ecsv`; each burst replaces its own rows as it is walked (NR-31 consumer guard). Sign flip does NOT repair the column (split-normal μ over the full grid, not the CCF peak). #21 = the TM3 validation case: catalog −5.250 vs 47c +0.715 vs Lu+2018 +1.22 ± 1.27 s; shipped report mislabelled the stale value with the standard-convention text** |
+| MVT: only the Haar cross-check is in the catalog | canonical Bala MVT runs separately; CWT (scripts/47) ships as a sidecar | by design — label which MVT you quote. **2026-08-30 (TM5): MVT_* columns are STALE-PENDING-REWALK (ruling 5); #21 Haar 5.342 s > Golkhou+2015 limit < 2.096 s (2.5×) while CWT 0.724 s is consistent and Bala was never run → NR-32 published-limit screen at admission; scripts/47 sha drift vs its sidecar (NR-22)** |
+| **Catalog T90 treated as ground truth** | a windowed-vs-catalog T90 diff read as an error; percentages quoted against a catalog T90 as if measured | **RULED 2026-08-31** → TM2: catalog T90 is detector-specific and carries its own subjective choices; the diff is a FRAME comparison, never an error (NR-40 concordance) |
+| **Truncation flags without precedence** (CONFLICT-4) | `T90_WINDOW_TRUNCATED` (edge test) vs `TAIL_OUTSIDE_WINDOW_SIG ≥ 3σ` (TM1) disagree on #21 (False vs 11.95σ) | **RAISED 2026-08-30** → TM4 / NR-33: lower-limit language on the UNION; derived `T90_IS_LOWER_LIMIT` column PROPOSED pending PI |
 
 **Rule:** any use of `temporal_catalog_human.ecsv` states which columns it used and which
 ledger entries apply. The catalog is survey-grade scaffolding, not results.
@@ -308,10 +313,10 @@ ledger entries apply. The catalog is survey-grade scaffolding, not results.
 - [ ] STALE guard: the burst is in `meta.rewalked_triggers` of the catalog before ANY LAG_*/MVT_*
       value is quoted (ruling 5, NR-31) — otherwise quote only the burst's own wf-temporal outputs.
 - [ ] Lag: state the sign convention next to every quoted value until the source fix lands.
-- [ ] MVT: label Bala / CWT / Haar (three estimators, precedence in that order; L32); never mix in
+- [ ] MVT: label Bala / CWT / Haar (three estimators, precedence in that order; TM5); never mix in
       one column; a Haar "detection" above a Golkhou+2015 limit is a REFUSE, not a result.
 - [ ] T90: lower-limit language if EITHER `T90_WINDOW_TRUNCATED` or `TAIL_OUTSIDE_WINDOW_SIG ≥ 3`
-      (L31, PROPOSED).
+      (TM4, PROPOSED).
 - [ ] Cross-step: temporal window ⊆ Stage-1 source window (D4: never assume trigger = start).
 
 ## Common pitfalls

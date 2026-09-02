@@ -62,7 +62,7 @@ burst and pages the operator — never improvise.
 | F-CONTRACT | a producer violated a standing contract | STOP THE BURST + register row, same session | retry-layout mismatch; 24-model census break (NR-8); stale generator (R1) |
 | F-ORDER | work arrived out of declared sequence | WAIT, not fail: queue-order guard blocks and the queue manager reorders | assembler queue-order guard on bn081224887 |
 
-| F-SILENT | invalid/stale/wrong evidence discovered AFTER acceptance (the register's dominant born-from class: hidden ties, seed non-propagation, stale panels, md-only "success", report/figure source split) | DEMOTE + CASCADE (NR-19) + a new guard that converts this instance to a LOUD class forever | NR-1/2/3/4/7/10/14/16/22/23; L26; the lag re-derivation |
+| F-SILENT | invalid/stale/wrong evidence discovered AFTER acceptance (the register's dominant born-from class: hidden ties, seed non-propagation, stale panels, md-only "success", report/figure source split) | DEMOTE + CASCADE (NR-19) + a new guard that converts this instance to a LOUD class forever | NR-1/2/3/4/7/10/14/16/22/23; Temporal TM3 (ex-L26); the lag re-derivation |
 | F-GUARD | the CHECKING machinery itself is wrong | fix at the primitive; RE-RUN every gate it adjudicated; never patch the producer to satisfy a broken guard | NR-13 false HOLD; stale-contract false-FAILs (vision rounds 11/13) |
 
 Rule of the taxonomy: an ERROR MESSAGE is never a behavior. The behavior is
@@ -147,7 +147,7 @@ PI approves this file → states backfilled for all 106 from existing evidence
 → chains retire → register rows become workflow stages → amendments only by
 PI-approved change to THIS file. Any CODE PORT enters the frozen pipeline
 only through the port-verifier (numeric equivalence vs the source's CODE on
-a synthetic case — L26); any root-cause/redo starts with the
+a synthetic case — Temporal TM3, ex-L26); any root-cause/redo starts with the
 prior-art-reader sweep. External audit (Codex/cloud review) is a standing
 milestone hook: advisory, adjudicated at the primitive.
 

@@ -102,16 +102,34 @@ expert's practice is a SPECIFICATION defect, never an arm error.
 | # | step | what the pipeline does | skill file |
 |---|---|---|---|
 | 0b | **Literature harvest** | find/fetch/mine the REFEREED papers for this burst (ADS 4-form query, published version, frame-align, file to the dossier) — the step that must become automatic by burst #20 | `LiteratureHarvest.md` |
-| 0 | Identity & GCN intelligence | resolve burst identity; fetch+read GCN circulars; extract position, T90, **redshift** (with circular as source), instrument notes, **and the published spectral/temporal values** — harvest once, file under "PUBLISHED VALUES (for the P3 diff)". Blindness lives in the FIT, not in what Step 0 may read. | ✎ `GCNIntelligence.md` (seed from LATBright `gcn_intelligence.md`) |
-| 1 | Data acquisition & inventory | TTE/CSPEC/RSP2/POSHIST (+LLE triplet, +LAT FT1/FT2) with versions; manifest; **response-coverage check vs source window** (the bn100130729 lesson) | ✎ `DataInventory.md` |
+| 0 | Identity & GCN intelligence | resolve burst identity; fetch+read GCN circulars; extract position, T90, **redshift** (with circular as source), instrument notes, **and the published spectral/temporal values** — harvest once, file under "PUBLISHED VALUES (for the P3 diff)". Blindness lives in the FIT, not in what Step 0 may read. | `GCNIntelligence.md` (exists since 2026-07-31; lessons G1–G2; seeded from LATBright `gcn_intelligence.md`) |
+| 1 | Data acquisition & inventory | TTE/CSPEC/RSP2/POSHIST (+LLE triplet, +LAT FT1/FT2) with versions; manifest; **response-coverage check vs source window** (the bn100130729 lesson) | `DataInventory.md` (exists since 2026-08-12; lessons D1–D5) |
 | 2 | Detector selection | geometry/angles, occultation, BGO companion rule | `detector_selection.md` (exists) |
 | 3 | Background | pre/post windows hugging the burst; polyfit order; residual QC | `background_selection.md` (exists) |
 | 4 | Source interval | emission window in the common background gap | `source_selection.md` (exists) |
 | 5 | Binning (two-tier) | 27b fine GBM Bayesian blocks + significance merge; 27c coarse LLE grid (gated); **bin adequacy for the band that constrains each component** (L3/L6) | `Binning.md` (exists) |
-| 6 | Spectral fitting & selection | the full menu, multistarts, chain gates, classes, admission, evolution tracks — THE DISCOVERY LOOP | `SpectralFitting.md` (flagship, L1–L13) |
-| 7 | Temporal | T90/T50, MVT, lag, pulse fits | `Temporal.md` (exists — carries the DEFECT LEDGER; check before quoting) |
-| 8 | νFν panels & residual reading | ratio-unfolded panels + residual grammar (feeds step 6's loop) | in `SpectralFitting.md` (L10/L11) |
+| 6 | Spectral fitting & selection | the full menu, multistarts, chain gates, classes, admission, evolution tracks — THE DISCOVERY LOOP | `SpectralFitting.md` (flagship, lessons L1–L33; "L" is THIS file's prefix) |
+| 7 | Temporal | T90/T50, MVT, lag, pulse fits | `Temporal.md` (lessons TM1–TM5, ex-L26/L29/L31/L32/L33; carries the DEFECT LEDGER — check before quoting) |
+| 8 | νFν panels & residual reading | ratio-unfolded panels + residual grammar (feeds step 6's loop) | ✎ `SEDPanels.md` (PI ruling 2026-09-02: step 8 = νFν panels + residual reading; tables and report assembly are step 9). Until written: `SpectralFitting.md` L10/L11 + `FigureVisionQC.md` S1–S6 + `SpectralResidualReview.md` |
 | 9 | QC & flags | cross-step sanity, literature-consistency verdict | `qc_flagging.md` (exists) |
+| — | **Figure gate** (steps 1, 7, 8; EVERY delivery) | fresh-context vision verdict vs the standing contract S1–S6; the SendUserFile no-ship hook | `FigureVisionQC.md` (+ `Figures.md` for style) |
+| — | **Report / paper contract** (step 9 assembly; every deliverable) | R1–R5 + R3a claim typing; numbers discipline (count coordinates, margins only, rails disclosed) | `ReportSpec.md` |
+| — | **Shipping** (every product) | product-typed checklists; the producer never verifies its own work | `ShippingGate.md` |
+| — | **Referee panel** (milestones; PAID, PI-triggered) | three blind referees T0/T1/T2, bounded loop, response letter | `RefereeLoop.md` + `dev/referee/` |
+| — | **Distillation** (every incident, same session) | lesson at the right enforcement layer + register row NR-n | `AgentArchitecture.md` (the register) |
+
+**This ledger is THE index of skill files** *(PI ruling 2026-09-02: "Yes, one index")*. Every skill
+file the agent reads appears here, step-bound or cross-cutting. Precedence: `dev/AUTHORITATIVE_PIPELINE.md`
+(locked 2026-06-26) is the historical build spec of Stages 1–3; where the two differ, this ledger governs.
+
+**Lesson-ID prefixes** *(PI ruling 2026-09-02, verbatim: lesson IDs "should be specific to the skills")*:
+L = SpectralFitting · TM = Temporal (ex-L26/L29/L31/L32/L33, tombstoned in each header) · G = GCNIntelligence ·
+D = DataInventory · T = LiteratureHarvest traps · R = ReportSpec · S = FigureVisionQC contract items ·
+F = BURST1_LESSONS failure taxonomy · NR = the agent-requirements register · P = AgentArchitecture principles ·
+A = AgentRoster actors (A1–A18; an actor namespace, listed so the guard test knows it).
+A new skill declares its prefix in its header before its first lesson, and the prefix is added here.
+`tests/test_lesson_ids.py` fails the suite on a duplicate prefix across files, a duplicate ID within a
+file, or a header prefix absent from this table. Born of the L31–L33 collision found 2026-09-02.
 
 ## ⭐ THIS IS THE PRIORITY PROJECT (Vikas, 2026-08-08 — stated plainly)
 > *"the most important project at the moment is this one, where our goal is to analyze these all
