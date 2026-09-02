@@ -176,3 +176,7 @@ block. Its contract is the output section of `DerivedQuantities.md`, not a fifth
 ## §8 Decision log
 | when | item | PI ruling (verbatim) | applied in |
 |---|---|---|---|
+| 2026-09-02 | decision 6, family list | "I think we can wait for some time, I need your help with something else" | plan PARKED at §3; no skill file written; resume on the PI's word |
+| 2026-09-02 | decision 7, port source | "We will see" | deferred |
+| 2026-09-02 | decision 8, redshift | "Joechen Griener maintains a page of the redshifts for GRBs" | recorded: Jochen Greiner's GRB table (MPE) is the named redshift source for the future harvest; still resolve each z to its primary circular/paper per L21 before it enters a rest-frame number |
+| 2026-09-02 | decision 9, ledger order | "the literature can be obtained earlier but compared later" | NO re-order: harvest stays at step 0b (obtained early), the comparison stays at step 9 (compared later) — this is the existing blind-first design; the "keep it to the end" reading of decision 4 is withdrawn |
