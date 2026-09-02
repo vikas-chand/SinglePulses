@@ -55,6 +55,21 @@ for an un-walked burst — that's what the STALE label enforces mechanically
 rather than by memory." A T90 whose row carries EITHER T90_WINDOW_TRUNCATED
 or TAIL_OUTSIDE_WINDOW_SIG ≥ 3σ prints as a LOWER LIMIT (NR-33, PROPOSED
 pending PI).
+**Producer-preflight amendment 2026-09-01 (distiller entry — PI-BLESSED
+2026-09-01 at the paper structured gate, PI's answer verbatim: 'Bless both';
+catching gate: numbers-verifier
+fresh-context pass on agentic_grb_v2.tex):** a \prov flag is NOT provenance —
+it asserts provisionality and binds nothing. No verification request may be
+launched while any row of the producer's provenance manifest lacks a bound
+source; a blank sha/source cell is a STOP, not a TODO that rides along.
+Instance 2026-09-01: "five engine defects" lived in the draft since 2026-08-10
+under \prov; paper_agentic/PROV_MANIFEST_v2_update_20260901.md row 21 carried
+no bound sha ("CHECK-PATH"-class blank) and the producer launched verification
+anyway. No product ever supported the count (notes/campaign_ledger.csv
+recomputes 13 mixed-category bugs over 8 rows) and
+notes/CODEX_WHOLE_PROJECT_20260813.md:381 had ALREADY ruled it unsupported on
+2026-08-13 — the repo knew; the flag rode for 22 days. Register instance:
+NR-29 (AgentArchitecture.md).
 
 ## R4 — GATES BEFORE DELIVERY
 figure-verifier on every figure (existing rule), numbers-verifier on the
@@ -79,3 +94,20 @@ type-consistent language. CI test to build with A19: CLAIM REPLAY — pick a
 sentence from a report and mechanically reconstruct claim -> result object ->
 run -> workflow -> code -> data snapshot; failure at any link = not
 publication-grade (this is NR-23 + NR-7 + NR-22 exercised end-to-end).
+
+
+**Provenance-field amendment 2026-09-01 (distiller entry — PI-BLESSED
+2026-09-01 at the paper structured gate, PI's answer verbatim: 'Bless both';
+catching gate: numbers-verifier fresh-context pass on agentic_grb_v2.tex):**
+a claim ABOUT a record's provenance quotes the record's provenance field
+VERBATIM at write time; provenance adjectives (contemporaneous / retroactive /
+reconstructed) are never recalled from memory of a register row — recalling
+one is a silent type upgrade in the R3a sense (a reconstruction becomes an
+observation). Instance 2026-09-01: fresh prose wrote "one of the 105 records
+carried a contemporaneous reason" while the source
+(results/approval/bn110920546_decision.json `reasoning_provenance`:
+"RETROACTIVE, not contemporaneous", + the NR-39 register row) states the
+opposite — the one filled record is retroactive; the contemporaneous count is
+ZERO. The same sentence carried the correct principle ("a reconstructed
+reason is never a contemporaneous record") and the producer did not detect
+the internal contradiction. Register instance: NR-39 (AgentArchitecture.md).

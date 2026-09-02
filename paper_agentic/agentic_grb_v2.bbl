@@ -9,6 +9,11 @@
 {Anthropic}. 2024, Building Effective {AI} Agents,
   \url{https://www.anthropic.com/engineering/building-effective-agents}
 
+\bibitem[{{Biltzinger} {et~al.}(2020){Biltzinger}, {Kunzweiler}, {Greiner},
+  {Toelge}, \& {Burgess}}]{2020A&A...640A...8B}
+{Biltzinger}, B., {Kunzweiler}, F., {Greiner}, J., {Toelge}, K., \& {Burgess},
+  J.~M. 2020, \aap, 640, A8, \dodoi{10.1051/0004-6361/201937347}
+
 \bibitem[{Boden(2004)}]{boden2004}
 Boden, M.~A. 2004, The Creative Mind: Myths and Mechanisms, 2nd edn. (London:
   Routledge)

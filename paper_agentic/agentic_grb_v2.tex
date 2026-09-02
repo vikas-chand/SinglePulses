@@ -57,7 +57,11 @@ architecture: it is not an autonomous agent but a \emph{gated workflow with
 bounded agency}---predefined analysis paths in which an AI makes named,
 auditable decisions (model selection, fit validity, literature verification,
 mismatch attribution) while a human approves every step, and every approval
-is stamped. The system's knowledge lives in a \emph{Skill Library}: versioned
+is stamped. The work is carried by a roster of single-purpose specialist
+agents---readers, producers, and verifiers---each specialized by the skill
+documents it reads and the domain tools it commands, fanned out per burst
+and reassembled under gates, with one founding axiom: a producer never
+verifies its own work. The system's knowledge lives in a \emph{Skill Library}: versioned
 plain-language procedure documents that any AI agent---or any student---can
 read and execute. The Library is not documentation; it is the system's
 memory, and it learns. Each burst is analyzed blind, reconciled against the
@@ -65,8 +69,8 @@ published literature, and every mismatch is attributed---our error, the
 literature's, or a difference of frames---and distilled into a numbered
 lesson that ships with an executable test, so that no lesson can be silently
 forgotten. Applied to a campaign over 106 single-pulse \textit{Fermi}/GBM
-bursts, the first ten walkthroughs\prov{} produced twenty-seven such lessons,
-found and fixed five engine defects (one of which---a validity gate whose
+bursts, the walked campaign has distilled thirty-two such lessons\prov{},
+found and fixed engine defects of its own (one of which---a validity gate whose
 linear margin silently disqualified soft spectra---would have biased the
 census toward spurious thermal components), confirmed blind predictions
 drawn from the literature, and refuted one of its own. The learning curve
@@ -78,7 +82,8 @@ prove to be strong \emph{generators} of checkable findings but weak
 \emph{adjudicators}, their unanimity sometimes an artifact of shared priors
 rather than independent measurement---and we are explicit that this boundary
 is a statement about the current point on the learning curve, not about AI
-in principle: every gate correction is itself distilled into the Library, so
+in principle: every gate correction, and every validated divergence between
+the human's choice and the agent's, is itself distilled into the Library, so
 the human's judgment is being transferred, not merely exercised, and the
 measurable question is whether the gates go quiet. We release the Skill
 Library, the engine, the tests, and the per-burst records.
@@ -142,7 +147,12 @@ plain-language documents---one per pipeline stage---that state how the stage
 is run, what its known failure modes are, and what was learned from every
 burst that ever taught it something. The Library is executable culture: an
 AI agent reads the same document a new student would, and both are bound by
-the same rules. Crucially, the Library \emph{learns} under a discipline we
+the same rules. Around the Library sits the second component: a roster of
+single-purpose specialist agents---each defined by its role, the skills it
+reads, and the domain tools it commands (\S\ref{sec:roster})---and an
+operating skeleton of typed states, typed failures, and mechanical gates
+that makes their fan-out and reassembly auditable (\S\ref{sec:skeleton}).
+Crucially, the Library \emph{learns} under a discipline we
 call lessons-as-tests: a lesson enters the Library only as a claim with
 provenance (which burst, which date, which evidence) \emph{and} an
 executable test that fails if the lesson is ever violated again. Weights
@@ -166,9 +176,10 @@ exactly the evaluation gap---qualitative review standing in for ground
 truth---that our gated, decision-level scoring is designed to close.
 
 The paper is organized as follows. \S\ref{sec:sample} describes the sample
-and data. \S\ref{sec:workflow} presents the workflow: the Campaign
-Protocol, the Skill Library, the authority split between workflow, agent,
-and human, and the doctrine distilled from its failures.
+and data. \S\ref{sec:workflow} presents the architecture: the Campaign
+Protocol, the Skill Library, the specialist roster and its domain tools,
+the authority split between workflow, agent, and human, the doctrine
+distilled from its failures, and the operating skeleton that enforces it.
 \S\ref{sec:learning} presents harness learning and the campaign learning
 curve. \S\ref{sec:verify} presents the verification doctrine and the
 adversarial experiments. \S\ref{sec:design} describes the human-versus-agent
@@ -328,6 +339,70 @@ rather than a physics claim: \emph{adequacy and identity are different
 questions}, and the second frequently cannot be answered from these data
 alone.
 
+\subsection{Specialists: skills, tools, and the fan-out} \label{sec:roster}
+
+An ``agent'' in this system is a small, inspectable thing: a role
+contract, the skill documents it must read, and the tools it may command.
+The intelligence is rented from a frozen general model; the specialization
+is ours, and it lives entirely in that triple. Two readers open every unit
+of work. A \emph{Skill Reader} begins each step by reading the step's
+Skill Library document and defect ledger and returning the binding
+checklist for \emph{this} burst---the procedure is consumed structurally
+at every step, never trusted to the operator's momentum. A
+\emph{Dispatcher} classifies each task by the artifact classes it will
+produce (figures, numbers, catalog writes, code ports, stochastic
+products) and returns the roster that must run, in order; a plan in which
+a producer approves its own output is invalid by construction, and any
+required guard that does not yet exist is surfaced as declared debt
+rather than silently relied upon.
+
+Producers then fan out---the fitting engine over time bins, panel builders
+over models, harvest readers over the published literature---and their
+outputs converge on verifier gates, each a fresh-context agent with one
+duty (Table~\ref{tab:roster}): every figure passes a vision check before
+any human sees it; every printed number is recomputed from the run's own
+products; a sub-threshold model-selection margin is reported as a tie,
+never a winner; a stochastic product must rerun bit-identically from its
+recorded seed; a ported algorithm is guilty until numerically matched to
+its source; no row enters a committed catalog unscreened; nothing is
+re-derived that the project has already proven; and every incident is
+closed into a lesson, at the correct enforcement layer, in the same
+session that produced it. A verdict is bound to a content hash of the
+artifact it certifies and expires the moment that artifact changes.
+
+\begin{deluxetable*}{lll}
+\tablecaption{The specialist roster: single-purpose agents around the producers.\label{tab:roster}}
+\tablehead{\colhead{specialist} & \colhead{position} & \colhead{binding rule}}
+\startdata
+Skill Reader & opens every step & the procedure is read structurally each time, never recalled \\
+Dispatcher & task intake & a producer never schedules its own approval; missing guards are declared debt \\
+Figure Verifier & before any figure reaches a human & no exceptions; verdict bound to the image hash \\
+Numbers Verifier & before any document ships & a number that cannot be recomputed from products does not print \\
+Tie Reporter & any model-selection report & sub-threshold margins are ties; preference is never argmin alone \\
+Seed Auditor & any stochastic product & a rerun must reproduce bit-identically or the product is not a result \\
+Port Verifier & any ported algorithm & a port is guilty until numerically matched to its source \\
+Admission Gate & any catalog write & no unsanitized row enters a committed catalog \\
+Prior-Art Reader & before any re-derivation & what the project has proven is read, not re-derived \\
+Distiller & after any incident & an incident that ends without a lesson is unfinished \\
+\enddata
+\end{deluxetable*}
+
+The tools the producers command are domain instruments, not generic code:
+the adaptive binning engine (Bayesian blocks merged to a significance
+floor), the fitting engine of \S\ref{sec:fitstep} with its validity
+gates, a temporal chain (minimum-variability timescale, cross-correlation
+lag with its sign convention stated, pulse-shape fits), the $\nu F_\nu$
+panel builder, and the literature harvester with its convention ledger.
+What makes an agent a specialist is not that it can run a tool but that
+its skill document tells it how to \emph{interpret} the tool: which
+estimator label rides every timescale, which margin is evidence and which
+is a tie, which fitted parameter is meaningful only away from its bound,
+and which published value may be compared only after frame alignment.
+The assembly is the reverse of the fan-out: verified outputs are composed
+into the Burst Record, the burst's typed state advances only when the
+products on disk evidence it (\S\ref{sec:skeleton}), and the record
+closes against the known-results battery of \S\ref{sec:verify}.
+
 \subsection{Who decides what} \label{sec:authority}
 
 \begin{deluxetable*}{lll}
@@ -351,8 +426,10 @@ been verified at source and in which frame, how a mismatch is attributed,
 and which anomalies deserve escalation. The \emph{human} decides everything
 consequential: the scope, every step gate, whether a proposed lesson enters
 the Library, when convergence is declared, and every scientific claim that
-leaves the system. In ten bursts\prov{} of operation, no approval was ever
-generated by the system on the human's behalf; the reverse---the human
+leaves the system. In all operation to date\prov, no approval has been
+generated by the system on the human's behalf---one approval reached the
+record seven hours late and arrived typed as late, never fabricated
+(\S\ref{sec:results}); the reverse---the human
 overruling the agent's proposal---occurred repeatedly and is part of the
 record (\S\ref{sec:discussion}).
 
@@ -384,6 +461,46 @@ agreement or disagreement at the level of shared primitives. The failures
 that funded each rule appear in \S\ref{sec:learning} and
 \S\ref{sec:discussion}.
 
+\subsection{The operating skeleton} \label{sec:skeleton}
+
+The doctrine is enforced by machinery, not memory. Each burst occupies one
+of fourteen typed states\prov---from ingested through binned, fitted, and
+assembled to closed, plus one terminal failure state---and the state is
+\emph{derived from the products on disk at read time}, never asserted, so
+the system cannot claim progress it cannot evidence. Every failure is
+classified into one of six classes\prov{} (transient, structural, contract,
+ordering, silent, guard), and each class carries a mandated response: hold
+and resume; label and continue; stop; wait; demote and make permanently
+loud; or, for a failed checker, fix the checker and re-run everything it
+ever gated. The rule that generates the taxonomy: \emph{an error message
+is never a behavior}---printing a warning is not handling a failure.
+
+Institutional memory is a \emph{Requirements Register}: forty numbered
+requirements\prov{} (one retired), each row recording a needed guard or
+agent, the incident that revealed the need, and whether the guard is
+deployed or remains declared debt. The Dispatcher sweeps the Register at
+task intake, so a missing guard is a stated liability rather than a
+silent gap. Enforcement obeys a hierarchy---code over hook over artifact
+over agent over prose---and each rule is moved to the strongest layer that
+can hold it. Three repository-level hooks\prov{} currently enforce, in code, that
+no figure reaches the human without a hash-bound verifier verdict, that
+raw data cannot be overwritten, and that no producer runs without a
+dispatch plan.
+
+Finally, each Burst Record carries a live approval ledger, assembled only
+from stamps and products it can link---it never asserts what it cannot
+evidence---and approvals are \emph{revocable by machine}: when an
+upstream decision is amended, a cascade mechanically demotes every
+downstream approval that depended on it, and reinstatement requires a
+human ruling with evidence. Both directions have operated in production:
+the cascade exposed an approval that had been given in conversation but
+never stamped (recorded with the delay disclosed rather than back-dated),
+and a demoted binning approval was reinstated only on proof that the
+binning's reference detector was untouched by the amendment, its block
+table byte-identical\prov. A conformance gate for assembled reports has
+its contract written and its agent pending; consistent with the
+Register's own rule, we state it here as declared debt.
+
 % ===========================================================================
 \section{Learning Without Gradients} \label{sec:learning}
 % ===========================================================================
@@ -407,8 +524,8 @@ known-stale ledger with its clearing condition rather than silenced---debt is
 visible, never normalized.
 
 This training style has properties that gradient methods cannot offer at our
-scale, and one property they share. It is data-efficient: the first ten
-bursts\prov{} produced twenty-seven numbered lessons. It is auditable: the
+scale, and one property they share. It is data-efficient: thirty-two
+numbered lessons\prov{} from the walked-burst campaign so far. It is auditable: the
 learned policy is markdown, and every rule cites the burst that paid for it.
 It transfers across model families: the same Library is executed by
 different vendors' agents, which is the basis of the multi-system benchmark
@@ -458,6 +575,37 @@ every quoted lag; validate the sign against a burst with a published
 direction) was distilled with the defect still unfixed at source---the
 Library records what is \emph{known}, including known-broken.
 
+\subsection{Divergence learning} \label{sec:divergence}
+
+Failures are not the only teacher. Where the human's decision and the
+agent's proposal diverge and both are defensible, the divergence itself is
+the signal, and it is processed under a fixed protocol: detect it; elicit
+the human's reason \emph{in their own words} (a guessed rationale is
+forbidden---if the human cannot recall, the record says so); validate the
+stated reason against the primitives; generalize it only through a
+measured census over the sample, never from the single case; and enter it
+in a \emph{Divergence Ledger}. The founding case is a detector-selection
+divergence: the written geometric rule and two independent agent passes
+selected seven detectors\prov; the human had selected four\prov. The human's
+recollected reason---keep the detectors that triggered the instrument,
+plus the companion detector on the same spacecraft side---validated
+exactly against the mission's trigger record, and reproduces the detector
+choice of every published analysis of that burst we harvested. A census
+of the full sample\prov{} then measured how much of expert practice that
+candidate rule explains: about eighty percent\prov, with the remainder
+requiring judgment the written rule does not capture. The written
+selection rule therefore stands unamended, and the divergence is recorded
+as a \emph{measurement of practice}, not promoted to a decision rule. The
+same census exposed a contract gap---\emph{none} of the 105 human selection
+records\prov{} carried a contemporaneous reason; the single filled record
+is a retroactive reconstruction and is stamped as such---so rationale
+capture at decision time is now a registered requirement, while the
+historical blanks stay blank: a reconstructed reason is never a
+contemporaneous record. The Ledger gives the paper's closing question its instrument: the
+convergence rate---how often the agent's proposal already matches the
+human's decision---is the measurable readiness criterion for ever moving
+a human gate to an independent approver.
+
 % ===========================================================================
 \section{Verification Doctrine} \label{sec:verify}
 % ===========================================================================
@@ -478,6 +626,16 @@ gates, no time bin required extra structure at even the ``strong'' evidence
 grade\prov. A framework that can refute its own frozen expectation is
 demonstrating the property that matters; confirmation alone demonstrates
 nothing.
+
+Beyond per-burst predictions, each Burst Record closes against a battery
+of \emph{known results}: published spectral-lag values with their sign
+conventions, published Bayesian-block edges, published
+variability-timescale limits, low-energy photon-index tracks, and---where
+an instrument we do not fit has published one---polarization constraints
+entered as external predictions. The battery is how the campaign tests
+known GRB results and relations as it goes: agreement validates the chain
+that produced our number, disagreement is pushed through the attribution
+of \S\ref{sec:loop}, and either outcome is banked in the Record.
 
 \subsection{Independence lives at the primitive}
 
@@ -538,18 +696,44 @@ disagree, so the literature is a distribution over defensible choices and
 cannot serve as an answer key. \PENDING{the multi-system benchmark run; a
 second independent expert completes the human spread}
 
-Operations have since added a second, naturally-occurring arm: the sample's
-post-2020 bursts are walked by a human collaborator while the 2015--2019
-range is walked by the agent-operated workflow described here, both under
-the same Protocol. Inter-operator consistency on the shared methodology
-becomes a benchmark denominator that no bespoke exercise could provide.
+We add two further controls in operations. The walkthrough queue runs in two
+lanes---an older-era lane and a recent-era lane (2021--2025)---so that any
+skill, constant, or contract that works in one era and fails in the other
+is exposed as a cross-era defect rather than absorbed as noise. In
+parallel, a human collaborator replicates the analysis with the Stage-1
+selections held fixed, isolating the downstream methodology from
+selection scatter.
+
+One scoring rule deserves its own statement, because the data forced it.
+For decisions with \emph{no answer key}, agreement between arms is a
+\emph{concordance} measure and must never be reported as accuracy:
+neither arm can be wrong, a divergence is not an error, and any benchmark
+number that scores it as one is invalid. Background-interval placement is
+the proving case. For one burst that triggered about two minutes\prov{}
+after a radiation-belt exit, two equally defensible uncontaminated
+baselines imply excesses in the same interval that differ by a factor of
+seven\prov{} ($+68$ versus $+481~\mathrm{counts\,s^{-1}}$): the excess is
+real while its magnitude is not a measurement, and the published
+literature uses this very burst as its showcase that polynomial
+background choices can be ambiguous \citep{2020A&A...640A...8B}. The
+benchmark therefore separates its dimensions: rule compliance and
+downstream impact are truth-bearing and scored; window agreement is
+reported as concordance only. The separation expires only if a physical
+background model replaces the polynomial one, creating the answer key
+that does not currently exist.
 
 % ===========================================================================
 \section{Walkthrough-Era Results} \label{sec:results}
 % ===========================================================================
 All numbers in this section are walkthrough-era and provisional\prov;
-they will be regenerated by the frozen production sweep. Ten bursts have
-been walked. Among them: a burst whose apparent two-break ``decisive''
+they will be regenerated by the frozen production sweep. The full
+106-burst sample has passed once through the fitting engine, with one
+burst excluded for response-matrix time coverage and reported as an
+exclusion rather than silently dropped\prov. No cross-burst census
+sentence is permitted yet: a ledgered retry debt concentrated in the
+multi-break and composite model families must reach a terminal state
+first, and per the doctrine that debt is visible in the products, never
+normalized away. Among the walked bursts: a burst whose apparent two-break ``decisive''
 margin traced to a railed reference model and now carries a capped-bound
 stamp; a burst whose published photospheric identification our wider menu
 reduces to a forced choice between statistically equivalent thermal and
@@ -563,6 +747,32 @@ late-time cutoff evolution sits in open, documented tension with a published
 constant-$\Gamma$ curvature interpretation; and the field's best-known
 polarimetric burst, for which published polarization-angle rotations enter
 the frozen predictions as constraints from an instrument we do not fit.
+The architecture itself is under a live acceptance test: the entire
+law---skills, roster, gates, skeleton---was handed to a fresh session
+with no inherited conversational context, on the argument that an
+architecture that works only for its authors is not yet an architecture.
+In that arm's first burst, the first seven of the eleven gated steps have
+passed their human gates with every approval stamped\prov{}---each stamp
+carrying its own provenance, including one approval given colloquially and
+typed as read-as-approval, and one recorded late, the case below---and the
+mechanisms, not the operators' memories, caught what needed catching. The
+approval ledger's cascade exposed an approval that existed only in
+conversation for seven hours\prov{} and forced it onto the record with
+the delay disclosed. The data-inventory contract surfaced a
+hundred-millisecond telemetry stall\prov{} invisible to the standard
+exposure accounting (its count deficit is cancelled by a buffered
+catch-up in the following readout bin), and the repair was accepted only
+under a robustness criterion: the chosen background cut is the one whose
+fit quality is independent of the binning grid's phase, which otherwise
+moves the fit statistic by up to a factor of 2.4\prov. And a background
+window found overlapping the approved source window by about thirty-two
+seconds\prov{} was measured as a real excess ($\geq\!3.3\sigma$ in every
+fit variant\prov), repaired by an explicit human ruling, and its residual
+tail contamination carried forward as a disclosed systematic rather than
+silently accepted. Each catch was typed to its failure class and
+distilled; the steps beyond the stamped gates remain open and contribute
+no accepted numbers here.
+
 The Campaign Ledger records, per burst: lessons born, defects found,
 blind-prediction outcomes, and human gate corrections; it is released with
 the paper, and Fig.~\ref{fig:curve} is computed from it. External,
@@ -642,18 +852,27 @@ Gates with stamps, lessons-as-tests, blind-first frozen predictions,
 frame-alignment before any diff, independence-at-the-primitive, and the
 failure taxonomy are domain-agnostic and export as a package; the engine,
 the menu, and the lessons' content are the domain deposit that makes the
-package worth executing. Both are released.
+package worth executing. Both are released. The package is, in the
+vocabulary now common for such systems, a \emph{domain harness}: the
+Library, the Register, the roster contracts, and the doctrine are text
+and transfer unchanged across vendor agent platforms, while the
+enforcement layer---hooks, state derivation, cascades---is rebuilt per
+platform. We treat that portability as an experiment rather than an
+assumption: the same law executed by a second vendor's agent on a known
+burst, compared gate by gate, is the designed test, and it is pending.
 
 % ===========================================================================
 \section{Conclusions} \label{sec:conclusions}
 % ===========================================================================
 Yes---as a gated workflow with bounded agency, trained harness-side under
 verifiable lessons, and audited by a doctrine that treats agreement with
-suspicion and refutation as a service. The system analyzed ten bursts\prov{}
-end to end, taught itself twenty-seven durable lessons, found five of its own
-engine defects including one census-grade selection bias, validated a known
-defect against published ground truth, and refuted one of its own frozen
-predictions. The per-burst numbers are provisional by design; the Skill
+suspicion and refutation as a service. The system walks bursts end to end
+under stamped gates, has taught itself thirty-two durable lessons\prov,
+found its own engine defects including one census-grade
+selection bias, validated a known defect against published ground truth,
+refuted one of its own frozen predictions, and now runs as written in a
+fresh session with no inherited context---the acceptance test of
+\S\ref{sec:results}. The per-burst numbers are provisional by design; the Skill
 Library is not. When the learning curve flattens, the pipeline freezes and
 runs the full sample once; that sweep, not this paper, produces the census.
 The question in the title has an honest answer only with its architecture
@@ -667,7 +886,11 @@ capability---taste in ambiguous selections, suspicion of one's own
 agreement, the adjudication of contested verdicts---is inherently human is,
 under this architecture, an empirical claim about the tail of a learning
 curve, testable by whether the gate-correction rate falls to zero as
-lessons accumulate. And the curriculum need not stop at analysis: the
+lessons accumulate. The Divergence Ledger of \S\ref{sec:divergence} makes
+that test operational: the convergence rate between the agent's proposal
+and the human's decision is now a defined, recorded quantity, accumulating
+with every gate\prov.
+And the curriculum need not stop at analysis: the
 discovery-plane operators of \S\ref{sec:creativity}---bridging stale regions
 of the literature graph, negating named load-bearing assumptions,
 constructing new observables---are mechanisms by which discovery itself
