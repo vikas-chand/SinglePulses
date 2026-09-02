@@ -589,6 +589,58 @@ intra-class non-statement" — the class breaks only with data outside the GBM b
 LLE and no LAT. This ruling is the operational consequence: when the class cannot be broken,
 do not track a member of it — track the continuum.
 
+### Amendment — PARAMETER BOUNDS FOLLOW XSPEC WHERE THE DATA CONSTRAIN THE PARAMETER (PI ruling, 2026-09-02)
+
+**PI, VERBATIM:**
+> "so you can let it go till -10 like XSPEC"
+> "actually most of the limits those we have like XSPEC can be accomodated as such for the models"
+
+**How the ruling was reached — the PI's diagnostic question, which the engine could not answer.**
+Asked why Band was INVALID in 5 bins where CPL was valid, given that Band nests CPL in the
+soft-beta limit and can therefore never fit worse. Measured on bn110920546: `BAND_BETA` pinned
+at -5.00000 in exactly those 5 bins, `BAND_N2LL - CPL_N2LL` = 0.02-0.24, `AIC` difference
++2.02..+2.24 — the pure penalty for one parameter doing nothing. **Band had already collapsed
+onto CPL and the floor would not let it say so.** SBPL was worse: beta on the floor in 10 of 12
+rows, VALID in 2.
+
+**Why a rail is worse than a bad fit.** The rail sets `VALID=False`, which REMOVES the model
+from the candidate set rather than merely disfavouring it. Consequences measured on #21:
+tie sets distorted, validity counts distorted, and — the serious one — since Band and SBPL are
+the nested ANCESTORS of Band+BB/Band+PL/Band+CPL and the SBPL composites, invalidating them
+left their children with **no valid ancestor**, so DECISIVE became UNDEFINED. A large part of
+this burst's "undefined" rows was manufactured by one bound.
+
+**RULE.** Do not impose a bound tighter than the data's own reach. Where a parameter is
+constrained by the fitted band, match XSPEC's range. Widen the **FIT bound and the VALIDITY
+bound TOGETHER** — widening only the validity table silences the rail detector instead of
+freeing the fit, which is the F-GUARD antipattern (patching the producer to satisfy a broken
+guard). Applied 2026-09-02: beta floor **-5 -> -10** (Band, SBPL, DSBPL and every composite
+carrying them); SBPL-family **ALPHA upper 1.5 -> 2.5** (railing HIGH in 3/12).
+
+**WHAT WAS DELIBERATELY NOT WIDENED, and why — a rail is not always a constraint.**
+A rail census over the whole table found 34 parameters on a bound. They fall into three
+classes and only the first is the beta class:
+1. **Ours, fighting the data** — beta, SBPL alpha. Widen.
+2. **The component is ABSENT** — `KT` on its 1 keV floor in 6/12 `SBPL+BB+PL`, 6/12
+   `SBPL+BB+CPL`, and four other composites. The fit is saying "no thermal component here".
+   Moving the floor to 1e-4 keV lets it say so more emphatically and changes no conclusion.
+3. **The band cannot reach it** — `HE_XC` (50 keV-100 MeV) railing at BOTH ends in 5 models,
+   `BANDCUT_EC`/`SBPLCUT_EC` likewise. #21 has no LLE and no LAT, so these are unconstrained,
+   not squeezed. Widening lets an unconstrained parameter wander further.
+**Classes 2 and 3 are handled by DISCLOSURE, never by loosening.** Record the rail, state
+which class it is, and do not quote the parameter.
+
+**HONEST LIMIT ON THE XSPEC CLAIM.** XSPEC's grbm beta range (~-10) is quoted with confidence.
+For the other parameters the PRINCIPLE was applied — do not bound tighter than the data reach —
+rather than a looked-up XSPEC default; no XSPEC value is attributed to a parameter without a
+verified source. Anyone extending this must check the actual XSPEC model docs, not infer.
+
+**THE GUARD THAT SHOULD HAVE CAUGHT THIS DID NOT FIRE.** L9 mandates: when several models rail
+at the SAME shared bound in the same bin, diagnose `BOUND_CAPPED`, widen, refit. Band, SBPL,
+SBPLfree and DSBPL all share the -5 floor and all railed on it; `BOUND_CAPPED` is `--` in all
+12 rows. The diagnosis is silent on the textbook case it was written for — register row, and
+until it fires the rail census must be run by hand at every step-6 gate.
+
 **⚠ DOCTRINE BUG this exposed:** our `+BB` gate `LRT ≥ 9.2` is p=0.010 (~2.6σ) for 2 extra
 parameters ⇒ **equivalent to ΔAIC ≈ 5.2**, while we simultaneously demanded **ΔAIC ≥ 10**
 (⇒ LRT = 14). The two gates disagree by ~5 AIC, so a component can pass one and fail the other on
