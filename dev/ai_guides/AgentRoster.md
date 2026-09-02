@@ -526,6 +526,16 @@ probe cheap first, never auto-relaunch (standing rule).
 **DECISIONS:** (a) audit cadence for the frozen campaign (per-N-bursts?
 per-release?); (b) budget ceiling per audit.
 
+**AMENDMENT 2026-09-01 (PI ruling, two hats + the referee loop):** A15 now
+carries TWO duties, never mixed in one invocation — DUTY 1 SUPERVISOR
+(auditor + brainstormer, full-context brief; the existing codex-review
+pattern) and DUTY 2 BLIND REFEREE (cold, manuscript-only, severity
+T0/T1/T2 set by the PI), run as a bounded reviewer→revision→reviewer loop
+(hard cap 2 rounds, point-by-point response letter with demonstrations,
+convergence by demonstration never by agreement, disagreement types
+MATH-ERROR / RIGOR-GAP / DEFENDED-PHYSICAL-APPROXIMATION). Full protocol:
+dev/ai_guides/RefereeLoop.md. PI's words quoted there.
+
 ---
 
 ## A16. THE APPROVER — the identity question (PENDING, the PI's alone)
