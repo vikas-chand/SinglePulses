@@ -104,16 +104,17 @@ list.
 \caption{Two harnesses. Left, the runtime harness that walks a burst:
 producers, fresh-context verifiers, stamps, and the human gate. Right, the
 evaluation harness that judges a change to the runtime: the test suite,
-the fit-table auditor over every promoted table, and the proposed
+the fit-table auditor over every promoted fit table, and the proposed
 known-results replay, run as one command whose record carries the model
-identity and the commit (counts at the 2026 September~3 census). Every
-change to the runtime harness, and every change of model, is a reason to
-run the right-hand side, but that trigger is a discipline rather than a
-hook: the pre-commit gate that would enforce it is proposed. The counts are
-the census of 2026 September~3, and the promoted tables are those of the
-twenty-five bursts promoted so far. The dashed return, a failed battery
-blocking the next step and the freeze, is proposed: today the battery
-records its verdict and nothing yet consumes it.}
+identity, the commit, and the state of the working tree. In the record of
+2026 September~3 the suite was 137 tests (136 passed, one expected
+failure) and the auditor read the fit tables of the twenty-five bursts
+promoted so far, three of which it flagged. Every change to the runtime
+harness, and every change of model, is a reason to run the right-hand
+side, but that trigger is a discipline rather than a hook: the pre-commit
+gate that would enforce it is proposed. The dashed return, a failed
+battery blocking the next step and the freeze, is proposed: today the
+battery records its verdict and nothing yet consumes it.}
 \label{fig:evalharness}
 \end{figure}
 
