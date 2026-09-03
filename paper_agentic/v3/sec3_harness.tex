@@ -17,6 +17,7 @@
 %   hooks + approval authority -> §3.5, register/hierarchy -> §5, failure taxonomy -> §10.
 % Nothing is cut without a later chng that shows where it went.
 % ===========================================================================
+\providecommand{\ac}[1]{\parbox[t]{5.3cm}{\raggedright #1}} % authority-table cell; move to the preamble at splice
 \section{The Harness, Component by Component} \label{sec:harness}
 
 We use one vocabulary throughout, and we separate the two kinds of model
@@ -259,14 +260,15 @@ its evidence, which is the human's decision. Table~\ref{tab:authority}
 states the split.
 
 \begin{deluxetable*}{lll}
+\tabletypesize{\footnotesize}
 \tablecaption{The authority split: who decides what.\label{tab:authority}}
 \tablehead{\colhead{the workflow and the engine decide (fixed in advance)} & \colhead{the AI does (bounded, audited)} & \colhead{the human decides (gates)}}
 \startdata
-step order and protocol & audits the code-computed comparison; frames the supported interpretation & scope and completion contract \\
-energy selections; statistic & checks the validity outputs; flags anomalies & Stage-1 selection in the human arm; acceptance of the AI arm's selection \\
-multistart seeds; bound gates & literature verification and frame alignment & every step gate \\
-physical-validity flags; validity-gated ranking & mismatch attribution; lesson drafting & lesson acceptance; convergence; freeze \\
-provenance stamping; typed terminal states & escalation of what it cannot resolve & promotion from the discovery plane; every claim \\
+\ac{step order and protocol} & \ac{audits the code-computed comparison; frames the supported interpretation} & \ac{scope and completion contract} \\
+\ac{energy selections; statistic} & \ac{checks the validity outputs; flags anomalies} & \ac{Stage-1 selection in the human arm; acceptance of the AI arm's selection} \\
+\ac{multistart seeds; bound gates} & \ac{literature verification and frame alignment} & \ac{every step gate} \\
+\ac{physical-validity flags; validity-gated ranking} & \ac{mismatch attribution; lesson drafting} & \ac{lesson acceptance; convergence; freeze} \\
+\ac{provenance stamping; typed terminal states} & \ac{escalation of what it cannot resolve} & \ac{promotion from the discovery plane; every claim} \\
 \enddata
 \end{deluxetable*}
 
