@@ -1,0 +1,76 @@
+% F5 — The object-and-action model (Palantir's four-part language: data · logic · action ·
+% security) as it exists in this campaign. Objects = what we write to disk (typed; schemas exist
+% since 2026-09-02 for the ones marked \ensuremath{\blacklozenge}); links = solid when a declared field carries them
+% (trigger key, sha256, commit), dashed when they exist only by naming convention; actions =
+% labelled arrows, solid when first-class on disk (identity-stamped, receipted), dashed when
+% PROPOSED; roles = the bottom band. Census 2026-09-02. Every box maps to rows of Table T1.
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta,fit,backgrounds}
+\newcommand{\nohyph}{\hyphenpenalty=10000 \exhyphenpenalty=10000 }
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\scriptsize, node distance=3mm and 9mm,
+  obj/.style={draw, thick, rounded corners=2pt, fill=white, text width=20mm, align=center, minimum height=9mm, execute at begin node=\nohyph},
+  act/.style={-{Latex[length=1.8mm]}, thick},
+  actp/.style={act, dashed, black!60},
+  link/.style={-{Latex[length=1.4mm]}, thin, black!70},
+  linkc/.style={link, dashed},
+  lab/.style={font=\sffamily\scriptsize, text=black!75, execute at begin node=\nohyph},
+  role/.style={draw, rounded corners=2pt, text width=24mm, align=center, font=\sffamily\scriptsize, inner sep=2pt, execute at begin node=\nohyph}]
+
+% ---- objects (row 1: the burst's chain of products) ----
+\node[obj, fill=black!6] (burst) {\textbf{burst}\\trigger id; catalog row};
+\node[obj, right=of burst] (sel) {\textbf{selection} \ensuremath{\blacklozenge}\\detectors, background, source windows; APPROVED\_BY, MODE};
+\node[obj, right=of sel] (blk) {\textbf{block}\\edges, significance; sha $f361\ldots$};
+\node[obj, right=of blk] (fit) {\textbf{fit row} (\,$\times$24 models)\\params, VALID, AIC, EAC, rails};
+\node[obj, right=of fit] (prod) {\textbf{product}\\figure, SED panel, table, report};
+
+% ---- row 2: the records about the products ----
+\node[obj, below=11mm of sel] (stamp) {\textbf{approval stamp} \ensuremath{\blacklozenge}\\step, status, by, utc, feedback};
+\node[obj, below=11mm of blk] (receipt) {\textbf{promotion receipt} \ensuremath{\blacklozenge}\\stage sha, ecsv/json sha, validation};
+\node[obj, below=11mm of fit] (audit) {\textbf{audit / verdict} \ensuremath{\blacklozenge}\\FIT\_TABLE\_AUDIT (sha-bound); VISION\_QC, NUMBERS\_QC (prose)};
+\node[obj, below=11mm of prod] (trace) {\textbf{action event} \ensuremath{\blacklozenge}\\actor, model id, inputs' sha, verdict, cost};
+
+% ---- row 3: the law ----
+\node[obj, below=11mm of stamp, fill=black!6] (reg) {\textbf{register row}\\incident, layer, status, keep:};
+\node[obj, below=11mm of receipt, fill=black!6] (lesson) {\textbf{lesson}\\L$n$ / TM$n$ in a skill file};
+\node[obj, below=11mm of audit, fill=black!6] (state) {\textbf{burst state} \ensuremath{\blacklozenge}\\S0--S12 derived from disk};
+\node[obj, below=11mm of trace, fill=black!6] (pin) {\textbf{commit pin}\\generators by commit, products by sha};
+
+% ---- declared links (solid) and links by convention (dashed) ----
+\draw[link] (burst) -- node[lab, above] {trigger} (sel);
+\draw[link] (sel) -- node[lab, above] {trigger} (blk);
+\draw[link] (blk) -- node[lab, above] {blocks} (fit);
+\draw[link] (fit) -- node[lab, above] {table sha} (prod);
+\draw[link] (receipt) -- node[lab, right, pos=0.4] {ecsv sha} (fit);
+\draw[link] (audit) -- node[lab, right, pos=0.4] {table sha} (fit);
+\draw[linkc] (stamp.north) -- node[lab, right, pos=0.4] {by trigger + step} (sel.south);
+\draw[linkc] (prod.south) -- node[lab, right, pos=0.4] {figure sha (ledger)} (trace.north);
+\draw[link] (state.north) -- node[lab, left, pos=0.5] {evidence paths} (audit.south);
+\draw[link] (pin.north) -- node[lab, right, pos=0.5] {git head} (trace.south);
+\draw[linkc] (reg.north) -- node[lab, right, pos=0.5] {NR-$n$ cited} (stamp.south);
+\draw[link] (lesson.west) -- node[lab, below=0.3mm, font=\sffamily\tiny] {id guard} (reg.east);
+
+% ---- actions: first-class on disk (solid), proposed (dashed) ----
+\node[lab, above=9mm of burst.north west, anchor=south west, text width=140mm, align=left] {\textbf{actions} --- solid: identity-stamped with a receipt on disk; dashed: PROPOSED (intent $\to$ preflight $\to$ commit $\to$ receipt)};
+\draw[act] ($(sel.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{approve} (stamp)} ($(sel.north)+(6mm,0)$);
+\draw[act] ($(fit.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{promote / quarantine} (receipt)} ($(fit.north)+(6mm,0)$);
+\draw[act] ($(prod.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{present} (stamp)} ($(prod.north)+(6mm,0)$);
+\draw[act] (stamp.west) -- ++(-5mm,0) |- node[lab, left, pos=0.25, text width=12mm, align=right] {\textbf{invalidate} (cascade)} (reg.west);
+\draw[actp] ($(blk.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {launch producer (run record)} ($(blk.north)+(6mm,0)$);
+\draw[actp] (prod.east) -- ++(4mm,0) node[lab, right, text width=12mm, align=left] {deliver (no-ship hook)};
+
+% ---- roles band ----
+\node[role, below=7mm of reg, fill=black!6] (rh) {\textbf{human (PI)}\\approves; rules; never fabricated};
+\node[role, right=of rh, fill=white] (ra) {\textbf{agent} (model id)\\presents, verifies, distils};
+\node[role, right=of ra, fill=black!10] (rk) {\textbf{hook}\\refuses: no-ship, dispatch, raw data};
+\node[role, right=of rk, fill=white] (rs) {\textbf{script}\\produces; writes receipts and sidecars};
+\node[lab, left=1mm of rh.west, anchor=east, text width=14mm, align=right] {roles on actions};
+
+% legend
+\node[lab, below=1.5mm of rh.south west, anchor=north west, text width=130mm, align=left] {\ensuremath{\blacklozenge} = object type with a JSON schema on disk (dev/schemas, 2026-09-02). Links: solid = a declared field carries it; dashed = by naming convention only. Two product roots are resolved by an index file, not by the objects (not one reality yet).};
+\end{tikzpicture}
+\end{document}
