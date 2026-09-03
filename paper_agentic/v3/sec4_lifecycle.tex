@@ -26,9 +26,9 @@ besides run the step: it steers the model before the step with
 contracts that apply, and it checks the result after the step with
 \emph{sensors}, some of them code and some of them fresh-context roles.
 Figure~\ref{fig:lifecycle} draws the ledger with the guides on the left and
-the sensors on the right; grey sensors are code, white ones are model
-judgement, and the diamond between them is the human gate that every step
-passes before the next begins.
+the sensors on the right; blue sensors are code, green ones are model
+judgement, and the amber diamond between them is the human gate that every
+step passes before the next begins.
 
 \begin{figure*}[t]
 \centering
@@ -37,11 +37,12 @@ passes before the next begins.
 eleven ledger steps, top to bottom, each followed by the human gate.
 Left: the guides that steer each step before it runs, chiefly the step's
 skill document with its numbered lessons and the standing contracts in the
-human's words. Right: the sensors that check each step after it runs, grey
+human's words. Right: the sensors that check each step after it runs, blue
 where the check is code (tests, hooks, the fit-table auditor, schema
-validation) and white where it is a fresh-context role (figure, numbers,
-seed, port verifiers; the tie reporter; the admission gate). Below the
-ledger, the checks that run continuously. Dashed items are proposed.}
+validation) and green where it is a fresh-context role (figure, numbers,
+seed, port verifiers; the tie reporter; the admission gate); guides are
+white, and the amber diamond is the human gate. Below the ledger, the
+checks that run continuously. Dashed items are proposed.}
 \label{fig:lifecycle}
 \end{figure*}
 

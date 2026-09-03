@@ -74,12 +74,17 @@ its date, not a commit.
 \centering
 \includegraphics[width=\textwidth]{figures/fig_F1_harness_anatomy.pdf}
 \caption{The harness anatomy. The five runtime jobs of an agent harness,
-with the components this campaign has under each. Solid boxes satisfy the
-roster's file-or-recorded-product convention in the census working tree;
-dashed boxes are proposed in the requirements register and not built. The
-protocol requires every gate to carry an approver identity; stamp coverage
-is not yet complete across the sample, and Stage-1 approvals may be human
-or AI, stamped either way. Each box maps to rows of Table~\ref{tab:roster}.}
+with the components this campaign has under each. Colour says what
+executes: blue boxes are deterministic code, green boxes are roles the
+language model plays in a fresh context, white boxes are documents and
+records that are read or written but not run, and the amber diamond is the
+human. Solid boxes satisfy the roster's file-or-recorded-product convention
+in the census working tree; dashed boxes are proposed in the requirements
+register and not built. The two hatched frames are the two harness layers:
+the hosted coding product outside, the repository inside. The protocol
+requires every gate to carry an approver identity; stamp coverage is not
+yet complete across the sample, and Stage-1 approvals may be human or AI,
+stamped either way. Each box maps to rows of Table~\ref{tab:roster}.}
 \label{fig:anatomy}
 \end{figure*}
 

@@ -1,25 +1,32 @@
 % F4 — The steering loop (Böckeler): incident -> prior art -> distiller -> lesson at the
 % strongest feasible layer (code > hook > artifact > agent) -> register row with its origin ->
 % a test that fails on recurrence -> the next burst runs a better pipeline; K clean passes -> freeze.
-% Solid = DEPLOYED; dashed = PROPOSED. Standalone; rasterize for the figure-verifier.
+% Solid = DEPLOYED; dashed = PROPOSED. COLOUR GRAMMAR (PI 2026-09-03): blue = code, green = model role, white = documents,
+% amber = the human decision; the enforcement-hierarchy ladder keeps its greys (it is a scale, not a set of actors).
 \documentclass[tikz,border=4pt]{standalone}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta}
 \newcommand{\nohyph}{\hyphenpenalty=10000 \exhyphenpenalty=10000 }
+\definecolor{codefill}{RGB}{219,231,245}\definecolor{codeline}{RGB}{59,110,165}
+\definecolor{agentfill}{RGB}{226,240,217}\definecolor{agentline}{RGB}{58,125,52}
+\definecolor{humanfill}{RGB}{253,236,200}\definecolor{humanline}{RGB}{191,124,0}
+\definecolor{docline}{RGB}{110,110,110}
 \begin{document}
 \begin{tikzpicture}[
   font=\sffamily\footnotesize, node distance=4mm and 5mm,
-  box/.style={draw, thick, rounded corners=2pt, fill=white, text width=34mm, align=center, minimum height=9mm, execute at begin node=\nohyph},
+  box/.style={draw=docline, thick, rounded corners=2pt, fill=white, text width=34mm, align=center, minimum height=9mm, execute at begin node=\nohyph},
+  code/.style={box, fill=codefill, draw=codeline},
+  agent/.style={box, fill=agentfill, draw=agentline},
   prop/.style={box, dashed, fill=black!2, text=black!70},
-  dec/.style={draw, thick, diamond, aspect=2.2, fill=white, inner sep=1pt, align=center, font=\sffamily\scriptsize\bfseries},
+  dec/.style={draw=humanline, thick, diamond, aspect=2.2, fill=humanfill, inner sep=1pt, align=center, font=\sffamily\scriptsize\bfseries},
   layer/.style={draw, rounded corners=1.5pt, text width=28mm, align=center, font=\sffamily\scriptsize, inner sep=2pt, execute at begin node=\nohyph},
   arr/.style={-{Latex[length=2mm]}, thick},
   lab/.style={font=\sffamily\scriptsize, text=black!70}]
 
 \node[box, fill=black!6] (inc) {\textbf{incident}\\a defect caught: by a verifier, by the PI, by a test, by Codex};
-\node[box, right=of inc] (prior) {\textbf{prior-art reader}\\is it already proven somewhere? ALREADY / PARTIAL / OPEN};
-\node[box, right=of prior] (dist) {\textbf{distiller} (same session)\\root cause to the primitive; countermeasure at the strongest layer};
+\node[agent, right=of inc] (prior) {\textbf{prior-art reader}\\is it already proven somewhere? ALREADY / PARTIAL / OPEN};
+\node[agent, right=of prior] (dist) {\textbf{distiller} (same session)\\root cause to the primitive; countermeasure at the strongest layer};
 
 % the enforcement hierarchy under the distiller
 \node[layer, below=6mm of dist, fill=black!12] (L1) {\textbf{code} test / guard / column};
@@ -31,7 +38,7 @@
 
 \node[box, below=6mm of L5] (reg) {\textbf{register row NR-$n$}\\the incident that bore it, the layer chosen, DEPLOYED / PROPOSED};
 \node[box, left=of reg] (lesson) {\textbf{lesson L$n$ / TM$n$ \ldots}\\in the step's skill file, with its ID and date};
-\node[box, left=of lesson] (test) {\textbf{a test that fails on recurrence}\\lessons-as-tests over the real products};
+\node[code, left=of lesson] (test) {\textbf{a test that fails on recurrence}\\lessons-as-tests over the real products};
 
 \node[dec, below=7mm of lesson] (k) {$K$ clean\\passes?};
 \node[box, right=of k, fill=black!6] (freeze) {\textbf{FREEZE} at a recorded commit\\one production sweep over all 106};
@@ -52,6 +59,8 @@
 \draw[arr] (dist.east) -- (keep.west);
 \node[lab, below=1mm of freeze, text width=40mm, align=center] {only the frozen sweep yields citable numbers};
 \node[box, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm] (leg1) at (prior.south |- L4.north) {solid: DEPLOYED};
+\node[code, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, left=1.5mm of leg1] (leg3) {blue: code};
+\node[agent, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, below=1.5mm of leg3] (leg4) {green: model role};
 \node[box, dashed, fill=black!2, text=black!70, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, below=1.5mm of leg1] (leg2) {dashed: PROPOSED};
 \node[lab, above=1mm of inc, text width=60mm, align=left] {instance: two sessions minted NR-41 on 2026-09-01; caught 2026-09-02 $\to$ id~guard test the same day};
 \end{tikzpicture}

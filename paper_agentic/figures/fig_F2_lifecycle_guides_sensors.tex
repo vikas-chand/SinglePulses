@@ -8,15 +8,19 @@
 \usepackage{lmodern}
 \usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta,fit,backgrounds}
 \newcommand{\nohyph}{\hyphenpenalty=10000 \exhyphenpenalty=10000 }
+\definecolor{codefill}{RGB}{219,231,245}\definecolor{codeline}{RGB}{59,110,165}
+\definecolor{agentfill}{RGB}{226,240,217}\definecolor{agentline}{RGB}{58,125,52}
+\definecolor{humanfill}{RGB}{253,236,200}\definecolor{humanline}{RGB}{191,124,0}
+\definecolor{docline}{RGB}{110,110,110}
 \begin{document}
 \begin{tikzpicture}[
   font=\sffamily\scriptsize, node distance=1.6mm and 3mm,
   stp/.style={draw, thick, rounded corners=2pt, fill=white, text width=30mm, align=center, minimum height=7.5mm, font=\sffamily\footnotesize\bfseries, execute at begin node=\nohyph},
-  guide/.style={draw, rounded corners=1.5pt, fill=white, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
-  comp/.style={draw, rounded corners=1.5pt, fill=black!12, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
-  infer/.style={draw, rounded corners=1.5pt, fill=white, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
-  prop/.style={dashed, text=black!65, fill=black!2},
-  gate/.style={draw, thick, diamond, aspect=2.6, fill=white, inner sep=0.5pt, font=\sffamily\scriptsize\bfseries},
+  guide/.style={draw=docline, rounded corners=1.5pt, fill=white, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
+  comp/.style={draw=codeline, rounded corners=1.5pt, fill=codefill, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
+  infer/.style={draw=agentline, rounded corners=1.5pt, fill=agentfill, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
+  prop/.style={dashed, text=black!65, fill=white, draw=black!60},
+  gate/.style={draw=humanline, thick, diamond, aspect=2.6, fill=humanfill, inner sep=0.5pt, font=\sffamily\scriptsize\bfseries},
   arr/.style={-{Latex[length=1.6mm]}, thick},
   lab/.style={font=\sffamily\scriptsize, text=black!70, execute at begin node=\nohyph}]
 
@@ -78,9 +82,10 @@
 \node[comp, prop, anchor=north, text width=60mm] (bandp) at ($(s9.south)+(0,-24mm)$) {continuous, PROPOSED: drift janitor (report-only); pre-commit fast-suite gate};
 
 % legend
-\node[comp, anchor=north west, text width=26mm, align=center] (l1) at ($(bandp.south)+(-64mm,-4mm)$) {grey: computational};
-\node[infer, right=2mm of l1, text width=26mm, align=center] (l2) {white: inferential};
-\node[gate, right=3mm of l2] (l3) {PI};
+\node[comp, anchor=north west, text width=26mm, align=center] (l1) at ($(bandp.south)+(-78mm,-4mm)$) {blue: code (computational)};
+\node[infer, right=2mm of l1, text width=27mm, align=center] (l2) {green: model role (inferential)};
+\node[guide, right=2mm of l2, text width=22mm, align=center] (l2b) {white: guide (document)};
+\node[gate, right=3mm of l2b] (l3) {PI};
 \node[lab, right=1mm of l3] (l3t) {human gate; approval identity-stamped};
 \node[infer, prop, right=3mm of l3t, text width=27mm, align=center] (l4) {dashed: PROPOSED};
 \end{tikzpicture}

@@ -141,3 +141,15 @@ that is not on disk); the harness posts are cited as URLs in footnotes (not as s
 | 2026-09-03 ~00:45 | thesis (decision 19) | "I think we don't want to make claims rather we are describing our design, we are not making foundational statements as we are not doing any maths here" | §1 states what the paper does (describes a design), no reliability claim; Codex referee objection 1 moot |
 | 2026-09-03 ~00:45 | review process (decision 20) | "Hybrid blocks (Recommended)" | three gates: architecture §3+§4+§7 (decision sheet), claims §5+§6+§10, framing §1+§11 with one assembled-PDF gate; chng entries only where v2 text is cut |
 | 2026-09-03 ~00:45 | system noun (decision 21, PENDING) | "this is technical and I don't know, I think we can know it by knowing what people are using" | surveyed 2026-09-03: 15 abstracts of the §1 candidates use "agent" for the whole system 48 times, "harness" and "scaffold" 0 times ("multi-agent system" for compositions) → APPLIED in §3 r4: the whole system = the agent (matches the PI's own framing), harness = the machinery around the model, roles/subagents inside; PI may override at the architecture-block gate |
+
+## Diagram colour grammar (PI, 2026-09-03: "https://arxiv.org/pdf/2608.23270 they have nice colors filled in there flow charts")
+Style reference (design only, not cited): Schüssler et al. 2026, arXiv:2608.23270, Fig. 1 — rounded boxes with a bold
+title and a small descriptor; light-blue filled boxes with a blue frame for the platform's own services; dashed grey boxes
+for external inputs/services; a hatched pale-green enclosure with its label inside for the open-source package boundary;
+small grey italic arrow labels; a legend row of three sample boxes under the figure.
+Our mapping (one grammar for F1/F2/F4/F5, replaces grey/white): BLUE fill = deterministic code (engine, tools, hooks,
+tests, schemas); GREEN fill = model-judgement roles (verifiers, skill reader, dispatcher, distiller); AMBER fill = the
+human (PI gate, rulings); DASHED grey, no fill = PROPOSED; hatched enclosures = the two harness layers (outer grey = the
+hosted coding product; inner green = the repository); arrow labels small grey italic; legend row under each figure.
+Colour-blind safe (blue/green/amber differ in luminance; shapes still differ: diamond = human gate). Every restyled figure
+re-gates (colour legend is part of the FigureVisionQC diagram contract).
