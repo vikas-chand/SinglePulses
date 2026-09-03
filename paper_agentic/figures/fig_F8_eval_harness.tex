@@ -1,13 +1,14 @@
 % F8 — Two harnesses: the runtime harness that walks a burst (left) and the evaluation harness that judges a change
 % to it (right). Single-column figure (~3.3 in). COLOUR GRAMMAR (decisions 24/26): blue = code, green = model role,
 % white = documents/records, amber = human, dashed = PROPOSED; Source Sans Pro; 1 pt soft-grey round arrows.
-% One-row legend (the two-row experiment of r4 collided and bought 0.04 pt of type; the canvas width is set by the two
-% 30 mm columns, not the legend — the figure is placed as a full-width float instead, see sec10_discussion.tex).
+% One-row legend (the two-row experiment of r4 collided and bought 0.04 pt of type). NOTE: the one-row legend IS the
+% widest element (its last key ends at 296.4 bp vs 271.9 bp for the two 30 mm columns) — narrowing the canvas is not the
+% lever for legibility; the figure is placed as a full-width float instead, see sec10_discussion.tex.
 % NO live count on the artifact (a suite size drifts with any commit: 134 -> 137 within one day when a generator was
 % added to the figure-style test). The caption binds the counts to ONE battery record: EVAL_20260903T221534Z.json
 % (137 tests collected, 136 passed + 1 xfailed; 25 promoted tables audited, 3 with findings; replay UNBUILT;
 % model_id claude-opus-5, git_head 0a506911ad21). Known-results replay = PROPOSED.
-\documentclass[tikz,border=4pt]{standalone}
+\documentclass[tikz,border=4pt]{standalone}   % placed at 0.62\textwidth in a figure*: scale 1.0554, smallest type 7.36 bp = 7.39 pt printed
 \usepackage[T1]{fontenc}
 \usepackage[default]{sourcesanspro}
 \usetikzlibrary{positioning,fit,calc,shapes.geometric,arrows.meta,backgrounds}
