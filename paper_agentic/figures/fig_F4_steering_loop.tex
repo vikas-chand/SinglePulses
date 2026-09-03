@@ -38,7 +38,6 @@
 \node[box, below=7mm of k, fill=black!6, xshift=-42mm] (next) {\textbf{next burst}\\runs a better pipeline};
 
 \node[box, right=of dist, text width=27mm, font=\sffamily\scriptsize] (keep) {keep-condition per row (\texttt{keep:} clause; 9 of 49 rows so far)};
-\node[prop, below=of keep, text width=27mm] (fire) {did-it-fire ledger per guard};
 
 \draw[arr] (inc) -- (prior);
 \draw[arr] (prior) -- (dist);
@@ -51,7 +50,6 @@
 \draw[arr] (k.east) -- node[lab, above] {yes} (freeze.west);
 \draw[arr] (next.west) -- ++(-8mm,0) |- (inc.west);
 \draw[arr] (dist.east) -- (keep.west);
-\draw[arr, dashed] (reg.east) -| (fire.south);
 \node[lab, below=1mm of freeze, text width=40mm, align=center] {only the frozen sweep yields citable numbers};
 \node[box, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm] (leg1) at (prior.south |- L4.north) {solid: DEPLOYED};
 \node[box, dashed, fill=black!2, text=black!70, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, below=1.5mm of leg1] (leg2) {dashed: PROPOSED};

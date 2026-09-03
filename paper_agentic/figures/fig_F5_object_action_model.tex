@@ -23,8 +23,8 @@
 
 % ---- objects (row 1: the burst's chain of products) ----
 \node[obj, fill=black!6] (burst) {\textbf{burst}\\trigger id; catalog row};
-\node[obj, right=of burst] (sel) {\textbf{selection} \ensuremath{\blacklozenge}\\detectors, background, source windows; APPROVED\_BY, MODE};
-\node[obj, right=of sel] (blk) {\textbf{block}\\edges, significance; sha $f361\ldots$};
+\node[obj, right=of burst] (sel) {\textbf{selection}\\detectors, background, source windows; APPROVED\_BY, MODE};
+\node[obj, right=of sel] (blk) {\textbf{block}\\edges, significance; e.g.\ sha $f361\ldots$ (bn110920546)};
 \node[obj, right=of blk] (fit) {\textbf{fit row} (\,$\times$24 models)\\params, VALID, AIC, EAC, rails};
 \node[obj, right=of fit] (prod) {\textbf{product}\\figure, SED panel, table, report};
 
@@ -35,27 +35,27 @@
 \node[obj, below=11mm of prod] (trace) {\textbf{action event} \ensuremath{\blacklozenge}\\actor, model id, inputs' sha, verdict, cost};
 
 % ---- row 3: the law ----
-\node[obj, below=11mm of stamp, fill=black!6] (reg) {\textbf{register row}\\incident, layer, status, keep:};
+\node[obj, below=11mm of stamp, fill=black!6] (reg) {\textbf{register row}\\where; purpose (incident, layer); status (keep:)};
 \node[obj, below=11mm of receipt, fill=black!6] (lesson) {\textbf{lesson}\\L$n$ / TM$n$ in a skill file};
-\node[obj, below=11mm of audit, fill=black!6] (state) {\textbf{burst state} \ensuremath{\blacklozenge}\\S0--S12 derived from disk};
+\node[obj, below=11mm of audit, fill=black!6] (state) {\textbf{burst state} \ensuremath{\blacklozenge}\\S0--S12 + SX, derived from disk};
 \node[obj, below=11mm of trace, fill=black!6] (pin) {\textbf{commit pin}\\generators by commit, products by sha};
 
 % ---- declared links (solid) and links by convention (dashed) ----
 \draw[link] (burst) -- node[lab, above] {trigger} (sel);
 \draw[link] (sel) -- node[lab, above] {trigger} (blk);
 \draw[link] (blk) -- node[lab, above] {blocks} (fit);
-\draw[link] (fit) -- node[lab, above] {sha} (prod);
+\draw[linkc] (fit) -- node[lab, below, text width=15mm, align=center] {stored AIC (sha PROPOSED)} (prod);
 \draw[link] (receipt) -- node[lab, right, pos=0.4] {ecsv sha} (fit);
 \draw[link] (audit) -- node[lab, right, pos=0.4] {table sha} (fit);
 \draw[linkc] (stamp.north) -- node[lab, right, pos=0.4] {by trigger + step} (sel.south);
 \draw[linkc] (prod.south) -- node[lab, right, pos=0.4] {figure sha (ledger)} (trace.north);
-\draw[link] (state.north) -- node[lab, left, pos=0.5] {evidence paths} (audit.south);
-\draw[link] (pin.north) -- node[lab, right, pos=0.5] {git head} (trace.south);
+\draw[linkc] (state.north) -- node[lab, left, pos=0.5] {gated flag} (audit.south);
+\draw[linkc] (pin.north) -- node[lab, right, pos=0.5, text width=14mm] {git head $\neq$ pin commit} (trace.south);
 \draw[linkc] (reg.north) -- node[lab, right, pos=0.5] {NR-$n$ cited} (stamp.south);
 \draw[link] (lesson.west) -- node[lab, below=0.3mm, font=\sffamily\tiny] {id guard} (reg.east);
 
 % ---- actions: first-class on disk (solid), proposed (dashed) ----
-\node[lab, above=9mm of burst.north west, anchor=south west, text width=140mm, align=left] {\textbf{actions} --- solid: identity-stamped with a receipt on disk; dashed: PROPOSED (intent $\to$ preflight $\to$ commit $\to$ receipt)};
+\node[lab, above=9mm of burst.north west, anchor=south west, text width=140mm, align=left] {\textbf{actions} --- solid: exists on disk today (a stamp or a receipt; identity on the stamps only); dashed: PROPOSED (intent $\to$ preflight $\to$ commit $\to$ receipt)};
 \draw[act] ($(sel.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{approve} (stamp)} ($(sel.north)+(6mm,0)$);
 \draw[act] ($(fit.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{promote / quarantine}} ($(fit.north)+(6mm,0)$);
 \draw[act] ($(prod.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{present} (stamp)} ($(prod.north)+(6mm,0)$);
@@ -64,9 +64,9 @@
 \draw[actp] (prod.east) -- ++(4mm,0) node[lab, right, text width=12mm, align=left] {deliver (no-ship hook)};
 
 % ---- roles band ----
-\node[role, below=7mm of reg, fill=black!6] (rh) {\textbf{human (PI)}\\approves; rules; never fabricated};
+\node[role, below=7mm of reg, fill=white] (rh) {\textbf{human (PI)}\\approves; rules; never fabricated};
 \node[role, right=of rh, fill=white] (ra) {\textbf{agent} (model id)\\presents, verifies, distils};
-\node[role, right=of ra, fill=black!10] (rk) {\textbf{hook}\\refuses: no-ship, dispatch, raw data};
+\node[role, right=of ra, fill=white] (rk) {\textbf{hook}\\refuses: no-ship, dispatch, raw data};
 \node[role, right=of rk, fill=white] (rs) {\textbf{script}\\produces; writes receipts and sidecars};
 \node[lab, left=1mm of rh.west, anchor=east, text width=14mm, align=right] {roles on actions};
 
