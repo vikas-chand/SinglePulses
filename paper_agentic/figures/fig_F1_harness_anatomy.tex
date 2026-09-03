@@ -1,0 +1,78 @@
+% F1 — Harness anatomy: the five runtime jobs (Bowne-Anderson; PuppyGraph's five components)
+% with the components WE have under each. Solid = DEPLOYED on disk at the census date
+% (2026-09-02, HEAD after f99bc30); dashed = PROPOSED (register row or law file only).
+% Standalone: pdflatex fig_F1_harness_anatomy.tex -> PDF; rasterize for the figure-verifier.
+% Every component name here appears as a row of T1 (paper_agentic/T1_component_roster_DRAFT.md).
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usetikzlibrary{positioning,fit,calc,shapes.geometric,arrows.meta}
+\newcommand{\nohyph}{\hyphenpenalty=10000 \exhyphenpenalty=10000 }
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\footnotesize, node distance=2.2mm and 2mm,
+  job/.style={draw, thick, rounded corners=2pt, fill=black!6, text width=24.5mm, align=center, minimum height=9mm, font=\sffamily\bfseries\footnotesize},
+  dep/.style={draw, rounded corners=1.5pt, fill=white, text width=24.5mm, align=left, inner sep=2pt, font=\sffamily\scriptsize, execute at begin node=\nohyph},
+  prop/.style={dep, dashed, fill=black!2, text=black!70},
+  model/.style={draw, very thick, rounded corners=3pt, fill=white, text width=122mm, align=center, minimum height=9mm, font=\sffamily\bfseries\small},
+  human/.style={draw, thick, diamond, aspect=3, fill=white, inner sep=1pt, font=\sffamily\scriptsize\bfseries},
+  arr/.style={-{Latex[length=2mm]}, thick},
+  lab/.style={font=\sffamily\scriptsize, text=black!70}]
+
+% the model, and the loop around it
+\node[model] (model) {THE MODEL: reasoning only (Claude session, Mode~B) --- no memory between calls, no ground truth};
+\node[lab, above=1mm of model] {\textbf{agent = model + harness}; the harness is everything below};
+
+% five jobs
+\node[job, below=9mm of model.south west, anchor=north west, xshift=-1mm] (loop) {1 run the loop};
+\node[job, right=of loop] (tools) {2 execute tools};
+\node[job, right=of tools] (ctx) {3 manage context};
+\node[job, right=of ctx] (state) {4 persist state};
+\node[job, right=of state] (bound) {5 enforce boundaries};
+
+% components under each job (solid = DEPLOYED, dashed = PROPOSED)
+\node[dep, below=of loop] (l1) {burst-walkthrough protocol: RUN $\to$ PRESENT $\to$ GATE $\to$ LITERATURE $\to$ DISTILL};
+\node[dep, below=of l1] (l2) {dispatcher: roster, gates, order at task intake};
+\node[dep, below=of l2] (l3) {prototype chains: fit, merge, products, temporal, assembly};
+\node[prop, below=of l3] (l4) {queue manager + typed workflows (A17)};
+
+\node[dep, below=of tools] (t1) {spectral engine: 24 models $\times$ every block, validity + rail columns};
+\node[dep, below=of t1] (t2) {Bayesian blocks (3ML native) + significance merge};
+\node[dep, below=of t2] (t3) {Stage-1 approval: detectors, background, source --- stamped};
+\node[dep, below=of t3] (t4) {figures, temporal chain, SED family, per-burst report};
+
+\node[dep, below=of ctx] (c1) {skill files (27) indexed by the step ledger; lessons with IDs};
+\node[dep, below=of c1] (c2) {skill-reader: the binding checklist at every step open};
+\node[dep, below=of c2] (c3) {standing contracts in the PI's quoted words (S-, R-items)};
+\node[dep, below=of c3] (c4) {memory files + notes; fresh-context sub-agents (isolate)};
+
+\node[dep, below=of state] (s1) {state board derived from DISK evidence, never from memory};
+\node[dep, below=of s1] (s2) {identity stamps, receipts, sidecars, commit pin};
+\node[dep, below=of s2] (s3) {object schemas (10) + validation test; action trace with model id};
+\node[prop, below=of s3] (s4) {first-class actions: intent $\to$ preflight $\to$ commit $\to$ receipt};
+
+\node[dep, below=of bound] (b1) {hooks: no-ship (sha), dispatch plan, raw-data guard};
+\node[dep, below=of b1] (b2) {producer $\neq$ verifier $\neq$ approver; fresh-context verifiers};
+\node[dep, below=of b2] (b3) {fit-table auditor, tie rule, count coordinates, edge stamps};
+\node[prop, below=of b3] (b4) {loop caps, spend ledger, post-tool audit, \mbox{pre-commit}, sandbox};
+
+% the human gate
+\node[human, below=5mm of s4.south, anchor=north] (pi) {PI gate: every step};
+
+% arrows: loop
+\draw[arr] ($(model.south)+(-8mm,0)$) -- ++(0,-3mm) -| (loop.north);
+\draw[arr] (loop.east) -- (tools.west);
+\draw[arr] (tools.east) -- (ctx.west);
+\draw[arr] (ctx.east) -- (state.west);
+\draw[arr] (state.east) -- (bound.west);
+\draw[arr] (bound.north) |- ($(model.south)+(8mm,-3mm)$) -- ($(model.south)+(8mm,0)$);
+\draw[arr] (pi.north) -- ++(0,1.5mm) -| ($(s4.east)+(1.5mm,0)$) |- (s2.east);
+\node[lab, anchor=west] at ($(pi.north)+(3mm,1mm)$) {stamps};
+\node[lab, below=1mm of pi] {approval identity-stamped; never fabricated};
+
+% legend
+\node[dep, right=4mm of bound, text width=22mm] (leg1) {solid: DEPLOYED};
+\node[prop, below=of leg1, text width=22mm] (leg2) {dashed: PROPOSED};
+\node[lab, below=1mm of leg2, text width=24mm, align=left, execute at begin node=\nohyph] {census 2026-09-02; each box maps to rows of Table~T1};
+\end{tikzpicture}
+\end{document}

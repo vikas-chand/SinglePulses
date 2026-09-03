@@ -1,0 +1,60 @@
+% F4 — The steering loop (Böckeler): incident -> prior art -> distiller -> lesson at the
+% strongest feasible layer (code > hook > artifact > agent) -> register row with its origin ->
+% a test that fails on recurrence -> the next burst runs a better pipeline; K clean passes -> freeze.
+% Solid = DEPLOYED; dashed = PROPOSED. Standalone; rasterize for the figure-verifier.
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta}
+\newcommand{\nohyph}{\hyphenpenalty=10000 \exhyphenpenalty=10000 }
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\footnotesize, node distance=4mm and 5mm,
+  box/.style={draw, thick, rounded corners=2pt, fill=white, text width=34mm, align=center, minimum height=9mm, execute at begin node=\nohyph},
+  prop/.style={box, dashed, fill=black!2, text=black!70},
+  dec/.style={draw, thick, diamond, aspect=2.2, fill=white, inner sep=1pt, align=center, font=\sffamily\scriptsize\bfseries},
+  layer/.style={draw, rounded corners=1.5pt, text width=28mm, align=center, font=\sffamily\scriptsize, inner sep=2pt, execute at begin node=\nohyph},
+  arr/.style={-{Latex[length=2mm]}, thick},
+  lab/.style={font=\sffamily\scriptsize, text=black!70}]
+
+\node[box, fill=black!6] (inc) {\textbf{incident}\\a defect caught: by a verifier, by the PI, by a test, by Codex};
+\node[box, right=of inc] (prior) {\textbf{prior-art reader}\\is it already proven somewhere? ALREADY / PARTIAL / OPEN};
+\node[box, right=of prior] (dist) {\textbf{distiller} (same session)\\root cause to the primitive; countermeasure at the strongest layer};
+
+% the enforcement hierarchy under the distiller
+\node[layer, below=6mm of dist, fill=black!12] (L1) {\textbf{code} test / guard / column};
+\node[layer, below=1.5mm of L1, fill=black!8] (L2) {\textbf{hook} blocks the tool call};
+\node[layer, below=1.5mm of L2, fill=black!4] (L3) {\textbf{artifact} stamp on the product};
+\node[layer, below=1.5mm of L3] (L4) {\textbf{agent} fresh-context duty};
+\node[layer, below=1.5mm of L4, text=black!60] (L5) {\textit{prose} (weakest layer; the skill file)};
+\node[lab, left=1mm of L1.west, anchor=east, text width=30mm, align=right, execute at begin node=\nohyph] {enforcement hierarchy, strongest first; ONE layer is chosen};
+
+\node[box, below=6mm of L5] (reg) {\textbf{register row NR-$n$}\\the incident that bore it, the layer chosen, DEPLOYED / PROPOSED};
+\node[box, left=of reg] (lesson) {\textbf{lesson L$n$ / TM$n$ \ldots}\\in the step's skill file, with its ID and date};
+\node[box, left=of lesson] (test) {\textbf{a test that fails on recurrence}\\lessons-as-tests over the real products};
+
+\node[dec, below=7mm of lesson] (k) {$K$ clean\\passes?};
+\node[box, right=of k, fill=black!6] (freeze) {\textbf{FREEZE} at a recorded commit\\one production sweep over all 106};
+\node[box, below=7mm of k, fill=black!6, xshift=-42mm] (next) {\textbf{next burst}\\runs a better pipeline};
+
+\node[prop, right=of dist, text width=27mm] (keep) {keep-condition / retest-on-model-change per row};
+\node[prop, below=of keep, text width=27mm] (fire) {did-it-fire ledger per guard};
+
+\draw[arr] (inc) -- (prior);
+\draw[arr] (prior) -- (dist);
+\draw[arr] (dist.south) -- node[lab, right=0.5mm] {chooses one layer} (L1.north);
+\draw[arr] (L5.south) -- (reg.north);
+\draw[arr] (reg) -- (lesson);
+\draw[arr] (lesson) -- (test);
+\draw[arr] (test.south) |- (k.west);
+\draw[arr] (k.south) |- node[lab, above, pos=0.75] {no} (next.east);
+\draw[arr] (k.east) -- node[lab, above] {yes} (freeze.west);
+\draw[arr] (next.west) -- ++(-8mm,0) |- (inc.west);
+\draw[arr, dashed] (dist.east) -- (keep.west);
+\draw[arr, dashed] (reg.east) -| (fire.south);
+\node[lab, below=1mm of freeze, text width=40mm, align=center] {only the frozen sweep yields citable numbers};
+\node[box, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm] (leg1) at (prior.south |- L4.north) {solid: DEPLOYED};
+\node[box, dashed, fill=black!2, text=black!70, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, below=1.5mm of leg1] (leg2) {dashed: PROPOSED};
+\node[lab, above=1mm of inc, text width=60mm, align=left] {instance: two sessions minted NR-41 on 2026-09-01; caught 2026-09-02 $\to$ id~guard test the same day};
+\end{tikzpicture}
+\end{document}

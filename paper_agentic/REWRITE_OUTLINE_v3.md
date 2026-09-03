@@ -9,7 +9,7 @@ vs inferential, the lifecycle timing diagram), Palantir (data · logic · action
 PuppyGraph (five components, four failure modes), LangChain (capability matrix). The comparison
 that grounds every claim: `notes/HARNESS_COMPARISON_20260902.md` (§19 needs, §20 strengths).
 
-**What stays from v2 (2026-09-01, 7,928 words, 4 TikZ figures, 2 tables):** the sample, the
+**What stays from v2 (2026-09-01, 7,928 words, 3 figure environments = 2 TikZ + 1 PNG, 2 tables; corrected 2026-09-02 by the dispatcher's numbers check):** the sample, the
 fitting-step figure, the campaign-loop figure (re-drawn in the new grammar), Learning Without
 Gradients, the Verification Doctrine, the Human-vs-Agent design, the provisional results, the
 failure taxonomy, the appendices. **What changes:** the spine becomes *the harness, component
@@ -126,3 +126,7 @@ that is not on disk); the harness posts are cited as URLs in footnotes (not as s
 ## Decision log
 | when | item | PI ruling (verbatim) | applied |
 |---|---|---|---|
+| 2026-09-02 18:30 | outline gate (decision 11) | "Approve, start with the roster table (Recommended)" | outline APPROVED; order: T1 roster → F1/F2/F4/F5 diagrams (figure-verifier each) → §3/§4/§7 prose → §5/§10 re-cut → §1/§11 → numbers-verifier + R1–R5 → PI |
+| 2026-09-02 ~19:15 | builds 1–5 (decision 12) | "Approve (verified, nits closed) (Recommended)" | fit-table auditor, 10 schemas + test, provenance stamp + action trace, eval battery, model-id module APPROVED on the delta verifier's PASS-WITH-NITS (f99bc30); approve event recorded in the trace |
+| 2026-09-02 ~19:15 | keep-condition (decision 13) | "A 'keep:' clause inside each row's status cell (Recommended)" | register header rule + non-failing count test; distiller adds the clause when touching a row |
+| 2026-09-02 ~19:15 | next non-invasive items (decision 14) | "After the diagrams (Recommended)" | drift janitor, spend ledger, component-inventory sidecar wait for F1/F2/F4/F5 to pass |

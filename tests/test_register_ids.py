@@ -70,3 +70,26 @@ def test_no_dangling_citations():
             if missing:
                 dangling[os.path.relpath(path, BASE)] = ['NR-%d' % n for n in missing]
     assert not dangling, f'guides cite register ids that have no row: {dangling}'
+
+
+# PI decision 13 (2026-09-02): every register row carries a keep-condition -- "keep: <what must still
+# hold for this guard to earn its place; retest when the model changes>" -- written INSIDE the status
+# cell. The distiller adds it when it next touches a row, so this test REPORTS the rows still lacking
+# one and never fails on them; it fails only if a clause is malformed (empty after "keep:").
+KEEP = re.compile(r'\bkeep:\s*(\S[^|]*)')
+
+
+def test_keep_conditions_reported_not_enforced():
+    lines = _lines()
+    start, end = _table_span(lines)
+    rows = [(i, n) for i, n in _rows(lines) if start < i < end]
+    missing, malformed = [], []
+    for i, n in rows:
+        cell = lines[i].rstrip().rstrip('|').rsplit('|', 1)[-1]
+        m = KEEP.search(cell)
+        if not m:
+            missing.append(n)
+        elif len(m.group(1).strip()) < 8:
+            malformed.append(n)
+    assert not malformed, f'malformed keep: clause on rows {malformed}'
+    print(f'keep-condition coverage: {len(rows) - len(missing)}/{len(rows)} register rows carry a keep: clause; missing: NR-' + ', NR-'.join(map(str, missing)) if missing else 'keep-condition coverage: all rows')
