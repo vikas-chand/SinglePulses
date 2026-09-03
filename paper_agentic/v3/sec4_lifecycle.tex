@@ -7,7 +7,8 @@
 % Absorbs from v2: "The campaign loop" steps paragraph (v2:264-288, re-ordered to the OFFICIAL ledger
 % 0b,0,1-9 — PI ruling 2026-08-30 — and step 8 = nuFnu panels), "Inside the fitting step" (v2:312-340) with
 % v2's fig:fitstep TikZ as F3 (outline: "v2 Fig. 2 unchanged"; r2 changed two boxes: typed outcomes / INCONCLUSIVE and
-% strict >6; r3 after the F3 delta gate: multistarts wording (thermal restarts are LRT-gated, scripts/10 ~1293-1303),
+% strict >6; r4 (F3 gate r3 PASS-WITH-NITS N1/N3): 'triggered for composites' covers all sixteen '+' models, prose trigger
+% = rails / weak nested test / worse than parent (generic nested-parent pass scripts/10 ~1414-1428); r3 after the F3 delta gate: multistarts wording (thermal restarts are LRT-gated, scripts/10 ~1293-1303),
 % 'vs. best simpler ancestor' (NESTED_PARENTS, not the simplest menu model), arrows anchored at .north), the fan-out/verifier-gates
 % paragraph (v2:359-371). P0 freeze + three-way attribution -> §6; K-clean/freeze -> §5 (one pointer each).
 % Tone per decisions 18/19: describe what runs and what checks it; PROPOSED once; no claims.
@@ -120,9 +121,9 @@ never on detection significance}: every detector band with usable data and
 a valid response enters the joint fit, because conditioning inclusion on
 significance manufactures spurious detections in exactly the bursts where a
 band fluctuated upward. Second, \emph{every model family receives multistarts}: unconditional for
-the continua and the two-break family, and triggered for the thermal
-composites whenever the thermal component rails or fails its nested test,
-because a chained seed from a bright epoch can strand a faint bin in a
+the continua and the two-break family, and triggered for the composites
+whenever a component rails, its nested test is weak, or the fit is worse
+than its simpler parent, because a chained seed from a bright epoch can strand a faint bin in a
 wrong local minimum, a failure we document in \S\ref{sec:learning}. Third, \emph{validity gates} exclude from model
 selection any fit whose shape parameters sit on a bound, with the margins
 computed in the parameter's natural geometry (logarithmic for energy-like
@@ -133,7 +134,7 @@ soft burst.
 \centering
 \begin{tikzpicture}[node distance=4.8mm and 7mm]
 \node[box] (data) {\textbf{every band with data + a valid response}\\inclusion gated on data quality, never significance};
-\node[box, below=of data] (menu) {\textbf{24-model menu} + multistarts for every family (unconditional for continua; triggered for thermal composites)};
+\node[box, below=of data] (menu) {\textbf{24-model menu} + multistarts for every family (unconditional for continua; triggered for composites)};
 \node[dec, below=of menu] (valid) {validity\\gates};
 \node[box, right=14mm of valid] (excl) {railed / capped-bound stamps\\excluded from selection, \emph{reported}};
 \node[box, below=of valid] (aic) {\textbf{AIC over valid fits only} $\rightarrow$ \emph{two} margins:\\vs.\ runner-up (which model) · vs.\ best simpler ancestor (is structure needed)};

@@ -105,3 +105,11 @@ arrows anchored at the boxes' north; §3's table cell "typed terminal states" �
 (:186, :273) and SpectralFitting.md:480, but strict "> 6" in dev/fit_table_audit.py:51/253 (the newest ruling) and now
 in the paper. Only a bin at exactly ΔAIC = 6.000 flips, but the guide contradicts itself (:480 vs :1080) and a referee
 opening a burst report sees "≥ 6". Recommendation: rule once (strict >6), then the distiller aligns 44/48/the guide.
+
+## 9. F3 delta gate r3 — PASS-WITH-NITS (2026-09-03 ~11:30): PNG pixel-identical to a fresh render; both new strings
+verbatim; thermal-composite gate verified at scripts/10:1292–1304, unconditional continua/two-break/cutoff restarts
+verified, "best simpler ancestor" = NESTED_PARENTS (17 children); arrows land at .north. Nits applied as word-level r4:
+"(unconditional for continua; triggered for composites)" — true for all sixteen "+" models, the seven non-thermal
+composites get only the generic nested-parent restart; prose trigger widened to "rails, weak nested test, or worse than
+its simpler parent". Engine-backlog note (not paper): DSBPLfree has no restart block and DSBPLfree/BandR+CPL are not in
+NESTED_PARENTS. No geometry changed; the full-document figure gate before submission covers the final wording.
