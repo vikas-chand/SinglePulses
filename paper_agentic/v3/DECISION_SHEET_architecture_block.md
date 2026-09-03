@@ -68,3 +68,14 @@ v2 §5 and §6 — `\input{v3/sec7_objects}`; `\input{v3/tab_T1_roster}` in an a
 - F1: pre-existing 1-px touch of the "stamps" label on a dashed border (fix when the figure is next touched).
 - §4 caption for F1 in §3 does not repeat the "10 of 11 skills written" detail; the prose carries it.
 - The authority table is a float and may land a page after its paragraph in the final layout.
+
+## 6. Full-document test build (scratch copy; v2 untouched; 2026-09-03 ~01:40)
+`dev/paper_v3_splice.py --write --out <scratch>` + pdflatex/bibtex/pdflatex×2: **0 errors, 0 undefined references,
+0 undefined citations, 0 overfull; 19 pages** (v2: 12). Page map: §3 p3, F1 p4, §4 p6, authority table p7, F2 p8,
+F3 p9 (with §5 start), §6 + §7 p11, F5 p12, §8 p13, appendix T1 p16–19. The growth is the three full-width figures
+and the 4-page roster table; the prose of the block is ~5.5 k words.
+- Note for item D/E: F1's top box reads "THE MODEL: reasoning only (Claude session, Mode B) — no memory between
+  calls, no ground truth" and its header "agent = model + harness". The equation is consistent with decision 21
+  (the agent contains the harness); the box names Claude (item E) and states the bare-model limits absolutely (the
+  prose now says "retains no project state between calls and observes nothing outside its context"). If E = yes,
+  F1 stays; if E = no, the box loses "Claude session" and F1 re-gates.
