@@ -1,12 +1,14 @@
 # DRAFT — review request to ChatGPT for paper v3 (architecture block spliced) — for the PI to edit before sending
 
-**Status:** draft by the building session, 2026-09-03; the PI asked "we will draft a review request to chatGPT to get
-it reviewed". Standing rule for the reply (memory: absorb ChatGPT packages critically): advisory, not spec — every
+**Status:** READY TO SEND (2026-09-03 ~16:30). PI: "once you are done I think we should get a review from chatGPT and start
+writing and finalzing our manuscript". The PDF to attach is paper_agentic/agentic_grb_v3.pdf at commit 06d6171 or later
+(19 pages; §3/§4/§7 new; four figures in the colour + style grammar; abstract PROVISIONAL, decision 23). Standing rule for the reply (memory: absorb ChatGPT packages critically): advisory, not spec — every
 factual or bibliographic claim it makes gets verified against the PDF/ADS before anything changes; anything it
 proposes as a root CLAUDE.md/AGENTS.md is rejected on sight.
 
 ## What to attach
-- `paper_agentic/agentic_grb_v3.pdf` (the spliced draft; §3, §4, §7 new; §1, §5, §6, §8–§11 still v2 text).
+- `paper_agentic/agentic_grb_v3.pdf` (the spliced draft; §3, §4, §7 new; §1, §5, §6, §8–§11 still v2 text; the abstract is a
+  provisional placeholder to be rewritten last — do not review it for polish).
 - Optionally `paper_agentic/T1_component_roster_DRAFT.md` (the source of the appendix table, with the evidence column
   the PDF omits).
 
@@ -19,7 +21,7 @@ works, what it caught on one walkthrough burst, and what is specified but not bu
 design is the reason for any result, and it deliberately cites no blog posts.
 
 Sections 3 (the harness, component by component), 4 (guides and sensors along the burst) and 7 (the object-and-action
-model) are new and are what we want reviewed most closely; sections 1, 5, 6, 8–11 are older text that will be revised
+model) are new and are what we want reviewed most closely; the abstract is a provisional placeholder (skip it); sections 1, 5, 6, 8–11 are older text that will be revised
 next and may contradict the new sections — flag contradictions, do not review the old text for style.
 
 Please answer in numbered findings, each with the section and page it refers to, a severity (blocking / should-fix /
@@ -32,7 +34,8 @@ nit), and the exact sentence you object to where one exists.
    quote it, and say what evidence a referee would demand to accept it. The authors intend every status to be one of
    deployed (exists on disk and runs) or proposed (specified, not built).
 3. The figures and the table. Do Figures 1, 2, 3 and 4 (the anatomy, the lifecycle with guides and sensors, the
-   fitting step, the object-and-action model) each earn their full-width page? Is the appendix roster table useful to a
+   fitting step, the object-and-action model) each earn their full-width page? Is the colour grammar (blue = code,
+   green = model role, white = documents, amber = human, dashed = proposed) understood from the captions alone? Is the appendix roster table useful to a
    reader or only to the authors? What would you cut or merge?
 4. The authority table (§3). Is the split "the workflow and the engine decide / the AI does / the human decides"
    clear and complete? Is anything in the wrong column?
