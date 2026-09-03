@@ -45,7 +45,7 @@ PREAMBLE = (
 POSTAMBLE = "\\enddata\n\\end{deluxetable*}\n"
 
 # Column widths for the wrapped cells (a two-column aastex page is ~18 cm wide between margins).
-WIDTHS = {'component': '4.0cm', 'job': '7.4cm', 'kind': '2.0cm', 'status': '2.6cm'}
+WIDTHS = {'component': '4.0cm', 'job': '7.2cm', 'kind': '2.0cm', 'status': '2.6cm'}
 
 
 def pbox(width, text):
