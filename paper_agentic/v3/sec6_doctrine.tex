@@ -1,0 +1,121 @@
+% ===========================================================================
+% v3 §6 — VERIFICATION DOCTRINE (~2 pp) — v2 §5 kept (v2:610-684) with three additions: the frozen-prediction
+% and attribution rule moved here from v2 §3 (the outline's split); the known-results battery stated at its
+% true status (specified, replay not built; the eval battery runs tests + auditor); the referee loop (two hats,
+% three blind referees, NR-47) added as machinery — built 2026-09-01, first firing reserved for the finished
+% manuscript; and this paper's own §3 supervisor review as the instance (notes/CODEX_REVIEW_paper_v3_sec3_20260902.md).
+% Labels: sec:verify (v2) + sec:doctrine (referenced by §3/§4/§7). Decisions 18/19: describe; no claims.
+% ===========================================================================
+\section{Verification Doctrine} \label{sec:verify}\label{sec:doctrine}
+
+Two disciplines wrap every burst. Before any comparison with the
+literature, the agent's own results are frozen, written to the burst's
+record in a form that cannot be revised, together with predictions derived
+from the harvested literature. Only then are the two compared, and every
+mismatch is pushed to one of three attributions: \emph{we-wrong} (an error
+on our side, which must be fixed and tested), \emph{they-wrong} (a
+documented problem in the published analysis, stated with evidence), or
+\emph{frame-difference} (both analyses defensible; the difference traced to
+conventions, data selections, or eras, and recorded as a normalisation
+rule). The attribution, not the mismatch, is the product: it becomes a
+numbered lesson in the skill library, shipped with its test
+(\S\ref{sec:learning}).
+
+\subsection{Blind-first analysis with frozen predictions}
+
+Before each burst is fitted, the literature harvest yields a set of
+falsifiable predictions, derived from published analyses and never from
+our own outputs, which are frozen alongside a commitment that the fit will
+not be steered toward them. The comparison happens only after both sides
+are immutable. The campaign's scorecards make the point better than
+argument. For the eighth burst, the literature predicted a positive
+low-energy photon index early in the burst; our blind fit, with independent
+binning and a far larger model menu, reproduced it ($\alpha$ up to
+$+0.6$\prov). It predicted monotonic hard-to-soft evolution; our blind
+$\Ep$ track declined monotonically\prov. But the natural corollary, that a
+spectrum this hard should demand a thermal component, was \emph{refuted}:
+with the L27-repaired gates, no time bin required extra structure at even
+the strong evidence grade\prov. A framework that can refute its own frozen
+expectation is demonstrating the property that matters; confirmation alone
+demonstrates nothing.
+
+Beyond per-burst predictions, the doctrine specifies a battery of
+\emph{known results} against which each burst's record closes: published
+spectral-lag values with their sign conventions, published Bayesian-block
+edges, published variability-timescale limits, low-energy photon-index
+tracks, and, where an instrument we do not fit has published one,
+polarization constraints entered as external predictions. Today the
+evaluation battery runs the lesson tests and the fit-table auditor over
+every promoted table in one command and records the model identity and
+commit with its result; the known-results replay is specified and listed
+as proposed. Agreement validates the chain that produced our number,
+disagreement is pushed through the attribution above, and either outcome
+is banked in the record.
+
+\subsection{Independence lives at the primitive}
+
+Twice in the campaign, two analyses agreed closely and both were wrong or
+both unnecessary: our fitted blackbody temperature agreed with a published
+value to five percent while both components were statistically unrequired;
+and in the experiment below, two independent review channels built the
+same load-bearing argument on the same silently symmetric
+parameterization, corroborating each other into a void conclusion. We
+therefore state the doctrine as: \emph{agreement between two analyses is
+evidence only in proportion to the depth of the primitives they do not
+share}: minimizer, table, column, response model, prior document. $N$
+agents reading the same inputs are one opinion wearing $N$ hats. The
+fresh-context roles of \S\ref{sec:context} are correlated error-detection
+channels under this rule, not independent reviewers; independence is
+claimed only for a check that uses a disjoint primitive, source,
+implementation, or human.
+
+\subsection{The four-channel experiment: generators, not adjudicators}
+
+We tested whether a panel of AI reviewers could adjudicate a genuinely
+contested scientific question, a burst for which two published analyses of
+nearly the same data disagree about a thermal component. Four reviewer
+channels examined disjoint evidence primitives: the spectral-panel
+\emph{images} only; the numeric \emph{fit tables} only; the block-to-block
+\emph{evolution tracks} only; and an \emph{adversary} with full access,
+briefed to refute the component honestly and permitted to run its own
+diagnostic refits. A separately briefed adjudicator then audited all four.
+
+The outcome was double-edged. As \emph{generators}, the channels were
+excellent: the image channel found a figure-construction defect invisible
+in any table; the adversary localised a cross-normalisation anomaly that we
+later identified, via the published literature, as a physically occulted
+detector, and demoted a ``decisive'' margin to an artifact of a railed
+reference model, both findings surviving audit and entering the engine as
+permanent stamps. As \emph{adjudicators}, the channels failed exactly as
+the doctrine predicts: the two numeric channels derived identical margin
+ladders and returned opposite verdicts (the disagreement was doctrinal, not
+evidential); the panel's one unanimous conclusion was traceable verbatim to
+a rule in the shared skill library, prescribed unanimity rather than
+measurement; and one channel confabulated statistics that do not appear in
+its own assigned figure, caught only because the adjudicator reopened the
+figure. Two corollaries entered the doctrine. First, \emph{verify the
+adversary too}: the adversary claimed a nondeterministic fitting step; five
+identical reruns showed spread exactly zero\prov; its variance had been its
+own varying invocations. Second, with/without-data refits are attribution
+diagnostics only; a data-dropped fit is never evidence for a claim.
+
+\subsection{The referee loop} \label{sec:referee}
+
+The external auditor wears two hats and never both on one product version.
+As \emph{supervisor} it reads everything: the brief pins facts by hash,
+declares the conventions that could look like defects, lists the claims to
+verify, and closes with a question the brief did not ask. As \emph{blind
+referee} it reads only what a journal referee reads: the manuscript and its
+data statement, with no internal documents, no claims list, and no sight of
+the other referees' reports. The panel is three separate invocations with
+fixed temperaments, constructive, standard, and adversarial, reviewing
+independently in the first round; the response is one deduplicated letter
+with demonstrations rather than assurances; a delta round re-fires only the
+referees whose points remain open; the loop is capped at two rounds, and
+the human is the editor. Convergence is declared by demonstration, never
+by agreement. The machinery exists and the supervisor hat has run on this
+manuscript's architecture section: it flagged twenty sentences as stronger
+than the evidence on disk, eighteen survived our check at the primitive,
+and all were rewritten before the section reached the human. The blind
+panel is reserved for the finished manuscript, on a version the supervisor
+has not seen.
