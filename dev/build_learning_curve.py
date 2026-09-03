@@ -118,11 +118,15 @@ def main():
         cum.append(c)
     fig, ax = plt.subplots(figsize=(6.0, 4.0))
     ax.bar(xs, [r['lessons'] for r in rows], color='0.75', edgecolor='0.35', label='lessons distilled')
-    ax.bar(xs, [r['defects'] or 0 for r in rows], color='0.3', edgecolor='0.2', width=0.5, label='defects found (all layers)')
-    for x, r in zip(xs, rows):
-        if r['defects'] is None:
-            ax.text(x, 0.35, 'in progress;\ndefects not tallied', rotation=90, ha='center', va='bottom',
-                    color='0.2', fontsize=PUB['tick_size'] - 1, linespacing=1.1)
+    known = [(x, r['defects']) for x, r in zip(xs, rows) if r['defects'] is not None]
+    ax.bar([x for x, _ in known], [d for _, d in known], color='0.3', edgecolor='0.2', width=0.5,
+           label='defects found (all layers)')
+    # A burst whose walkthrough is open has NO defect measurement: draw absence as absence (a cross on the axis),
+    # never as a zero-height bar, and name it in the legend. (Gate 2026-09-03: an in-bar note overflowed its bar twice.)
+    missing = [x for x, r in zip(xs, rows) if r['defects'] is None]
+    if missing:
+        ax.plot(missing, [0.18] * len(missing), linestyle='none', marker='x', ms=PUB['ms_data'],
+                mew=PUB['lw_secondary'], color='0.2', label='defects not tallied (burst in progress)')
     ax2 = ax.twinx()
     ax2.plot(xs, cum, color='k', marker='o', ms=PUB['ms_data'] - 1.5, lw=PUB['lw_secondary'], label='cumulative lessons')
     ax.set_xticks(xs)
@@ -130,13 +134,13 @@ def main():
     ax.set_xlabel('walked burst (walk order; not time)')
     ax.set_ylabel('per burst')
     ax2.set_ylabel('cumulative lessons')
-    ax.set_ylim(0, max(r['lessons'] for r in rows) * 1.55)
-    ax2.set_ylim(0, max(cum) * 1.35)
+    ax.set_ylim(0, max(r['lessons'] for r in rows) * 1.95)
+    ax2.set_ylim(0, max(cum) * 1.7)
     h1, l1 = ax.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     from matplotlib.ticker import MaxNLocator
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-    ax.legend(h1 + h2, l1 + l2, loc='upper left', framealpha=0.9, edgecolor='0.6')
+    ax.legend(h1 + h2, l1 + l2, loc='upper left', framealpha=0.9, edgecolor='0.6', handletextpad=0.5)
     fig.text(0.995, 0.012, 'provisional: walkthrough era', ha='right', va='bottom', color='0.4')
     fig.tight_layout(rect=[0, 0.05, 1, 1])
     fig.savefig(OUT + '.pdf')
@@ -147,6 +151,7 @@ def main():
             'parsed_lessons_total': len(lessons), 'walkthrough_in_progress': {'burst': WALK21[0], 'since': WALK21[1], 'lessons': [l['id'] for l in w21]},
             'ledger_sha256': hashlib.sha256(open(LEDGER, 'rb').read()).hexdigest(),
             'generator_sha256': hashlib.sha256(open(os.path.abspath(__file__), 'rb').read()).hexdigest(),
+            'git_head_note': 'built in the working tree: git_head is the commit the tree was based on; generator_sha256 identifies the code that drew it',
             'skill_file_sha256': {f: hashlib.sha256(open(os.path.join(ROOT, 'dev', 'ai_guides', f + '.md'), 'rb').read()).hexdigest() for f in SKILLS},
             'rules': {'ledger_rows': 'ids named in lessons_born, whitelisted against heading-form lessons, first appearance only',
                       'walkthrough_row': 'heading names the burst and is not PROPOSED; defects NOT tallied (the walkthrough is in progress; register rows citing the burst are listed, not counted)',

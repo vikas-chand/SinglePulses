@@ -1,7 +1,7 @@
 {
  "figure": "F7 campaign learning curve",
- "utc": "2026-09-03T22:13:55Z",
- "git_head": "c636210f4cd8",
+ "utc": "2026-09-03T22:31:58Z",
+ "git_head": "4a4031d4358b",
  "rows": [
   {
    "order": 1,
@@ -193,7 +193,8 @@
   ]
  },
  "ledger_sha256": "372338387cd8863776c6f92a088518c4c0958ff991d685facc50fccf82507362",
- "generator_sha256": "a7ae7760d9e2865b2ab82972c99abc003e7c6bb0e6079478040493f243b9af09",
+ "generator_sha256": "3ea1980221e93ca316677fff82a52e48cf040067a8f328f01a36d71888057e77",
+ "git_head_note": "built in the working tree: git_head is the commit the tree was based on; generator_sha256 identifies the code that drew it",
  "skill_file_sha256": {
   "SpectralFitting": "52cd355dfd93bfc98dc0e1d629b88eaa7f9409466029a5bb7dac314bf9aea69a",
   "Temporal": "d0c3875f354d4651770d5c1b7abd4745ff7a109cbfa5f008a41e7f269e9169c2",
