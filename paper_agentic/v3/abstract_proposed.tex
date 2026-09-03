@@ -1,22 +1,22 @@
 \begin{abstract}
 Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on judgement
-calls. Which detectors to trust, where the background lies, where the
+calls: which detectors to trust, where the background lies, where the
 burst begins and ends, how finely to bin it in time, and which of two
-dozen spectral models to adopt are all decided by hand. We describe the
-design of an agent that makes those calls for a campaign of 106
-single-pulse \textit{Fermi}/GBM bursts. A human approves every step. The
-language model runs inside a harness: deterministic tools, plain-language
-skill documents, state derived from disk, and enforced boundaries.
-Specialist roles read, produce, and verify, and a producer never verifies
-its own work. Each burst is analysed blind. Its numbers are frozen before
-any comparison with the published literature, and every mismatch is
-attributed and distilled into a numbered lesson with an executable test.
-We present the harness component by component, the guides and sensors
-that act at each step, and the object-and-action model that binds every
-product to its inputs by hash. On the walkthrough burst the design caught
-engine defects, which were fixed and tested, and confirmed blind
-predictions while refuting one. The trained artifact is the skill library,
-readable by a student or by another AI system. We state plainly where the
-human gate still decides, and we release the library, the engine, the
-tests, and the per-burst records.
+dozen spectral models to adopt. We describe the design of an agent that
+makes those calls for a campaign of 106 single-pulse \textit{Fermi}/GBM
+bursts, with a human approving every step. The language model runs inside
+a harness of deterministic tools, plain-language skill documents, state
+derived from disk, and enforced boundaries. Specialist roles read,
+produce, and verify; a producer never verifies its own work. The agent
+analyses each burst blind, freezes its numbers before it reads the
+published literature, and attributes every mismatch to our side, to the
+published side, or to a difference of frame. Each attribution becomes a
+numbered lesson with an executable test. We present the harness component
+by component, the guides and sensors that act at each step, and the
+object-and-action model that binds every product to its inputs by hash.
+On the walkthrough burst the design caught engine defects, now fixed and
+tested, and confirmed blind predictions while refuting one. The trained
+artifact is the skill library, which a student or another AI system can
+read. We state where the human gate still decides, and we release the
+library, the engine, the tests, and the per-burst records.
 \end{abstract}

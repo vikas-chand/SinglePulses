@@ -1,4 +1,9 @@
-# Abstract proposal (chng[abstract]) — 2026-09-03, awaiting the PI's approved / revise / skip
+# Abstract proposal (chng[abstract]) — r3, 2026-09-03, awaiting the PI's approved / revise / skip
+
+**r3 (12:55):** same facts as r1; register tuned against the retrieval corpus of 2,399 published abstracts (ADS; A&A/ApJ/ApJS/
+MNRAS GRB spectroscopy, astronomy LLM-agent papers, pipeline-provenance papers). Corpus medians: 237 words, 9 sentences,
+25 words/sentence, 2.0 clause hinges/100 words, 7.7 passives/1k. r1 ran 31 words/sentence and 5.5 hinges; r3 shortens the
+sentences and turns the passives into agent-first verbs (the agent analyses, freezes, attributes).
 
 PI: "abstract needs to be concise, and one the lines are they write for A&A (without giving titles)".
 Flow = A&A structured abstract without headings: context → aims → methods → results → conclusions.
@@ -9,23 +14,24 @@ Words: ~200 (was 423).
 ```latex
 \begin{abstract}
 Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on judgement
-calls: which detectors to trust, where the background lies, where the burst
-begins and ends, how finely to bin it in time, and which of two dozen
-spectral models to adopt. We describe the design of an agent that makes
-those calls for a campaign of 106 single-pulse \textit{Fermi}/GBM bursts,
-with a human approving every step. The language model runs inside a
-harness of deterministic tools, plain-language skill documents, state
-derived from disk, and enforced boundaries; specialist roles read, produce,
-and verify, and a producer never verifies its own work. Each burst is
-analysed blind, compared with the published literature only after its own
-numbers are frozen, and every mismatch is attributed and distilled into a
-numbered lesson that ships with an executable test. We present the harness
-component by component, the guides and sensors that act at each step, and
-the object-and-action model that binds every product to its inputs by hash,
-and we report what the walkthrough burst caught: engine defects fixed and
-tested, blind predictions confirmed, one refuted. The trained artifact is
-the skill library, readable by a student or by another AI system, and we
-state plainly where the human gate still does the deciding. We release the
+calls: which detectors to trust, where the background lies, where the
+burst begins and ends, how finely to bin it in time, and which of two
+dozen spectral models to adopt. We describe the design of an agent that
+makes those calls for a campaign of 106 single-pulse \textit{Fermi}/GBM
+bursts, with a human approving every step. The language model runs inside
+a harness of deterministic tools, plain-language skill documents, state
+derived from disk, and enforced boundaries. Specialist roles read,
+produce, and verify; a producer never verifies its own work. The agent
+analyses each burst blind, freezes its numbers before it reads the
+published literature, and attributes every mismatch to our side, to the
+published side, or to a difference of frame. Each attribution becomes a
+numbered lesson with an executable test. We present the harness component
+by component, the guides and sensors that act at each step, and the
+object-and-action model that binds every product to its inputs by hash.
+On the walkthrough burst the design caught engine defects, now fixed and
+tested, and confirmed blind predictions while refuting one. The trained
+artifact is the skill library, which a student or another AI system can
+read. We state where the human gate still decides, and we release the
 library, the engine, the tests, and the per-burst records.
 \end{abstract}
 ```
