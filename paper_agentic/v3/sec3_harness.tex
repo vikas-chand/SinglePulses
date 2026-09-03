@@ -1,5 +1,8 @@
 % ===========================================================================
 % v3 §3 — THE HARNESS, COMPONENT BY COMPONENT (replaces v2 §3 "The Agentic Workflow")
+% REVISION r5 (2026-09-03): numbers-verifier FAIL items fixed — stamp coverage (0b–5 approved, 6 presented), the late
+% stamp was STEP 4 (dated to the conversational approval, late recording disclosed), 5 of 10 step skills carry lessons,
+% ten schemas = nine object types + the approvals file, PNG not "image", the five = the register's products-chain launch paths.
 % REVISION r4 (2026-09-03): decision 21 — the whole system is "the agent" (the published usage: 48 "agent" vs
 % 0 "harness"/"scaffold" across 15 abstracts of the §1 candidates), "harness" = the machinery around the model.
 % REVISION r3 (2026-09-03): PI ruling "we don't need to cite blog posts ... we can cite published works" —
@@ -163,9 +166,12 @@ out what matters. Three moves do this. \emph{Reduce}: the hosted product
 compacts old conversation, and the per-burst live report is rebuilt from
 stamps rather than carried in prose. \emph{Offload}: durable guidance lives
 in twenty-seven guide files\prov{} under one directory, ten of them step
-skills indexed by the burst ledger and each carrying the step's criteria,
-its checklist, and its numbered lessons with a prefix unique to the file;
-the intended skill for the spectral-energy step is not yet written. A small
+skills indexed by the burst ledger, each carrying the step's criteria and
+checklist, and five of those also carrying numbered lessons under a prefix
+unique to the file; a small
+set of standing contracts, written in the human's quoted words, fixes what
+every figure and report must satisfy. The intended skill for the
+spectral-energy step is not yet written. A small
 set of standing contracts, written in the human's quoted words, fixes what
 every figure and report must satisfy. \emph{Isolate}: the protocol requires
 every verification to run in a fresh context that has seen nothing of the
@@ -190,20 +196,23 @@ disk, so it is useful for finding absent evidence, but it does not yet
 prove the currency of what it finds. The protocol requires every step gate
 to leave an approval stamp naming the approver, the time, and the status,
 and the live report links the stamps and products it knows how to locate;
-one burst carries a complete stamp record so far, the walkthrough burst of
+one burst carries a stamp for every step it has passed so far (steps 0b to 5
+approved, step 6 presented), the walkthrough burst of
 \S\ref{sec:casestudy}. Approvals are revocable. An operator-invoked
 invalidation tool, dry-run by default, marks every later approval stale
 when an upstream step changes and clears the downstream completion markers;
 it does not yet encode a dependency graph. The protocol requires evidence
 before reinstatement. Both directions have operated on the walkthrough
 burst, and its approval record carries them. When the background windows
-of two detectors were trimmed after step 3 had been approved, the cascade
-demoted the later steps and exposed that the step-3 approval had been given
-in conversation but never stamped; the record now carries that stamp with
-the delay disclosed rather than back-dated. The demoted binning approval was
-reinstated only on proof that the binning's reference detector was
-untouched by the trim and its block table byte-identical, the table's hash
-being written into the reinstatement note.
+of two detectors were trimmed after steps 3 and 4 had been approved, the
+cascade demoted the later approved step and, finding no stamp at step 4 to
+demote, exposed that the step-4 approval had been given in conversation
+but never stamped; the record now carries that stamp, dated to the
+conversational approval, with the late recording disclosed on the stamp
+itself. The demoted binning approval was reinstated only on proof that the
+binning's reference detector was untouched by the trim and its block table
+byte-identical, the table's hash being written into the reinstatement
+note.
 
 Products bind to their inputs by content hash and to their generators by
 commit, for the products so far covered: promotion receipts record the
@@ -211,8 +220,9 @@ hashes of the staged and promoted fit tables for six bursts\prov, a sidecar
 beside each promoted table records the detectors, ranges, and convention in
 force, and a campaign commit pin records the intended generator revision.
 Recording the full command line and environment, and binding every report
-to its fit table's hash, remain proposed. Since the census day, ten of the
-object types the pipeline writes\prov{} carry a JSON schema; the schema
+to its fit table's hash, remain proposed. Since the census day, ten JSON schemas\prov{} cover nine of the object
+types the pipeline writes and the per-burst approvals file that holds the
+stamps; the schema
 test validates the seven classes with instances on disk and the action
 trace, and ledgers four frozen records that pre-date the contract. Its
 first run found the literature-harvest manifests spelling their paper list
@@ -234,10 +244,12 @@ one; one checks a pattern-selected subset of shell commands that launch
 pipeline producers for a dispatch plan younger than a day; and one rejects
 pattern-matched commands that would delete or overwrite raw data, with
 acquisition commands exempt. Their limits are stated as plainly as their
-powers. The no-ship hook sees only image files; the dispatch hook covers
-one of the five pipeline transitions\prov{} and matches the text of a
-command rather than what it executes, so it has blocked read-only commands
-that merely named a producer; and the raw-data guard is a pattern, not a
+powers. The no-ship hook sees only PNG files; the dispatch hook covers
+one of the five launch paths of the products chain that the register
+enumerates\prov{} and matches the text of a
+command rather than what it executes, so it has blocked commands, some of
+them read-only, that merely named a producer; and the raw-data guard is a
+pattern, not a
 filesystem jail. Outside those matchers, control passes to fresh-context
 agents and, weakest of all, to prose, and several planned boundaries are
 not yet implemented.

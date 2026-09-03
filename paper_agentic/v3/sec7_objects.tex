@@ -1,5 +1,7 @@
 % ===========================================================================
 % v3 §7 — THE OBJECT-AND-ACTION MODEL (NEW; ~1 pp; figure F5)
+% Draft r2 (2026-09-03): numbers-verifier fixes — ten schemas = nine object types + the approvals file; quarantine
+% writes a manifest; invalidate records which step changed.
 % Draft r1 (2026-09-03), architecture block with §3 r4 and §4 (decision 20: one gate for §3+§4+§7).
 % Tone per decision 18: describe what is typed and linked on disk and which actions are first-class;
 % PROPOSED parts named once, no defect chronicle. Decision 19: description of a design, no claims.
@@ -50,12 +52,12 @@ identity, input hashes, verdict, cost). Three are the law: the
 status and keep-condition), the \emph{lesson} (a numbered entry in a skill
 file), and the \emph{burst state} (one of the fourteen states of
 \S\ref{sec:loop}, derived from disk), together with the \emph{commit pin}
-that fixes generators by commit and products by hash. Ten object types
-the pipeline writes carry a JSON schema\prov{}; five of the thirteen drawn
-here are among them (the stamp, the receipt, the audit, the action event,
-and the burst state), and the others are the literature-harvest manifest
-and its paper records, the frozen prediction record of
-\S\ref{sec:doctrine}, and the fit sidecar. The test suite validates every
+that fixes generators by commit and products by hash. Ten JSON
+schemas\prov{} cover nine object types and the per-burst approvals file
+that holds the stamps; five of the thirteen drawn here are among them (the
+stamp, the receipt, the audit, the action event, and the burst state), and
+the others are the literature-harvest manifest and its paper records, the
+frozen prediction record of \S\ref{sec:doctrine}, and the fit sidecar. The test suite validates every
 instance on disk against its schema. Schemas came late: the pipeline had written
 these objects for months before their shape was declared, and the first
 validation pass found four spellings of one key in the literature-harvest
@@ -80,9 +82,9 @@ report-conformance gate of Table~\ref{tab:roster} be written as code.
 \paragraph{Actions.} An action is an operation that changes what the
 campaign may claim. Four are first-class on disk today, each leaving a
 typed record with an identity: \emph{approve} writes a stamp; \emph{present}
-writes a stamp; \emph{promote} and \emph{quarantine} write a receipt; and
+writes a stamp; \emph{promote} writes a receipt and \emph{quarantine} a manifest; and
 \emph{invalidate} demotes the approvals downstream of an amended step and
-records why. Two are proposed and drawn dashed. \emph{Launch producer}
+records which step changed. Two are proposed and drawn dashed. \emph{Launch producer}
 would wrap every pipeline run as intent, preflight, commit, and receipt,
 so that a producer could not start without the plan and could not finish
 without the sidecar; today the dispatch hook of \S\ref{sec:boundaries}

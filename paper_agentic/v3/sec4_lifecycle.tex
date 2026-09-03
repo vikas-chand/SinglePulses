@@ -1,9 +1,12 @@
 % ===========================================================================
 % v3 §4 — GUIDES AND SENSORS ALONG THE BURST (~2 pp; figures F2 + F3)
+% Draft r2 (2026-09-03): numbers-verifier fixes — typed outcomes (INCONCLUSIVE / structural exclusion; the v2 word
+% "non-identifiable" exists nowhere in the repo), edge stamps as the audit record defines them (3.92 kT vs band edge,
+% 20 keV trust floor), "at least four" query forms, strict >6 for strong, lessons in 5 of 10 step skills.
 % Draft r1 (2026-09-03), architecture block with §3 r4 and §7 r1 (decision 20: one gate for §3+§4+§7).
 % Absorbs from v2: "The campaign loop" steps paragraph (v2:264-288, re-ordered to the OFFICIAL ledger
 % 0b,0,1-9 — PI ruling 2026-08-30 — and step 8 = nuFnu panels), "Inside the fitting step" (v2:312-340) with
-% v2's fig:fitstep TikZ KEPT UNCHANGED as F3 (outline: "v2 Fig. 2 unchanged"), the fan-out/verifier-gates
+% v2's fig:fitstep TikZ as F3 (outline: "v2 Fig. 2 unchanged"; r2 changed ONE box: typed outcomes / INCONCLUSIVE), the fan-out/verifier-gates
 % paragraph (v2:359-371). P0 freeze + three-way attribution -> §6; K-clean/freeze -> §5 (one pointer each).
 % Tone per decisions 18/19: describe what runs and what checks it; PROPOSED once; no claims.
 % Figure F2 = paper_agentic/figures/fig_F2_lifecycle_guides_sensors (gated; shas in figures/GATE_LEDGER.md).
@@ -42,8 +45,8 @@ ledger, the checks that run continuously. Dashed items are proposed.}
 \subsection{The eleven steps} \label{sec:steps}
 
 The ledger begins before the data. The \emph{literature harvest} (step 0b)
-finds and fetches every refereed paper that analysed the burst, using four
-query forms (the GRB name, the trigger name, the day fraction, the trigger
+finds and fetches every refereed paper that analysed the burst, using at
+least four query forms (the GRB name, the trigger name, the day fraction, the trigger
 number), preferring the version of record, and recording each harvested
 value with its conventions: which peak-energy definition, which sign
 convention for the lag, which energy band, which time interval on whose
@@ -71,14 +74,17 @@ selections, with the estimator named on every value and the lag sign
 convention stated. The \emph{spectral-energy panels} (8) render every bin
 under the display semantics of the standard X-ray fitting package and are
 read residual by residual. \emph{Quality control} (9) assembles the report,
-runs the literature comparison, and closes the burst into one of a set of
-typed terminal states, of which \texttt{non-identifiable} is a
-\emph{successful} outcome: the workflow is forbidden to keep adjusting an
+runs the literature comparison, and closes the burst with a typed verdict
+and named flags. A bin in which no model passes the validity gate is
+declared inconclusive by the engine, and a burst whose response does not
+cover its source window is excluded structurally; both are recorded,
+\emph{successful} outcomes. The workflow is forbidden to keep adjusting an
 analysis until it manufactures a preference.
 
 The guides are the same kind of object at every step: the step's skill
 document, read end to end by the skill reader before the step opens, with
-its criteria, its checklist, and its numbered lessons; for the selection
+its criteria, its checklist, and, where the step has accumulated them, its
+numbered lessons; for the selection
 steps the human's rulings quoted verbatim; for the figure and report steps
 the standing contracts. The sensors differ by step because the artifacts
 differ. A harvest manifest is validated against its schema. An inventory
@@ -97,7 +103,8 @@ blind-first literature comparison; a report-conformance gate that would
 check the report against its contract as code is specified and proposed.
 Beneath the ledger two checks run continuously: the evaluation battery,
 one command that runs the test suite and the fit-table auditor over every
-promoted table and names its result with the model identity and commit,
+promoted table and records, with its result, the model identity it was
+given and the commit,
 and the distillation of every incident into a lesson and a register row
 in the session that produced it (\S\ref{sec:learning}).
 
@@ -127,9 +134,9 @@ soft burst.
 \node[dec, below=of menu] (valid) {validity\\gates};
 \node[box, right=14mm of valid] (excl) {railed / capped-bound stamps\\excluded from selection, \emph{reported}};
 \node[box, below=of valid] (aic) {\textbf{AIC over valid fits only} $\rightarrow$ \emph{two} margins:\\vs.\ runner-up (which model) · vs.\ simplest (is structure needed)};
-\node[box, below=of aic] (ev) {\textbf{evidence ratios} $e^{\Delta\mathrm{AIC}/2}$, graded: $\geq$6 strong ($\sim$20:1) · $\geq$10 decisive ($\sim$150:1)};
+\node[box, below=of aic] (ev) {\textbf{evidence ratios} $e^{\Delta\mathrm{AIC}/2}$, graded: $>$6 strong ($\sim$20:1) · $\geq$10 decisive ($\sim$150:1)};
 \node[box, below left=5mm and -20mm of ev] (deg) {ambiguous $\rightarrow$ \textbf{degeneracy class}\\(adequacy $\neq$ identity)};
-\node[box, below right=5mm and -20mm of ev] (ok) {typed terminal states\\(\texttt{non-identifiable} = success)};
+\node[box, below right=5mm and -20mm of ev] (ok) {typed outcomes\\(\texttt{INCONCLUSIVE} = success)};
 \draw[arr] (data)--(menu); \draw[arr] (menu)--(valid);
 \draw[arr] (valid)-- node[lab, above]{fail} (excl);
 \draw[arr] (valid)-- node[lab, right]{pass} (aic);
@@ -145,9 +152,10 @@ ranks the valid fits by the Akaike information criterion and writes the
 winner; the interpretation quotes the winner's margin twice, against the
 runner-up (\emph{which} model) and against the best simpler model it nests
 (\emph{is the extra component needed at all}), each converted to an
-evidence ratio $e^{\Delta\mathrm{AIC}/2}$ and graded. A margin of 6
-corresponds to roughly 20:1 and is called strong; 10, roughly 150:1,
-decisive; anything less is reported as what it is. Heads within two units
+evidence ratio $e^{\Delta\mathrm{AIC}/2}$ and graded. A margin above 6
+corresponds to more than roughly 20:1 and is tracked as strong; at or
+above 10, roughly 150:1, decisive; anything less is reported as what it
+is. Heads within two units
 of each other are a tie, never a winner: the tie is reported as a set, and
 where one model must be adopted for a downstream product the adoption rule
 prefers the fewest parameters and then the lowest criterion, and says so.
@@ -155,11 +163,12 @@ Where extra structure is required but thermal and non-thermal descriptions
 sit within a few units of each other, the bin is assigned to a degeneracy
 class rather than a physics claim: \emph{adequacy and identity are
 different questions}, and the second frequently cannot be answered from
-these data alone. Two further stamps ride on the fit row rather than in
-prose: a bound-pinned parameter is flagged where it sits, and a thermal
-component whose peak falls below the lowest usable detector energy is
-marked as edge-constrained, so that a reader of the table sees the
-condition without reading the report.
+these data alone. Two further stamps ride on the artifact rather than in prose: a
+bound-pinned parameter is flagged on the fit row where it sits, and the
+audit record beside the table classes every thermal component by where
+its peak, at $3.92\,kT$, falls: below the detector band, inside it but
+below the 20~keV trust floor (edge-constrained), marginal, or in band, so
+that a reader of the table sees the condition without reading the report.
 
 \subsection{Fan-out and the gates} \label{sec:fanout}
 

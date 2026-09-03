@@ -79,3 +79,18 @@ and the 4-page roster table; the prose of the block is ~5.5 k words.
   (the agent contains the harness); the box names Claude (item E) and states the bare-model limits absolutely (the
   prose now says "retains no project state between calls and observes nothing outside its context"). If E = yes,
   F1 stays; if E = no, the box loses "Claude session" and F1 re-gates.
+
+## 7. Fresh-context numbers/status verifier — VERDICT and what changed (2026-09-03 ~01:55)
+**Verdict on r4/r1/r1: FAIL** (five sentences stronger than disk, none touching a T1/F1/F5 count). All five fixed →
+§3 r5, §4 r2, §7 r2; the full document rebuilt (agentic_grb_v3.pdf).
+| # | what the verifier found (primitive) | fix applied |
+|---|---|---|
+| 1 | "one burst carries a complete stamp record" — bn110920546/APPROVALS.json has 0b–5 APPROVED, 6 PRESENTED, 7–9 absent | "a stamp for every step it has passed so far (steps 0b to 5 approved, step 6 presented)" |
+| 2 | the late-stamped approval was **step 4**, not step 3 (step 4 feedback: "LATE-RECORDED STAMP … lived only in chat for ~7 h"); its stamp is dated to the conversational approval with the delay disclosed on the stamp | incident paragraph rewritten to the record |
+| 3 | `non-identifiable` (v2's word, kept in F3 and §4) exists in no file under dev/ scripts/ tests/ agents/; the engine's typed outcome is `INCONCLUSIVE`, the burst-level one is structural exclusion; QC verdict = ok/bad + flags | §4 sentence + F3 box changed ("typed outcomes (INCONCLUSIVE = success)") — F3 delta gate launched |
+| 4 | edge stamp: code classes the 3.92 kT peak as BELOW_BAND / EDGE_CONSTRAINED (<20 keV) / MARGINAL / IN_BAND and writes it to the audit record, not the fit row | §4 sentence rewritten to the code's definition and location |
+| 5 | "each [step skill] carrying … numbered lessons": 5 of 10 do (LiteratureHarvest, GCNIntelligence, DataInventory, SpectralFitting, Temporal) | "five of those also carrying numbered lessons" (§3.3); §4 guides sentence qualified |
+| 6 | ten schemas = nine object types + the per-burst approvals FILE (a container of stamps) | §3.4 and §7 reworded |
+| nits | PNG not "image files"; the "five" transitions = the register's products-chain launch paths; two of the three false blocks were writes; "at least four" query forms; strong = strictly >6 (code TRACKED); quarantine writes a manifest not a receipt; invalidate records which step changed, not a free-text why; eval battery records the model id it is given | all applied |
+Fragile notes carried (not paper text): the informative `stale_reason`/REINSTATED texts in APPROVALS.json were hand-written (the tool writes a generic reason); step 3's and step 5's notes describe two cascade runs and read as a contradiction to a cold reader; the dispatch-hook fix remains unapplied since 2026-08-27 (paper's present tense is correct); any v2 figure "kept unchanged" deserves the same grep that caught `non-identifiable`.
+Distiller candidates: (a) F3's ungrounded state name survived v2 → v3 because "kept unchanged" skipped the grep — rule: every inherited figure string is verified like prose; (b) `live_report.py --approve` does not clear `stale_reason` (step 3 is APPROVED and still carries one); (c) five step skills have no lesson ledger yet (the D1 "ledger = index" decision anticipated this).
