@@ -18,10 +18,11 @@
   code/.style={box, fill=codefill, draw=codeline, line width=0.8pt},
   agent/.style={box, fill=agentfill, draw=agentline, line width=0.3pt},
   prop/.style={box, dashed, draw=black!45, text=black!70},
+  event/.style={box, fill=black!5, draw=black!25},
   human/.style={draw=humanline, thick, diamond, aspect=2.6, fill=humanfill, inner sep=0.5pt, font=\sffamily\scriptsize\bfseries},
   head/.style={font=\sffamily\footnotesize\bfseries, text=black!75},
   arr/.style={-{Stealth[length=2mm,width=1.7mm,round]}, line width=1pt, black!55, line cap=round, line join=round},
-  lab/.style={font=\sffamily\tiny\itshape, text=black!60, execute at begin node=\nohyph}]
+  lab/.style={font=\sffamily\scriptsize\itshape, text=black!60, execute at begin node=\nohyph}]
 
 % left column: runtime harness
 \node[head] (hl) {runtime harness: walks a burst};
@@ -29,27 +30,29 @@
 \node[agent, below=of prod] (ver) {fresh-context verifiers: figure, numbers, seed, port; tie reporter; admission gate};
 \node[box, below=of ver] (stamp) {stamps, receipts, sidecars: identity, hash, commit};
 \node[human, below=3mm of stamp] (gate) {PI gate};
-\node[box, below=3mm of gate] (next) {next step; next burst};
+\node[event, below=3mm of gate] (next) {next step; next burst};
 \draw[arr] (prod) -- (ver); \draw[arr] (ver) -- (stamp); \draw[arr] (stamp) -- (gate); \draw[arr] (gate) -- (next);
 \draw[arr] (next.west) -- ++(-3mm,0) |- (prod.west);
 
 % right column: evaluation harness
 \node[head, right=14mm of hl] (hr) {evaluation harness: judges a change};
-\node[code, below=2.5mm of hr] (tests) {lesson tests: 134 tests over the real products; register and lesson id guards};
+\node[code, below=2.5mm of hr] (tests) {test suite: 134 tests (lessons-as-tests, id guards, compile checks) over the real products};
 \node[code, below=of tests] (audit) {fit-table auditor over every promoted table (25): argmin, rails, tie set, count triple};
-\node[prop, below=of audit] (known) {known-results replay: published lags, block edges, limits (proposed)};
-\node[box, below=of known] (rec) {one record per run: PASS / FAIL, model identity, commit, tree state};
+\node[prop, below=of audit] (known) {known-results replay of stored solutions and published values (proposed)};
+\node[box, below=of known] (rec) {one record per run: PASS / FAIL with the model identity, commit, tree state};
 \draw[arr] (tests) -- (audit); \draw[arr] (audit) -- (known); \draw[arr] (known) -- (rec);
 
 % the coupling
-\draw[arr] (stamp.east) -- ++(4mm,0) |- node[lab, pos=0.25, right, text width=13mm, align=left] {any change to the runtime, or of the model} (tests.west);
-\draw[arr, dashed] (rec.west) -| node[lab, pos=0.75, left, text width=12mm, align=right] {a FAIL blocks the freeze} (gate.east);
+\draw[arr] (stamp.east) -- ++(4mm,0) |- node[lab, pos=0.25, right, text width=11mm, align=left] {any change to the runtime, or of the model} (tests.west);
+\draw[arr, dashed] (rec.west) -- ++(-5mm,0) |- (next.east);
+\node[lab, below=0.8mm of next.south east, anchor=north, text width=34mm, align=center, xshift=6mm] {a FAIL would block the next step and the freeze (proposed)};
 
 % legend
-\node[code, below=5mm of next, text width=15mm, font=\sffamily\tiny] (l1) {blue: code};
-\node[agent, right=1.5mm of l1, text width=17mm, font=\sffamily\tiny] (l2) {green: model role};
-\node[box, right=1.5mm of l2, text width=16mm, font=\sffamily\tiny] (l3) {white: records};
-\node[human, right=2mm of l3, aspect=2.2, font=\sffamily\tiny\bfseries] (l4) {human};
-\node[prop, right=2mm of l4, text width=17mm, font=\sffamily\tiny] (l5) {dashed: proposed};
+\node[code, below=9mm of next.south west, anchor=north west, text width=12mm, font=\sffamily\scriptsize] (l1) {blue: code};
+\node[agent, right=1.2mm of l1, text width=17mm, font=\sffamily\scriptsize] (l2) {green: model role};
+\node[box, right=1.2mm of l2, text width=13mm, font=\sffamily\scriptsize] (l3) {white: records};
+\node[event, right=1.2mm of l3, text width=13mm, font=\sffamily\scriptsize] (l3b) {grey: events};
+\node[human, right=1.5mm of l3b, aspect=2.2, font=\sffamily\scriptsize\bfseries] (l4) {human};
+\node[prop, right=1.5mm of l4, text width=16mm, font=\sffamily\scriptsize] (l5) {dashed: proposed};
 \end{tikzpicture}
 \end{document}

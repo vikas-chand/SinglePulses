@@ -30,16 +30,26 @@ SKILLS = {'SpectralFitting': 'L', 'Temporal': 'TM', 'DataInventory': 'D', 'GCNIn
 WALK21 = ('bn110920546', '2026-08-30')
 
 
-def ledger_rows():
-    rows = []
+def ledger_rows(known_ids):
+    """Bursts #1-#8 from the ledger: lesson ids named in `lessons_born`, WHITELISTED against the heading-form
+    lessons on disk (so 'T90' is never a lesson) and DEDUPLICATED across rows (an id counts at its first
+    appearance only). `bugs_found` = defects found at any layer (engine, temporal, catalog, reporting)."""
+    rows, seen = [], set()
     for r in csv.DictReader(open(LEDGER, encoding='utf-8')):
-        ids = re.findall(r'\b(?:L|TM|D|G|T)\d{1,2}(?:-(?:L|TM|D|G|T)?\d{1,2})?\b', r['lessons_born'])
-        n = 0
-        for tok in ids:
-            m = re.match(r'([A-Z]+)(\d+)-(?:[A-Z]+)?(\d+)$', tok)
-            n += (int(m.group(3)) - int(m.group(2)) + 1) if m else 1
-        rows.append({'order': int(r['order']), 'burst': r['burst'], 'walked': r['walked'], 'lessons': n,
-                     'defects': int(r['bugs_found'] or 0), 'source': 'notes/campaign_ledger.csv', 'lessons_born': r['lessons_born']})
+        toks = re.findall(r'\b(L|TM|D|G|T)(\d{1,2})(?:-(?:L|TM|D|G|T)?(\d{1,2}))?\b', r['lessons_born'])
+        ids = []
+        for pre, a, b in toks:
+            for n in range(int(a), int(b or a) + 1):
+                ids.append(f'{pre}{n}')
+        ALIAS = {'L26': 'TM3', 'L29': 'TM1'}   # ids relocated to Temporal (2026-09-02) keep their birth credit
+        ids = [ALIAS.get(i, i) for i in ids]
+        ids = [i for i in ids if i in known_ids]
+        new_ids = [i for i in ids if i not in seen]
+        seen.update(new_ids)
+        rows.append({'order': int(r['order']), 'burst': r['burst'], 'walked': r['walked'], 'lessons': len(new_ids),
+                     'lesson_ids': new_ids, 'defects': int(r['bugs_found'] or 0),
+                     'source': 'notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)',
+                     'lessons_born': r['lessons_born']})
     return rows
 
 
@@ -52,8 +62,16 @@ def parsed_lessons():
                 tail = m.group(2)
                 d = re.search(r'(20\d\d-\d\d-\d\d)', tail)
                 b = re.search(r'(bn\d{9})', tail)
-                out.append({'id': f'{pre}{m.group(1)}', 'file': f, 'date': d.group(1) if d else None, 'burst': b.group(1) if b else None})
+                out.append({'id': f'{pre}{m.group(1)}', 'file': f, 'date': d.group(1) if d else None, 'burst': b.group(1) if b else None,
+                            'proposed': 'PROPOSED' in tail.upper()})
     return out
+
+
+def register_defects(burst):
+    """Register rows that cite the burst: the defects the walkthrough surfaced, at any layer."""
+    rows = [l for l in open(os.path.join(ROOT, 'dev', 'ai_guides', 'AgentArchitecture.md'), encoding='utf-8')
+            if l.startswith('|') and re.search(r'\bNR-\d+\b', l) and burst in l]
+    return sorted({m for l in rows for m in re.findall(r'\bNR-\d+\b', l)})
 
 
 def main():
@@ -66,35 +84,45 @@ def main():
         apply_pub_style()
     except Exception:
         pass
-    rows = ledger_rows()
     lessons = parsed_lessons()
-    w21 = [l for l in lessons if l['burst'] == WALK21[0] or (l['date'] and l['date'] >= WALK21[1])]
-    rows.append({'order': 21, 'burst': WALK21[0], 'walked': WALK21[1] + '..', 'lessons': len(w21), 'defects': 0,
-                 'source': 'dev/ai_guides/*.md headings (burst tag or date >= 2026-08-30)', 'lessons_born': ';'.join(l['id'] for l in w21)})
+    known = {l['id'] for l in lessons}
+    rows = ledger_rows(known)
+    # #21 (ninth walked burst): lessons whose HEADING names the burst and that are not marked PROPOSED
+    w21 = [l for l in lessons if l['burst'] == WALK21[0] and not l['proposed']]
+    d21 = register_defects(WALK21[0])   # rows CITING the burst (as instance or birth) — not a defect tally; recorded, not drawn
+    rows.append({'order': 21, 'burst': WALK21[0], 'walked': WALK21[1] + '..', 'lessons': len(w21),
+                 'lesson_ids': [l['id'] for l in w21], 'defects': None, 'register_rows_citing': d21,
+                 'source': 'dev/ai_guides/*.md headings naming the burst, PROPOSED excluded; defects = register rows citing the burst',
+                 'lessons_born': ';'.join(l['id'] for l in w21)})
     xs = list(range(1, len(rows) + 1))
-    labels = [f"#{r['order']}" for r in rows]
+    labels = [f"#{r['order']}" for r in rows[:-1]] + ['#9\n(rev. 21)']
     cum = []
     c = 0
     for r in rows:
         c += r['lessons']
         cum.append(c)
-    fig, ax = plt.subplots(figsize=(5.2, 3.4))
+    fig, ax = plt.subplots(figsize=(6.0, 4.0))
     ax.bar(xs, [r['lessons'] for r in rows], color='0.75', edgecolor='0.35', label='lessons distilled')
-    ax.bar(xs, [r['defects'] for r in rows], color='0.3', edgecolor='0.2', width=0.5, label='engine defects found')
+    ax.bar(xs, [r['defects'] or 0 for r in rows], color='0.3', edgecolor='0.2', width=0.5, label='defects found (all layers)')
+    for x, r in zip(xs, rows):
+        if r['defects'] is None:
+            ax.text(x, 0.15, 'defects\nnot\ntallied', ha='center', va='bottom', fontsize=7, color='0.25')
     ax2 = ax.twinx()
     ax2.plot(xs, cum, color='k', marker='o', ms=3.5, lw=1.2, label='cumulative lessons')
     ax.set_xticks(xs)
     ax.set_xticklabels(labels)
-    ax.set_xlabel('walked burst (campaign order)')
+    ax.set_xlabel('walked burst (walk order; not time)')
     ax.set_ylabel('per burst')
     ax2.set_ylabel('cumulative lessons')
     ax.set_ylim(0, max(r['lessons'] for r in rows) * 1.75)
     ax2.set_ylim(0, max(cum) * 1.5)
     h1, l1 = ax.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
-    ax.legend(h1 + h2, l1 + l2, loc='upper left', fontsize=8, framealpha=0.9, edgecolor='0.6')
-    ax.annotate('in progress', (xs[-1], rows[-1]['lessons']), xytext=(0, 4), textcoords='offset points', ha='center', va='bottom', fontsize=7, color='0.3')
-    ax.text(0.99, 0.97, 'provisional: walkthrough era', transform=ax.transAxes, ha='right', va='top', fontsize=7, color='0.4')
+    from matplotlib.ticker import MaxNLocator
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    ax.legend(h1 + h2, l1 + l2, loc='upper left', framealpha=0.9, edgecolor='0.6')
+    ax2.annotate('in progress', (xs[-1], cum[-1]), xytext=(-2, 7), textcoords='offset points', ha='right', va='bottom', color='0.3')
+    ax.text(0.97, 0.90, 'provisional: walkthrough era', transform=ax.transAxes, ha='right', va='top', color='0.4')
     fig.tight_layout()
     fig.savefig(OUT + '.pdf')
     fig.savefig(OUT + '.png', dpi=300)
@@ -102,7 +130,12 @@ def main():
     side = {'figure': 'F7 campaign learning curve', 'utc': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
             'git_head': head, 'rows': rows, 'cumulative': cum, 'total_lessons': cum[-1],
             'parsed_lessons_total': len(lessons), 'walkthrough_in_progress': {'burst': WALK21[0], 'since': WALK21[1], 'lessons': [l['id'] for l in w21]},
-            'ledger_sha256': hashlib.sha256(open(LEDGER, 'rb').read()).hexdigest()}
+            'ledger_sha256': hashlib.sha256(open(LEDGER, 'rb').read()).hexdigest(),
+            'generator_sha256': hashlib.sha256(open(os.path.abspath(__file__), 'rb').read()).hexdigest(),
+            'skill_file_sha256': {f: hashlib.sha256(open(os.path.join(ROOT, 'dev', 'ai_guides', f + '.md'), 'rb').read()).hexdigest() for f in SKILLS},
+            'rules': {'ledger_rows': 'ids named in lessons_born, whitelisted against heading-form lessons, first appearance only',
+                      'walkthrough_row': 'heading names the burst and is not PROPOSED; defects NOT tallied (the walkthrough is in progress; register rows citing the burst are listed, not counted)',
+                      'x_axis': 'walk order (ledger order 1-8, then the ninth walked burst = review-index #21); not time'}}
     json.dump(side, open(OUT + '.json', 'w'), indent=1)
     print(f"wrote {os.path.relpath(OUT, ROOT)}.{{pdf,png,json}}: {len(rows)} bursts, {cum[-1]} lessons cumulative; "
           f"walkthrough #21 credited with {len(w21)} ({', '.join(l['id'] for l in w21)})")

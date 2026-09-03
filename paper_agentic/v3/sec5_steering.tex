@@ -4,9 +4,11 @@
 % Gradients" (v2:505-609): first two paragraphs and the two episodes kept in substance; the register and
 % the enforcement hierarchy (from v2's "operating skeleton") moved here; the id-collision worked example added;
 % divergence learning kept; K/freeze stated as the exit rule with "not yet exercised".
-% Counts (census 2026-09-03): 43 heading-form numbered lessons in the five step skills that carry them
-% (L 31 present of ids to 34, TM 5, D 5, G 2, T 11 — dev/build_learning_curve.py census); register 49 NR
-% rows: 20 DEPLOYED, 21 PROPOSED, 3 PARTIAL, 5 closed/practice/fix-applied; 9 rows with a keep: clause.
+% Counts (census 2026-09-03, numbers-verifier round 1 applied): 43 heading-form numbered lessons in FOUR step skills
+% (L 31 of ids to 34 — L6b is a sub-lesson, not counted; TM 5; D 5; G 2); LiteratureHarvest carries 11 list-form traps;
+% 23 credited to the nine walked bursts (ledger, ids whitelisted + deduplicated, L26 -> TM3; #21 by heading burst tag,
+% PROPOSED excluded); register 49 NR rows: 20 DEPLOYED, 22 PROPOSED, 3 PARTIAL, 4 closed/practice/fixed (NR-25's
+% status cell holds a literal \| — parse on the keyword); 9 rows with a keep: clause.
 % Figure F4 = figures/fig_F4_steering_loop (gated); F7 = figures/fig_F7_learning_curve (dev/build_learning_curve.py).
 % Decisions 18/19: describe what runs; no claims. \cite keys are v2's (in agentic_grb.bib).
 % ===========================================================================
@@ -64,10 +66,14 @@ clean pass has been recorded.}
 \end{figure*}
 
 This training style has properties that gradient methods cannot offer at
-our scale, and one property they share. It is data-efficient: the five
-step skills that carry lessons hold forty-three numbered lessons\prov,
-twenty-seven of them attributed to the nine bursts walked so far and the
-rest to the campaign batches between walkthroughs. It is auditable: the learned policy is plain
+our scale, and one property they share. It is data-efficient: four of the
+five step skills hold forty-three heading-form numbered lessons\prov{} (the
+literature-harvest skill carries eleven numbered traps in list form);
+twenty-three of the forty-three are credited to the nine bursts walked so
+far, by the campaign ledger for the first eight and by the lesson headings
+for the ninth, and the rest to the reconciliation pilot that preceded the
+walkthroughs, to campaign batches, to lessons the ledger rows omit, and to
+rulings by the human. It is auditable: the learned policy is plain
 text, and every rule cites the burst that paid for it. It transfers across
 model families: the same library is executed by different vendors' agents,
 which is the basis of the multi-system comparison of \S\ref{sec:design}.
@@ -80,12 +86,15 @@ sweep produces citable numbers.
 
 \begin{figure}[t]
 \includegraphics[width=\columnwidth]{figures/fig_F7_learning_curve.pdf}
-\caption{The campaign learning curve\prov: lessons distilled per walked
-burst (bars), engine defects found (dark bars), and the cumulative lesson
-count (line), from the campaign ledger for the first eight walked bursts
-and from the dated lesson entries for the walkthrough burst still in
-progress. The curve is visibly unconverged; its flattening, not a preset
-burst count, terminates the training phase.}
+\caption{The campaign learning curve\prov: lessons credited per walked
+burst (bars), defects found at any layer (dark bars), and the cumulative
+lesson count (line). The first eight bars follow the campaign ledger, with
+lesson identifiers checked against the skill files and counted once; the
+ninth is the walkthrough burst still in progress (review-index number 21),
+credited with the lessons whose entries name it, its defects not yet
+tallied. The order is walk order, not time. The curve is visibly
+unconverged; its flattening, not a preset burst count, terminates the
+training phase.}
 \label{fig:curve}
 \end{figure}
 
@@ -95,8 +104,9 @@ The register is the campaign's institutional memory: forty-nine numbered
 rows\prov, one per needed guard or agent, each carrying the incident that
 revealed the need, the layer chosen, and the status. Table~\ref{tab:register}
 summarises it and shows eight rows in full. Twenty rows are deployed,
-twenty-one are proposed, three are partial (the sensor side built, the
-producer side not), and five are closed or recorded as practice. The
+twenty-two are proposed, three are partial (the sensor side built, the
+producer side not), and four are closed, recorded as practice, or fixed in
+place. The
 dispatcher reads the register at every task intake, so a missing guard is a
 stated liability rather than a silent gap, and the register's own rule
 applies to itself: a row is minted in the session that saw the incident,
@@ -107,15 +117,15 @@ and a proposed guard is listed as proposed until code or a file exists.
 \tablecaption{The requirements register: summary and eight rows in full (census 2026-09-03).\label{tab:register}}
 \tablehead{\colhead{row} & \colhead{purpose (the incident that bore it)} & \colhead{status}}
 \startdata
-\multicolumn{3}{l}{\textit{summary: 49 rows; 20 deployed, 21 proposed, 3 partial, 5 closed or practice; 9 with a keep condition}} \\
+\multicolumn{3}{l}{\textit{summary: 49 rows; 20 deployed, 22 proposed, 3 partial, 4 closed, practice, or fixed in place; 9 with a keep condition}} \\
 NR-1 & \rc{band-validity guard: containment and railed-fraction checks before any spectral band ships (the montage that contradicted its own engine table)} & deployed, code \\
 NR-19 & \rc{invalidation cascade: an amended approval clears downstream markers and demotes later approvals mechanically} & deployed, code \\
 NR-22 & \rc{skip-by-existence is not skip-by-currency: a marker certifies that a product exists, not which inputs built it} & proposed \\
-NR-24 & \rc{report-conformance gate: an assembled deliverable verified against the report contract, including hash equality of report, figures, and table} & proposed \\
+NR-24 & \rc{report-conformance gate: an assembled deliverable verified against the report contract, whose first rule binds report and figures to the fit table's hash} & proposed \\
 NR-30 & \rc{dispatch-hook coverage: the hook that requires a dispatch plan covers one of five launch paths} & proposed \\
 NR-44 & \rc{margins-only reporting: information-criterion differences, never absolute values, on this engine} & deployed, code \\
 NR-47 & \rc{two-hat separation: the external auditor is never supervisor and blind referee on the same product version} & deployed, protocol and machinery \\
-NR-48 & \rc{derived columns recomputed on cell replacement: a promoted table's stored winner must equal the validity-gated argmin over all model columns} & partial (sensor deployed, promotion path proposed) \\
+NR-48 & \rc{derived columns recomputed on cell replacement: a promoted table's stored winner must equal the validity-gated argmin over all model columns} & proposed (sensor deployed; promotion-path recompute not written) \\
 \enddata
 \end{deluxetable*}
 
@@ -157,8 +167,10 @@ sessions working the same repository each minted a register row numbered
 NR-41, for two different guards. The collision was caught the next day when
 the building session inventoried the register, and it was closed the same
 day at the strongest feasible layer: one row was renumbered, and a test
-that fails on any duplicate identifier entered the suite. The same test now
-guards the lesson prefixes of every skill file. The incident cost nothing
+that fails on any duplicate register identifier entered the suite. A second
+collision found the same day, two skill files carrying the same lesson
+numbers, produced a sibling test that guards the lesson prefixes of every
+skill file. The incident cost nothing
 scientifically and everything procedurally: a register that can hold two
 truths under one number cannot be the campaign's memory, and the fix is a
 sentence nobody has to remember.
