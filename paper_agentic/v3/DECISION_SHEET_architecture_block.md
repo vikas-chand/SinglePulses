@@ -94,3 +94,14 @@ and the 4-page roster table; the prose of the block is ~5.5 k words.
 | nits | PNG not "image files"; the "five" transitions = the register's products-chain launch paths; two of the three false blocks were writes; "at least four" query forms; strong = strictly >6 (code TRACKED); quarantine writes a manifest not a receipt; invalidate records which step changed, not a free-text why; eval battery records the model id it is given | all applied |
 Fragile notes carried (not paper text): the informative `stale_reason`/REINSTATED texts in APPROVALS.json were hand-written (the tool writes a generic reason); step 3's and step 5's notes describe two cascade runs and read as a contradiction to a cold reader; the dispatch-hook fix remains unapplied since 2026-08-27 (paper's present tense is correct); any v2 figure "kept unchanged" deserves the same grep that caught `non-identifiable`.
 Distiller candidates: (a) F3's ungrounded state name survived v2 → v3 because "kept unchanged" skipped the grep — rule: every inherited figure string is verified like prose; (b) `live_report.py --approve` does not clear `stale_reason` (step 3 is APPROVED and still carries one); (c) five step skills have no lesson ledger yet (the D1 "ledger = index" decision anticipated this).
+
+## 8. F3 delta gate (in-text fitting-step figure) — PASS-WITH-NITS (2026-09-03 ~02:20), nits applied → r3, re-gate in flight
+Verified: INCONCLUSIVE is the engine's token when no fit passes the validity gate; "non-identifiable" appears nowhere;
+e^3 = 20.1, e^5 = 148.4; strong is strict >6 in the auditor (PI ruling 2026-08-26/30), decisive ≥10. Nits fixed now:
+"unconditional multistarts for every family" overstated (thermal-composite restarts are skipped when kT is not railed
+AND the nested LRT ≥ 9.2 — scripts/10 ~1293–1303) → prose + box reworded; "vs. simplest" → "vs. best simpler ancestor";
+arrows anchored at the boxes' north; §3's table cell "typed terminal states" → "typed outcomes".
+**Repo inconsistency surfaced (PI question / distiller):** STRONG is "≥ 6" in scripts/44 (:658, :664), scripts/48
+(:186, :273) and SpectralFitting.md:480, but strict "> 6" in dev/fit_table_audit.py:51/253 (the newest ruling) and now
+in the paper. Only a bin at exactly ΔAIC = 6.000 flips, but the guide contradicts itself (:480 vs :1080) and a referee
+opening a burst report sees "≥ 6". Recommendation: rule once (strict >6), then the distiller aligns 44/48/the guide.

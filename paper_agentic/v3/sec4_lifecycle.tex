@@ -6,7 +6,9 @@
 % Draft r1 (2026-09-03), architecture block with §3 r4 and §7 r1 (decision 20: one gate for §3+§4+§7).
 % Absorbs from v2: "The campaign loop" steps paragraph (v2:264-288, re-ordered to the OFFICIAL ledger
 % 0b,0,1-9 — PI ruling 2026-08-30 — and step 8 = nuFnu panels), "Inside the fitting step" (v2:312-340) with
-% v2's fig:fitstep TikZ as F3 (outline: "v2 Fig. 2 unchanged"; r2 changed ONE box: typed outcomes / INCONCLUSIVE), the fan-out/verifier-gates
+% v2's fig:fitstep TikZ as F3 (outline: "v2 Fig. 2 unchanged"; r2 changed two boxes: typed outcomes / INCONCLUSIVE and
+% strict >6; r3 after the F3 delta gate: multistarts wording (thermal restarts are LRT-gated, scripts/10 ~1293-1303),
+% 'vs. best simpler ancestor' (NESTED_PARENTS, not the simplest menu model), arrows anchored at .north), the fan-out/verifier-gates
 % paragraph (v2:359-371). P0 freeze + three-way attribution -> §6; K-clean/freeze -> §5 (one pointer each).
 % Tone per decisions 18/19: describe what runs and what checks it; PROPOSED once; no claims.
 % Figure F2 = paper_agentic/figures/fig_F2_lifecycle_guides_sensors (gated; shas in figures/GATE_LEDGER.md).
@@ -117,10 +119,11 @@ the numbers may mean. First, \emph{inclusion is gated on data quality,
 never on detection significance}: every detector band with usable data and
 a valid response enters the joint fit, because conditioning inclusion on
 significance manufactures spurious detections in exactly the bursts where a
-band fluctuated upward. Second, \emph{every model family receives
-unconditional multistarts}, because a chained seed from a bright epoch can
-strand a faint bin in a wrong local minimum, a failure we document in
-\S\ref{sec:learning}. Third, \emph{validity gates} exclude from model
+band fluctuated upward. Second, \emph{every model family receives multistarts}: unconditional for
+the continua and the two-break family, and triggered for the thermal
+composites whenever the thermal component rails or fails its nested test,
+because a chained seed from a bright epoch can strand a faint bin in a
+wrong local minimum, a failure we document in \S\ref{sec:learning}. Third, \emph{validity gates} exclude from model
 selection any fit whose shape parameters sit on a bound, with the margins
 computed in the parameter's natural geometry (logarithmic for energy-like
 parameters spanning decades), a rule the campaign learned from its first
@@ -130,17 +133,17 @@ soft burst.
 \centering
 \begin{tikzpicture}[node distance=4.8mm and 7mm]
 \node[box] (data) {\textbf{every band with data + a valid response}\\inclusion gated on data quality, never significance};
-\node[box, below=of data] (menu) {\textbf{24-model menu} + unconditional multistarts for every family};
+\node[box, below=of data] (menu) {\textbf{24-model menu} + multistarts for every family (unconditional for continua; triggered for thermal composites)};
 \node[dec, below=of menu] (valid) {validity\\gates};
 \node[box, right=14mm of valid] (excl) {railed / capped-bound stamps\\excluded from selection, \emph{reported}};
-\node[box, below=of valid] (aic) {\textbf{AIC over valid fits only} $\rightarrow$ \emph{two} margins:\\vs.\ runner-up (which model) · vs.\ simplest (is structure needed)};
+\node[box, below=of valid] (aic) {\textbf{AIC over valid fits only} $\rightarrow$ \emph{two} margins:\\vs.\ runner-up (which model) · vs.\ best simpler ancestor (is structure needed)};
 \node[box, below=of aic] (ev) {\textbf{evidence ratios} $e^{\Delta\mathrm{AIC}/2}$, graded: $>$6 strong ($\sim$20:1) · $\geq$10 decisive ($\sim$150:1)};
 \node[box, below left=5mm and -20mm of ev] (deg) {ambiguous $\rightarrow$ \textbf{degeneracy class}\\(adequacy $\neq$ identity)};
 \node[box, below right=5mm and -20mm of ev] (ok) {typed outcomes\\(\texttt{INCONCLUSIVE} = success)};
 \draw[arr] (data)--(menu); \draw[arr] (menu)--(valid);
 \draw[arr] (valid)-- node[lab, above]{fail} (excl);
 \draw[arr] (valid)-- node[lab, right]{pass} (aic);
-\draw[arr] (aic)--(ev); \draw[arr] (ev)--(deg); \draw[arr] (ev)--(ok);
+\draw[arr] (aic)--(ev); \draw[arr] (ev)--(deg.north); \draw[arr] (ev)--(ok.north);
 \end{tikzpicture}
 \caption{Inside the fitting step. The engine is deterministic; the agent's
 bounded agency is the audited interpretation of its outputs.}
