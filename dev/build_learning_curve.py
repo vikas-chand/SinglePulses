@@ -125,8 +125,10 @@ def main():
     # never as a zero-height bar, and name it in the legend. (Gate 2026-09-03: an in-bar note overflowed its bar twice.)
     missing = [x for x, r in zip(xs, rows) if r['defects'] is None]
     if missing:
-        ax.plot(missing, [0.18] * len(missing), linestyle='none', marker='x', ms=PUB['ms_data'],
-                mew=PUB['lw_secondary'], color='0.2', label='defects not tallied (burst in progress)')
+        import matplotlib.patheffects as pe
+        ax.plot(missing, [0.55] * len(missing), linestyle='none', marker='x', ms=PUB['ms_data'],
+                mew=PUB['lw_secondary'], color='0.2', label='defects not tallied (burst in progress)',
+                path_effects=[pe.withStroke(linewidth=3, foreground='white')])   # clear of the 6 pt tick; haloed so it reads as the legend key
     ax2 = ax.twinx()
     ax2.plot(xs, cum, color='k', marker='o', ms=PUB['ms_data'] - 1.5, lw=PUB['lw_secondary'], label='cumulative lessons')
     ax.set_xticks(xs)
@@ -140,7 +142,8 @@ def main():
     h2, l2 = ax2.get_legend_handles_labels()
     from matplotlib.ticker import MaxNLocator
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-    ax.legend(h1 + h2, l1 + l2, loc='upper left', framealpha=0.9, edgecolor='0.6', handletextpad=0.5)
+    ax.legend(h1 + h2, l1 + l2, loc='upper left', framealpha=0.9, edgecolor='0.6', handletextpad=0.5,
+              borderaxespad=0.8)   # > tick_major/12 so the top ticks do not terminate on the legend frame
     fig.text(0.995, 0.012, 'provisional: walkthrough era', ha='right', va='bottom', color='0.4')
     fig.tight_layout(rect=[0, 0.05, 1, 1])
     fig.savefig(OUT + '.pdf')
