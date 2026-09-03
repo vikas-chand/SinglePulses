@@ -47,45 +47,26 @@
 \author{Jagdish C. Joshi}
 \affiliation{Aryabhatta Research Institute of Observational Sciences (ARIES), Nainital, India}
 
+% PROVISIONAL abstract (r5, 2026-09-03; PI: "just write something, and abstract can anyway be written at the end when paper is done")
 \begin{abstract}
-Analyzing a gamma-ray burst (GRB) is mostly judgement calls: which detectors to trust,
-where the background sits, where the burst starts and stops, how finely to
-slice it in time, and which of two dozen spectral models to believe.
-We describe a system that makes those calls, and we are precise about its
-architecture: it is not an autonomous agent but a \emph{gated workflow with
-bounded agency}---predefined analysis paths in which an AI makes named,
-auditable decisions (model selection, fit validity, literature verification,
-mismatch attribution) while a human approves every step, and every approval
-is stamped. The work is carried by a roster of single-purpose specialist
-agents---readers, producers, and verifiers---each specialized by the skill
-documents it reads and the domain tools it commands, fanned out per burst
-and reassembled under gates, with one founding axiom: a producer never
-verifies its own work. The system's knowledge lives in a \emph{Skill Library}: versioned
-plain-language procedure documents that any AI agent---or any student---can
-read and execute. The Library is not documentation; it is the system's
-memory, and it learns. Each burst is analyzed blind, reconciled against the
-published literature, and every mismatch is attributed---our error, the
-literature's, or a difference of frames---and distilled into a numbered
-lesson that ships with an executable test, so that no lesson can be silently
-forgotten. Applied to a campaign over 106 single-pulse \textit{Fermi}/GBM
-bursts, the walked campaign has distilled thirty-two such lessons\prov{},
-found and fixed engine defects of its own (one of which---a validity gate whose
-linear margin silently disqualified soft spectra---would have biased the
-census toward spurious thermal components), confirmed blind predictions
-drawn from the literature, and refuted one of its own. The learning curve
-(lessons per burst) is the paper's central figure: the campaign trains a
-pipeline, not model weights, and the trained artifact is readable, testable,
-and transfers between AI systems. We report where the agent cannot yet
-be trusted---adjudicating contested verdicts, where panels of AI reviewers
-prove to be strong \emph{generators} of checkable findings but weak
-\emph{adjudicators}, their unanimity sometimes an artifact of shared priors
-rather than independent measurement---and we are explicit that this boundary
-is a statement about the current point on the learning curve, not about AI
-in principle: every gate correction, and every validated divergence between
-the human's choice and the agent's, is itself distilled into the Library, so
-the human's judgment is being transferred, not merely exercised, and the
-measurable question is whether the gates go quiet. We release the Skill
-Library, the engine, the tests, and the per-burst records.
+Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on judgement
+calls: which detectors to trust, where the background lies, where the
+burst begins and ends, how finely to bin it, and which of two dozen
+spectral models to adopt. We describe the design of an agent that makes
+those calls under human approval, and what it caught on its first burst.
+A language model runs inside a harness of deterministic tools,
+plain-language skill documents, state derived from disk, and enforced
+boundaries; a producer never verifies its own work. The agent analyses
+each burst blind, freezes its numbers before it reads the published
+literature, and turns every mismatch into a numbered lesson with an
+executable test. Applied to a campaign of 106 single-pulse
+\textit{Fermi}/GBM bursts, the design fits a 24-model menu to every time
+bin and assembles reports whose numbers recompute from the products on
+disk; on the first burst walked end to end it caught engine defects, now
+fixed and tested, and confirmed blind predictions while refuting one.
+The trained artifact is the skill library, readable by a student or by
+another AI system, which we release with the engine, the tests, and the
+per-burst records.
 \end{abstract}
 
 \keywords{Gamma-ray bursts (629) --- Astronomy data analysis (1858) ---
