@@ -55,7 +55,7 @@
 \node[doc, below=of ctx] (c1) {27 guide files; 10 step skills indexed by the ledger; lessons with IDs; memory files + notes};
 \node[agent, below=of c1] (c2) {skill-reader: the binding checklist at every step open};
 \node[doc, below=of c2] (c3) {standing contracts in the PI's quoted words (S-, R-items)};
-\node[agent, below=of c3] (c4) {fresh-context sub-agents (isolate): the roster's verifiers and readers};
+\node[agent, below=of c3] (c4) {isolation: each verifier and reader runs in its own fresh context};
 
 \node[code, below=of state] (s1) {state board derived from DISK evidence, never from memory};
 \node[doc, below=of s1] (s2) {identity stamps, receipts, sidecars, commit pin};
@@ -73,26 +73,26 @@
 
 
 % arrows: loop
-\draw[arr] ($(model.south)+(-8mm,0)$) -- ++(0,-1.5mm) -| (loop.north);
+\draw[arr] ($(model.south)+(-8mm,0)$) -- ++(0,-0.7mm) -| (loop.north);
 \draw[arr] (loop.east) -- (tools.west);
 \draw[arr] (tools.east) -- (ctx.west);
 \draw[arr] (ctx.east) -- (state.west);
 \draw[arr] (state.east) -- (bound.west);
-\draw[arr] (bound.north) |- ($(model.south)+(8mm,-1.5mm)$) -- ($(model.south)+(8mm,0)$);
+\draw[arr] (bound.north) |- ($(model.south)+(8mm,-0.7mm)$) -- ($(model.south)+(8mm,0)$);
 \draw[arr, humanline] (pi.north) -- ++(0,1.5mm) -| ($(s4.east)+(1.5mm,0)$) |- (s2.east);
-\node[lab, below=1mm of pi] (pilab) {the approval is identity-stamped into the records above; never fabricated};
+\node[lab, below=1mm of pi, fill=white, inner sep=1pt] (pilab) {identity-stamped into the records above; never fabricated};
 
-% the two harness layers (drawn behind): inner green hatch = the repository; outer grey hatch = the hosted product
+% the two harness layers (drawn behind): outer grey hatch = the hosted product; inner green frame painted OVER it
 \begin{scope}[on background layer]
   \coordinate (headroom) at ($(loop.north)+(0,4.5mm)$);
-  \node[draw=agentline, thick, rounded corners=3pt, pattern=north east lines, pattern color=agentline!25, inner sep=2.5mm,
-        fit=(headroom)(loop)(bound)(l4)(b4)(t1)(t4)] (repo) {};
+  \node[inner sep=2.5mm, fit=(headroom)(loop)(bound)(l4)(b4)(t1)(t4)] (repo) {};
   \node[draw=black!45, thick, rounded corners=4pt, pattern=north west lines, pattern color=black!12, inner sep=3mm,
         fit=(repo)(pi)(pilab)] (host) {};
+  \node[draw=agentline, thick, rounded corners=3pt, pattern=north east lines, pattern color=agentline!25, inner sep=0, fit=(repo)] {};
   \node[fill=white, draw=black!45, rounded corners=1pt, inner sep=1.5pt, font=\sffamily\scriptsize\bfseries, text=black!65,
         anchor=south west] at ($(host.south west)+(1mm,0.6mm)$) {hosted coding product: runtime loop, tool calls, compaction, permissions};
   \node[fill=white, draw=agentline, rounded corners=1pt, inner sep=1.5pt, font=\sffamily\scriptsize\bfseries, text=agentline!80!black,
-        text width=23mm, align=left, anchor=south west] at ($(repo.south west)+(1mm,0.6mm)$) {the repository layer: what makes the session a GRB analyst};
+        text width=31mm, align=left, execute at begin node=\nohyph, anchor=south west] at ($(repo.south west)+(1mm,0.6mm)$) {the repository layer: what makes the session a GRB analyst};
 \end{scope}
 
 % legend row (below the outer enclosure)
