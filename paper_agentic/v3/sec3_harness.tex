@@ -1,5 +1,8 @@
 % ===========================================================================
 % v3 §3 — THE HARNESS, COMPONENT BY COMPONENT (replaces v2 §3 "The Agentic Workflow")
+% REVISION r3 (2026-09-03): PI ruling "we don't need to cite blog posts ... we can cite published works" —
+% the five-post footnote and all post attributions removed; the five-job partition, guides/sensors and
+% code-vs-judgement are used as OUR exposition vocabulary; published related work goes to §1.
 % REVISION r2 (2026-09-03) after the Codex supervisor review (notes/CODEX_REVIEW_paper_v3_sec3_20260902.md)
 % and its adjudication (notes/CODEX_ADJUDICATION_paper_v3_sec3_20260902.md): protocol stated as
 % protocol, coverage stated with its denominator, the authority table corrected (code decides
@@ -40,23 +43,16 @@ returns a bounded result to the supervising session. In the plain reading
 the whole system is the agent, it contains a harness, and the harness
 invokes subagents.
 
-We organise the section by the five runtime jobs of an agent harness in
-Bowne-Anderson's account: run the reasoning loop, execute tools, assemble
-and manage context, persist state, and enforce boundaries. From the other
-engineering sources we borrow single ideas rather than a taxonomy:
-B\"ockeler's guides and sensors, Palantir's typed objects and actions, the
-long-horizon failure modes catalogued by PuppyGraph, and the model--harness
-layering described by LangChain.\footnote{H.~Bowne-Anderson, ``How to build
-an effective agent harness,'' \url{https://hugobowne.substack.com/p/how-to-build-an-effective-agent-harness};
-B.~B\"ockeler, ``Harness engineering for coding agent users,''
-\url{https://martinfowler.com/articles/harness-engineering.html} (2026-04-02);
-Palantir, ``Ontology,'' \url{https://www.palantir.com/platforms/ontology/} and
-the Foundry documentation; S.~Wang (PuppyGraph), ``Agent harness,''
-\url{https://www.puppygraph.com/blog/agent-harness} (2026-07-01);
-S.~Runkle (LangChain), ``How to build a custom agent harness,''
-\url{https://www.langchain.com/blog/how-to-build-a-custom-agent-harness}
-(2026-06-03). All accessed 2026-09-02. These posts supply the vocabulary and
-the design grammar; they are not evidence about this system.}
+We organise the section by five runtime jobs that any agent harness must
+perform: run the reasoning loop, execute tools, assemble and manage
+context, persist state, and enforce boundaries. Two distinctions recur
+under every job. A control may act before a step, steering what the model
+is about to do (we call these \emph{guides}), or after it, checking what
+the model did (\emph{sensors}); and a control may be implemented in code,
+where it is deterministic and testable, or rest on a model's judgement,
+where it is not. We built the system before adopting this vocabulary and
+use it here only to expose the design; the related work of
+\S\ref{sec:intro} places the design among published agent architectures.
 Figure~\ref{fig:anatomy} lays our system out under the five jobs using the
 census convention of the component roster (Table~\ref{tab:roster},
 Appendix~\ref{app:roster}): a box is drawn solid when a file or a recorded

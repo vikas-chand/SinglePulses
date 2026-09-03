@@ -60,8 +60,10 @@ that is not on disk); the harness posts are cited as URLs in footnotes (not as s
   vocabulary now common to the five posts.
 - why GRB spectroscopy is the right testbed (decisions without ground truth; instrument
   systematics; a 106-burst census as stakes) — keep.
-- related work: Denario and the AI-scientist line (scholarly); the harness-engineering posts
-  as the engineering frame (footnoted URLs).
+- related work: Denario and the AI-scientist line (scholarly) + published agent-architecture works
+  (ReAct, surveys, scientific-agent exemplars, agent evaluation, workflow provenance) — verified at ADS/
+  publisher with local PDFs before any \cite. The five harness-engineering posts are NOT cited (PI ruling
+  2026-09-03, decision 17); they remain internal design references in notes/HARNESS_COMPARISON_20260902.md.
 - the paper's claim, stated plainly: reliability over a long scientific run is a property of
   the harness, and we show what that harness contains, what it caught, and what it lacks.
 
@@ -132,3 +134,4 @@ that is not on disk); the harness posts are cited as URLs in footnotes (not as s
 | 2026-09-02 ~19:15 | next non-invasive items (decision 14) | "After the diagrams (Recommended)" | drift janitor, spend ledger, component-inventory sidecar wait for F1/F2/F4/F5 to pass |
 | 2026-09-02 ~23:20 | T1 roster (decision 15) | "Approve (verified 4 rounds) (Recommended)" | T1 APPROVED at 427fdc5 (49 rows; 4 verifier rounds); may be cited by the prose |
 | 2026-09-02 ~23:20 | diagrams F1/F2/F4/F5 (decision 16) | "Approve all four (Recommended)" | APPROVED at the shas in results/campaign/agentfigs/VISION_QC.md (F1 d355cbec, F2 6165ad96, F4 755a0fee, F5 73bf5bf3); enter the tex as figure* with captions naming the census commit; K/freeze = rules not yet exercised |
+| 2026-09-03 ~00:30 | citing the harness posts (decision 17) | "I think we don't need to cite blog posts, we engineered something and then discovered those posts to find if we are doing good but it is not needed to cite them, we can cite published works on which maybe those blogposts if they cited some" | §3 r3: footnote + post attributions removed; five-job / guides-sensors / code-vs-judgement kept as our exposition vocabulary; published related work → §1 after verification; PROV_MANIFEST_v3 drops the post URLs |
