@@ -24,8 +24,8 @@
 % ---- objects (row 1: the burst's chain of products) ----
 \node[obj, fill=black!6] (burst) {\textbf{burst}\\trigger id; catalog row};
 \node[obj, right=of burst] (sel) {\textbf{selection}\\detectors, background, source windows; APPROVED\_BY, MODE};
-\node[obj, right=of sel] (blk) {\textbf{block}\\edges, significance; e.g.\ sha $f361\ldots$ (bn110920546)};
-\node[obj, right=of blk] (fit) {\textbf{fit row} (\,$\times$24 models)\\params, VALID, AIC, EAC, rails};
+\node[obj, right=of sel] (blk) {\textbf{block}\\edges, significance; e.g.\ sha \texttt{f361\ldots} (bn110920546)};
+\node[obj, right=of blk] (fit) {\textbf{fit row} ($\times$24 models)\\params, VALID, AIC, EAC, rails};
 \node[obj, right=of fit] (prod) {\textbf{product}\\figure, SED panel, table, report};
 
 % ---- row 2: the records about the products ----
@@ -44,7 +44,7 @@
 \draw[link] (burst) -- node[lab, above] {trigger} (sel);
 \draw[link] (sel) -- node[lab, above] {trigger} (blk);
 \draw[link] (blk) -- node[lab, above] {blocks} (fit);
-\draw[linkc] (fit) -- node[lab, below=1.2mm, text width=12mm, align=center, font=\sffamily\tiny] {stored AIC; table sha PROPOSED} (prod);
+\draw[linkc] (fit) -- node[lab, below=5mm, text width=16mm, align=center, font=\sffamily\tiny] {stored AIC; table sha PROPOSED} (prod);
 \draw[link] (receipt) -- node[lab, right, pos=0.4] {ecsv sha} (fit);
 \draw[link] (audit) -- node[lab, right, pos=0.4] {table sha} (fit);
 \draw[linkc] (stamp.north) -- node[lab, right, pos=0.4] {by trigger + step} (sel.south);
