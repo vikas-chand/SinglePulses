@@ -33,7 +33,7 @@ Table~\ref{tab:roster}.}
 \label{fig:objects}
 \end{figure*}
 
-\paragraph{Objects.} Twelve object types carry the campaign. Five form the
+\paragraph{Objects.} Thirteen object types are drawn. Five form the
 burst's own chain: the \emph{burst} (trigger identifier and catalog row),
 the \emph{selection} (detectors, background and source windows, with the
 approver and mode stamped on it), the \emph{block table} (bin edges and
@@ -50,9 +50,13 @@ identity, input hashes, verdict, cost). Three are the law: the
 status and keep-condition), the \emph{lesson} (a numbered entry in a skill
 file), and the \emph{burst state} (one of the fourteen states of
 \S\ref{sec:loop}, derived from disk), together with the \emph{commit pin}
-that fixes generators by commit and products by hash. Ten of the twelve
-types\prov{} carry a JSON schema, and the test suite validates every
-instance on disk against it. Schemas came late: the pipeline had written
+that fixes generators by commit and products by hash. Ten object types
+the pipeline writes carry a JSON schema\prov{}; five of the thirteen drawn
+here are among them (the stamp, the receipt, the audit, the action event,
+and the burst state), and the others are the literature-harvest manifest
+and its paper records, the frozen prediction record of
+\S\ref{sec:doctrine}, and the fit sidecar. The test suite validates every
+instance on disk against its schema. Schemas came late: the pipeline had written
 these objects for months before their shape was declared, and the first
 validation pass found four spellings of one key in the literature-harvest
 manifests. A schema written before the first instance would have cost less.
