@@ -64,8 +64,10 @@ that is not on disk); the harness posts are cited as URLs in footnotes (not as s
   (ReAct, surveys, scientific-agent exemplars, agent evaluation, workflow provenance) — verified at ADS/
   publisher with local PDFs before any \cite. The five harness-engineering posts are NOT cited (PI ruling
   2026-09-03, decision 17); they remain internal design references in notes/HARNESS_COMPARISON_20260902.md.
-- the paper's claim, stated plainly: reliability over a long scientific run is a property of
-  the harness, and we show what that harness contains, what it caught, and what it lacks.
+- what the paper does, stated plainly (decision 19, PI 2026-09-03: "we don't want to make claims rather we are
+  describing our design, we are not making foundational statements as we are not doing any maths here"): we
+  describe the design of a harness for a long GRB analysis campaign — what it contains, how each component
+  works, and what it caught on the walkthrough burst — and what is specified but not yet built.
 
 ### §2 Sample and Data (~0.5 pp) — keep v2.
 
@@ -135,3 +137,7 @@ that is not on disk); the harness posts are cited as URLs in footnotes (not as s
 | 2026-09-02 ~23:20 | T1 roster (decision 15) | "Approve (verified 4 rounds) (Recommended)" | T1 APPROVED at 427fdc5 (49 rows; 4 verifier rounds); may be cited by the prose |
 | 2026-09-02 ~23:20 | diagrams F1/F2/F4/F5 (decision 16) | "Approve all four (Recommended)" | APPROVED at the shas in results/campaign/agentfigs/VISION_QC.md (F1 d355cbec, F2 6165ad96, F4 755a0fee, F5 73bf5bf3); enter the tex as figure* with captions naming the census commit; K/freeze = rules not yet exercised |
 | 2026-09-03 ~00:30 | citing the harness posts (decision 17) | "I think we don't need to cite blog posts, we engineered something and then discovered those posts to find if we are doing good but it is not needed to cite them, we can cite published works on which maybe those blogposts if they cited some" | §3 r3: footnote + post attributions removed; five-job / guides-sensors / code-vs-judgement kept as our exposition vocabulary; published related work → §1 after verification; PROV_MANIFEST_v3 drops the post URLs |
+| 2026-09-03 ~00:45 | T1 status vocabulary (decision 18) | "We don't want to tell history of what failed, we want to describe what worked and those components whihc we included but not yet pushed to github should be included as deployed as we are keeping them" | Codex D6 (PARTIAL / four columns) OVERRULED: DEPLOYED / PROPOSED stays; on-disk = deployed even if uncommitted/unpushed; the paper describes the design and what worked, not a defect chronicle — §3 tone: PROPOSED items listed once, no "not yet" refrain |
+| 2026-09-03 ~00:45 | thesis (decision 19) | "I think we don't want to make claims rather we are describing our design, we are not making foundational statements as we are not doing any maths here" | §1 states what the paper does (describes a design), no reliability claim; Codex referee objection 1 moot |
+| 2026-09-03 ~00:45 | review process (decision 20) | "Hybrid blocks (Recommended)" | three gates: architecture §3+§4+§7 (decision sheet), claims §5+§6+§10, framing §1+§11 with one assembled-PDF gate; chng entries only where v2 text is cut |
+| 2026-09-03 ~00:45 | system noun (decision 21, PENDING) | "this is technical and I don't know, I think we can know it by knowing what people are using" | surveyed 2026-09-03: 15 abstracts of the §1 candidates use "agent" for the whole system 48 times, "harness" and "scaffold" 0 times ("multi-agent system" for compositions) → APPLIED in §3 r4: the whole system = the agent (matches the PI's own framing), harness = the machinery around the model, roles/subagents inside; PI may override at the architecture-block gate |

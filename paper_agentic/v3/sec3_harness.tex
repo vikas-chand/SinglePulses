@@ -1,5 +1,7 @@
 % ===========================================================================
 % v3 §3 — THE HARNESS, COMPONENT BY COMPONENT (replaces v2 §3 "The Agentic Workflow")
+% REVISION r4 (2026-09-03): decision 21 — the whole system is "the agent" (the published usage: 48 "agent" vs
+% 0 "harness"/"scaffold" across 15 abstracts of the §1 candidates), "harness" = the machinery around the model.
 % REVISION r3 (2026-09-03): PI ruling "we don't need to cite blog posts ... we can cite published works" —
 % the five-post footnote and all post attributions removed; the five-job partition, guides/sensors and
 % code-vs-judgement are used as OUR exposition vocabulary; published related work goes to §1.
@@ -28,19 +30,20 @@
 
 We use one vocabulary throughout, and we separate the two kinds of model
 the paper needs. The \emph{language model} is the model we call; the
-\emph{spectral models} are the functions we fit to photon counts. A bare
-language-model call retains no project state between calls and observes
-nothing outside its context; it can test a claim against the world only
-through the context and the tools a harness supplies. The \emph{harness}
-is that surrounding system. Ours has two layers. A hosted coding product
-supplies the runtime loop, the tool calls, the compaction of a long
-conversation, and a permission layer; the repository adds the GRB-specific
-tools, instructions, state records, and gates. We call the combination the
-\emph{GRB analysis harness}. An \emph{agent invocation} is the language
-model executing one named role with a stated context and tool grant; a
-\emph{subagent} is a separately invoked, fresh-context role instance that
-returns a bounded result to the supervising session. In the plain reading
-the whole system is the agent, it contains a harness, and the harness
+\emph{spectral models} are the functions we fit to photon counts. We
+follow the published literature in calling the whole system an
+\emph{agent}: a language model that acts through tools in a loop toward a
+goal. A bare language-model call retains no project state between calls
+and observes nothing outside its context; it can test a claim against the
+world only through the context and the tools placed around it. We call
+that surrounding machinery the \emph{harness}. Ours has two layers. A
+hosted coding product supplies the runtime loop, the tool calls, the
+compaction of a long conversation, and a permission layer; the repository
+adds the GRB-specific tools, instructions, state records, and gates. The
+harness invokes the language model in named \emph{roles}, each with a
+stated context and tool grant; a \emph{subagent} is a separately invoked,
+fresh-context role instance that returns a bounded result to the
+supervising session. So the agent contains a harness, and the harness
 invokes subagents.
 
 We organise the section by five runtime jobs that any agent harness must
