@@ -1,4 +1,10 @@
-# Abstract proposal (chng[abstract]) — r4, 2026-09-03, awaiting the PI's approved / revise / skip
+# Abstract proposal (chng[abstract]) — r5, 2026-09-03, awaiting the PI's approved / revise / skip
+
+**r5 (13:20), PI on r4: "goes too much into like whole summary and started to describe all architecture, it should be brief
+with A&A kind of guiding"** → six sentences in the A&A flow: context (the judgement calls) · aims (the design, and what it
+caught) · methods (the harness in one sentence; blind-first + lessons in one) · results (106 bursts, 24-model menu,
+reports recompute from disk; the first burst's catches) · conclusions (the skill library, released). The census list and
+the "this paper describes" sentence of r4 are gone.
 
 **r4 (13:10), in the shape of Schüssler et al. 2026 (arXiv:2608.23270, the PI's pointer: "look at their abstract"):** one
 sentence on what is presented, one on how it works, one on what it produces, then the NUMBERS (their 1,775 Circulars /
@@ -21,32 +27,24 @@ Words: ~200 (was 423).
 
 ```latex
 \begin{abstract}
-We present the design of an agent for time-resolved spectroscopy of
-gamma-ray bursts (GRBs), built and run on a campaign of 106 single-pulse
-\textit{Fermi}/GBM bursts with a human approving every step. A language
-model runs inside a harness of deterministic tools, plain-language skill
-documents, state derived from disk, and enforced boundaries; specialist
-roles read, produce, and verify, and a producer never verifies its own
-work. For each burst the agent adopts the stamped detector, background,
-and source selections, bins the light curve, fits a 24-model menu to
-every time bin, measures the timing, renders the spectral-energy panels,
-and assembles a report whose every number recomputes from the products on
-disk. It analyses each burst blind, freezes its numbers before it reads
-the published literature, and attributes every mismatch to our side, to
-the published side, or to a difference of frame; each attribution becomes
-a numbered lesson with an executable test. At the census of 2026
-September~2 the harness comprises 49 components, 44 on disk and 5
-specified but not built: 27 guide documents, 10 agent roles, 3 repository
-hooks, 10 object schemas, a 49-row requirements register, and 134 tests.
-Stage-1 selections carry a human approver on 433 of 436 detector rows. On
-the first burst walked end to end under this protocol, six of the eleven
-steps are approved and the seventh is presented; the walkthrough caught
-engine defects, now fixed and tested, and confirmed blind predictions
-while refuting one. We release the skill library, the engine, the tests,
-and the per-burst records. This paper describes the harness component by
-component, the guides and sensors at each step, the steering loop that
-turns incidents into lessons, the verification doctrine, the
-object-and-action model, and the walkthrough burst as a case study.
+Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on judgement
+calls: which detectors to trust, where the background lies, where the
+burst begins and ends, how finely to bin it, and which of two dozen
+spectral models to adopt. We describe the design of an agent that makes
+those calls under human approval, and what it caught on its first burst.
+A language model runs inside a harness of deterministic tools,
+plain-language skill documents, state derived from disk, and enforced
+boundaries; a producer never verifies its own work. The agent analyses
+each burst blind, freezes its numbers before it reads the published
+literature, and turns every mismatch into a numbered lesson with an
+executable test. Applied to a campaign of 106 single-pulse
+\textit{Fermi}/GBM bursts, the design fits a 24-model menu to every time
+bin and assembles reports whose numbers recompute from the products on
+disk; on the first burst walked end to end it caught engine defects, now
+fixed and tested, and confirmed blind predictions while refuting one.
+The trained artifact is the skill library, readable by a student or by
+another AI system, which we release with the engine, the tests, and the
+per-burst records.
 \end{abstract}
 ```
 
