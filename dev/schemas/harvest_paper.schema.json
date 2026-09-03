@@ -97,5 +97,5 @@
   }
  },
  "additionalProperties": true,
- "description": "Census 2026-09-02 over 54 manifests / 443 records: bibcode 100%, year 97.7%, title 97.3%, first_author 95.0%, prompt_sections 93% (str or list), pdf 64% (str, list or null), role 36%, refereed 34%. The key is the bibcode; everything else is optional with the union types observed. New records (walkthrough era) carry the full set."
+ "description": "Census 2026-09-02 over 54 manifests, the paper list under ANY of the four keys (papers x50, papers_newest_first x1, papers_latest_first x2, refereed_papers x1): 489 records; bibcode 100.0%, year 97.1%, first_author 94.7%, title 88.1% (the records under the non-`papers` keys carry no titles). Corrected 2026-09-02 after verifier round 1 (the first census counted the `papers` key only, 443 records). The key is the bibcode; everything else is optional with the union types observed. New records carry the full set."
 }

@@ -94,6 +94,9 @@
    "type": "array",
    "items": {
     "type": "object",
+    "required": [
+     "path"
+    ],
     "properties": {
      "path": {
       "type": "string"
@@ -102,15 +105,20 @@
       "type": [
        "string",
        "null"
-      ]
+      ],
+      "pattern": "^[0-9a-f]{64}$"
      }
-    }
+    },
+    "additionalProperties": false
    }
   },
   "outputs": {
    "type": "array",
    "items": {
     "type": "object",
+    "required": [
+     "path"
+    ],
     "properties": {
      "path": {
       "type": "string"
@@ -119,9 +127,11 @@
       "type": [
        "string",
        "null"
-      ]
+      ],
+      "pattern": "^[0-9a-f]{64}$"
      }
-    }
+    },
+    "additionalProperties": false
    }
   },
   "verdict": {
@@ -159,7 +169,21 @@
     "string",
     "null"
    ]
+  },
+  "provenance": {
+   "type": "object",
+   "required": [
+    "model_id",
+    "harness",
+    "harness_version",
+    "utc"
+   ],
+   "additionalProperties": true
+  },
+  "validated": {
+   "type": "boolean",
+   "description": "false only when jsonschema was unavailable at write time (event still written, loudly)"
   }
  },
- "additionalProperties": true
+ "additionalProperties": false
 }

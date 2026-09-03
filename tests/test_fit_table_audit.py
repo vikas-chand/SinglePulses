@@ -61,6 +61,46 @@ def test_reproduces_the_verified_numbers_qc_on_368aa01e():
     assert rows[3]['chain_gate_argmin']['verdict'] == 'UNDEFINED_ANCESTOR_GATE_FAILED'
 
 
+PIN_BEFORE_WIDENING = '79d42c8'  # campaign pin: beta floor -5, SBPL alpha ceiling 1.5 (widened in 82737c9)
+
+
+@pytest.mark.skipif(not os.path.exists(REF), reason='reference table not on disk')
+def test_rails_are_judged_against_the_bounds_in_force_at_fit_time():
+    """Verifier round 1 (2026-09-02): auditing the -5-floor table against today's -10 floor hid
+    the SBPL_BETA rail the numbers-QC found in 10/12 rows. With the fit-time engine revision the
+    all-models rail census must show it; with the working file it must not."""
+    a_then = fta.audit_table(REF, engine_rev=PIN_BEFORE_WIDENING)
+    if a_then['table_sha256'] != REF_SHA:
+        pytest.skip('reference table changed sha')
+    sbpl_beta_rows = [r['block'] for r in a_then['rows']
+                      if any(x['param'] == 'BETA' and x['bound'] == 'LOWER' for x in r['rails_all'].get('SBPL', []))]
+    assert len(sbpl_beta_rows) == 10, sbpl_beta_rows
+    assert a_then['engine_rev'] == PIN_BEFORE_WIDENING and a_then['bounds_note']
+    a_now = fta.audit_table(REF)
+    assert not any(any(x['param'] == 'BETA' for x in r['rails_all'].get('SBPL', [])) for r in a_now['rows'])
+
+
+@pytest.mark.skipif(not PROMOTED, reason='no promoted table on disk')
+def test_edge_stamps_and_errorbar_rails_on_the_current_table():
+    a = fta.audit_table(PROMOTED[-1]) if any('bn110920546' in p for p in PROMOTED) else None
+    a = fta.audit_table([p for p in PROMOTED if 'bn110920546' in p][0])
+    if a['table_sha256'] != '45104924a7576112' + a['table_sha256'][16:]:
+        pytest.skip('current #21 table changed since 2026-09-02')
+    below = [r['block'] for r in a['rows'] if r.get('edge_adopted') and r['edge_adopted']['stamp'] == 'BELOW_BAND']
+    assert 6 in below, below  # the DECISIVE-adopted blk 6 carries a BB peaking below the 8.1 keV NaI edge
+    err = [r['block'] for r in a['rows'] if any(x['kind'] == 'error-bar' for x in r['rails_argmin'])]
+    assert {4, 7} <= set(err), err  # kT lower error terminating on the 1 keV floor
+
+
+def test_invalid_stored_winner_is_a_distinct_finding():
+    p = os.path.join(BASE, 'results', 'convention_check', 'bn090829672', 'spectral_fits.ecsv')
+    if not os.path.exists(p):
+        pytest.skip('table not on disk')
+    a = fta.audit_table(p)
+    inv = [r['block'] for r in a['rows'] if r.get('engine_best_valid') is False]
+    assert inv == [0], inv
+
+
 @pytest.mark.skipif(not PROMOTED, reason='no promoted table on disk')
 def test_invariants_on_promoted_tables():
     for p in PROMOTED:

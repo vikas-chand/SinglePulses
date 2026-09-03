@@ -65,5 +65,6 @@ json.dump(doc, open(report, 'w'), indent=1)
 print('written', report, '->', doc['overall'])
 EOF
 python3 dev/action_event.py --primitive verify --phase finalize --actor script --identity dev/eval_battery.sh \
-  --output "$REPORT" --rule "harness-need-3" --verdict "$([ $status -eq 0 ] && echo PASS || echo FAIL)" >/dev/null || true
+  --output "$REPORT" --rule "harness-need-3" --verdict "$([ $status -eq 0 ] && echo PASS || echo FAIL)" >/dev/null 2>>"$LOG"; erc=$?
+[ $erc -eq 0 ] || { echo "trace event REFUSED (rc=$erc) -- see $LOG" | tee -a "$LOG"; status=1; }
 exit $status

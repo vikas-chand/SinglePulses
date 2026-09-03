@@ -62,9 +62,23 @@ def _sha256(path):
     return h.hexdigest()
 
 
-def _engine_tree():
+def engine_source(rev=None):
+    """The engine's source text: the working file, or `git show <rev>:<path>` for the bounds in
+    force when a table was fitted (verifier round 1, 2026-09-02: the quarantined 368aa01e table
+    was fitted under the -5 beta floor; auditing it against today's -10 floor hid 10 rails)."""
+    if rev:
+        import subprocess
+        rel = os.path.relpath(ENGINE, ROOT)
+        out = subprocess.run(['git', 'show', f'{rev}:{rel}'], cwd=ROOT, capture_output=True, text=True)
+        if out.returncode != 0:
+            sys.exit(f'ERROR: cannot read the engine at revision {rev}: {out.stderr.strip()}')
+        return out.stdout
     with open(ENGINE, encoding='utf-8') as fh:
-        return ast.parse(fh.read(), ENGINE)
+        return fh.read()
+
+
+def _engine_tree(rev=None):
+    return ast.parse(engine_source(rev), ENGINE)
 
 
 def engine_specs(tree=None):
@@ -146,7 +160,10 @@ def _at_bound(v, lo, hi):
 
 
 def rails_for(row, prefix, cols, bounds, eac_bounds, eac_dets):
-    """[(param, value, LOWER|UPPER, kind)] for one model in one row; kind = shape | nuisance."""
+    """[(param, value, LOWER|UPPER|LOWER_ERR|UPPER_ERR, kind)] for one model in one row.
+    kind = shape | nuisance | error-bar. LOWER_ERR/UPPER_ERR: the value is off the bound but its
+    MINOS error bar terminates on it (verifier round 1: blk 4/7 kT with the lower error ending
+    exactly at the 1 keV floor -- a constraint from the bound, not from the data)."""
     out = []
     for par, (lo, hi) in bounds.get(prefix, {}).items():
         c = f'{prefix}_{par}'
@@ -154,6 +171,15 @@ def rails_for(row, prefix, cols, bounds, eac_bounds, eac_dets):
             d = _at_bound(row[c], lo, hi)
             if d:
                 out.append((par, float(row[c]), d, 'shape'))
+                continue
+            v = row[c]
+            if f'{c}_NEG_ERR' in cols and f'{c}_POS_ERR' in cols and _finite(v) and _finite(row[f'{c}_NEG_ERR']) and _finite(row[f'{c}_POS_ERR']):
+                v = float(v); ne = abs(float(row[f'{c}_NEG_ERR'])); pe = abs(float(row[f'{c}_POS_ERR']))
+                tol = RAIL_REL_TOL * (hi - lo)
+                if v - ne <= lo + tol:
+                    out.append((par, v, 'LOWER_ERR', 'error-bar'))
+                elif v + pe >= hi - tol:
+                    out.append((par, v, 'UPPER_ERR', 'error-bar'))
     for det in eac_dets:
         c = f'{prefix}_EAC_{det.upper()}'
         if c in cols:
@@ -178,7 +204,26 @@ def chain_gate(model, aic_of, valid_of, parents):
     return ('DECISIVE' if d >= DECISIVE_DAIC else 'NOT_DECISIVE'), best, float(d)
 
 
-def audit_row(row, cols, specs, parents, bounds, eac_bounds, eac_dets):
+BB_PEAK_FACTOR = 3.92   # nuFnu peak of a Planck spectrum (engine constant of the same name)
+EDGE_TRUST_KEV = 20.0   # L28: below this the turnover is EDGE_CONSTRAINED
+EDGE_CLEAR_KEV = 30.0   # L28: 20-30 EDGE_MARGINAL; above IN_BAND
+
+
+def edge_stamp(kt, nai_low):
+    """L28 stamp for a blackbody: where its nuFnu peak (3.92 kT) sits relative to the NaI band."""
+    if not _finite(kt):
+        return None
+    pk = BB_PEAK_FACTOR * float(kt)
+    if pk < nai_low:
+        return 'BELOW_BAND'
+    if pk < EDGE_TRUST_KEV:
+        return 'EDGE_CONSTRAINED'
+    if pk < EDGE_CLEAR_KEV:
+        return 'EDGE_MARGINAL'
+    return 'IN_BAND'
+
+
+def audit_row(row, cols, specs, parents, bounds, eac_bounds, eac_dets, nai_low=8.1):
     aic_of, valid_of, nparams = {}, {}, {}
     for name, prefix, k in specs:
         valid_of[name] = model_valid(row, prefix, cols)
@@ -186,9 +231,15 @@ def audit_row(row, cols, specs, parents, bounds, eac_bounds, eac_dets):
         if valid_of[name]:
             aic_of[name] = float(row[f'{prefix}_AIC'])
     cand = sorted(aic_of, key=lambda m: aic_of[m])
+    eng = str(row['BEST_AIC_MODEL']) if 'BEST_AIC_MODEL' in cols else None
     rec = {'block': int(row['BLOCK']), 'n_candidates': len(cand),
-           'engine_best_aic': str(row['BEST_AIC_MODEL']) if 'BEST_AIC_MODEL' in cols else None,
+           'engine_best_aic': eng, 'engine_best_valid': (valid_of.get(eng) if eng in valid_of else None),
            'engine_best_bic': str(row['BEST_BIC_MODEL']) if 'BEST_BIC_MODEL' in cols else None}
+    # all-models rail census (the per-model statement the numbers-QC makes, e.g. SBPL_BETA on the floor in 10/12 rows)
+    pre = {n: p for n, p, _ in specs}
+    rec['rails_all'] = {n: [{'param': p_, 'value': v, 'bound': d, 'kind': kind} for p_, v, d, kind in rails_for(row, pre[n], cols, bounds, eac_bounds, eac_dets)]
+                        for n in pre if f'{pre[n]}_AIC' in cols and _finite(row[f'{pre[n]}_AIC'])}
+    rec['rails_all'] = {n: r for n, r in rec['rails_all'].items() if r}
     if not cand:
         rec.update(argmin=None, adopted=None, tie_set=[], runner_up_margin=None)
         return rec
@@ -207,6 +258,9 @@ def audit_row(row, cols, specs, parents, bounds, eac_bounds, eac_dets):
         rec[f'chain_gate_{basis}'] = {'model': m, 'verdict': v, 'ancestor': anc, 'dAIC': d}
         rec[f'rails_{basis}'] = [{'param': p, 'value': val, 'bound': dirn, 'kind': kind}
                                  for p, val, dirn, kind in rails_for(row, prefix, cols, bounds, eac_bounds, eac_dets)]
+        kt_col = f'{prefix}_KT'
+        rec[f'edge_{basis}'] = ({'kT': float(row[kt_col]), 'peak_keV': BB_PEAK_FACTOR * float(row[kt_col]), 'stamp': edge_stamp(row[kt_col], nai_low)}
+                                if kt_col in cols and _finite(row[kt_col]) else None)
     rec['fail_cells'] = [name for name, prefix, _ in specs
                          if f'{prefix}_STATUS' in cols and str(row[f'{prefix}_STATUS']).upper() in ('FAIL', 'ERROR')]
     return rec
@@ -247,6 +301,11 @@ def build_counts(rows):
         counts += _count('shape_rail', [r['block'] for r in rows if any(x['kind'] == 'shape' for x in r.get(f'rails_{basis}', []))], N_all, N_tr, basis=basis)
     counts += _count('bic_agrees_adopted', [r['block'] for r in rows if r.get('bic_agrees_adopted')], N_all, N_tr, basis='adopted')
     counts += _count('argmin_mismatch_engine', [r['block'] for r in rows if r.get('argmin') and not r.get('argmin_matches_engine')], N_all, N_tr, basis='argmin')
+    counts += _count('engine_winner_invalid', [r['block'] for r in rows if r.get('engine_best_aic') and r.get('engine_best_valid') is False], N_all, N_tr, basis='argmin')
+    for basis in ('argmin', 'adopted'):
+        counts += _count('errorbar_on_bound', [r['block'] for r in rows if any(x['kind'] == 'error-bar' for x in r.get(f'rails_{basis}', []))], N_all, N_tr, basis=basis)
+        for st in ('BELOW_BAND', 'EDGE_CONSTRAINED', 'EDGE_MARGINAL', 'IN_BAND'):
+            counts += _count(f'bb_{st.lower()}', [r['block'] for r in rows if r.get(f'edge_{basis}') and r[f'edge_{basis}']['stamp'] == st], N_all, N_tr, basis=basis)
     counts += _count('fail_cells_rows', [r['block'] for r in rows if r.get('fail_cells')], N_all, N_tr)
     return counts
 
@@ -276,22 +335,44 @@ def lint_absolute_aic(text):
 
 
 # ----------------------------------------------------------------------------- driver
-def audit_table(path):
+def audit_table(path, engine_rev=None):
+    """engine_rev: git revision whose engine bounds/constants were in force when the table was
+    fitted (default: the working file). The table itself records no bounds, so the caller MUST
+    pass the fit-time revision for quarantined/older tables; the JSON says which was used."""
     t = Table.read(path)
     cols = t.colnames
-    tree = _engine_tree()
+    src = engine_source(engine_rev)
+    tree = ast.parse(src, ENGINE)
     specs, parents = engine_specs(tree), engine_nested_parents(tree)
     bounds, eac_bounds = engine_bounds(tree)
     eac_dets = []
     if 'EAC_DETS' in cols:
         raw = str(t['EAC_DETS'][0])
         eac_dets = [d.strip() for d in re.split(r'[,;\s]+', raw) if d.strip() and d.strip() != '--']
-    rows = [audit_row(r, cols, specs, parents, bounds, eac_bounds, eac_dets) for r in t]
+    sidecar, nai_low = {}, 8.1
+    sc = os.path.join(os.path.dirname(os.path.abspath(path)), 'spectral_fits.json')
+    if os.path.exists(sc):
+        try:
+            with open(sc) as fh:
+                sidecar = json.load(fh)
+            nr = sidecar.get('NAI_RANGES')
+            if isinstance(nr, (list, tuple)) and nr and isinstance(nr[0], (list, tuple)):
+                nai_low = float(nr[0][0])
+            elif isinstance(nr, (list, tuple)) and nr:
+                nai_low = float(nr[0])
+        except (OSError, ValueError, TypeError):
+            pass
+    rows = [audit_row(r, cols, specs, parents, bounds, eac_bounds, eac_dets, nai_low) for r in t]
     counts = build_counts(rows)
-    trig = str(t['TRIGGER_NAME'][0]) if 'TRIGGER_NAME' in cols else os.path.basename(os.path.dirname(os.path.abspath(path)))
+    trig = (str(t['TRIGGER_NAME'][0]) if 'TRIGGER_NAME' in cols else sidecar.get('trigger')
+            or os.path.basename(os.path.dirname(os.path.abspath(path))))
     return {'schema': 'two_breaks.fit_table_audit.v1', 'trigger': trig,
             'table': os.path.abspath(path), 'table_sha256': _sha256(path),
-            'engine': os.path.relpath(ENGINE, ROOT), 'engine_sha256': _sha256(ENGINE),
+            'engine': os.path.relpath(ENGINE, ROOT), 'engine_sha256': hashlib.sha256(src.encode('utf-8')).hexdigest(),
+            'engine_rev': engine_rev or 'WORKING_FILE',
+            'bounds_note': ('rail census valid only for tables fitted under the engine at engine_rev; the table records no bounds '
+                            '(verifier round 1, 2026-09-02)'),
+            'nai_low_keV': nai_low,
             'generated_utc': _dt.datetime.now(_dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
             'thresholds': {'tie_dAIC': TIE_DAIC, 'tracked_dAIC': TRACKED_DAIC, 'decisive_dAIC': DECISIVE_DAIC},
             'n_models': len(specs), 'n_nested_children': len(parents), 'eac_dets': eac_dets,
@@ -301,7 +382,8 @@ def audit_table(path):
 
 def render_md(a):
     L = [f"# FIT-TABLE AUDIT — {a['trigger']}", '',
-         f"- table `{os.path.relpath(a['table'], ROOT)}` sha256 `{a['table_sha256'][:16]}…`; engine sha256 `{a['engine_sha256'][:16]}…`; {a['generated_utc']}",
+         f"- table `{os.path.relpath(a['table'], ROOT)}` sha256 `{a['table_sha256'][:16]}…`; engine @ {a['engine_rev']} sha256 `{a['engine_sha256'][:16]}…`; NaI edge {a['nai_low_keV']} keV; {a['generated_utc']}",
+         f"- {a['bounds_note']}",
          f"- {a['n_models']} models; {a['n_nested_children']} nested children; ancestor-less: {', '.join(a['ancestorless_models'])}",
          f"- AIC − (N2LL + 2·n_params) = {a['aic_offset']['mean']:+.4f} in {a['aic_offset']['n_cells']} finite cells ({'CONSTANT' if a['aic_offset']['constant'] else 'NOT constant'}) → quote MARGINS, never absolutes (NR-44)",
          '', '## Every count with its three coordinates (NR-45)', '',
@@ -326,9 +408,10 @@ def main(argv=None):
     ap.add_argument('--table', required=True)
     ap.add_argument('--out-dir', help='default: beside the table')
     ap.add_argument('--claims', help='JSON list of {name,k,N,denominator,basis,model} to verify (NR-45)')
+    ap.add_argument('--engine-rev', help='git revision of the engine in force when the table was fitted (bounds/constants)')
     ap.add_argument('--quiet', action='store_true')
     a = ap.parse_args(argv)
-    audit = audit_table(a.table)
+    audit = audit_table(a.table, a.engine_rev)
     if a.claims:
         with open(a.claims) as fh:
             audit['claims'] = check_claims(json.load(fh), audit['counts'])
@@ -346,7 +429,7 @@ def main(argv=None):
             for c in audit['claims']:
                 print(f"CLAIM {c['name']} {c.get('k')}/{c.get('N')} [{c.get('denominator')}, {c.get('basis')}, {c.get('model')}] -> {c['verdict']}"
                       + (f" (audited {c['audited_k']}/{c['audited_N']})" if 'audited_k' in c else ''))
-    bad = [r for r in audit['rows'] if r.get('argmin') and not r['argmin_matches_engine']]
+    bad = [r for r in audit['rows'] if r.get('argmin') and (not r['argmin_matches_engine'] or r.get('engine_best_valid') is False)]
     return 2 if bad else 0
 
 

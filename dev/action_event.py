@@ -52,12 +52,17 @@ ACTORS = ('human', 'agent', 'hook', 'script')
 
 
 def _validate(ev):
+    """Refuse an invalid event loudly. If jsonschema is not importable the event is still written
+    but stamped validated=false and a warning goes to stderr -- never a silent no-op (verifier round 1)."""
     try:
         import jsonschema
     except ImportError:
+        print('ACTION_EVENT WARNING: jsonschema not importable; event written UNVALIDATED', file=sys.stderr)
+        ev['validated'] = False
         return
     with open(SCHEMA) as fh:
         jsonschema.validate(ev, json.load(fh))
+    ev['validated'] = True
 
 
 def build(primitive, phase, actor_kind, identity, trigger_scope=None, step=None, inputs=None, outputs=None,

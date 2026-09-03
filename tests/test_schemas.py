@@ -63,6 +63,23 @@ CASES = [
 ]
 
 
+def test_live_action_trace_validates():
+    """Every line of the live trace (results/campaign/traces/actions.jsonl) is one valid event."""
+    f = os.path.join(BASE, 'results', 'campaign', 'traces', 'actions.jsonl')
+    if not os.path.exists(f):
+        pytest.skip('no live trace yet')
+    bad = []
+    with open(f, encoding='utf-8') as fh:
+        for i, line in enumerate(fh, 1):
+            line = line.strip()
+            if not line:
+                continue
+            errs = _errors('action_event', json.loads(line))
+            if errs:
+                bad.append((i, errs[:3]))
+    assert not bad, bad[:5]
+
+
 def test_every_schema_is_itself_valid():
     assert len(SCHEMAS) >= 8
     for s in SCHEMAS.values():
