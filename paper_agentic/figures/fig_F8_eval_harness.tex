@@ -1,6 +1,8 @@
 % F8 — Two harnesses: the runtime harness that walks a burst (left) and the evaluation harness that judges a change
 % to it (right). Single-column figure (~3.3 in). COLOUR GRAMMAR (decisions 24/26): blue = code, green = model role,
 % white = documents/records, amber = human, dashed = PROPOSED; Source Sans Pro; 1 pt soft-grey round arrows.
+% One-row legend (the two-row experiment of r4 collided and bought 0.04 pt of type; the canvas width is set by the two
+% 30 mm columns, not the legend — the figure is placed as a full-width float instead, see sec10_discussion.tex).
 % NO live count on the artifact (a suite size drifts with any commit: 134 -> 137 within one day when a generator was
 % added to the figure-style test). The caption binds the counts to ONE battery record: EVAL_20260903T221534Z.json
 % (137 tests collected, 136 passed + 1 xfailed; 25 promoted tables audited, 3 with findings; replay UNBUILT;
@@ -53,8 +55,8 @@
 \node[code, below=13mm of next.south west, anchor=north west, text width=12mm, font=\sffamily\scriptsize] (l1) {blue: code};
 \node[agent, right=1.2mm of l1, text width=17mm, font=\sffamily\scriptsize] (l2) {green: model role};
 \node[box, right=1.2mm of l2, text width=13mm, font=\sffamily\scriptsize] (l3) {white: records};
-\node[event, below=1.2mm of l1.south west, anchor=north west, text width=12mm, font=\sffamily\scriptsize] (l3b) {grey: events};
-\node[human, right=1.2mm of l3b, aspect=2.2, font=\sffamily\scriptsize\bfseries] (l4) {human};
-\node[prop, right=1.2mm of l4, text width=16mm, font=\sffamily\scriptsize] (l5) {dashed: proposed};
+\node[event, right=1.2mm of l3, text width=13mm, font=\sffamily\scriptsize] (l3b) {grey: events};
+\node[human, right=1.5mm of l3b, aspect=2.2, font=\sffamily\scriptsize\bfseries] (l4) {human};
+\node[prop, right=1.5mm of l4, text width=16mm, font=\sffamily\scriptsize] (l5) {dashed: proposed};
 \end{tikzpicture}
 \end{document}
