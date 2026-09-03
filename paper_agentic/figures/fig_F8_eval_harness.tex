@@ -36,19 +36,19 @@
 
 % right column: evaluation harness
 \node[head, right=14mm of hl] (hr) {evaluation harness: judges a change};
-\node[code, below=2.5mm of hr] (tests) {test suite: 134 tests (lessons-as-tests, id guards, compile checks) over the real products};
-\node[code, below=of tests] (audit) {fit-table auditor over every promoted table (25): argmin, rails, tie set, count triple};
+\node[code, below=2.5mm of hr] (tests) {test suite: 134 tests --- lessons-as-tests and schema checks over the products, id guards, compile checks};
+\node[code, below=of tests] (audit) {fit-table auditor over every promoted table (25 of 106 bursts): argmin, rails, tie set, count triple};
 \node[prop, below=of audit] (known) {known-results replay of stored solutions and published values (proposed)};
 \node[box, below=of known] (rec) {one record per run: PASS / FAIL with the model identity, commit, tree state};
 \draw[arr] (tests) -- (audit); \draw[arr] (audit) -- (known); \draw[arr] (known) -- (rec);
 
 % the coupling
-\draw[arr] (stamp.east) -- ++(4mm,0) |- node[lab, pos=0.25, right, text width=11mm, align=left] {any change to the runtime, or of the model} (tests.west);
-\draw[arr, dashed] (rec.west) -- ++(-5mm,0) |- (next.east);
+\draw[arr] (stamp.east) -- ++(4mm,0) |- node[lab, pos=0.25, right, text width=17mm, align=left] {any change to the runtime, or of the model} (tests.west);
+\draw[arr, dashed, -{Bar[width=2.2mm]}] (rec.west) -- ++(-5mm,0) |- (next.east);
 \node[lab, below=0.8mm of next.south east, anchor=north, text width=34mm, align=center, xshift=6mm] {a FAIL would block the next step and the freeze (proposed)};
 
 % legend
-\node[code, below=9mm of next.south west, anchor=north west, text width=12mm, font=\sffamily\scriptsize] (l1) {blue: code};
+\node[code, below=13mm of next.south west, anchor=north west, text width=12mm, font=\sffamily\scriptsize] (l1) {blue: code};
 \node[agent, right=1.2mm of l1, text width=17mm, font=\sffamily\scriptsize] (l2) {green: model role};
 \node[box, right=1.2mm of l2, text width=13mm, font=\sffamily\scriptsize] (l3) {white: records};
 \node[event, right=1.2mm of l3, text width=13mm, font=\sffamily\scriptsize] (l3b) {grey: events};
