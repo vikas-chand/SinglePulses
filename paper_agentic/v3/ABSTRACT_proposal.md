@@ -1,0 +1,31 @@
+# Abstract proposal (chng[abstract]) — 2026-09-03, awaiting the PI's approved / revise / skip
+
+PI: "abstract needs to be concise, and one the lines are they write for A&A (without giving titles)".
+Flow = A&A structured abstract without headings: context → aims → methods → results → conclusions.
+Decisions honoured: 19 (describe the design, no claims), 21 (the whole system = an agent; harness = its machinery).
+Counts: only "106" (sample); the lesson count of v2 ("thirty-two") is v2-era and NOT reproduced here until a census.
+Words: ~200 (was 423).
+
+```latex
+\begin{abstract}
+Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on judgement
+calls: which detectors to trust, where the background lies, where the burst
+begins and ends, how finely to bin it in time, and which of two dozen
+spectral models to adopt. We describe the design of an agent that makes
+those calls for a campaign of 106 single-pulse \textit{Fermi}/GBM bursts,
+with a human approving every step. The language model runs inside a
+harness of deterministic tools, plain-language skill documents, state
+derived from disk, and enforced boundaries; specialist roles read, produce,
+and verify, and a producer never verifies its own work. Each burst is
+analysed blind, compared with the published literature only after its own
+numbers are frozen, and every mismatch is attributed and distilled into a
+numbered lesson that ships with an executable test. We present the harness
+component by component, the guides and sensors that act at each step, and
+the object-and-action model that binds every product to its inputs by hash,
+and we report what the walkthrough burst caught: engine defects fixed and
+tested, blind predictions confirmed, one refuted. The trained artifact is
+the skill library, readable by a student or by another AI system, and we
+state plainly where the human gate still does the deciding. We release the
+library, the engine, the tests, and the per-burst records.
+\end{abstract}
+```
