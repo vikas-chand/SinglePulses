@@ -36,12 +36,49 @@ BLOCK_FIRST = 202   # \section{The Agentic Workflow}
 BLOCK_LAST = 504    # last line before \section{Learning Without Gradients}
 
 
+def stage2(write=False):
+    """Claims block (decision 20, second gate): in agentic_grb_v3.tex replace the v2-era Learning + Verification
+    sections with \\input{v3/sec5_steering} + \\input{v3/sec6_doctrine}, and the v2-era Discussion with
+    \\input{v3/sec10_discussion}; add the table-cell macros to the preamble. Idempotent: refuses if already applied."""
+    text = open(V3, encoding='utf-8').read()
+    if 'v3/sec5_steering' in text:
+        sys.exit('stage 2 already applied to agentic_grb_v3.tex')
+    a = re.search(r'^\\section\{Learning Without Gradients\}[^\n]*$', text, flags=re.M)
+    b = re.search(r'^\\input\{v3/sec7_objects\}', text, flags=re.M)
+    c = re.search(r'^\\section\{Discussion\}[^\n]*$', text, flags=re.M)
+    d = re.search(r'^\\section\{Conclusions\}[^\n]*$', text, flags=re.M)
+    if not (a and b and c and d and a.start() < b.start() < c.start() < d.start()):
+        sys.exit('stage 2 anchors not found in the expected order')
+    new = (text[:a.start()]
+           + '% ---- v3 claims block (decision 20, gate 2): §5 + §6 from fragments; v2 §4-§5 replaced (see\n'
+           + '% ---- paper_agentic/v3/DECISION_SHEET_claims_block.md §3 for where every v2 paragraph went).\n'
+           + '\\input{v3/sec5_steering}\n\n\\input{v3/sec6_doctrine}\n\n'
+           + text[b.start():c.start()]
+           + '% ---- v3 §10 from the fragment; v2 §8 replaced.\n\\input{v3/sec10_discussion}\n\n'
+           + text[d.start():])
+    new = new.replace('\\newcommand{\\ac}[1]{\\parbox[t]{5.3cm}{\\raggedright #1}}   % authority-table cell (v3 §3)',
+                      '\\newcommand{\\ac}[1]{\\parbox[t]{5.3cm}{\\raggedright #1}}   % authority-table cell (v3 §3)\n'
+                      '\\newcommand{\\rc}[1]{\\parbox[t]{10.2cm}{\\raggedright #1}}  % register-table cell (v3 §5)\n'
+                      '\\newcommand{\\nc}[2]{\\parbox[t]{#1}{\\raggedright #2}}       % needs-table cell (v3 §10)', 1)
+    removed = text[a.start():b.start()].count('\n') + text[c.start():d.start()].count('\n')
+    print(f'stage 2: {removed} v2-era lines (Learning, Verification, Discussion) replaced by three \\input lines')
+    if write:
+        open(V3, 'w', encoding='utf-8').write(new)
+        print(f'wrote {os.path.relpath(V3, ROOT)}')
+    else:
+        print('dry run — add --write to apply')
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--write', action='store_true')
     ap.add_argument('--force', action='store_true', help='overwrite an existing destination (discards its edits)')
     ap.add_argument('--out', default=V3, help='destination tex (default paper_agentic/agentic_grb_v3.tex)')
+    ap.add_argument('--stage2', action='store_true', help='claims block: replace v3\'s v2-era §4/§5/§8 with the §5/§6/§10 fragments')
     a = ap.parse_args()
+    if a.stage2:
+        return stage2(write=a.write)
     lines = open(V2, encoding='utf-8').read().split('\n')
     # --- anchor checks
     if '\\section{The Agentic Workflow}' not in lines[BLOCK_FIRST - 1]:
