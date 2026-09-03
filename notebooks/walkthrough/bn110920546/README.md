@@ -21,6 +21,7 @@ So: **one notebook per finalized step**, numbered by the official BurstWalkthrou
 | 3 background | `bn110920546_step3_background.ipynb` | FINALIZED |
 | 4 source window | `bn110920546_step4_source.ipynb` | FINALIZED |
 | 5 binning | `bn110920546_step5_binning.ipynb` | FINALIZED |
+| 6 fitting | `bn110920546_step6_fitting.ipynb` | PRESENTED — gate pending (widened-bounds table sha 45104924…; A9 numbers PASS / claim promotion CONDITIONAL FAIL folded in §3, §6b, §7) |
 | 6 spectral fitting | — | refit done, gate pending |
 | 7 temporal · 8 products · 9 report | — | not reached |
 | ALL | `bn110920546_combined.ipynb` | built at step 9 |
