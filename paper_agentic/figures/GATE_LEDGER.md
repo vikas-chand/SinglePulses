@@ -1,6 +1,6 @@
 # Paper v3 diagram gate ledger — TRACKED COPY
 
-Copied from `results/campaign/agentfigs/VISION_QC.md` (gitignored under results/*) at 2026-09-03T17:42:32Z, so the approval record of the manuscript's diagrams is commit-recoverable (Codex supervisor review D4, 2026-09-02). The results/ file remains the ledger the no-ship hook reads; this copy is refreshed by the building session whenever a diagram row changes.
+Copied from `results/campaign/agentfigs/VISION_QC.md` (gitignored under results/*) at 2026-09-03T17:44:06Z, so the approval record of the manuscript's diagrams is commit-recoverable (Codex supervisor review D4, 2026-09-02). The results/ file remains the ledger the no-ship hook reads; this copy is refreshed by the building session whenever a diagram row changes.
 
 ## Paper v3 diagrams — gate ledger appended 2026-09-03T03:32:12Z by the building session (verdicts by fresh-context figure-verifier agents; producer = building session)
 
@@ -51,3 +51,11 @@ Tie-break (F1 colour gate, 2026-09-03): a DOCUMENT the model reads (protocol, gu
 | F4 | colour r2 | `0026891eff45671152298118e405c401baf35e4fd06d0c377de1fc202e9df089` | `a52bbb85b5562391e91eea00839e96e0bbc74321e56abad4f382c23d34662ce8` | `31934d46a560ffbe07eac61ffa413c7f9d5c28b6e907ee65a67a00f35c5ae696` | GATE PENDING (grey legend sample; frame-weight channel; 'yes' label moved) |
 | F5 | colour r1 | `b4fb15d30fc12badc008af94c0b604bc652cb4035c613e20d7fbe98697e9cb93` | `994c3e8bcb26c575607d9a51eaf3a81440cf78134ef8b4c216225ec01f289e0a` | `66b498aa10c7c02266e54bf8befef816eb24147c0c9d2146c08bd305eaa29d54` | PASS-WITH-NITS (N1 audit box prose agent-written; N2 legend 'who writes'; N3 amber label contrast; N4 greyscale) |
 | F5 | colour r2 | `80f0cd5edc6cb5d2d3d24edb43d98bf76c102cd4347f1efac562b045df9ebdfc` | `c2eef7d8c05adc884e50106e4574c75f5ca1e4551eb0dda137aa47683a6da591` | `6a2d0496281613336be9ab30ceb1d6d4afb48841fbb189accd6b0fd05adafa7c` | **PASS-WITH-NITS — CURRENT** (433/436 verified from the catalog; nits: legend never defines green; green/amber inseparable in greyscale; commit pin agent-written but white) — PI re-approval needed (decision 16 bound 73bf5bf3) |
+
+### Colour-restyle gates, round 2/3 verdicts appended 2026-09-03T17:44:06Z
+| fig | state | png sha256 | pdf sha256 | tex sha256 | verdict |
+|---|---|---|---|---|---|
+| F2 | colour r2 | `fa128aaa92994cf501e86859de0245a85999e366b1b1d0739760fc9e3e14a57c` | `0ee0c7697d91441cf7d0d3f4e4fd76f812d32b139221d3a1723d1e27f263fc2f` | `ade906a671d018ebb0c3657eed49f2bfca62a1984d0b9e3cf14fa3dd54cfde79` | PASS-WITH-NITS (D1/D2/N1/N2 delivered; every box mapped to its roster row; nit: header comment stale) |
+| F2 | colour r2b | `fa128aaa92994cf501e86859de0245a85999e366b1b1d0739760fc9e3e14a57c` | `5214d76fa89460f539b3c1cef0fec8cb11bc4c7e7206dbc6573f214e8641b372` | `67c863b7fcc6493fb92105078c6bb637098bd787589ccf0903b115dfceadb83c` | **CURRENT** — header comment fixed (text only); PNG byte-identical to r2 (same sha), so the r2 verdict carries; PI re-approval needed (decision 16 bound 6165ad96) |
+| F4 | colour r2 | `0026891eff45671152298118e405c401baf35e4fd06d0c377de1fc202e9df089` | `a52bbb85b5562391e91eea00839e96e0bbc74321e56abad4f382c23d34662ce8` | `31934d46a560ffbe07eac61ffa413c7f9d5c28b6e907ee65a67a00f35c5ae696` | PASS-WITH-NITS (N1/N2/N3 delivered; 9/49 and NR-41 dates re-verified; nits: ladder greys vs event grey in the caption; legend 1.27 mm above the test box) |
+| F4 | colour r3 | `7e3dbcfeff7dcb414360579d4b57c253a65fb865d98a571208baa0832015a23f` | `ac0b2ec2e6cb85e01c9dda11759d8bc5a99e06fc1793eb5d06a119d2aaf5bcb7` | `73d7b7eb614f689382f74b67cddd68128c8220c5773c024f6d0f78581dbb1ab9` | GATE PENDING (legend lifted 1.5 mm) |

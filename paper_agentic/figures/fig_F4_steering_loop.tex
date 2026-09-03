@@ -59,7 +59,7 @@
 \draw[arr] (next.west) -- ++(-8mm,0) |- (inc.west);
 \draw[arr] (dist.east) -- (keep.west);
 \node[lab, below=1mm of freeze, text width=40mm, align=center] {only the frozen sweep yields citable numbers};
-\node[box, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm] (leg1) at (prior.south |- L4.north) {solid: DEPLOYED};
+\node[box, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm] (leg1) at ($(prior.south |- L4.north)+(0,1.5mm)$) {solid: DEPLOYED};
 \node[code, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, left=1.5mm of leg1] (leg3) {blue: code};
 \node[agent, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, below=1.5mm of leg3] (leg4) {green: model role};
 \node[event, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, below=1.5mm of leg4] (leg5) {grey: events, states};
