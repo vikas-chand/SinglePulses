@@ -1,6 +1,6 @@
 # Paper v3 diagram gate ledger — TRACKED COPY
 
-Copied from `results/campaign/agentfigs/VISION_QC.md` (gitignored under results/*) at 2026-09-03T21:03:52Z, so the approval record of the manuscript's diagrams is commit-recoverable (Codex supervisor review D4, 2026-09-02). The results/ file remains the ledger the no-ship hook reads; this copy is refreshed by the building session whenever a diagram row changes.
+Copied from `results/campaign/agentfigs/VISION_QC.md` (gitignored under results/*) at 2026-09-03T21:04:39Z, so the approval record of the manuscript's diagrams is commit-recoverable (Codex supervisor review D4, 2026-09-02). The results/ file remains the ledger the no-ship hook reads; this copy is refreshed by the building session whenever a diagram row changes.
 
 ## Paper v3 diagrams — gate ledger appended 2026-09-03T03:32:12Z by the building session (verdicts by fresh-context figure-verifier agents; producer = building session)
 
@@ -70,6 +70,7 @@ Tie-break (F1 colour gate, 2026-09-03): a DOCUMENT the model reads (protocol, gu
 |---|---|---|---|---|---|
 | F1 | style r1 | (see row above for shas) | | | FAIL — `rounded corners=5pt` on the arrow style overshot three short stubs (loop return head drawn inside the model pointing down; loop start hook inside the model; stamp arrowhead inside the records box pointing away); undisclosed cosmetic deltas: job fill black!7, hatch black!9 / agentline!20, inner frame agentline!80, label radii 3 pt |
 | F2 | style r1 | `1a264c38aef8d44f2b6d3fcd803411181be62a39f317f4336c73607618478a3e` | `a0ca868e98dcbd1d12ec9b3edeaad7649bdddb71d43dad9154e53f5aae32bc53` | `d567aa261f27efcb8878c1366dc6cff4ffcc1234ff716a554cb80b8e7341c2af` | GATE PENDING |
-| F4 | style r1 | `038ee4472be8a273356541bb608dbbe96e7c05354986b34a198e4a4d28945e17` | `ed567ca05d1d870ad8469013834dfc553b3e202b88c1c2b961194ebfc96bc9b7` | `059528ee75849e70546e432604c13d73e3a55d402dad95319020efd7fbea1202` | GATE PENDING |
+| F4 | style r1 | (shas in the row above) | | | FAIL — Source Sans wrapped the register box in 4 lines (was 5), the bottom row rose 1.5 mm and the ladder-anchored legend ended 1.10 mm above the test box (rule ≥ 2.5 mm); undisclosed deltas: event fill black!5 vs next-burst black!6, dashed legend sample frame lightened |
 | F5 | style r1 | `264acd65dab801ad2cdf3c59e40630458a32cc413b0c73062a7940d8f001f44f` | `75f1525e65124d316377099268fbfdb7d5e14ddcd450c8136dce8673be745f05` | `ecf6f0a0f77ca7403a576bc4ff4ebd652ba5f2c00cfcd3a0058289bff377fbce` | GATE PENDING |
 | F1 | style r2 | `d9560217c7bfd2d0673f1153852926c6297e575e9f819cbc84268429a12e0dd3` | `0982e099f70c629550e1106322878a095a7f8060652c2dac2c2b7883da4c44a3` | `db8b698b09cc36239b5008e269eb1ccecb3dc8f3381f843852506328dc77d6cc` | GATE PENDING (arrow corner rounding removed; everything else as style r1) — appended 2026-09-03T21:03:52Z |
+| F4 | style r2 | `0bcb864af58a2b36518e32397126b1bb36d406580235070648585183a94ceefb` | `cd5f4b8a0a4952a9bf4c69e1e127d9b943a99b96a9f9110ff1e74e3502302cbf` | `9a31cb0c2fa0c36f8307621cdfb748c268abbfa0db28610f2c5f22f7308fc07d` | GATE PENDING (legend anchor +3.4 mm; event fills unified) — appended 2026-09-03T21:04:39Z |

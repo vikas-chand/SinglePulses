@@ -45,7 +45,7 @@
 
 \node[dec, below=7mm of lesson] (k) {$K$ clean\\passes?};
 \node[event, right=of k] (freeze) {\textbf{FREEZE} at a recorded commit\\one production sweep over all 106};
-\node[event, below=7mm of k, fill=black!6, xshift=-42mm] (next) {\textbf{next burst}\\runs a better pipeline};
+\node[event, below=7mm of k, xshift=-42mm] (next) {\textbf{next burst}\\runs a better pipeline};
 
 \node[box, right=of dist, text width=27mm, font=\sffamily\scriptsize] (keep) {keep-condition per row (\texttt{keep:} clause; 9 of 49 rows so far)};
 
@@ -61,7 +61,7 @@
 \draw[arr] (next.west) -- ++(-8mm,0) |- (inc.west);
 \draw[arr] (dist.east) -- (keep.west);
 \node[lab, below=1mm of freeze, text width=40mm, align=center] {only the frozen sweep yields citable numbers};
-\node[box, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm] (leg1) at ($(prior.south |- L4.north)+(0,1.5mm)$) {solid: DEPLOYED};
+\node[box, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm] (leg1) at ($(prior.south |- L4.north)+(0,3.4mm)$) {solid: DEPLOYED};   % +3.4 mm: Source Sans wraps the register box in 4 lines (was 5), lifting the bottom row; keeps >= 2.5 mm above the test box
 \node[code, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, left=1.5mm of leg1] (leg3) {blue: code};
 \node[agent, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, below=1.5mm of leg3] (leg4) {green: model role};
 \node[event, text width=22mm, font=\sffamily\scriptsize, minimum height=6mm, below=1.5mm of leg4] (leg5) {grey: events, states};
