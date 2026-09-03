@@ -14,7 +14,7 @@
 \usepackage{amssymb}
 \usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta,fit,backgrounds}
 \newcommand{\nohyph}{\hyphenpenalty=10000 \exhyphenpenalty=10000 }
-\definecolor{codefill}{RGB}{219,231,245}\definecolor{codeline}{RGB}{59,110,165}
+\definecolor{codefill}{RGB}{199,217,239}\definecolor{codeline}{RGB}{59,110,165}
 \definecolor{agentfill}{RGB}{226,240,217}\definecolor{agentline}{RGB}{58,125,52}
 \definecolor{humanfill}{RGB}{253,236,200}\definecolor{humanline}{RGB}{191,124,0}
 \definecolor{docline}{RGB}{110,110,110}
@@ -22,7 +22,7 @@
 \begin{tikzpicture}[
   font=\sffamily\scriptsize, node distance=3mm and 9mm,
   obj/.style={draw=docline, thick, rounded corners=2pt, fill=white, text width=20mm, align=center, minimum height=9mm, execute at begin node=\nohyph},
-  objc/.style={obj, fill=codefill, draw=codeline},
+  objc/.style={obj, fill=codefill, draw=codeline, line width=0.8pt},
   objh/.style={obj, fill=humanfill, draw=humanline},
   act/.style={-{Latex[length=1.8mm]}, thick},
   actp/.style={act, dashed, black!60},
@@ -31,7 +31,7 @@
   linkc/.style={link, dashed},
   lab/.style={font=\sffamily\scriptsize, text=black!75, execute at begin node=\nohyph},
   role/.style={draw=docline, rounded corners=2pt, text width=24mm, align=center, font=\sffamily\scriptsize, inner sep=2pt, execute at begin node=\nohyph},
-  roleh/.style={role, fill=humanfill, draw=humanline}, rolea/.style={role, fill=agentfill, draw=agentline}, rolec/.style={role, fill=codefill, draw=codeline}]
+  roleh/.style={role, fill=humanfill, draw=humanline}, rolea/.style={role, fill=agentfill, draw=agentline, line width=0.3pt}, rolec/.style={role, fill=codefill, draw=codeline, line width=0.8pt}]
 
 % ---- objects (row 1: the burst's chain of products) ----
 \node[obj] (burst) {\textbf{burst}\\trigger id; catalog row};
@@ -69,7 +69,7 @@
 
 % ---- actions: first-class on disk (solid), proposed (dashed) ----
 \node[lab, above=9mm of burst.north west, anchor=south west, text width=140mm, align=left] {\textbf{actions} --- solid: exists on disk today (a stamp or a receipt; identity on the stamps only); dashed: PROPOSED (intent $\to$ preflight $\to$ commit $\to$ receipt)};
-\draw[acth] ($(sel.north)+(-6mm,0)$) to[bend left=25] node[lab, above, text=humanline] {\textbf{approve} (stamp)} ($(sel.north)+(6mm,0)$);
+\draw[acth] ($(sel.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{approve} (stamp)} ($(sel.north)+(6mm,0)$);
 \draw[act] ($(fit.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{promote / quarantine}} ($(fit.north)+(6mm,0)$);
 \draw[act] ($(prod.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{present} (stamp)} ($(prod.north)+(6mm,0)$);
 \draw[act] (stamp.west) -- ++(-5mm,0) |- node[lab, left, pos=0.25, text width=12mm, align=right] {\textbf{invalidate} (cascade)} (reg.west);
@@ -84,6 +84,6 @@
 \node[lab, left=1mm of rh.west, anchor=east, text width=14mm, align=right] {roles on actions};
 
 % legend
-\node[lab, below=1.5mm of rh.south west, anchor=north west, text width=130mm, align=left] {\ensuremath{\blacklozenge} = object type with a JSON schema on disk (dev/schemas, 2026-09-02). Colour = who writes the object: blue = code; amber = carries a human identity; white = law and documents. Links: solid = a declared field carries it; dashed = by naming convention only. Two product roots are resolved by an index file, not by the objects (not one reality yet).};
+\node[lab, below=1.5mm of rh.south west, anchor=north west, text width=130mm, align=left] {\ensuremath{\blacklozenge} = object type with a JSON schema on disk (dev/schemas, 2026-09-02). Colour: blue = written by code (the audit box's prose verdicts are agent-written); amber = carries an approver identity (human on 433 of 436 selection rows); white = law and documents. Links: solid = a declared field carries it; dashed = by naming convention only. Two product roots are resolved by an index file, not by the objects (not one reality yet).};
 \end{tikzpicture}
 \end{document}

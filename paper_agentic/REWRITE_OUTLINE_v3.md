@@ -151,5 +151,7 @@ Our mapping (one grammar for F1/F2/F4/F5, replaces grey/white): BLUE fill = dete
 tests, schemas); GREEN fill = model-judgement roles (verifiers, skill reader, dispatcher, distiller); AMBER fill = the
 human (PI gate, rulings); DASHED grey, no fill = PROPOSED; hatched enclosures = the two harness layers (outer grey = the
 hosted coding product; inner green = the repository); arrow labels small grey italic; legend row under each figure.
-Colour-blind safe (blue/green/amber differ in luminance; shapes still differ: diamond = human gate). Every restyled figure
-re-gates (colour legend is part of the FigureVisionQC diagram contract).
+Greyscale/colour-blind: the three pastel fills do NOT separate by luminance (gate measurement 2026-09-03: L* 91–94), so a
+redundant channel carries the kind — code boxes have a 0.8 pt frame and a darker fill (RGB 199,217,239, L* ~86), role boxes
+a 0.3 pt frame, the human is a diamond, PROPOSED is dashed; grey = events/states (F4) and the five job headers (F1). Every
+restyled figure re-gates (colour legend is part of the FigureVisionQC diagram contract).
