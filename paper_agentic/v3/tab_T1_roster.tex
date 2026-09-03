@@ -1,0 +1,64 @@
+% T1 — component roster, GENERATED from paper_agentic/T1_component_roster_DRAFT.md (commit 427fdc5) by the build script; do not hand-edit.
+\startlongtable
+\begin{deluxetable*}{p{0.24\textwidth}p{0.42\textwidth}p{0.11\textwidth}p{0.08\textwidth}p{0.09\textwidth}}
+\tablecaption{The component roster: the work of each component in one sentence. Kind: guide / sensor / action / store / producer / actor / boundary; execution: computational (C), inferential (I), human (H). Status is what is on disk at commit \texttt{4df6884} (census 2026-09-02): DEPLOYED = a file or product exists; PROPOSED = a register row or law-file actor without one. Origins are quoted in the source table.\label{tab:roster}}
+\tablehead{\colhead{component} & \colhead{job} & \colhead{kind} & \colhead{exec.} & \colhead{status}}
+\startdata
+\multicolumn{5}{l}{\textit{the loop (run the reasoning loop)}} \\
+Mode-B harness session (Claude Code plays the roster) & Runs the reasoning loop in a subscription coding harness, consuming the agent files, hooks and skills natively while humans gate in-session. & actor & I & DEPLOYED \\
+Burst-walkthrough protocol + fresh-session boot ritual & Opens every session from the law files and the disk board, then presents each of the eleven steps to a gate before the next runs. & guide & I/H & DEPLOYED \\
+Dispatcher (A2) & Reads the task and the register, then returns the agents, gates and order required, naming every guard that is still unbuilt. & actor (planner) & I & DEPLOYED \\
+Queue manager + workflow set (A17; \texttt{wf-*}) & Would own campaign sequencing: read every burst state, run the next legal transition as a typed workflow, classify failures, resume after kill. & actor + action & C & PROPOSED \\
+Orchestrator chains (prototype transitions) & Run fit, merge, products, temporal, assembly and retry stages as resumable shell/python chains; none invokes an agent. & action & C & DEPLOYED \\
+\multicolumn{5}{l}{\textit{tools (execute tools: the deterministic producers)}} \\
+Spectral fitting engine (\texttt{scripts/10}) & Fits every model in the menu jointly to each Bayesian block and the integrated window, writing validity, rail and AIC columns per model. & producer & C & DEPLOYED \\
+Bayesian-block binning (\texttt{scripts/27b}) & Cuts each burst into Bayesian blocks on the brightest NaI and merges blocks below the significance floor, using 3ML's own classes. & producer & C & DEPLOYED \\
+Stage-1 approval (\texttt{scripts/39} GUI + ingest $\to$ stamped catalog) & Renders light curves, takes a human or AI decision on detectors, background and source windows, and stamps who approved what and how. & action + store & C/I/H & DEPLOYED \\
+Step figures + product manifest (\texttt{scripts/44}, \texttt{45}) & Draws one figure per pipeline step and prints a manifest of every product made or missing, so absence is stated. & producer & C & DEPLOYED \\
+Temporal chain (\texttt{scripts/40}, \texttt{46}, \texttt{47c}) & Measures T90, MVT and spectral lag from the same approved selections, importing the PI's validated lag code unmodified. & producer & C & DEPLOYED \\
+SED product family (\texttt{scripts/41c}, \texttt{41d}, \texttt{41e}) & Renders each bin's $\nu F_\nu$ figure under XSPEC semantics, plots parameter evolution, and composites all-model montages, refusing any panel that disagrees with the stored fit. & producer (with code guards) & C & DEPLOYED \\
+Per-burst report (\texttt{scripts/48}) & Assembles one document per burst with captions written from that burst's numbers and every honest flag: ties, edge classes, missing products. & producer & C & DEPLOYED \\
+\multicolumn{5}{l}{\textit{context (assemble and manage context)}} \\
+Per-step skill files (10, indexed by the ledger) & Carry each step's criteria, checklists and numbered lessons, read end-to-end at every step open. & guide & I & DEPLOYED \\
+Cross-cutting contracts (S-items, R-items, shipping, referee, figure style) & State, in the PI's quoted words, what every figure, report, shipment and referee round must satisfy. & guide (contract) & I & DEPLOYED \\
+Law files, orientation and memory & Fix the principles, the roster, the state machine and the boot order; orient any agent to the repo; carry cross-session lessons. & guide & I & DEPLOYED \\
+Skill-reader (A1) & Reads the step's skill file, ledgers and open register rows, and returns the binding checklist for this burst; produces nothing else. & actor (checklist-maker) & I & DEPLOYED \\
+Prior-art-reader (A13) & Sweeps this repo and the project family for existing proofs before any root-cause or redo, and says what is already answered. & sensor & I & DEPLOYED \\
+\multicolumn{5}{l}{\textit{state (persist state)}} \\
+State machine + disk-derived board (\texttt{dev/agent\_state.py}) & Derives every burst's state from evidence on disk, never from memory; the skeleton file, not the code, declares each failure class's behaviour. & store + guide & C & DEPLOYED \\
+Live report, approval stamps, invalidation cascade & Assembles the per-burst live document, records identity-bound stamps for every step, and clears downstream markers when an approved step changes. & action + store & C/H & DEPLOYED \\
+Provenance sidecars, promotion receipts, commit pin, reproduction record, two-root index & Binds every product to its inputs and generator by hash, pins generators by commit, and resolves which of two product roots is canonical. & store & C & DEPLOYED \\
+Object schemas + schema test & Declares the shape of ten object types already written and fails the suite when any instance does not validate, four frozen files excepted. & store (typed) + sensor & C & DEPLOYED \\
+Provenance stamp + action trace & Appends one JSON line per regulated action, validated when jsonschema is importable, naming the model, harness, session and git head; "unknown" is honest. & store + sensor & C & DEPLOYED \\
+Verdict and reconciliation ledgers & Keeps every sha-bound figure verdict, frozen blind prediction and literature reconciliation on disk where the hooks and readers look. & store & C/I & DEPLOYED \\
+First-class actions (present, approve, promote, quarantine, invalidate, launch-producer, deliver) with intent $\to$ preflight $\to$ commit $\to$ receipt & Would wrap every state-changing verb as intent, preflight, commit and receipt, with an actor and model on each; two verbs exist today. & action & C & PROPOSED \\
+\multicolumn{5}{l}{\textit{boundaries (enforce boundaries: hooks, roles, verifiers, the release bar)}} \\
+No-ship hook (E1) & Blocks delivery of any PNG whose sha256 appears in no VISION\_QC ledger. & sensor (hook) & C & DEPLOYED \\
+Dispatch hook (E2) & Blocks a pipeline-producer launch unless a dispatch plan younger than 24 h exists on disk. & sensor (hook) & C & DEPLOYED \\
+Raw-data guard & Blocks any shell command that deletes or overwrites under \texttt{data/bn*}, unless it is the acquisition path. & sensor (hook) & C & DEPLOYED \\
+RAM arbiter + watchdog (E3) & Admits heavy jobs by gigabytes against measured peak RSS through one machine-wide semaphore, and brakes admission when the machine pages. & boundary (resource gate) & C & DEPLOYED \\
+Roles, tool grants and the PI gate (approver, A16) & Separates producer, verifier and approver; the PI approves every step; tool grants are per agent file, Bash-stripping for three readers still undecided. & boundary (roles) + actor (human) & C/H & DEPLOYED \\
+Figure-verifier (A8) & Inspects every figure in a fresh context against the standing contract and its same-run sidecar, returning a verdict the orchestrator sha-binds. & sensor & I & DEPLOYED \\
+Numbers-verifier (A9) & Recomputes every printed number from the run's own tables, sidecars and catalogs, and fails loudly on anything untraceable. & sensor & C/I & DEPLOYED \\
+Seed-auditor (A5) & Finds the seed of every stochastic product, traces it into every RNG, and, where cheap, reruns the smallest unit to prove bit-identical replay. & sensor & C/I & DEPLOYED \\
+Admission-gate (A4) & Screens every row bound for a committed catalog for type, identity and cross-field sanity, refusing or flagging rows with undisclosed rails. & sensor & C/I & DEPLOYED \\
+Port-verifier (A12) & Runs a ported function and its source code on a synthetic case and refuses the port unless they agree numerically. & sensor & C/I & DEPLOYED \\
+Report-conformance gate (A10) & Would verify an assembled deliverable against the report contract, including sha equality between report, figures and the promoted table. & sensor & I & PROPOSED \\
+Queued boundary build (caps, spend ledger, extra hook points, pre-commit, sandbox) & Would cap verifier rounds, log paid spend, auto-trace every tool call, run the fast suite pre-commit, and sandbox producers. & boundary & C & PROPOSED \\
+\multicolumn{5}{l}{\textit{the steering loop (learning without gradients)}} \\
+Agent-requirements register (NR rows) & Records, one row per needed guard or agent, the incident that bore it and its status, so every piece of the machine carries its why. & store + guide & I & DEPLOYED \\
+Distiller (A14) & Root-causes each incident to its primitive, places the countermeasure at the strongest feasible layer, and writes the lesson and register row the same session. & actor (writer) & I & DEPLOYED \\
+Test suite (lessons-as-tests) + hand-run QC scripts & Turns every invariant-shaped lesson and catalog rule into a check over the real products, as a pytest or a hand-run script. & sensor & C & DEPLOYED \\
+ID guards (register ids + lesson prefixes) & Fails the suite on a duplicate register id, a row outside the table, a dangling citation, or a lesson prefix shared by two files. & sensor & C & DEPLOYED \\
+Eval battery (one command) & Runs the suite and the fit-table auditor over every promoted table in one command and records the result with model id and git head. & sensor (eval harness) & C & DEPLOYED \\
+External auditor, two hats (A15: Codex supervisor / blind referee panel T0--T2) & Reviews milestones either as a full-context supervisor or as three blind referees with fixed temperaments, never both on one product version. & sensor & I & DEPLOYED \\
+Divergence learner & Elicits, in the human's words, why a human choice differed from the machinery when neither failed, and ledgers whether the reason generalises. & guide + store & I/H & DEPLOYED \\
+\multicolumn{5}{l}{\textit{science-specific sensors (the numbers discipline)}} \\
+Fit-table auditor + count-coordinates rule & Recomputes tie sets, adopted models, chain-gate verdicts, rail census and AIC offset from the engine's columns, then checks every presented count carries its three coordinates. & sensor (code) + guide (rule) & C & DEPLOYED \\
+Tie-reporter (A6) & Recomputes ΔAIC heads from stored AICs and returns, for any bin within the tie threshold, the tie set, the offending claim and the rewording required. & sensor & C/I & DEPLOYED \\
+Edge and mismatch stamps carried on the artifact & Stamps an edge-constrained component, a bound-pinned parameter, or a panel that disagrees with the engine on the artifact itself, never in prose alone. & sensor (artifact layer) & C & DEPLOYED \\
+Preference census with validity gate (\texttt{dev/model\_preference.py}) & Computes the tracked-model construct per burst from stored AICs, ranking only over fits the engine marked valid and refusing to write on mismatch. & sensor + producer & C & DEPLOYED \\
+Notes-reviewers (A7) + literature agent (A11) & Read residuals bin by bin in fresh contexts and attribute every literature mismatch only after our numbers are frozen; both run as session protocol. & sensor & I & DEPLOYED \\
+Queued science-guard code & Would ground the engine on synthetic truth, refuse stale temporal columns, fail closed on vacant read paths, and refuse ancestor-less winners in engine and report. & sensor & C & PROPOSED \\
+\enddata
+\end{deluxetable*}
