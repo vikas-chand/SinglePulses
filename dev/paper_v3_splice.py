@@ -37,6 +37,7 @@ BLOCK_LAST = 504    # last line before \section{Learning Without Gradients}
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--write', action='store_true')
+    ap.add_argument('--out', default=V3, help='destination tex (default paper_agentic/agentic_grb_v3.tex)')
     a = ap.parse_args()
     lines = open(V2, encoding='utf-8').read().split('\n')
     # --- anchor checks
@@ -94,8 +95,8 @@ def main():
           f'appendix roster added; aliases sec:doctrine, sec:casestudy')
     print('unresolved cross-references after splice:', missing if missing else 'none')
     if a.write:
-        open(V3, 'w', encoding='utf-8').write(text)
-        print(f'wrote {os.path.relpath(V3, ROOT)} ({len(text.splitlines())} lines); v2 untouched')
+        open(a.out, 'w', encoding='utf-8').write(text)
+        print(f'wrote {a.out} ({len(text.splitlines())} lines); v2 untouched')
     else:
         print('dry run — add --write to create agentic_grb_v3.tex')
     return 1 if missing else 0
