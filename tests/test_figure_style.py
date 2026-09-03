@@ -32,7 +32,9 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS = os.path.join(BASE, "scripts")
 
 # figure-producing scripts governed by the style
-FIGURE_SCRIPTS = ["44_step_figures.py", "41_nuFnu_panels.py"]
+FIGURE_SCRIPTS = ["44_step_figures.py", "41_nuFnu_panels.py",
+    "../dev/build_learning_curve.py",
+]
 
 
 def _src(name):

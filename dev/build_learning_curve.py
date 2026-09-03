@@ -9,8 +9,8 @@ Sources (never typed numbers):
     lessons per burst = the number of lesson ids named in `lessons_born`; defects = `bugs_found`.
   * the five step skills that carry numbered lessons (dev/ai_guides/{SpectralFitting,Temporal,DataInventory,
     GCNIntelligence,LiteratureHarvest}.md): heading-form lessons `### <PREFIX><n> — ... *(date, burst)*`; the
-    walkthrough burst in progress (bn110920546, ledger #21, walked from 2026-08-30) is credited with the lessons
-    whose heading names it or whose date falls on or after 2026-08-30.
+    walkthrough burst in progress (bn110920546, ninth walked; review-index 21) is credited ONLY with the lessons whose
+    heading names it and that are not marked PROPOSED; its defects are not tallied while the walkthrough is open.
 The figure carries the provisional flag by construction (the caption says so; the sidecar says which rows are
 ledger and which are parsed).
 """
@@ -30,6 +30,16 @@ SKILLS = {'SpectralFitting': 'L', 'Temporal': 'TM', 'DataInventory': 'D', 'GCNIn
 WALK21 = ('bn110920546', '2026-08-30')
 
 
+def review_index():
+    """trigger -> row number in notes/REVIEW_INDEX_106.md (the campaign catalogue order)."""
+    out = {}
+    for l in open(os.path.join(ROOT, 'notes', 'REVIEW_INDEX_106.md'), encoding='utf-8'):
+        m = re.match(r'^\|\s*(\d+)\s*\|\s*`(bn\d{9})`', l)
+        if m:
+            out[m.group(2)] = int(m.group(1))
+    return out
+
+
 def ledger_rows(known_ids):
     """Bursts #1-#8 from the ledger: lesson ids named in `lessons_born`, WHITELISTED against the heading-form
     lessons on disk (so 'T90' is never a lesson) and DEDUPLICATED across rows (an id counts at its first
@@ -46,7 +56,8 @@ def ledger_rows(known_ids):
         ids = [i for i in ids if i in known_ids]
         new_ids = [i for i in ids if i not in seen]
         seen.update(new_ids)
-        rows.append({'order': int(r['order']), 'burst': r['burst'], 'walked': r['walked'], 'lessons': len(new_ids),
+        rows.append({'order': int(r['order']), 'walk_order': int(r['order']), 'review_index': None,
+                     'burst': r['burst'], 'walked': r['walked'], 'lessons': len(new_ids),
                      'lesson_ids': new_ids, 'defects': int(r['bugs_found'] or 0),
                      'source': 'notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)',
                      'lessons_born': r['lessons_born']})
@@ -57,7 +68,7 @@ def parsed_lessons():
     out = []
     for f, pre in SKILLS.items():
         for line in open(os.path.join(ROOT, 'dev', 'ai_guides', f + '.md'), encoding='utf-8'):
-            m = re.match(r'^#{2,4}\s+' + pre + r'(\d{1,2})\b(.*)$', line)
+            m = re.match(r'^#{2,4}\s+' + pre + r'(\d{1,2}[a-z]?)\b(.*)$', line)
             if m:
                 tail = m.group(2)
                 d = re.search(r'(20\d\d-\d\d-\d\d)', tail)
@@ -79,18 +90,19 @@ def main():
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     sys.path.insert(0, os.path.join(ROOT, 'scripts'))
-    try:
-        from plot_style import apply_pub_style
-        apply_pub_style()
-    except Exception:
-        pass
+    from plot_style import apply_pub_style, PUB   # must not fail silently (Figures.md F8)
+    apply_pub_style()
     lessons = parsed_lessons()
     known = {l['id'] for l in lessons}
     rows = ledger_rows(known)
+    rix = review_index()
+    for i, r in enumerate(rows, 1):
+        r['walk_order'] = i
+        r['review_index'] = rix.get(r['burst'])
     # #21 (ninth walked burst): lessons whose HEADING names the burst and that are not marked PROPOSED
     w21 = [l for l in lessons if l['burst'] == WALK21[0] and not l['proposed']]
     d21 = register_defects(WALK21[0])   # rows CITING the burst (as instance or birth) — not a defect tally; recorded, not drawn
-    rows.append({'order': 21, 'burst': WALK21[0], 'walked': WALK21[1] + '..', 'lessons': len(w21),
+    rows.append({'order': 21, 'walk_order': 9, 'review_index': 21, 'burst': WALK21[0], 'walked': WALK21[1] + '..', 'lessons': len(w21),
                  'lesson_ids': [l['id'] for l in w21], 'defects': None, 'register_rows_citing': d21,
                  'source': 'dev/ai_guides/*.md headings naming the burst, PROPOSED excluded; defects = register rows citing the burst',
                  'lessons_born': ';'.join(l['id'] for l in w21)})
@@ -106,7 +118,8 @@ def main():
     ax.bar(xs, [r['defects'] or 0 for r in rows], color='0.3', edgecolor='0.2', width=0.5, label='defects found (all layers)')
     for x, r in zip(xs, rows):
         if r['defects'] is None:
-            ax.text(x, 0.15, 'defects\nnot\ntallied', ha='center', va='bottom', fontsize=7, color='0.25')
+            ax.text(x, 0.25, 'defects not tallied', rotation=90, ha='center', va='bottom', color='0.2',
+                    fontsize=PUB['tick_size'] - 2)
     ax2 = ax.twinx()
     ax2.plot(xs, cum, color='k', marker='o', ms=3.5, lw=1.2, label='cumulative lessons')
     ax.set_xticks(xs)
@@ -114,18 +127,19 @@ def main():
     ax.set_xlabel('walked burst (walk order; not time)')
     ax.set_ylabel('per burst')
     ax2.set_ylabel('cumulative lessons')
-    ax.set_ylim(0, max(r['lessons'] for r in rows) * 1.75)
-    ax2.set_ylim(0, max(cum) * 1.5)
+    ax.set_ylim(0, max(r['lessons'] for r in rows) * 1.55)
+    ax2.set_ylim(0, max(cum) * 1.35)
     h1, l1 = ax.get_legend_handles_labels()
     h2, l2 = ax2.get_legend_handles_labels()
     from matplotlib.ticker import MaxNLocator
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.legend(h1 + h2, l1 + l2, loc='upper left', framealpha=0.9, edgecolor='0.6')
-    ax2.annotate('in progress', (xs[-1], cum[-1]), xytext=(-2, 7), textcoords='offset points', ha='right', va='bottom', color='0.3')
-    ax.text(0.97, 0.90, 'provisional: walkthrough era', transform=ax.transAxes, ha='right', va='top', color='0.4')
-    fig.tight_layout()
+    ax2.annotate('in progress', (xs[-1], cum[-1]), xytext=(-9, -6), textcoords='offset points', ha='right', va='top',
+                 color='0.3', fontsize=PUB['tick_size'] - 2)
+    fig.text(0.995, 0.012, 'provisional: walkthrough era', ha='right', va='bottom', color='0.4')
+    fig.tight_layout(rect=[0, 0.05, 1, 1])
     fig.savefig(OUT + '.pdf')
-    fig.savefig(OUT + '.png', dpi=300)
+    fig.savefig(OUT + '.png', dpi=PUB['dpi'])
     head = subprocess.run(['git', 'rev-parse', '--short=12', 'HEAD'], capture_output=True, text=True, cwd=ROOT).stdout.strip()
     side = {'figure': 'F7 campaign learning curve', 'utc': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
             'git_head': head, 'rows': rows, 'cumulative': cum, 'total_lessons': cum[-1],
