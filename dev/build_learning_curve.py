@@ -5,10 +5,13 @@
                                                    #   + a JSON sidecar with every number on the figure and its source
 
 Sources (never typed numbers):
-  * notes/campaign_ledger.csv — the first eight walked bursts (order, burst, walked dates, lessons_born, bugs_found):
-    lessons per burst = the number of lesson ids named in `lessons_born`; defects = `bugs_found`.
-  * the five step skills that carry numbered lessons (dev/ai_guides/{SpectralFitting,Temporal,DataInventory,
-    GCNIntelligence,LiteratureHarvest}.md): heading-form lessons `### <PREFIX><n> — ... *(date, burst)*`; the
+  * notes/campaign_ledger.csv — the first eight walked bursts. Lessons per burst = the ids named in `lessons_born`,
+    (a) WHITELISTED against the heading-form lessons that exist on disk (so 'T90' is not a lesson), (b) ALIASED where
+    a lesson was relocated between skill files (L26->TM3, L29->TM1) so it keeps its birth credit, and (c) DEDUPLICATED
+    across rows (an id counts at its first appearance). Defects = `bugs_found`, defects at any layer.
+  * the step skills that carry numbered lessons (dev/ai_guides/{SpectralFitting,Temporal,DataInventory,
+    GCNIntelligence,LiteratureHarvest}.md): heading-form lessons under any of `##`..`####`, ids optionally
+    sub-lettered (`L6b`); the
     walkthrough burst in progress (bn110920546, ninth walked; review-index 21) is credited ONLY with the lessons whose
     heading names it and that are not marked PROPOSED; its defects are not tallied while the walkthrough is open.
 The figure carries the provisional flag by construction (the caption says so; the sidecar says which rows are
@@ -71,7 +74,7 @@ def parsed_lessons():
             m = re.match(r'^#{2,4}\s+' + pre + r'(\d{1,2}[a-z]?)\b(.*)$', line)
             if m:
                 tail = m.group(2)
-                d = re.search(r'(20\d\d-\d\d-\d\d)', tail)
+                d = re.search(r'(20\d\d-\d\d-\d\d)', tail)   # kept for the sidecar record only; no rule reads it
                 b = re.search(r'(bn\d{9})', tail)
                 out.append({'id': f'{pre}{m.group(1)}', 'file': f, 'date': d.group(1) if d else None, 'burst': b.group(1) if b else None,
                             'proposed': 'PROPOSED' in tail.upper()})
@@ -118,10 +121,10 @@ def main():
     ax.bar(xs, [r['defects'] or 0 for r in rows], color='0.3', edgecolor='0.2', width=0.5, label='defects found (all layers)')
     for x, r in zip(xs, rows):
         if r['defects'] is None:
-            ax.text(x, 0.25, 'defects not tallied', rotation=90, ha='center', va='bottom', color='0.2',
-                    fontsize=PUB['tick_size'] - 2)
+            ax.text(x, 0.5, 'in progress: defects not tallied', rotation=90, ha='center', va='bottom',
+                    color='0.2', fontsize=PUB['tick_size'] - 1)
     ax2 = ax.twinx()
-    ax2.plot(xs, cum, color='k', marker='o', ms=3.5, lw=1.2, label='cumulative lessons')
+    ax2.plot(xs, cum, color='k', marker='o', ms=PUB['ms_data'] - 1.5, lw=PUB['lw_secondary'], label='cumulative lessons')
     ax.set_xticks(xs)
     ax.set_xticklabels(labels)
     ax.set_xlabel('walked burst (walk order; not time)')
@@ -134,8 +137,6 @@ def main():
     from matplotlib.ticker import MaxNLocator
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.legend(h1 + h2, l1 + l2, loc='upper left', framealpha=0.9, edgecolor='0.6')
-    ax2.annotate('in progress', (xs[-1], cum[-1]), xytext=(-9, -6), textcoords='offset points', ha='right', va='top',
-                 color='0.3', fontsize=PUB['tick_size'] - 2)
     fig.text(0.995, 0.012, 'provisional: walkthrough era', ha='right', va='bottom', color='0.4')
     fig.tight_layout(rect=[0, 0.05, 1, 1])
     fig.savefig(OUT + '.pdf')
