@@ -924,6 +924,15 @@ classifier; wiring into scorecards/population products is the enforcement point 
 item: serialize the class into fit tables).
 **TEST:** `test_L28_edge_feature_class` (unit-level; includes the L25 consistency property —
 kt and xb = 3.92·kt must classify identically).
+**INSTANCE (2026-09-02, #21 bn110920546, promoted table sha256 45104924…, stamps computed by
+`dev/fit_table_audit.py` at f99bc30; register row NR-43 — recorded for the step-6 PRESENT, no action
+taken on the burst here):** the auditor's edge stamps put 3.92·kT BELOW the 8.1 keV NaI low edge of
+the fitted band (stamp `BELOW_BAND` — below the band itself, not merely below EDGE_TRUST) in blocks
+2, 4, 6, 7 on the argmin basis (peaks 4.8 / 4.3 / 5.6 / 4.2 keV) and in blocks 6, 7 on the adopted
+basis; blk 6's DECISIVE-adopted CPL+BB (vs CPL, ΔAIC +75.4) is one of them, and in blocks 4 and 7
+the kT LOWER error bar terminates on the 1 keV floor (L32: a constraint at a bound is a constraint
+from the bound). DECISIVE is a statement about the CONTINUUM ancestor; it earns nothing under checks
+2–7 above — these components ship stamped-and-quarantined, never as "a blackbody".
 
 ### L30 — The energy-range convention is the PI's PUBLISHED convention, cited, not an inherited default  *(Vikas, 2026-08-14: "use that")*
 The engine ran 106 bursts with `BGO 300–40000 / LLE 30–100 MeV / K-edge 33–40` — three
@@ -1040,6 +1049,28 @@ constants × 2). Two consequences, and they differ:
 **RULE:** quote MARGINS, never absolute AIC/BIC. If an absolute is unavoidable (a table
 column, an appendix), it carries `k_eff` and the sentence "includes N effective-area
 nuisance constants, of which M are at a bound" — otherwise it does not ship.
+
+### L34 — A STORED `BEST_AIC_MODEL` IS A DERIVED COLUMN, NOT A MEASUREMENT: recompute the validity-gated argmin over ALL model columns after any cell replacement  *(2026-09-02, fit-table auditor + eval battery over the 25 promoted tables; register row NR-48)*
+The engine writes `BEST_AIC_MODEL` once, from the models present in THAT invocation. The
+campaign-20 family merge then REPLACED model cells from other family runs after adoption
+(sidecar `adopted_from = "highe (all-24 superset invocation)"`, 18 tables) without recomputing
+the winner and without a validity gate; `_recompute_selection()` in
+`notes/codex_campaign20_runtime/campaign_products.py:731-780` does both on the campaign_merge
+path, but the adopted tables never passed through it. Measured
+(`results/campaign/eval/audits_20260903T000310Z/`, AIC re-read from the tables): 4 rows in 3 of
+25 tables where the stored winner is not the union argmin — bn090804940 blk −1 (SBPL+BB stored;
+Band+BB lower by 0.377, both VALID), bn090809978 blk 1 (SBPL; CPL+BB by 0.283), bn090829672
+blk 16 (SBPL; CPL+BB by 0.678), and bn090829672 blk 0 where the stored winner CPL+BB is
+`VALID = False` (gated argmin Band+BB). All three margins sit inside the tie width (NR-3), so
+no headline flips — the point is that a column every census, figure and report reads as the
+engine's verdict was not the engine's verdict, and one of them is a failed fit.
+**RULE:** (1) never READ a stored winner as the argmin — recompute it, validity-gated (NR-26),
+from the model columns actually in the table (`dev/fit_table_audit.py` does this; exit 2 =
+stored ≠ gated argmin, or stored winner invalid); (2) any operation that replaces model cells
+(merge, superset adoption, retry patch) recomputes `BEST_AIC_MODEL`, `BEST_BIC_MODEL`, `LRT_*`,
+`BOUND_CAPPED` in the SAME write, or does not write; (3) promotion refuses a table whose stored
+winner fails (1). Repair is per burst as it is walked (no-sweep preamble) — the four rows above
+are FLAGGED by this lesson, not fixed.
 
 ## PREFERENCE vs BEST-AIC — the tracking rule (PI ruling, 2026-08-26)
 best_AIC is the argmin; PREFERENCE is a separate claim. PI, verbatim: "best_AIC

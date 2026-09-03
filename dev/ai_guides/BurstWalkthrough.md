@@ -108,7 +108,7 @@ expert's practice is a SPECIFICATION defect, never an arm error.
 | 3 | Background | pre/post windows hugging the burst; polyfit order; residual QC | `background_selection.md` (exists) |
 | 4 | Source interval | emission window in the common background gap | `source_selection.md` (exists) |
 | 5 | Binning (two-tier) | 27b fine GBM Bayesian blocks + significance merge; 27c coarse LLE grid (gated); **bin adequacy for the band that constrains each component** (L3/L6) | `Binning.md` (exists) |
-| 6 | Spectral fitting & selection | the full menu, multistarts, chain gates, classes, admission, evolution tracks — THE DISCOVERY LOOP | `SpectralFitting.md` (flagship, lessons L1–L33; "L" is THIS file's prefix) |
+| 6 | Spectral fitting & selection | the full menu, multistarts, chain gates, classes, admission, evolution tracks — THE DISCOVERY LOOP | `SpectralFitting.md` (flagship, lessons L1–L34; "L" is THIS file's prefix) |
 | 7 | Temporal | T90/T50, MVT, lag, pulse fits | `Temporal.md` (lessons TM1–TM5, ex-L26/L29/L31/L32/L33; carries the DEFECT LEDGER — check before quoting) |
 | 8 | νFν panels & residual reading | ratio-unfolded panels + residual grammar (feeds step 6's loop) | ✎ `SEDPanels.md` (PI ruling 2026-09-02: step 8 = νFν panels + residual reading; tables and report assembly are step 9). Until written: `SpectralFitting.md` L10/L11 + `FigureVisionQC.md` S1–S6 + `SpectralResidualReview.md` |
 | 9 | QC & flags | cross-step sanity, literature-consistency verdict | `qc_flagging.md` (exists) |
