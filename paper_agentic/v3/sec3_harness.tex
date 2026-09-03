@@ -26,7 +26,7 @@
 % URLs, and is invisible in the render) — not a defect of this text.
 % ===========================================================================
 \providecommand{\ac}[1]{\parbox[t]{5.3cm}{\raggedright #1}} % authority-table cell; move to the preamble at splice
-\section{The Harness, Component by Component} \label{sec:harness}
+\section{The Harness, Component by Component} \label{sec:harness}\label{sec:workflow}
 
 We use one vocabulary throughout, and we separate the two kinds of model
 the paper needs. The \emph{language model} is the model we call; the
@@ -152,7 +152,7 @@ concrete: an invalid or drifted fit must not become a population count.
 The fitting step itself, where most of the bounded agency lives, is
 described with its own figure in \S\ref{sec:sensors}.
 
-\subsection{Context: skills, checklists, and memory} \label{sec:context}
+\subsection{Context: skills, checklists, and memory} \label{sec:context}\label{sec:roster}
 
 An operational specialist in this system is a role contract, the skill
 material that role must read, and a tool grant; its specialisation lies in
@@ -182,7 +182,7 @@ await the typed workflows. Cross-session memory is a small indexed file of
 durable facts that the fresh-session protocol instructs the operator to
 read at the start of every session and to consolidate at its end.
 
-\subsection{State: derived from disk, stamped, receipted} \label{sec:state}
+\subsection{State: derived from disk, stamped, receipted} \label{sec:state}\label{sec:skeleton}
 
 The system may claim only what it can evidence. The board computes a
 working status index for the catalogued bursts from selected files on
@@ -223,7 +223,7 @@ an index file, so the system does not yet have one reality, and the
 object-and-action model of \S\ref{sec:objects} says what closing that gap
 requires.
 
-\subsection{Boundaries: hooks, roles, and the human gate} \label{sec:boundaries}
+\subsection{Boundaries: hooks, roles, and the human gate} \label{sec:boundaries}\label{sec:authority}\label{sec:planes}
 
 The design principle is to place each boundary at the strongest layer that
 can hold it; the controls in place range from hooks to role prompts to
