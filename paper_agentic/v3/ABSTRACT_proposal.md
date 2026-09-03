@@ -1,4 +1,12 @@
-# Abstract proposal (chng[abstract]) — r3, 2026-09-03, awaiting the PI's approved / revise / skip
+# Abstract proposal (chng[abstract]) — r4, 2026-09-03, awaiting the PI's approved / revise / skip
+
+**r4 (13:10), in the shape of Schüssler et al. 2026 (arXiv:2608.23270, the PI's pointer: "look at their abstract"):** one
+sentence on what is presented, one on how it works, one on what it produces, then the NUMBERS (their 1,775 Circulars /
+25,827 of 25,880 decisions / 228 of 249 redshifts / 68,393 observations → our census: 106 bursts; 24-model menu; 49
+components, 44 on disk, 5 proposed; 27 guides, 10 roles, 3 hooks, 10 schemas, 49 register rows, 134 tests; 433 of 436
+Stage-1 rows human-approved; six of eleven steps approved on the walkthrough burst), then the release, then a closing
+"this paper describes …" sentence listing the sections. Every number re-verified on disk 2026-09-03 13:05 (the roster
+44/5 and the register 49 by the figure gates today). Decision 19 kept: these are census counts, not claims.
 
 **r3 (12:55):** same facts as r1; register tuned against the retrieval corpus of 2,399 published abstracts (ADS; A&A/ApJ/ApJS/
 MNRAS GRB spectroscopy, astronomy LLM-agent papers, pipeline-provenance papers). Corpus medians: 237 words, 9 sentences,
@@ -13,26 +21,32 @@ Words: ~200 (was 423).
 
 ```latex
 \begin{abstract}
-Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on judgement
-calls: which detectors to trust, where the background lies, where the
-burst begins and ends, how finely to bin it in time, and which of two
-dozen spectral models to adopt. We describe the design of an agent that
-makes those calls for a campaign of 106 single-pulse \textit{Fermi}/GBM
-bursts, with a human approving every step. The language model runs inside
-a harness of deterministic tools, plain-language skill documents, state
-derived from disk, and enforced boundaries. Specialist roles read,
-produce, and verify; a producer never verifies its own work. The agent
-analyses each burst blind, freezes its numbers before it reads the
-published literature, and attributes every mismatch to our side, to the
-published side, or to a difference of frame. Each attribution becomes a
-numbered lesson with an executable test. We present the harness component
-by component, the guides and sensors that act at each step, and the
-object-and-action model that binds every product to its inputs by hash.
-On the walkthrough burst the design caught engine defects, now fixed and
-tested, and confirmed blind predictions while refuting one. The trained
-artifact is the skill library, which a student or another AI system can
-read. We state where the human gate still decides, and we release the
-library, the engine, the tests, and the per-burst records.
+We present the design of an agent for time-resolved spectroscopy of
+gamma-ray bursts (GRBs), built and run on a campaign of 106 single-pulse
+\textit{Fermi}/GBM bursts with a human approving every step. A language
+model runs inside a harness of deterministic tools, plain-language skill
+documents, state derived from disk, and enforced boundaries; specialist
+roles read, produce, and verify, and a producer never verifies its own
+work. For each burst the agent adopts the stamped detector, background,
+and source selections, bins the light curve, fits a 24-model menu to
+every time bin, measures the timing, renders the spectral-energy panels,
+and assembles a report whose every number recomputes from the products on
+disk. It analyses each burst blind, freezes its numbers before it reads
+the published literature, and attributes every mismatch to our side, to
+the published side, or to a difference of frame; each attribution becomes
+a numbered lesson with an executable test. At the census of 2026
+September~2 the harness comprises 49 components, 44 on disk and 5
+specified but not built: 27 guide documents, 10 agent roles, 3 repository
+hooks, 10 object schemas, a 49-row requirements register, and 134 tests.
+Stage-1 selections carry a human approver on 433 of 436 detector rows. On
+the first burst walked end to end under this protocol, six of the eleven
+steps are approved and the seventh is presented; the walkthrough caught
+engine defects, now fixed and tested, and confirmed blind predictions
+while refuting one. We release the skill library, the engine, the tests,
+and the per-burst records. This paper describes the harness component by
+component, the guides and sensors at each step, the steering loop that
+turns incidents into lessons, the verification doctrine, the
+object-and-action model, and the walkthrough burst as a case study.
 \end{abstract}
 ```
 
