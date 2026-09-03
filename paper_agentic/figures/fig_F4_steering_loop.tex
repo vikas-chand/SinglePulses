@@ -37,7 +37,7 @@
 \node[box, right=of k, fill=black!6] (freeze) {\textbf{FREEZE} at a recorded commit\\one production sweep over all 106};
 \node[box, below=7mm of k, fill=black!6, xshift=-42mm] (next) {\textbf{next burst}\\runs a better pipeline};
 
-\node[prop, right=of dist, text width=27mm] (keep) {keep-condition / retest-on-model-change per row};
+\node[prop, right=of dist, text width=27mm] (keep) {keep-condition / retest on model change, per row};
 \node[prop, below=of keep, text width=27mm] (fire) {did-it-fire ledger per guard};
 
 \draw[arr] (inc) -- (prior);

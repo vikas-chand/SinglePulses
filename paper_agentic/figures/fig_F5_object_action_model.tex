@@ -31,7 +31,7 @@
 % ---- row 2: the records about the products ----
 \node[obj, below=11mm of sel] (stamp) {\textbf{approval stamp} \ensuremath{\blacklozenge}\\step, status, by, utc, feedback};
 \node[obj, below=11mm of blk] (receipt) {\textbf{promotion receipt} \ensuremath{\blacklozenge}\\stage sha, ecsv/json sha, validation};
-\node[obj, below=11mm of fit] (audit) {\textbf{audit / verdict} \ensuremath{\blacklozenge}\\FIT\_TABLE\_AUDIT (sha-bound); VISION\_QC, NUMBERS\_QC (prose)};
+\node[obj, below=11mm of fit] (audit) {\textbf{audit / verdict} \ensuremath{\blacklozenge}\\fit-table audit (sha-bound); vision + numbers QC (prose)};
 \node[obj, below=11mm of prod] (trace) {\textbf{action event} \ensuremath{\blacklozenge}\\actor, model id, inputs' sha, verdict, cost};
 
 % ---- row 3: the law ----
@@ -44,7 +44,7 @@
 \draw[link] (burst) -- node[lab, above] {trigger} (sel);
 \draw[link] (sel) -- node[lab, above] {trigger} (blk);
 \draw[link] (blk) -- node[lab, above] {blocks} (fit);
-\draw[link] (fit) -- node[lab, above] {table sha} (prod);
+\draw[link] (fit) -- node[lab, above] {sha} (prod);
 \draw[link] (receipt) -- node[lab, right, pos=0.4] {ecsv sha} (fit);
 \draw[link] (audit) -- node[lab, right, pos=0.4] {table sha} (fit);
 \draw[linkc] (stamp.north) -- node[lab, right, pos=0.4] {by trigger + step} (sel.south);
@@ -57,10 +57,10 @@
 % ---- actions: first-class on disk (solid), proposed (dashed) ----
 \node[lab, above=9mm of burst.north west, anchor=south west, text width=140mm, align=left] {\textbf{actions} --- solid: identity-stamped with a receipt on disk; dashed: PROPOSED (intent $\to$ preflight $\to$ commit $\to$ receipt)};
 \draw[act] ($(sel.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{approve} (stamp)} ($(sel.north)+(6mm,0)$);
-\draw[act] ($(fit.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{promote / quarantine} (receipt)} ($(fit.north)+(6mm,0)$);
+\draw[act] ($(fit.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{promote / quarantine}} ($(fit.north)+(6mm,0)$);
 \draw[act] ($(prod.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {\textbf{present} (stamp)} ($(prod.north)+(6mm,0)$);
 \draw[act] (stamp.west) -- ++(-5mm,0) |- node[lab, left, pos=0.25, text width=12mm, align=right] {\textbf{invalidate} (cascade)} (reg.west);
-\draw[actp] ($(blk.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {launch producer (run record)} ($(blk.north)+(6mm,0)$);
+\draw[actp] ($(blk.north)+(-6mm,0)$) to[bend left=25] node[lab, above] {launch producer} ($(blk.north)+(6mm,0)$);
 \draw[actp] (prod.east) -- ++(4mm,0) node[lab, right, text width=12mm, align=left] {deliver (no-ship hook)};
 
 % ---- roles band ----
