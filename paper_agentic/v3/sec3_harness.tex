@@ -16,8 +16,9 @@
 %   "The operating skeleton": state model -> §3.1, stamps/receipts/invalidation -> §3.4,
 %   hooks + approval authority -> §3.5, register/hierarchy -> §5, failure taxonomy -> §10.
 % Nothing is cut without a later chng that shows where it went.
-% SPLICE NOTE: add \PassOptionsToPackage{hyphens}{url} before \documentclass so the footnote URLs break
-% (verified 2026-09-03: without it one 10.9 pt overfull box in the two-column footnote).
+% COMPILE NOTE (2026-09-03, aastex631 twocolumn wrapper): 0 errors. One 10.9 pt "Overfull \hbox" is aastex's
+% own footnote-mark box (it appears for ANY footnote here, vanishes with the footnote removed, is not the
+% URLs, and is invisible in the render) — not a defect of this text.
 % ===========================================================================
 \providecommand{\ac}[1]{\parbox[t]{5.3cm}{\raggedright #1}} % authority-table cell; move to the preamble at splice
 \section{The Harness, Component by Component} \label{sec:harness}
