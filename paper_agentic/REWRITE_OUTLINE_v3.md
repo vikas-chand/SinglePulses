@@ -158,3 +158,15 @@ Greyscale/colour-blind: the three pastel fills do NOT separate by luminance (gat
 redundant channel carries the kind — code boxes have a 0.8 pt frame and a darker fill (RGB 199,217,239, L* ~86), role boxes
 a 0.3 pt frame, the human is a diamond, PROPOSED is dashed; grey = events/states (F4) and the five job headers (F1). Every
 restyled figure re-gates (colour legend is part of the FigureVisionQC diagram contract).
+
+## Diagram style reference 2 (PI, 2026-09-03: "the quality of design of the figures is nice in this one, have a look at the
+figures, the fonts etc, the joining lines etc": https://arxiv.org/html/2607.08938v1 — Yang et al. 2026, "Better Harnesses,
+Smaller Models", Figs. 1–3; design only, not cited)
+What they do: a humanist sans (Avenir/Source-Sans-like) with bold headings + regular descriptors + italic annotations;
+panels with very light neutral tints and thin light-grey rounded borders (radius ~5–8 px), generous padding, no dark
+frames; categorical TAGS as solid saturated pills (blue/teal/green/olive/ochre/terracotta) with white text; thick soft-grey
+curved arrows with round caps and one orange accent arrow for the key idea; numbered circular step badges; simple glyph
+icons; lots of whitespace. Our adoption (mechanical, texts unchanged): Source Sans Pro (`sourcesanspro`, in TeX Live) in
+place of Latin Modern Sans; corner radius 4–5 pt; arrows 1 pt, black!55, round caps/joins, rounded corners; neutral
+boxes with black!30 frames; the kind colours (D24) kept as pastel fills with the frame-weight channel; numbered badges
+on the five jobs (F1) and the ledger steps (F2) optional. Each restyled figure re-gates.
