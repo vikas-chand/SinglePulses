@@ -44,7 +44,7 @@
 \draw[link] (burst) -- node[lab, above] {trigger} (sel);
 \draw[link] (sel) -- node[lab, above] {trigger} (blk);
 \draw[link] (blk) -- node[lab, above] {blocks} (fit);
-\draw[linkc] (fit) -- node[lab, below, text width=15mm, align=center] {stored AIC (sha PROPOSED)} (prod);
+\draw[linkc] (fit) -- node[lab, below=1.2mm, text width=12mm, align=center, font=\sffamily\tiny] {stored AIC; table sha PROPOSED} (prod);
 \draw[link] (receipt) -- node[lab, right, pos=0.4] {ecsv sha} (fit);
 \draw[link] (audit) -- node[lab, right, pos=0.4] {table sha} (fit);
 \draw[linkc] (stamp.north) -- node[lab, right, pos=0.4] {by trigger + step} (sel.south);
