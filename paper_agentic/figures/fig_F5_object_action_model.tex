@@ -8,9 +8,11 @@
 % action events, the derived burst state); amber = carries a human identity (approval stamps); white = law and
 % documents (register row, lesson, commit pin, the burst catalog row). Roles band: human amber, agent green, hook and
 % script blue.
+% STYLE PASS (PI 2026-09-03, decision 26, after Yang+2026 arXiv:2607.08938 Figs. 1-3 as design reference): Source Sans Pro,
+% softer corners, 1 pt soft-grey arrows with round caps/joins, light frames on neutral boxes; texts and the D24 colour grammar unchanged.
 \documentclass[tikz,border=4pt]{standalone}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage[default]{sourcesanspro}
 \usepackage{amssymb}
 \usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta,fit,backgrounds}
 \newcommand{\nohyph}{\hyphenpenalty=10000 \exhyphenpenalty=10000 }
@@ -21,16 +23,16 @@
 \begin{document}
 \begin{tikzpicture}[
   font=\sffamily\scriptsize, node distance=3mm and 9mm,
-  obj/.style={draw=docline, thick, rounded corners=2pt, fill=white, text width=20mm, align=center, minimum height=9mm, execute at begin node=\nohyph},
+  obj/.style={draw=black!35, line width=0.6pt, rounded corners=5pt, fill=white, text width=20mm, align=center, minimum height=9mm, execute at begin node=\nohyph},
   objc/.style={obj, fill=codefill, draw=codeline, line width=0.8pt},
   objh/.style={obj, fill=humanfill, draw=humanline},
-  act/.style={-{Latex[length=1.8mm]}, thick},
-  actp/.style={act, dashed, black!60},
+  act/.style={-{Stealth[length=2.2mm,width=1.8mm,round]}, line width=1pt, black!55, line cap=round, line join=round},
+  actp/.style={act, dashed, black!45},
   acth/.style={act, humanline},
-  link/.style={-{Latex[length=1.4mm]}, thin, black!70},
+  link/.style={-{Stealth[length=1.8mm,width=1.4mm,round]}, line width=0.6pt, black!55, line cap=round, line join=round},
   linkc/.style={link, dashed},
   lab/.style={font=\sffamily\scriptsize, text=black!75, execute at begin node=\nohyph},
-  role/.style={draw=docline, rounded corners=2pt, text width=24mm, align=center, font=\sffamily\scriptsize, inner sep=2pt, execute at begin node=\nohyph},
+  role/.style={draw=black!35, line width=0.6pt, rounded corners=5pt, text width=24mm, align=center, font=\sffamily\scriptsize, inner sep=2pt, execute at begin node=\nohyph},
   roleh/.style={role, fill=humanfill, draw=humanline}, rolea/.style={role, fill=agentfill, draw=agentline, line width=0.3pt}, rolec/.style={role, fill=codefill, draw=codeline, line width=0.8pt}]
 
 % ---- objects (row 1: the burst's chain of products) ----

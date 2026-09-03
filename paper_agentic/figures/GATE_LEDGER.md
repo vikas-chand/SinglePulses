@@ -1,6 +1,6 @@
 # Paper v3 diagram gate ledger — TRACKED COPY
 
-Copied from `results/campaign/agentfigs/VISION_QC.md` (gitignored under results/*) at 2026-09-03T20:33:34Z, so the approval record of the manuscript's diagrams is commit-recoverable (Codex supervisor review D4, 2026-09-02). The results/ file remains the ledger the no-ship hook reads; this copy is refreshed by the building session whenever a diagram row changes.
+Copied from `results/campaign/agentfigs/VISION_QC.md` (gitignored under results/*) at 2026-09-03T20:55:19Z, so the approval record of the manuscript's diagrams is commit-recoverable (Codex supervisor review D4, 2026-09-02). The results/ file remains the ledger the no-ship hook reads; this copy is refreshed by the building session whenever a diagram row changes.
 
 ## Paper v3 diagrams — gate ledger appended 2026-09-03T03:32:12Z by the building session (verdicts by fresh-context figure-verifier agents; producer = building session)
 
@@ -64,3 +64,11 @@ Tie-break (F1 colour gate, 2026-09-03): a DOCUMENT the model reads (protocol, gu
 | F1 | colour r5 | `7fcb79d0d78253e951ed16dcef04ad29ea0ab0612a11cca15e72f46bc19160bf` | `dc652bc9b7de07143bb9633128efb1c8243a0244438c3708ec5863d71a65c38b` | `88358bc36918d081b1db26a0d2f43186da484aa9e11c52adfea6bbfcbdea1fbc` | **PASS-WITH-NITS — CURRENT** (caption backing 2.37 mm above the host label; label 8 mm clear of both neighbours; arrows 1.02 mm above the outer frame; green frame continuous; counts 24/27/10/3/10 re-derived from disk; nits: gloss now added to the §3 caption; greyscale carried by shape and frame weight) — PI re-approval needed (decision 16 bound d355cbec) — appended 2026-09-03T18:11:24Z |
 
 ### PI APPROVAL 2026-09-03T20:33:34Z (decision 24): the colour set — F1 `7fcb79d0…`, F2 `fa128aaa…`, F4 `7e3dbcfe…`, F5 `80f0cd5e…` — "yes, that's fine". Supersedes decision 16 (grey set).
+
+### Style pass (decision 26, 2026-09-03T20:55:19Z; after Yang+2026 arXiv:2607.08938 — Source Sans Pro, softer corners, 1 pt soft-grey round arrows, light neutral frames; texts + D24 colour grammar unchanged)
+| fig | state | png sha256 | pdf sha256 | tex sha256 | verdict |
+|---|---|---|---|---|---|
+| F1 | style r1 | `6ca78ca04e74f545193b4b0c4b9783c51227439de59429cc99d2c05f2d9cd6be` | `315491978b8f7a195e9918d7bdf85b9cbb00840d1bed5f117075bb2875aed8c3` | `019a6915ac57c4993a96fb331f11431cec410fbcbb588642b5f5d0b12f8ce20d` | GATE PENDING |
+| F2 | style r1 | `1a264c38aef8d44f2b6d3fcd803411181be62a39f317f4336c73607618478a3e` | `a0ca868e98dcbd1d12ec9b3edeaad7649bdddb71d43dad9154e53f5aae32bc53` | `d567aa261f27efcb8878c1366dc6cff4ffcc1234ff716a554cb80b8e7341c2af` | GATE PENDING |
+| F4 | style r1 | `038ee4472be8a273356541bb608dbbe96e7c05354986b34a198e4a4d28945e17` | `ed567ca05d1d870ad8469013834dfc553b3e202b88c1c2b961194ebfc96bc9b7` | `059528ee75849e70546e432604c13d73e3a55d402dad95319020efd7fbea1202` | GATE PENDING |
+| F5 | style r1 | `264acd65dab801ad2cdf3c59e40630458a32cc413b0c73062a7940d8f001f44f` | `75f1525e65124d316377099268fbfdb7d5e14ddcd450c8136dce8673be745f05` | `ecf6f0a0f77ca7403a576bc4ff4ebd652ba5f2c00cfcd3a0058289bff377fbce` | GATE PENDING |
