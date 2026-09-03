@@ -1,6 +1,6 @@
 # Paper v3 diagram gate ledger — TRACKED COPY
 
-Copied from `results/campaign/agentfigs/VISION_QC.md` (gitignored under results/*) at 2026-09-03T18:20:55Z, so the approval record of the manuscript's diagrams is commit-recoverable (Codex supervisor review D4, 2026-09-02). The results/ file remains the ledger the no-ship hook reads; this copy is refreshed by the building session whenever a diagram row changes.
+Copied from `results/campaign/agentfigs/VISION_QC.md` (gitignored under results/*) at 2026-09-03T20:33:34Z, so the approval record of the manuscript's diagrams is commit-recoverable (Codex supervisor review D4, 2026-09-02). The results/ file remains the ledger the no-ship hook reads; this copy is refreshed by the building session whenever a diagram row changes.
 
 ## Paper v3 diagrams — gate ledger appended 2026-09-03T03:32:12Z by the building session (verdicts by fresh-context figure-verifier agents; producer = building session)
 
@@ -62,3 +62,5 @@ Tie-break (F1 colour gate, 2026-09-03): a DOCUMENT the model reads (protocol, gu
 
 | F1 | colour r4 | `eac67eb312468a6574c2a584ba0b40f2eb65bdbd0e3f8b6e2ce42c46b9d03824` | `fd33495303ba57f89b5ca6baba32de21ba4bd6a0126f1c65da883fa58992bc30` | `77069c26283f6988756aa4c71961c600f6442543d1b8d92e0a0ddfb8db2255db` | FAIL (D1/D2/N2/N3 fixed; residual: the diamond caption's white backing erased the host label's top stroke (structural: pilab pinned 3 mm above host.south); the 31 mm label ran 0.9 mm under t4) — appended 2026-09-03T18:00:26Z |
 | F1 | colour r5 | `7fcb79d0d78253e951ed16dcef04ad29ea0ab0612a11cca15e72f46bc19160bf` | `dc652bc9b7de07143bb9633128efb1c8243a0244438c3708ec5863d71a65c38b` | `88358bc36918d081b1db26a0d2f43186da484aa9e11c52adfea6bbfcbdea1fbc` | **PASS-WITH-NITS — CURRENT** (caption backing 2.37 mm above the host label; label 8 mm clear of both neighbours; arrows 1.02 mm above the outer frame; green frame continuous; counts 24/27/10/3/10 re-derived from disk; nits: gloss now added to the §3 caption; greyscale carried by shape and frame weight) — PI re-approval needed (decision 16 bound d355cbec) — appended 2026-09-03T18:11:24Z |
+
+### PI APPROVAL 2026-09-03T20:33:34Z (decision 24): the colour set — F1 `7fcb79d0…`, F2 `fa128aaa…`, F4 `7e3dbcfe…`, F5 `80f0cd5e…` — "yes, that's fine". Supersedes decision 16 (grey set).
