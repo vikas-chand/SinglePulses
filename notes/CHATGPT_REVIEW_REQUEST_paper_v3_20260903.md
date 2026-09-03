@@ -7,8 +7,10 @@ factual or bibliographic claim it makes gets verified against the PDF/ADS before
 proposes as a root CLAUDE.md/AGENTS.md is rejected on sight.
 
 ## What to attach
-- `paper_agentic/agentic_grb_v3.pdf` (the spliced draft; §3, §4, §7 new; §1, §5, §6, §8–§11 still v2 text; the abstract is a
-  provisional placeholder to be rewritten last — do not review it for polish).
+- `paper_agentic/agentic_grb_v3.pdf` (23 pages). NEW in this draft: §3 the harness component by component, §4 guides and
+  sensors along the burst, §5 the steering loop, §6 verification doctrine, §7 the object-and-action model, §10 discussion.
+  STILL OLD TEXT, to be revised next: §1 introduction, §8 experimental design, §9 walkthrough-era results, §11 conclusions.
+  The abstract is a provisional placeholder to be rewritten last — do not review it for polish.
 - Optionally `paper_agentic/T1_component_roster_DRAFT.md` (the source of the appendix table, with the evidence column
   the PDF omits).
 
@@ -33,13 +35,16 @@ nit), and the exact sentence you object to where one exists.
 2. Overclaims. Every sentence that says or implies something is enforced, automatic, universal, or complete —
    quote it, and say what evidence a referee would demand to accept it. The authors intend every status to be one of
    deployed (exists on disk and runs) or proposed (specified, not built).
-3. The figures and the table. Do Figures 1, 2, 3 and 4 (the anatomy, the lifecycle with guides and sensors, the
-   fitting step, the object-and-action model) each earn their full-width page? Is the colour grammar (blue = code,
+3. The figures and the tables. Do the seven figures (the harness anatomy; the lifecycle with guides and sensors; the
+   fitting step; the steering loop; the learning curve; the object-and-action model; runtime versus evaluation harness)
+   and the three tables (the authority split; the requirements register; what the harness lacks and has) each earn their
+   space? Is the colour grammar (blue = code,
    green = model role, white = documents, amber = human, dashed = proposed) understood from the captions alone? Is the appendix roster table useful to a
    reader or only to the authors? What would you cut or merge?
 4. The authority table (§3). Is the split "the workflow and the engine decide / the AI does / the human decides"
    clear and complete? Is anything in the wrong column?
-5. Structure. The paper now runs 19 pages against 12 before; §3 alone is ~2,800 words. Where would you cut, and what
+5. Structure. The paper now runs 23 pages against 12 before; §3 alone is ~2,800 words, and the appendix roster table
+   takes four pages. Where would you cut, and what
    would you move to an appendix or a companion repository document, without losing the design description?
 6. The referee's three strongest objections to publishing a design-description paper of this kind in an astronomy
    journal, and what the authors could add — from material they plausibly already have (a walkthrough burst, a
