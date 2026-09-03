@@ -1,7 +1,7 @@
 {
  "figure": "F7 campaign learning curve",
- "utc": "2026-09-03T22:12:59Z",
- "git_head": "96c401ab5f3b",
+ "utc": "2026-09-03T22:13:55Z",
+ "git_head": "c636210f4cd8",
  "rows": [
   {
    "order": 1,
@@ -193,7 +193,7 @@
   ]
  },
  "ledger_sha256": "372338387cd8863776c6f92a088518c4c0958ff991d685facc50fccf82507362",
- "generator_sha256": "d7afa84094f0f2169d78a92589975b8df1609a01f9f1ffbde72457f930ac585d",
+ "generator_sha256": "a7ae7760d9e2865b2ab82972c99abc003e7c6bb0e6079478040493f243b9af09",
  "skill_file_sha256": {
   "SpectralFitting": "52cd355dfd93bfc98dc0e1d629b88eaa7f9409466029a5bb7dac314bf9aea69a",
   "Temporal": "d0c3875f354d4651770d5c1b7abd4745ff7a109cbfa5f008a41e7f269e9169c2",

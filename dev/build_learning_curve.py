@@ -121,8 +121,8 @@ def main():
     ax.bar(xs, [r['defects'] or 0 for r in rows], color='0.3', edgecolor='0.2', width=0.5, label='defects found (all layers)')
     for x, r in zip(xs, rows):
         if r['defects'] is None:
-            ax.text(x, 0.5, 'in progress: defects not tallied', rotation=90, ha='center', va='bottom',
-                    color='0.2', fontsize=PUB['tick_size'] - 1)
+            ax.text(x, 0.35, 'in progress;\ndefects not tallied', rotation=90, ha='center', va='bottom',
+                    color='0.2', fontsize=PUB['tick_size'] - 1, linespacing=1.1)
     ax2 = ax.twinx()
     ax2.plot(xs, cum, color='k', marker='o', ms=PUB['ms_data'] - 1.5, lw=PUB['lw_secondary'], label='cumulative lessons')
     ax.set_xticks(xs)
