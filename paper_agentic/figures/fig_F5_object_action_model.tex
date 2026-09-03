@@ -25,7 +25,7 @@
   font=\sffamily\scriptsize, node distance=3mm and 9mm,
   obj/.style={draw=black!35, line width=0.6pt, rounded corners=5pt, fill=white, text width=20mm, align=center, minimum height=9mm, execute at begin node=\nohyph},
   objc/.style={obj, fill=codefill, draw=codeline, line width=0.8pt},
-  objh/.style={obj, fill=humanfill, draw=humanline},
+  objh/.style={obj, fill=humanfill, draw=humanline, line width=0.8pt},   % amber objects keep the 0.8 pt frame (style gate N2)
   act/.style={-{Stealth[length=2.2mm,width=1.8mm,round]}, line width=1pt, black!55, line cap=round, line join=round},
   actp/.style={act, dashed, black!45},
   acth/.style={act, humanline},
@@ -43,7 +43,7 @@
 \node[objc, right=of fit] (prod) {\textbf{product}\\figure, SED panel, table, report};
 
 % ---- row 2: the records about the products ----
-\node[objh, below=11mm of sel] (stamp) {\textbf{approval stamp} \ensuremath{\blacklozenge}\\step, status, by, utc, feedback};
+\node[objh, below=11mm of sel, text width=22mm] (stamp) {\textbf{approval stamp} \ensuremath{\blacklozenge}\\step, status, by, utc, feedback};
 \node[objc, below=11mm of blk] (receipt) {\textbf{promotion receipt} \ensuremath{\blacklozenge}\\stage sha, ecsv/json sha, validation};
 \node[objc, below=11mm of fit] (audit) {\textbf{audit / verdict} \ensuremath{\blacklozenge}\\fit-table audit (sha-bound); vision + numbers QC (prose)};
 \node[objc, below=11mm of prod] (trace) {\textbf{action event} \ensuremath{\blacklozenge}\\actor, model id, inputs' sha, verdict, cost};
