@@ -57,6 +57,15 @@ def fig(rel, out, caption, L):
         L += [f"> **figure missing:** `{rel}` — {caption}", ""]
 
 
+def _engine_fig(trig, out, name):
+    """Engine-written figures live beside the fit table, which may be the burst dir
+    itself or a <root>/<trig>/ subdir depending on how --out was passed. Return
+    whichever RELATIVE path exists (bug found on bn240403498: these two were the only
+    figures referenced trigger-nested, so they always reported missing)."""
+    nested = os.path.join(trig, name)
+    return nested if os.path.exists(os.path.join(out, nested)) else name
+
+
 def build(trig, out):
     L = []
     cat = Table.read(os.path.join(ROOT, "results", "background_intervals.ecsv"),
@@ -213,10 +222,10 @@ def build(trig, out):
     else:
         L += ["> **No fit table.** The fit produced no rows — see the burst's fit log. This is "
               "reported, not hidden.", ""]
-    fig(os.path.join(trig, "spectral_evolution.png"), out,
+    fig(_engine_fig(trig, out, "spectral_evolution.png"), out,
         "Step 6. Fitted parameter evolution across blocks. Discontinuities that no emission "
         "mechanism could produce are the signature of a collapsed fit, not of the source.", L)
-    fig(os.path.join(trig, "ep_kt_correlation.png"), out,
+    fig(_engine_fig(trig, out, "ep_kt_correlation.png"), out,
         "Step 6. Peak energy against blackbody temperature where a thermal component is "
         "significant. Absent when no block carries one.", L)
     fig(f"{trig}_nuFnu_best_montage.png", out,
