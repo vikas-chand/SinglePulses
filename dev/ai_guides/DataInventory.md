@@ -152,3 +152,33 @@ matter what") — three cases, never blurred:**
 Feeds Step 5 (binning) and Step 6 (fitting). A burst failing D1 must NOT enter a joint
 GBM+LLE fit until its DRM is regenerated — the high-energy component is exactly what the bad
 effective area corrupts.
+
+### D6 — `sorted(glob(...))[-1]` is LEXICOGRAPHIC LAST, not NEWEST VERSION  *(bn240403498, 2026-09-04, step 1)*
+`scripts/10_spectral_fit_burst.py` resolves data files with
+`sorted(glob(f'glg_tte_{det}_*.fit*'))[-1]` and `sorted(glob(f'glg_cspec_{det}_*.rsp*'))[-1]`,
+commented "newest version, deterministic (audit #19)". Deterministic yes; newest no:
+- `.fit` and `.fit.gz` of the SAME version both match, and `.gz` always sorts last — so the
+  compressed copy is always the one fitted;
+- a directory holding `..._v00.fit.gz` beside `..._v01.fit` would silently fit **v00**, the
+  OLDER version, with no warning anywhere in the log.
+On bn240403498 this is HARMLESS and was verified so, not assumed: only `v00` exists and the
+two copies are byte-identical (sha256 `e529530479459059…` for both the `.fit` bytes and the
+gunzipped `.fit.gz` bytes). **RULE:** version selection parses the `_v(\d+)` token and takes
+the numeric max, then prefers the uncompressed copy on a tie; the resolved path belongs in
+the run's provenance record so a wrong pick is visible after the fact. Until that is fixed,
+step 1 REPORTS which file each detector resolved to. Same class as D2 (a filename convention
+acting as an undeclared gate) but on the version axis rather than the detector-class axis.
+
+### D7 — When BOTH poshist and trigdat are absent, the angles are INHERITED, not measured  *(bn240403498, 2026-09-04)*
+This file already says a missing `trigdat` is "a note, not a blocker, when `poshist` is
+present". bn240403498 has **neither** — `data/bn240403498/` holds only 5 CSPEC `.pha`, 5 TTE
+(+5 `.gz` copies) and 5 `.rsp2`. Consequences, in order of how easy each is to get wrong:
+1. **The fit is NOT blocked** — `scripts/10` references neither file (grep: zero hits). Do not
+   report this as a fit-blocking gap.
+2. **The geometry is not re-derivable on this host.** The `DET_ANGLE` values in
+   `results/background_intervals.ecsv` were computed at approval time (here 2026-07-19) and
+   cannot be recomputed or checked. Any step-2 presentation that shows an angle-based rule
+   being satisfied is quoting an INHERITED number.
+3. **Therefore step 1 records the provenance of the angles** (catalog + approval date), and
+   any figure that plots them must not present them as measured. D1's Δθ check is likewise
+   unavailable — state "n/a, no pointing file", never "passed".

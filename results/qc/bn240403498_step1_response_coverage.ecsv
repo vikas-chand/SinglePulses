@@ -1,0 +1,27 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: COV_START, datatype: string}
+# - {name: COV_STOP, datatype: string}
+# - {name: N_MAT, datatype: string}
+# - {name: VERDICT, datatype: string}
+# meta: !!omap
+# - {trigger: bn240403498}
+# - {src_start: 18.0}
+# - {src_stop: 48.0}
+# - {lle_note: "no gll_* files on disk; LAT boresight angle 62\xB0 (GCN 36024) \u2192 no LLE/LAT expected; D1 theta check n/a"}
+# - {trigdat_note: 'RESOLVED 2026-09-04 during step 2: trigdat (glg_trigdat_all_bn240403498_v01.fit) and poshist (glg_poshist_all_240403_v00.fit,
+#     daily archive) were MISSING at step-1 run time and have now been fetched into data/bn240403498/. Consequence: the catalog DET_ANGLE
+#     values are no longer inherited-unverifiable - they were recomputed from poshist and reproduce the catalog to 0.00 deg for all five
+#     approved detectors. scripts/02_download_data.py fetches neither file (D7); the working downloader is scripts/00_prototype_one_burst.py
+#     download_poshist().'}
+# - {run_utc: '2026-09-04'}
+# - {run_by: 'step-1 walkthrough, bn240403498'}
+# schema: astropy-2.0
+DET COV_START COV_STOP N_MAT VERDICT
+n0 -124.034 482.185 12 PASS
+n1 -124.034 482.185 12 PASS
+n2 -124.034 482.185 12 PASS
+n5 -124.034 482.185 12 PASS
+b0 -124.034 482.185 12 PASS

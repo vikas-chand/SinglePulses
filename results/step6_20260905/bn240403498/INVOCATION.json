@@ -1,0 +1,65 @@
+{
+ "purpose": "STEP 6 of the gated walkthrough for bn240403498 (#96). Steps 0b,0,1,2,3,4,5 all PRESENTED and STAMPED by the PI before this launch (results/sweep106/bn240403498/APPROVALS.json).",
+ "supersedes": "results/refit_newbounds_20260904/bn240403498 (ABORTED at ~9 min, launched out of ledger order)",
+ "started_utc": "2026-09-04T19:26:25Z",
+ "host": "aurora",
+ "git_head": "f6c41b38ce7b1f0f6521e9f5b38d465d7c63a63c",
+ "git_dirty_tracked": true,
+ "argv": [
+  "/home/aurora/anaconda3/envs/threeML/bin/python",
+  "/usr/local/disk1/SinglePulses/scripts/10_spectral_fit_burst.py",
+  "--trigger",
+  "bn240403498",
+  "--include-bgo",
+  "--no-log",
+  "--models",
+  "highe",
+  "--blocks-file",
+  "/usr/local/disk1/SinglePulses/results/mine/blocks/bb_blocks_spectral_bn240403498.ecsv",
+  "--bkg-file",
+  "/usr/local/disk1/SinglePulses/results/background_intervals.ecsv",
+  "--out-dir",
+  "/usr/local/disk1/SinglePulses/results/step6_20260905/bn240403498"
+ ],
+ "inputs": {
+  "blocks_file": {
+   "path": "/usr/local/disk1/SinglePulses/results/mine/blocks/bb_blocks_spectral_bn240403498.ecsv",
+   "sha256": "3a0e3f39bb1ac75877f6ad16145b734a486c79d84a53b24fe350dcf0b8253cde",
+   "md5_note": "bf5a508f... byte-identical to the stage_heavy twin used by the 2026-08-17 table"
+  },
+  "bkg_file": {
+   "path": "/usr/local/disk1/SinglePulses/results/background_intervals.ecsv",
+   "sha256": "4a134fe0e3e38d9626631c0bec2297b09b15226618d032abe9c39db1ad518a87"
+  },
+  "engine": {
+   "path": "/usr/local/disk1/SinglePulses/scripts/10_spectral_fit_burst.py",
+   "sha256": "a4b644855f4346e38a245e093281d3ade7638bd5da6a92199e08c322ed03fd4d"
+  }
+ },
+ "bounds_ruling": "82737c9 (PI 2026-09-02): Band beta floor -5 -> -10, SBPL alpha ceiling 1.5 -> 2.5. ACTIVE in this run and NOT active in any of the other 101 fits on this machine.",
+ "baseline_for_diff": {
+  "path": "/usr/local/disk1/SinglePulses/results/mine/fits/bn240403498/spectral_fits.ecsv",
+  "sha256": "78871878e28f60b7a259ab5fabddc2ba383f5ff6f24d8115c96496745f038fac",
+  "mtime": "2026-08-17T21:43Z",
+  "environment": "NOT RECORDED by the August run"
+ },
+ "carried_caveats": "results/qc/bn240403498_caveats.md (C-1 n0 background contains a 5.5-sigma episode; C-2 detector flag D-2 OPEN)",
+ "watch_items": [
+  "block 0 (22.269-23.611 s) straddles the DRM matrix boundary at 23.424 s \u2014 record which matrix the engine uses",
+  "block 14 is the 5-sigma floor block (5.4 sigma, 4.29 s wide) \u2014 a refusal or rail there is expected-marginal, not a surprise"
+ ],
+ "env": {
+  "conda_env": "/home/aurora/anaconda3/envs/threeML",
+  "threeML": "2.4.3",
+  "OMP_NUM_THREADS": "1",
+  "MPLBACKEND": "Agg"
+ },
+ "gates_pending": [
+  "admission-gate",
+  "tie-reporter",
+  "numbers-verifier",
+  "seed-auditor",
+  "figure-verifier",
+  "PI approval"
+ ]
+}

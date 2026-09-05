@@ -1,0 +1,25 @@
+{
+ "script": "47_mvt_cwt_crosscheck.py",
+ "script_sha256": "5452cb2169f5de323d0a9d4a2315cfbcbea6b6fd299af67646114559512e9542",
+ "trig": "bn240403498",
+ "detector": "n1",
+ "band_keV": [
+  8.0,
+  900.0
+ ],
+ "window_s": [
+  22.26930993795395,
+  43.97161793708801
+ ],
+ "dt_s": 0.004,
+ "dj": 0.25,
+ "max_scale_s": 1.0,
+ "n_sim": 10000,
+ "mean_counts_per_bin": 7.827865831183192,
+ "alpha1": 0.7249112653632068,
+ "mvt_cwt_s": 0.128,
+ "mvt_cwt_err_s": 0.010182629423762274,
+ "noise_percentile": 99.5,
+ "provenance": "verbatim CWT from LATBright s02g:351-514 (Vianello 2018); declared deviations: LSQ poly-2 bkg on approved windows, approved ref NaI, channel-center energy cut",
+ "role": "EXTENSION cross-check; canon = Bala upstream (Temporal.md)"
+}

@@ -249,10 +249,31 @@ def build(trig, out):
             r = row[0]
             L += [f"- **T90 = {_f(r,'T90'):.2f} ± {_f(r,'T90_ERR'):.2f} s** "
                   f"(reference detector `{str(r['REF_DET']).strip()}`)",
-                  f"- T50 = {_f(r,'T50'):.2f} s",
-                  f"- minimum variability timescale ≈ {_f(r,'MVT_S'):.3f} s",
-                  f"- spectral lag = {_f(r,'LAG_S'):.3f} s "
-                  "(positive = low-energy photons arrive later)", ""]
+                  f"- T50 = {_f(r,'T50'):.2f} s"]
+            # NR-31 STALE-COLUMN CONSUMER GUARD, enforced by code rather than by memory.
+            # The catalog's LAG_* and MVT_* columns are STALE-PENDING-REWALK (PI ruling 5,
+            # 2026-08-30): the lag sign is proven inverted and the MVT is the Haar
+            # cross-check only. A burst may quote them ONLY if it appears in
+            # meta.rewalked_triggers. Without this guard the report printed the stale,
+            # sign-inverted lag with standard-convention text — the exact defect that
+            # shipped in #21's report (instance I-7).
+            _meta = getattr(tt, "meta", {}) or {}
+            _stale = _meta.get("stale_pending_rewalk")
+            _rewalked = [str(x) for x in (_meta.get("rewalked_triggers") or [])]
+            if _stale and trig not in _rewalked:
+                L += ["- minimum variability timescale: **withheld** — the catalog MVT_* "
+                      "columns are STALE-PENDING-REWALK and this burst is not in "
+                      "`rewalked_triggers`",
+                      "- spectral lag: **withheld** — the catalog LAG_* columns carry the "
+                      "proven sign-inverted DCCF; the validated engine (`s02c_spectral_lag`, "
+                      "via scripts/47c) was not available for this burst",
+                      "", "> ⚠ **NR-31 guard active.** Any MVT or lag for this burst must come "
+                      "from a re-walk with the validated tools, not from "
+                      "`temporal_catalog_all106.ecsv`.", ""]
+            else:
+                L += [f"- minimum variability timescale ≈ {_f(r,'MVT_S'):.3f} s",
+                      f"- spectral lag = {_f(r,'LAG_S'):.3f} s "
+                      "(positive = low-energy photons arrive later)", ""]
             if bool(r.get("T90_WINDOW_TRUNCATED", False)):
                 L += ["> ⚠ **T90 is window-truncated** — t5/t95 land on the edge of the "
                       "approved source window, so the duration is a LOWER LIMIT and is not "
@@ -329,12 +350,26 @@ def main():
             # PDF alongside it. xelatex, NOT pdflatex: the report contains unicode
             # (Delta, nu, degree) that pdflatex refuses.
             pdf = p[:-3] + ".pdf"
-            r = subprocess.run(["pandoc", os.path.basename(p), "-o", os.path.basename(pdf),
-                                "--pdf-engine=xelatex", "-V", "geometry:margin=2cm",
-                                "-V", "colorlinks=true",
-                                "--metadata", f"title={trig} - analysis report"],
-                               cwd=out, capture_output=True, text=True)
-            print(f"  PDF: {'ok' if r.returncode == 0 else 'FAILED ' + r.stderr[-120:]}")
+            # Engine FALLBACK CHAIN. xelatex is preferred (the report carries unicode -
+            # Delta, nu, degree, <= - that pdflatex refuses). tectonic is XeTeX-based and
+            # handles the same unicode; pdflatex is the last resort and is EXPECTED to fail
+            # on unicode, so a failure there is reported, never silently accepted.
+            import shutil as _sh
+            _engines = [e for e in ("xelatex", "tectonic", "lualatex", "pdflatex")
+                        if _sh.which(e)]
+            r = None
+            for _eng in _engines:
+                r = subprocess.run(["pandoc", os.path.basename(p), "-o", os.path.basename(pdf),
+                                    f"--pdf-engine={_eng}", "-V", "geometry:margin=2cm",
+                                    "-V", "colorlinks=true",
+                                    "--metadata", f"title={trig} - analysis report"],
+                                   cwd=out, capture_output=True, text=True)
+                if r.returncode == 0:
+                    print(f"  PDF: ok (engine {_eng})")
+                    break
+                print(f"  PDF: engine {_eng} FAILED {r.stderr[-160:]}")
+            if not _engines:
+                print("  PDF: NO LaTeX ENGINE ON THIS HOST - markdown only")
         except Exception as e:
             print(f"   [WARN] {trig}: {e}")
 
