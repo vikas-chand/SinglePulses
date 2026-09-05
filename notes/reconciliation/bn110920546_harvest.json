@@ -71,7 +71,7 @@
    "pdf_source": "arXiv:1503.05926",
    "in_corpus_index_before": false,
    "identity_verified_by": "T90=161 s + NaI0/1/3+BGO0 + fluence 1.74e-4 + single 160-s pulse + no LAT/LLE + no z (all match bn110920546)",
-   "prompt_sections": "READ: \u00a72 (observations + Band, Band+BB, 2BB+PL fits; S/N=60 binning; XSPEC/pgstat), \u00a72.3 (spectral width vs BB/photosphere/synchrotron), \u00a73.3-3.4 (Gamma, r_ph, r_s, r0, tau, dissipation radius), \u00a74.1-4.2 (Ec/Ei ratio, seed-photon cooling). ALL prompt-phase; nothing to defer.",
+   "prompt_sections": "READ: §2 (observations + Band, Band+BB, 2BB+PL fits; S/N=60 binning; XSPEC/pgstat), §2.3 (spectral width vs BB/photosphere/synchrotron), §3.3-3.4 (Gamma, r_ph, r_s, r0, tau, dissipation radius), §4.1-4.2 (Ec/Ei ratio, seed-photon cooling). ALL prompt-phase; nothing to defer.",
    "module_future_tags": [
     "module-future; theory|photosphere"
    ],
@@ -89,7 +89,7 @@
    "pdf_source": "arXiv:1304.4168",
    "in_corpus_index_before": false,
    "identity_verified_by": "T90=170+/-17 s; quotes McGlynn 2012's [T0+0.003,T0+52.737] Band fit verbatim",
-   "prompt_sections": "READ: \u00a73 (method: equal-fluence segmentation, KRL pulse fit 100-985 keV, CCF lags), \u00a73.1 (GRB 110920 test case: Band/Band+BB numbers, Gamma=440, z=2), \u00a74 DISCUSSION + \u00a75 CONCLUSIONS (eta=1.64+/-0.012 data vs 2.57+/-0.01 curvature prediction; FWHM \u221d E^-0.31+/-0.03). \u00a72 (model derivation) is optional.",
+   "prompt_sections": "READ: §3 (method: equal-fluence segmentation, KRL pulse fit 100-985 keV, CCF lags), §3.1 (GRB 110920 test case: Band/Band+BB numbers, Gamma=440, z=2), §4 DISCUSSION + §5 CONCLUSIONS (eta=1.64+/-0.012 data vs 2.57+/-0.01 curvature prediction; FWHM ∝ E^-0.31+/-0.03). §2 (model derivation) is optional.",
    "module_future_tags": [],
    "why_it_matters": "THE HLE-tension anchor for this burst: curvature alone FAILS the peak-flux-peak-frequency test. Feeds the project's #9 HLE tracker directly."
   },
@@ -105,7 +105,7 @@
    "pdf_source": "https://pos.sissa.it/152/012/pdf",
    "in_corpus_index_before": false,
    "identity_verified_by": "Figure 1 axis label 'GRB110920546'; 'Time since (338216745.0)'; RA 13h59m16.8s Dec -27d33'36''",
-   "prompt_sections": "READ: \u00a73 GRB 110920 (all of it - 1.5 pages) + \u00a74 Interpretation. This is where alpha=-0.20+/-0.02, Ep=334+/-5 keV, C-stat 3206.5/485 and kT=61.3 keV / C-stat 2848.3/483 actually come from.",
+   "prompt_sections": "READ: §3 GRB 110920 (all of it - 1.5 pages) + §4 Interpretation. This is where alpha=-0.20+/-0.02, Ep=334+/-5 keV, C-stat 3206.5/485 and kT=61.3 keV / C-stat 2848.3/483 actually come from.",
    "module_future_tags": [],
    "doctype_note": "OUTSIDE the LiteratureHarvest doctype filter {article, eprint}, retained deliberately because it is the PRIMARY source of chained values (T6). Its ref [11] 'McGlynn et al., Photospheric Emission in the Fermi Gamma ray Burst GRB 110920, in prep (2012)' NEVER APPEARED - no ADS record; the promised dedicated paper does not exist.",
    "why_it_matters": "Its kT = 61.3 keV (integrated) is 19x our archival Band+BB kT = 3.26 keV. The single sharpest P3 diff item for this burst."
@@ -122,7 +122,7 @@
    "pdf_source": "already on disk under bn110721200 suffix - NOT re-downloaded (G2)",
    "in_corpus_index_before": false,
    "identity_verified_by": "table rows keyed '110920546'",
-   "prompt_sections": "READ: Table A.1 rows 110920546 #1-22 (bin edges + best model + alpha/beta/Ep/Eb/CSTAT), \u00a75 + Table 3 (PLBB: N=6, dCSTAT_crit=148.37, 110920546 is THE exception that fails it), \u00a76 (Ep evolution: 'pure hard-to-soft').",
+   "prompt_sections": "READ: Table A.1 rows 110920546 #1-22 (bin edges + best model + alpha/beta/Ep/Eb/CSTAT), §5 + Table 3 (PLBB: N=6, dCSTAT_crit=148.37, 110920546 is THE exception that fails it), §6 (Ep evolution: 'pure hard-to-soft').",
    "module_future_tags": [],
    "why_it_matters": "Free external validation of BINNING (their 22 S/N=30 bins vs our 11 BB blocks) and of the low-energy index; bins 21-22 (>103 s) are 'none' - unfittable - which is exactly where our window's tail sits."
   },
@@ -154,7 +154,7 @@
    "pdf_source": "already in corpus (bn090809978 copy) - NOT re-downloaded (G2)",
    "in_corpus_index_before": true,
    "identity_verified_by": "same sample as Iyyani 2016, which pins 110920A to McGlynn/Iyyani/Shenoy; Fig 1(e) shows a ~250-s single pulse",
-   "prompt_sections": "READ: \u00a73.2-3.3 (sample + Bayesian-blocks binning), Table 1 row GRB 110920A (peak flux 8.08, 238.29 s analysed, BB yes, LLE no), Tables 5/8/9 (synchrotron and BB flux indices; F_BB/F_syn = 0.8).",
+   "prompt_sections": "READ: §3.2-3.3 (sample + Bayesian-blocks binning), Table 1 row GRB 110920A (peak flux 8.08, 238.29 s analysed, BB yes, LLE no), Tables 5/8/9 (synchrotron and BB flux indices; F_BB/F_syn = 0.8).",
    "module_future_tags": [],
    "why_it_matters": "Third independent model family (slow-cooled synchrotron + BB) for the same data; their Bayesian-blocks bin edges are a binning cross-check."
   },
@@ -172,7 +172,7 @@
    "identity_verified_by": "same 6-burst sample; Fig 1(e) light curve 0-250 s",
    "prompt_sections": "READ: Table 1 row GRB 110920A (alpha=1.97+/-0.11, jet=magnetic, mu=0.4+/-0.01, F_BB/F_tot=0.39) + Fig 3(e).",
    "module_future_tags": [],
-   "why_it_matters": "Direct external anchor for the project's Ep-kT correlation work (L25: our xb ~ 3.92 kT, r=0.87). Their alpha=1.97 is the published Ep \u221d kT^alpha slope FOR THIS BURST."
+   "why_it_matters": "Direct external anchor for the project's Ep-kT correlation work (L25: our xb ~ 3.92 kT, r=0.87). Their alpha=1.97 is the published Ep ∝ kT^alpha slope FOR THIS BURST."
   },
   {
    "bibcode": "2016MNRAS.456.2157I",
@@ -186,7 +186,7 @@
    "pdf_source": "already on disk (bn081224887 copy) - NOT re-downloaded (G2)",
    "in_corpus_index_before": false,
    "identity_verified_by": "cites McGlynn 2012 / Iyyani 2015 / Shenoy 2013 for GRB110920A",
-   "prompt_sections": "READ: \u00a72 (sample: 110920A has 'a significant and strong blackbody component'), \u00a73 (r0 evolution - 110920A is the exception whose r0-break occurs AFTER 100 s), \u00a74 (F_BB/F_kin 10-40%).",
+   "prompt_sections": "READ: §2 (sample: 110920A has 'a significant and strong blackbody component'), §3 (r0 evolution - 110920A is the exception whose r0-break occurs AFTER 100 s), §4 (F_BB/F_kin 10-40%).",
    "module_future_tags": [],
    "why_it_matters": "Its Fig. 7b (reprinted in Iyyani 2018) is the published demonstration that 2BB+PL and synchrotron+BB fit the SAME 110920A data with DIFFERENT shapes - the model-degeneracy warning we must quote in P3."
   },
@@ -202,7 +202,7 @@
    "pdf_source": "already in corpus (read=Y) - NOT re-downloaded (G2)",
    "in_corpus_index_before": true,
    "identity_verified_by": "table rows keyed '110920546'",
-   "prompt_sections": "READ: \u00a73.1-3.2 + the FRED-fit table row 110920546 (1.024-s bins, 0-150 s, chi2=80/141), the HLE decay-fit rows 110920546(1) 9.966-122.091 s and (2) 55.534-122.091 s, and the two text passages naming 110920546 (peak times match across bands; thermal component included).",
+   "prompt_sections": "READ: §3.1-3.2 + the FRED-fit table row 110920546 (1.024-s bins, 0-150 s, chi2=80/141), the HLE decay-fit rows 110920546(1) 9.966-122.091 s and (2) 55.534-122.091 s, and the two text passages naming 110920546 (peak times match across bands; thermal component included).",
    "module_future_tags": [],
    "why_it_matters": "Their two HLE decay intervals (9.97-122.09 s and 55.53-122.09 s) sit almost exactly on our stamped window - a like-for-like HLE comparison is available. NOTE: I did not decode their table's column headers; the numeric columns are UNVERIFIED and must be mapped from the paper before use."
   },
@@ -234,7 +234,7 @@
    "pdf_source": "already in corpus (read=Y) - NOT re-downloaded (G2)",
    "in_corpus_index_before": true,
    "identity_verified_by": "table row keyed '110920546'",
-   "prompt_sections": "READ: Table 1 row 110920546 ((n0)n1n3b0, src -1 to 160, N=14, N(S>=20)=10, class h.t.s.) and \u00a75 F-alpha relation (110920 is 1 of only 2 pulses with a NEGATIVE F-alpha relation).",
+   "prompt_sections": "READ: Table 1 row 110920546 ((n0)n1n3b0, src -1 to 160, N=14, N(S>=20)=10, class h.t.s.) and §5 F-alpha relation (110920 is 1 of only 2 pulses with a NEGATIVE F-alpha relation).",
    "module_future_tags": [],
    "why_it_matters": "Independent binning (14 bins) and the anomalous negative F-alpha relation - a discriminating prediction for our block-resolved alpha."
   },
@@ -250,7 +250,7 @@
    "pdf_source": "already in corpus - NOT re-downloaded (G2)",
    "in_corpus_index_before": true,
    "identity_verified_by": "table row '110920546 160.77+/-5.22 ... (n0)n1n3b0 ... PL+2BB Iyyani et al. (2015)'",
-   "prompt_sections": "READ: \u00a72.1 (the sentence 'The best spectral fitting in GRB 110920A is a power-law plus two BBs fitting (Iyyani et al. 2015)') and the sample table row 110920546 (best model PL+2BB, 8/10 bins).",
+   "prompt_sections": "READ: §2.1 (the sentence 'The best spectral fitting in GRB 110920A is a power-law plus two BBs fitting (Iyyani et al. 2015)') and the sample table row 110920546 (best model PL+2BB, 8/10 bins).",
    "module_future_tags": [],
    "why_it_matters": "This is the chained citation that led me to Iyyani 2015 after the four-form ADS query MISSED it (T6 worked in our favour here). Its 'best model = PL+2BB' verdict must be attributed to Iyyani, not to Li."
   },
@@ -266,7 +266,7 @@
    "pdf_source": "arXiv:1901.01775",
    "in_corpus_index_before": false,
    "identity_verified_by": "Figs 1/2/A2 panels labelled '110920546'; table row '110920546'",
-   "prompt_sections": "READ: the table row 110920546 (k = -10 +4.0/-2.7, F_b = 4.2e-6, alpha_b = +0.23 +0.11/-0.13), \u00a74 discussion of the two negative-k outliers, and Fig 2 panel 110920546.",
+   "prompt_sections": "READ: the table row 110920546 (k = -10 +4.0/-2.7, F_b = 4.2e-6, alpha_b = +0.23 +0.11/-0.13), §4 discussion of the two negative-k outliers, and Fig 2 panel 110920546.",
    "module_future_tags": [],
    "why_it_matters": "alpha_b = +0.23 is an independent published statement that this burst's low-energy index is POSITIVE - corroborating our archival hard alphas against Yu+2016's negative ones."
   },
@@ -282,7 +282,7 @@
    "pdf_source": "arXiv:1506.02926",
    "in_corpus_index_before": false,
    "identity_verified_by": "'GRB 110920 (Iyyani et al. 2015)'",
-   "prompt_sections": "SKIM: \u00a71 only (the one sentence naming GRB 110920). The DREAM model itself is background reading for the photosphere module, not a value source for this burst.",
+   "prompt_sections": "SKIM: §1 only (the one sentence naming GRB 110920). The DREAM model itself is background reading for the photosphere module, not a value source for this burst.",
    "module_future_tags": [
     "module-future; theory|photosphere"
    ],
@@ -300,7 +300,7 @@
    "pdf_source": "already in corpus - NOT re-downloaded (G2)",
    "in_corpus_index_before": true,
    "identity_verified_by": "'the top-hat spectral shape of GRB 110920 (Iyyani et al. 2015)'",
-   "prompt_sections": "SKIM: \u00a71 (the 110920 sentence). Full read belongs to the photosphere module, not this burst's diff.",
+   "prompt_sections": "SKIM: §1 (the 110920 sentence). Full read belongs to the photosphere module, not this burst's diff.",
    "module_future_tags": [
     "module-future; theory|photosphere"
    ],
@@ -318,7 +318,7 @@
    "pdf_source": "already in corpus (read=READING) - NOT re-downloaded (G2)",
    "in_corpus_index_before": true,
    "identity_verified_by": "cites Shenoy 2013's eta=1.64 for the same GRB 110920A",
-   "prompt_sections": "READ: \u00a75.2 'Interesting cases: delta of 0.7' (GRB 110920A: delta_before = 0.7+/-0.1, delta_after = 2.1+/-1.0; reconciliation with Shenoy's eta via eta ~ delta+1) + Figure 15.",
+   "prompt_sections": "READ: §5.2 'Interesting cases: delta of 0.7' (GRB 110920A: delta_before = 0.7+/-0.1, delta_after = 2.1+/-1.0; reconciliation with Shenoy's eta via eta ~ delta+1) + Figure 15.",
    "module_future_tags": [],
    "why_it_matters": "The ONLY clear Ep-F_nu,Ep BREAK in their whole sample. A break in the Ep-flux plane is the temporal analogue of our two-break spectral question - the strongest cross-domain prediction available for this burst."
   },
@@ -334,7 +334,7 @@
    "pdf_source": "already on disk under bn110721200 suffix - NOT re-downloaded (G2)",
    "in_corpus_index_before": false,
    "identity_verified_by": "table row keyed '110920546'",
-   "prompt_sections": "READ: the sample-table row 110920546 ((n0),n1,n3,b0; src -1 to 170; 11(9) bins) and the classification row (single-pulse yes; Ep h.t.s.; alpha FLAT) + \u00a74 sentence 'one flat evolution pattern (GRB 110920)'.",
+   "prompt_sections": "READ: the sample-table row 110920546 ((n0),n1,n3,b0; src -1 to 170; 11(9) bins) and the classification row (single-pulse yes; Ep h.t.s.; alpha FLAT) + §4 sentence 'one flat evolution pattern (GRB 110920)'.",
    "module_future_tags": [],
    "why_it_matters": "LATEST-FIRST (Phase 3b): the most recent independent time-resolved classification. Its 'alpha flat' verdict CONTRADICTS Iyyani 2015's 'alpha -0.4 -> +0.8' - a live inconsistency for P3."
   },
@@ -350,7 +350,7 @@
    "pdf_source": "arXiv:2006.15901",
    "in_corpus_index_before": false,
    "identity_verified_by": "cites McGlynn 2012 for the same GRB 110920A; uses NaI bands consistent with our detectors",
-   "prompt_sections": "READ: \u00a73 band choice for GRB 110920A (I 8-20, II 50-300, III 800-2000 keV) + Table 1 row (sigma_I 0.07, sigma_II 0.05, sigma_III 0.08, R 0.66, f_ph 0.56).",
+   "prompt_sections": "READ: §3 band choice for GRB 110920A (I 8-20, II 50-300, III 800-2000 keV) + Table 1 row (sigma_I 0.07, sigma_II 0.05, sigma_III 0.08, R 0.66, f_ph 0.56).",
    "module_future_tags": [],
    "why_it_matters": "Published thermal FRACTION f_ph = 0.56 - an independent number to diff against our BB flux ratio."
   },
@@ -366,7 +366,7 @@
    "pdf_source": "arXiv:2005.11219",
    "in_corpus_index_before": false,
    "identity_verified_by": "'GRB 110920A was a bright, single pulse GRB' + SAA-exit timing independently confirmed from our own poshist FLAGS (bit1 1->0 at T0-120.1 s)",
-   "prompt_sections": "READ: \u00a74.1 'GRB 110920A' (2 paragraphs + Fig 14) and \u00a73 (the physical background model) if we ever revisit this burst's background.",
+   "prompt_sections": "READ: §4.1 'GRB 110920A' (2 paragraphs + Fig 14) and §3 (the physical background model) if we ever revisit this burst's background.",
    "module_future_tags": [
     "module-future; methods|background"
    ],
@@ -384,7 +384,7 @@
    "pdf_source": "arXiv:1302.0235",
    "in_corpus_index_before": false,
    "identity_verified_by": "'GRB 110920 (McGlynn et al. 2012)'",
-   "prompt_sections": "SKIM: \u00a71 (the sentence naming GRB 110920). Otherwise a theory paper for the photosphere module.",
+   "prompt_sections": "SKIM: §1 (the sentence naming GRB 110920). Otherwise a theory paper for the photosphere module.",
    "module_future_tags": [
     "module-future; theory|photosphere"
    ],
@@ -402,7 +402,7 @@
    "pdf_source": "ADS link_gateway PUB_PDF (Springer)",
    "in_corpus_index_before": false,
    "identity_verified_by": "Fig 7b caption 'GRB110920A', taken from Iyyani et al. (2016)",
-   "prompt_sections": "READ: \u00a74 + Fig 7b (2BB+PL vs synchrotron+BB fitted to the SAME GRB110920A data give two different spectral shapes) - the model-degeneracy warning.",
+   "prompt_sections": "READ: §4 + Fig 7b (2BB+PL vs synchrotron+BB fitted to the SAME GRB110920A data give two different spectral shapes) - the model-degeneracy warning.",
    "module_future_tags": [],
    "why_it_matters": "The cleanest published statement that empirical model choice, not the data, decides this burst's spectral shape."
   },
@@ -418,7 +418,7 @@
    "pdf_source": "arXiv:1512.01059",
    "in_corpus_index_before": false,
    "identity_verified_by": "same Burgess 2014 sample (081224A, 090719A, 090809A, 110721A, 110920A); Figs 10-12 panels labelled 110920",
-   "prompt_sections": "READ: \u00a75 (real-data sample), Figs 10/11 panel '110920' (observer-frame Golenetskii correlation), Fig 12 gamma_i distribution.",
+   "prompt_sections": "READ: §5 (real-data sample), Figs 10/11 panel '110920' (observer-frame Golenetskii correlation), Fig 12 gamma_i distribution.",
    "module_future_tags": [],
    "why_it_matters": "Published F_E vs Ep_obs track for this burst - a direct comparison for our block-resolved flux-Ep relation, and a second HLE-adjacent diagnostic."
   },
@@ -434,7 +434,7 @@
    "pdf_source": "arXiv:1604.06590",
    "in_corpus_index_before": false,
    "identity_verified_by": "'GRB110920A (Iyyani et al. 2015)'",
-   "prompt_sections": "SKIM: \u00a72 (the list of thermal-component bursts). Theory paper.",
+   "prompt_sections": "SKIM: §2 (the list of thermal-component bursts). Theory paper.",
    "module_future_tags": [
     "module-future; theory|magnetization"
    ],
@@ -470,7 +470,7 @@
    "pdf_source": "arXiv:2103.15355",
    "in_corpus_index_before": false,
    "identity_verified_by": "'110920A ... (Iyyani et al. 2015)' in the BB+PL exemplar list",
-   "prompt_sections": "SKIM: \u00a71 only. Short-GRB paper; our burst appears as a long-GRB exemplar.",
+   "prompt_sections": "SKIM: §1 only. Short-GRB paper; our burst appears as a long-GRB exemplar.",
    "module_future_tags": [],
    "why_it_matters": "Context only."
   },
@@ -486,7 +486,7 @@
    "pdf_source": "arXiv:2003.02284",
    "in_corpus_index_before": false,
    "identity_verified_by": "'in the case of GRB 110920A ... localized subphotospheric dissipation ... multiple spectral breaks'",
-   "prompt_sections": "SKIM: \u00a71 (the 110920A sentence, which is a clean external statement that this burst has MULTIPLE SPECTRAL BREAKS).",
+   "prompt_sections": "SKIM: §1 (the 110920A sentence, which is a clean external statement that this burst has MULTIPLE SPECTRAL BREAKS).",
    "module_future_tags": [
     "module-future; polarization"
    ],
@@ -504,7 +504,7 @@
    "pdf_source": "already in corpus - NOT re-downloaded (G2)",
    "in_corpus_index_before": true,
    "identity_verified_by": "'GRB 110920A (Iyyani et al. 2015)' + 'for example GRB110920A, Iyyani 2018 ... two different models having different shapes equally fit the same observed spectrum'",
-   "prompt_sections": "SKIM: \u00a74 (the model-degeneracy paragraph).",
+   "prompt_sections": "SKIM: §4 (the model-degeneracy paragraph).",
    "module_future_tags": [],
    "why_it_matters": "Third independent restatement of the model-degeneracy warning for this burst."
   },
@@ -520,7 +520,7 @@
    "pdf_source": "arXiv:2312.16265",
    "in_corpus_index_before": false,
    "identity_verified_by": "Fig 1.6 caption reproduces the Iyyani 2016 GRB 110920A panel",
-   "prompt_sections": "SKIM: \u00a71.x around Fig 1.6 only.",
+   "prompt_sections": "SKIM: §1.x around Fig 1.6 only.",
    "module_future_tags": [
     "module-future; polarization"
    ],
@@ -574,7 +574,7 @@
    "pdf_source": "arXiv:1902.05489",
    "in_corpus_index_before": false,
    "identity_verified_by": "explicit statement about duplicate GRB names / two trigger numbers",
-   "prompt_sections": "READ: \u00a72 data-compilation paragraph (p.9) - the exclusion sentence naming 110920A.",
+   "prompt_sections": "READ: §2 data-compilation paragraph (p.9) - the exclusion sentence naming 110920A.",
    "module_future_tags": [],
    "why_it_matters": "Independent, refereed confirmation of the T1 name collision. NO values (they excluded the burst)."
   },
@@ -695,5 +695,30 @@
   "Ma+2024 (2024AN....34530179M) unread (no OA route).",
   "Hurley+2017 IPN supplement unread (IOP bot-block).",
   "Li&Zhang 2021's HLE decay-fit numeric columns for 110920546(1) and (2) were extracted as raw text but the COLUMN HEADERS were not decoded - the numbers are UNVERIFIED and must be mapped before entering any diff."
- ]
+ ],
+ "amendment_2026_08_30": {
+  "trigger": "PI feedback at the step-0b gate (verbatim): \"find and add the missed paper carrying the published variability limit for this burst — it is load-bearing, because our old timing number conflicts with it, so that comparison must be in the dossier. Also list the four unreadable papers with the reason each failed.\"",
+  "paper_added": {
+   "bibcode": "2015ApJ...811...93G",
+   "arxiv": "1501.05948",
+   "title": "The Energy Dependence of GRB Minimum Variability Timescales",
+   "authors": "Golkhou, Butler & Littlejohns 2015",
+   "row": "110920546 110920A dtmin 2.096 s f_dtmin=< (UPPER LIMIT); T90 160.771+-5.221 matches GBM catalog (identity by trigger number)",
+   "verification": [
+    "local PDF Skills_training/Golkhou_2015_2015ApJ81193G_bn120119170.pdf pp.1-2 (method: Haar structure function, 8 keV-1 MeV, full T100)",
+    "VizieR J/ApJ/811/93/table2 extraction ~/Desktop/LATBright/GRB260226A/data/golkhou2015_table2.tsv (request 2026-02-27)",
+    "ADS API bibcode verify 2026-08-30"
+   ],
+   "dossier_section": "4.1a"
+  },
+  "missed_cause": [
+   "machine-readable-table-only membership: the paper TEXT names no triggers, so all four ADS full-text forms miss it (the FLOOR warning class, now trap T10 with a VizieR recovery channel)",
+   "the PDF was ALREADY LOCAL under another burst tag (_bn120119170.pdf) — filename-based dedup cannot see cross-burst membership (trap T11: dedup by BIBCODE)"
+  ],
+  "load_bearing_conflict": "catalog MVT_S 5.342+-0.107 s (in-chain Haar, was labelled detection) VIOLATES the published upper limit <2.096 s by 2.5x; CWT 0.724 s consistent; canonical Bala pending; MVT_S is STALE-PENDING-REWALK (PI ruling 5) and NR-32 screens future rows",
+  "unreadable_papers_listed_in_dossier": "section 7a (4 genuine failures + 3 deliberate skips + 1 read-but-unverified)",
+  "corpus_index_queued_update": "Golkhou_2015_2015ApJ81193G_bn120119170.pdf,2015ApJ...811...93G: cited_by += bn110920546, n_bursts += 1 (queued, not written — worker convention)",
+  "amended_utc": "2026-08-30",
+  "amended_by": "GRBs Agent fresh session (Lane A #21), PI-directed"
+ }
 }

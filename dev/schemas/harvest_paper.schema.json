@@ -1,0 +1,101 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:harvest_paper",
+ "title": "One harvested paper (notes/reconciliation/<trig>_harvest.json papers[])",
+ "type": "object",
+ "required": [
+  "bibcode"
+ ],
+ "properties": {
+  "bibcode": {
+   "type": "string",
+   "pattern": "^\\d{4}[A-Za-z&.]{5}[\\w.&]{9}[A-Z]$"
+  },
+  "first_author": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "year": {
+   "type": [
+    "integer",
+    "string",
+    "null"
+   ]
+  },
+  "title": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "role": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "refereed": {
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "doctype": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "doctype_note": {},
+  "pdf": {
+   "type": [
+    "string",
+    "array",
+    "null"
+   ]
+  },
+  "pdf_source": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "in_corpus_index_before": {
+   "type": [
+    "boolean",
+    "string",
+    "null"
+   ]
+  },
+  "identity_verified_by": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "prompt_sections": {
+   "type": [
+    "string",
+    "array",
+    "null"
+   ]
+  },
+  "module_future_tags": {
+   "type": [
+    "array",
+    "string",
+    "null"
+   ]
+  },
+  "why_it_matters": {
+   "type": [
+    "string",
+    "null"
+   ]
+  }
+ },
+ "additionalProperties": true,
+ "description": "Census 2026-09-02 over 54 manifests, the paper list under ANY of the four keys (papers x50, papers_newest_first x1, papers_latest_first x2, refereed_papers x1): 489 records; bibcode 100.0%, year 97.1%, first_author 94.7%, title 88.1% (the records under the non-`papers` keys carry no titles). Corrected 2026-09-02 after verifier round 1 (the first census counted the `papers` key only, 443 records). The key is the bibcode; everything else is optional with the union types observed. New records carry the full set."
+}

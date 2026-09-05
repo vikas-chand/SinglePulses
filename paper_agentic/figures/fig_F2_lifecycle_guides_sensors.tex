@@ -1,0 +1,97 @@
+% F2 — The per-burst lifecycle with GUIDES left and SENSORS right of each step (steps top→bottom). Guides steer before
+% the step; sensors check after it. COLOUR GRAMMAR (PI 2026-09-03): blue fill + 0.8 pt frame = computational (code:
+% tests, hooks, guards, schema validation, the auditor, the state board); green fill + 0.3 pt frame = inferential (a
+% fresh-context model role); white with grey frame = guides (documents); amber diamond = the human gate. Dashed = PROPOSED.
+% The K-clean-passes → FREEZE decision lives in F4, not here. Census 2026-09-02.
+% STYLE PASS (PI 2026-09-03, decision 26, after Yang+2026 arXiv:2607.08938 Figs. 1-3 as design reference): Source Sans Pro,
+% softer corners, 1 pt soft-grey arrows with round caps/joins, light frames on neutral boxes; texts and the D24 colour grammar unchanged.
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[default]{sourcesanspro}
+\usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta,fit,backgrounds}
+\newcommand{\nohyph}{\hyphenpenalty=10000 \exhyphenpenalty=10000 }
+\definecolor{codefill}{RGB}{199,217,239}\definecolor{codeline}{RGB}{59,110,165}
+\definecolor{agentfill}{RGB}{226,240,217}\definecolor{agentline}{RGB}{58,125,52}
+\definecolor{humanfill}{RGB}{253,236,200}\definecolor{humanline}{RGB}{191,124,0}
+\definecolor{docline}{RGB}{110,110,110}
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\scriptsize, node distance=1.6mm and 3mm,
+  stp/.style={draw=black!45, line width=0.8pt, rounded corners=5pt, fill=white, text width=30mm, align=center, minimum height=7.5mm, font=\sffamily\footnotesize\bfseries, execute at begin node=\nohyph},
+  guide/.style={draw=black!35, line width=0.5pt, rounded corners=4pt, fill=white, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
+  comp/.style={draw=codeline, line width=0.8pt, rounded corners=4pt, fill=codefill, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
+  infer/.style={draw=agentline, line width=0.3pt, rounded corners=4pt, fill=agentfill, text width=44mm, align=left, inner sep=1.6pt, execute at begin node=\nohyph},
+  prop/.style={dashed, text=black!65, fill=white, draw=black!45},
+  gate/.style={draw=humanline, thick, diamond, aspect=2.6, fill=humanfill, inner sep=0.5pt, font=\sffamily\scriptsize\bfseries},
+  arr/.style={-{Stealth[length=2mm,width=1.7mm,round]}, line width=1pt, black!55, line cap=round, line join=round},
+  lab/.style={font=\sffamily\scriptsize, text=black!70, execute at begin node=\nohyph}]
+
+% column headers
+\node[lab, font=\sffamily\footnotesize\bfseries] (hg) at (-42mm,0) {GUIDES (before the step)};
+\node[lab, font=\sffamily\footnotesize\bfseries] (hs) at (0,0) {STEP $\to$ GATE};
+\node[lab, font=\sffamily\footnotesize\bfseries] (hc) at (42mm,0) {SENSORS (after the step)};
+
+% every step: the cross-cutting guides and sensors, stated once (a band above the rows)
+\node[guide, anchor=north] (g0) at (-42mm,-5mm) {\textbf{every step, documents:} the walkthrough protocol RUN $\to$ PRESENT $\to$ GATE $\to$ LITERATURE $\to$ DISTILL; the step's skill file; the dispatch plan};
+\node[infer, below=1.2mm of g0] (g0r) {\textbf{every step, roles:} skill-reader returns the binding checklist; dispatcher names roster + gates};
+\node[comp, anchor=north] (c0) at (42mm,-5mm) {\textbf{every step:} hooks (dispatch plan $<$24~h; raw-data guard; no-ship sha check on delivery); the disk state board; identity stamps};
+
+% steps at fixed rows (shifted down 12 mm so the two every-step boxes clear row 0b)
+\begin{scope}[yshift=-12mm]
+\node[stp] (s0b) at (0,-28mm) {0b literature harvest};
+\node[stp] (s0)  at (0,-44mm) {0 identity \& circulars};
+\node[stp] (s1)  at (0,-59mm) {1 data inventory};
+\node[stp] (s25) at (0,-76mm) {2--5 detectors, background, source, binning (ADOPT)};
+\node[stp] (s6)  at (0,-96mm) {6 spectral fitting};
+\node[stp] (s7)  at (0,-114mm) {7 temporal};
+\node[stp] (s8)  at (0,-137mm) {8 $\nu F_\nu$ panels};
+\node[stp] (s9)  at (0,-163mm) {9 QC, report, literature diff, distill};
+\end{scope}
+
+% gates (one per step, to the right of the step)
+\foreach \s in {s0b,s0,s1,s25,s6,s7,s8,s9} {
+  \node[gate, right=2mm of \s] (g\s) {PI};
+}
+
+% guides per step (left)
+\node[guide, left=2mm of s0b] (gl0b) {LiteratureHarvest.md (traps T1--T11); ADS four-form query; VizieR sweep; blind-first: harvest now, compare at step 9};
+\node[guide, left=2mm of s0] (gl0) {GCNIntelligence.md (G1--G2); identity by trigger, never by name; zero-circular case recorded as a result (QC checklist)};
+\node[guide, left=2mm of s1] (gl1) {DataInventory.md (D1--D5); response coverage vs the source window};
+\node[guide, left=2mm of s25] (gl25) {detector\_selection.md, background\_selection.md, source\_selection.md, Binning.md; PI rulings quoted; ADOPT = present the human decision, never re-adjudicate};
+\node[guide, left=2mm of s6] (gl6) {SpectralFitting.md (L1--L34): menu, multistarts, chain gates, tie adoption, count coordinates, margins only, rails disclosed};
+\node[guide, left=2mm of s7] (gl7) {Temporal.md (TM1--TM5) + its defect ledger; estimator labels; lag convention};
+\node[guide, anchor=south east] (gl8a) at ($(s8.west)+(-2mm,0.8mm)$) {SpectralFitting.md L10/L11; FigureVisionQC S1--S6 (strict-XSPEC display contract); SpectralResidualReview.md};
+\node[guide, prop, anchor=north east] (gl8b) at ($(s8.west)+(-2mm,-0.8mm)$) {SEDPanels.md (to be written; marked in the ledger)};
+\node[guide, left=2mm of s9] (gl9) {qc\_flagging.md; ReportSpec R1--R5 (+R3a claim typing); reconciliation P0--P6};
+
+% sensors per step (right of the gate); blue = code, green = model role; stacked where a step has both
+\node[comp, right=2mm of gs0b] (sr0b) {harvest manifest validates against its schema (bibcode-keyed; four list keys tolerated)};
+\node[lab, right=2mm of gs0, text width=44mm, align=left] (sr0) {no sensor beyond the PI gate at this step (roster: ``no figures, no verifier'')};
+\node[infer, right=2mm of gs1] (sr1) {figure-verifier (vision) + numbers-verifier vs the sample catalog};
+\node[comp, right=2mm of gs25] (sr25) {catalog validator (adjudication-aware); Stage-1 stamps validate; block table present (state board)};
+\node[comp, anchor=south west] (sr6a) at ($(gs6.east)+(2mm,0.8mm)$) {engine guards (validity, LRT, rails) $\cdot$ fit-table auditor (basis, rails, offset, count triple) $\cdot$ lessons-as-tests};
+\node[infer, anchor=north west] (sr6b) at ($(gs6.east)+(2mm,-0.8mm)$) {tie-reporter; admission-gate; numbers-verifier on the PRESENT block};
+\node[infer, right=2mm of gs7] (sr7) {figure + numbers verifiers; seed-auditor (bit-identical replay); port-verifier on ported code};
+\node[comp, anchor=south west] (sr8a) at ($(gs8.east)+(2mm,0.8mm)$) {no-ship hook: a PNG ships only with a sha-bound verdict};
+\node[infer, anchor=north west] (sr8b) at ($(gs8.east)+(2mm,-0.8mm)$) {figure-verifier on EVERY panel; notes-reviewers A7 (protocol, no file)};
+\node[infer, anchor=south west] (sr9a) at ($(gs9.east)+(2mm,0.8mm)$) {numbers-verifier on the report; literature agent A11 (blind-first diff; protocol, no file); distiller $\to$ register; referee panel (milestones, PI-triggered)};
+\node[infer, prop, anchor=north west] (sr9b) at ($(gs9.east)+(2mm,-0.8mm)$) {report-conformance gate A10};
+
+% flow arrows: step -> gate -> next step
+\foreach \a/\b in {s0b/s0, s0/s1, s1/s25, s25/s6, s6/s7, s7/s8, s8/s9} { \draw[arr] (\a) -- (\b); }
+\foreach \s in {s0b,s0,s1,s25,s6,s7,s8,s9} { \draw[arr] (\s.east) -- (g\s.west); }
+
+% continuous, outside the steps: three kinds, three boxes
+\node[comp, anchor=north east, text width=44mm] (bandc) at ($(s9.south)+(-1.5mm,-9mm)$) {\textbf{continuous:} eval battery, one command (tests + fit-table audits), result named with model id and commit};
+\node[infer, anchor=north west, text width=44mm] (bandi) at ($(s9.south)+(1.5mm,-9mm)$) {\textbf{continuous:} distillation of every incident into a lesson + register row, same session (distiller)};
+\node[comp, prop, anchor=north, text width=60mm] (bandp) at ($(s9.south)+(0,-24mm)$) {continuous, PROPOSED: drift janitor (report-only); pre-commit fast-suite gate};
+
+% legend
+\node[comp, anchor=north west, text width=26mm, align=center] (l1) at ($(bandp.south)+(-44mm,-4mm)$) {blue: code (computational)};
+\node[infer, right=2mm of l1, text width=27mm, align=center] (l2) {green: model role (inferential)};
+\node[guide, right=2mm of l2, text width=22mm, align=center] (l2b) {white: guide (document)};
+\node[gate, below=3mm of l1.south west, anchor=north west, xshift=6mm] (l3) {PI};
+\node[lab, right=1mm of l3] (l3t) {human gate; approval identity-stamped};
+\node[infer, prop, right=3mm of l3t, text width=27mm, align=center] (l4) {dashed: PROPOSED};
+\end{tikzpicture}
+\end{document}

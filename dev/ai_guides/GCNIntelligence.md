@@ -72,6 +72,22 @@ dossier. Highlight snippets (`hl=`) are NOT enabled on this token tier; find
 mention pages via PyMuPDF text search on the downloaded PDF instead.
 
 ## §Distilled lessons (grow here)
+### G3 — The classic GCN archive is DEAD; the modern one needs the BARE name form  *(bn240403498, 2026-09-04)*
+`https://gcn.gsfc.nasa.gov/other/<name>.gcn3` — the "cheapest first" fetch this file
+prescribes — is **unreachable** (curl HTTP 000, all name forms). Circulars now live at
+`https://gcn.nasa.gov`, and the working recipe is:
+```bash
+# search (NOTE the BARE form: "GRB 240403A" with a space returns the WHOLE 35767-circular archive)
+curl -s "https://gcn.nasa.gov/circulars?index&query=240403A&_data=routes%2Fcirculars._archive._index"
+# then fetch each hit in full
+curl -s "https://gcn.nasa.gov/circulars/<circularId>.json"     # subject, submitter, createdOn, body
+```
+Run the search on EVERY identity form (name with suffix, bare fraction-of-day, trigger
+number) — for bn240403498 the name form gave 3 hits, the trigger number gave 2, and the
+union is what the dossier records. Same-day check unchanged and still load-bearing: the
+suffix `B` of that day belongs to a DIFFERENT trigger (GRB 240403B = 733808041).
+See LiteratureHarvest T12 for why an unparsed query is a silent whole-archive answer.
+
 ### G2 — DEDUPLICATE the paper corpus across bursts (sample papers repeat)  *(Vikas, 2026-07-30)*
 Sample/method papers (Ghirlanda, Atteia, Hakkila, Daigne, …) cite dozens of GRBs,
 so they RECUR across our bursts and must not be re-fetched or re-read. The corpus

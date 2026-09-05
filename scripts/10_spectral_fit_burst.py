@@ -320,10 +320,10 @@ def _setup_band(seed):
     b = Band()
     b.alpha.bounds = (-1.9, 1.9)
     b.xp.bounds    = (30.0, 5.0e4)
-    b.beta.bounds  = (-5.0, -1.6)
+    b.beta.bounds  = (-10.0, -1.6)
     b.alpha.value = _clamp(seed.get('band_alpha', DEFAULT_PARAMS['alpha']), -1.9, 1.9)
     b.xp.value    = _clamp(seed.get('band_Ep',    DEFAULT_PARAMS['Ep']), 30.0, 5.0e4)
-    b.beta.value  = _clamp(seed.get('band_beta',  DEFAULT_PARAMS['beta']), -5.0, -1.6)
+    b.beta.value  = _clamp(seed.get('band_beta',  DEFAULT_PARAMS['beta']), -10.0, -1.6)
     b.K.value     = max(1e-10, seed.get('band_K', DEFAULT_PARAMS['K_band']))
     return b
 
@@ -351,13 +351,13 @@ def _setup_sbpl(seed):
     from astromodels import SmoothlyBrokenPowerLaw
     s = SmoothlyBrokenPowerLaw()
     s.K.bounds = (1e-10, 1e4)
-    s.alpha.bounds = (-2.5, 1.5)
+    s.alpha.bounds = (-2.5, 2.5)
     s.break_energy.bounds = (10.0, 5.0e4)
-    s.beta.bounds = (-5.0, -1.5)
+    s.beta.bounds = (-10.0, -1.5)
     s.K.value = max(1e-10, seed.get('sbpl_K', 0.05))
-    s.alpha.value = _clamp(seed.get('sbpl_alpha', DEFAULT_PARAMS['alpha']), -2.5, 1.5)
+    s.alpha.value = _clamp(seed.get('sbpl_alpha', DEFAULT_PARAMS['alpha']), -2.5, 2.5)
     s.break_energy.value = _clamp(seed.get('sbpl_break', 300.0), 10.0, 5.0e4)
-    s.beta.value = _clamp(seed.get('sbpl_beta', DEFAULT_PARAMS['beta']), -5.0, -1.5)
+    s.beta.value = _clamp(seed.get('sbpl_beta', DEFAULT_PARAMS['beta']), -10.0, -1.5)
     s.break_scale.fix = True
     return s
 
@@ -369,13 +369,13 @@ def _setup_dsbpl(seed):
     d.xb.bounds = (10.0, 5000.0)
     d.alpha2.bounds = (-3.0, 0.5)
     d.xp.bounds = (30.0, 5.0e4)
-    d.beta.bounds = (-5.0, -1.5)
+    d.beta.bounds = (-10.0, -1.5)
     d.K.value = max(1e-10, seed.get('dsbpl_K', 0.05))
     d.alpha1.value = _clamp(seed.get('dsbpl_alpha1', -0.66), -2.5, 2.5)
     d.xb.value = _clamp(seed.get('dsbpl_xb', 50.0), 10.0, 5000.0)
     d.alpha2.value = _clamp(seed.get('dsbpl_alpha2', -1.5), -3.0, 0.5)
     d.xp.value = _clamp(seed.get('dsbpl_xp', DEFAULT_PARAMS['Ep']), 30.0, 5.0e4)
-    d.beta.value = _clamp(seed.get('dsbpl_beta', DEFAULT_PARAMS['beta']), -5.0, -1.5)
+    d.beta.value = _clamp(seed.get('dsbpl_beta', DEFAULT_PARAMS['beta']), -10.0, -1.5)
     d.n1.fix = True
     d.n2.fix = True
     d.piv.fix = True
@@ -907,55 +907,69 @@ def capture_seed(spec, result):
 
 # Parameter bounds (must mirror the _setup_* functions). Used to detect
 # railed fits and to enforce physical break ordering for model selection.
+# BETA FLOOR WIDENED -5 -> -10 (PI ruling 2026-09-02: "so you can let it go till
+# -10 like XSPEC"). The -5 floor was OURS and tighter than XSPEC's grbm (~-10);
+# L15 required it to be stated in methods. Measured on bn110920546 it was not a
+# cosmetic tightness: Band's beta pinned at -5.00000 in 5 of 12 bins with
+# BAND_N2LL - CPL_N2LL = 0.02-0.24 and AIC exactly +2 (the pure penalty for one
+# parameter doing nothing) -- i.e. Band had already collapsed onto CPL and was
+# not allowed to say so. Because the rail sets VALID=False, Band was REMOVED
+# from the candidate set rather than merely disfavoured, and since Band is the
+# nested ancestor of Band+BB/Band+PL/Band+CPL, its children were left with no
+# valid ancestor and DECISIVE became UNDEFINED for them. SBPL was worse: beta on
+# the floor in 10 of 12 rows, valid in 2. BOTH bounds are widened -- the FIT
+# bound (b/s/d .beta.bounds, so the minimiser can actually reach it) and this
+# validity table (so the rail test is against the real bound); widening only the
+# latter would silence the detector instead of freeing the fit.
 PARAM_BOUNDS = {
-    'BAND':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6)},
+    'BAND':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-10.0, -1.6)},
     'CPL':    {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4)},
-    'SBPL':   {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5)},
+    'SBPL':   {'ALPHA': (-2.5, 2.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-10.0, -1.5)},
     'DSBPL':  {'ALPHA1': (-2.5, 2.5), 'XB': (10.0, 5000.0), 'ALPHA2': (-3.0, 0.5),
-               'XP': (30.0, 5.0e4), 'BETA': (-5.0, -1.5)},
-    'BANDBB': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
+               'XP': (30.0, 5.0e4), 'BETA': (-10.0, -1.5)},
+    'BANDBB': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-10.0, -1.6),
                'KT': (1.0, 200.0)},
     'CPLBB':  {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0)},
     # ---- shape census (railing on the freed smoothness = unconstrained) ----
-    'SBPLF':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
+    'SBPLF':  {'ALPHA': (-2.5, 2.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-10.0, -1.5),
                'SCALE': (0.01, 2.0)},
     'DSBPLF': {'ALPHA1': (-2.5, 2.5), 'XB': (10.0, 5000.0), 'ALPHA2': (-3.0, 0.5),
-               'XP': (30.0, 5.0e4), 'BETA': (-5.0, -1.5),
+               'XP': (30.0, 5.0e4), 'BETA': (-10.0, -1.5),
                'N1': (0.5, 10.0), 'N2': (0.5, 10.0)},
     # ---- high-E second components (LATBright s03m port) ----
-    'BANDPL':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
+    'BANDPL':   {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-10.0, -1.6),
                  'PL_INDEX': (-4.0, -1.0)},
-    'BANDCPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
+    'BANDCPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-10.0, -1.6),
                  'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
     'CPLPL':    {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'PL_INDEX': (-4.0, -1.0)},
     'CPLCPL':   {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4),
                  'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
-    'BANDRCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 2000.0), 'BETA': (-5.0, -1.6),
+    'BANDRCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 2000.0), 'BETA': (-10.0, -1.6),
                  'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
-    'BANDCUT':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
+    'BANDCUT':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-10.0, -1.6),
                  'EC': (1e4, 1e8)},     # 10 MeV - 100 GeV; mirrors _setup_cutoff_mult
-    'SBPLCUT':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
+    'SBPLCUT':  {'ALPHA': (-2.5, 2.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-10.0, -1.5),
                  'EC': (1e4, 1e8)},     # 10 MeV - 100 GeV; mirrors _setup_cutoff_mult
     # Guiriec 3-component family: continuum shape + BB temperature + extra-
     # component index all gated against railing (same rails as their
     # 2-component parents).
-    'BANDBBPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
+    'BANDBBPL':  {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-10.0, -1.6),
                   'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
-    'BANDBBCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-5.0, -1.6),
+    'BANDBBCPL': {'ALPHA': (-1.9, 1.9), 'EP': (30.0, 5.0e4), 'BETA': (-10.0, -1.6),
                   'KT': (1.0, 200.0), 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
     'CPLBBPL':   {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0),
                   'PL_INDEX': (-4.0, -1.0)},
     'CPLBBCPL':  {'INDEX': (-2.0, 1.0), 'XC': (10.0, 5e4), 'KT': (1.0, 200.0),
                   'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
-    'SBPLBB':    {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
+    'SBPLBB':    {'ALPHA': (-2.5, 2.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-10.0, -1.5),
                   'KT': (1.0, 200.0)},
-    'SBPLBBPL':  {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
+    'SBPLBBPL':  {'ALPHA': (-2.5, 2.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-10.0, -1.5),
                   'KT': (1.0, 200.0), 'PL_INDEX': (-4.0, -1.0)},
-    'SBPLBBCPL': {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
+    'SBPLBBCPL': {'ALPHA': (-2.5, 2.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-10.0, -1.5),
                   'KT': (1.0, 200.0), 'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
-    'SBPLPL':    {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
+    'SBPLPL':    {'ALPHA': (-2.5, 2.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-10.0, -1.5),
                   'PL_INDEX': (-4.0, -1.0)},
-    'SBPLCPL':   {'ALPHA': (-2.5, 1.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-5.0, -1.5),
+    'SBPLCPL':   {'ALPHA': (-2.5, 2.5), 'EBREAK': (10.0, 5.0e4), 'BETA': (-10.0, -1.5),
                   'HE_INDEX': (-4.0, -1.0), 'HE_XC': (5e4, 1e8)},
 }
 

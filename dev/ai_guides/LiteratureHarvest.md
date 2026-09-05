@@ -12,7 +12,10 @@ running it three times by hand on bn090530760).
 ```yaml
 trigger:      bn#########
 grb_name:     GRB YYMMDD[A/B]        # resolved in Step 0 — DO NOT skip, see T1
-ads_token:    source ~/Desktop/Projects/FXTs/.env   # ADS_DEV_KEY (Astrograph's is STALE/401)
+ads_token:    ~/.ads/dev_key                       # chmod 600, outside the repo (Linux box, 2026-09-04).
+                                                   # macOS box: ~/Desktop/Projects/FXTs/.env ADS_DEV_KEY.
+                                                   # Astrograph's ADS_API_TOKEN is STALE/401. Verify with a
+                                                   # known bibcode BEFORE trusting a 0-hit answer (T12).
 corpus:       Skills_training/ + corpus_index.csv
 ```
 
@@ -39,7 +42,10 @@ forms** (Yu+2019, Preece+2016, Yu+2015, Hakkila+2015, Qin+2013). Causes: the dot
 `100707.032` spelling, tables indexed as images, and machine-readable-table-only membership.
 Recovery channels that DID work and are now part of the step: the dotted form above; grepping
 the LOCAL corpus PDFs for the 6-digit fragment (`fitz` over `Skills_training/*.pdf`);
-following the citation graph of any dedicated paper; and Phase 1b (Scholar). **A burst is not
+following the citation graph of any dedicated paper; Phase 1b (Scholar); and — since the
+Golkhou miss (T10, 2026-08-30) — a **VizieR MEMBERSHIP SWEEP**: query the CDS TAP/vizquery
+GRB catalog tables (`J/*`) for the trigger number and both name forms, because a population
+paper's burst membership often lives ONLY in its machine-readable table. **A burst is not
 "paperless" until the recovery channels have also run.**
 Keep only `doctype` ∈ {article, eprint}; circulars are Step 0a's job.
 **Series check:** if a hit belongs to a numbered series (e.g. *Comprehensive Analysis I–IV*),
@@ -174,9 +180,54 @@ table row; update `corpus_index.csv` (`read=N` until Vikas confirms he has read 
   its window. **Label every harvested number with its component coverage** (precursor / main /
   total) in the dossier's PUBLISHED VALUES table — a T90 or Ep diffed across mismatched
   component coverage is a manufactured discrepancy (D4's sharper sibling).
+- **T10 TABLE-ONLY MEMBERSHIP (bn110920546, 2026-08-30 — caught by the PI at the step-0b
+  gate).** Golkhou+2015 (`2015ApJ...811...93G`) carries a **published MVT upper limit
+  dt_min < 2.096 s for THIS burst** in its machine-readable Table 2 — and was missed by all
+  four ADS forms + extras because the paper's TEXT names no individual triggers. It was
+  LOAD-BEARING: our catalog Haar MVT (5.342 s, "detection") violates the limit by 2.5×.
+  **A population/catalog paper's membership must be checked in VizieR (TAP over `J/*` GRB
+  tables, by trigger number + both name forms), not only in ADS full text.** The recovery
+  channel is now in Phase 1's floor list.
+- **T11 CROSS-BURST PDF TAGS DEFEAT FILENAME DEDUP (same incident).** The Golkhou PDF was
+  ALREADY ON DISK as `Golkhou_2015_2015ApJ81193G_bn120119170.pdf` — filed under another
+  burst's tag — while the bn110920546 harvest recorded the paper as absent. **De-duplicate
+  and search the local corpus by BIBCODE (corpus_index + on-disk filename fragment), never
+  by the trigger-suffixed filename alone.**
+
+- **T12 A QUERY THAT SILENTLY RETURNS EVERYTHING — OR SOMETHING ELSE — IS NOT AN ERROR**
+  *(bn240403498, 2026-09-04, step 0b; three instances in one session, one shape).* A search
+  endpoint that cannot parse your query may answer with the WHOLE ARCHIVE, or with an
+  unrelated fallback, and both look like success:
+  1. **GCN circulars.** `query=GRB 240403A` (with the space) returns **35 767 items — the entire
+     archive** and `queryFallback: false`; the bare form `query=240403A` returns the 3 real hits.
+     A 35 767-hit "result set" whose first page is other bursts is the tell.
+  2. **VizieR word search.** `-words=240403A` returns **228 tables / 53 MB** in which the literal
+     string occurs exactly ONCE — in the echoed request URL. `-words=GRB+240403A` returns 4
+     BATSE-era tables matched on the word "GRB".
+  3. **VizieR `-source=`.** `-source=J/A+A/688/L8` for a catalogue that has no CDS table
+     silently returns unrelated catalogues (`I/138`, `I/195`, `I/196`, …) instead of erroring.
+  **RULE:** every query records its HIT COUNT and its FIRST HIT, and any count that is
+  implausibly large (or whose first hit is a different object) is a FAILED query, not a
+  finding. Confirm the endpoint is answering YOUR question — for ADS, run a known-bibcode
+  probe first (`identifier:2019ApJ...886...20Y` -> HTTP 200) so that "0 hits" means absence
+  rather than a dead token. A 401 and a 0 are indistinguishable in a summary table.
+- **T13 THE HOST CAN BE MISSING THE CHANNEL, AND THAT IS NOT A NULL RESULT**
+  *(bn240403498, 2026-09-04).* Two of Phase 1's recovery channels are unavailable on the Linux
+  workstation and their absence is silent: `Skills_training/` holds `corpus_index.csv` (179
+  rows) but **zero PDFs**, so the T11 "grep the local corpus by bibcode" channel cannot run
+  at all; and VizieR's TAP endpoint answers **HTTP 403** from this host, so the T10 ADQL
+  membership sweep degrades to the word-search form (see T12). **RULE:** the harvest manifest
+  names each channel as RUN / BLOCKED / INOPERATIVE-ON-THIS-HOST with its evidence; a burst
+  is "paperless" only when the channels that could have found a paper actually ran. The
+  membership question is answered instead by reading the candidate catalogue paper's own
+  sample definition — for this burst, Maccary+2024 (A&A 688, L8) states verbatim *"We started
+  from 3091 long GRBs detected by GBM from 14 July 2008 to 4 February 2024"*, which excludes a
+  2024-04-03 burst by two months. **A sample-cutoff sentence is a membership verdict** and is
+  cheaper and more reliable than any table sweep.
 
 ## Quality checklist
 - [ ] All four query forms run; identity verified by trigger, not name.
+- [ ] VizieR membership sweep run for population/catalog papers (T10).
 - [ ] Published version fetched where `PUB_OPENACCESS`; both versions kept.
 - [ ] Every harvested number carries convention + band + interval + T0 + detector set.
 - [ ] Parsed table row count matches the paper's stated N.

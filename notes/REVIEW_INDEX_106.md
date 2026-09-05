@@ -14,6 +14,13 @@ cp handoff_background_approval/KHUSHBOO_APPROVAL_SHEET_TEMPLATE.md notes/approva
 ```
 
 `DEC`/`STR` = blocks where an extra component beats the best simple model by ΔAIC ≥ 10 / ≥ 6.
+**Reference model (PI ruling 3, 2026-08-30, verbatim): "ΔAIC reference: BOTH constructs stay, with
+mandatory labels — "DECISIVE" = chain-gate vs best simpler ancestor (structure claims, ΔAIC≥10); "TRACKED" = vs runner-up (preference, ΔAIC>6 in 1–2 bins).
+Never print either word without its reference.** The `DEC`/`STR` columns here are the CHAIN-GATE
+construct — ΔAIC vs the best simpler ANCESTOR — never the runner-up (TRACKED) construct; the two
+give different counts on the same table (#21: "8 DECISIVE" vs "3 TRACKED / 5 ties"). Rows built
+before 2026-08-30 did not state this; they are the chain-gate numbers by construction of the
+counter, and each burst re-verifies its own row as it is walked (no campaign-wide sweep).
 `BB` = blocks with a significant, off-rail, VALID blackbody (union of the Band+BB and CPL+BB
 nested tests). ⚠ The BB census rule is still open (external audit A3: other nested pairs are
 not yet counted) — treat `BB` as provisional.

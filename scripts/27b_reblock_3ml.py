@@ -42,7 +42,11 @@ P0 = 0.01                       # 3ML tutorial value
 USE_BACKGROUND = True           # 3ML tutorial value
 SIGMA_FLOOR = 5.0              # per-block detection floor (user-set 2026-06-24);
                                # cf Burgess 3sigma, 3ML default sigma_level=10
-SIG_TRIM = 4.5                 # leading/trailing-edge drop threshold (scripts/27)
+SIG_TRIM = 4.5                 # PEAK-DETECTION threshold only (used at the `net[pk] <
+                               # SIG_TRIM * noise` guard below). It is NOT the edge-trim
+                               # threshold: trim_edges() is called with SIGMA_FLOOR (5.0).
+                               # Comment corrected 2026-08-31 per PI ruling '5.0 sigma is
+                               # right - fix the docs'; behaviour UNCHANGED.
 
 
 def find_tte(trig, det):

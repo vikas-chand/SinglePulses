@@ -1,0 +1,122 @@
+RAW GCN CIRCULARS — bn240403498 / GRB 240403A
+Fetched 2026-09-04T04:05:21Z from https://gcn.nasa.gov/circulars (JSON API, per-circular endpoint).
+NOTE: the classic archive gcn.gsfc.nasa.gov/other/<name>.gcn3 named in
+GCNIntelligence.md is UNREACHABLE from this host (HTTP 000); the modern
+gcn.nasa.gov search needs the BARE form '240403A' — 'GRB 240403A' with a
+space returns the whole 35767-circular archive instead of 3 hits.
+Circular 36032 (GRB 240403B) is included ONLY as the same-day identity check.
+
+==============================================================================
+GCN CIRCULAR 36015
+SUBJECT: GRB 240403A: BALROG localization (Fermi Trigger 733838255 / GRB 240403498)
+FROM: Jochen Greiner at MPE <jcgrog@mpe.mpg.de>
+CREATED: 2024-04-03T15:15:04Z
+==============================================================================
+T. Preis, B. Biltzinger, J. Burgess & J. Greiner (all MPE Garching) report:
+
+The public trigdat data of the Fermi Gamma-ray Burst Monitor (GBM) trigger
+733838255 at 11:57:30 on 03 April 2024 were automatically fitted for spectrum
+and sky location with BALROG (Burgess et al. 2018, MNRAS 476, 1427;
+Berlato et al. 2019, ApJ 873, 60).
+
+The best-fit position is:
+RA(2000.0) = 9.0 deg
+Decl.(2000.0) = -17.6 deg
+The 1 sigma statistical error radius is 0.8 deg.
+We estimate an additional systematic error of 1 deg.
+
+Further details are available at:
+https://grb.mpe.mpg.de/grb/GRB240403498/
+
+The Healpix map can be downloaded from:
+https://grb.mpe.mpg.de/grb/GRB240403498/healpix
+
+The location parameters are available as JSON at:
+https://grb.mpe.mpg.de/grb/GRB240403498/json
+
+==============================================================================
+GCN CIRCULAR 36024
+SUBJECT: GRB 240403A: Fermi GBM Detection
+FROM: rachel.hamburg@ijclab.in2p3.fr
+CREATED: 2024-04-04T14:27:05Z
+==============================================================================
+R. Hamburg (CNRS/IN2P3/IJCLab), S. Dalessi (UAH) and C. Meegan (UAH) report on behalf of
+the Fermi Gamma-ray Burst Monitor Team:
+
+"At 11:57:30.58 UT on 03 April 2024, the Fermi Gamma-ray Burst Monitor (GBM)
+triggered and located GRB 240403A (trigger 733838255/240403498).
+
+The on-ground calculated location, using the Fermi GBM trigger data,
+is RA = 6.5, Dec = -17.3 (J2000 degrees, equivalent to
+J2000 +00h 26m, -17d 17'), with a statistical uncertainty of 1.77 degrees.
+There is additionally a systematic error which we have characterized 
+as a core-plus-tail model, with 90% of GRBs having a 3.7 deg error and a
+small tail suffering a larger than 10 deg systematic error (Connaughton 
+et al. 2015, ApJS, 216, 32).
+
+The angle from the Fermi LAT boresight is 62 degrees.
+
+The GBM light curve shows a precursor, a main emission peak 
+and third weaker peak, yielding a duration (T90)
+of about 35.6 s (50-300 keV). The time-averaged spectrum
+from T0-1.2 to T0+76.7 s is best fit by
+a power law function with an exponential high-energy cutoff.
+The power law index is -1.11 +/- 0.01 and the cutoff energy,
+parameterized as Epeak, is 350 +/- 10 keV. 
+A Band function also fits well with Epeak = 322 +/- 14 keV,
+alpha = -1.08 +/- 0.02, and beta = -2.40 +/- 0.13.
+
+The event fluence (10-1000 keV) in this time interval is
+(3.6 +/- 0.4)E-05 erg/cm^2. The 1-sec peak photon flux measured
+starting from T0+26 s in the 10-1000 keV band is 39.1 +/- 0.4 ph/s/cm^2.
+
+The spectral analysis results presented above are preliminary;
+final results will be published in the GBM GRB Catalog:
+https://heasarc.gsfc.nasa.gov/W3Browse/fermi/fermigbrst.html
+
+For Fermi GBM data and info, please visit the official Fermi GBM Support Page:
+https://fermi.gsfc.nasa.gov/ssc/data/access/gbm/"
+
+==============================================================================
+GCN CIRCULAR 36031
+SUBJECT: GRB 240403A: Glowbug gamma-ray detection
+FROM: C.C. Cheung at Naval Research Lab <Teddy.Cheung@nrl.navy.mil>
+CREATED: 2024-04-04T21:35:35Z
+==============================================================================
+C.C. Cheung, R. Woolf, M. Kerr, J.E. Grove (NRL), A. Goldstein (USRA), C.A. Wilson-Hodge, D. Kocevski (MSFC), and M.S. Briggs (UAH) report:
+ 
+The Glowbug gamma-ray telescope [1,2], operating on the International Space Station, reports the detection of GRB 240403A, which was also detected by Fermi/GBM (GCN 36015, 36024). 
+
+Using an adaptive window with a resolution of 32-ms, the burst onset is determined to be 2024-04-03 11:57:53.912 with a duration of 7.2 s and a total significance of about 31.9 sigma. The Glowbug onset corresponds to the main emission peak seen in the GBM light curve (GCN 36024).
+
+The analysis results presented here are preliminary and use a response function that lacks a detailed characterization of the surrounding passive structure of the ISS.
+ 
+Glowbug is a NASA-funded technology demonstrator for sensitive, low-cost gamma-ray transient telescopes developed, built, and operated by the U.S. Naval Research Laboratory (NRL) with support from the University of Alabama in Huntsville, USRA, and NASA MSFC.  It was launched on 2023 March 15 aboard the Department of Defense Space Test Program’s STP-H9 to the ISS.  The detector comprises 12 large-area (15 cm x 15 cm) CsI:Tl panels covering the surface of a half cube, and two hexagonal (5-cm diameter, 10-cm length) CLLB scintillators, giving it a large field of view (instantaneous FoV ~2/3 sky) over a wide energy band of 50 keV to >2 MeV.
+ 
+[1] Grove, J.E. et al. 2020, Proc. Yamada Conf. LXXI, arXiv:2009.11959
+[2] Woolf, R.S. et al. 2022, Proc. SPIE, 12181, id. 121811O
+[3] Goldstein, A. et al. 2020, ApJ 895, 40, arXiv :1909.03006
+ 
+Distribution Statement A: Approved for public release.  Distribution is unlimited.
+
+==============================================================================
+GCN CIRCULAR 36032
+SUBJECT: GRB 240403B: Glowbug gamma-ray detection
+FROM: C.C. Cheung at Naval Research Lab <Teddy.Cheung@nrl.navy.mil>
+CREATED: 2024-04-04T21:36:45Z
+==============================================================================
+C.C. Cheung, R. Woolf, M. Kerr, J.E. Grove (NRL), A. Goldstein (USRA), C.A. Wilson-Hodge, D. Kocevski (MSFC), and M.S. Briggs (UAH) report:
+ 
+The Glowbug gamma-ray telescope [1,2], operating on the International Space Station, reports the detection of GRB 240403B, which was also detected by Fermi/GBM (Trigger 733808041). 
+
+Using an adaptive window with a resolution of 32-ms, the burst onset is determined to be 2024-04-03 03:33:50.176 with a duration of 26.6 s and a total significance of about 57 sigma.  The light curve shows a gradual increase in flux (uncertain between ~T0+20s to ~T0+23s because of detector dead-time) with a sharp peak at ~T0+25s.
+
+The analysis results presented here are preliminary and use a response function that lacks a detailed characterization of the surrounding passive structure of the ISS.
+ 
+Glowbug is a NASA-funded technology demonstrator for sensitive, low-cost gamma-ray transient telescopes developed, built, and operated by the U.S. Naval Research Laboratory (NRL) with support from the University of Alabama in Huntsville, USRA, and NASA MSFC.  It was launched on 2023 March 15 aboard the Department of Defense Space Test Program’s STP-H9 to the ISS.  The detector comprises 12 large-area (15 cm x 15 cm) CsI:Tl panels covering the surface of a half cube, and two hexagonal (5-cm diameter, 10-cm length) CLLB scintillators, giving it a large field of view (instantaneous FoV ~2/3 sky) over a wide energy band of 50 keV to >2 MeV.
+ 
+[1] Grove, J.E. et al. 2020, Proc. Yamada Conf. LXXI, arXiv:2009.11959
+[2] Woolf, R.S. et al. 2022, Proc. SPIE, 12181, id. 121811O
+[3] Goldstein, A. et al. 2020, ApJ 895, 40, arXiv :1909.03006
+ 
+Distribution Statement A: Approved for public release.  Distribution is unlimited.

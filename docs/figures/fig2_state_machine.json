@@ -1,0 +1,11 @@
+{
+ "figure": "docs/figures/fig2_state_machine.png",
+ "sha256": "ae1d44621c0c596fbdb1fe7b0c46f454ddb5a7f3d439bb64f0898895ba7e4a1d",
+ "generator": "dev/gen_paper_figures.py",
+ "commit": "77924ab",
+ "claims": {
+  "states": "S0..S12+SX per AgentSkeleton.md \u00a71",
+  "failure_classes": 6,
+  "demotion": "S9->S5 example (NR-19)"
+ }
+}

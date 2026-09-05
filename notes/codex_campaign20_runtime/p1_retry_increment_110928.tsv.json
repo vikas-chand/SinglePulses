@@ -1,0 +1,154 @@
+{
+  "generated_utc": "2026-08-17T02:21:39Z",
+  "policy": "one retry iff the complete initial family has literal STATUS=FAIL",
+  "triggers": [
+    "bn110928180"
+  ],
+  "entries": [
+    {
+      "trigger": "bn110928180",
+      "family": "highe",
+      "label": "highe_retry"
+    },
+    {
+      "trigger": "bn110928180",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    }
+  ],
+  "decisions": [
+    {
+      "trigger": "bn110928180",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110928180",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110928180",
+      "family": "highe",
+      "decision": "RETRY_ONCE",
+      "label": "highe_retry",
+      "literal_fail_count": 7,
+      "failed_cells": [
+        {
+          "block": 1,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 1,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 1,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 2,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 2,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 3,
+          "model": "BANDRCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 3,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        }
+      ]
+    },
+    {
+      "trigger": "bn110928180",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 12,
+      "failed_cells": [
+        {
+          "block": -1,
+          "model": "SBPLPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 0,
+          "model": "CPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 0,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 1,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 1,
+          "model": "CPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 1,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 2,
+          "model": "CPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 2,
+          "model": "SBPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 3,
+          "model": "BANDCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 3,
+          "model": "CPLCPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 3,
+          "model": "SBPLPL",
+          "status": "FAIL"
+        },
+        {
+          "block": 3,
+          "model": "BANDBBCPL",
+          "status": "FAIL"
+        }
+      ]
+    }
+  ],
+  "worklist": {
+    "path": "notes/codex_campaign20_runtime/p1_retry_increment_110928.tsv",
+    "exists": true,
+    "sha256": "1d0db3319111fd959c890c89f2f332a7835d713ed3763e19b90df863de6a7c12",
+    "bytes": 104
+  },
+  "matrix_sha256": "017391ad0efe4540c801253cbcdff3a5f597078404f759c0371343456ad3eb09",
+  "provisional": true
+}

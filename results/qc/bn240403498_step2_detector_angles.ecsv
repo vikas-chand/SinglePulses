@@ -1,0 +1,40 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: ANGLE_DEG, datatype: float64}
+# - {name: IN_BCAT, datatype: bool}
+# - {name: IN_SCAT, datatype: bool}
+# - {name: APPROVED, datatype: bool}
+# - {name: WRITTEN_RULE, datatype: string}
+# - {name: CATALOG_ANGLE, datatype: float64}
+# meta: !!omap
+# - {trigger: bn240403498}
+# - {recomputed_utc: '2026-09-04'}
+# - {poshist: glg_poshist_all_240403_v00.fit}
+# - {trigtime_met: 733838255.576248}
+# - {src_ra: 6.52}
+# - {src_dec: -17.3}
+# - {sc_pointing: 'SCX(352.35,17.52) SCZ(73.39,-26.26)'}
+# - {angle_code: 'scripts/00_prototype_one_burst.py get_detector_angle (Meegan+2009 DET_DIR, gtburst getRaDec)'}
+# - {verification: "catalog DET_ANGLE reproduced exactly (max residual 0.00000\xB0) via the repo angle code; an independent reimplementation\
+#     \ agrees to \u22640.01\xB0"}
+# - {divergence: "n3 = 57.94\xB0, in BCAT: the written 50-60\xB0 rescue clause says KEEP, the recorded human decision DROPPED it. A reason\
+#     \ WAS elicited from the PI (2026-09-04) and is recorded verbatim in results/campaign/divergence_ledger.md row D-2; the written rule\
+#     \ is deliberately NOT amended and the flag is OPEN."}
+# schema: astropy-2.0
+DET ANGLE_DEG IN_BCAT IN_SCAT APPROVED WRITTEN_RULE CATALOG_ANGLE
+n0 43.08 True False True KEEP 43.08
+n1 22.59 True True True KEEP 22.59
+n2 41.8 True True True KEEP 41.8
+n3 57.94 True False False "KEEP(rescue: 50-60 & BCAT)" nan
+n4 83.95 False False False DROP nan
+n5 35.27 True True True KEEP 35.27
+n6 81.59 False False False DROP nan
+n7 106.32 False False False DROP nan
+n8 139.61 False False False DROP nan
+n9 83.0 False False False DROP nan
+na 96.88 False False False DROP nan
+nb 145.05 False False False DROP nan
+b0 37.51 False True True KEEP(companion) 37.51
+b1 142.49 False False False "DROP(no same-side NaI)" nan

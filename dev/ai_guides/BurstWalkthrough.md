@@ -40,6 +40,26 @@ For each step S in the ledger below:
    Code-hardenable lessons get implemented + verified before the next burst uses them.
 6. Next step; at burst end, write `notes/reconciliation/<trig>.md` (the record).
 
+**PRESENT-1 — NO COUNT WITHOUT ITS THREE COORDINATES** *(2026-09-01, born at the step-6
+gate of #21 bn110920546; register row NR-45).* Every count in a PRESENT block carries
+DENOMINATOR (`k/N`, and N is the set the census counts - BLOCK -1 / T_INT is not a member
+of the time-resolved set), BASIS SET (argmin vs the RULING-A adopted model), and MODEL
+(which model row a per-parameter count was read from). Contract text: ReportSpec.md R3
+"count-coordinates amendment". Paid for by five refuted counts in one gate: "11 of 12
+blocks have 3.92*kT < 20 keV" (true only of Band+BB+PL; 12/12 for the two-component BB
+flavours; only 5/12 argmin winners carry a BB at all), "EAC_B0 rails 12/12" (9/12 after
+the amendment, and the opposite-direction EAC_N1 rail was never mentioned), "S=10 is the
+adequacy floor" (merges L6 with L6b and manufactures an exclusion the PI never ruled),
+"BIC agrees 9/12" (10/12 all blocks = 9/11 time-resolved), "2 cells flipped" (one of them
+is T_INT; 1/11 time-resolved). Common primitive: **a count quoted without its denominator,
+its basis set, or its model.**
+⚠ This is ACTOR PROSE and therefore the WEAKEST layer (P8) - it is written here so the
+skill-reader returns it at every step open, but the binding layer is the COUNT-TRIPLE
+VERIFIER named in NR-45: a fresh-context agent that re-derives every count in the PRESENT
+block from the sha-bound product BEFORE the gate, and returns each one with its three
+coordinates or a REFUSAL. Until that agent exists, treat every count in a PRESENT block as
+UNVERIFIED and say so in the block.
+
 ## ADOPT mode (Vikas 2026-07-29)
 Steps 2–5 are ALREADY DONE for the sample (human-reviewed Stage-1 selections +
 27b/27c blocks). In the walkthrough they are **ADOPTED**: presented briefly
@@ -47,20 +67,69 @@ Steps 2–5 are ALREADY DONE for the sample (human-reviewed Stage-1 selections +
 re-open only if a downstream check implicates them (e.g. response coverage,
 BOUND_CAPPED tracing to a window, a residual anomaly pointing at background).
 
+**ADOPT-1 — DIVERGENCE IS PRESENTED, NEVER NORMALIZED** *(2026-08-31, born at the
+step-2 gate of #21 bn110920546; register row NR-38).* When the recorded human
+decision DIVERGES from what the step's written rule would have produced, the
+presenter must NAME the divergence in the PRESENT block — the rule as written, the
+decision as recorded, the detectors/windows/blocks in the difference, and the
+primitive that shows it (e.g. `_pending.json` `in_bcat` + angles). Three
+prohibitions, each paid for:
+1. **Never restate the human decision as if the rule produced it.** Writing "n0, n1,
+   n3 kept per the ≤50° cut" when n6 (25.33°) and n7 (47.68°) also passed ≤50° and
+   were dropped is a fabricated rationale — it launders a spec defect into apparent
+   compliance and makes the divergence permanently invisible.
+2. **Never re-adjudicate it into agreement with the rule** (ADOPT mode forbids
+   re-deciding steps 2–5 at all) — and never quietly amend the rule to match the
+   decision. The rule changes only by a PI ruling in his own words (P2/P4).
+3. **Never present a reconstructed reason as a contemporaneous one.** If the PI
+   supplies the reason at the gate, it is recorded VERBATIM, dated, stamped
+   RETROACTIVE with its uncertainty preserved, and verified against the primitives
+   before it is relied on. bn110920546's `decision.json` `reasoning_provenance` is
+   the worked example.
+A divergence found this way enters the DIVERGENCE LEARNER protocol
+(`FreshSessionBoot.md` §10 / NR-37: detect → elicit → validate → generalize → ledger) AND goes to the
+DISTILLER the same session, gets a register row, and — where it is a class, not a one-off — a
+read-only census over the recorded decisions that measures how often each candidate
+rule reproduces the expert (for #21: BCAT 78%, geometry 48%, neither 100%). This is
+a benchmark project: an arm that obeyed a written rule which does not describe the
+expert's practice is a SPECIFICATION defect, never an arm error.
+
 ## The step ledger (each step = its skill file; ✎ = to be created on first use)
+
+> ✔ RESOLVED 2026-08-30 — THIS LEDGER'S NUMBERING IS OFFICIAL (PI, verbatim): "The BurstWalkthrough ledger numbering is official: 0b = literature harvest, 0 = identity & GCN, 1 = data inventory, and so on. Fix the live-report tool's step names to match; existing figure filenames keep their names — record the mapping once, do not rename products mid-campaign."
+> dev/live_report.py and AgentArchitecture's per-step roster were fixed the same day; figure
+> filenames keep their names; canonical mapping record: AgentRoster.md decision sheet item 22.
 | # | step | what the pipeline does | skill file |
 |---|---|---|---|
 | 0b | **Literature harvest** | find/fetch/mine the REFEREED papers for this burst (ADS 4-form query, published version, frame-align, file to the dossier) — the step that must become automatic by burst #20 | `LiteratureHarvest.md` |
-| 0 | Identity & GCN intelligence | resolve burst identity; fetch+read GCN circulars; extract position, T90, **redshift** (with circular as source), instrument notes, **and the published spectral/temporal values** — harvest once, file under "PUBLISHED VALUES (for the P3 diff)". Blindness lives in the FIT, not in what Step 0 may read. | ✎ `GCNIntelligence.md` (seed from LATBright `gcn_intelligence.md`) |
-| 1 | Data acquisition & inventory | TTE/CSPEC/RSP2/POSHIST (+LLE triplet, +LAT FT1/FT2) with versions; manifest; **response-coverage check vs source window** (the bn100130729 lesson) | ✎ `DataInventory.md` |
+| 0 | Identity & GCN intelligence | resolve burst identity; fetch+read GCN circulars; extract position, T90, **redshift** (with circular as source), instrument notes, **and the published spectral/temporal values** — harvest once, file under "PUBLISHED VALUES (for the P3 diff)". Blindness lives in the FIT, not in what Step 0 may read. | `GCNIntelligence.md` (exists since 2026-07-31; lessons G1–G2; seeded from LATBright `gcn_intelligence.md`) |
+| 1 | Data acquisition & inventory | TTE/CSPEC/RSP2/POSHIST (+LLE triplet, +LAT FT1/FT2) with versions; manifest; **response-coverage check vs source window** (the bn100130729 lesson) | `DataInventory.md` (exists since 2026-08-12; lessons D1–D5) |
 | 2 | Detector selection | geometry/angles, occultation, BGO companion rule | `detector_selection.md` (exists) |
 | 3 | Background | pre/post windows hugging the burst; polyfit order; residual QC | `background_selection.md` (exists) |
 | 4 | Source interval | emission window in the common background gap | `source_selection.md` (exists) |
 | 5 | Binning (two-tier) | 27b fine GBM Bayesian blocks + significance merge; 27c coarse LLE grid (gated); **bin adequacy for the band that constrains each component** (L3/L6) | `Binning.md` (exists) |
-| 6 | Spectral fitting & selection | the full menu, multistarts, chain gates, classes, admission, evolution tracks — THE DISCOVERY LOOP | `SpectralFitting.md` (flagship, L1–L13) |
-| 7 | Temporal | T90/T50, MVT, lag, pulse fits | `Temporal.md` (exists — carries the DEFECT LEDGER; check before quoting) |
-| 8 | νFν panels & residual reading | ratio-unfolded panels + residual grammar (feeds step 6's loop) | in `SpectralFitting.md` (L10/L11) |
+| 6 | Spectral fitting & selection | the full menu, multistarts, chain gates, classes, admission, evolution tracks — THE DISCOVERY LOOP | `SpectralFitting.md` (flagship, lessons L1–L34; "L" is THIS file's prefix) |
+| 7 | Temporal | T90/T50, MVT, lag, pulse fits | `Temporal.md` (lessons TM1–TM5, ex-L26/L29/L31/L32/L33; carries the DEFECT LEDGER — check before quoting) |
+| 8 | νFν panels & residual reading | ratio-unfolded panels + residual grammar (feeds step 6's loop) | ✎ `SEDPanels.md` (PI ruling 2026-09-02: step 8 = νFν panels + residual reading; tables and report assembly are step 9). Until written: `SpectralFitting.md` L10/L11 + `FigureVisionQC.md` S1–S6 + `SpectralResidualReview.md` |
 | 9 | QC & flags | cross-step sanity, literature-consistency verdict | `qc_flagging.md` (exists) |
+| — | **Figure gate** (steps 1, 7, 8; EVERY delivery) | fresh-context vision verdict vs the standing contract S1–S6; the SendUserFile no-ship hook | `FigureVisionQC.md` (+ `Figures.md` for style) |
+| — | **Report / paper contract** (step 9 assembly; every deliverable) | R1–R5 + R3a claim typing; numbers discipline (count coordinates, margins only, rails disclosed) | `ReportSpec.md` |
+| — | **Shipping** (every product) | product-typed checklists; the producer never verifies its own work | `ShippingGate.md` |
+| — | **Referee panel** (milestones; PAID, PI-triggered) | three blind referees T0/T1/T2, bounded loop, response letter | `RefereeLoop.md` + `dev/referee/` |
+| — | **Distillation** (every incident, same session) | lesson at the right enforcement layer + register row NR-n | `AgentArchitecture.md` (the register) |
+
+**This ledger is THE index of skill files** *(PI ruling 2026-09-02: "Yes, one index")*. Every skill
+file the agent reads appears here, step-bound or cross-cutting. Precedence: `dev/AUTHORITATIVE_PIPELINE.md`
+(locked 2026-06-26) is the historical build spec of Stages 1–3; where the two differ, this ledger governs.
+
+**Lesson-ID prefixes** *(PI ruling 2026-09-02, verbatim: lesson IDs "should be specific to the skills")*:
+L = SpectralFitting · TM = Temporal (ex-L26/L29/L31/L32/L33, tombstoned in each header) · G = GCNIntelligence ·
+D = DataInventory · T = LiteratureHarvest traps · R = ReportSpec · S = FigureVisionQC contract items ·
+F = BURST1_LESSONS failure taxonomy · NR = the agent-requirements register · P = AgentArchitecture principles ·
+A = AgentRoster actors (A1–A18; an actor namespace, listed so the guard test knows it).
+A new skill declares its prefix in its header before its first lesson, and the prefix is added here.
+`tests/test_lesson_ids.py` fails the suite on a duplicate prefix across files, a duplicate ID within a
+file, or a header prefix absent from this table. Born of the L31–L33 collision found 2026-09-02.
 
 ## ⭐ THIS IS THE PRIORITY PROJECT (Vikas, 2026-08-08 — stated plainly)
 > *"the most important project at the moment is this one, where our goal is to analyze these all

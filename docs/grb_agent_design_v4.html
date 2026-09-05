@@ -1,0 +1,355 @@
+<title>GRBs Agent — Operating Design</title>
+<style>
+  :root{
+    --ink:#1c2126; --paper:#f8f7f4; --muted:#5c6670; --line:#d8d5cd;
+    --na:#1b7a8c; --nb:#b07714; --b1:#b23a6b; --rail:#6b7280;
+    --card:#ffffff; --code:#eef1f0;
+  }
+  @media (prefers-color-scheme: dark){:root{
+    --ink:#e8e6e1; --paper:#15181b; --muted:#9aa4ad; --line:#33383d;
+    --na:#4db3c7; --nb:#e2a13d; --b1:#e07aa2; --rail:#8b95a1;
+    --card:#1d2125; --code:#22262a;
+  }}
+  :root[data-theme="dark"]{
+    --ink:#e8e6e1; --paper:#15181b; --muted:#9aa4ad; --line:#33383d;
+    --na:#4db3c7; --nb:#e2a13d; --b1:#e07aa2; --rail:#8b95a1;
+    --card:#1d2125; --code:#22262a;
+  }
+  :root[data-theme="light"]{
+    --ink:#1c2126; --paper:#f8f7f4; --muted:#5c6670; --line:#d8d5cd;
+    --na:#1b7a8c; --nb:#b07714; --b1:#b23a6b; --rail:#6b7280;
+    --card:#ffffff; --code:#eef1f0;
+  }
+  body{background:var(--paper); color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    line-height:1.55; margin:0; font-size:17px;}
+  main{max-width:78rem; margin:0 auto; padding:2.5rem 1.25rem 5rem;}
+  .prose{max-width:66ch;}
+  h1{font-size:2rem; line-height:1.15; text-wrap:balance; margin:.2rem 0 .4rem;}
+  h2{font-size:1.3rem; margin:2.6rem 0 .6rem; text-wrap:balance;}
+  h3{font-size:1.05rem; margin:1.6rem 0 .4rem;}
+  p{margin:.6rem 0;}
+  .eyebrow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
+  .prov{color:var(--muted); font-size:.95rem; max-width:66ch;}
+  .chip{display:inline-block; font-family:ui-monospace,Menlo,monospace; font-size:.7rem;
+    letter-spacing:.1em; padding:.15rem .55rem; border-radius:2px; color:var(--paper); margin-right:.5rem; vertical-align:middle;}
+  .c-boot{background:var(--rail);} .c-pipe{background:var(--na);}
+  .c-ctx{background:var(--nb);} .c-sci{background:var(--b1);}
+  .layer{border-left:3px solid var(--line); padding-left:1.1rem; margin:1.8rem 0;}
+  .layer.boot{border-color:var(--rail);} .layer.pipe{border-color:var(--na);}
+  .layer.ctx{border-color:var(--nb);} .layer.sci{border-color:var(--b1);}
+  .diagram{background:var(--card); border:1px solid var(--line); border-radius:4px;
+    padding:1rem; margin:1.4rem 0; overflow-x:auto;}
+  .diagram .cap{font-family:ui-monospace,Menlo,monospace; font-size:.72rem;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:.6rem;}
+  code, .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.85em;
+    background:var(--code); padding:.08em .35em; border-radius:3px;}
+  ul{padding-left:1.2rem;} li{margin:.45rem 0;}
+  .qcard{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--b1);
+    border-radius:4px; padding: .9rem 1.1rem; margin:.9rem 0; max-width:70ch;}
+  .qcard h3{margin:.1rem 0 .35rem;}
+  .qcard .nature{font-family:ui-monospace,Menlo,monospace; font-size:.72rem;
+    letter-spacing:.08em; color:var(--muted); text-transform:uppercase;}
+  table{border-collapse:collapse; font-size:.92rem; margin:.8rem 0;}
+  td,th{border:1px solid var(--line); padding:.4rem .7rem; text-align:left; vertical-align:top;}
+  th{font-family:ui-monospace,Menlo,monospace; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:600;}
+  .foot{color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); margin-top:3rem; padding-top:1rem; max-width:66ch;}
+</style>
+<main>
+<p class="eyebrow">GRBs Agent · named by the PI 2026-08-27 · single-pulse campaign · agent architecture</p>
+<h1>GRBs Agent — Operating Design v4</h1>
+<p class="prov">Born from the burst-1 discovery run (bn081125496: 28 gate rounds, ~105 mined
+failure entries → 17 classes) and the agent-requirements register. Two industry posts supply
+the containers — Anthropic's <em>dynamic workflows</em> (the harness layer) and Antigravity's
+<em>custom agents</em> (the role layer: a file whose Markdown body is the agent's system
+prompt). The contracts, guards, and registers discovered under load supply the contents.
+Freeze progress: <strong>10 agent files exist in <span class="mono">.claude/agents/</span></strong>
+(skill-reader, figure-verifier, numbers-verifier, distiller, dispatcher, port-verifier,
+seed-auditor, tie-reporter, admission-gate, prior-art-reader; 4 committed, 6 pending commit), the no-ship hook and the RAM arbiter are armed, the live-report and
+invalidation machinery is live; saved workflows remain the open item. Bursts #11–#106 run frozen. Source of record:
+<span class="mono">docs/GRB_AGENT_FLOWCHART.md</span>.</p>
+
+<div class="diagram"><div class="cap">Master flow — boot → pipeline → accumulators → context → science</div>
+<pre class="mermaid">
+flowchart TD
+  subgraph BOOT["LAYER 0 · BOOT"]
+    B2["SKILL-READER agent<br/>reads AGENTS.md · architecture ·<br/>position memory · burst queue<br/>returns the binding checklist"]
+    B3{"mode"}
+    B4["approver = PI<br/>(walkthrough)"]
+    B5["approver = independent agent<br/>Codex/agy or fresh Claude<br/>(fully-AI)"]
+    B6["arm enforcement:<br/>no un-gated .png delivery (ARMED) ·<br/>catalog-write gate (PROPOSED) ·<br/>RAM arbiter (GB budget, NR-12)"]
+    B2D["DISPATCHER agent<br/>task → required roster + gate plan<br/>surfaces UNGUARDED DEBT<br/>(register rows still PROPOSED)"]
+    B2 --> B2D --> B3
+    B3 --> B4
+    B3 --> B5
+    B4 --> B6
+    B5 --> B6
+  end
+  subgraph PIPE["LAYER 1 · PER-BURST PIPELINE — each step a saved workflow + fixed roster"]
+    S0["steps 0–1<br/>data + detector selection<br/><i>single producer + checks</i>"]
+    S24["steps 2–4<br/>Stage-1 intervals<br/><i>ADOPT human / propose+approve</i>"]
+    S5["step 5<br/>Bayesian blocks + S≥10<br/><i>deterministic, guarded</i>"]
+    S7["step 7 · TEMPORAL<br/>durations · pulse fits ·<br/>MVT ×3 primitives · lag<br/><i>primitive-diverse verification</i>"]
+    S68["steps 6+8 · SPECTROSCOPY<br/>24 models × bins, seeded + AIC-guarded<br/>SEDs · montages · tables · evolution<br/><i>fan-out-and-synthesize</i>"]
+    NOTES["notes reviewers fan-out<br/>per-bin residual commentary<br/><i>adversarial escalation</i>"]
+    S9["step 9 · report + paper<br/>ADS bib · CaptionHelper voice ·<br/>manuscript verifier<br/><i>assembly + independent recompute</i>"]
+    S0 --> S24 --> S5 --> S7 --> S68 --> NOTES --> S9
+  end
+  RAIL["ENFORCEMENT RAIL — code guards → hooks → artifact self-caveats → fresh verifiers → external audit (Codex · cloud multi-agent review); DISTILLER closes every incident into a lesson layer + register row"]
+  RAIL2["APPROVAL RAIL — LIVE REPORT assembled per step (evidence-linked, never asserted) · stamps require an approver identity · feedback MUST route or reads as protocol defect · NR-19 cascade: an upstream change demotes downstream approvals to STALE and clears their build markers"]
+  subgraph ACC["LAYER 2 · CAMPAIGN ACCUMULATORS"]
+    A1["BB census (edge-gated) · hard-tail phase pattern ·<br/>estimator-labeled MVT table · lag–width table ·<br/>EAC rail census · failure-mode taxonomy"]
+  end
+  subgraph CTX["LAYER 3 · CONTEXT — blind-first"]
+    C1["GCN intelligence"] --> C4["P3 diff attributor<br/>frame/method/band<br/>before 'discrepancy'"]
+    C2["ADS harvest +<br/>Scholar channel"] --> C4
+    C3["prior-art reader<br/>(project family first)"] --> C4
+    C4 --> C5["LITVERIFY<br/>adversarial citation verification"]
+  end
+  subgraph SCI["LAYER 4 · SCIENCE — last, by design"]
+    Q0["SYNTHESIS agent<br/>results + accumulators + context"]
+    Q1["Q1 · GAP-CLOSER<br/>match vs gap registry<br/>judge panel scores evidence"]
+    Q2["Q2 · ASSUMPTION-TESTER<br/>adversarial pairs over<br/>assumption registry"]
+    Q3["Q3 · WILD SPECTRUM<br/>generate-and-filter, S0→S3<br/>each with a falsifiable next step"]
+    OUT["SCIENCE_INTERPRETATION.md<br/>three-question summary"]
+    LOOP{"proposes new analysis?"}
+    Q0 --> Q1 & Q2 & Q3 --> OUT --> LOOP
+  end
+  BOOT --> PIPE --> ACC --> CTX --> SCI
+  RAIL -.-> PIPE
+  RAIL2 -.-> PIPE
+  LOOP -. "gated re-entry" .-> PIPE
+  classDef boot fill:#e8eaed,stroke:#6b7280,color:#1c2126;
+  classDef pipe fill:#dff0f3,stroke:#1b7a8c,color:#123c45;
+  classDef ctx fill:#f6ecd7,stroke:#b07714,color:#4a3405;
+  classDef sci fill:#f7e3ec,stroke:#b23a6b,color:#511c33;
+  classDef rail fill:#eceff1,stroke:#6b7280,color:#374151;
+  class B2,B2D,B3,B4,B5,B6 boot;
+  class S0,S24,S5,S7,S68,NOTES,S9 pipe;
+  class C1,C2,C3,C4,C5 ctx;
+  class Q0,Q1,Q2,Q3,OUT,LOOP sci;
+  class RAIL,RAIL2,A1 rail;
+</pre></div>
+
+<div class="layer boot prose">
+<h2><span class="chip c-boot">Layer 0</span>Boot — how the agent starts</h2>
+<p>The agent never starts by remembering; it starts by <strong>reading, through an agent
+whose only job is reading</strong>. The SKILL-READER consumes the operating docs, the
+position memory, and the burst queue, and returns a <em>binding checklist</em>: current
+burst and step, the step's skill, the ledger caveats that must ride with every number, and
+the parameter-scaling rules for <em>this</em> burst — the lesson that constants tuned to one
+pulse's width do not transfer. The DISPATCHER (NR-17) then turns the task into a roster: it
+classifies the artifact classes at stake, returns the required agents in gate order, and
+surfaces every register row whose trigger matches but whose guard is still PROPOSED —
+<em>unguarded debt</em>, named before work starts, so the session cannot silently rely on a
+guard that does not exist. Mode selection fixes the approver (PI, or an independent
+custom agent defined identically on Claude Code and <span class="mono">agy</span> — approval
+platform-independent, and never a producer). Boot's last act arms the hooks: un-gated <strong>.png</strong> figure
+delivery is <em>blocked</em>, not forbidden (the SendUserFile hook; the parallel
+catalog-write gate is designed but not yet armed) — the one enforcement layer
+that never failed in the discovery run. Boot also opens the machine-wide RAM arbiter
+(NR-12): every heavy job admits in <em>gigabytes against measured peak RSS</em>, never in
+cores — the 2026-08-17 shutdown (five product chains each reaching a 15&nbsp;GB step,
+~140&nbsp;GB demanded of a 64&nbsp;GB machine, 12.75&nbsp;h of fits lost) is the failure
+that priced this in.</p>
+</div>
+
+<div class="layer pipe prose">
+<h2><span class="chip c-pipe">Layer 1</span>The per-burst pipeline — one saved workflow per step</h2>
+<p>Every step is a saved workflow (deterministic, resumable, budgeted) with a fixed roster
+of custom agents whose system prompts <em>are</em> the contracts. The workflow's
+<em>nature</em> changes by step — that heterogeneity is the design:</p>
+<ul>
+<li><strong>Steps 0–1 · single producer + checks.</strong> No fan-out is earned; a numbers
+verifier confirms angles and catalog masks (whole-source sweep before declaring anything
+"not checkable").</li>
+<li><strong>Steps 2–4 · classify-and-act with a human organ.</strong> Recorded human
+selections are adopted, never re-adjudicated; in fully-AI mode a proposer drafts and the
+independent approver judges — the proposer holds no approval power (quarantine
+pattern).</li>
+<li><strong>Step 5 · deterministic with guards.</strong> Bayesian blocks + the S≥10 merge,
+with the ×√M bridge to combined-spectrum thresholds stated as method.</li>
+<li><strong>Step 7 · primitive-diverse verification.</strong> Every timing quantity is
+measured by estimators differing at the primitive (MVT three ways; lag by the validated
+DCCF tool with pulse-scaled windows; durations by windowed first-crossing with
+covariance-true MC). Estimator labels are part of the measurement; agreeing numbers from
+the same primitive count once.</li>
+<li><strong>Steps 6+8 · fan-out-and-synthesize with adversarial gates.</strong> The
+24-model grid runs seeded and hard-guarded (live fit reproduces the stored solution to
+|ΔAIC| &lt; 0.1 or the panel is refused-with-reason); band validity is code-gated
+(railed fraction, curve containment); montages composite only guard-passed panels; the
+per-bin notes reviewers then write the residual commentary that found the edge-blackbody
+census and the tie-hidden 30 MeV spread.</li>
+<li><strong>Step 9 · assembly + independent recompute.</strong> Report from products; paper
+via the ADS bibliography agent (hand-written BibTeX forbidden), the caption agent
+(CaptionHelper corpus voice), and a manuscript verifier that recomputes every printed
+number — it caught a transposed table on its first run.</li>
+</ul>
+<p>The <strong>enforcement rail</strong> crosses everything, ordered by measured
+reliability: code guards → hooks → artifact self-caveats → fresh verifiers → external
+audit, with the distiller converting each incident into a lesson at the correct layer and
+a register row, same session.</p>
+
+<p><strong>The rail, stress-tested on itself (2026-08-18).</strong> The RAM arbiter — rail
+infrastructure, written and tested by its own producer — went through the gauntlet it
+enforces on science products. An external multi-agent cloud review found <em>two real
+bugs and one broken invariant</em> in it ("one burst in MVT at a time" was not actually
+enforced: uniquely-named lock tokens meant the mutex never contended). Then testing the
+<em>fix</em> found a deeper flaw the review's own reasoning had missed: zsh defers signal
+traps while a foreground child runs, and no trap runs at all under SIGKILL or a machine
+shutdown — the exact failure the guard exists to survive. Release is now self-healing
+(owner-PID reaping, verified by killing the process), and the episode is the strongest
+evidence yet for the design's central claim: <em>none of it was caught by the failing
+agent itself</em> (NR-13, NR-14, NR-15).</p>
+
+<div class="diagram"><div class="cap">The approval loop — NR-18 live report · NR-19 invalidation cascade</div>
+<pre class="mermaid">
+flowchart LR
+  P["step products<br/>(gated, evidence on disk)"] --> LR1["LIVE REPORT<br/>assembled per step —<br/>links evidence, never asserts"]
+  LR1 --> G{"PI gate<br/>(stamp requires<br/>approver identity)"}
+  G -- "approve" --> ST["APPROVALS.json<br/>step stamped"]
+  G -- "feedback" --> RT["feedback ROUTES, same session:<br/>writing→prose rules · figure→contract ·<br/>result→L-series · method→skill+code ·<br/>process→register row"]
+  RT --> DS["DISTILLER<br/>lesson at the correct layer"]
+  RT --> INV["NR-19 CASCADE<br/>downstream approvals → STALE<br/>build markers cleared"]
+  INV --> RG["driver regenerates<br/>affected products"]
+  RG --> LR1
+  classDef pipe fill:#dff0f3,stroke:#1b7a8c,color:#123c45;
+  classDef rail fill:#eceff1,stroke:#6b7280,color:#374151;
+  class P,LR1,RG pipe;
+  class G,ST,RT,DS,INV rail;
+</pre></div>
+
+<p><strong>The approval loop.</strong> Every step's evidence lands in a per-burst live
+report the moment it exists; the PI (or the independent approver) stamps it there.
+Approval is machine-readable and can never be fabricated — a stamp without an approver
+identity is rejected, and test stamps are purged the session they are written. Feedback
+is the productive path: it must route to an enforcement layer before the session closes,
+and if the amended step had approved descendants, the cascade demotes them to STALE and
+clears exactly the build markers that must regenerate — <em>accommodation is mechanical,
+not remembered</em>.</p>
+</div>
+
+<div class="layer pipe prose">
+<h2><span class="chip c-pipe">Layer 2</span>Campaign accumulators</h2>
+<p>Each burst deposits into state no single burst can see: the edge-gated blackbody
+census, the hard-tail phase pattern, the estimator-labeled MVT table, the lag–width table,
+the EAC rail census, and the failure-mode taxonomy. The accumulators are what the science
+layer consumes — and what makes 106 bursts more than 106 papers.</p>
+</div>
+
+<div class="layer ctx prose">
+<h2><span class="chip c-ctx">Layer 3</span>Context — blind-first literature</h2>
+<p>Products freeze before published values are read. Then four context agents run: GCN
+intelligence; the ADS harvest with Scholar as the cross-community channel (every hit
+resolved to a bibcode before citing); the prior-art reader over the project family's own
+notes (we once re-derived a proof a sibling project had recorded two weeks earlier); and
+the P3 diff attributor, which classifies every ours-vs-published mismatch as frame,
+method, or band before the word "discrepancy" is permitted. Claims that survive pass
+LITVERIFY — adversarial citation verification in the pattern that once forced the
+retraction of two of our own criticisms.</p>
+</div>
+
+<div class="layer sci prose">
+<h2><span class="chip c-sci">Layer 4</span>Science — interpretation last, three kinds of questions</h2>
+<p>The science layer runs <strong>last, by design</strong>: it consumes finished, gated
+results, accumulators, and verified context — never raw enthusiasm. A synthesis agent
+assembles the evidence table; three engines follow, each with a different epistemic
+posture; the summary answers three questions:</p>
+
+<div class="qcard"><h3>Q1 — Does this answer a gap in the field?</h3>
+<div class="nature">nature: registry matching + judge panel</div>
+<p>Results are matched against a maintained gap registry populated by the context layer
+(the lag–MVT normalization no one has tested; the missing single-pulse-selected lag
+sample; the unbuilt GBM∩BAT MVT calibration set; the absent edge-gated blackbody census).
+A judge panel scores whether the evidence <em>closes</em>, <em>narrows</em>, or merely
+<em>touches</em> each gap — and says which.</p></div>
+
+<div class="qcard"><h3>Q2 — If a GRB assumption is violated, can this test it?</h3>
+<div class="nature">nature: adversarial pairs over an assumption registry</div>
+<p>For each registered assumption (synchrotron line-of-death and cooling regime;
+single-shell curvature closure — slope one <em>and</em> its untested normalization; Band
+universality; photosphere ubiquity; estimator-independence of timing quantities), one
+agent argues our measurement constitutes a test and names the discriminating signature; a
+second tries to refute the test's validity — degeneracies, windowing, calibration. Only
+tests surviving refutation are reported; the rest are listed as not-yet-testable, with
+what would make them testable.</p></div>
+
+<div class="qcard"><h3>Q3 — Exploratory jumps: a spectrum of wild hypotheses</h3>
+<div class="nature">nature: generate-and-filter, forced diversity, graded S0→S3</div>
+<p>Every entry carries a wildness grade and a falsifiable next measurement, and the whole
+section is quarantined as speculation (it feeds the idea bank; it enters no paper without
+promotion through Q1/Q2). Burst-1 gradient: <strong>S0</strong> — the hard tail is a
+rise-and-tail phenomenon of one evolving zone. <strong>S1</strong> — integrated composite
+components in catalogs are largely evolution artifacts, quantifiable across 106 bursts by
+the T<sub>INT</sub>-vs-bins comparator. <strong>S2</strong> — published low-kT thermal
+rates are inflated by the same edge-artifact class our gate removes, and re-derivable.
+<strong>S3</strong> — lag–width proportionality across the sample points to a
+geometry-dominated (curvature-only) origin for lags, testable against the Q2 curvature
+closure on the same data.</p></div>
+
+<p><strong>The closed loop.</strong> The science layer may <em>suggest</em> follow-up
+analyses — and in fully-AI mode, <em>execute</em> them: a surviving hypothesis compiles
+into a new workflow that re-enters the pipeline through the same gates. Suggestion is
+free; execution is gated; publication passes the PI. That is the whole agent: curiosity
+with a conscience.</p>
+</div>
+
+<div class="layer boot prose">
+<h2><span class="chip c-boot">The Skeleton</span>Freeze candidate v1.1 — the machine that ends the surprises</h2>
+<p>PI directive (2026-08-27, verbatim): <em>"we have to finalize the skeleton of the
+Agent and then make it concretely doing things so that it doesn't do unexpected and
+buggy things again and again"</em> — with three days to build it strong. The skeleton
+(<span class="mono">dev/ai_guides/AgentSkeleton.md</span>) makes every state, transition,
+and failure a <strong>declared</strong> thing: a burst is always in exactly one
+evidence-backed state, and an error message is never a behavior.</p>
+</div>
+
+<div class="diagram"><div class="cap">The per-burst state machine — evidence-backed, non-monotonic</div>
+<pre class="mermaid">
+flowchart LR
+  S1["S1 stage-1<br/>approved"] --> S2["S2 binned"] --> S3["S3 fit<br/>24 models"] --> S4["S4 retried<br/>(mandated)"] --> S5["S5 promoted<br/>hash-current"] --> S6["S6 temporal"] --> S7["S7 products"] --> S8["S8 assembled"] --> S9["S9 GATED<br/>3 verifiers"] --> S10["S10 presented"] --> S11["S11 APPROVED<br/>(PI)"] --> S12["S12 bundled"]
+  S9 -. "NR-19: upstream change<br/>DEMOTES to last<br/>hash-current state" .-> S5
+  SX["SX structural exclusion<br/>(reasoned, e.g. RESPONSE_UNCOVERED)"]
+  S2 -.-> SX
+  classDef g fill:#dff0f3,stroke:#1b7a8c,color:#123c45;
+  classDef r fill:#eceff1,stroke:#6b7280,color:#374151;
+  class S1,S2,S3,S4,S5,S6,S7,S8,S10,S12 g; class S9,S11,SX r;
+</pre></div>
+
+<div class="prose">
+<p><strong>The six failure classes</strong> — every failure lands in one, each with a
+declared behavior executed by the queue manager (the sole classification authority):
+<strong>F-TRANSIENT</strong> → hold + resume (never self-terminate);
+<strong>F-STRUCTURAL</strong> → label + continue (refusals are results);
+<strong>F-CONTRACT</strong> → stop the burst + register row, same session;
+<strong>F-ORDER</strong> → wait, the manager reorders;
+<strong>F-SILENT</strong> (a defect found <em>after</em> acceptance — the register's
+dominant born-from class) → demote + cascade + a guard that makes it loud forever;
+<strong>F-GUARD</strong> (the checker itself is wrong) → fix at the primitive and
+re-run every gate it judged. Every class ends in DISTILL. The skeleton passed a
+two-agent fresh-context coverage verification (register sweep + a replay of this
+month's twelve real incidents); the 32 gaps found — including that v1's state machine
+was strictly forward, which would have made the invalidation cascade illegal — are
+folded into v1.1. The live campaign board
+(<span class="mono">results/campaign/burst_state/</span>) derives every burst's state
+from disk evidence; its first run exposed a campaign-wide finding: 74 bursts carry
+unretried FAIL cells — a PI decision at freeze review.</p>
+</div>
+
+<h2 class="prose">Governance</h2>
+<p class="prose">Everything provisional-flagged until the campaign freeze; contracts amend only with the
+PI's quoted words; register rows land same-session; a PI catch is, by standing rule, a
+missing-agent debt — the design goal is to run them to zero. The register table stands at
+34 rows (NR-1–NR-10 and NR-12–NR-23 — NR-11 retired to an operations audit — plus
+unnumbered rows), beside the 8-agent cross-cutting roster; four of these (NR-20…NR-23)
+were added the same day from an independent Codex ultra review that found real
+security and integrity defects in this very build;
+ten agent definitions exist as files, and
+every PROPOSED row is surfaced as unguarded debt by the dispatcher at task intake.</p>
+
+<p class="foot">Source of record: <span class="mono">docs/GRB_AGENT_FLOWCHART.md</span> ·
+lessons: <span class="mono">dev/ai_guides/BURST1_LESSONS.md</span> · roster &amp; register:
+<span class="mono">dev/ai_guides/AgentArchitecture.md</span> · v4, 2026-08-27 (v3: 2026-08-21 · v2: 2026-08-15) · skeleton: AgentSkeleton.md ·
+GRBs Agent — Agentic AI program — Chand, Sharma &amp; Joshi.</p>
+</main>

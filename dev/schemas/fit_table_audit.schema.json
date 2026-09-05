@@ -1,0 +1,106 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:two_breaks:fit_table_audit",
+ "title": "FIT_TABLE_AUDIT_<trig>.json (dev/fit_table_audit.py)",
+ "type": "object",
+ "required": [
+  "schema",
+  "trigger",
+  "table",
+  "table_sha256",
+  "engine_sha256",
+  "generated_utc",
+  "counts",
+  "rows",
+  "aic_offset"
+ ],
+ "properties": {
+  "schema": {
+   "const": "two_breaks.fit_table_audit.v1"
+  },
+  "trigger": {
+   "type": "string"
+  },
+  "table": {
+   "type": "string"
+  },
+  "table_sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "engine_sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "generated_utc": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}Z)?$"
+  },
+  "counts": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "name",
+     "k",
+     "N",
+     "denominator",
+     "basis",
+     "model",
+     "blocks"
+    ],
+    "properties": {
+     "name": {
+      "type": "string"
+     },
+     "k": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "N": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "denominator": {
+      "enum": [
+       "all_blocks",
+       "time_resolved"
+      ]
+     },
+     "basis": {
+      "enum": [
+       "argmin",
+       "adopted",
+       null
+      ]
+     },
+     "model": {
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "blocks": {
+      "type": "array",
+      "items": {
+       "type": "integer"
+      }
+     }
+    }
+   }
+  },
+  "rows": {
+   "type": "array"
+  },
+  "aic_offset": {
+   "type": "object",
+   "required": [
+    "n_cells",
+    "mean",
+    "std",
+    "constant"
+   ]
+  }
+ },
+ "additionalProperties": true
+}

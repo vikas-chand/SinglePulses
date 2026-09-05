@@ -1,0 +1,127 @@
+{
+ "trigger": "bn240403498",
+ "written_utc": "2026-09-05T06:49:51Z",
+ "fit_table": "results/step6_20260905/bn240403498/spectral_fits.ecsv",
+ "burst_flags": {
+  "source_on_background": false,
+  "window_too_wide": false,
+  "bkg_baseline_not_flat": false,
+  "window_degenerate": false,
+  "bkg_window_contains_emission": {
+   "value": true,
+   "detector": "n0",
+   "evidence": "55-85 s excess 5.5 sigma in n0; n0 post-window starts 53.775 s",
+   "decision": "PI-adopted as stamped 2026-09-05, carried as caveat C-1"
+  }
+ },
+ "bin_flags": {
+  "0": [
+   "bb_not_required_LRT<9.2"
+  ],
+  "3": [
+   "bb_not_required_LRT<9.2"
+  ],
+  "4": [
+   "bb_not_required_LRT<9.2"
+  ],
+  "6": [
+   "bb_not_required_LRT<9.2"
+  ],
+  "12": [
+   "lrt_negative:LRT_DSBPL_SBPL"
+  ],
+  "14": [
+   "bb_not_required_LRT<9.2"
+  ]
+ },
+ "tie_census": {
+  "argmin_basis": "15/16 cells tied at dAIC<2",
+  "valid_only_basis": "14/16 cells tied at dAIC<2",
+  "note": "basis set declared per NR-42; the engine BEST_AIC_MODEL is the validity-gated selection"
+ },
+ "fail_cells": {
+  "count": 10,
+  "of": 384,
+  "by_model": {
+   "DSBPLF": 6,
+   "SBPLCPL": 2,
+   "BANDCPL": 1,
+   "CPLCPL": 1
+  }
+ },
+ "blackbody": {
+  "T_INT": {
+   "kT_keV": 26.2,
+   "LRT_BANDBB_BAND": 10.32,
+   "required_at_TINT": true,
+   "edge_constrained_L28": false,
+   "note": "3.92*kT = 102.7 keV, above the 20 keV edge threshold"
+  },
+  "time_resolved": "BB appears in the argmin of 6/16 cells but the nested LRT falls below 9.2 in 5 of them -> NOT required"
+ },
+ "residuals": {
+  "b0_positive_run_150_400_keV": "up to +6 sigma, coherent, BGO only; all four NaI flat",
+  "b0_cross_norm": 0.847,
+  "reading": "detector-class signature (D5), not a spectral feature; b0 NOT dropped"
+ },
+ "error_bands": {
+  "CPLBB_TINT": "no band - 83.4% of propagation samples rejected at the bounds",
+  "SBPLBB_TINT": "band suppressed - interval excludes the best-fit curve over 38% of the range (railed)"
+ },
+ "temporal": {
+  "T90_s": 13.73,
+  "T90_err": 0.36,
+  "T50_s": 4.36,
+  "MVT_CWT_ms": 128.0,
+  "MVT_CWT_err_ms": 10.2,
+  "MVT_Haar_s": 0.284,
+  "lag": "REFUSED - validated engine s02c_spectral_lag absent on this host; catalog value comes from the sign-inverted DCCF and must not be quoted"
+ },
+ "literature_consistency": {
+  "ours": {
+   "interval_s": [
+    22.27,
+    43.97
+   ],
+   "note": "main pulse only (approved source window, 5-sigma trimmed)",
+   "CPL": {
+    "index": -1.094,
+    "index_err": 0.015,
+    "Epeak_keV": 380.4
+   },
+   "Band": {
+    "alpha": -1.063,
+    "alpha_err": 0.02,
+    "Ep_keV": 329.7,
+    "beta": -2.276
+   }
+  },
+  "published": {
+   "source": "GCN 36024 (Hamburg, Dalessi, Meegan; preliminary)",
+   "interval_s": [
+    -1.2,
+    76.7
+   ],
+   "note": "covers precursor + main pulse + third episode \u2014 a WIDER interval than ours",
+   "CPL": {
+    "index": -1.11,
+    "index_err": 0.01,
+    "Epeak_keV": 350,
+    "Epeak_err": 10
+   },
+   "Band": {
+    "alpha": -1.08,
+    "alpha_err": 0.02,
+    "Ep_keV": 322,
+    "Ep_err": 14,
+    "beta": -2.4,
+    "beta_err": 0.13
+   }
+  },
+  "verdict": "CONSISTENT WITHIN 0.5-1 sigma for Band alpha, Ep and beta; CPL Ep differs by ~3 sigma. BUT THE FRAMES DIFFER (our 21.7 s main pulse vs their 77.9 s whole burst), so agreement reflects the main pulse dominating their fluence, and is NOT a validation of either."
+ },
+ "verdict": {
+  "burst": "USABLE with caveats",
+  "caveats_file": "results/qc/bn240403498_caveats.md"
+ }
+}

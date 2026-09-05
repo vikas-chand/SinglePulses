@@ -1,0 +1,35 @@
+# %ECSV 1.0
+# ---
+# datatype:
+# - {name: DET, datatype: string}
+# - {name: G_PRE_S, datatype: float64}
+# - {name: G_POST_S, datatype: float64}
+# - {name: PRE_WIDTH_S, datatype: float64}
+# - {name: POST_WIDTH_S, datatype: float64}
+# - {name: WINDOW_SOURCE, datatype: string}
+# - {name: POST_WIN_CONTAINS_55_85S, datatype: bool}
+# - {name: EXCESS_55_85_CTS_S, datatype: float64}
+# - {name: EXCESS_SIGMA, datatype: float64}
+# meta: !!omap
+# - {trigger: bn240403498}
+# - {run_utc: '2026-09-05'}
+# - {step: 3 background (ADOPT presentation)}
+# - src_window: [18.0, 48.0]
+# - {rule: 'background_selection.md: HUG-THE-BURST, target g_pre/g_post 5-20 s; >~40 s is the defect threshold'}
+# - {margin_verdict: no margin exceeds 40 s; four detectors sit at g_post = 37.0 s (above the 5-20 s target band) and n0 sits at g_post
+#     = 5.77 s (bottom of the band). n0 also differs on the pre side (26.23 s vs 20.00 s).}
+# - {contamination_test: 'counts in 55-85 s vs the 100-175 s baseline, per detector, from TTE (NaI 8-900 keV, BGO 250-40000 keV). The
+#     55-85 s stretch carries the GCN 36024 "third weaker peak".'}
+# - {contamination_verdict: 'REAL and NaI-only: n0 5.5 sigma, n1 12.2, n2 8.8, n5 10.2; b0 -0.9 (clean) - i.e. a soft episode. n0 is the
+#     ONLY approved detector whose post-background window (starts 53.775 s) CONTAINS it; the other four start at 85.0 s and exclude it.
+#     n0 is also the CANONICAL detector the bins come from.'}
+# - {consequence: n0 background polynomial is anchored partly on non-baseline counts -> its post-side baseline is pulled HIGH -> over-subtraction
+#     risk for the canonical detector. NOT re-decided here (ADOPT mode); presented to the PI.}
+# - {poly_order: 3 for all five detectors (from the step-3 figure legend)}
+# schema: astropy-2.0
+DET G_PRE_S G_POST_S PRE_WIDTH_S POST_WIDTH_S WINDOW_SOURCE POST_WIN_CONTAINS_55_85S EXCESS_55_85_CTS_S EXCESS_SIGMA
+n0 26.23 5.77 75.0 142.0 adjusted True 36.1 5.5
+n1 20.0 37.0 84.9 90.7 accepted_suggestion False 81.7 12.2
+n2 20.0 37.0 84.9 90.7 accepted_suggestion False 54.3 8.8
+n5 20.0 37.0 84.9 90.7 accepted_suggestion False 71.2 10.2
+b0 20.0 37.0 84.9 90.7 accepted_suggestion False -7.0 -0.9

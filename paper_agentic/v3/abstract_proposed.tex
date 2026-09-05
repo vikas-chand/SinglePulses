@@ -1,0 +1,20 @@
+\begin{abstract}
+Time-resolved spectroscopy of gamma-ray bursts (GRBs) rests on judgement
+calls: which detectors to trust, where the background lies, where the
+burst begins and ends, how finely to bin it, and which of two dozen
+spectral models to adopt. We describe the design of an agent that makes
+those calls under human approval, and what it caught on its first burst.
+A language model runs inside a harness of deterministic tools,
+plain-language skill documents, state derived from disk, and enforced
+boundaries; a producer never verifies its own work. The agent analyses
+each burst blind, freezes its numbers before it reads the published
+literature, and turns every mismatch into a numbered lesson with an
+executable test. Applied to a campaign of 106 single-pulse
+\textit{Fermi}/GBM bursts, the design fits a 24-model menu to every time
+bin and assembles reports whose numbers recompute from the products on
+disk; on the first burst walked end to end it caught engine defects, now
+fixed and tested, and confirmed blind predictions while refuting one.
+The trained artifact is the skill library, readable by a student or by
+another AI system, which we release with the engine, the tests, and the
+per-burst records.
+\end{abstract}

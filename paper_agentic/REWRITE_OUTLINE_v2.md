@@ -160,3 +160,16 @@ figures: map diagrams → vector; learning curve regenerated from the ledger at 
 **Estimate:** ~18–20 pp ApJ two-column incl. figures; 6 drafting sessions.
 **Numbers policy:** real walkthrough-era values, every one provisional-flagged; refreshed
 mechanically at the frozen sweep (anchor-linter pass).
+
+## Nomenclature table extension (2026-09-01, presented at the update gate — CONFLICT-B resolution)
+| internal thing | paper name |
+|---|---|
+| dev/ai_guides/AgentSkeleton.md state machine S0-S12+SX | the operating skeleton; "fourteen typed states" |
+| AgentArchitecture.md register NR-1..NR-40 | the Requirements Register |
+| .claude/agents/* (10 files) | the specialist roster (Skill Reader, Dispatcher, Figure Verifier, Numbers Verifier, Tie Reporter, Seed Auditor, Port Verifier, Admission Gate, Prior-Art Reader, Distiller) |
+| results/campaign/divergence_ledger.md + FreshSessionBoot §10 protocol | the Divergence Ledger; divergence learning |
+| NR-40 no-ground-truth scoring | the concordance rule (concordance vs accuracy separation) |
+| Lane-A fresh-session walkthrough (bn110920546) | the acceptance test |
+| LIVE_REPORT_<trig>.md + APPROVALS.json | the live approval ledger (part of the Burst Record) |
+| dev/invalidate_downstream.py cascade | the approval cascade ("approvals revocable by machine") |
+| known-published-values checks (lags, block edges, variability limits, polarization) | the known-results battery |

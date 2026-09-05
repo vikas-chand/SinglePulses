@@ -1,0 +1,94 @@
+{
+ "trigger": "bn240403498",
+ "grb_name": "GRB 240403A",
+ "step": "0b literature harvest",
+ "run_utc_first": "2026-09-04T07:00Z (ADS BLOCKED)",
+ "run_utc": "2026-09-04T07:08:36Z",
+ "verdict": "NO REFEREED PAPER ANALYSES THIS BURST \u2014 now FINAL, not provisional",
+ "primary_channel": {
+  "name": "ADS four-form full-text query (LiteratureHarvest.md Phase 1)",
+  "status": "RUN (token installed at ~/.ads/dev_key 2026-09-04; auth verified HTTP 200)",
+  "forms": {
+   "full:\"GRB 240403A\"": {
+    "numFound": 3,
+    "article_or_eprint": 0
+   },
+   "full:\"bn240403498\"": {
+    "numFound": 0,
+    "article_or_eprint": 0
+   },
+   "full:\"240403498\"": {
+    "numFound": 2,
+    "article_or_eprint": 0
+   },
+   "full:\"733838255\"": {
+    "numFound": 2,
+    "article_or_eprint": 0
+   },
+   "full:\"240403.498\"": {
+    "numFound": 2,
+    "article_or_eprint": 0
+   },
+   "full:\"240403A\"": {
+    "numFound": 3,
+    "article_or_eprint": 0
+   }
+  },
+  "all_hits_are": "the three GCN circulars, doctype=newsletter: 2024GCN.36024....1H, 2024GCN.36015....1P, 2024GCN.36031....1C",
+  "unique_article_or_eprint_hits": 0
+ },
+ "membership_sweep": {
+  "question": "could a population/catalog paper carry this burst only in a table?",
+  "candidates_checked": [
+   {
+    "bibcode": "2024A&A...688L...8M",
+    "title": "Distribution of the number of peaks within a long GRB: the full Fermi/GBM catalogue",
+    "why_relevant": "MEPSA peak counts per GRB \u2014 bears directly on this burst's single-pulse membership flag",
+    "verdict": "NOT A MEMBER \u2014 verbatim: 'We started from 3091 long GRBs detected by GBM from 14 July 2008 to 4 February 2024.' Our burst is 2024-04-03, two months past the cutoff.",
+    "cds_table": "none deposited (ADS 'data' field lists NED only), so no MRT membership route either"
+   },
+   {
+    "bibcode": "2026ApJS..282...60K",
+    "title": "An 11 yr Catalog of Gamma-Ray Transients (untriggered search)",
+    "verdict": "NOT APPLICABLE \u2014 searches UNTRIGGERED events, 2010-07 to 2021-06; ours is a 2024 TRIGGERED burst"
+   },
+   {
+    "bibcode": "2026MNRAS.tmp.1491P",
+    "title": "13-year coherent search catalog of SHORT GRBs (2013-2025)",
+    "verdict": "NOT APPLICABLE \u2014 short-GRB search; ours is long (T90 = 35.6 s)"
+   }
+  ]
+ },
+ "recovery_channels_run": [
+  {
+   "channel": "arXiv metadata API",
+   "forms": 4,
+   "hits": 0
+  },
+  {
+   "channel": "web search (Scholar-equivalent, Phase 1b)",
+   "hits": 0
+  },
+  {
+   "channel": "VizieR membership sweep",
+   "hits": 0,
+   "note": "two silent-flood traps found: -words=240403A returns 228 tables/53 MB containing the literal string ONCE (the echoed request); -source=J/A+A/688/L8 silently falls back to unrelated catalogs (I/138, I/195, ...) instead of erroring. VizieR TAP is 403 from this host."
+  },
+  {
+   "channel": "local corpus grep",
+   "hits": 0,
+   "limitation": "INOPERATIVE on this host: Skills_training/ holds corpus_index.csv + README, zero PDFs"
+  }
+ ],
+ "consequence_for_P3": "no published per-interval spectral values exist for this burst. The only published comparison values are the GCN 36024 preliminary time-averaged fits in the step-0 dossier (CPL: idx -1.11+/-0.01, Ep 350+/-10 keV; Band: Ep 322+/-14, alpha -1.08+/-0.02, beta -2.40+/-0.13).",
+ "candidate_for_corpus_NOT_added": {
+  "bibcode": "2024A&A...688L...8M",
+  "arxiv": "2407.06002",
+  "pdf_downloaded_to": "scratchpad (not yet filed)",
+  "why": "bears on the project's single-pulse membership method (MEPSA peak counts; peak-poor population = 2.12 +/- 0.10 peaks per GRB, 80% of bursts), NOT on this burst. Filing it in the corpus index is a PI call, since the index is a shared catalog and this paper's cited_by_bursts for bn240403498 would be empty."
+ },
+ "products": [
+  "results/gcn/bn240403498/bn240403498_dossier.md",
+  "results/gcn/bn240403498/bn240403498_gcn_raw.txt"
+ ]
+}

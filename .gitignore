@@ -149,3 +149,11 @@ paper/upload_*
 # gtburst/tool scratch artifacts dumped at repo root (32-char hex names, xml siblings)
 /[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*
 !results/temporal_catalog_all106.ecsv
+
+# ============================================================
+# PRODUCTS that bind by sha, not by commit (ReportSpec R1): per-burst report staging dirs and run logs
+# ============================================================
+logs/
+paper/GRB*/
+handoff_background_approval/*.zip
+paper_agentic/*.bbl

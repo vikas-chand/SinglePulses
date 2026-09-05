@@ -1,5 +1,4 @@
 grb: bn130427324
-depth: full   # quick (6 models+temporal) | full (24+LLE/LAT)
+depth: quick   # quick (6 models+temporal) | full (24+LLE/LAT)
 special_pulse: '2nd'   # analyse this pulse (special burst)
 notes: ''
-literature: []   # prior published findings on THIS GRB (fill for the consistency check)

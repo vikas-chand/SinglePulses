@@ -1,0 +1,210 @@
+{
+ "figure": "F7 campaign learning curve",
+ "utc": "2026-09-03T22:47:49Z",
+ "git_head": "84cd6a951765",
+ "rows": [
+  {
+   "order": 1,
+   "walk_order": 1,
+   "review_index": 1,
+   "burst": "bn081125496",
+   "walked": "2026-07-29",
+   "lessons": 1,
+   "lesson_ids": [
+    "G1"
+   ],
+   "defects": 0,
+   "source": "notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)",
+   "lessons_born": "G1;blind-first caveat (saw Yu first)"
+  },
+  {
+   "order": 2,
+   "walk_order": 2,
+   "review_index": 2,
+   "burst": "bn081222204",
+   "walked": "2026-07-30",
+   "lessons": 0,
+   "lesson_ids": [],
+   "defects": 0,
+   "source": "notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)",
+   "lessons_born": "ordering hardened"
+  },
+  {
+   "order": 3,
+   "walk_order": 3,
+   "review_index": 3,
+   "burst": "bn081224887",
+   "walked": "2026-08-01..08",
+   "lessons": 4,
+   "lesson_ids": [
+    "L10",
+    "L11",
+    "L12",
+    "L13"
+   ],
+   "defects": 2,
+   "source": "notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)",
+   "lessons_born": "L10-L13 batch(081224 recon: Ep-vs-Ec; continuum-relative BB; citation-chain; binning-validation)"
+  },
+  {
+   "order": 4,
+   "walk_order": 4,
+   "review_index": 29,
+   "burst": "bn120624933",
+   "walked": "2026-08-05..08",
+   "lessons": 2,
+   "lesson_ids": [
+    "L17",
+    "D4"
+   ],
+   "defects": 1,
+   "source": "notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)",
+   "lessons_born": "L17(data-every-band);D4(interval statements);trigger!=start"
+  },
+  {
+   "order": 5,
+   "walk_order": 5,
+   "review_index": 33,
+   "burst": "bn130310840",
+   "walked": "2026-08-06..09",
+   "lessons": 2,
+   "lesson_ids": [
+    "L15",
+    "L23"
+   ],
+   "defects": 2,
+   "source": "notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)",
+   "lessons_born": "L15(railed!=unusable);L23(shared-bad-minimum);beta-unrail via LAT"
+  },
+  {
+   "order": 6,
+   "walk_order": 6,
+   "review_index": 35,
+   "burst": "bn130518580",
+   "walked": "2026-08-07..10",
+   "lessons": 4,
+   "lesson_ids": [
+    "L16",
+    "L24",
+    "L25",
+    "D5"
+   ],
+   "defects": 4,
+   "source": "notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)",
+   "lessons_born": "L16(evidence ratios);L24(T_INT rail);L25(xb~3.92kT);L12-class;D5(blockage);width-discriminates"
+  },
+  {
+   "order": 7,
+   "walk_order": 7,
+   "review_index": 20,
+   "burst": "bn110721200",
+   "walked": "2026-08-04..09 (demo)",
+   "lessons": 3,
+   "lesson_ids": [
+    "L9",
+    "L18",
+    "L19"
+   ],
+   "defects": 3,
+   "source": "notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)",
+   "lessons_born": "L9->L18 chain (blk9 regression found+fixed);L19(neg LRT);blk3=4-param verification"
+  },
+  {
+   "order": 8,
+   "walk_order": 8,
+   "review_index": 4,
+   "burst": "bn090530760",
+   "walked": "2026-08-09..10",
+   "lessons": 2,
+   "lesson_ids": [
+    "TM3",
+    "L27"
+   ],
+   "defects": 1,
+   "source": "notes/campaign_ledger.csv (ids whitelisted against the skill-file headings; deduplicated)",
+   "lessons_born": "L26-validated(lag sign,live);L27(log-space rails);T90-band-rule applied;W-double-definition"
+  },
+  {
+   "order": 21,
+   "walk_order": 9,
+   "review_index": 21,
+   "burst": "bn110920546",
+   "walked": "2026-08-30..",
+   "lessons": 5,
+   "lesson_ids": [
+    "L31",
+    "L32",
+    "L33",
+    "TM2",
+    "TM5"
+   ],
+   "defects": null,
+   "register_rows_citing": [
+    "NR-10",
+    "NR-19",
+    "NR-2",
+    "NR-22",
+    "NR-23",
+    "NR-24",
+    "NR-25",
+    "NR-27",
+    "NR-28",
+    "NR-3",
+    "NR-32",
+    "NR-33",
+    "NR-34",
+    "NR-37",
+    "NR-38",
+    "NR-39",
+    "NR-40",
+    "NR-41",
+    "NR-42",
+    "NR-43",
+    "NR-46",
+    "NR-48",
+    "NR-50"
+   ],
+   "source": "dev/ai_guides/*.md headings naming the burst, PROPOSED excluded; defects = register rows citing the burst",
+   "lessons_born": "L31;L32;L33;TM2;TM5"
+  }
+ ],
+ "cumulative": [
+  1,
+  1,
+  5,
+  7,
+  9,
+  13,
+  16,
+  18,
+  23
+ ],
+ "total_lessons": 23,
+ "parsed_lessons_total": 44,
+ "walkthrough_in_progress": {
+  "burst": "bn110920546",
+  "since": "2026-08-30",
+  "lessons": [
+   "L31",
+   "L32",
+   "L33",
+   "TM2",
+   "TM5"
+  ]
+ },
+ "ledger_sha256": "372338387cd8863776c6f92a088518c4c0958ff991d685facc50fccf82507362",
+ "generator_sha256": "197c6ea3c4e9786209e436a559aa5fe2520f95074fc7b01a7c2c96e5ce558c1d",
+ "git_head_note": "built in the working tree: git_head is the commit the tree was based on; generator_sha256 identifies the code that drew it",
+ "skill_file_sha256": {
+  "SpectralFitting": "52cd355dfd93bfc98dc0e1d629b88eaa7f9409466029a5bb7dac314bf9aea69a",
+  "Temporal": "d0c3875f354d4651770d5c1b7abd4745ff7a109cbfa5f008a41e7f269e9169c2",
+  "DataInventory": "3b0a181e9fe146f22a40d3641e101b9008fc30d089f8c3d99c1cd2d53af47ce0",
+  "GCNIntelligence": "5911eb294b514e217d77dc1ae52098a0fc41f389e3dea259b6689f20d1bfe002",
+  "LiteratureHarvest": "d238307be9e4e2aa1b2cb875d0431f4156d2f6b4241c06752c771f0785e4ff1c"
+ },
+ "rules": {
+  "ledger_rows": "ids named in lessons_born, whitelisted against heading-form lessons, first appearance only",
+  "walkthrough_row": "heading names the burst and is not PROPOSED; defects NOT tallied (the walkthrough is in progress; register rows citing the burst are listed, not counted)",
+  "x_axis": "walk order (ledger order 1-8, then the ninth walked burst = review-index #21); not time"
+ }
+}

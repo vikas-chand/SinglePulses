@@ -1,0 +1,11 @@
+{
+ "figure": "docs/figures/fig1_agent_overview.png",
+ "sha256": "a6e554b705f638e75b858cf0d77a2af21b7b38c4aa173e1ac940b588048d0b5d",
+ "generator": "dev/gen_paper_figures.py",
+ "commit": "77924ab",
+ "claims": {
+  "actors": "A1-A18 per dev/ai_guides/AgentRoster.md",
+  "skill_files": 25,
+  "loop": "read-plan-produce-verify closed by PI gate"
+ }
+}

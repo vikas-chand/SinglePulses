@@ -1,236 +1,331 @@
-# Two_Breaks — Time-Resolved Spectroscopy of Single-Pulse GRBs
+<p align="center">
+  <img src="docs/assets/grbs_agent_logo.svg" alt="GRBs Agent" width="480"/>
+</p>
 
-Uniform time-resolved empirical spectral survey of **106 bright single-pulse
-Fermi/GBM gamma-ray bursts**, asking one question: is the spectral curvature
-beyond a single break a **sub-dominant thermal photosphere** or a **second
-synchrotron break**?
+<p align="center">
+  <img src="https://img.shields.io/badge/status-research%20preview-b07714" alt="status"/>
+  <img src="https://img.shields.io/badge/license-MIT-1b7a8c" alt="license"/>
+  <img src="https://img.shields.io/badge/campaign-106%20single--pulse%20GRBs-b23a6b" alt="campaign"/>
+  <img src="https://img.shields.io/badge/python-3.9%2B-6b7280" alt="python"/>
+  <img src="https://img.shields.io/badge/engine-3ML%20%2B%20fermitools-6b7280" alt="engine"/>
+</p>
 
-Each burst is fit, in every Bayesian-block time bin, with six photon models
-(Band, CPL, SBPL, 2SBPL, Band+BB, CPL+BB) and the two pictures are compared with
-information criteria. Manuscript: `paper/two_break.tex` (K. Sharma et al.).
+<p align="center">
+  <b><a href="AGENTS.md">Operating Manual</a></b> ·
+  <b><a href="docs/GRB_AGENT_FLOWCHART.md">Operating Design</a></b> ·
+  <b><a href="dev/ai_guides/AgentSkeleton.md">The Skeleton</a></b>
+</p>
 
-> **Status: provisional.** All numbers below use an automatically-selected
-> background catalogue; a human-verified background pass is in progress and the
-> authoritative re-fit follows it. The qualitative conclusions are not expected
-> to change. See *Status & caveats*.
+**GRBs Agent** is an AI analysis agent for gamma-ray bursts: given a burst, it
+acquires the *Fermi* GBM/LLE/LAT data, makes (or adopts) the detector,
+background, and source selections, bins the light curve with Bayesian blocks,
+fits **24 photon models to every time bin**, measures the temporal properties
+with three independent minimum-variability primitives, renders the spectral
+energy distributions, reconciles everything against the published literature
+*blind-first*, and assembles a gated, referee-style paper per burst — while a
+human (or an independent AI approver) holds every gate.
 
-**Headline (provisional):** at the locked **ΔAIC ≥ 10** threshold, of the bins
-requiring curvature **87 % are thermal-or-degenerate** vs **13 % a decisive
-two-break** — a lower limit (94/14 of 108; the looser ΔAIC ≥ 6 cut gives
-91 %/9 %, reported as a sensitivity check); the Burgess $E_{\rm p}$–$kT$
-correlation is recovered in most testable bursts (GRB 130427A: $\rho=0.93$); the
-two 2SBPL breaks $\nu_m$–$\nu_c$ are positively correlated within and between
-bursts; spectral evolution is HTS-dominated.
+It is built on one experimentally-earned axiom: **an agent must never verify
+its own work.** Every figure, number, and claim passes fresh-context
+verification before a human sees it, and every failure the agent commits is
+distilled — same session — into an enforcement layer (a code guard, a hook, a
+verifier contract) so that failure class cannot recur silently. The agent's
+two products are therefore inseparable: the **science** (a uniform survey of
+106 bright single-pulse GRBs) and the **measured record of what it takes to
+make an AI do supervised science** — a failure taxonomy, a catch-ledger, and
+a requirements register grown entirely under load.
 
-> **Relation to GRB_Handbook.** This repo is the single-pulse-spectroscopy study;
-> its reusable, burst-agnostic machinery — background selection
-> (`28`/`30`/`36`), Bayesian blocking (`27`), the spectral engine (`10`), the
-> per-GRB end-to-end notebook, and the master-manifest schema — are the candidate
-> modules for the planned **GRB_Handbook**, a full GRB-analysis pipeline to be
-> released publicly. Kept private until the paper is out; structured so these
-> pieces merge cleanly upstream.
+> **Research preview.** All numbers are provisional until the campaign
+> freeze; the PI gates every deliverable. Only the frozen production sweep
+> produces citable numbers.
 
 ---
 
-## What's in this repo
+## Quick look
 
+The whole campaign is a **state machine with evidence on disk** — ask it
+where every burst stands:
+
+```console
+$ python3 dev/agent_state.py
+CAMPAIGN BOARD — 106 bursts
+  S2_BINNED                  1   bn160625945
+  S3_FIT                    74   bn090620400 bn090719063 ...
+  S4_RETRIED                25   bn081125496 bn081222204 ...
+  S5_PROMOTED                2   bn100707032 bn101225377
+  S6_TEMPORAL_DONE           1   bn081224887
+  S7_PRODUCTS_DONE           2   bn091209001 bn110618366
+  SX_STRUCTURAL_EXCLUSION    1   bn100130729   ← RESPONSE_UNCOVERED, reasoned
 ```
-scripts/      the pipeline (numbered in execution order; see "Pipeline" below)
-paper/        two_break.tex + .bib + .bbl, figures/, machine-readable tables/
-notebooks/    Two_Breaks_single_GRB_pipeline.ipynb  <- run one GRB end to end
-results/      catalogues + the master manifest (large per-burst outputs gitignored)
-data/         raw GBM TTE — only 6 sample bursts are committed (rest re-downloadable)
-notes/        the audit report, the Li-2021 writing template, findings memos
-BACKGROUND_SELECTION_PROCESS.md   the authoritative detector+background ruleset
-KHUSHBOO_BACKGROUNDS.md           the background-verification task brief
+
+Approve a step, or send it back — feedback *must* route to an enforcement
+layer, and un-doing an approval mechanically invalidates everything built on
+it:
+
+```console
+$ python3 dev/live_report.py --trig bn081222204 --approve 7 --by VIKAS
+$ python3 dev/live_report.py --trig bn081222204 --feedback-only 7 --by VIKAS \
+    --feedback "quote the window systematic alongside the statistical error"
+FEEDBACK RECORDED — now route it (distiller, same session)
+!! NR-19: steps 8 were approved on the OLD step-7 state.
+$ python3 dev/invalidate_downstream.py --trig bn081222204 --from-step 7 --execute
+   demote approval: step 8 -> STALE (was APPROVED on old state)
 ```
 
-**The 6 bundled sample bursts** (so the notebook runs out of the box):
-`bn110721200` (clean 2SBPL standout, NaI+BGO+LLE), `bn160625945` (bright Band+BB),
-`bn150902733`, `bn081125496` (faint Silver), `bn090620400` (a once-broken
-background, now fixed), `bn201016019` (fast variability).
+## Usage — three ways
 
----
+- **Walkthrough session** — the gated per-burst protocol
+  (`dev/ai_guides/BurstWalkthrough.md`): the agent runs a step, PRESENTS the
+  evidence, and STOPS at your gate. The mode for discovery and review.
+- **Autonomous chain** — the queue runs bursts through the skeleton's
+  workflows unattended; every product still passes its verifiers, and
+  approvals wait for you in the live report. The mode for campaigns.
+- **Board & stamps CLI** — `dev/agent_state.py` (where is everything),
+  `dev/live_report.py` (approve / feed back), `dev/invalidate_downstream.py`
+  (propagate a changed decision). The mode for supervision.
 
-## The sample & the master manifest
-
-`results/master_manifest.csv` — one row per burst with the full selection record:
-
-| column | meaning |
-|---|---|
-| `trigger`, `name`, `T90`, `fluence`, `has_lat` | burst identity & GBM-catalog properties |
-| `reference_nai` | NaI whose light curve defines the time bins |
-| `nai_dets`, `bgo_det`, `lle` | **detector selection** (all detectors entering the fit) |
-| `source_t1`, `source_t2`, `n_bins` | **source/analysis interval** (Bayesian-block span) and bin count |
-| `bkg_pre_*`, `bkg_post_*` | reference-detector **background windows** |
-
-Full per-detector background windows: `results/background_intervals_clean.ecsv`.
-
----
-
-## Environment
-
-Spectral fitting needs the **threeML** conda env (3ML + fermitools); set CALDB to
-the env before importing astromodels:
+<details>
+<summary><b>Environment setup</b> (click to expand)</summary>
 
 ```bash
-conda activate threeML
-export CALDB=$CONDA_PREFIX/share/fermitools/data/caldb
-export CALDBCONFIG=$CALDB/software/tools/caldb.config
-export CALDBALIAS=$CALDB/software/tools/alias_config.fits
+conda activate threeML            # 3ML + fermitools environment
+export FERMI_DIR=$CONDA_PREFIX/share/fermitools
+export CALDB=$FERMI_DIR/data/caldb   # + CALDBCONFIG/CALDBALIAS/CALDBROOT
+# run from the repo root; AGENTS.md carries full setup, data acquisition,
+# and the gotchas.
+```
+</details>
+
+## Table of contents
+
+- [How it works: the campaign loop](#how-it-works-the-campaign-loop)
+- [Inside the fitting step](#inside-the-fitting-step)
+- [The verification doctrine](#the-verification-doctrine)
+- [The failure taxonomy](#the-failure-taxonomy--why-it-stopped-surprising-us)
+- [Learning without gradients](#learning-without-gradients)
+- [Architecture](#architecture)
+- [The science](#the-science)
+- [Running it](#running-it)
+- [Validation](#validation)
+- [Roadmap · Contributing · Authors](#roadmap)
+
+## How it works: the campaign loop
+
+Humans hold four things: the scope gate, every step gate, lesson acceptance,
+and the freeze. The agent operates inside the ledger. The loop's product is a
+**matured skill library** — every burst runs a better pipeline than the last.
+
+```mermaid
+flowchart TD
+  SCOPE["SCOPE GATE (human)<br/>question · sample · completion contract"]
+  S1["STAGE-1 GATED SELECTIONS<br/>detectors · background · source<br/>human GUI or vision agent — every decision stamped"]
+  LEDGER["PER-BURST LEDGER — eleven gated steps<br/>identity → literature harvest → inventory → selections →<br/>adaptive binning → BLIND spectral fitting → temporal →<br/>νFν products → quality control<br/><i>each step: RUN → PRESENT → GATE → LITERATURE → DISTILL</i>"]
+  P0["P0 FREEZE — our numbers + literature predictions,<br/>immutable BEFORE any comparison"]
+  REC["RECONCILIATION — verify at source · frame-align · diff"]
+  ATT{attribute}
+  WE["we-wrong:<br/>fix engine + test"]
+  THEY["they-wrong:<br/>document w/ evidence"]
+  FR["frame-difference:<br/>normalization rule"]
+  SKILL["lesson → SKILL LIBRARY,<br/>with its executable test"]
+  CONV{"K clean passes?"}
+  FREEZE["FREEZE at a recorded commit →<br/>one production sweep over all 106 → paper numbers"]
+  SCOPE --> S1 --> LEDGER --> P0 --> REC --> ATT
+  ATT --> WE & THEY & FR --> SKILL --> CONV
+  CONV -- yes --> FREEZE
+  CONV -- "no — next burst runs a better pipeline" --> LEDGER
 ```
 
-Light-weight steps (catalogues, manifest, the background picker, figures) need
-only `numpy`, `astropy`, `scipy`, `matplotlib`.
+## Inside the fitting step
 
----
+Inclusion is gated on **data quality, never detection significance** (which
+would bias the census). Every band with data and a valid response enters the
+joint fit; every model family gets unconditional multistarts; a claim of
+extra structure must beat *every* simpler nested alternative, fitted together
+in one run.
 
-## Quickstart — analyse one GRB end to end
-
-```bash
-jupyter notebook notebooks/Two_Breaks_single_GRB_pipeline.ipynb
+```mermaid
+flowchart TD
+  DATA["every band with data + a valid response<br/>NaI 8–900 keV (K-edge 30–40 excised) ·<br/>BGO 0.2–38 MeV · LLE 20–100 MeV · LAT"]
+  MENU["24-model menu<br/>Band/CPL/SBPL cores × breaks × BB × high-E components<br/>seeded, unconditional multistarts"]
+  VG{"validity gates<br/>bound-rails · bin adequacy ·<br/>degenerate-rail screens"}
+  CHAIN{"AIC chain gate<br/>ΔAIC ≥ 10 over EVERY nested ancestor,<br/>fitted together — plus physical gates<br/>(3.92 kT vs detector edge)"}
+  TIE["ΔAIC &lt; 2 heads → reported as TIES, never winners<br/>preference ≠ argmin: a model is TRACKED at<br/>ΔAIC &gt; 6 in ≥ 1–2 bins"]
+  REF["refusals are RESULTS:<br/>every unrendered panel labeled with its reason —<br/>absence is never silent"]
+  DATA --> MENU --> VG -->|pass| CHAIN --> TIE
+  VG -->|fail| REF
 ```
 
-Set `BURST` at the top (default `bn110721200`) and *Run All*. It walks through
-**every step one GRB needs**, calling the real production engine:
+## The verification doctrine
 
-1. **detector selection** (NaI/BGO/LLE and why)
-2. **background** windows + polynomial interpolation → net light curve
-3. **Bayesian-block** time bins
-4. **six-model fit** (live) with count-spectrum + residuals
-5. **model comparison** — AIC/BIC, ΔAIC≥10, validity gate, curvature class
-6. **parameter evolution** — $E_{\rm p}(t),\alpha(t),\beta(t),kT(t),F(t)$
-7. **correlations** — $E_{\rm p}$–$kT$, $\nu_m$–$\nu_c$, $F$–$\alpha$
-8. **variability** timescale (fine-grid Bayesian blocks)
+Three rules, each purchased with a real incident:
 
-Works on any of the 106 bursts once that burst's `data/<trigger>/` is present.
+1. **Blind-first.** The agent's numbers are frozen (P0) *before* any
+   published value is read; mismatches are attributed — frame, method, band —
+   before the word "discrepancy" is allowed.
+2. **Independence lives at the primitive.** Two checks that share a primitive
+   count once (two of ours once agreed and were both wrong). MVT is measured
+   by three estimators that differ at the primitive; every temporal number
+   carries its estimator label.
+3. **The producer never approves.** Ten single-purpose agents — dispatcher,
+   skill-reader, figure-verifier, numbers-verifier, seed-auditor,
+   tie-reporter, admission-gate, port-verifier, prior-art-reader, distiller —
+   gate every artifact class; a pre-tool hook *blocks* delivery of any figure
+   whose sha256 is not in a verification ledger; independent LLM platforms
+   audit at milestones, adjudicated finding-by-finding.
 
----
+## The failure taxonomy — why it stopped surprising us
 
-## The pipeline, stage by stage (what we did)
+Every failure lands in a declared class with a declared behavior — **an error
+message is never a behavior**:
 
-| stage | script | does |
+| class | definition | declared behavior |
 |---|---|---|
-| sample | `01_build_sample.py` | GBM catalog → single-pulse, bright cut (fluence > 1e-5) |
-| selection | `03_horizontal_line.py` (Busby & Lazzati 2024) | single-pulse shape score |
-| download | `02_download_data.py` | fetch TTE + responses (HEASARC) |
-| **Stage 1: approval** | `39_approve_all.py` (render → human GUI *or* AI-vision → ingest) | gated detectors + backgrounds + source, stamped catalog (`28`/`30` = legacy seeds) |
-| binning | `27b_reblock_3ml.py` | 3ML Bayesian blocks (use_background=True) + significance merge |
-| **fitting** | `10_spectral_fit_burst.py` | the engine: 6 models, AIC/BIC, LRT, validity gate, BB multi-start |
-| driver | `29_refit_clean.py` | run the engine over all bursts → `results/clean_per_burst/` |
-| numbers | `31_draft_numbers.py` | population statistics → `results/draft_numbers.json` |
-| figures | `32_make_figures.py` | the paper figures |
-| variability | `35_variability_bb.py` | per-burst variability timescale |
-| manifest | `38_build_manifest.py` | the master manifest CSV |
+| F-TRANSIENT | environment pressure (memory, load) | HOLD + resume; never self-terminate |
+| F-STRUCTURAL | the data genuinely cannot yield the value | LABEL + continue; absence always reasoned |
+| F-CONTRACT | a producer violated a standing contract | STOP the burst; register row, same session |
+| F-ORDER | work arrived out of declared sequence | WAIT; the queue manager reorders |
+| F-SILENT | a defect discovered *after* acceptance | DEMOTE + cascade + a guard that makes it loud forever |
+| F-GUARD | the checking machinery itself is wrong | fix at the primitive; re-run every gate it judged |
 
-(Helpers `33`/`34`/`36`/`37` build the machine tables, example spectra, the
-progress checker, and this notebook.)
+Behind it sits a **14-state machine per burst** (`dev/ai_guides/AgentSkeleton.md`):
+every burst in exactly one evidence-backed state, demotion mechanical, and
+resource use admitted in **GB against measured peak RSS** through one
+machine-wide arbiter — a design purchased with a real 140 GB shutdown.
 
----
+## Learning without gradients
 
-## Decision framework (locked)
+No model weights ever change. The system learns by routing every piece of
+human feedback — same session — into the strongest layer that can enforce it:
 
-- **Significance:** a blackbody or second break is decisive at **ΔAIC ≥ 10** over
-  its parent (the Li 2021 / Burgess 2019 threshold); **ΔBIC** is the conservative
-  cross-check. The LRT is used only for **nested** pairs; the central
-  thermal-vs-2SBPL comparison is **non-nested**, so information criteria decide it.
-- **Validity gate:** a railed fit (parameter at a bound, or 2SBPL breaks
-  mis-ordered) cannot win model selection.
-- **Correlations:** Spearman $\rho$ + least-squares log slope; the $\nu_m$–$\nu_c$
-  relation uses the D'Agostini (2005) errors-in-both-variables fit.
-- **Two-break fraction is a lower limit** (the 2SBPL has no convergence restart in
-  this provisional run; added at the authoritative re-fit).
-
-Model descriptions follow Ravasio et al. 2018 (2SBPL) and Guiriec et al.
-(multi-component); see `notes/` and the paper §2.
-
----
-
-## Background selection (the human-verified pass)
-
-```bash
-python scripts/30_background_picker.py      # GUI: review/adjust per detector
-python scripts/36_progress_check.py         # progress + continuous QC
+```mermaid
+flowchart LR
+  FB["PI feedback /<br/>caught failure"] --> D{distiller<br/>routes}
+  D --> C1["code guard<br/>(strongest)"]
+  D --> C2["mechanical hook"]
+  D --> C3["verifier contract"]
+  D --> C4["agent definition"]
+  D --> C5["skill prose<br/>(weakest — P8)"]
+  C1 & C2 & C3 & C4 & C5 --> R["requirements register<br/>33+ rows, each born from<br/>a real caught failure"]
 ```
 
-The picker is seeded from `results/background_starting_points.ecsv` (so it is
-*review*, not from scratch) and writes `results/background_intervals.ecsv`.
+Catch-ledger across the discovery run: vision gates ≈ 55, external audits
+≈ 27, PI 12, source checks 6, code screens ≈ 8 — **only 3 late-or-never**.
+The registers, lessons, and contracts are all in-repo and versioned: the
+learned object is inspectable text, not opaque weights.
 
----
+## Architecture
 
-## The paper
+The full capability inventory — interfaces at the top, the engine at the
+bottom, the rails crossing everything:
 
-```bash
-cd paper
-pdflatex two_break && bibtex two_break && pdflatex two_break && pdflatex two_break
+<p align="center"><img src="docs/assets/architecture.svg" width="980" alt="GRBs Agent architecture"/></p>
+
+The five layers as a flow:
+
+```mermaid
+flowchart TD
+  BOOT["LAYER 0 · BOOT<br/>skill-reader → dispatcher (roster + unguarded debt) →<br/>arm enforcement: no-ship hook · RAM arbiter"]
+  PIPE["LAYER 1 · PER-BURST PIPELINE<br/>bin → fit → mandated retry → hash-current promotion →<br/>temporal (3 MVT primitives) → SED products → gated paper"]
+  ACC["LAYER 2 · CAMPAIGN ACCUMULATORS<br/>edge-gated BB census · hard-tail pattern · estimator-labeled MVT ·<br/>lag–width · preference census · failure taxonomy"]
+  CTX["LAYER 3 · CONTEXT — blind-first literature<br/>GCN intelligence · ADS harvest · prior-art ·<br/>frame/method/band attribution"]
+  SCI["LAYER 4 · SCIENCE — interpretation LAST<br/>gap-closer · assumption-tester · graded wild-hypothesis spectrum<br/>(suggestion free · execution gated · publication via PI)"]
+  RAIL["ENFORCEMENT RAIL<br/>code guards → hooks → fresh verifiers →<br/>external audit → distiller"]
+  APR["APPROVAL RAIL<br/>live report · identity-bound stamps ·<br/>feedback routes · invalidation cascade"]
+  BOOT --> PIPE --> ACC --> CTX --> SCI
+  RAIL -.-> PIPE
+  APR -.-> PIPE
 ```
 
-(One bibtex pass + two follow-up pdflatex passes are required — the bibliography is external,
-`two_break.bib` + `aasjournal` style.)
+## The science
 
----
+The survey question: across 106 bright single-pulse *Fermi*/GBM bursts, in
+every resolved time bin, **what spectral shape actually wins when everything
+competes** — and is the curvature beyond one break a subdominant thermal
+photosphere or a second synchrotron break? Alongside: a census of synchrotron
+line-of-death crossings as a property of the *rise* rather than the burst,
+estimator-dependence of the minimum variability timescale, pulse-scaled
+spectral lags, and thermal candidates filtered through a physical edge gate.
+An example gated Stage-1 product (detector geometry, background windows,
+source interval — every choice stamped):
 
-## Status & caveats
+<p align="center">
+  <img src="plots/approved_selections/bn081125496.png" width="640" alt="gated Stage-1 selection example"/>
+</p>
 
-- Numbers are **provisional** (auto backgrounds). The authoritative re-fit, on the
-  human-verified backgrounds, goes to a **fresh output root** and adds: a 2SBPL
-  convergence restart, Ravasio smoothness ($n_1{=}5.38,n_2{=}2.69$), the
-  Ravasio K-edge mask, provenance stamps, and an explicit background-file argument
-  so the human-reviewed catalogue actually drives the fit.
-- Two independent audits verified the catalogue reproduces exactly (106 bursts,
-  1057 bins): `notes/PROJECT_AUDIT_2026-06-09.md` (multi-agent) and
-  `dev/CODEX_AUDIT_REPORT_PIPELINE.md` (whole-pipeline). **Open items the second audit
-  flags for the authoritative pass / paper:** (1) the sample-selection code adds
-  an undocumented `T90>2 s` cut and does not run the two-brightest-detector Busby
-  procedure as stated; (2) the $E_{\rm p}$–$kT$ pairing should take both from the
-  *same* composite fit (re-pairing shifts the Burgess result modestly); (3) the
-  $\nu_m$–$\nu_c$ relation should make the *decisive-second-break* subset primary;
-  (4) the sub-128 ms variability claim needs a calibrated false-alarm test.
-- Roadmap to submission: see the execution plan in the project notes.
+## Running it
 
-## Data availability
+Requires the [3ML](https://threeml.readthedocs.io/) + fermitools conda
+environment and *Fermi* CALDB; runs from the repo root. **Start at
+[`AGENTS.md`](AGENTS.md)** — the canonical operating manual (environment,
+data acquisition, stage order, approval gates, products, gotchas). The
+per-burst TTE data tree (~120 GB) is fetched from HEASARC by the acquisition
+scripts and is not distributed here.
 
-Raw GBM data are public (HEASARC) and re-downloadable via `scripts/02`; only 6
-sample bursts are committed here. The derived `results/clean_per_burst/`
-(per-burst fits) is regenerable by `scripts/29`; the 6 sample bursts' outputs are
-included so the notebook runs without re-fitting.
+```text
+AGENTS.md                      ← the operating manual — start here
+dev/ai_guides/                 ← 25 skill files: protocols, gates, registries, the skeleton
+.claude/agents/                ← the 10 agent definitions (markdown = system prompt)
+.claude/hooks/                 ← mechanical enforcement (no-ship, dispatch guard)
+scripts/                       ← 50+ pipeline producers (fit engine, binning, SED, temporal, reports)
+results/campaign/burst_state/  ← the live evidence-backed campaign board
+results/campaign/*.ecsv        ← cross-burst accumulators
+```
 
----
+## Validation
 
-## References
+Three tiers, receipts in-repo:
 
-The PDFs are not redistributed here; full BibTeX is in `paper/two_break.bib`.
-Each entry below notes its role in this analysis.
+1. **Per-artifact gates** — every figure and number passes fresh-context
+   verification; verdicts sha256-bound in each burst's `VISION_QC.md`.
+2. **Cross-platform adversarial audits** — independent LLM systems review
+   whole subsystems against written briefs; verdicts adjudicated at the
+   primitive (briefs + full reports in `notes/CODEX_*`).
+3. **Blind-first reconciliation** — frozen predictions diffed against the
+   published literature, mismatch-by-mismatch.
 
-**Instruments, methods & tools**
-- Meegan et al. 2009, ApJ 702, 791 — Fermi/GBM instrument.
-- Atwood et al. 2009, ApJ 697, 1071 — Fermi/LAT (LLE data).
-- Vianello et al. 2015, arXiv:1507.08343 — **3ML**, the fitting framework.
-- Scargle et al. 2013, ApJ 764, 167 — **Bayesian Blocks** (time binning).
-- Akaike 1974, IEEE TAC 19, 716 / Schwarz 1978, Ann. Stat. 6, 461 — **AIC / BIC** model selection.
-- Wilks 1938, Ann. Math. Stat. 9, 60 — likelihood-ratio test (nested pairs only).
-- D'Agostini 2005, arXiv:physics/0511182 — errors-in-both-variables correlation fit.
-- Busby & Lazzati 2024, ApJ 972, 83 — single-pulse "horizontal-line" selection.
-- Kaneko et al. 2006, ApJS 166, 298; Gruber et al. 2014, ApJS 211, 12; Yu et al. 2016, A&A 588, A135 — GBM time-resolved spectral catalogues (comparison + SBPL smoothness).
+The agent's own infrastructure passes the same gauntlet: its memory arbiter
+was audited by an independent multi-agent review that found two real bugs and
+a broken invariant — fixed, then *re-verified by kill-testing*, which found a
+deeper flaw the review itself had missed. None of it was caught by the
+failing agent itself. That sentence is the design.
 
-**Spectral models**
-- Band et al. 1993, ApJ 413, 281 — the Band function.
-- Ravasio et al. 2018, A&A 613, A16; Ravasio et al. 2019, A&A 625, A60 — **2SBPL** functional form + smoothness ($n_1{=}5.38,n_2{=}2.69$) and synchrotron break interpretation.
-- Guiriec et al. 2010 (ApJ 725, 225), 2011 (ApJL 727, L33), 2015 (ApJ 807, 148) — multi-component (non-thermal + blackbody) decomposition.
-- Sari, Piran & Narayan 1998, ApJL 497, L17 — synchrotron cooling/injection breaks.
-- Preece et al. 1998, ApJL 506, L23; Crider et al. 1997, ApJL 479, L39 — synchrotron "lines of death" ($-2/3,-3/2$).
+## Contribution overview
 
-**Science comparison (single-pulse / curvature)**
-- Burgess et al. 2014a, ApJL 784, L43 — the $E_{\rm p}$–$kT$ correlation we test at scale.
-- Burgess et al. 2014b, ApJ 784, 17 — physical synchrotron fits to single pulses.
-- Burgess et al. 2019, MNRAS 490, 927 — Bayesian short-GRB catalogue (Bayes-factor threshold).
-- Basak & Rao 2013 (MNRAS 436, 3082), 2014 (MNRAS 442, 419) — single-pulse BBPL/2BBPL, HTS/IT.
-- Lu et al. 2012, ApJ 756, 112 — HTS/IT $E_{\rm p}$-evolution classes.
-- Ryde 2004 (ApJ 614, 827); Ryde & Pe'er 2009 (ApJ 702, 1211) — photospheric BBPL lineage.
-- Oganesyan et al. 2017 (ApJ 846, 137), 2018 (A&A 616, A138) — low-energy synchrotron breaks.
-- Ravasio et al. 2023, arXiv:2303.16223 — 2SBPL second break only at highest S/N (GRB 221009A).
-- Ronchi et al. 2020, A&A 636, A55 — time-resolved physical synchrotron ($E_c$,$E_m$ co-evolution).
-- Mei et al. 2025, A&A 693, A156 — $\nu_c$–$L_{\rm iso}$ vs no $E_{\rm p}$–$L$; cooling-regime ratio.
-- Acuner et al. 2020, ApJ 893, 128 — when $\alpha$ discriminates photosphere vs synchrotron.
-- Li et al. 2021, ApJS 254, 35 — the writing-style + selection-threshold template.
-- Mészáros & Rees 2000 (ApJ 530, 292); Pe'er et al. 2007 (ApJL 664, L1); Kumar & Zhang 2015 (Phys. Rep. 561, 1); Yonetoku et al. 2004 (ApJ 609, 935) — photosphere theory, review, Yonetoku relation.
+Who built what — and where the human hand stays mandatory:
+
+<p align="center"><img src="docs/assets/contribution.svg" width="900" alt="contribution overview"/></p>
+
+## Roadmap
+
+Skeleton freeze (state machine + saved workflows) → the campaign runs frozen
+→ open release: Zenodo DOI, fetch-one-burst demo, and an issue-driven
+failure-report loop where the community's caught failures feed the same
+register that built the agent.
+
+## Contributing
+
+Issues are the channel, and **failure reports are first-class
+contributions**. Three kinds, three destinations: a run failure (→ code fix +
+regression test), a scientific disagreement with a convention (→ the
+assumption/gap registries — these are the most valuable), a method request
+(→ the science menu). See `dev/ai_guides/PI_REVIEW_PROTOCOL.md` for how
+feedback becomes enforcement. Private questions: Vikas Chand —
+vikas.chand.physics@gmail.com.
+
+## Authors
+
+**Vikas Chand** (LSU) — PI · **Khushboo Sharma** (ARIES) — replication arm ·
+**Jagdish C. Joshi** (ARIES) · Agentic engineering: Claude (Anthropic), under
+PI gates. Two papers in preparation: the science survey (Sharma et al.) and
+the agentic-methods paper (Chand et al.); citation via Zenodo DOI on release.
+
+## Citation
+
+Until the Zenodo DOI lands with the open release, cite the two papers in
+preparation (Sharma et al., the science survey; Chand et al., the agentic
+methods). BibTeX will appear here ADS-exported, per project rule — hand-written
+entries are forbidden in this repo.
+
+## License
+
+MIT. *The previous science-survey README is preserved in git history.*

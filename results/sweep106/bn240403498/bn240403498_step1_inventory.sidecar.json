@@ -1,0 +1,132 @@
+{
+ "figure": "bn240403498_step1_inventory.png",
+ "generated_utc": "2026-09-04T19:20:44Z",
+ "generator": "scripts/44_step_figures.py::fig_step1_2",
+ "generator_sha256": "82496aea9204e6ec51627936cfae061820de07201eff41fab4e2d06153209259",
+ "git_head": "f6c41b38ce7b1f0f6521e9f5b38d465d7c63a63c",
+ "generator_uncommitted": true,
+ "generator_note": "generator is MODIFIED in the working tree \u2014 git_head does NOT describe the code that made this figure; use generator_sha256",
+ "primitive_sha256": {
+  "results/qc/bn240403498_step1_response_coverage.ecsv": "60f9b79303214c2f21ea3c4cd41df020f6ec5500a892f044d3d8cccb3a9873e5",
+  "results/qc/bn240403498_step2_detector_angles.ecsv": "8a64d23c037a00942233b92f43084dc1da6f26479ec85bdf5820a962ffc92468",
+  "results/background_intervals.ecsv": "4a134fe0e3e38d9626631c0bec2297b09b15226618d032abe9c39db1ad518a87",
+  "results/grb_sample.ecsv": "d7b22925edaac9a427102c65287027a98982b3f544576650a1c871692793fb25",
+  "results/campaign/divergence_ledger.md": "e9e029cf9239ed58b3e870a8bb376465da7b703a69f35037e6c1b68e606eaac6"
+ },
+ "trigger": "bn240403498",
+ "src_start": 18.0,
+ "src_stop": 48.0,
+ "angle_provenance": "angles recomputed for this run from glg_poshist_all_240403_v00.fit \u2014 catalog DET_ANGLE reproduced exactly (max residual 0.00000\u00b0) via the repo angle code; an independent reimplementation agrees to \u22640.01\u00b0",
+ "bcat": [
+  "n0",
+  "n1",
+  "n2",
+  "n3",
+  "n5"
+ ],
+ "approved": [
+  "n0",
+  "n1",
+  "n2",
+  "n5",
+  "b0"
+ ],
+ "bcat_not_approved": [
+  "n3"
+ ],
+ "detectors_not_plotted": {
+  "n4": 83.95,
+  "n6": 81.59,
+  "n7": 106.32,
+  "n8": 139.61,
+  "n9": 83.0,
+  "na": 96.88,
+  "nb": 145.05,
+  "b1": 142.49
+ },
+ "detectors": {
+  "n0": {
+   "cov_start": -124.03414809703827,
+   "cov_stop": 482.18465197086334,
+   "n_matrices": 12,
+   "boundaries_in_window": [
+    23.42445194721222
+   ],
+   "verdict": "PASS",
+   "angle_deg": 43.08,
+   "in_bcat": true,
+   "approved": true
+  },
+  "n1": {
+   "cov_start": -124.03414809703827,
+   "cov_stop": 482.18465197086334,
+   "n_matrices": 12,
+   "boundaries_in_window": [
+    23.42445194721222
+   ],
+   "verdict": "PASS",
+   "angle_deg": 22.59,
+   "in_bcat": true,
+   "approved": true
+  },
+  "n2": {
+   "cov_start": -124.03414809703827,
+   "cov_stop": 482.18465197086334,
+   "n_matrices": 12,
+   "boundaries_in_window": [
+    23.42445194721222
+   ],
+   "verdict": "PASS",
+   "angle_deg": 41.8,
+   "in_bcat": true,
+   "approved": true
+  },
+  "n5": {
+   "cov_start": -124.03414809703827,
+   "cov_stop": 482.18465197086334,
+   "n_matrices": 12,
+   "boundaries_in_window": [
+    23.42445194721222
+   ],
+   "verdict": "PASS",
+   "angle_deg": 35.27,
+   "in_bcat": true,
+   "approved": true
+  },
+  "b0": {
+   "cov_start": -124.03414809703827,
+   "cov_stop": 482.18465197086334,
+   "n_matrices": 12,
+   "boundaries_in_window": [
+    23.42445194721222
+   ],
+   "verdict": "PASS",
+   "angle_deg": 37.51,
+   "in_bcat": false,
+   "approved": true
+  },
+  "n3": {
+   "verdict": "NOT APPROVED (in BCAT)",
+   "angle_deg": 57.94,
+   "in_bcat": true,
+   "approved": false,
+   "written_rule": "KEEP (50-60\u00b0 BCAT rescue)",
+   "rule_divergence": "\u2020 n3 (57.94\u00b0) is exactly the written 50\u201360\u00b0 BCAT rescue case: the WRITTEN RULE SAYS KEEP, the recorded human decision DROPPED it. A reason was elicited from the PI and recorded verbatim; the written rule is NOT amended and the flag is OPEN \u2014 see results/campaign/divergence_ledger.md. No n3 data were retrieved."
+  }
+ },
+ "axes": {
+  "left_xlim": [
+   -160.40727610111236,
+   518.5577799749375
+  ],
+  "right_xlim": [
+   0.0,
+   70.37933662485769
+  ],
+  "left_xlim_is_label_driven": false,
+  "right_xlim_is_label_driven": true,
+  "right_fit_cap_hit": false,
+  "left_fit_cap": "1.9x initial range",
+  "left_fit_cap_hit": false
+ }
+}

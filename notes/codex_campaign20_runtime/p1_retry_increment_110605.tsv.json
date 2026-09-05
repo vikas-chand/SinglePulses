@@ -1,0 +1,56 @@
+{
+  "generated_utc": "2026-08-17T02:09:56Z",
+  "policy": "one retry iff the complete initial family has literal STATUS=FAIL",
+  "triggers": [
+    "bn110605183"
+  ],
+  "entries": [
+    {
+      "trigger": "bn110605183",
+      "family": "threecomp",
+      "label": "threecomp_retry"
+    }
+  ],
+  "decisions": [
+    {
+      "trigger": "bn110605183",
+      "family": "default",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110605183",
+      "family": "shape",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110605183",
+      "family": "highe",
+      "decision": "NO_RETRY",
+      "reason": "initial family has no literal STATUS=FAIL"
+    },
+    {
+      "trigger": "bn110605183",
+      "family": "threecomp",
+      "decision": "RETRY_ONCE",
+      "label": "threecomp_retry",
+      "literal_fail_count": 1,
+      "failed_cells": [
+        {
+          "block": 0,
+          "model": "CPLCPL",
+          "status": "FAIL"
+        }
+      ]
+    }
+  ],
+  "worklist": {
+    "path": "notes/codex_campaign20_runtime/p1_retry_increment_110605.tsv",
+    "exists": true,
+    "sha256": "4c5c5678791a3237d0271bed6206df0e98bad13c23b25bbb0044008728cb31b7",
+    "bytes": 74
+  },
+  "matrix_sha256": "b95aec7bd559a612d4b2cf8ff88f153cf8df8200c98615cb382ec68f2f7cd81e",
+  "provisional": true
+}
